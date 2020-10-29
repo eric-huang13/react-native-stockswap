@@ -1,20 +1,16 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import { Button, SafeAreaView, Text } from 'react-native';
-import { Login } from '../../actions/user';
+import {connect} from 'react-redux';
+import {Button, SafeAreaView, Text} from 'react-native';
+import {Login} from '../../actions/user';
 
 class LoginScreen extends Component {
-
   render() {
-    const {isLoggedIn, Login } = this.props;
-    
+    const {isLoggedIn, LoginUser} = this.props;
+
     return (
       <SafeAreaView>
-        <Text>Is User Logged in: {"" + isLoggedIn} </Text>
-        <Button
-          title="Login Button"
-          onPress={() => Login()}
-        />
+        <Text>Is User Logged in: {'' + isLoggedIn} </Text>
+        <Button title="Login Button" onPress={() => LoginUser()} />
       </SafeAreaView>
     );
   }
@@ -28,7 +24,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    Login: () => dispatch(Login()),
+    LoginUser: () => dispatch(Login()),
   };
 };
 

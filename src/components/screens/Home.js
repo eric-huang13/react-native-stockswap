@@ -6,12 +6,12 @@ import {Logout} from '../../actions/user';
 
 class HomeScreen extends Component {
   render() {
-    const {isLoggedIn, Logout} = this.props;
+    const {isLoggedIn, LogoutUser} = this.props;
 
     return (
       <SafeAreaView>
-        <Text>Is User Logged in: {""+isLoggedIn} </Text>
-        <Button title="Logout Button" onPress={() => Logout()} />
+        <Text>Is User Logged in: {'' + isLoggedIn} </Text>
+        <Button title="Logout Button" onPress={() => LogoutUser()} />
       </SafeAreaView>
     );
   }
@@ -25,7 +25,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    Logout: (userCredentials) => dispatch(Logout(userCredentials)),
+    LogoutUser: (userCredentials) => dispatch(Logout(userCredentials)),
   };
 };
 

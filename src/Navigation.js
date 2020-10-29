@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 
 // Redux
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 // Navigation
 import {NavigationContainer} from '@react-navigation/native';
@@ -19,7 +19,7 @@ const Stack = createStackNavigator();
 class Navigation extends Component {
   render() {
     const {isLoggedIn} = this.props;
-    
+
     return (
       <NavigationContainer>
         {isLoggedIn ? (

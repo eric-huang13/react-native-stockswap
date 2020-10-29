@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGOUT } from '../constants';
+import {LOGIN_SUCCESS, LOGOUT} from '../constants';
 
 export const Login = () => (dispatch) => {
   return dispatch({
