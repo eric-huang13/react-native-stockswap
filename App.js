@@ -1,7 +1,7 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import Navigation from './src/Navigation';
-import reduxStore from './src/store/index';
+import Navigation from 'Navigation';
+import reduxStore from 'store/index';
 
 const store = reduxStore();
 

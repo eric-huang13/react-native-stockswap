@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Button, SafeAreaView, Text} from 'react-native';
 
-import {Logout} from '../../actions/user';
+import {Logout} from 'actions/user';
 
 class HomeScreen extends Component {
   render() {

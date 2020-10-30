@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Button, SafeAreaView, Text} from 'react-native';
-import {Login} from '../../actions/user';
+import {Login} from 'actions/user';
 
 class LoginScreen extends Component {
   render() {

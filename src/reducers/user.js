@@ -1,4 +1,4 @@
-import {LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT} from '../constants';
+import {LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT} from 'constants';
 
 const defaultState = {
   isLoggedIn: false,

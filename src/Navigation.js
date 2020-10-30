@@ -10,8 +10,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 
 // Components
-import LoginScreen from './components/screens/Login';
-import HomeScreen from './components/screens/Home';
+import LoginScreen from 'components/screens/Login';
+import HomeScreen from 'components/screens/Home';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
