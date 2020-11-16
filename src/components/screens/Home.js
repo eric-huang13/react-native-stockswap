@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Button, SafeAreaView, Text} from 'react-native';
-import CompanyBoxGainers from './CompanyBoxGainers'
-import MarketMovers from './MarketMovers'
+import MarketMovers from './MarketMovers';
 
 import {Logout} from 'actions/user';
 
@@ -14,7 +13,7 @@ class HomeScreen extends Component {
       <SafeAreaView>
         <Text>Is User Logged in: {'' + isLoggedIn} </Text>
         <Button title="Logout Button" onPress={() => LogoutUser()} />
-        <MarketMovers/>
+        <MarketMovers />
       </SafeAreaView>
     );
   }

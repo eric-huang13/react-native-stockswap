@@ -1,11 +1,16 @@
 // import {LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT} from 'constants';
 
 const defaultState = {
- companies:[   
-{id: '1', title: 'AT&T', symbol:"T", percentage: '+3.25%'},
-{id: '2', title: 'Genesis Healthcare', symbol: 'GEN', percentage:"+35.06%"},
-{id: '3', title: 'Therapeutics MD', symbol:"TXMD", percentage: '+70.08%'}
- ]
+  companies: [
+    {id: '1', title: 'AT&T', symbol: 'T', percentage: '+3.25%'},
+    {
+      id: '2',
+      title: 'Genesis Healthcare',
+      symbol: 'GEN',
+      percentage: '+35.06%',
+    },
+    {id: '3', title: 'Therapeutics MD', symbol: 'TXMD', percentage: '+70.08%'},
+  ],
 };
 
 const companyBoxReducer = (state = defaultState, action) => {

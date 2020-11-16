@@ -4,20 +4,21 @@ import {connect} from 'react-redux';
 
 export class CompanyBoxGainers extends Component {
   render() {
-    console.log(this.props.navigation, 'props in company');
+    console.log(this.props, 'props in company');
     const {companies} = this.props;
 
     return (
       <View style={style.container}>
         <Text style={style.header}>Gainers</Text>
 
-        <View style={style.boxContainer}>
+        <View  style={style.boxContainer}>
           {companies.map((item) => {
             return (
               <View style={style.listContainer}>
                 <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate('CompanyInformation')
+                    // this.props.navigation.navigate('CompanyInformation')
+                    console.log(item.id)
                   }>
                   <Text style={style.title}>{item.title}</Text>
                   <Text style={style.details}>{item.symbol}</Text>
@@ -41,25 +42,22 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(CompanyBoxGainers);
 
 const style = StyleSheet.create({
-    container: {
-        marginTop:8,
-        borderBottomWidth:1,
-        borderBottomColor:"lightgrey",
-        paddingBottom:12,
-        width: "95%",
-        alignSelf:"center"
-
-      },
+  container: {
+    marginTop: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: 'lightgrey',
+    paddingBottom: 12,
+    width: '95%',
+    alignSelf: 'center',
+  },
   boxContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    
   },
   header: {
     fontSize: 15,
     marginLeft: 12,
     fontStyle: 'italic',
-    
   },
   listContainer: {
     alignSelf: 'center',
@@ -71,8 +69,7 @@ const style = StyleSheet.create({
     height: 120,
     width: 120,
     flexDirection: 'column',
-    padding:1,
-
+    padding: 1,
   },
   title: {
     alignSelf: 'center',

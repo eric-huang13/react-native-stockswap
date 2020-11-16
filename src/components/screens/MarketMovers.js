@@ -16,14 +16,13 @@ export default MarketMovers;
 
 const style = StyleSheet.create({
   container: {
-      paddingTop:4,
+    paddingTop: 4,
   },
 
   header: {
     fontSize: 15,
-    marginLeft: 12,
-    fontWeight:"700",
-    color:"grey",
-    marginLeft:26,
+    fontWeight: '700',
+    color: 'grey',
+    marginLeft: 26,
   },
 });
