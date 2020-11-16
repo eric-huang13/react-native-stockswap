@@ -3,9 +3,11 @@ import {combineReducers} from 'redux';
 
 // imports
 import userReducer from './user';
+import companyBoxReducer from './companyBox'
 
 const appReducer = combineReducers({
   user: userReducer,
+  company: companyBoxReducer,
 });
 
 const rootReducer = (state, action) => {
