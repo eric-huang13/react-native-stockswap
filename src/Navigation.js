@@ -12,8 +12,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 // Components
 import LoginScreen from 'components/screens/Login';
 import HomeScreen from 'components/screens/Home';
-import CompanyBoxGainers from './components/screens/CompanyBoxGainers';
-import CompanyInformation from './components/screens/CompanyBoxGainers';
 import MarketMovers from './components/screens/MarketMovers';
 
 const Tab = createBottomTabNavigator();
@@ -28,11 +26,11 @@ class Navigation extends Component {
         {isLoggedIn ? (
           <Tab.Navigator>
             <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="MarketMovers" component={MarketMovers}/>
+            <Tab.Screen name="MarketMovers" component={MarketMovers} />
           </Tab.Navigator>
         ) : (
           <Stack.Navigator>
-            <Stack.Screen name="Login" component={LoginScreen} />        
+            <Stack.Screen name="Login" component={LoginScreen} />
           </Stack.Navigator>
         )}
       </NavigationContainer>

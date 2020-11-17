@@ -1,28 +1,28 @@
 import React, {Component} from 'react';
 import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
-import {companyBoxStyles} from '../../styles/companyBoxStyles'
+import {companyBoxStyles} from '../../styles/companyBoxStyles';
 
 export class CompanyBoxGainers extends Component {
   render() {
     const {companies} = this.props;
-console.log(this.props,"props in gain")
+    console.log(this.props, 'props in gain');
     return (
       <View style={companyBoxStyles.container}>
         <Text style={companyBoxStyles.header}>Gainers</Text>
 
-        <View  style={companyBoxStyles.boxContainer}>
+        <View style={companyBoxStyles.boxContainer}>
           {companies.map((item) => {
             return (
               <View style={style.listContainer} key={item.id}>
                 <TouchableOpacity
-                  onPress={() =>
-                    this.props.navigation.navigate('Home')
-                  }>
+                  onPress={() => this.props.navigation.navigate('Home')}>
                   <Text style={companyBoxStyles.title}>{item.title}</Text>
                   <View style={companyBoxStyles.detailsContainer}>
-                  <Text style={companyBoxStyles.symbol}>{item.symbol}</Text>
-                  <Text style={companyBoxStyles.percentage}>{item.percentage}</Text>
+                    <Text style={companyBoxStyles.symbol}>{item.symbol}</Text>
+                    <Text style={companyBoxStyles.percentage}>
+                      {item.percentage}
+                    </Text>
                   </View>
                 </TouchableOpacity>
               </View>
@@ -53,6 +53,6 @@ const style = StyleSheet.create({
     height: 130,
     width: 125,
     flexDirection: 'column',
-    padding: 3,    
+    padding: 3,
   },
 });

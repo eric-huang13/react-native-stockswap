@@ -1,4 +1,3 @@
-
 const defaultState = {
   gainers: [
     {id: '1', title: 'AT&T', symbol: 'T', percentage: '+3.25%'},
@@ -34,7 +33,6 @@ const defaultState = {
 
 const companyBoxReducer = (state = defaultState, action) => {
   switch (action.type) {
-    
     default:
       return state;
   }
