@@ -1,30 +1,28 @@
 import React, {Component} from 'react';
 import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
+import {companyBoxStyles} from '../../styles/companyBoxStyles'
 
-export class ComapnyBoxHBV extends Component {
-  render() {
-        console.log(this.props, 'props in comp');
-
+export class CompanyBoxHBV extends Component {
+  render() {    
     const {companies} = this.props;
 
     return (
-      <View style={style.container}>
-        <Text style={style.header}>Highest by Volume</Text>
+      <View style={companyBoxStyles.container}>
+        <Text style={companyBoxStyles.header}>Highest by Volume</Text>
 
-        <View  style={style.boxContainer}>
+        <View  style={companyBoxStyles.boxContainer}>
           {companies.map((item) => {
             return (
               <View style={style.listContainer} key={item.id}>
                 <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate('CompanyInformation')
-                    // console.log(item.id)
+                    this.props.navigation.navigate('Home')
                   }>
-                  <Text style={style.title}>{item.title}</Text>
-                  <View style={style.detailsContainer}>
-                  <Text style={style.symbol}>{item.symbol}</Text>
-                  <Text style={style.percentage}>{item.percentage}</Text>
+                  <Text style={companyBoxStyles.title}>{item.title}</Text>
+                  <View style={companyBoxStyles.detailsContainer}>
+                  <Text style={companyBoxStyles.symbol}>{item.symbol}</Text>
+                  <Text style={companyBoxStyles.percentage}>{item.percentage}</Text>
                   </View>
                 </TouchableOpacity>
               </View>
@@ -42,29 +40,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(ComapnyBoxHBV);
+export default connect(mapStateToProps)(CompanyBoxHBV);
 
-const style = StyleSheet.create({
-  container: {
-    marginTop: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: 'lightgrey',
-    paddingBottom: 12,
-    width: '98%',
-    alignSelf: 'center',
-   
-  },
-  boxContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-   
-  },
-  header: {
-    fontSize: 17.5,
-    marginLeft: 14,
-    fontStyle: 'italic',
-    color:'black'
-  },
+const style = StyleSheet.create({ 
   listContainer: {
     alignSelf: 'center',
     marginTop: 6,
@@ -75,37 +53,6 @@ const style = StyleSheet.create({
     height: 130,
     width: 125,
     flexDirection: 'column',
-    padding: 3,
-    
-  },
-  title: {
-    alignSelf: 'center',
-    fontWeight: 'bold',
-    fontSize: 18.5,
-    marginTop: 3,
-    color: 'rgb(246, 252, 247)',
-    marginBottom: 20,
-    textAlign:"center",
-
-  },
-  detailsContainer:{
-    position:"absolute",
-    marginTop:"60%",
-    // borderWidth: 1,
-    // borderColor: 'white',
- 
-  },
-  symbol: {
-    fontWeight: 'bold',
-    fontSize: 22,
-    color: 'rgb(8, 11, 9)',
-    marginLeft:8,
-    marginBottom:-7
-    
-  },
-  percentage: {
-    fontWeight: 'bold',
-    fontSize: 22,
-    color: 'rgb(8, 11, 9)',
-  },
+    padding: 3,    
+  },  
 });

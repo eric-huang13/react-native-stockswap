@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, TextInput} from 'react-native';
+import {Text, View, StyleSheet, TextInput, ScrollView} from 'react-native';
 import CompanyBoxGainers from './CompanyBoxGainers';
 import CompanyBoxLosers from './CompanyBoxLosers'
 import CompanyBoxHBV from './CompanyBoxHBV'
@@ -16,10 +16,10 @@ export class MarketMovers extends Component {
     console.log(text)
   }
   render() {
-    console.log(this.props, 'props in market');
-
+console.log(this.props,"props in movers")
     return (
-      <View style={style.container}>
+      <View>
+        <ScrollView>
         <View style={style.searchInputContainer}>
           <TextInput
         style={style.searchInput}
@@ -27,10 +27,12 @@ export class MarketMovers extends Component {
         onChangeText={(text) => this.handleChange(text)}
       ></TextInput>
       </View>
+      
         <Text style={style.header}>Market Movers</Text>
-        <CompanyBoxGainers />
-        <CompanyBoxLosers />
-        <CompanyBoxHBV />
+        <CompanyBoxGainers navigation={this.props.navigation} />
+        <CompanyBoxLosers navigation={this.props.navigation}/>
+        <CompanyBoxHBV  navigation={this.props.navigation}/>
+        </ScrollView>
       </View>
     );
   }
@@ -39,9 +41,6 @@ export class MarketMovers extends Component {
 export default MarketMovers;
 
 const style = StyleSheet.create({
-  container: {
-    
-  },
   searchInputContainer:{
     backgroundColor:'rgb(176, 241, 181)',
     alignItems:"center",

@@ -1,4 +1,3 @@
-// import {LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT} from 'constants';
 
 const defaultState = {
   gainers: [
@@ -35,7 +34,7 @@ const defaultState = {
 
 const companyBoxReducer = (state = defaultState, action) => {
   switch (action.type) {
-
+    
     default:
       return state;
   }

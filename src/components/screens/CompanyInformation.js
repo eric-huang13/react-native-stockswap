@@ -5,7 +5,7 @@ export class CompanyInformation extends Component {
   render() {
     return (
       <View>
-        <Text> Company Information  component</Text>
+        <Text> Company Information </Text>
       </View>
     );
   }
