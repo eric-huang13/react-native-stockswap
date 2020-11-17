@@ -28,19 +28,11 @@ class Navigation extends Component {
         {isLoggedIn ? (
           <Tab.Navigator>
             <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="MarketMovers" component={MarketMovers}/>
           </Tab.Navigator>
         ) : (
           <Stack.Navigator>
-            <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="Market Movers" component={MarketMovers} />
-            <Stack.Screen
-              name="CompanyBoxGainers"
-              component={CompanyBoxGainers}
-            />
-            <Stack.Screen
-              name="CompanyInformation"
-              component={CompanyInformation}
-            />
+            <Stack.Screen name="Login" component={LoginScreen} />        
           </Stack.Navigator>
         )}
       </NavigationContainer>

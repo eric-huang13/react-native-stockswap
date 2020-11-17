@@ -1,12 +1,20 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import CompanyBoxGainers from './CompanyBoxGainers';
+import CompanyBoxLosers from './CompanyBoxLosers'
+import CompanyBoxHBV from './CompanyBoxHBV'
+
 export class MarketMovers extends Component {
+  
   render() {
+    console.log(this.props, 'props in market');
+
     return (
       <View style={style.container}>
         <Text style={style.header}>Market Movers</Text>
         <CompanyBoxGainers />
+        <CompanyBoxLosers />
+        <CompanyBoxHBV />
       </View>
     );
   }
@@ -20,9 +28,10 @@ const style = StyleSheet.create({
   },
 
   header: {
-    fontSize: 15,
+    fontSize: 18,
     fontWeight: '700',
-    color: 'grey',
-    marginLeft: 26,
+    color: 'rgb(123, 123, 124)',
+    marginLeft: 23,
+    marginTop:2,
   },
 });

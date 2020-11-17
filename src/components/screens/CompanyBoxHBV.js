@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 
-export class CompanyBoxGainers extends Component {
+export class ComapnyBoxHBV extends Component {
   render() {
         console.log(this.props, 'props in comp');
 
@@ -10,7 +10,7 @@ export class CompanyBoxGainers extends Component {
 
     return (
       <View style={style.container}>
-        <Text style={style.header}>Gainers</Text>
+        <Text style={style.header}>Highest by Volume</Text>
 
         <View  style={style.boxContainer}>
           {companies.map((item) => {
@@ -38,11 +38,11 @@ export class CompanyBoxGainers extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    companies: state.company.gainers,
+    companies: state.company.highestByVolume,
   };
 };
 
-export default connect(mapStateToProps)(CompanyBoxGainers);
+export default connect(mapStateToProps)(ComapnyBoxHBV);
 
 const style = StyleSheet.create({
   container: {
@@ -60,17 +60,17 @@ const style = StyleSheet.create({
    
   },
   header: {
-    fontSize: 18,
+    fontSize: 17.5,
     marginLeft: 14,
     fontStyle: 'italic',
-    color:'black',
+    color:'black'
   },
   listContainer: {
     alignSelf: 'center',
-    marginTop: 8,
+    marginTop: 6,
     borderWidth: 1,
-    borderColor: 'limegreen',
-    backgroundColor: '	rgb(8, 177, 40)',
+    borderColor: 'rgb(58, 117, 167)',
+    backgroundColor: 'rgb(58, 117, 167)',
     borderRadius: 15,
     height: 130,
     width: 125,
@@ -86,6 +86,7 @@ const style = StyleSheet.create({
     color: 'rgb(246, 252, 247)',
     marginBottom: 20,
     textAlign:"center",
+
   },
   detailsContainer:{
     position:"absolute",
