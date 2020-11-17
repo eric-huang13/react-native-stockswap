@@ -14,7 +14,7 @@ export class CompanyBoxGainers extends Component {
         <View  style={style.boxContainer}>
           {companies.map((item) => {
             return (
-              <View style={style.listContainer}>
+              <View style={style.listContainer} key={item.id}>
                 <TouchableOpacity
                   onPress={() =>
                     // this.props.navigation.navigate('CompanyInformation')
