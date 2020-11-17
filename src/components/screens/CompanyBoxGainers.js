@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 
 export class CompanyBoxGainers extends Component {
   render() {
-        console.log(this.props, 'props in comp');
 
     const {companies} = this.props;
 
