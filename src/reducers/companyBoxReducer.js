@@ -1,5 +1,8 @@
-import {MARKETGAINERS_FETCHING, MARKETGAINERS_SUCCESS, MARKETGAINERS_FAILURE} from  '../constants';
-
+import {
+  MARKETGAINERS_FETCHING,
+  MARKETGAINERS_SUCCESS,
+  MARKETGAINERS_FAILURE,
+} from '../constants';
 
 const defaultState = {
   gainers: [
@@ -71,7 +74,7 @@ const defaultState = {
       category: 'HBV',
     },
   ],
-  marketGainers:[],
+  marketGainers: [],
 };
 
 const companyBoxReducer = (state = defaultState, action) => {
