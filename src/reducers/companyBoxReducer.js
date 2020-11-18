@@ -44,7 +44,7 @@ const defaultState = {
       id: '3',
       title: 'Canopy Growth',
       symbol: 'CGC',
-      percentage: '+-10.87%',
+      percentage: '-10.87%',
       category: 'losers',
     },
   ],

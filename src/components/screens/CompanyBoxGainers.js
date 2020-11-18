@@ -17,7 +17,10 @@ export class CompanyBoxGainers extends Component {
     const {companies} = this.props;
     
     return (
-      <View style={companyBoxStyles.boxContainer}>
+      <View style={companyBoxStyles.container}>
+        <Text style={companyBoxStyles.header}>Gainers</Text>
+        <View style={companyBoxStyles.boxContainer}>
+
       {companies.map((item) => {
         return (
           <TouchableOpacity
@@ -27,7 +30,7 @@ export class CompanyBoxGainers extends Component {
           </TouchableOpacity>
         );
       })}
-     
+     </View>
       </View>
     );
   }
