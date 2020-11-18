@@ -3,7 +3,7 @@ import {combineReducers} from 'redux';
 
 // imports
 import userReducer from './user';
-import companyBoxReducer from './companyBox';
+import companyBoxReducer from './companyBoxReducer';
 
 const appReducer = combineReducers({
   user: userReducer,

@@ -16,7 +16,6 @@ export class MarketMovers extends Component {
     console.log(text);
   };
   render() {
-    console.log(this.props, 'props in movers');
     return (
       <View>
         <ScrollView>
