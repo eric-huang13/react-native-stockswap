@@ -15,7 +15,7 @@ export class CompanyBoxGainers extends Component {
             return (
               <TouchableOpacity
                 key={item.id}
-                onPress={() => this.props.navigation.navigate('Home')}>
+                onPress={() => this.props.navigation.navigate({name:'CompanyInformation', params: {item}})}>
                 <CompanyBox item={item} />
               </TouchableOpacity>
             );

@@ -13,20 +13,32 @@ import {createStackNavigator} from '@react-navigation/stack';
 import LoginScreen from 'components/screens/Login';
 import HomeScreen from 'components/screens/Home';
 import MarketMovers from './components/screens/MarketMovers';
+import CompanyInformation from './components/screens/CompanyInformation'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+const MarketMoversStack = createStackNavigator();
 
 class Navigation extends Component {
+
+createMarketMoversStack = () =>
+<MarketMoversStack.Navigator>
+  <MarketMoversStack.Screen name="MarketMovers" component={MarketMovers} options={{headerShown:false}}/>
+  <MarketMoversStack.Screen name="CompanyInformation" component={CompanyInformation}/>
+</MarketMoversStack.Navigator>
+ 
+  
   render() {
     const {isLoggedIn} = this.props;
+
+
 
     return (
       <NavigationContainer>
         {isLoggedIn ? (
           <Tab.Navigator>
             <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="MarketMovers" component={MarketMovers} />
+            <Tab.Screen name="MarketMovers" component={this.createMarketMoversStack}/>
           </Tab.Navigator>
         ) : (
           <Stack.Navigator>
