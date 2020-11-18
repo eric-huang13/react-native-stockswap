@@ -1,36 +1,72 @@
 const defaultState = {
   gainers: [
-    {id: '1', title: 'AT&T', symbol: 'T', percentage: '+3.25%', category: 'gainers'},
+    {
+      id: '1',
+      title: 'AT&T',
+      symbol: 'T',
+      percentage: '+3.25%',
+      category: 'gainers',
+    },
     {
       id: '2',
       title: 'Genesis Healthcare',
       symbol: 'GEN',
       percentage: '+35.06%',
-      category: 'gainers'
+      category: 'gainers',
     },
-    {id: '3', title: 'Therapeutics MD', symbol: 'TXMD', percentage: '+70.08%', category: 'gainers'},
+    {
+      id: '3',
+      title: 'Therapeutics MD',
+      symbol: 'TXMD',
+      percentage: '+70.08%',
+      category: 'gainers',
+    },
   ],
   losers: [
-    {id: '1', title: 'Coty', symbol: 'COTY', percentage: '-15.25%', category: 'losers'},
+    {
+      id: '1',
+      title: 'Coty',
+      symbol: 'COTY',
+      percentage: '-15.25%',
+      category: 'losers',
+    },
     {
       id: '2',
       title: 'Nio',
       symbol: 'NIO',
       percentage: '-8.90%',
-      category: 'losers'
+      category: 'losers',
     },
-    {id: '3', title: 'Canopy Growth', symbol: 'CGC', percentage: '+-10.87%', category: 'losers'},
+    {
+      id: '3',
+      title: 'Canopy Growth',
+      symbol: 'CGC',
+      percentage: '+-10.87%',
+      category: 'losers',
+    },
   ],
   highestByVolume: [
-    {id: '1', title: 'FORD', symbol: 'F', percentage: '+0.75%', category: 'HBV'},
+    {
+      id: '1',
+      title: 'FORD',
+      symbol: 'F',
+      percentage: '+0.75%',
+      category: 'HBV',
+    },
     {
       id: '2',
       title: 'General Electric',
       symbol: 'GE',
       percentage: '-1.08%',
-      category: 'HBV'
+      category: 'HBV',
     },
-    {id: '3', title: 'Bank of America', symbol: 'BAC', percentage: '-1.05%',  category: 'HBV'},
+    {
+      id: '3',
+      title: 'Bank of America',
+      symbol: 'BAC',
+      percentage: '-1.05%',
+      category: 'HBV',
+    },
   ],
 };
 

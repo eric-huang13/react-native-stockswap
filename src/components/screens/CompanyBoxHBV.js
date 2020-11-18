@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
+import {Text, View, TouchableOpacity,} from 'react-native';
 import {connect} from 'react-redux';
 import {companyBoxStyles} from '../../styles/companyBoxStyles';
-import CompanyBox from './CompanyBox'
-
+import CompanyBox from './CompanyBox';
 
 export class CompanyBoxHBV extends Component {
   render() {
@@ -16,10 +15,11 @@ export class CompanyBoxHBV extends Component {
         <View style={companyBoxStyles.boxContainer}>
           {companies.map((item) => {
             return (
-              <TouchableOpacity key={item.id}
-              onPress={() => this.props.navigation.navigate('Home')}>
-               <CompanyBox item={item}/>
-            </TouchableOpacity>
+              <TouchableOpacity
+                key={item.id}
+                onPress={() => this.props.navigation.navigate('Home')}>
+                <CompanyBox item={item} />
+              </TouchableOpacity>
             );
           })}
         </View>
@@ -35,4 +35,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(CompanyBoxHBV);
-
