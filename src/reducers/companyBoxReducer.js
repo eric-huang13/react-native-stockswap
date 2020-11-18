@@ -1,3 +1,6 @@
+import {MARKETGAINERS_FETCHING, MARKETGAINERS_SUCCESS, MARKETGAINERS_FAILURE} from  '../constants';
+
+
 const defaultState = {
   gainers: [
     {
@@ -68,10 +71,31 @@ const defaultState = {
       category: 'HBV',
     },
   ],
+  marketGainers:[],
 };
 
 const companyBoxReducer = (state = defaultState, action) => {
   switch (action.type) {
+    //Ready for hook up
+    // case MARKETGAINERS_FETCHING:
+    //   return {
+    //     ...state,
+    //     loading: true,
+    //     error: "",
+    //   };
+    // case MARKETGAINERS_SUCCESS:
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     error: "",
+    //     marketGainers: action.payload,
+    //   };
+    // case MARKETGAINERS_FAILURE:
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     error: action.payload,
+    //   };
     default:
       return state;
   }
