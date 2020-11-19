@@ -24,8 +24,7 @@ export class CompanyBox extends Component {
                   ...companyBoxStyles.listContainer,
                   backgroundColor: 'rgb(58, 117, 167)',
                 }
-          }
-          >
+          }>
           <Text style={companyBoxStyles.title}>{item.title}</Text>
           <View style={companyBoxStyles.detailsContainer}>
             <Text style={companyBoxStyles.symbol}>{item.symbol}</Text>

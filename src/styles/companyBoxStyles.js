@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 export const companyBoxStyles = StyleSheet.create({
   container: {
     marginTop: 8,
-    borderBottomWidth: .8,
+    borderBottomWidth: 0.8,
     borderBottomColor: 'gray',
     paddingBottom: 12.5,
     width: '98%',
@@ -30,7 +30,6 @@ export const companyBoxStyles = StyleSheet.create({
     width: 125,
     flexDirection: 'column',
     padding: 3,
-    
   },
   title: {
     alignSelf: 'center',
@@ -44,7 +43,7 @@ export const companyBoxStyles = StyleSheet.create({
   detailsContainer: {
     position: 'absolute',
     marginTop: '60%',
-    marginLeft:2,
+    marginLeft: 2,
   },
   symbol: {
     fontWeight: 'bold',

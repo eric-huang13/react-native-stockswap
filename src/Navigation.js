@@ -32,7 +32,7 @@ class Navigation extends Component {
         component={CompanyInformation}
       />
     </MarketMoversStack.Navigator>
-  )
+  );
 
   render() {
     const {isLoggedIn} = this.props;
