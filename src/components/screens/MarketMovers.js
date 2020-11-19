@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, TextInput, ScrollView} from 'react-native';
 import CompanyBoxList from './CompanyBoxList';
+import ArticleList from './ArticleList.js'
+
 
 
 export class MarketMovers extends Component {
@@ -28,6 +30,7 @@ export class MarketMovers extends Component {
 
           <Text style={style.header}>Market Movers</Text>
           <CompanyBoxList navigation={this.props.navigation} />
+          <ArticleList/>
         </ScrollView>
       </View>
     );
@@ -42,6 +45,7 @@ const style = StyleSheet.create({
     alignItems: 'center',
     padding: 4.8,
     marginTop: 0,
+    borderWidth:1,
   },
   searchInput: {
     borderWidth: 1,
@@ -56,10 +60,10 @@ const style = StyleSheet.create({
     opacity: 0.8,
   },
   header: {
-    fontSize: 18,
+    fontSize: 18.5,
     fontWeight: '700',
     color: 'rgb(123, 123, 124)',
     marginLeft: 23,
-    marginTop: 7,
+    marginTop: 8.5,
   },
 });

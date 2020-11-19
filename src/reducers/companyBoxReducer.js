@@ -75,6 +75,15 @@ const defaultState = {
     },
   ],
   marketGainers: [],
+  articles:[
+    {
+      id: '1',
+      source: 'The Wall Street Journal',
+      released: '3h',
+      headline: 'Global Stocks Edge Higher on Optimism Over Economic Reopening',
+      img: 'https://images.unsplash.com/photo-1476711656344-4ffe053f6b2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    }
+  ],
 };
 
 const companyBoxReducer = (state = defaultState, action) => {

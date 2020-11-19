@@ -18,7 +18,7 @@ export class CompanyBoxList extends Component {
     const {highestByVolume} = this.props;
 
     return (
-      <View>
+      <View style={companyBoxStyles.mainContainer}>
       <View style={companyBoxStyles.container}>
         <Text style={companyBoxStyles.header}>Gainers</Text>
         <View style={companyBoxStyles.boxContainer}>
