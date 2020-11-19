@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, TextInput, ScrollView} from 'react-native';
-import CompanyBoxGainers from './CompanyBoxGainers';
-import CompanyBoxLosers from './CompanyBoxLosers';
-import CompanyBoxHBV from './CompanyBoxHBV';
+import CompanyBoxList from './CompanyBoxList';
+
 
 export class MarketMovers extends Component {
   constructor(props) {
@@ -28,9 +27,7 @@ export class MarketMovers extends Component {
           </View>
 
           <Text style={style.header}>Market Movers</Text>
-          <CompanyBoxGainers navigation={this.props.navigation} />
-          <CompanyBoxLosers navigation={this.props.navigation} />
-          <CompanyBoxHBV navigation={this.props.navigation} />
+          <CompanyBoxList navigation={this.props.navigation} />
         </ScrollView>
       </View>
     );
