@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
+import CompanyStockGraph from './CompanyStockGraph'
 
 export class CompanyInformation extends Component {
   render() {
@@ -17,6 +18,7 @@ export class CompanyInformation extends Component {
         ) : (
           <Text>Company Information</Text>
         )}
+        <CompanyStockGraph/>
       </View>
     );
   }
