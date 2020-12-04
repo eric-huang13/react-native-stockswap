@@ -9,11 +9,11 @@ import { SlideAreaChart } from "react-native-slide-charts";
 
 export default class CompanyStockGraph extends Component {
     render() {
-        const graphData = [{x: 2, y: 10}, {x: 3, y: 11}, {x: 4, y: 12},{x: 5, y: 14}, {x: 6, y: 14}, {x: 7, y: 15}]
           return (
             <View style={styles.container}>
               <SlideAreaChart
-                data={graphData}
+                data={this.props.graphData}
+                yRange={this.props.range}
                 width={Dimensions.get("window").width - 60}
                 height={200}
                 style={{ backgroundColor: "#f0f4fc" }}
