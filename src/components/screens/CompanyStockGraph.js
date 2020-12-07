@@ -45,7 +45,7 @@ export default class CompanyStockGraph extends Component {
                   //Set graph Y numbers
                   numberOfTicks: 0,
                   markFirstLine: true,
-                  // hideMarkers:true,
+                  hideMarkers:true,
                   // interval:12,
                 }}
                 //TOOLTIP
