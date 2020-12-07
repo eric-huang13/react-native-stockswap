@@ -7,12 +7,12 @@ import {
 const defaultState = {
   gainers: [
     {
-      id: "1",
-      title: "AT&T",
-      symbol: "T",
-      percentage: "+3.25%",
-      category: "gainers",
-      price: "30.78",
+      id: '1',
+      title: 'AT&T',
+      symbol: 'T',
+      percentage: '+3.25%',
+      category: 'gainers',
+      price: '30.78',
       priceHistory: [
         61,
         49,

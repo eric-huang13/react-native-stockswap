@@ -75,7 +75,7 @@ export class CompanyBoxList extends Component {
               );
             })}
           </View>
-          </View>
+        </View>
       </View>
     );
   }
@@ -86,7 +86,6 @@ const mapStateToProps = (state) => {
     gainers: state.company.gainers,
     losers: state.company.losers,
     highestByVolume: state.company.highestByVolume,
-
   };
 };
 

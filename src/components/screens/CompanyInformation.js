@@ -1,61 +1,63 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
   Text,
   View,
   ScrollView,
   StyleSheet,
   TouchableOpacity,
-} from "react-native";
-import CompanyStockGraph from './CompanyStockGraph'
-import { SlideAreaChart } from "react-native-slide-charts";
+} from 'react-native';
+import CompanyStockGraph from './CompanyStockGraph';
+import {SlideAreaChart} from 'react-native-slide-charts';
 
 export class CompanyInformation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      graphData: [{x: 2, y: 10}, {x: 3, y: 11}, {x: 4, y: 12},{x: 5, y: 14}, {x: 6, y: 14}, {x: 7, y: 15}],
-      percent: "1.22",
+      graphData: [
+        {x: 2, y: 10},
+        {x: 3, y: 11},
+        {x: 4, y: 12},
+        {x: 5, y: 14},
+        {x: 6, y: 14},
+        {x: 7, y: 15},
+      ],
+      percent: '1.22',
       range: [10, 15],
     };
   }
 
   render() {
-
     //X and Y
     //X
     const xDates = this.props.route.params.item.dates.map(
-      (item) => new Date(item * 1000)
+      (item) => new Date(item * 1000),
     );
     //Y
     const yPrices = this.props.route.params.item.priceHistory;
     //X and Y data
     const xyData = xDates.map((stockDate, stockPrice) => {
-      return { x: stockDate, y: yPrices[stockPrice] };
+      return {x: stockDate, y: yPrices[stockPrice]};
     });
 
-
-
-
     //Data periods
-    // Data for week  
+    // Data for week
     const weekData = xyData.slice(xyData.length - 7);
     //Data for month
     const monthData = xyData.slice(xyData.length - 31);
 
-    //Info to display 
+    //Info to display
     //Current stock price
     const currentPrice = yPrices[yPrices.length - 1];
     // Growth/Loss percentage
     const percentChange = (
-      ((currentPrice - yPrices.length-7) / yPrices.length-7) *100
+      ((currentPrice - yPrices.length - 7) / yPrices.length - 7) *
+      100
     ).toFixed(2);
     // Growth/Loss percentage
     const percentChangeMonth = (
       ((currentPrice - yPrices.length - 30) / yPrices.length - 30) *
       100
     ).toFixed(2);
-
-    
 
     //Range of highest and lowest numbers on graph, passed into graph component
     //Total range of stock prices
@@ -65,7 +67,6 @@ export class CompanyInformation extends Component {
       Math.min(...yPrices.slice(yPrices.length - 7)),
       Math.max(...yPrices.slice(yPrices.length - 7)),
     ];
-
 
     //Numbers to display graph numbers, can also use use built in graph numbers instead
     //Graph high number
@@ -79,10 +80,9 @@ export class CompanyInformation extends Component {
     //Graph quarter number
     const chartOneQuarter = (chartLow + numberDifference).toFixed(0);
 
-
-    const { route } = this.props;
-    const { graphData, percent, range } = this.state;
-    console.log(graphData,"graph Data")
+    const {route} = this.props;
+    const {graphData, percent, range} = this.state;
+    console.log(graphData, 'graph Data');
     return (
       <View>
         <ScrollView>
@@ -112,8 +112,7 @@ export class CompanyInformation extends Component {
                   percent: percentChange,
                   range: weekRange,
                 })
-              }
-            >
+              }>
               <Text style={styles.stockButtons}>1W</Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -123,8 +122,7 @@ export class CompanyInformation extends Component {
                   percent: percentChangeMonth,
                   range: newrange,
                 })
-              }
-            >
+              }>
               <Text style={styles.stockButtons}>1M</Text>
             </TouchableOpacity>
             <TouchableOpacity>
@@ -142,7 +140,11 @@ export class CompanyInformation extends Component {
           </View>
 
           <View style={styles.graphContainer}>
-            <CompanyStockGraph route={route} graphData={graphData} range={range} />
+            <CompanyStockGraph
+              route={route}
+              graphData={graphData}
+              range={range}
+            />
             <View style={styles.graphNumbers}>
               <Text style={styles.graphNumberText}>{chartLow}</Text>
               <Text style={styles.graphNumberText}>{chartOneQuarter}</Text>
@@ -209,109 +211,109 @@ export default CompanyInformation;
 const styles = StyleSheet.create({
   graphContainer: {
     // borderWidth:1,
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   graphNumbers: {
     // marginTop:170,
-    flexDirection: "column-reverse",
-    justifyContent: "space-evenly",
+    flexDirection: 'column-reverse',
+    justifyContent: 'space-evenly',
     // alignItems:"flex-end",
     marginRight: 10,
   },
   graphNumberText: {
-    color: "black",
-    fontWeight: "bold",
+    color: 'black',
+    fontWeight: 'bold',
     fontSize: 14.5,
   },
   symbolView: {
     paddingHorizontal: 15,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    color: "rgb(8, 177, 40)",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    color: 'rgb(8, 177, 40)',
+    alignItems: 'center',
   },
   titleView: {
     paddingHorizontal: 18,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    color: "rgb(8, 177, 40)",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    color: 'rgb(8, 177, 40)',
+    alignItems: 'center',
   },
   symbol: {
     fontSize: 24,
-    fontWeight: "bold",
-    color: "rgb(8, 177, 40)",
+    fontWeight: 'bold',
+    color: 'rgb(8, 177, 40)',
   },
   price: {
-    color: "rgb(8, 177, 40)",
+    color: 'rgb(8, 177, 40)',
     fontSize: 34,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   title: {
-    color: "rgb(8, 177, 40)",
+    color: 'rgb(8, 177, 40)',
     fontSize: 42,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   percentage: {
-    color: "rgb(8, 177, 40)",
+    color: 'rgb(8, 177, 40)',
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   vitalsContainer: {
     marginTop: 6,
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     paddingHorizontal: 18,
     paddingTop: 4,
   },
   vitalsHeader: {
-    textAlign: "center",
-    color: "black",
+    textAlign: 'center',
+    color: 'black',
     fontSize: 31,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginTop: 28,
   },
   vitalsLeftColumn: {
-    flexDirection: "column",
-    color: "black",
+    flexDirection: 'column',
+    color: 'black',
     fontSize: 31,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     // justifyContent:'space-between'
   },
   vitalsRightColumn: {
-    flexDirection: "column",
-    color: "black",
+    flexDirection: 'column',
+    color: 'black',
     fontSize: 31,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   vitalsRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   vitalDetails: {
-    color: "black",
+    color: 'black',
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 10,
   },
   vitalDetailsData: {
-    color: "black",
+    color: 'black',
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 10,
     marginLeft: 55,
   },
   stockButtonsContainer: {
     marginTop: 7,
-    flexDirection: "row",
-    justifyContent: "space-evenly",
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
     marginBottom: 10,
   },
   stockButtons: {
-    color: "black",
-    fontWeight: "bold",
+    color: 'black',
+    fontWeight: 'bold',
     fontSize: 15,
   },
 });
