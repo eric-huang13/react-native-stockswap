@@ -1,9 +1,19 @@
 import React, {Component} from 'react';
-import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
+import {Text, View, TouchableOpacity, StyleSheet, TextInput} from 'react-native';
 import {connect} from 'react-redux';
 import CompanyCategoryBox from './CompanyCategoryBox';
 
 export class CompanyCategory extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          input: "",
+        };
+      }
+      handleChange = (text) => {
+        this.setState({ input: text });
+      };
+    
   
 
 
@@ -19,11 +29,28 @@ export class CompanyCategory extends Component {
    
       } = this.props.route.params;
 
- 
+      const filteredGainers = gainers.filter((item) =>
+      item.title.toLowerCase().includes(this.state.input.toLowerCase())
+    );
+    const filteredLosers = losers.filter((item) =>
+      item.title.toLowerCase().includes(this.state.input.toLowerCase())
+    );
+    const filteredhighestByVolume = highestByVolume.filter((item) =>
+      item.title.toLowerCase().includes(this.state.input.toLowerCase())
+    );
+
 
     return showGainers ? (
           <View style={style.boxContainer}>
-            {gainers.map((item) => {
+              <View style={style.searchInputContainer}>
+          <TextInput
+            style={style.searchInput}
+            placeholder="Search by name"
+            onChangeText={(text) => this.handleChange(text)}
+          />
+        </View>
+
+            {filteredGainers.map((item) => {
               return (
                 <TouchableOpacity
                   key={item.id}
@@ -40,7 +67,15 @@ export class CompanyCategory extends Component {
           </View>
     ) : showLosers ? (
           <View style={style.boxContainer}>
-            {losers.map((item) => {
+              <View style={style.searchInputContainer}>
+          <TextInput
+            style={style.searchInput}
+            placeholder="Search by name"
+            onChangeText={(text) => this.handleChange(text)}
+          />
+        </View>
+
+            {filteredLosers.map((item) => {
               return (
                 <TouchableOpacity
                   key={item.id}
@@ -57,7 +92,15 @@ export class CompanyCategory extends Component {
           </View>
           ) : showHighestByVolume ? (
           <View style={style.boxContainer}>
-            {highestByVolume.map((item) => {
+              <View style={style.searchInputContainer}>
+          <TextInput
+            style={style.searchInput}
+            placeholder="Search by name"
+            onChangeText={(text) => this.handleChange(text)}
+          />
+        </View>
+
+            {filteredhighestByVolume.map((item) => {
               return (
                 <TouchableOpacity
                   key={item.id}
