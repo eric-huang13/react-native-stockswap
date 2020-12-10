@@ -36,7 +36,9 @@ class Navigation extends Component {
       <SearchStack.Screen
         name="CompanyCategory"
         component={CompanyCategory}
-        options={({ route }) => ({ title: route.params.name })}
+        options={({ route }) => ({ title: route.params.name, headerTitleAlign: {
+          textAlign: 'center',
+        }, })}
       />
     </SearchStack.Navigator>
   );
