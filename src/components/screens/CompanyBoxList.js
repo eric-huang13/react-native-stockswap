@@ -23,8 +23,8 @@ export class CompanyBoxList extends Component {
         <View style={companyBoxStyles.container}>
         <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate({
-                      name: 'CompanyCategory',
+                    this.props.navigation.navigate( 'CompanyCategory',{
+                      name: 'Gainers',
                       params: {gainers, losers, highestByVolume, showGainers:true}
                     })
                   }>
@@ -51,8 +51,8 @@ export class CompanyBoxList extends Component {
         <View style={companyBoxStyles.container}>
         <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate({
-                      name: 'CompanyCategory',
+                    this.props.navigation.navigate( 'CompanyCategory',{
+                      name: 'Losers',
                       params: {gainers, losers, highestByVolume, showLosers:true},
                     })
                   }>
@@ -80,8 +80,8 @@ export class CompanyBoxList extends Component {
         <View style={companyBoxStyles.container}>
         <TouchableOpacity
                   onPress={() =>
-                    this.props.navigation.navigate({
-                      name: 'CompanyCategory',
+                    this.props.navigation.navigate( 'CompanyCategory',{
+                      name: 'Highest by Volume',
                       params: {gainers, losers, highestByVolume, showHighestByVolume:true},
                     })
                   }>

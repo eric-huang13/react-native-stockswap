@@ -18,7 +18,8 @@ export class CompanyCategory extends Component {
 
 
   render() {
-   
+    console.log(this.props.route.params.params.showGainers, "PROPS")
+
     const {gainers} = this.props;
     const {losers} = this.props;
     const {highestByVolume} = this.props;
@@ -27,7 +28,7 @@ export class CompanyCategory extends Component {
         showLosers,
         showHighestByVolume,
    
-      } = this.props.route.params;
+      } = this.props.route.params.params;
 
       const filteredGainers = gainers.filter((item) =>
       item.title.toLowerCase().includes(this.state.input.toLowerCase())

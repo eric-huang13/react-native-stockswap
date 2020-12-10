@@ -36,6 +36,7 @@ class Navigation extends Component {
       <MarketMoversStack.Screen
         name="CompanyCategory"
         component={CompanyCategory}
+        options={({ route }) => ({ title: route.params.name })}
       />
     </MarketMoversStack.Navigator>
   );
