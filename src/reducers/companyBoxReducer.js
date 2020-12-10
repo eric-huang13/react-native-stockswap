@@ -88,7 +88,6 @@ const defaultState = {
       percentage: '+35.06%',
       category: 'gainers',
       price: '12.73',
-
     },
     {
       id: '3',
@@ -97,7 +96,6 @@ const defaultState = {
       percentage: '+70.08%',
       category: 'gainers',
       price: '48.58',
-
     },
   ],
   losers: [
@@ -108,7 +106,6 @@ const defaultState = {
       percentage: '-15.25%',
       category: 'losers',
       price: '30.78',
-
     },
     {
       id: '2',
@@ -117,7 +114,6 @@ const defaultState = {
       percentage: '-8.90%',
       category: 'losers',
       price: '30.78',
-
     },
     {
       id: '3',
@@ -126,7 +122,6 @@ const defaultState = {
       percentage: '-10.87%',
       category: 'losers',
       price: '30.78',
-
     },
   ],
   highestByVolume: [
@@ -137,7 +132,6 @@ const defaultState = {
       percentage: '+0.75%',
       category: 'HBV',
       price: '30.78',
-
     },
     {
       id: '2',
@@ -146,7 +140,6 @@ const defaultState = {
       percentage: '-1.08%',
       category: 'HBV',
       price: '30.78',
-
     },
     {
       id: '3',
@@ -155,7 +148,6 @@ const defaultState = {
       percentage: '-1.05%',
       category: 'HBV',
       price: '30.78',
-
     },
   ],
   marketGainers: [],

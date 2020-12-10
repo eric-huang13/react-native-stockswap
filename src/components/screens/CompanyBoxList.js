@@ -3,7 +3,6 @@ import {Text, View, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import {companyBoxStyles} from '../../styles/companyBoxStyles';
 import CompanyBox from './CompanyBox';
-import CompanyCategory from './CompanyCategory'
 // import {fetchMarketGainers} from '../../actions/marketMovers'
 
 export class CompanyBoxList extends Component {
@@ -21,16 +20,15 @@ export class CompanyBoxList extends Component {
     return (
       <View style={companyBoxStyles.mainContainer}>
         <View style={companyBoxStyles.container}>
-        <TouchableOpacity
-                  onPress={() =>
-                    this.props.navigation.navigate( 'CompanyCategory',{
-                      name: 'Gainers',
-                      params: {gainers, losers, highestByVolume, showGainers:true}
-                    })
-                  }>
-                         <Text style={companyBoxStyles.header}>Gainers</Text>
- 
-                </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              this.props.navigation.navigate('CompanyCategory', {
+                name: 'Gainers',
+                params: {gainers, losers, highestByVolume, showGainers: true},
+              })
+            }>
+            <Text style={companyBoxStyles.header}>Gainers</Text>
+          </TouchableOpacity>
           <View style={companyBoxStyles.boxContainer}>
             {gainers.map((item) => {
               return (
@@ -49,16 +47,15 @@ export class CompanyBoxList extends Component {
           </View>
         </View>
         <View style={companyBoxStyles.container}>
-        <TouchableOpacity
-                  onPress={() =>
-                    this.props.navigation.navigate( 'CompanyCategory',{
-                      name: 'Losers',
-                      params: {gainers, losers, highestByVolume, showLosers:true},
-                    })
-                  }>
-                         <Text style={companyBoxStyles.header}>Losers</Text>
- 
-                </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              this.props.navigation.navigate('CompanyCategory', {
+                name: 'Losers',
+                params: {gainers, losers, highestByVolume, showLosers: true},
+              })
+            }>
+            <Text style={companyBoxStyles.header}>Losers</Text>
+          </TouchableOpacity>
 
           <View style={companyBoxStyles.boxContainer}>
             {losers.map((item) => {
@@ -78,16 +75,20 @@ export class CompanyBoxList extends Component {
           </View>
         </View>
         <View style={companyBoxStyles.container}>
-        <TouchableOpacity
-                  onPress={() =>
-                    this.props.navigation.navigate( 'CompanyCategory',{
-                      name: 'Highest by Volume',
-                      params: {gainers, losers, highestByVolume, showHighestByVolume:true},
-                    })
-                  }>
-                         <Text style={companyBoxStyles.header}>Highest by Volume</Text>
- 
-                </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              this.props.navigation.navigate('CompanyCategory', {
+                name: 'Highest by Volume',
+                params: {
+                  gainers,
+                  losers,
+                  highestByVolume,
+                  showHighestByVolume: true,
+                },
+              })
+            }>
+            <Text style={companyBoxStyles.header}>Highest by Volume</Text>
+          </TouchableOpacity>
 
           <View style={companyBoxStyles.boxContainer}>
             {highestByVolume.map((item) => {

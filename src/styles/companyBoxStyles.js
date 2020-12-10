@@ -19,7 +19,7 @@ export const companyBoxStyles = StyleSheet.create({
     // marginLeft: 14,
     marginLeft: 1,
     // fontStyle: 'italic',
-    fontWeight:"bold",
+    fontWeight: 'bold',
     color: 'black',
   },
   listContainer: {
@@ -33,7 +33,7 @@ export const companyBoxStyles = StyleSheet.create({
     width: 125,
     flexDirection: 'column',
     padding: 3,
-    justifyContent:'space-evenly',
+    justifyContent: 'space-evenly',
   },
   title: {
     // alignSelf: 'center',
@@ -43,7 +43,7 @@ export const companyBoxStyles = StyleSheet.create({
     // color: 'rgb(246, 252, 247)',
     // marginBottom: 20,
     // textAlign: 'center',
-    color:"grey",
+    color: 'grey',
   },
   detailsContainer: {
     position: 'absolute',
@@ -59,14 +59,13 @@ export const companyBoxStyles = StyleSheet.create({
   },
   percentage: {
     // fontWeight: 'bold',
-    fontSize:14,
+    fontSize: 14,
     // color: 'rgb(8, 11, 9)',
-    color:"grey",
+    color: 'grey',
   },
-  price:{
+  price: {
     // fontWeight: 'bold',
     fontSize: 20,
     color: 'rgb(8, 11, 9)',
-
   },
 });

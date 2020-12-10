@@ -14,8 +14,7 @@ import LoginScreen from 'components/screens/Login';
 import HomeScreen from 'components/screens/Home';
 import SearchTab from './components/screens/SearchTab';
 import CompanyInformation from './components/screens/CompanyInformation';
-import CompanyCategory from './components/screens/CompanyCategory'
-
+import CompanyCategory from './components/screens/CompanyCategory';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -36,9 +35,12 @@ class Navigation extends Component {
       <SearchStack.Screen
         name="CompanyCategory"
         component={CompanyCategory}
-        options={({ route }) => ({ title: route.params.name, headerTitleAlign: {
-          textAlign: 'center',
-        }, })}
+        options={({route}) => ({
+          title: route.params.name,
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        })}
       />
     </SearchStack.Navigator>
   );

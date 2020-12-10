@@ -9,7 +9,7 @@ export class CompanyBox extends Component {
     return (
       <View>
         <View
-        style={companyBoxStyles.listContainer}
+          style={companyBoxStyles.listContainer}
           // style={
           //   item.category === 'gainers'
           //     ? {
@@ -26,13 +26,13 @@ export class CompanyBox extends Component {
           //         backgroundColor: 'rgb(58, 117, 167)',
           //       }
           // }
-          >
-             <Text style={companyBoxStyles.symbol}>{item.symbol}</Text>
+        >
+          <Text style={companyBoxStyles.symbol}>{item.symbol}</Text>
           <Text style={companyBoxStyles.title}>{item.title}</Text>
           {/* <View style={companyBoxStyles.detailsContainer}> */}
           <Text style={companyBoxStyles.price}>{item.price}</Text>
 
-            <Text style={companyBoxStyles.percentage}>{item.percentage}</Text>
+          <Text style={companyBoxStyles.percentage}>{item.percentage}</Text>
           {/* </View> */}
         </View>
       </View>
