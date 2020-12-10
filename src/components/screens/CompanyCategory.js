@@ -12,11 +12,16 @@ export class CompanyCategory extends Component {
     const {gainers} = this.props;
     const {losers} = this.props;
     const {highestByVolume} = this.props;
+    const {
+        showGainers,
+        showLosers,
+        showHighestByVolume,
+   
+      } = this.props.route.params;
 
  
 
-    return (
-      <View style={style.mainContainer}>
+    return showGainers ? (
           <View style={style.boxContainer}>
             {gainers.map((item) => {
               return (
@@ -33,6 +38,7 @@ export class CompanyCategory extends Component {
               );
             })}
           </View>
+    ) : showLosers ? (
           <View style={style.boxContainer}>
             {losers.map((item) => {
               return (
@@ -49,6 +55,7 @@ export class CompanyCategory extends Component {
               );
             })}
           </View>
+          ) : showHighestByVolume ? (
           <View style={style.boxContainer}>
             {highestByVolume.map((item) => {
               return (
@@ -65,8 +72,9 @@ export class CompanyCategory extends Component {
               );
             })}
           </View>
-      </View>
-    );
+          ) :
+          <View><Text>Companies</Text></View>
+   
   }
 }
 
@@ -95,4 +103,6 @@ const style = StyleSheet.create({
     
 
   });
+  
+
   

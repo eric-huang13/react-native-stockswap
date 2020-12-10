@@ -14,6 +14,8 @@ import LoginScreen from 'components/screens/Login';
 import HomeScreen from 'components/screens/Home';
 import MarketMovers from './components/screens/MarketMovers';
 import CompanyInformation from './components/screens/CompanyInformation';
+import CompanyCategory from './components/screens/CompanyCategory'
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -30,6 +32,10 @@ class Navigation extends Component {
       <MarketMoversStack.Screen
         name="CompanyInformation"
         component={CompanyInformation}
+      />
+      <MarketMoversStack.Screen
+        name="CompanyCategory"
+        component={CompanyCategory}
       />
     </MarketMoversStack.Navigator>
   );

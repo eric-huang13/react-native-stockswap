@@ -20,9 +20,17 @@ export class CompanyBoxList extends Component {
 
     return (
       <View style={companyBoxStyles.mainContainer}>
-        <CompanyCategory/>
         <View style={companyBoxStyles.container}>
-          <Text style={companyBoxStyles.header}>Gainers</Text>
+        <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate({
+                      name: 'CompanyCategory',
+                      params: {gainers, losers, highestByVolume, showGainers:true}
+                    })
+                  }>
+                         <Text style={companyBoxStyles.header}>Gainers</Text>
+ 
+                </TouchableOpacity>
           <View style={companyBoxStyles.boxContainer}>
             {gainers.map((item) => {
               return (
@@ -41,7 +49,17 @@ export class CompanyBoxList extends Component {
           </View>
         </View>
         <View style={companyBoxStyles.container}>
-          <Text style={companyBoxStyles.header}>Losers</Text>
+        <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate({
+                      name: 'CompanyCategory',
+                      params: {gainers, losers, highestByVolume, showLosers:true},
+                    })
+                  }>
+                         <Text style={companyBoxStyles.header}>Losers</Text>
+ 
+                </TouchableOpacity>
+
           <View style={companyBoxStyles.boxContainer}>
             {losers.map((item) => {
               return (
@@ -60,7 +78,17 @@ export class CompanyBoxList extends Component {
           </View>
         </View>
         <View style={companyBoxStyles.container}>
-          <Text style={companyBoxStyles.header}>Highest by Volume</Text>
+        <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate({
+                      name: 'CompanyCategory',
+                      params: {gainers, losers, highestByVolume, showHighestByVolume:true},
+                    })
+                  }>
+                         <Text style={companyBoxStyles.header}>Highest by Volume</Text>
+ 
+                </TouchableOpacity>
+
           <View style={companyBoxStyles.boxContainer}>
             {highestByVolume.map((item) => {
               return (
