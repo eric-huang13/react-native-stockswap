@@ -26,7 +26,7 @@ export class MarketMovers extends Component {
             />
           </View>
 
-          <Text style={style.header}>Market Movers</Text>
+          {/* <Text style={style.header}>Market Movers</Text> */}
           <CompanyBoxList navigation={this.props.navigation} />
           <ArticleList />
         </ScrollView>

@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import CompanyStockGraph from './CompanyStockGraph';
-import {SlideAreaChart} from 'react-native-slide-charts';
 
 export class CompanyInformation extends Component {
   constructor(props) {
@@ -88,7 +87,6 @@ export class CompanyInformation extends Component {
         <ScrollView>
           {this.props.route.params ? (
             <View>
-              <Text>{this.state.tools}</Text>
               <View style={styles.symbolView}>
                 <Text style={styles.symbol}>{route.params.item.symbol}</Text>
                 <Text style={styles.price}>${currentPrice}</Text>

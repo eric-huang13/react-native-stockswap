@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Dimensions} from 'react-native';
+import {View, StyleSheet, Dimensions} from 'react-native';
 import {SlideAreaChart} from 'react-native-slide-charts';
 
 export default class CompanyStockGraph extends Component {
@@ -19,7 +19,6 @@ export default class CompanyStockGraph extends Component {
           throttleAndroid={true}
           fillColor={'#f0f4fc'}
           cursorProps={{
-            cursorColor: '#333',
             cursorLine: true,
             cursorColor: 'black',
             cursorMarkerWidth: 11,

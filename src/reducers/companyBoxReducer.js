@@ -87,6 +87,8 @@ const defaultState = {
       symbol: 'GEN',
       percentage: '+35.06%',
       category: 'gainers',
+      price: '12.73',
+
     },
     {
       id: '3',
@@ -94,6 +96,8 @@ const defaultState = {
       symbol: 'TXMD',
       percentage: '+70.08%',
       category: 'gainers',
+      price: '48.58',
+
     },
   ],
   losers: [
@@ -103,6 +107,8 @@ const defaultState = {
       symbol: 'COTY',
       percentage: '-15.25%',
       category: 'losers',
+      price: '30.78',
+
     },
     {
       id: '2',
@@ -110,6 +116,8 @@ const defaultState = {
       symbol: 'NIO',
       percentage: '-8.90%',
       category: 'losers',
+      price: '30.78',
+
     },
     {
       id: '3',
@@ -117,6 +125,8 @@ const defaultState = {
       symbol: 'CGC',
       percentage: '-10.87%',
       category: 'losers',
+      price: '30.78',
+
     },
   ],
   highestByVolume: [
@@ -126,6 +136,8 @@ const defaultState = {
       symbol: 'F',
       percentage: '+0.75%',
       category: 'HBV',
+      price: '30.78',
+
     },
     {
       id: '2',
@@ -133,6 +145,8 @@ const defaultState = {
       symbol: 'GE',
       percentage: '-1.08%',
       category: 'HBV',
+      price: '30.78',
+
     },
     {
       id: '3',
@@ -140,6 +154,8 @@ const defaultState = {
       symbol: 'BAC',
       percentage: '-1.05%',
       category: 'HBV',
+      price: '30.78',
+
     },
   ],
   marketGainers: [],

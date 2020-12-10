@@ -9,27 +9,31 @@ export class CompanyBox extends Component {
     return (
       <View>
         <View
-          style={
-            item.category === 'gainers'
-              ? {
-                  ...companyBoxStyles.listContainer,
-                  backgroundColor: 'rgb(8, 177, 40)',
-                }
-              : item.category === 'losers'
-              ? {
-                  ...companyBoxStyles.listContainer,
-                  backgroundColor: 'rgb(196, 38, 0)',
-                }
-              : {
-                  ...companyBoxStyles.listContainer,
-                  backgroundColor: 'rgb(58, 117, 167)',
-                }
-          }>
+        style={companyBoxStyles.listContainer}
+          // style={
+          //   item.category === 'gainers'
+          //     ? {
+          //         ...companyBoxStyles.listContainer,
+          //         backgroundColor: 'rgb(8, 177, 40)',
+          //       }
+          //     : item.category === 'losers'
+          //     ? {
+          //         ...companyBoxStyles.listContainer,
+          //         backgroundColor: 'rgb(196, 38, 0)',
+          //       }
+          //     : {
+          //         ...companyBoxStyles.listContainer,
+          //         backgroundColor: 'rgb(58, 117, 167)',
+          //       }
+          // }
+          >
+             <Text style={companyBoxStyles.symbol}>{item.symbol}</Text>
           <Text style={companyBoxStyles.title}>{item.title}</Text>
-          <View style={companyBoxStyles.detailsContainer}>
-            <Text style={companyBoxStyles.symbol}>{item.symbol}</Text>
+          {/* <View style={companyBoxStyles.detailsContainer}> */}
+          <Text style={companyBoxStyles.price}>{item.price}</Text>
+
             <Text style={companyBoxStyles.percentage}>{item.percentage}</Text>
-          </View>
+          {/* </View> */}
         </View>
       </View>
     );
