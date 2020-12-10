@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, TextInput, ScrollView} from 'react-native';
 import CompanyBoxList from './CompanyBoxList';
 import ArticleList from './ArticleList.js';
 
-export class MarketMovers extends Component {
+export class SearchTab extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,7 +35,7 @@ export class MarketMovers extends Component {
   }
 }
 
-export default MarketMovers;
+export default SearchTab;
 
 const style = StyleSheet.create({
   // searchInputContainer: {

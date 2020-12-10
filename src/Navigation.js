@@ -12,33 +12,33 @@ import {createStackNavigator} from '@react-navigation/stack';
 // Components
 import LoginScreen from 'components/screens/Login';
 import HomeScreen from 'components/screens/Home';
-import MarketMovers from './components/screens/MarketMovers';
+import SearchTab from './components/screens/SearchTab';
 import CompanyInformation from './components/screens/CompanyInformation';
 import CompanyCategory from './components/screens/CompanyCategory'
 
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-const MarketMoversStack = createStackNavigator();
+const SearchStack = createStackNavigator();
 
 class Navigation extends Component {
-  createMarketMoversStack = () => (
-    <MarketMoversStack.Navigator>
-      <MarketMoversStack.Screen
-        name="MarketMovers"
-        component={MarketMovers}
+  createSearchStack = () => (
+    <SearchStack.Navigator>
+      <SearchStack.Screen
+        name="SearchTab"
+        component={SearchTab}
         options={{headerShown: false}}
       />
-      <MarketMoversStack.Screen
+      <SearchStack.Screen
         name="CompanyInformation"
         component={CompanyInformation}
       />
-      <MarketMoversStack.Screen
+      <SearchStack.Screen
         name="CompanyCategory"
         component={CompanyCategory}
         options={({ route }) => ({ title: route.params.name })}
       />
-    </MarketMoversStack.Navigator>
+    </SearchStack.Navigator>
   );
 
   render() {
@@ -51,7 +51,7 @@ class Navigation extends Component {
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen
               name="MarketMovers"
-              component={this.createMarketMoversStack}
+              component={this.createSearchStack}
             />
           </Tab.Navigator>
         ) : (
