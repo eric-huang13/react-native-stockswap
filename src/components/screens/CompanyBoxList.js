@@ -3,6 +3,7 @@ import {Text, View, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import {companyBoxStyles} from '../../styles/companyBoxStyles';
 import CompanyBox from './CompanyBox';
+import CompanyCategory from './CompanyCategory'
 // import {fetchMarketGainers} from '../../actions/marketMovers'
 
 export class CompanyBoxList extends Component {
@@ -19,6 +20,7 @@ export class CompanyBoxList extends Component {
 
     return (
       <View style={companyBoxStyles.mainContainer}>
+        <CompanyCategory/>
         <View style={companyBoxStyles.container}>
           <Text style={companyBoxStyles.header}>Gainers</Text>
           <View style={companyBoxStyles.boxContainer}>
