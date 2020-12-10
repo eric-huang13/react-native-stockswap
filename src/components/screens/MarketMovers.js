@@ -28,7 +28,6 @@ export class MarketMovers extends Component {
 
           {/* <Text style={style.header}>Market Movers</Text> */}
           <CompanyBoxList navigation={this.props.navigation} />
-          <ArticleList />
         </ScrollView>
       </View>
     );
