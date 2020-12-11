@@ -20,21 +20,15 @@ export class CompanyCategory extends Component {
     this.setState({input: text});
   };
 
+  render() {    
+    const {gainers, losers, highestByVolume} = this.props;
 
-
-
-  render() {
-    // console.log(this.props.route.params.params.showGainers, 'PROPS');
-
-    const {gainers} = this.props;
-    const {losers} = this.props;
-    const {highestByVolume} = this.props;
+    //boolean for conditional render coming from CompanyBoxList
     const {
       showGainers,
       showLosers,
       showHighestByVolume,
-
-      } = this.props.route.params.params;
+    } = this.props.route.params.params;
 
     const filteredGainers = gainers.filter((item) =>
       item.title.toLowerCase().includes(this.state.input.toLowerCase()),
@@ -125,7 +119,7 @@ export class CompanyCategory extends Component {
       <View>
         <Text>Companies</Text>
       </View>
-    )
+    );
   }
 }
 
@@ -139,9 +133,4 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(CompanyCategory);
 
-const style = StyleSheet.create({
-
-
-
-  });
-
+const style = StyleSheet.create({});

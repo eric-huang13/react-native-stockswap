@@ -10,6 +10,9 @@ export class CompanyBox extends Component {
       <View>
         <View
           style={companyBoxStyles.listContainer}
+
+          //Commented out code styling from original mock design in case new design is similar
+
           // style={
           //   item.category === 'gainers'
           //     ? {

@@ -31,6 +31,10 @@ class Navigation extends Component {
       <SearchStack.Screen
         name="CompanyInformation"
         component={CompanyInformation}
+        options={{ title: 'Stock details', 
+        headerTitleAlign: {
+          textAlign: 'center',
+        }, }}
       />
       <SearchStack.Screen
         name="CompanyCategory"

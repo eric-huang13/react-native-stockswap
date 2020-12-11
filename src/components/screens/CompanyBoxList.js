@@ -13,9 +13,7 @@ export class CompanyBoxList extends Component {
   // }
 
   render() {
-    const {gainers} = this.props;
-    const {losers} = this.props;
-    const {highestByVolume} = this.props;
+    const {gainers, losers, highestByVolume} = this.props;
 
     return (
       <View style={companyBoxStyles.mainContainer}>
