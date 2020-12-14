@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, TextInput, ScrollView} from 'react-native';
 import CompanyBoxList from './CompanyBoxList';
+import UserList from './UserList.js'
 
 export class SearchTab extends Component {
   constructor(props) {
@@ -25,7 +26,8 @@ export class SearchTab extends Component {
               onChangeText={(text) => this.handleChange(text)}
             />
           </View>
-          <CompanyBoxList navigation={this.props.navigation} />
+          {/* <CompanyBoxList navigation={this.props.navigation} /> */}
+          <UserList/>
         </ScrollView>
       </View>
     );

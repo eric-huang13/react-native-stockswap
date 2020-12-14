@@ -1,12 +1,23 @@
-import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import React, {Component} from 'react';
+import {View, Text} from 'react-native';
+import {connect} from 'react-redux';
 
-export default class UserList extends Component {
-    render() {
-        return (
-            <View>
-                <Text> List of people </Text>
-            </View>
-        )
-    }
+export class UserList extends Component {
+  render() {
+    const {users} = this.props;
+    console.log(users,'users')
+    return (
+      <View>
+        <Text>List of users</Text>
+      </View>
+    );
+  }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    users: state.company.users,
+  };
+};
+
+export default connect(mapStateToProps)(UserList);
