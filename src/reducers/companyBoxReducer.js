@@ -165,7 +165,7 @@ const defaultState = {
     {
       id: 1,
       name: 'Hallie Fields',
-      Posts: 19182,
+      posts: 19182,
       followers: 92,
       percentage:31.1,
       img:
@@ -174,7 +174,7 @@ const defaultState = {
     {
       id: 2,
       name: 'Viola Casey',
-      Posts: 99,
+      posts: 99,
       followers: 15,
       percentage:24,
       img:
@@ -183,7 +183,7 @@ const defaultState = {
     {
       id: 3,
       name: 'Rosa Clark',
-      Posts: 267,
+      posts: 267,
       followers: 120,
       percentage:43,
       img:
