@@ -161,6 +161,35 @@ const defaultState = {
         'https://images.unsplash.com/photo-1476711656344-4ffe053f6b2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
     },
   ],
+  users: [
+    {
+      id: 1,
+      name: 'Hallie Fields',
+      Posts: 19182,
+      followers: 92,
+      percentage:31.1,
+      img:
+        'https://images.unsplash.com/photo-1459180129673-eefb56f79b45?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzR8fGJ1c2luZXNzJTIwbWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    },
+    {
+      id: 2,
+      name: 'Viola Casey',
+      Posts: 99,
+      followers: 15,
+      percentage:24,
+      img:
+        'https://images.unsplash.com/photo-1459180129673-eefb56f79b45?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzR8fGJ1c2luZXNzJTIwbWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    },
+    {
+      id: 3,
+      name: 'Rosa Clark',
+      Posts: 267,
+      followers: 120,
+      percentage:43,
+      img:
+        'https://images.unsplash.com/photo-1459180129673-eefb56f79b45?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzR8fGJ1c2luZXNzJTIwbWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    },
+  ],
 };
 
 const companyBoxReducer = (state = defaultState, action) => {
