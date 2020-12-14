@@ -46,7 +46,6 @@ export class CompanyBox extends Component {
 export default CompanyBox;
 
 const style = StyleSheet.create({
- 
   listContainer: {
     alignSelf: 'center',
     marginTop: 3,
@@ -93,6 +92,4 @@ const style = StyleSheet.create({
     fontSize: 20,
     color: 'rgb(8, 11, 9)',
   },
-
-})
-
+});

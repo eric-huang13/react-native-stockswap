@@ -20,7 +20,7 @@ export class CompanyCategory extends Component {
     this.setState({input: text});
   };
 
-  render() {    
+  render() {
     const {gainers, losers, highestByVolume} = this.props;
 
     //boolean for conditional render coming from CompanyBoxList

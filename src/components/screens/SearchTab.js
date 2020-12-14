@@ -1,70 +1,77 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, TextInput, ScrollView, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  TextInput,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import CompanyBoxList from './CompanyBoxList';
-import UserList from './UserList.js'
-import ArticleList from './ArticleList'
+import UserList from './UserList.js';
+import ArticleList from './ArticleList';
 
 export class SearchTab extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      companies:true,
-      users:false,
-      news:false,
+      companies: true,
+      users: false,
+      news: false,
     };
   }
 
-   render() {
-    
+  render() {
+
     return (
       <View>
         <ScrollView>
-        <Text style={style.header}>Search</Text>
+          <Text style={style.header}>Search</Text>
           <View style={style.tabSelectorContainer}>
-        <TouchableOpacity
-               onPress={() =>
+            <TouchableOpacity
+              onPress={() =>
                 this.setState({
-                  companies:true,
-                  users:false,
-                  news:false
+                  companies: true,
+                  users: false,
+                  news: false,
                 })
               }>
               <Text>Stocks</Text>
             </TouchableOpacity>
             <TouchableOpacity
-               onPress={() =>
+              onPress={() =>
                 this.setState({
-                  companies:false,
-                  news:true,
-                  users:false                  
+                  companies: false,
+                  news: true,
+                  users: false,
                 })
               }>
               <Text>News</Text>
             </TouchableOpacity>
             <TouchableOpacity
-               onPress={() =>
+              onPress={() =>
                 this.setState({
-                  companies:false,
-                  news:false,
-                  users:true                  
+                  companies: false,
+                  news: false,
+                  users: true,
                 })
               }>
               <Text>People</Text>
             </TouchableOpacity>
-            </View>
-                  {
-          this.state.companies
-          ? <CompanyBoxList navigation={this.props.navigation} />
-          : this.state.news ?
-            <ArticleList/>
-          : this.state.users ? 
-            <UserList/>            
-          : <View><Text>Search Screen</Text></View>
-            
+          </View>
+          {this.state.companies ? (
+            <CompanyBoxList navigation={this.props.navigation} />
+          ) : this.state.news ? (
+            <ArticleList />
+          ) : this.state.users ? (
+            <UserList />
+          ) : (
+            <View>
+              <Text>Search Screen</Text>
+              </View>
 
-        }
-          
-          
+
+          )}
         </ScrollView>
       </View>
     );
@@ -96,9 +103,9 @@ const style = StyleSheet.create({
     marginTop: 8.5,
     textAlign: 'center',
   },
-  tabSelectorContainer:{
-    flexDirection:"row",
-    justifyContent:"space-around",
-    marginVertical:15,
-  }
+  tabSelectorContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginVertical: 15,
+  },
 });

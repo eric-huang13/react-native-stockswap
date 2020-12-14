@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
-import {Text, View, TouchableOpacity, StyleSheet, TextInput} from 'react-native';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  TextInput,
+} from 'react-native';
 import {connect} from 'react-redux';
 // import {style} from '../../styles/style';
 import CompanyBox from './CompanyBox';
 // import {fetchMarketGainers} from '../../actions/marketMovers'
 
 export class CompanyBoxList extends Component {
-  
   //Ready for redux action hookup
   //   componentDidMount() {
   //     const {companies, fetchGainers} = this.props;
@@ -16,12 +21,12 @@ export class CompanyBoxList extends Component {
     super(props);
     this.state = {
       input: '',
-      companies:true,
-      users:false,
-      news:false,
+      companies: true,
+      users: false,
+      news: false,
     };
   }
-  
+
   handleChange = (text) => {
     console.log(text);
   };
@@ -31,13 +36,13 @@ export class CompanyBoxList extends Component {
 
     return (
       <View style={style.mainContainer}>
-         <View style={style.searchInputContainer}>
-            <TextInput
-              style={style.searchInput}
-              placeholder="Search"
-              onChangeText={(text) => this.handleChange(text)}
-            />
-          </View>
+        <View style={style.searchInputContainer}>
+          <TextInput
+            style={style.searchInput}
+            placeholder="Search"
+            onChangeText={(text) => this.handleChange(text)}
+          />
+        </View>
         <View style={style.container}>
           <TouchableOpacity
             onPress={() =>
@@ -169,6 +174,4 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
   },
-
-  
-})
+});
