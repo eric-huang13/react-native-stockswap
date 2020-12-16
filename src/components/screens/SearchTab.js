@@ -3,7 +3,6 @@ import {
   Text,
   View,
   StyleSheet,
-  TextInput,
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
@@ -22,7 +21,6 @@ export class SearchTab extends Component {
   }
 
   render() {
-
     return (
       <View>
         <ScrollView>
@@ -64,13 +62,11 @@ export class SearchTab extends Component {
           ) : this.state.news ? (
             <ArticleList />
           ) : this.state.users ? (
-            <UserList  navigation={this.props.navigation}/>
+            <UserList navigation={this.props.navigation} />
           ) : (
             <View>
               <Text>Search Screen</Text>
-              </View>
-
-
+            </View>
           )}
         </ScrollView>
       </View>

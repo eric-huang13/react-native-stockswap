@@ -14,7 +14,6 @@ export class UserList extends Component {
     this.setState({input: text});
   };
   render() {
-
     const {users} = this.props;
     const filteredUsers = users.filter((item) =>
       item.name.toLowerCase().includes(this.state.input.toLowerCase()),
@@ -29,17 +28,16 @@ export class UserList extends Component {
           />
         </View>
         {filteredUsers.map((item) => {
-          return( 
-          <TouchableOpacity
-          onPress={() =>
-            this.props.navigation.navigate({
-              name: 'Profile',
-              params: {item},
-            })
-          }
-          >
-          <UserBox key={item.id} item={item} />
-          </TouchableOpacity>
+          return (
+            <TouchableOpacity
+              onPress={() =>
+                this.props.navigation.navigate({
+                  name: 'Profile',
+                  params: {item},
+                })
+              }>
+              <UserBox key={item.id} item={item} />
+            </TouchableOpacity>
           );
         })}
       </View>

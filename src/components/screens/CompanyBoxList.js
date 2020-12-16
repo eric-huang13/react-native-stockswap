@@ -55,21 +55,24 @@ export class CompanyBoxList extends Component {
             <Text style={style.header}>Gainers</Text>
           </TouchableOpacity>
           <View style={style.boxContainer}>
-            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} justifyContent="space-between" >
-            {gainers.map((item) => {
-              return (
-                <TouchableOpacity
-                  key={item.id}
-                  onPress={() =>
-                    this.props.navigation.navigate({
-                      name: 'CompanyInformation',
-                      params: {item},
-                    })
-                  }>
-                  <CompanyBox item={item} />
-                </TouchableOpacity>
-              );
-            })}
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              justifyContent="space-between">
+              {gainers.map((item) => {
+                return (
+                  <TouchableOpacity
+                    key={item.id}
+                    onPress={() =>
+                      this.props.navigation.navigate({
+                        name: 'CompanyInformation',
+                        params: {item},
+                      })
+                    }>
+                    <CompanyBox item={item} />
+                  </TouchableOpacity>
+                );
+              })}
             </ScrollView>
           </View>
         </View>
@@ -85,22 +88,24 @@ export class CompanyBoxList extends Component {
           </TouchableOpacity>
 
           <View style={style.boxContainer}>
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} justifyContent="space-between" >
-
-            {losers.map((item) => {
-              return (
-                <TouchableOpacity
-                  key={item.id}
-                  onPress={() =>
-                    this.props.navigation.navigate({
-                      name: 'CompanyInformation',
-                      params: {item},
-                    })
-                  }>
-                  <CompanyBox item={item} />
-                </TouchableOpacity>
-              );
-            })}
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              justifyContent="space-between">
+              {losers.map((item) => {
+                return (
+                  <TouchableOpacity
+                    key={item.id}
+                    onPress={() =>
+                      this.props.navigation.navigate({
+                        name: 'CompanyInformation',
+                        params: {item},
+                      })
+                    }>
+                    <CompanyBox item={item} />
+                  </TouchableOpacity>
+                );
+              })}
             </ScrollView>
           </View>
         </View>
@@ -121,22 +126,25 @@ export class CompanyBoxList extends Component {
           </TouchableOpacity>
 
           <View style={style.boxContainer}>
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} justifyContent="space-between" >
-            {highestByVolume.map((item) => {
-              return (
-                <TouchableOpacity
-                  key={item.id}
-                  onPress={() =>
-                    this.props.navigation.navigate({
-                      name: 'CompanyInformation',
-                      params: {item},
-                    })
-                  }>
-                  <CompanyBox item={item} />
-                </TouchableOpacity>
-              );
-            })}
-           </ScrollView>
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              justifyContent="space-between">
+              {highestByVolume.map((item) => {
+                return (
+                  <TouchableOpacity
+                    key={item.id}
+                    onPress={() =>
+                      this.props.navigation.navigate({
+                        name: 'CompanyInformation',
+                        params: {item},
+                      })
+                    }>
+                    <CompanyBox item={item} />
+                  </TouchableOpacity>
+                );
+              })}
+            </ScrollView>
           </View>
         </View>
       </View>

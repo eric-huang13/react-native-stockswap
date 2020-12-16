@@ -58,8 +58,8 @@ const style = StyleSheet.create({
     flexDirection: 'column',
     padding: 3,
     justifyContent: 'space-evenly',
-    marginLeft:4,
-    marginRight:4,
+    marginLeft: 4,
+    marginRight: 4,
   },
   title: {
     // alignSelf: 'center',

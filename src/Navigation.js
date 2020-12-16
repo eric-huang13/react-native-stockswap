@@ -15,7 +15,7 @@ import HomeScreen from 'components/screens/Home';
 import SearchTab from './components/screens/SearchTab';
 import CompanyInformation from './components/screens/CompanyInformation';
 import CompanyCategory from './components/screens/CompanyCategory';
-import Profile from './components/screens/Profile'
+import Profile from './components/screens/Profile';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -70,10 +70,7 @@ class Navigation extends Component {
         {isLoggedIn ? (
           <Tab.Navigator>
             <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen
-              name="Search"
-              component={this.createSearchStack}
-            />
+            <Tab.Screen name="Search" component={this.createSearchStack} />
           </Tab.Navigator>
         ) : (
           <Stack.Navigator>

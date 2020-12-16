@@ -97,7 +97,7 @@ const defaultState = {
       category: 'gainers',
       price: '48.58',
     },
-     {
+    {
       id: '4',
       title: 'Tesla',
       symbol: 'TSLA',
