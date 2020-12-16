@@ -30,13 +30,14 @@ export class UserList extends Component {
         {filteredUsers.map((item) => {
           return (
             <TouchableOpacity
+            key={item.id}
               onPress={() =>
                 this.props.navigation.navigate({
                   name: 'Profile',
                   params: {item},
                 })
               }>
-              <UserBox key={item.id} item={item} />
+              <UserBox  item={item} />
             </TouchableOpacity>
           );
         })}
