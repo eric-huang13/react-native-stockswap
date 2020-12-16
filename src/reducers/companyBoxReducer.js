@@ -97,7 +97,7 @@ const defaultState = {
       category: 'gainers',
       price: '48.58',
     },
-    {
+     {
       id: '4',
       title: 'Tesla',
       symbol: 'TSLA',
@@ -107,6 +107,30 @@ const defaultState = {
     },
     {
       id: '5',
+      title: 'Walt Disney CO',
+      symbol: 'DIS',
+      percentage: '+10.21%',
+      category: 'gainers',
+      price: '154.82',
+    },
+    {
+      id: '6',
+      title: 'Therapeutics MD',
+      symbol: 'TXMD',
+      percentage: '+70.08%',
+      category: 'gainers',
+      price: '48.58',
+    },
+     {
+      id: '7',
+      title: 'Tesla',
+      symbol: 'TSLA',
+      percentage: '+20.29%',
+      category: 'gainers',
+      price: '531.28',
+    },
+    {
+      id: '8',
       title: 'Walt Disney CO',
       symbol: 'DIS',
       percentage: '+10.21%',
@@ -200,7 +224,7 @@ const defaultState = {
       id: 3,
       name: 'Rosa Clark',
       posts: 267,
-      followers: 120,
+      followers: 10,
       percentage: 43,
       img:
         'https://images.unsplash.com/photo-1459180129673-eefb56f79b45?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzR8fGJ1c2luZXNzJTIwbWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
