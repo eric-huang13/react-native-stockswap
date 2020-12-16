@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   TextInput,
+  ScrollView,
 } from 'react-native';
 import {connect} from 'react-redux';
 // import {style} from '../../styles/style';
@@ -54,6 +55,7 @@ export class CompanyBoxList extends Component {
             <Text style={style.header}>Gainers</Text>
           </TouchableOpacity>
           <View style={style.boxContainer}>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} justifyContent="space-between" >
             {gainers.map((item) => {
               return (
                 <TouchableOpacity
@@ -68,6 +70,7 @@ export class CompanyBoxList extends Component {
                 </TouchableOpacity>
               );
             })}
+            </ScrollView>
           </View>
         </View>
         <View style={style.container}>
@@ -82,6 +85,8 @@ export class CompanyBoxList extends Component {
           </TouchableOpacity>
 
           <View style={style.boxContainer}>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} justifyContent="space-between" >
+
             {losers.map((item) => {
               return (
                 <TouchableOpacity
@@ -96,6 +101,7 @@ export class CompanyBoxList extends Component {
                 </TouchableOpacity>
               );
             })}
+            </ScrollView>
           </View>
         </View>
         <View style={style.container}>
@@ -115,6 +121,7 @@ export class CompanyBoxList extends Component {
           </TouchableOpacity>
 
           <View style={style.boxContainer}>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} justifyContent="space-between" >
             {highestByVolume.map((item) => {
               return (
                 <TouchableOpacity
@@ -129,6 +136,7 @@ export class CompanyBoxList extends Component {
                 </TouchableOpacity>
               );
             })}
+           </ScrollView>
           </View>
         </View>
       </View>
@@ -163,8 +171,9 @@ const style = StyleSheet.create({
     // alignItems:"flex-start"
   },
   boxContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    // paddingLeft:1,
+    // flexDirection: 'row',
+    // justifyContent: 'space-around',
   },
   header: {
     fontSize: 18,

@@ -49,7 +49,7 @@ const style = StyleSheet.create({
   listContainer: {
     alignSelf: 'center',
     marginTop: 3,
-    // borderWidth: 1,
+    borderWidth: 1,
     borderColor: 'rgb(58, 117, 167)',
     // backgroundColor: 'rgb(58, 117, 167)',
     borderRadius: 15,
@@ -58,6 +58,8 @@ const style = StyleSheet.create({
     flexDirection: 'column',
     padding: 3,
     justifyContent: 'space-evenly',
+    marginLeft:4,
+    marginRight:4,
   },
   title: {
     // alignSelf: 'center',
@@ -66,7 +68,6 @@ const style = StyleSheet.create({
     // marginTop: 3,
     // color: 'rgb(246, 252, 247)',
     // marginBottom: 20,
-    // textAlign: 'center',
     color: 'grey',
   },
   detailsContainer: {
