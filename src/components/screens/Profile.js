@@ -1,16 +1,20 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
+import StockTicker from './StockTicker'
 
 export default class Profile extends Component {
   render() {
     console.log(this.props.route, 'props in profile');
     const {item} = this.props.route.params;
     return (
-      <View>
+      <View> 
+            <StockTicker/>
+
         <View style={styles.aboveGraphView}>
           <View>
-            <Text>Portfolio</Text>
+            <Text>Porrtfolio</Text>
             <Text>Number</Text>
+
           </View>
           <View>
             <Text>{item.percentage}</Text>
