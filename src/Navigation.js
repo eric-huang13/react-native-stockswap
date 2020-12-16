@@ -15,6 +15,7 @@ import HomeScreen from 'components/screens/Home';
 import SearchTab from './components/screens/SearchTab';
 import CompanyInformation from './components/screens/CompanyInformation';
 import CompanyCategory from './components/screens/CompanyCategory';
+import Profile from './components/screens/Profile'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -48,6 +49,16 @@ class Navigation extends Component {
           },
         })}
       />
+      <SearchStack.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          title: 'Profile',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
     </SearchStack.Navigator>
   );
 
@@ -60,7 +71,7 @@ class Navigation extends Component {
           <Tab.Navigator>
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen
-              name="MarketMovers"
+              name="Search"
               component={this.createSearchStack}
             />
           </Tab.Navigator>

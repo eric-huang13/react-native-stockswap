@@ -64,7 +64,7 @@ export class SearchTab extends Component {
           ) : this.state.news ? (
             <ArticleList />
           ) : this.state.users ? (
-            <UserList />
+            <UserList  navigation={this.props.navigation}/>
           ) : (
             <View>
               <Text>Search Screen</Text>
