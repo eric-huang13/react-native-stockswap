@@ -12,7 +12,7 @@ export default class Profile extends Component {
 
         <View style={styles.aboveGraphView}>
           <View>
-            <Text>Porrtfolio</Text>
+            <Text>Portfolio</Text>
             <Text>Number</Text>
           </View>
           <View>
@@ -48,8 +48,9 @@ export default class Profile extends Component {
 }
 
 const styles = StyleSheet.create({
-  aboveGraph: {
+  aboveGraphView: {
     flexDirection: 'row',
+    marginTop:8,
   },
   image: {
     height: 100,
