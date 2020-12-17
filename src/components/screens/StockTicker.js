@@ -12,17 +12,17 @@ export class StockTicker extends PureComponent {
       <View style={styles.container}>
         <TextTicker
           style={{ fontSize: 24 }}
-          scrollSpeed={4000}
+          scrollSpeed={6000}
           loop
           bounce
-          repeatSpacer={50}
-          marqueeDelay={1000}
+          repeatSpacer={0}
+          marqueeDelay={0}
           animationType="scroll"
         >
           {gainers.map((item) => {
     return (
       
-    <><Text style={styles.marqueeSymbol}> {item.symbol} </Text><Text style={styles.marqueePrice}>{item.price} </Text></>
+    <><Text style={styles.marqueeSymbol}> {item.symbol} </Text><Text style={ item.percentage[0] == "-" ? { ...styles.marqueePercentage, color:'red', } : {...styles.marqueePercentage}}>{item.percentage}  </Text></>
      
     );
   })}
@@ -51,12 +51,12 @@ const styles = StyleSheet.create({
 },
 marqueeSymbol:{
   color:"green",
-  fontSize:20,
+  fontSize:19,
   fontWeight:"bold",
     },
-    marqueePrice:{
+    marqueePercentage:{
       color:"green",
-      fontSize:12,
+      fontSize:14,
   
   
     }
