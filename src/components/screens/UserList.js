@@ -23,6 +23,7 @@ export class UserList extends Component {
       <View>
         <View>
           <TextInput
+            style={{borderWidth: 0.5, marginHorizontal: 1}}
             placeholder="Search by name"
             onChangeText={(text) => this.handleChange(text)}
           />
@@ -30,14 +31,14 @@ export class UserList extends Component {
         {filteredUsers.map((item) => {
           return (
             <TouchableOpacity
-            key={item.id}
+              key={item.id}
               onPress={() =>
                 this.props.navigation.navigate({
                   name: 'Profile',
                   params: {item},
                 })
               }>
-              <UserBox  item={item} />
+              <UserBox item={item} />
             </TouchableOpacity>
           );
         })}

@@ -44,7 +44,7 @@ export class CompanyCategory extends Component {
       <View style={style.boxContainer}>
         <View style={style.searchInputContainer}>
           <TextInput
-            style={style.searchInput}
+            style={{borderWidth: 0.5, marginHorizontal: 1}}
             placeholder="Search by name"
             onChangeText={(text) => this.handleChange(text)}
           />

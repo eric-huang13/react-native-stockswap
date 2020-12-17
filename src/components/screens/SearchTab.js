@@ -34,7 +34,14 @@ export class SearchTab extends Component {
                   news: false,
                 })
               }>
-              <Text>Stocks</Text>
+              <Text
+                style={
+                  this.state.companies
+                    ? {backgroundColor: 'white', borderBottomWidth: 1.5}
+                    : {}
+                }>
+                Stocks
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
@@ -44,7 +51,14 @@ export class SearchTab extends Component {
                   users: false,
                 })
               }>
-              <Text>News</Text>
+              <Text
+                style={
+                  this.state.news
+                    ? {backgroundColor: 'white', borderBottomWidth: 1.5}
+                    : {}
+                }>
+                News
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
@@ -54,7 +68,14 @@ export class SearchTab extends Component {
                   users: true,
                 })
               }>
-              <Text>People</Text>
+              <Text
+                style={
+                  this.state.users
+                    ? {backgroundColor: 'white', borderBottomWidth: 1.5}
+                    : {}
+                }>
+                People
+              </Text>
             </TouchableOpacity>
           </View>
           {this.state.companies ? (

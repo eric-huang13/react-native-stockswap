@@ -22,6 +22,7 @@ export class ArticleList extends Component {
       <View>
         <View>
           <TextInput
+            style={{borderWidth: 0.5, marginHorizontal: 1}}
             placeholder="Search by name"
             onChangeText={(text) => this.handleChange(text)}
           />

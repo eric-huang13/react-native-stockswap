@@ -1,34 +1,48 @@
-import React, { PureComponent } from 'react'
-import { StyleSheet, View,Text } from 'react-native'
-import TextTicker from 'react-native-text-ticker'
+import React, {PureComponent} from 'react';
+import {StyleSheet, View, Text} from 'react-native';
+import TextTicker from 'react-native-text-ticker';
 import {connect} from 'react-redux';
 
-
 export class StockTicker extends PureComponent {
-  render(){
+  render() {
     const {gainers} = this.props;
 
-    return(
+    return (
       <View style={styles.container}>
         <TextTicker
-          style={{ fontSize: 24 }}
-          scrollSpeed={6000}
+          style={{fontSize: 24}}
+          scrollSpeed={5000}
           loop
           bounce
           repeatSpacer={0}
           marqueeDelay={0}
-          animationType="scroll"
-        >
+          animationType="scroll">
           {gainers.map((item) => {
-    return (
-      
-    <><Text style={styles.marqueeSymbol}> {item.symbol} </Text><Text style={ item.percentage[0] == "-" ? { ...styles.marqueePercentage, color:'red', } : {...styles.marqueePercentage}}>{item.percentage}  </Text></>
-     
-    );
-  })}
-         </TextTicker>
+            return (
+              <>
+                <Text
+                  style={
+                    item.percentage[0] === '-'
+                      ? {...styles.marqueeSymbol, color: 'red'}
+                      : {...styles.marqueeSymbol}
+                  }>
+                  {' '}
+                  {item.symbol}{' '}
+                </Text>
+                <Text
+                  style={
+                    item.percentage[0] === '-'
+                      ? {...styles.marqueePercentage, color: 'red'}
+                      : {...styles.marqueePercentage}
+                  }>
+                  {item.percentage}{' '}
+                </Text>
+              </>
+            );
+          })}
+        </TextTicker>
       </View>
-    )
+    );
   }
 }
 const mapStateToProps = (state) => {
@@ -39,25 +53,22 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(StockTicker);
 
-
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  textstyle:{
-    color:"yellow"
-},
-marqueeSymbol:{
-  color:"green",
-  fontSize:19,
-  fontWeight:"bold",
-    },
-    marqueePercentage:{
-      color:"green",
-      fontSize:14,
-  
-  
-    }
+  textstyle: {
+    color: 'yellow',
+  },
+  marqueeSymbol: {
+    color: 'green',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  marqueePercentage: {
+    color: 'green',
+    fontSize: 15,
+  },
 });
