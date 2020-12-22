@@ -1,7 +1,14 @@
 import React, {Component} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  TextInput,
+  ScrollView,
+} from 'react-native';
 import {connect} from 'react-redux';
-import {companyBoxStyles} from '../../styles/companyBoxStyles';
+// import {style} from '../../styles/style';
 import CompanyBox from './CompanyBox';
 // import {fetchMarketGainers} from '../../actions/marketMovers'
 
@@ -11,71 +18,135 @@ export class CompanyBoxList extends Component {
   //     const {companies, fetchGainers} = this.props;
   //     fetchGainers(companies);
   // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: '',
+      companies: true,
+      users: false,
+      news: false,
+    };
+  }
+
+  handleChange = (text) => {
+    console.log(text);
+  };
 
   render() {
-    const {gainers} = this.props;
-    const {losers} = this.props;
-    const {highestByVolume} = this.props;
+    const {gainers, losers, highestByVolume} = this.props;
 
     return (
-      <View style={companyBoxStyles.mainContainer}>
-        <View style={companyBoxStyles.container}>
-          <Text style={companyBoxStyles.header}>Gainers</Text>
-          <View style={companyBoxStyles.boxContainer}>
-            {gainers.map((item) => {
-              return (
-                <TouchableOpacity
-                  key={item.id}
-                  onPress={() =>
-                    this.props.navigation.navigate({
-                      name: 'CompanyInformation',
-                      params: {item},
-                    })
-                  }>
-                  <CompanyBox item={item} />
-                </TouchableOpacity>
-              );
-            })}
+      <View style={style.mainContainer}>
+        <View style={style.searchInputContainer}>
+          <TextInput
+            style={style.searchInput}
+            placeholder="Search"
+            onChangeText={(text) => this.handleChange(text)}
+          />
+        </View>
+        <View style={style.container}>
+          <TouchableOpacity
+            onPress={() =>
+              this.props.navigation.navigate('CompanyCategory', {
+                name: 'Gainers',
+                params: {gainers, losers, highestByVolume, showGainers: true},
+              })
+            }>
+            <Text style={style.header}>Gainers</Text>
+          </TouchableOpacity>
+          <View style={style.boxContainer}>
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              justifyContent="space-between">
+              {gainers.map((item) => {
+                return (
+                  <TouchableOpacity
+                    key={item.id}
+                    onPress={() =>
+                      this.props.navigation.navigate({
+                        name: 'CompanyInformation',
+                        params: {item},
+                      })
+                    }>
+                    <CompanyBox item={item} />
+                  </TouchableOpacity>
+                );
+              })}
+            </ScrollView>
           </View>
         </View>
-        <View style={companyBoxStyles.container}>
-          <Text style={companyBoxStyles.header}>Losers</Text>
-          <View style={companyBoxStyles.boxContainer}>
-            {losers.map((item) => {
-              return (
-                <TouchableOpacity
-                  key={item.id}
-                  onPress={() =>
-                    this.props.navigation.navigate({
-                      name: 'CompanyInformation',
-                      params: {item},
-                    })
-                  }>
-                  <CompanyBox item={item} />
-                </TouchableOpacity>
-              );
-            })}
+        <View style={style.container}>
+          <TouchableOpacity
+            onPress={() =>
+              this.props.navigation.navigate('CompanyCategory', {
+                name: 'Losers',
+                params: {gainers, losers, highestByVolume, showLosers: true},
+              })
+            }>
+            <Text style={style.header}>Losers</Text>
+          </TouchableOpacity>
+
+          <View style={style.boxContainer}>
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              justifyContent="space-between">
+              {losers.map((item) => {
+                return (
+                  <TouchableOpacity
+                    key={item.id}
+                    onPress={() =>
+                      this.props.navigation.navigate({
+                        name: 'CompanyInformation',
+                        params: {item},
+                      })
+                    }>
+                    <CompanyBox item={item} />
+                  </TouchableOpacity>
+                );
+              })}
+            </ScrollView>
           </View>
         </View>
-        <View style={companyBoxStyles.container}>
-          <Text style={companyBoxStyles.header}>Highest by Volume</Text>
-          <View style={companyBoxStyles.boxContainer}>
-            {highestByVolume.map((item) => {
-              return (
-                <TouchableOpacity
-                  key={item.id}
-                  onPress={() =>
-                    this.props.navigation.navigate({
-                      name: 'CompanyInformation',
-                      params: {item},
-                    })
-                  }>
-                  <CompanyBox item={item} />
-                </TouchableOpacity>
-              );
-            })}
+        <View style={style.container}>
+          <TouchableOpacity
+            onPress={() =>
+              this.props.navigation.navigate('CompanyCategory', {
+                name: 'Highest by Volume',
+                params: {
+                  gainers,
+                  losers,
+                  highestByVolume,
+                  showHighestByVolume: true,
+                },
+              })
+            }>
+            <Text style={style.header}>Highest by Volume</Text>
+          </TouchableOpacity>
+
+          <View style={style.boxContainer}>
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              justifyContent="space-between">
+              {highestByVolume.map((item) => {
+                return (
+                  <TouchableOpacity
+                    key={item.id}
+                    onPress={() =>
+                      this.props.navigation.navigate({
+                        name: 'CompanyInformation',
+                        params: {item},
+                      })
+                    }>
+                    <CompanyBox item={item} />
+                  </TouchableOpacity>
+                );
+              })}
+            </ScrollView>
           </View>
-          </View>
+        </View>
       </View>
     );
   }
@@ -86,7 +157,6 @@ const mapStateToProps = (state) => {
     gainers: state.company.gainers,
     losers: state.company.losers,
     highestByVolume: state.company.highestByVolume,
-
   };
 };
 
@@ -97,3 +167,28 @@ const mapStateToProps = (state) => {
 //   };
 // };
 export default connect(mapStateToProps)(CompanyBoxList);
+
+const style = StyleSheet.create({
+  container: {
+    marginTop: 10,
+    // borderBottomWidth: 0.8,
+    borderBottomColor: 'gray',
+    paddingBottom: 12.5,
+    width: '98%',
+    alignSelf: 'center',
+    // alignItems:"flex-start"
+  },
+  boxContainer: {
+    // paddingLeft:1,
+    // flexDirection: 'row',
+    // justifyContent: 'space-around',
+  },
+  header: {
+    fontSize: 18,
+    // marginLeft: 14,
+    marginLeft: 1,
+    // fontStyle: 'italic',
+    fontWeight: 'bold',
+    color: 'black',
+  },
+});
