@@ -1,11 +1,12 @@
 // React Imports
 import React, {Component} from 'react';
+import LinearGradient from 'react-native-linear-gradient';
 
 // Redux
 import {connect} from 'react-redux';
 
 // Navigation
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -23,7 +24,8 @@ const SearchStack = createStackNavigator();
 
 class Navigation extends Component {
   createSearchStack = () => (
-    <SearchStack.Navigator>
+    <SearchStack.Navigator
+   >
       <SearchStack.Screen
         name="SearchTab"
         component={SearchTab}
@@ -64,11 +66,23 @@ class Navigation extends Component {
 
   render() {
     const {isLoggedIn} = this.props;
-
+    const mainTheme = {
+      ...DefaultTheme,
+      colors: {
+        ...DefaultTheme,
+        background: 'transparent',
+      },
+    };
     return (
-      <NavigationContainer>
+      <LinearGradient
+      start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+      colors={['#1D2842', '#2A3551', '#394463']}	style={{ flex: 1 }}
+>
+      <NavigationContainer theme={mainTheme}>
         {isLoggedIn ? (
-          <Tab.Navigator>
+          <Tab.Navigator
+          
+          >
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Search" component={this.createSearchStack} />
           </Tab.Navigator>
@@ -78,6 +92,7 @@ class Navigation extends Component {
           </Stack.Navigator>
         )}
       </NavigationContainer>
+      </LinearGradient>
     );
   }
 }
