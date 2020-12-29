@@ -3,14 +3,12 @@ import {
   Text,
   View,
   StyleSheet,
-  ScrollView,
   TouchableOpacity,
 } from 'react-native';
 import CompanyBoxList from './CompanyBoxList';
 import UserList from './UserList.js';
 import ArticleList from './ArticleList';
 import LinearGradient from 'react-native-linear-gradient';
-
 
 export class SearchTab extends Component {
   constructor(props) {
@@ -24,14 +22,44 @@ export class SearchTab extends Component {
 
   render() {
     return (
-            <LinearGradient
-      start={{ x:.1, y: .1 }}
-       end={{x: 1, y: 1}}
-      colors={['#1d2842', '#1f2a45', '#222d47', '#242f4a', '#27324d', '#293450', '#2c3752', '#2e3955', '#313c58', '#333e5c', '#36415f', '#394463']}	style={{ flex: 1 }}
->
-      <View>
-        {/* <ScrollView> */}
+      <LinearGradient
+        start={{x: 0.1, y: 0.1}}
+        end={{x: 1, y: 1}}
+        colors={[
+          '#1d2842',
+          '#1f2a45',
+          '#222d47',
+          '#242f4a',
+          '#27324d',
+          '#293450',
+          '#2c3752',
+          '#2e3955',
+          '#313c58',
+          '#333e5c',
+          '#36415f',
+          '#394463',
+        ]}
+        style={{flex: 1}}>
+        <View>
+          {/* <ScrollView> */}
+          <LinearGradient
+        start={{x: 0.1, y: 0.1}}
+        end={{x: 1, y: 1}}
+        colors={[
+       
+        
+         
+          '#2c3752',
+          '#2e3955',
+          '#313c58',
+          '#333e5c',
+          '#36415f',
+          '#394463',
+        ]}
+        >
           <Text style={style.header}>Search</Text>
+
+     
           <View style={style.tabSelectorContainer}>
             <TouchableOpacity
               onPress={() =>
@@ -41,19 +69,20 @@ export class SearchTab extends Component {
                   news: false,
                 })
               }>
-                <View style={
-                  this.state.companies
-                  ? {... style.activeTabHeaderView}
-                  : {...style.tabHeaderView}
-                } >
-              <Text
+              <View
                 style={
                   this.state.companies
-                  ? {... style.activeTabHeader}
-                  : {...style.tabHeader}
+                    ? {...style.activeTabHeaderView}
+                    : {...style.tabHeaderView}
                 }>
-                Stocks
-              </Text>
+                <Text
+                  style={
+                    this.state.companies
+                      ? {...style.activeTabHeader}
+                      : {...style.tabHeader}
+                  }>
+                  Stocks
+                </Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity
@@ -64,19 +93,20 @@ export class SearchTab extends Component {
                   users: false,
                 })
               }>
-                 <View style={
-                  this.state.news
-                  ? {... style.activeTabHeaderView}
-                  : {...style.tabHeaderView}
-                } >
-              <Text
+              <View
                 style={
                   this.state.news
-                  ? {... style.activeTabHeader}
-                  : {...style.tabHeader}
+                    ? {...style.activeTabHeaderView}
+                    : {...style.tabHeaderView}
                 }>
-                News
-              </Text>
+                <Text
+                  style={
+                    this.state.news
+                      ? {...style.activeTabHeader}
+                      : {...style.tabHeader}
+                  }>
+                  News
+                </Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity
@@ -87,22 +117,25 @@ export class SearchTab extends Component {
                   users: true,
                 })
               }>
-                 <View style={
-                  this.state.users
-                  ? {... style.activeTabHeaderView}
-                  : {...style.tabHeaderView}
-                } >
-              <Text
+              <View
                 style={
                   this.state.users
-                  ? {... style.activeTabHeader}
-                  : {...style.tabHeader}
+                    ? {...style.activeTabHeaderView}
+                    : {...style.tabHeaderView}
                 }>
-                People
-              </Text>
+                <Text
+                  style={
+                    this.state.users
+                      ? {...style.activeTabHeader}
+                      : {...style.tabHeader}
+                  }>
+                  People
+                </Text>
               </View>
             </TouchableOpacity>
           </View>
+
+</LinearGradient>
           {this.state.companies ? (
             <CompanyBoxList navigation={this.props.navigation} />
           ) : this.state.news ? (
@@ -114,10 +147,9 @@ export class SearchTab extends Component {
               <Text>Search Screen</Text>
             </View>
           )}
-        {/* </ScrollView> */}
-      </View>
-            </LinearGradient>
-
+          {/* </ScrollView> */}
+        </View>
+      </LinearGradient>
     );
   }
 }
@@ -142,10 +174,10 @@ const style = StyleSheet.create({
     paddingLeft: 5,
   },
   header: {
-    color:'white',
+    color: 'white',
     fontSize: 19,
     fontWeight: '700',
-    marginVertical: 8,
+    marginVertical:8,
     textAlign: 'center',
   },
   tabSelectorContainer: {
@@ -153,18 +185,16 @@ const style = StyleSheet.create({
     justifyContent: 'space-around',
     marginVertical: 15,
   },
-  tabHeader:{
-color:'white',
-fontSize:16,
-fontWeight:'bold',
+  tabHeader: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
-  activeTabHeaderView:{
-    borderBottomWidth:3,
-    borderBottomColor:'#855cff',
-    paddingBottom:1.8,
- 
+  activeTabHeaderView: {
+    borderBottomWidth: 3,
+    borderBottomColor: '#855cff',
+    paddingBottom: 1.8,
 
-    
     // color: '#855cff',textShadowColor: '#855cff',
     // textShadowOffset: {width: 1, height: 1},
     // textShadowRadius: 50
@@ -179,7 +209,7 @@ fontWeight:'bold',
     // shadowRadius: 5,
     // shadowOpacity: 1.0,
     // elevation:3.
-  
+
     // elevation:4,
     // backgroundColor:'white',
     // padding: 24,
@@ -199,23 +229,22 @@ fontWeight:'bold',
     //  },
     // })
 
-//Its for IOS
-// shadowColor: '#855cff',
-// shadowOffset: { width: 0, height: 2 },
-// shadowOpacity: 0.2,
+    //Its for IOS
+    // shadowColor: '#855cff',
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 0.2,
 
-// its for android 
-// elevation: 12,
-// position:'relative',
-
+    // its for android
+    // elevation: 12,
+    // position:'relative',
   },
-  activeTabHeader:{
-
-    color: '#855cff',textShadowColor: '#855cff',
+  activeTabHeader: {
+    color: '#855cff',
+    textShadowColor: '#855cff',
     textShadowOffset: {width: 1, height: 1},
     textShadowRadius: 50,
-    fontSize:16,
-    fontWeight:'bold',
+    fontSize: 16,
+    fontWeight: 'bold',
     // backgroundColor:'white',
     // padding: 24,
     // margin:15,
@@ -245,10 +274,8 @@ fontWeight:'bold',
     // shadowOffset: { width: 0, height: 2 },
     // shadowOpacity: 0.2,
 
-    // // its for android 
+    // // its for android
     // elevation: 12,
     // position:'relative',
-    
-
   },
 });

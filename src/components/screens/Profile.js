@@ -50,7 +50,7 @@ export default class Profile extends Component {
 const styles = StyleSheet.create({
   aboveGraphView: {
     flexDirection: 'row',
-    marginTop:8,
+    marginTop: 8,
   },
   image: {
     height: 100,

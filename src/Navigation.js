@@ -1,12 +1,11 @@
 // React Imports
 import React, {Component} from 'react';
-import LinearGradient from 'react-native-linear-gradient';
 
 // Redux
 import {connect} from 'react-redux';
 
 // Navigation
-import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -24,8 +23,7 @@ const SearchStack = createStackNavigator();
 
 class Navigation extends Component {
   createSearchStack = () => (
-    <SearchStack.Navigator
-   >
+    <SearchStack.Navigator>
       <SearchStack.Screen
         name="SearchTab"
         component={SearchTab}
@@ -66,23 +64,25 @@ class Navigation extends Component {
 
   render() {
     const {isLoggedIn} = this.props;
-    // const mainTheme = {
-    //   ...DefaultTheme,
-    //   colors: {
-    //     ...DefaultTheme,
-    //     background: 'transparent',
-    //   },
-    // };
+
     return (
-//       <LinearGradient
-//       start={{ x:.1, y: .1 }}
-//        end={{x: 1, y: 1}}
-//       colors={['#1d2842', '#1f2a45', '#222d47', '#242f4a', '#27324d', '#293450', '#2c3752', '#2e3955', '#313c58', '#333e5c', '#36415f', '#394463']}	style={{ flex: 1 }}
-// >
+  
       <NavigationContainer>
         {isLoggedIn ? (
           <Tab.Navigator
-          
+          tabBarOptions={{
+            activeTintColor: '#9082cf',
+            inactiveTintColor: 'lightgray',
+            // activeBackgroundColor: '#333e5c',
+            // inactiveBackgroundColor: '#333e5c',
+                style: {
+                      backgroundColor: '#333e5c',
+                      paddingBottom: 3,
+                      borderColor:'red',
+                      borderTopColor:'transparent',                   
+
+                }
+         }}
           >
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Search" component={this.createSearchStack} />

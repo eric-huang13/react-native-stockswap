@@ -21,29 +21,28 @@ export class UserList extends Component {
 
     return (
       <View>
-                <ScrollView contentContainerStyle={{paddingBottom:180}}>
-
-        <View>
-          <TextInput
-            style={{borderWidth: 0.5, marginHorizontal: 1}}
-            placeholder="Search by name"
-            onChangeText={(text) => this.handleChange(text)}
-          />
-        </View>
-        {filteredUsers.map((item) => {
-          return (
-            <TouchableOpacity
-              key={item.id}
-              onPress={() =>
-                this.props.navigation.navigate({
-                  name: 'Profile',
-                  params: {item},
-                })
-              }>
-              <UserBox item={item} />
-            </TouchableOpacity>
-          );
-        })}
+        <ScrollView contentContainerStyle={{paddingBottom: 180}}>
+          <View>
+            <TextInput
+              style={{borderWidth: 0.5, marginHorizontal: 1}}
+              placeholder="Search by name"
+              onChangeText={(text) => this.handleChange(text)}
+            />
+          </View>
+          {filteredUsers.map((item) => {
+            return (
+              <TouchableOpacity
+                key={item.id}
+                onPress={() =>
+                  this.props.navigation.navigate({
+                    name: 'Profile',
+                    params: {item},
+                  })
+                }>
+                <UserBox item={item} />
+              </TouchableOpacity>
+            );
+          })}
         </ScrollView>
       </View>
     );
