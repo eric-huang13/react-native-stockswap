@@ -44,8 +44,8 @@ export class SearchTab extends Component {
               <Text
                 style={
                   this.state.companies
-                    ? {backgroundColor: 'white', borderBottomWidth: 1.5}
-                    : {}
+                  ? {... style.tabHeader, color: 'purple',}
+                  : {...style.tabHeader}
                 }>
                 Stocks
               </Text>
@@ -61,8 +61,8 @@ export class SearchTab extends Component {
               <Text
                 style={
                   this.state.news
-                    ? {backgroundColor: 'white', borderBottomWidth: 1.5}
-                    : {}
+                    ? {... style.tabHeader, color: 'purple',}
+                    : {...style.tabHeader}
                 }>
                 News
               </Text>
@@ -78,8 +78,8 @@ export class SearchTab extends Component {
               <Text
                 style={
                   this.state.users
-                    ? {backgroundColor: 'white', borderBottomWidth: 1.5}
-                    : {}
+                  ? {... style.tabHeader, color: 'purple',}
+                  : {...style.tabHeader}
                 }>
                 People
               </Text>
@@ -124,6 +124,7 @@ const style = StyleSheet.create({
     paddingLeft: 5,
   },
   header: {
+    color:'white',
     fontSize: 19,
     fontWeight: '700',
     marginTop: 8.5,
@@ -133,5 +134,8 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginVertical: 15,
+  },
+  tabHeader:{
+color:'white'
   },
 });
