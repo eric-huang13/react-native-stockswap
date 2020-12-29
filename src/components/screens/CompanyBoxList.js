@@ -37,6 +37,8 @@ export class CompanyBoxList extends Component {
 
     return (
       <View style={style.mainContainer}>
+                <ScrollView contentContainerStyle={{paddingBottom:180}}>
+
         <View style={style.searchInputContainer}>
           <TextInput
             style={style.searchInput}
@@ -147,6 +149,8 @@ export class CompanyBoxList extends Component {
             </ScrollView>
           </View>
         </View>
+       
+        </ScrollView>
       </View>
     );
   }

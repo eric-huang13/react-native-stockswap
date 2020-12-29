@@ -66,19 +66,20 @@ class Navigation extends Component {
 
   render() {
     const {isLoggedIn} = this.props;
-    const mainTheme = {
-      ...DefaultTheme,
-      colors: {
-        ...DefaultTheme,
-        background: 'transparent',
-      },
-    };
+    // const mainTheme = {
+    //   ...DefaultTheme,
+    //   colors: {
+    //     ...DefaultTheme,
+    //     background: 'transparent',
+    //   },
+    // };
     return (
-      <LinearGradient
-      start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-      colors={['#1D2842', '#2A3551', '#394463']}	style={{ flex: 1 }}
->
-      <NavigationContainer theme={mainTheme}>
+//       <LinearGradient
+//       start={{ x:.1, y: .1 }}
+//        end={{x: 1, y: 1}}
+//       colors={['#1d2842', '#1f2a45', '#222d47', '#242f4a', '#27324d', '#293450', '#2c3752', '#2e3955', '#313c58', '#333e5c', '#36415f', '#394463']}	style={{ flex: 1 }}
+// >
+      <NavigationContainer>
         {isLoggedIn ? (
           <Tab.Navigator
           
@@ -92,7 +93,7 @@ class Navigation extends Component {
           </Stack.Navigator>
         )}
       </NavigationContainer>
-      </LinearGradient>
+      // </LinearGradient>
     );
   }
 }

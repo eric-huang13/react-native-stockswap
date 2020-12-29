@@ -1,36 +1,20 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 // import {style} from '../../styles/style';
+import LinearGradient from 'react-native-linear-gradient';
+
 
 export class CompanyBox extends Component {
   render() {
     const {item} = this.props;
-
-    return (
-      <View>
-        <View
+    const trythis= item.category === 'gainers' ?  
+    <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={style.linearGradient}>
+ <View
           style={style.listContainer}
 
-          //Commented out code styling from original mock design in case new design is similar
-
-          // style={
-          //   item.category === 'gainers'
-          //     ? {
-          //         ...style.listContainer,
-          //         backgroundColor: 'rgb(8, 177, 40)',
-          //       }
-          //     : item.category === 'losers'
-          //     ? {
-          //         ...style.listContainer,
-          //         backgroundColor: 'rgb(196, 38, 0)',
-          //       }
-          //     : {
-          //         ...style.listContainer,
-          //         backgroundColor: 'rgb(58, 117, 167)',
-          //       }
-          // }
-        >
+            >
           <Text style={style.symbol}>{item.symbol}</Text>
+          <Text>{trythis}</Text>
           <Text style={style.title}>{item.title}</Text>
           {/* <View style={style.detailsContainer}> */}
           <Text style={style.price}>{item.price}</Text>
@@ -38,6 +22,41 @@ export class CompanyBox extends Component {
           <Text style={style.percentage}>{item.percentage}</Text>
           {/* </View> */}
         </View>
+</LinearGradient>
+   : item.category === "losers" ?  <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={style.linearGradient}>
+   <View
+            style={style.listContainer}
+  
+              >
+            <Text style={style.symbol}>{item.symbol}</Text>
+            <Text>{trythis}</Text>
+            <Text style={style.title}>{item.title}</Text>
+            {/* <View style={style.detailsContainer}> */}
+            <Text style={style.price}>{item.price}</Text>
+  
+            <Text style={style.percentage}>{item.percentage}</Text>
+            {/* </View> */}
+          </View>
+  </LinearGradient> 
+  : <LinearGradient colors={['#4c669f', 'purple', 'purple']} style={style.linearGradient}>
+  <View
+           style={style.listContainer}
+ 
+             >
+           <Text style={style.symbol}>{item.symbol}</Text>
+           <Text>{trythis}</Text>
+           <Text style={style.title}>{item.title}</Text>
+           {/* <View style={style.detailsContainer}> */}
+           <Text style={style.price}>{item.price}</Text>
+ 
+           <Text style={style.percentage}>{item.percentage}</Text>
+           {/* </View> */}
+         </View>
+ </LinearGradient> 
+
+    return (
+      <View>
+        {trythis}
       </View>
     );
   }
@@ -46,11 +65,27 @@ export class CompanyBox extends Component {
 export default CompanyBox;
 
 const style = StyleSheet.create({
+
+  linearGradient: {
+   
+    alignSelf: 'center',
+    marginTop: 3,
+    // borderWidth: 1,
+    // borderColor: 'rgb(58, 117, 167)',
+    // backgroundColor: 'rgb(58, 117, 167)',
+    borderRadius: 15,
+    height: 130,
+    width: 125,
+    flexDirection: 'column',
+    padding: 3,
+    justifyContent: 'space-evenly',
+    marginLeft: 4,
+    marginRight: 4,  },
   listContainer: {
     alignSelf: 'center',
     marginTop: 3,
-    borderWidth: 1,
-    borderColor: 'rgb(58, 117, 167)',
+    // borderWidth: 1,
+    // borderColor: 'rgb(58, 117, 167)',
     // backgroundColor: 'rgb(58, 117, 167)',
     borderRadius: 15,
     height: 130,

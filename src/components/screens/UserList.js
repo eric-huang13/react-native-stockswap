@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, TextInput, TouchableOpacity} from 'react-native';
+import {View, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import UserBox from './UserBox';
 
@@ -21,6 +21,8 @@ export class UserList extends Component {
 
     return (
       <View>
+                <ScrollView contentContainerStyle={{paddingBottom:180}}>
+
         <View>
           <TextInput
             style={{borderWidth: 0.5, marginHorizontal: 1}}
@@ -42,6 +44,7 @@ export class UserList extends Component {
             </TouchableOpacity>
           );
         })}
+        </ScrollView>
       </View>
     );
   }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, TextInput} from 'react-native';
+import {View, TextInput, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import Article from './Article';
 
@@ -20,6 +20,7 @@ export class ArticleList extends Component {
     );
     return (
       <View>
+        <ScrollView contentContainerStyle={{paddingBottom:180}}>
         <View>
           <TextInput
             style={{borderWidth: 0.5, marginHorizontal: 1}}
@@ -30,6 +31,7 @@ export class ArticleList extends Component {
         {filteredArticles.map((item) => {
           return <Article key={item.id} item={item} />;
         })}
+        </ScrollView>
       </View>
     );
   }

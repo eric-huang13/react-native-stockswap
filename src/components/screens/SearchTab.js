@@ -9,6 +9,8 @@ import {
 import CompanyBoxList from './CompanyBoxList';
 import UserList from './UserList.js';
 import ArticleList from './ArticleList';
+import LinearGradient from 'react-native-linear-gradient';
+
 
 export class SearchTab extends Component {
   constructor(props) {
@@ -22,8 +24,13 @@ export class SearchTab extends Component {
 
   render() {
     return (
+            <LinearGradient
+      start={{ x:.1, y: .1 }}
+       end={{x: 1, y: 1}}
+      colors={['#1d2842', '#1f2a45', '#222d47', '#242f4a', '#27324d', '#293450', '#2c3752', '#2e3955', '#313c58', '#333e5c', '#36415f', '#394463']}	style={{ flex: 1 }}
+>
       <View>
-        <ScrollView>
+        {/* <ScrollView> */}
           <Text style={style.header}>Search</Text>
           <View style={style.tabSelectorContainer}>
             <TouchableOpacity
@@ -89,8 +96,10 @@ export class SearchTab extends Component {
               <Text>Search Screen</Text>
             </View>
           )}
-        </ScrollView>
+        {/* </ScrollView> */}
       </View>
+            </LinearGradient>
+
     );
   }
 }
