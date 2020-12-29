@@ -41,14 +41,20 @@ export class SearchTab extends Component {
                   news: false,
                 })
               }>
+                <View style={
+                  this.state.companies
+                  ? {... style.activeTabHeaderView}
+                  : {...style.tabHeaderView}
+                } >
               <Text
                 style={
                   this.state.companies
-                  ? {... style.tabHeader, color: 'purple',}
+                  ? {... style.activeTabHeader}
                   : {...style.tabHeader}
                 }>
                 Stocks
               </Text>
+              </View>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
@@ -58,14 +64,20 @@ export class SearchTab extends Component {
                   users: false,
                 })
               }>
+                 <View style={
+                  this.state.news
+                  ? {... style.activeTabHeaderView}
+                  : {...style.tabHeaderView}
+                } >
               <Text
                 style={
                   this.state.news
-                    ? {... style.tabHeader, color: 'purple',}
-                    : {...style.tabHeader}
+                  ? {... style.activeTabHeader}
+                  : {...style.tabHeader}
                 }>
                 News
               </Text>
+              </View>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
@@ -75,14 +87,20 @@ export class SearchTab extends Component {
                   users: true,
                 })
               }>
+                 <View style={
+                  this.state.users
+                  ? {... style.activeTabHeaderView}
+                  : {...style.tabHeaderView}
+                } >
               <Text
                 style={
                   this.state.users
-                  ? {... style.tabHeader, color: 'purple',}
+                  ? {... style.activeTabHeader}
                   : {...style.tabHeader}
                 }>
                 People
               </Text>
+              </View>
             </TouchableOpacity>
           </View>
           {this.state.companies ? (
@@ -136,6 +154,97 @@ const style = StyleSheet.create({
     marginVertical: 15,
   },
   tabHeader:{
-color:'white'
+color:'white',
+fontSize:16,
+fontWeight:'bold',
+  },
+  activeTabHeaderView:{
+    borderBottomWidth:3,
+    borderBottomColor:'#855cff'
+    // color: '#855cff',textShadowColor: '#855cff',
+    // textShadowOffset: {width: 1, height: 1},
+    // textShadowRadius: 50
+    // backgroundColor: 'white',
+    // borderRadius: 10,
+    // padding: 10,
+    // shadowColor: 'yellow',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 3
+    // },
+    // shadowRadius: 5,
+    // shadowOpacity: 1.0,
+    // elevation:3.
+  
+    // elevation:4,
+    // backgroundColor:'white',
+    // padding: 24,
+    // margin:15,
+    // borderRadius: 8,
+    // borderColor: '#33CC99',
+    // borderWidth: 1,
+    // ...Platform.select({
+    //  ios: {
+    //    shadowColor: '#000',
+    //    shadowRadius: 2,
+    //    shadowOffset: { width: 0, height: 2 },
+    //    shadowOpacity: 0.16,
+    //  },
+    //  android: {
+    //    elevation: 4,
+    //  },
+    // })
+
+//Its for IOS
+// shadowColor: '#855cff',
+// shadowOffset: { width: 0, height: 2 },
+// shadowOpacity: 0.2,
+
+// its for android 
+// elevation: 12,
+// position:'relative',
+
+  },
+  activeTabHeader:{
+
+    color: '#855cff',textShadowColor: '#855cff',
+    textShadowOffset: {width: 1, height: 1},
+    textShadowRadius: 50,
+    fontSize:16,
+    fontWeight:'bold',
+    // backgroundColor:'white',
+    // padding: 24,
+    // margin:15,
+    // borderRadius: 8,
+    // borderColor: '#33CC99',
+    // borderWidth: 1,
+    // ...Platform.select({
+    //  ios: {
+    //    shadowColor: '#000',
+    //    shadowRadius: 2,
+    //    shadowOffset: { width: 0, height: 2 },
+    //    shadowOpacity: 0.16,
+    //  },
+    //  android: {
+    //    elevation: 4,
+    //  },
+    // })
+
+    // backgroundColor:'#855cff',
+    // justifyContent:'center',
+    // alignItems:'center',
+    // height:60,
+    // paddingTop:15,
+
+    // //Its for IOS
+    // shadowColor: '#855cff',
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 0.2,
+
+    // // its for android 
+    // elevation: 12,
+    // position:'relative',
+    
+
   },
 });

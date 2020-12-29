@@ -7,6 +7,7 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
+import { color } from 'react-native-reanimated';
 import {connect} from 'react-redux';
 // import {style} from '../../styles/style';
 import CompanyBox from './CompanyBox';
@@ -43,10 +44,13 @@ export class CompanyBoxList extends Component {
           <TextInput
             style={style.searchInput}
             placeholder="Search"
+            placeholderTextColor='lightgrey'
             onChangeText={(text) => this.handleChange(text)}
           />
         </View>
+        
         <View style={style.container}>
+          <View style={style.headerContainer}>
           <TouchableOpacity
             onPress={() =>
               this.props.navigation.navigate('CompanyCategory', {
@@ -56,6 +60,16 @@ export class CompanyBoxList extends Component {
             }>
             <Text style={style.header}>Gainers</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              this.props.navigation.navigate('CompanyCategory', {
+                name: 'Gainers',
+                params: {gainers, losers, highestByVolume, showGainers: true},
+              })
+            }>
+            <Text style={style.seeAllHeader}>See all</Text>
+          </TouchableOpacity>
+          </View>
           <View style={style.boxContainer}>
             <ScrollView
               horizontal={true}
@@ -78,7 +92,11 @@ export class CompanyBoxList extends Component {
             </ScrollView>
           </View>
         </View>
-        <View style={style.container}>
+       
+
+
+          <View style={style.container}>
+          <View style={style.headerContainer}>
           <TouchableOpacity
             onPress={() =>
               this.props.navigation.navigate('CompanyCategory', {
@@ -88,6 +106,16 @@ export class CompanyBoxList extends Component {
             }>
             <Text style={style.header}>Losers</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              this.props.navigation.navigate('CompanyCategory', {
+                name: 'Losers',
+                params: {gainers, losers, highestByVolume, showLosers: true},
+              })
+            }>
+            <Text style={style.seeAllHeader}>See all</Text>
+          </TouchableOpacity>
+          </View>
 
           <View style={style.boxContainer}>
             <ScrollView
@@ -110,23 +138,29 @@ export class CompanyBoxList extends Component {
               })}
             </ScrollView>
           </View>
-        </View>
-        <View style={style.container}>
+        </View> 
+
+          <View style={style.container}>
+          <View style={style.headerContainer}>
           <TouchableOpacity
             onPress={() =>
               this.props.navigation.navigate('CompanyCategory', {
                 name: 'Highest by Volume',
-                params: {
-                  gainers,
-                  losers,
-                  highestByVolume,
-                  showHighestByVolume: true,
-                },
+                params: {gainers, losers, highestByVolume, showHighestByVolume: true},
               })
             }>
             <Text style={style.header}>Highest by Volume</Text>
           </TouchableOpacity>
-
+          <TouchableOpacity
+            onPress={() =>
+              this.props.navigation.navigate('CompanyCategory', {
+                name: 'Highest by Volume',
+                params: {gainers, losers, highestByVolume, showHighestByVolume: true},
+              })
+            }>
+            <Text style={style.seeAllHeader}>See all</Text>
+          </TouchableOpacity>
+          </View>
           <View style={style.boxContainer}>
             <ScrollView
               horizontal={true}
@@ -175,9 +209,8 @@ export default connect(mapStateToProps)(CompanyBoxList);
 const style = StyleSheet.create({
   container: {
     marginTop: 10,
-    // borderBottomWidth: 0.8,
     borderBottomColor: 'gray',
-    paddingBottom: 12.5,
+    paddingBottom: 12,
     width: '98%',
     alignSelf: 'center',
     // alignItems:"flex-start"
@@ -187,12 +220,35 @@ const style = StyleSheet.create({
     // flexDirection: 'row',
     // justifyContent: 'space-around',
   },
+  headerContainer:{
+    flexDirection:"row",
+    justifyContent:"space-between",
+    paddingRight:8,
+  },
   header: {
     fontSize: 18,
-    // marginLeft: 14,
-    marginLeft: 1,
-    // fontStyle: 'italic',
-    fontWeight: 'bold',
-    color: 'black',
+    marginLeft: 5,
+    color: 'lightgrey',
+    marginBottom:3
   },
+  seeAllHeader:{
+    paddingTop:3,
+fontSize:15,
+color:"#855cff"
+  },
+  searchInputContainer:{
+    marginBottom:6
+    
+  },
+  searchInput:{
+  paddingLeft:40,
+  alignContent:"center",
+  backgroundColor:'#3e4d6c',
+  color:'lightgrey',
+  fontSize:16,
+  height:36,
+  fontStyle:'italic',
+  paddingVertical:0
+  },
+  
 });
