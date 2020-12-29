@@ -252,15 +252,17 @@ const style = StyleSheet.create({
     marginBottom:4,
   },
   header: {
-    fontSize: 18,
-    marginLeft: 5,
+    fontSize: 20,
+    marginLeft: 5.5,
     color: 'lightgrey',
     // marginBottom: 3.5,
   },
   seeAllHeader: {
     paddingTop: 3,
-    fontSize: 15,
+    paddingRight:2,
+    fontSize: 16.5,
     color: '#9082cf',
+    fontWeight:'bold'
   },
   searchInputContainer: {
     // marginTop: 1,
@@ -271,7 +273,7 @@ const style = StyleSheet.create({
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 16,
+    fontSize: 18,
     height: 36,
     fontStyle: 'italic',
     paddingVertical: 0,

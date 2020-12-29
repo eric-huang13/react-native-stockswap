@@ -175,7 +175,7 @@ const style = StyleSheet.create({
   },
   header: {
     color: 'white',
-    fontSize: 19,
+    fontSize: 20,
     fontWeight: '700',
     marginVertical:8,
     textAlign: 'center',
@@ -184,10 +184,11 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginVertical: 15,
+    paddingBottom:2,
   },
   tabHeader: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
   },
   activeTabHeaderView: {
@@ -243,7 +244,7 @@ const style = StyleSheet.create({
     textShadowColor: '#855cff',
     textShadowOffset: {width: 1, height: 1},
     textShadowRadius: 50,
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     // backgroundColor:'white',
     // padding: 24,
