@@ -145,7 +145,7 @@ const style = StyleSheet.create({
     color:'white',
     fontSize: 19,
     fontWeight: '700',
-    marginTop: 8.5,
+    marginVertical: 8,
     textAlign: 'center',
   },
   tabSelectorContainer: {
@@ -160,7 +160,11 @@ fontWeight:'bold',
   },
   activeTabHeaderView:{
     borderBottomWidth:3,
-    borderBottomColor:'#855cff'
+    borderBottomColor:'#855cff',
+    paddingBottom:1.8,
+ 
+
+    
     // color: '#855cff',textShadowColor: '#855cff',
     // textShadowOffset: {width: 1, height: 1},
     // textShadowRadius: 50

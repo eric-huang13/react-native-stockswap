@@ -1,74 +1,71 @@
-import React, {Component} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import React, { Component } from "react";
+import { Text, View, StyleSheet } from "react-native";
 // import {style} from '../../styles/style';
-import LinearGradient from 'react-native-linear-gradient';
-
+import LinearGradient from "react-native-linear-gradient";
 
 export class CompanyBox extends Component {
   render() {
-    const {item} = this.props;
-    const trythis= item.category === 'gainers' ?  
-    <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={style.linearGradient}>
- <View
-          style={style.listContainer}
-
-            >
-          <Text style={style.symbol}>{item.symbol}</Text>
-          <Text>{trythis}</Text>
-          <Text style={style.title}>{item.title}</Text>
-          {/* <View style={style.detailsContainer}> */}
-          <Text style={style.price}>{item.price}</Text>
-
-          <Text style={style.percentage}>{item.percentage}</Text>
-          {/* </View> */}
-        </View>
-</LinearGradient>
-   : item.category === "losers" ?  <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={style.linearGradient}>
-   <View
-            style={style.listContainer}
-  
-              >
-            <Text style={style.symbol}>{item.symbol}</Text>
-            <Text>{trythis}</Text>
+    const { item } = this.props;
+    const styledText =
+      item.category === "gainers" ? (
+        <LinearGradient
+        start={{ x:.1, y: .1 }}
+       end={{x: 1, y: 1}}
+          colors={["#4c669f", "#3b5998", "#1cab66"]}
+          style={style.linearGradient}
+        >
+          <View style={style.listContainer}>
+            <Text style={{...style.symbol, color:'#1cab66' }}>{item.symbol}</Text>
+            <Text>{styledText}</Text>
             <Text style={style.title}>{item.title}</Text>
-            {/* <View style={style.detailsContainer}> */}
             <Text style={style.price}>{item.price}</Text>
-  
-            <Text style={style.percentage}>{item.percentage}</Text>
-            {/* </View> */}
-          </View>
-  </LinearGradient> 
-  : <LinearGradient colors={['#4c669f', 'purple', 'purple']} style={style.linearGradient}>
-  <View
-           style={style.listContainer}
- 
-             >
-           <Text style={style.symbol}>{item.symbol}</Text>
-           <Text>{trythis}</Text>
-           <Text style={style.title}>{item.title}</Text>
-           {/* <View style={style.detailsContainer}> */}
-           <Text style={style.price}>{item.price}</Text>
- 
-           <Text style={style.percentage}>{item.percentage}</Text>
-           {/* </View> */}
-         </View>
- </LinearGradient> 
 
-    return (
-      <View>
-        {trythis}
-      </View>
-    );
+            <Text style={{...style.percentage, color:'#1cab66'}}>{item.percentage}</Text>
+          </View>
+        </LinearGradient>
+      ) : item.category === "losers" ? (
+        <LinearGradient
+        start={{ x:.1, y: .1 }}
+       end={{x: 1, y: 1}}
+          colors={["#4c669f", "#3b5998", "#ac3b42"]}
+          style={style.linearGradient}
+        >
+          <View style={style.listContainer}>
+            <Text style={{...style.symbol, color:'#ac3b42' }}>{item.symbol}</Text>
+            <Text>{styledText}</Text>
+            <Text style={style.title}>{item.title}</Text>
+            <Text style={style.price}>{item.price}</Text>
+
+            <Text style={{...style.percentage, color:'#ac3b42'}}>{item.percentage}</Text>
+          </View>
+        </LinearGradient>
+      ) : (
+        <LinearGradient
+        start={{ x:.1, y: .1 }}
+       end={{x: 1, y: 1}}
+          colors={["#4c669f", "purple", "purple"]}
+          style={style.linearGradient}
+        >
+          <View style={style.listContainer}>
+            <Text style={{...style.symbol, color:'#9082cf' }}>{item.symbol}</Text>
+            <Text>{styledText}</Text>
+            <Text style={style.title}>{item.title}</Text>
+            <Text style={style.price}>{item.price}</Text>
+
+            <Text style={{...style.percentage, color:'#9082cf'}}>{item.percentage}</Text>
+          </View>
+        </LinearGradient>
+      );
+
+    return <View>{styledText}</View>;
   }
 }
 
 export default CompanyBox;
 
 const style = StyleSheet.create({
-
   linearGradient: {
-   
-    alignSelf: 'center',
+    alignSelf: "center",
     marginTop: 3,
     // borderWidth: 1,
     // borderColor: 'rgb(58, 117, 167)',
@@ -76,13 +73,14 @@ const style = StyleSheet.create({
     borderRadius: 15,
     height: 130,
     width: 125,
-    flexDirection: 'column',
+    flexDirection: "column",
     padding: 3,
-    justifyContent: 'space-evenly',
+    justifyContent: "space-evenly",
     marginLeft: 4,
-    marginRight: 4,  },
+    marginRight: 4,
+  },
   listContainer: {
-    alignSelf: 'center',
+    alignSelf: "center",
     marginTop: 3,
     // borderWidth: 1,
     // borderColor: 'rgb(58, 117, 167)',
@@ -90,9 +88,9 @@ const style = StyleSheet.create({
     borderRadius: 15,
     height: 130,
     width: 125,
-    flexDirection: 'column',
+    flexDirection: "column",
     padding: 3,
-    justifyContent: 'space-evenly',
+    justifyContent: "space-evenly",
     marginLeft: 4,
     marginRight: 4,
   },
@@ -103,17 +101,17 @@ const style = StyleSheet.create({
     // marginTop: 3,
     // color: 'rgb(246, 252, 247)',
     // marginBottom: 20,
-    color: 'grey',
+    color: "grey",
   },
   detailsContainer: {
-    position: 'absolute',
-    marginTop: '60%',
+    position: "absolute",
+    marginTop: "60%",
     marginLeft: 2,
   },
   symbol: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 22,
-    color: 'rgb(8, 11, 9)',
+    color: "rgb(8, 11, 9)",
     // marginLeft: 8,
     // marginBottom: -7,
   },
@@ -121,11 +119,11 @@ const style = StyleSheet.create({
     // fontWeight: 'bold',
     fontSize: 14,
     // color: 'rgb(8, 11, 9)',
-    color: 'grey',
+    color: "grey",
   },
   price: {
     // fontWeight: 'bold',
     fontSize: 20,
-    color: 'rgb(8, 11, 9)',
+    color: "rgb(8, 11, 9)",
   },
 });

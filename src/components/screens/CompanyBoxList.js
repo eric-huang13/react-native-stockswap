@@ -234,9 +234,10 @@ const style = StyleSheet.create({
   seeAllHeader:{
     paddingTop:3,
 fontSize:15,
-color:"#855cff"
+color:"#9082cf"
   },
   searchInputContainer:{
+    // marginTop:2,
     marginBottom:6
     
   },
