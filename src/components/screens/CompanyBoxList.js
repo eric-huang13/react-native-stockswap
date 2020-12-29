@@ -237,7 +237,7 @@ fontSize:15,
 color:"#9082cf"
   },
   searchInputContainer:{
-    // marginTop:2,
+    marginTop:1,
     marginBottom:6
     
   },

@@ -15,12 +15,14 @@ export class CompanyBox extends Component {
           style={style.linearGradient}
         >
           <View style={style.listContainer}>
+            <View style={style.topDetails}>
             <Text style={{...style.symbol, color:'#1cab66' }}>{item.symbol}</Text>
-            <Text>{styledText}</Text>
             <Text style={style.title}>{item.title}</Text>
-            <Text style={style.price}>{item.price}</Text>
-
+            </View>
+            <View style={style.bottomDetails}>
+            <Text style={style.price}>${item.price}</Text>
             <Text style={{...style.percentage, color:'#1cab66'}}>{item.percentage}</Text>
+            </View>
           </View>
         </LinearGradient>
       ) : item.category === "losers" ? (
@@ -31,11 +33,9 @@ export class CompanyBox extends Component {
           style={style.linearGradient}
         >
           <View style={style.listContainer}>
-            <Text style={{...style.symbol, color:'#ac3b42' }}>{item.symbol}</Text>
-            <Text>{styledText}</Text>
-            <Text style={style.title}>{item.title}</Text>
-            <Text style={style.price}>{item.price}</Text>
-
+            <Text style={{...style.symbol, color:'#ac3b42',}}>{item.symbol}</Text>
+            <Text  style={style.title}>{item.title}</Text>
+            <Text style={style.price}>${item.price}</Text>
             <Text style={{...style.percentage, color:'#ac3b42'}}>{item.percentage}</Text>
           </View>
         </LinearGradient>
@@ -48,10 +48,8 @@ export class CompanyBox extends Component {
         >
           <View style={style.listContainer}>
             <Text style={{...style.symbol, color:'#9082cf' }}>{item.symbol}</Text>
-            <Text>{styledText}</Text>
             <Text style={style.title}>{item.title}</Text>
-            <Text style={style.price}>{item.price}</Text>
-
+            <Text style={style.price}>${item.price}</Text>
             <Text style={{...style.percentage, color:'#9082cf'}}>{item.percentage}</Text>
           </View>
         </LinearGradient>
@@ -75,32 +73,40 @@ const style = StyleSheet.create({
     width: 125,
     flexDirection: "column",
     padding: 3,
-    justifyContent: "space-evenly",
+    paddingTop:0,
+    justifyContent: "space-around",
     marginLeft: 4,
     marginRight: 4,
   },
   listContainer: {
-    alignSelf: "center",
-    marginTop: 3,
+    // alignSelf: "center",
+    // marginTop: 3,
     // borderWidth: 1,
     // borderColor: 'rgb(58, 117, 167)',
     // backgroundColor: 'rgb(58, 117, 167)',
     borderRadius: 15,
-    height: 130,
-    width: 125,
+    flex:1,
+    // height: 130,
+    // width: 125,
     flexDirection: "column",
-    padding: 3,
+    paddingHorizontal: 4,
+    paddingTop:0,
     justifyContent: "space-evenly",
-    marginLeft: 4,
-    marginRight: 4,
+    // marginLeft: 4,
+    // marginRight: 4,
+  },
+  topDetails:{
+    // borderWidth:1,
+    marginTop:-4,
+  },
+  bottomDetails:{
+  
+// borderWidth:1,
   },
   title: {
-    // alignSelf: 'center',
-    // fontWeight: 'bold',
+  
     fontSize: 14,
-    // marginTop: 3,
-    // color: 'rgb(246, 252, 247)',
-    // marginBottom: 20,
+    
     color: "grey",
   },
   detailsContainer: {
@@ -109,21 +115,21 @@ const style = StyleSheet.create({
     marginLeft: 2,
   },
   symbol: {
+
     fontWeight: "bold",
     fontSize: 22,
     color: "rgb(8, 11, 9)",
+    // marginTop:-3,
+    // marginBottom:-8,
     // marginLeft: 8,
     // marginBottom: -7,
   },
   percentage: {
-    // fontWeight: 'bold',
     fontSize: 14,
-    // color: 'rgb(8, 11, 9)',
     color: "grey",
   },
   price: {
-    // fontWeight: 'bold',
     fontSize: 20,
-    color: "rgb(8, 11, 9)",
+    color: "lightgrey",
   },
 });
