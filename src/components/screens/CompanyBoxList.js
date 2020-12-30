@@ -232,12 +232,18 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(CompanyBoxList);
 
 const style = StyleSheet.create({
-  container: {
-    marginTop: 6,
-    borderBottomColor: 'gray',
-    paddingBottom: 30,
+  mainContainer:{
     width: '98%',
     alignSelf: 'center',
+    paddingBottom: 40,
+
+  },
+  container: {
+    marginBottom: 18,
+    borderBottomColor: 'gray',
+    // paddingBottom: 40,
+    // width: '98%',
+    // alignSelf: 'center',
     // alignItems:"flex-start"
   },
   boxContainer: {
@@ -258,7 +264,7 @@ const style = StyleSheet.create({
     // marginBottom: 3.5,
   },
   seeAllHeader: {
-    paddingTop: 3,
+    paddingTop: 3.5,
     paddingRight:2,
     fontSize: 16.5,
     color: '#9082cf',

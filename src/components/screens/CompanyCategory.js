@@ -5,6 +5,8 @@ import {
   TouchableOpacity,
   StyleSheet,
   TextInput,
+  ScrollView,
+  FlatList
 } from 'react-native';
 import {connect} from 'react-redux';
 import CompanyCategoryBox from './CompanyCategoryBox';
@@ -40,7 +42,7 @@ export class CompanyCategory extends Component {
       item.title.toLowerCase().includes(this.state.input.toLowerCase()),
     );
 
-    return showGainers ? (
+    return (
       <View style={style.boxContainer}>
         <View style={style.searchInputContainer}>
           <TextInput
@@ -49,10 +51,11 @@ export class CompanyCategory extends Component {
             onChangeText={(text) => this.handleChange(text)}
           />
         </View>
-
-        {filteredGainers.map((item) => {
-          return (
-            <TouchableOpacity
+<FlatList
+        style={style.listContainer}
+        data={showGainers ? filteredGainers : showLosers ? filteredLosers : showHighestByVolume ? filteredhighestByVolume : null}
+        renderItem={({ item }) => (
+          <TouchableOpacity
               key={item.id}
               onPress={() =>
                 this.props.navigation.navigate({
@@ -62,63 +65,10 @@ export class CompanyCategory extends Component {
               }>
               <CompanyCategoryBox item={item} />
             </TouchableOpacity>
-          );
-        })}
-      </View>
-    ) : showLosers ? (
-      <View style={style.boxContainer}>
-        <View style={style.searchInputContainer}>
-          <TextInput
-            style={style.searchInput}
-            placeholder="Search by name"
-            onChangeText={(text) => this.handleChange(text)}
-          />
-        </View>
+        )}
+      />
+          </View>
 
-        {filteredLosers.map((item) => {
-          return (
-            <TouchableOpacity
-              key={item.id}
-              onPress={() =>
-                this.props.navigation.navigate({
-                  name: 'CompanyInformation',
-                  params: {item},
-                })
-              }>
-              <CompanyCategoryBox item={item} />
-            </TouchableOpacity>
-          );
-        })}
-      </View>
-    ) : showHighestByVolume ? (
-      <View style={style.boxContainer}>
-        <View style={style.searchInputContainer}>
-          <TextInput
-            style={style.searchInput}
-            placeholder="Search by name"
-            onChangeText={(text) => this.handleChange(text)}
-          />
-        </View>
-
-        {filteredhighestByVolume.map((item) => {
-          return (
-            <TouchableOpacity
-              key={item.id}
-              onPress={() =>
-                this.props.navigation.navigate({
-                  name: 'CompanyInformation',
-                  params: {item},
-                })
-              }>
-              <CompanyCategoryBox item={item} />
-            </TouchableOpacity>
-          );
-        })}
-      </View>
-    ) : (
-      <View>
-        <Text>Companies</Text>
-      </View>
     );
   }
 }
@@ -133,4 +83,7 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(CompanyCategory);
 
-const style = StyleSheet.create({});
+const style = StyleSheet.create({
+
+
+});

@@ -137,6 +137,22 @@ const defaultState = {
       category: 'gainers',
       price: '154.82',
     },
+    {
+      id: '7',
+      title: 'Tesla',
+      symbol: 'TSLA',
+      percentage: '+20.29%',
+      category: 'gainers',
+      price: '531.28',
+    },
+    {
+      id: '8',
+      title: 'Walt Disney CO',
+      symbol: 'DIS',
+      percentage: '+10.21%',
+      category: 'gainers',
+      price: '154.82',
+    },
   ],
   losers: [
     {
