@@ -45,9 +45,7 @@ export class CompanyCategory extends Component {
     );
 
     return (
-  
-      <View style={style.boxContainer}>
-         <LinearGradient
+       <LinearGradient
          style={style.linearContainer}
         start={{x: 0.1, y: 0.1}}
         end={{x: 1, y: 1}}
@@ -63,6 +61,8 @@ export class CompanyCategory extends Component {
           '#394463',
         ]}
         >
+      <View style={style.boxContainer}>
+    
         <View style={style.searchInputContainer}>
           <TextInput
               style={style.searchInput}
@@ -72,7 +72,8 @@ export class CompanyCategory extends Component {
             onChangeText={(text) => this.handleChange(text)}
           />
         </View>
-      </LinearGradient>
+      
+      
 <FlatList
         style={style.listContainer}
         data={showGainers ? filteredGainers : showLosers ? filteredLosers : showHighestByVolume ? filteredhighestByVolume : null}
@@ -90,6 +91,7 @@ export class CompanyCategory extends Component {
         )}
       />
           </View>
+          </LinearGradient>
 
     );
   }
@@ -112,6 +114,10 @@ const style = StyleSheet.create({
   },
   linearContainer:{
 paddingBottom:5,
+flex:1,
+  },
+  listContainer:{
+    // backgroundColor:'red',
   },
   searchInputContainer: {
     marginBottom: 26,
