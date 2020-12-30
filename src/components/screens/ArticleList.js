@@ -22,7 +22,7 @@ export class ArticleList extends Component {
       <View>
         <ScrollView contentContainerStyle={{paddingBottom: 180}}>
           <View style={style.searchInputContainer}>
-          <TextInput
+            <TextInput
               style={style.searchInput}
               placeholder="Search by name"
               placeholderTextColor="lightgrey"
@@ -47,7 +47,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(ArticleList);
 
 const style = StyleSheet.create({
-
   searchInputContainer: {
     // marginTop: 1,
     marginBottom: 20,
@@ -57,7 +56,7 @@ const style = StyleSheet.create({
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 18,
+    fontSize: 16,
     height: 36,
     fontStyle: 'italic',
     paddingVertical: 0,

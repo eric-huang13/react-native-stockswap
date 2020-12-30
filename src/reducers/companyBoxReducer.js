@@ -213,7 +213,8 @@ const defaultState = {
       source: 'The Wall Street Journal',
       released: '3h',
       headline: 'Global Stocks Edge Higher on Optimism Over Economic Reopening',
-      intro:'Stocks rose Wednesday after closing slightly below all-time highs a day earlier in one of the final sessions of 2020.',
+      intro:
+        'Stocks rose Wednesday after closing slightly below all-time highs a day earlier in one of the final sessions of 2020.',
       img:
         'https://images.unsplash.com/photo-1476711656344-4ffe053f6b2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
     },
