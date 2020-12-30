@@ -18,9 +18,11 @@ export class CompanyBox extends Component {
               <Text style={{...style.symbol, color: '#1cab66'}}>
                 {item.symbol}
               </Text>
-              <Text style={style.title}>{item.title.length < 15
-                ? `${item.title}`
-                : `${item.title.substring(0, 14)}...`}</Text>
+              <Text style={style.title}>
+                {item.title.length < 15
+                  ? `${item.title}`
+                  : `${item.title.substring(0, 14)}...`}
+              </Text>
             </View>
             <View style={style.bottomDetails}>
               <Text style={style.price}>${item.price}</Text>
@@ -40,9 +42,11 @@ export class CompanyBox extends Component {
             <Text style={{...style.symbol, color: '#ac3b42'}}>
               {item.symbol}
             </Text>
-            <Text style={style.title}>{item.title.length < 15
+            <Text style={style.title}>
+              {item.title.length < 15
                 ? `${item.title}`
-                : `${item.title.substring(0, 14)}...`}</Text>
+                : `${item.title.substring(0, 14)}...`}
+            </Text>
             <Text style={style.price}>${item.price}</Text>
             <Text style={{...style.percentage, color: '#ac3b42'}}>
               {item.percentage}
@@ -59,9 +63,11 @@ export class CompanyBox extends Component {
             <Text style={{...style.symbol, color: '#9082cf'}}>
               {item.symbol}
             </Text>
-            <Text style={style.title}>{item.title.length < 15
+            <Text style={style.title}>
+              {item.title.length < 15
                 ? `${item.title}`
-                : `${item.title.substring(0, 14)}...`}</Text>
+                : `${item.title.substring(0, 14)}...`}
+            </Text>
             <Text style={style.price}>${item.price}</Text>
             <Text style={{...style.percentage, color: '#9082cf'}}>
               {item.percentage}

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, TextInput, ScrollView} from 'react-native';
+import {View, TextInput, ScrollView, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import Article from './Article';
 
@@ -21,10 +21,11 @@ export class ArticleList extends Component {
     return (
       <View>
         <ScrollView contentContainerStyle={{paddingBottom: 180}}>
-          <View>
-            <TextInput
-              style={{borderWidth: 0.5, marginHorizontal: 1}}
+          <View style={style.searchInputContainer}>
+          <TextInput
+              style={style.searchInput}
               placeholder="Search by name"
+              placeholderTextColor="lightgrey"
               onChangeText={(text) => this.handleChange(text)}
             />
           </View>
@@ -44,3 +45,21 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(ArticleList);
+
+const style = StyleSheet.create({
+
+  searchInputContainer: {
+    // marginTop: 1,
+    marginBottom: 20,
+  },
+  searchInput: {
+    paddingLeft: 40,
+    alignContent: 'center',
+    backgroundColor: '#3e4d6c',
+    color: 'lightgrey',
+    fontSize: 18,
+    height: 36,
+    fontStyle: 'italic',
+    paddingVertical: 0,
+  },
+});

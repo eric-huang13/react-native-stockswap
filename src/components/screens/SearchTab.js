@@ -1,10 +1,5 @@
 import React, {Component} from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import CompanyBoxList from './CompanyBoxList';
 import UserList from './UserList.js';
 import ArticleList from './ArticleList';
@@ -43,99 +38,93 @@ export class SearchTab extends Component {
         <View>
           {/* <ScrollView> */}
           <LinearGradient
-        start={{x: 0.1, y: 0.1}}
-        end={{x: 1, y: 1}}
-        colors={[
-       
-        
-         
-          '#2c3752',
-          '#2e3955',
-          '#313c58',
-          '#333e5c',
-          '#36415f',
-          '#394463',
-        ]}
-        >
-          <Text style={style.header}>Search</Text>
+            start={{x: 0.1, y: 0.1}}
+            end={{x: 1, y: 1}}
+            colors={[
+              '#2c3752',
+              '#2e3955',
+              '#313c58',
+              '#333e5c',
+              '#36415f',
+              '#394463',
+            ]}>
+            <Text style={style.header}>Search</Text>
 
-     
-          <View style={style.tabSelectorContainer}>
-            <TouchableOpacity
-              onPress={() =>
-                this.setState({
-                  companies: true,
-                  users: false,
-                  news: false,
-                })
-              }>
-              <View
-                style={
-                  this.state.companies
-                    ? {...style.activeTabHeaderView}
-                    : {...style.tabHeaderView}
+            <View style={style.tabSelectorContainer}>
+              <TouchableOpacity
+                onPress={() =>
+                  this.setState({
+                    companies: true,
+                    users: false,
+                    news: false,
+                  })
                 }>
-                <Text
+                <View
                   style={
                     this.state.companies
-                      ? {...style.activeTabHeader}
-                      : {...style.tabHeader}
+                      ? {...style.activeTabHeaderView}
+                      : {...style.tabHeaderView}
                   }>
-                  Stocks
-                </Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                this.setState({
-                  companies: false,
-                  news: true,
-                  users: false,
-                })
-              }>
-              <View
-                style={
-                  this.state.news
-                    ? {...style.activeTabHeaderView}
-                    : {...style.tabHeaderView}
+                  <Text
+                    style={
+                      this.state.companies
+                        ? {...style.activeTabHeader}
+                        : {...style.tabHeader}
+                    }>
+                    Stocks
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  this.setState({
+                    companies: false,
+                    news: true,
+                    users: false,
+                  })
                 }>
-                <Text
+                <View
                   style={
                     this.state.news
-                      ? {...style.activeTabHeader}
-                      : {...style.tabHeader}
+                      ? {...style.activeTabHeaderView}
+                      : {...style.tabHeaderView}
                   }>
-                  News
-                </Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                this.setState({
-                  companies: false,
-                  news: false,
-                  users: true,
-                })
-              }>
-              <View
-                style={
-                  this.state.users
-                    ? {...style.activeTabHeaderView}
-                    : {...style.tabHeaderView}
+                  <Text
+                    style={
+                      this.state.news
+                        ? {...style.activeTabHeader}
+                        : {...style.tabHeader}
+                    }>
+                    News
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  this.setState({
+                    companies: false,
+                    news: false,
+                    users: true,
+                  })
                 }>
-                <Text
+                <View
                   style={
                     this.state.users
-                      ? {...style.activeTabHeader}
-                      : {...style.tabHeader}
+                      ? {...style.activeTabHeaderView}
+                      : {...style.tabHeaderView}
                   }>
-                  People
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-
-</LinearGradient>
+                  <Text
+                    style={
+                      this.state.users
+                        ? {...style.activeTabHeader}
+                        : {...style.tabHeader}
+                    }>
+                    People
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </LinearGradient>
           {this.state.companies ? (
             <CompanyBoxList navigation={this.props.navigation} />
           ) : this.state.news ? (
@@ -177,14 +166,14 @@ const style = StyleSheet.create({
     color: 'white',
     fontSize: 20,
     fontWeight: '700',
-    marginVertical:8,
+    marginVertical: 8,
     textAlign: 'center',
   },
   tabSelectorContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginVertical: 15,
-    paddingBottom:2,
+    paddingBottom: 2,
   },
   tabHeader: {
     color: 'white',

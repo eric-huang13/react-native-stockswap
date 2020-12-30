@@ -233,11 +233,10 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(CompanyBoxList);
 
 const style = StyleSheet.create({
-  mainContainer:{
+  mainContainer: {
     width: '98%',
     alignSelf: 'center',
     paddingBottom: 40,
-
   },
   container: {
     marginBottom: 18,
@@ -256,7 +255,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingRight: 8,
-    marginBottom:4,
+    marginBottom: 4,
   },
   header: {
     fontSize: 20,
@@ -266,10 +265,10 @@ const style = StyleSheet.create({
   },
   seeAllHeader: {
     paddingTop: 3.5,
-    paddingRight:2,
+    paddingRight: 2,
     fontSize: 16.5,
     color: '#9082cf',
-    fontWeight:'bold'
+    fontWeight: 'bold',
   },
   searchInputContainer: {
     // marginTop: 1,

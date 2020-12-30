@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
-import {View, TextInput, TouchableOpacity, ScrollView, StyleSheet} from 'react-native';
+import {
+  View,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
+  StyleSheet,
+} from 'react-native';
 import {connect} from 'react-redux';
 import UserBox from './UserBox';
 
@@ -23,7 +29,7 @@ export class UserList extends Component {
       <View>
         <ScrollView contentContainerStyle={{paddingBottom: 180}}>
           <View style={style.searchInputContainer}>
-          <TextInput
+            <TextInput
               style={style.searchInput}
               placeholder="Search"
               placeholderTextColor="lightgrey"
@@ -74,4 +80,3 @@ const style = StyleSheet.create({
     paddingVertical: 0,
   },
 });
-

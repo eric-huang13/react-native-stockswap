@@ -1,14 +1,17 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 
-
 export default class CompanyCategoryBox extends Component {
   render() {
     const {item} = this.props;
 
     return (
-      <View style={item.id%2 === 0 ? {...style.container,     backgroundColor:'#2a334a'} :{...style.container}
-    }>
+      <View
+        style={
+          item.id % 2 === 0
+            ? {...style.container, backgroundColor: '#2a334a'}
+            : {...style.container}
+        }>
         <View key={item.id} style={style.companyRow}>
           <View style={style.nameContainer}>
             <Text style={style.symbol}>{item.symbol}</Text>
@@ -25,9 +28,9 @@ export default class CompanyCategoryBox extends Component {
 }
 
 const style = StyleSheet.create({
-  container:{
-    backgroundColor:'#324165',
-    paddingVertical:4, 
+  container: {
+    backgroundColor: '#324165',
+    paddingVertical: 4,
   },
   companyRow: {
     flexDirection: 'row',
@@ -35,34 +38,31 @@ const style = StyleSheet.create({
     paddingHorizontal: 12,
     alignContent: 'space-between',
     marginVertical: 6,
- 
   },
   nameContainer: {
     flexDirection: 'column',
-    justifyContent:'space-evenly',
-
+    justifyContent: 'space-evenly',
   },
-  detailsContainer:{
-marginTop:5,
+  detailsContainer: {
+    marginTop: 5,
   },
   symbol: {
-    color:'white',
+    color: 'white',
     fontSize: 22,
     fontWeight: 'bold',
   },
   title: {
     color: '#d0d3dc',
-    marginTop:3,
+    marginTop: 3,
   },
   price: {
-    color:'white',
+    color: 'white',
     fontSize: 22,
     fontWeight: 'bold',
-
   },
   percentage: {
     color: '#5fc48c',
-    alignSelf:'flex-end',
-    marginTop:3,
+    alignSelf: 'flex-end',
+    marginTop: 3,
   },
 });

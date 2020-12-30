@@ -6,16 +6,25 @@ export default class UserBox extends Component {
     const {item} = this.props;
 
     return (
-      <View style={item.id%2 === 0 ? {...style.container, backgroundColor:'#2a334a'} :{...style.container}
-    }>  
-    {/* <View style={style.imgDetailContainer}>       */}
-          <Image style={style.image} source={{uri: item.img}} />
-        
+      <View
+        style={
+          item.id % 2 === 0
+            ? {...style.container, backgroundColor: '#2a334a'}
+            : {...style.container}
+        }>
+        {/* <View style={style.imgDetailContainer}>       */}
+        <Image style={style.image} source={{uri: item.img}} />
+
         <View style={style.detailsContainer}>
           <Text style={style.name}>{item.name}</Text>
-          
-          <Text style={style.posts}>Posts: <Text style={style.detailsBold}>{item.posts}</Text></Text>
-          <Text style={style.followers}>Followers: <Text style={style.detailsBold}>{item.followers}</Text></Text></View>
+
+          <Text style={style.posts}>
+            Posts: <Text style={style.detailsBold}>{item.posts}</Text>
+          </Text>
+          <Text style={style.followers}>
+            Followers: <Text style={style.detailsBold}>{item.followers}</Text>
+          </Text>
+        </View>
         {/* </View> */}
         <View style={style.percentageView}>
           <Text style={style.percentage}>{item.percentage}%</Text>
@@ -30,59 +39,55 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     // marginVertical: 4,
-    paddingVertical:14,
-    paddingHorizontal:10,
+    paddingVertical: 14,
+    paddingHorizontal: 10,
     // paddingLeft:2,
-    backgroundColor:'#324165',
+    backgroundColor: '#324165',
     // borderWidth:1,
     // paddingLeft:20
-
-
   },
   image: {
-    height:65,
-    width:65,
-    borderRadius:50,
+    height: 65,
+    width: 65,
+    borderRadius: 50,
     // borderWidth:1,
-
   },
-  imgDetailContainer:{
-flexDirection:'row',
-// borderWidth:1,
-marginLeft:-8
-
-  },
-  detailsContainer:{
+  imgDetailContainer: {
+    flexDirection: 'row',
     // borderWidth:1,
-    flexDirection:'column',
-    marginLeft:-150,
-    justifyContent:'space-between'
+    marginLeft: -8,
   },
-  name:{
-  color:'white',
-  fontSize:18,
-  fontWeight:'bold',
+  detailsContainer: {
+    // borderWidth:1,
+    flexDirection: 'column',
+    marginLeft: -150,
+    justifyContent: 'space-between',
   },
-  posts:{
-    color:'white',
-    fontSize:14,
+  name: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
-  followers:{
-    color:'white',
-    fontSize:14,
+  posts: {
+    color: 'white',
+    fontSize: 14,
   },
-  percentageView:{
-  flexDirection:'row',
-  alignContent:'center',
-// alignItems:'center',
+  followers: {
+    color: 'white',
+    fontSize: 14,
   },
-  percentage:{
-    alignSelf:'center',
-    color:'white',
-    fontWeight:'bold',
-    fontSize:19
+  percentageView: {
+    flexDirection: 'row',
+    alignContent: 'center',
+    // alignItems:'center',
   },
-  detailsBold:{
-fontWeight:'bold'
+  percentage: {
+    alignSelf: 'center',
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 19,
+  },
+  detailsBold: {
+    fontWeight: 'bold',
   },
 });

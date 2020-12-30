@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import {
-  Text,
   View,
   TouchableOpacity,
   StyleSheet,
   TextInput,
-  ScrollView,
-  FlatList
+  FlatList,
 } from 'react-native';
 
 import {connect} from 'react-redux';
@@ -45,54 +43,54 @@ export class CompanyCategory extends Component {
     );
 
     return (
-       <LinearGradient
-         style={style.linearContainer}
+      <LinearGradient
+        style={style.linearContainer}
         start={{x: 0.1, y: 0.1}}
         end={{x: 1, y: 1}}
         colors={[
-       
-        
-         
           '#2c3752',
           '#2e3955',
           '#313c58',
           '#333e5c',
           '#36415f',
           '#394463',
-        ]}
-        >
-      <View style={style.boxContainer}>
-    
-        <View style={style.searchInputContainer}>
-          <TextInput
+        ]}>
+        <View style={style.boxContainer}>
+          <View style={style.searchInputContainer}>
+            <TextInput
               style={style.searchInput}
               placeholder="Search by name"
               placeholderTextColor="lightgrey"
+              onChangeText={(text) => this.handleChange(text)}
+            />
+          </View>
 
-            onChangeText={(text) => this.handleChange(text)}
+          <FlatList
+            style={style.listContainer}
+            data={
+              showGainers
+                ? filteredGainers
+                : showLosers
+                ? filteredLosers
+                : showHighestByVolume
+                ? filteredhighestByVolume
+                : null
+            }
+            renderItem={({item}) => (
+              <TouchableOpacity
+                key={item.id}
+                onPress={() =>
+                  this.props.navigation.navigate({
+                    name: 'CompanyInformation',
+                    params: {item},
+                  })
+                }>
+                <CompanyCategoryBox item={item} />
+              </TouchableOpacity>
+            )}
           />
         </View>
-      
-      
-<FlatList
-        style={style.listContainer}
-        data={showGainers ? filteredGainers : showLosers ? filteredLosers : showHighestByVolume ? filteredhighestByVolume : null}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-              key={item.id}
-              onPress={() =>
-                this.props.navigation.navigate({
-                  name: 'CompanyInformation',
-                  params: {item},
-                })
-              }>
-              <CompanyCategoryBox item={item} />
-            </TouchableOpacity>
-        )}
-      />
-          </View>
-          </LinearGradient>
-
+      </LinearGradient>
     );
   }
 }
@@ -108,16 +106,14 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(CompanyCategory);
 
 const style = StyleSheet.create({
-
-  boxContainer:{
-    flex:1,
+  boxContainer: {
+    flex: 1,
   },
-  linearContainer:{
-paddingBottom:5,
-flex:1,
+  linearContainer: {
+    paddingBottom: 5,
+    flex: 1,
   },
-  listContainer:{
-  },
+  listContainer: {},
   searchInputContainer: {
     marginBottom: 26,
   },
@@ -129,7 +125,6 @@ flex:1,
     fontSize: 17,
     height: 40,
     fontStyle: 'italic',
-    paddingVertical:0,
+    paddingVertical: 0,
   },
-
 });

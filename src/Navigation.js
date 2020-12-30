@@ -46,8 +46,8 @@ class Navigation extends Component {
           title: route.params.name,
           //Need to figure out way to make header height shown when transparent or add Linearcolors directly
           // headerTransparent: true,
-          headerShown:true,
-          
+          headerShown: true,
+
           headerStyle: {
             backgroundColor: '#394463',
           },
@@ -55,9 +55,7 @@ class Navigation extends Component {
           headerTitleAlign: {
             textAlign: 'center',
           },
-      
         })}
-        
       />
       <SearchStack.Screen
         name="Profile"
@@ -76,24 +74,21 @@ class Navigation extends Component {
     const {isLoggedIn} = this.props;
 
     return (
-  
       <NavigationContainer>
         {isLoggedIn ? (
           <Tab.Navigator
-          tabBarOptions={{
-            activeTintColor: '#9082cf',
-            inactiveTintColor: 'lightgray',
-            // activeBackgroundColor: '#333e5c',
-            // inactiveBackgroundColor: '#333e5c',
-                style: {
-                      backgroundColor: '#333e5c',
-                      paddingBottom: 3,
-                      borderColor:'red',
-                      borderTopColor:'transparent',                   
-
-                }
-         }}
-          >
+            tabBarOptions={{
+              activeTintColor: '#9082cf',
+              inactiveTintColor: 'lightgray',
+              // activeBackgroundColor: '#333e5c',
+              // inactiveBackgroundColor: '#333e5c',
+              style: {
+                backgroundColor: '#333e5c',
+                paddingBottom: 3,
+                borderColor: 'red',
+                borderTopColor: 'transparent',
+              },
+            }}>
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Search" component={this.createSearchStack} />
           </Tab.Navigator>
