@@ -7,6 +7,7 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
+
 import {connect} from 'react-redux';
 // import {style} from '../../styles/style';
 import CompanyBox from './CompanyBox';

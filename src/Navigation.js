@@ -44,10 +44,20 @@ class Navigation extends Component {
         component={CompanyCategory}
         options={({route}) => ({
           title: route.params.name,
+          //Need to figure out way to make header height shown when transparent or add Linearcolors directly
+          // headerTransparent: true,
+          headerShown:true,
+          
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
           headerTitleAlign: {
             textAlign: 'center',
           },
+      
         })}
+        
       />
       <SearchStack.Screen
         name="Profile"
