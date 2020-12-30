@@ -117,7 +117,6 @@ paddingBottom:5,
 flex:1,
   },
   listContainer:{
-    // backgroundColor:'red',
   },
   searchInputContainer: {
     marginBottom: 26,
