@@ -12,6 +12,8 @@ export class Article extends Component {
         </View> 
         <View style={style.headlineContainer}>      
         <Text style={style.headline}>{item.headline}</Text>
+        <Text style={style.intro}>{item.intro}</Text>
+
         </View> 
         <View style={style.sourceContainer}>
           <Text style={style.source}>{item.source}</Text>
@@ -28,8 +30,9 @@ const style = StyleSheet.create({
   container: {
     marginTop: 1.2,
     margin: 15,
-    paddingBottom: 6,
+    paddingBottom: 8,
     backgroundColor: '#324165',
+    borderRadius:4
     },
   sourceContainer: {
     flexDirection: 'row',
@@ -39,22 +42,28 @@ const style = StyleSheet.create({
   source: {
     color: 'grey',
     marginRight: 4,
-    fontSize: 17.5,
+    fontSize: 16,
   },
   released: {
     color: 'grey',
-    fontSize: 17.5,
+    fontSize: 14,
   },
   headlineContainer:{
+    flexDirection:'column',
     paddingHorizontal:6,
+    marginBottom: 6,
 
   },
   headline: {
     color: 'white',
-    fontSize: 19,
+    fontSize: 16,
     fontWeight: 'bold',
     marginTop: 8.5,
     marginBottom: 10,
+  },
+  intro:{
+    color: 'white',
+    fontSize: 16,
   },
   imageContainer: {
     // paddingLeft: 3,
@@ -64,7 +73,7 @@ const style = StyleSheet.create({
   image: {
     borderTopLeftRadius:6,
     borderTopRightRadius:6,
-    height: 200,
+    height: 140,
     marginLeft: 0.05,
     marginRight: 0.05,
     width: '100%',
