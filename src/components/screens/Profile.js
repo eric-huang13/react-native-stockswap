@@ -50,7 +50,7 @@ export default class Profile extends Component {
           <Text style={style.website}>{item.website}</Text>
           </View>
           <View style={style.followButtonView}>
-          <Text style={style.followButton}>Follow Button</Text>
+          <Text style={style.followButton}>+Follow</Text>
           </View>
         </View>
         <View style={style.bioContainer}>
@@ -58,21 +58,21 @@ export default class Profile extends Component {
         </View>
         <View style={style.numberRow}>
           <View style={style.numberColumn}>
-          <Text style={style.followers}>{item.followers}</Text><Text style={style.followersText}>Followers</Text>
+          <Text style={style.numberData}>{item.followers}</Text><Text style={style.numberText}>Followers</Text>
           </View>
           <View style={style.numberColumn}>
-          <Text style={style.posts}>{item.posts}</Text><Text style={style.postsText}>Posts</Text>
+          <Text style={style.numberData}>{item.posts}</Text><Text style={style.numberText}>Posts</Text>
           </View>
           <View style={style.numberColumn}>
-          <Text style={style.trades}>{item.trades}</Text><Text style={style.tradesText}>Trades </Text>
+          <Text style={style.numberData}>{item.trades}</Text><Text style={style.numberText}>Trades </Text>
           </View>
           <View style={style.numberColumn}>
-          <Text style={style.following}>{item.following}</Text><Text style={style.followingText}>Following</Text>
+          <Text style={style.numberData}>{item.following}</Text><Text style={style.numberText}>Following</Text>
           </View>
         </View>
         </View>
-        <View>
-          <Text>Buttons</Text>
+        <View style={style.portfolioButtonContainer}>
+          <Text style={style.portfolioButton}>Portfolio Button</Text>
         </View>
       </View>
       </LinearGradient>
@@ -90,7 +90,7 @@ const style = StyleSheet.create({
   infoContainer:{
     // borderWidth:1,
     borderColor:'red',
-    paddingHorizontal:6
+    paddingHorizontal:7,
   },
   personalDetails:{
     // borderWidth:1,
@@ -110,6 +110,8 @@ const style = StyleSheet.create({
   },
   bioContainer:{
     marginVertical:8,
+    paddingHorizontal:3,
+
   },
   bio:{
     color:'white',
@@ -117,7 +119,8 @@ const style = StyleSheet.create({
   },
   numberRow:{
     flexDirection:'row',
-    justifyContent:'space-around'
+    justifyContent:'space-between',
+    paddingHorizontal:12,
   },
   numberColumn:{
     // borderWidth:1,
@@ -135,13 +138,18 @@ const style = StyleSheet.create({
   followButtonView:{
     flexDirection:'column',
     justifyContent:'center',
+    
   
   },
   followButton:{
     // alignSelf:'center',
-    borderWidth:1,
+    borderWidth:1.4,
     borderColor:'#9082cf',
     color:'#9082cf',
+    borderRadius:3,
+    paddingVertical:2,
+    paddingHorizontal:12,
+    fontSize:16,
   },
   name:{
     color:'white',
@@ -150,55 +158,40 @@ const style = StyleSheet.create({
   },
   username:{
     color:'white',
-    fontSize:14,
+    fontSize:15,
 
   },
   website:{
     color: '#9082cf',
-    fontSize:14,
+    fontSize:15,
   },
-  followers:{
+  
+  numberData:{
     color:'white',
     fontWeight:'bold',
     fontSize:18,
 
   },
-  posts:{
-    color:'white',
-    fontWeight:'bold',
-    fontSize:18,
-
-  },
-  trades:{
-    color:'white',
-    fontWeight:'bold',
-    fontSize:18,
-
-  },
-  following:{
-    color:'white',
-    fontWeight:'bold',
-    fontSize:18,
-
-  },
-  followersText:{
+  numberText:{
     color:'lightgrey',
     fontSize:14,
 
   },
-  postsText:{
-    color:'lightgrey',
-    fontSize:14,
+ 
+  portfolioButtonContainer:{
+    marginTop:18,
+// justifyContent:'center',
+ },
+ portfolioButton:{
+   textAlign:'center',
+   borderWidth:1.4,
+   borderColor:'#9082cf',
+   color:'#9082cf',
+   padding:10,
+   marginHorizontal:120,
+   borderRadius:8,
+   fontSize:16,
+  //  width:'20%',
 
-  },
-  tradesText:{
-    color:'lightgrey',
-    fontSize:14,
-
-  },
-  followingText:{
-    color:'lightgrey',
-    fontSize:14,
-
-  },
+ },
 });
