@@ -32,14 +32,20 @@ export class CompanyCategory extends Component {
       showHighestByVolume,
     } = this.props.route.params.params;
 
-    const filteredGainers = gainers.filter((item) =>
-      item.title.toLowerCase().includes(this.state.input.toLowerCase()) || item.symbol.toLowerCase().includes(this.state.input.toLowerCase()),
+    const filteredGainers = gainers.filter(
+      (item) =>
+        item.title.toLowerCase().includes(this.state.input.toLowerCase()) ||
+        item.symbol.toLowerCase().includes(this.state.input.toLowerCase()),
     );
-    const filteredLosers = losers.filter((item) =>
-      item.title.toLowerCase().includes(this.state.input.toLowerCase()) || item.symbol.toLowerCase().includes(this.state.input.toLowerCase()),
+    const filteredLosers = losers.filter(
+      (item) =>
+        item.title.toLowerCase().includes(this.state.input.toLowerCase()) ||
+        item.symbol.toLowerCase().includes(this.state.input.toLowerCase()),
     );
-    const filteredhighestByVolume = highestByVolume.filter((item) =>
-      item.title.toLowerCase().includes(this.state.input.toLowerCase()) || item.symbol.toLowerCase().includes(this.state.input.toLowerCase()),
+    const filteredhighestByVolume = highestByVolume.filter(
+      (item) =>
+        item.title.toLowerCase().includes(this.state.input.toLowerCase()) ||
+        item.symbol.toLowerCase().includes(this.state.input.toLowerCase()),
     );
 
     return (
