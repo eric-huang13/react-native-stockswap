@@ -68,8 +68,8 @@ const style = StyleSheet.create({
     // paddingRight: 3,
   },
   image: {
-    borderTopLeftRadius: 6,
-    borderTopRightRadius: 6,
+    borderTopLeftRadius: 4,
+    borderTopRightRadius: 4,
     height: 140,
     marginLeft: 0.05,
     marginRight: 0.05,
