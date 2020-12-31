@@ -225,6 +225,10 @@ const defaultState = {
       name: 'Hallie Fields',
       posts: 19182,
       followers: 92,
+      following:319,
+      trades:209,
+      username:'hfields123',
+      website:'www.hfl.com',
       percentage: 31.1,
       img:
         'https://images.unsplash.com/photo-1459180129673-eefb56f79b45?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzR8fGJ1c2luZXNzJTIwbWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
@@ -234,6 +238,10 @@ const defaultState = {
       name: 'Viola Casey',
       posts: 99,
       followers: 15,
+      following:29,
+      trades:20,
+      username:'vcasey123',
+      website:'www.vc.com',
       percentage: 24,
       img:
         'https://images.unsplash.com/photo-1459180129673-eefb56f79b45?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzR8fGJ1c2luZXNzJTIwbWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
@@ -243,6 +251,10 @@ const defaultState = {
       name: 'Rosa Clark',
       posts: 267,
       followers: 10,
+      following:215,
+      trades:83,
+      username:'clark123',
+      website:'www.rclark.com',
       percentage: 43,
       img:
         'https://images.unsplash.com/photo-1459180129673-eefb56f79b45?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzR8fGJ1c2luZXNzJTIwbWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
