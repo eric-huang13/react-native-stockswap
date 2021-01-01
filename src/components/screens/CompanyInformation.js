@@ -107,10 +107,10 @@ export class CompanyInformation extends Component {
               range={range}
             />
             <View style={style.graphNumbers}>
-              <Text style={style.graphNumberText}>{chartLow}</Text>
-              <Text style={style.graphNumberText}>{chartOneQuarter}</Text>
-              <Text style={style.graphNumberText}>{chartThreeQuarter}</Text>
-              <Text style={style.graphNumberText}>{chartHigh}</Text>
+              <Text style={style.graphNumberText}>-{chartLow}</Text>
+              <Text style={style.graphNumberText}>-{chartOneQuarter}</Text>
+              <Text style={style.graphNumberText}>-{chartThreeQuarter}</Text>
+              <Text style={style.graphNumberText}>-{chartHigh}</Text>
             </View>
           </View>
           <View style={style.stockButtonsContainer}>
@@ -216,6 +216,7 @@ const style = StyleSheet.create({
     paddingHorizontal:4,
     paddingVertical:14,
     backgroundColor:'#324165',
+    marginBottom:24,
   },
   graphContainer: {
     // borderWidth:1,
@@ -227,6 +228,8 @@ const style = StyleSheet.create({
     justifyContent: 'space-evenly',
     // alignItems:"flex-end",
     marginRight: 10,
+    borderLeftWidth:1,
+    borderLeftColor:'white',
   },
   graphNumberText: {
     color: 'white',
@@ -322,6 +325,6 @@ const style = StyleSheet.create({
   stockButtons: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 15,
+    fontSize: 16,
   },
 });

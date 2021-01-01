@@ -9,15 +9,15 @@ export default class CompanyStockGraph extends Component {
         <SlideAreaChart
           data={this.props.graphData}
           yRange={this.props.range}
-          width={Dimensions.get('window').width - 60}
+          width={Dimensions.get('window').width - 40}
           height={200}
-          style={{backgroundColor: '#f0f4fc'}}
+          style={{backgroundColor:'#2a334a',}}
           axisWidth={5}
           axisHeight={5}
           chartLineColor={'rgb(8, 177, 40)'}
           // chartPaddingTop={-47}
           throttleAndroid={true}
-          fillColor={'#f0f4fc'}
+          fillColor={'#2a334a'}
           cursorProps={{
             cursorLine: true,
             cursorColor: 'black',
@@ -70,8 +70,9 @@ const styles = StyleSheet.create({
   container: {
     // margin: 12,
     // borderWidth: 1,
+   
     flex: 1,
     // padding: 20,
-    backgroundColor: '#f0f4fc',
-  },
+    backgroundColor:'#2a334a',
+    },
 });
