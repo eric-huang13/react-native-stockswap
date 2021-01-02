@@ -22,13 +22,13 @@ export class CompanyInformation extends Component {
       ],
       percent: '1.22',
       range: [10, 15],
-      live:true,
-      day:false,
-      week:false,
-      month:false,
-      threeMonth:false,
-      year:false,
-      all:false
+      live: true,
+      day: false,
+      week: false,
+      month: false,
+      threeMonth: false,
+      year: false,
+      all: false,
     };
   }
 
@@ -93,7 +93,7 @@ export class CompanyInformation extends Component {
       <View style={style.mainContainer}>
         <ScrollView>
           {this.props.route.params ? (
-            
+
             <View style={style.aboveGraphContainer}>
               <View style={style.symbolView}>
                 <Text style={style.symbol}>{route.params.item.symbol}</Text>
@@ -121,10 +121,15 @@ export class CompanyInformation extends Component {
             </View>
           </View>
           <View style={style.stockButtonsContainer}>
-          <TouchableOpacity>
-          <Text style={this.state.live
-                ? {...style.stockButtons, color:'#8b64ff'}
-                : {...style.stockButtons}}>Live</Text>
+            <TouchableOpacity>
+              <Text
+                style={
+                  this.state.live
+                    ? {...style.stockButtons, color: '#8b64ff'}
+                    : {...style.stockButtons}
+                }>
+                Live
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity>
               <Text style={style.stockButtons}>1D</Text>
@@ -135,19 +140,23 @@ export class CompanyInformation extends Component {
                   graphData: weekData,
                   percent: percentChange,
                   range: weekRange,
-                  live:false,
-                  day:false,
-                  week:true,
-                  month:false,
-                  threeMonth:false,
-                  year:false,
-                  all:false
-                  
+                  live: false,
+                  day: false,
+                  week: true,
+                  month: false,
+                  threeMonth: false,
+                  year: false,
+                  all: false,
                 })
               }>
-              <Text style={this.state.week
-                ? {...style.stockButtons, color:'#8b64ff'}
-                : {...style.stockButtons}}>1W</Text>
+              <Text
+                style={
+                  this.state.week
+                    ? {...style.stockButtons, color: '#8b64ff'}
+                    : {...style.stockButtons}
+                }>
+                1W
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
@@ -155,18 +164,23 @@ export class CompanyInformation extends Component {
                   graphData: monthData,
                   percent: percentChangeMonth,
                   range: newrange,
-                  live:false,
-                  day:false,
-                  week:false,
-                  month:true,
-                  threeMonth:false,
-                  year:false,
-                  all:false
+                  live: false,
+                  day: false,
+                  week: false,
+                  month: true,
+                  threeMonth: false,
+                  year: false,
+                  all: false,
                 })
               }>
-              <Text style={this.state.month
-                ? {...style.stockButtons, color:'#8b64ff'}
-                : {...style.stockButtons}}>1M</Text>
+              <Text
+                style={
+                  this.state.month
+                    ? {...style.stockButtons, color: '#8b64ff'}
+                    : {...style.stockButtons}
+                }>
+                1M
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity>
               <Text style={style.stockButtons}>3M</Text>
@@ -179,7 +193,7 @@ export class CompanyInformation extends Component {
             </TouchableOpacity>
           </View>
 
-          
+
           <Text style={style.vitalsHeader}>STATS</Text>
           <View style={style.vitalsContainer}>
             <View style={style.vitalsLeftColumn}>
@@ -230,13 +244,14 @@ export class CompanyInformation extends Component {
           </View>
           <View style={style.buyButtonContainer}>
             <Text style={style.buyButton}>Buy {route.params.item.title}</Text>
-
           </View>
           <View style={style.aboutSection}>
             <Text style={style.aboutHeader}>ABOUT</Text>
-            <Text style={style.sectorData}><Text style={style.sectorText}>Sector:</Text> {route.params.item.sector}</Text>
+            <Text style={style.sectorData}>
+              <Text style={style.sectorText}>Sector:</Text>{' '}
+              {route.params.item.sector}
+            </Text>
             <Text style={style.about}>{route.params.item.about}</Text>
-
           </View>
         </ScrollView>
       </View>
@@ -247,14 +262,14 @@ export class CompanyInformation extends Component {
 export default CompanyInformation;
 
 const style = StyleSheet.create({
-  mainContainer:{
-    backgroundColor:'#2a334a',
+  mainContainer: {
+    backgroundColor: '#2a334a',
   },
-  aboveGraphContainer:{
-    paddingHorizontal:4,
-    paddingVertical:14,
-    backgroundColor:'#324165',
-    marginBottom:20,
+  aboveGraphContainer: {
+    paddingHorizontal: 4,
+    paddingVertical: 14,
+    backgroundColor: '#324165',
+    marginBottom: 20,
     // marginTop:50,
   },
   graphContainer: {
@@ -267,8 +282,8 @@ const style = StyleSheet.create({
     justifyContent: 'space-evenly',
     // alignItems:"flex-end",
     marginRight: 10,
-    borderLeftWidth:1,
-    borderLeftColor:'lightgrey',
+    borderLeftWidth: 1,
+    borderLeftColor: 'lightgrey',
   },
   graphNumberText: {
     color: 'lightgrey',
@@ -322,8 +337,8 @@ const style = StyleSheet.create({
     fontSize: 26,
     fontWeight: 'bold',
     marginTop: 28,
-    textAlign:'left',
-    paddingHorizontal:10,
+    textAlign: 'left',
+    paddingHorizontal: 10,
   },
   vitalsLeftColumn: {
     flexDirection: 'column',
@@ -349,7 +364,7 @@ const style = StyleSheet.create({
     marginBottom: 10,
   },
   vitalDetailsData: {
-    color:'white',
+    color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
@@ -360,52 +375,52 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     marginBottom: 10,
-    borderBottomWidth:.5,
-    borderBottomColor:'lightgrey',
-    paddingBottom:9,
+    borderBottomWidth: 0.5,
+    borderBottomColor: 'lightgrey',
+    paddingBottom: 9,
   },
   stockButtons: {
     color: 'white',
     fontWeight: 'bold',
     fontSize: 16,
-  },  buyButtonContainer:{
-    marginTop:24,
-    alignItems:'center',
   },
-  buyButton:{
-    backgroundColor:'#8b64ff',
-    color:'white',
-    borderRadius:6,
-    fontSize:18,
-    paddingVertical:10,
-    paddingHorizontal:40,
+  buyButtonContainer: {
+    marginTop: 24,
+    alignItems: 'center',
   },
-  aboutSection:{
-    marginTop:36,
-    marginBottom:22,
-    paddingLeft:8,
-    flexDirection:'column',
-    justifyContent:'space-between',
-  
+  buyButton: {
+    backgroundColor: '#8b64ff',
+    color: 'white',
+    borderRadius: 6,
+    fontSize: 18,
+    paddingVertical: 10,
+    paddingHorizontal: 40,
   },
-  aboutHeader:{
-    color:'white',
-    fontSize:27,
-    fontWeight:'bold',
-    marginBottom:4,
-    },
-  sectorText:{
-    color:'lightgrey',
-    fontSize:19,
-    },
-  sectorData:{
-    color:'white',
-    fontSize:19,
-    },
-  about:{
-    marginTop:10,
-    color:'white',
-    fontSize:17,
+  aboutSection: {
+    marginTop: 36,
+    marginBottom: 22,
+    paddingLeft: 8,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
 
-    },
+  },
+  aboutHeader: {
+    color: 'white',
+    fontSize: 27,
+    fontWeight: 'bold',
+    marginBottom: 4,
+  },
+  sectorText: {
+    color: 'lightgrey',
+    fontSize: 19,
+  },
+  sectorData: {
+    color: 'white',
+    fontSize: 19,
+  },
+  about: {
+    marginTop: 10,
+    color: 'white',
+    fontSize: 17,
+  },
 });

@@ -11,7 +11,7 @@ export default class CompanyStockGraph extends Component {
           yRange={this.props.range}
           width={Dimensions.get('window').width - 40}
           height={200}
-          style={{backgroundColor:'#2a334a',}}
+          style={{backgroundColor: '#2a334a'}}
           axisWidth={5}
           axisHeight={5}
           chartLineColor={'#91f2b1'}
@@ -50,11 +50,12 @@ export default class CompanyStockGraph extends Component {
             fontSize: 14,
             borderRadius: 18,
             backgroundColor: '#8b64ff',
-            
-            
+
+
             // backgroundColor: '#2a334a',
-            textStyles:[{color:'white',
-          
+            textStyles: [
+              {color: 'white',
+
         },
           {color:'white',
           fontWeight:'700',
@@ -81,9 +82,9 @@ const styles = StyleSheet.create({
   container: {
     // margin: 12,
     // borderWidth: 1,
-   
+
     flex: 1,
     // padding: 20,
-    backgroundColor:'#2a334a',
-    },
+    backgroundColor: '#2a334a',
+  },
 });
