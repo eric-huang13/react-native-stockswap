@@ -34,6 +34,10 @@ class Navigation extends Component {
         component={CompanyInformation}
         options={{
           title: 'Stock details',
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
           headerTitleAlign: {
             textAlign: 'center',
           },

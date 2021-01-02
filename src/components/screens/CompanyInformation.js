@@ -22,6 +22,13 @@ export class CompanyInformation extends Component {
       ],
       percent: '1.22',
       range: [10, 15],
+      live:true,
+      day:false,
+      week:false,
+      month:false,
+      threeMonth:false,
+      year:false,
+      all:false
     };
   }
 
@@ -114,6 +121,11 @@ export class CompanyInformation extends Component {
             </View>
           </View>
           <View style={style.stockButtonsContainer}>
+          <TouchableOpacity>
+          <Text style={this.state.live
+                ? {...style.stockButtons, color:'#8b64ff'}
+                : {...style.stockButtons}}>Live</Text>
+            </TouchableOpacity>
             <TouchableOpacity>
               <Text style={style.stockButtons}>1D</Text>
             </TouchableOpacity>
@@ -123,9 +135,19 @@ export class CompanyInformation extends Component {
                   graphData: weekData,
                   percent: percentChange,
                   range: weekRange,
+                  live:false,
+                  day:false,
+                  week:true,
+                  month:false,
+                  threeMonth:false,
+                  year:false,
+                  all:false
+                  
                 })
               }>
-              <Text style={style.stockButtons}>1W</Text>
+              <Text style={this.state.week
+                ? {...style.stockButtons, color:'#8b64ff'}
+                : {...style.stockButtons}}>1W</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
@@ -133,21 +155,27 @@ export class CompanyInformation extends Component {
                   graphData: monthData,
                   percent: percentChangeMonth,
                   range: newrange,
+                  live:false,
+                  day:false,
+                  week:false,
+                  month:true,
+                  threeMonth:false,
+                  year:false,
+                  all:false
                 })
               }>
-              <Text style={style.stockButtons}>1M</Text>
+              <Text style={this.state.month
+                ? {...style.stockButtons, color:'#8b64ff'}
+                : {...style.stockButtons}}>1M</Text>
             </TouchableOpacity>
             <TouchableOpacity>
               <Text style={style.stockButtons}>3M</Text>
             </TouchableOpacity>
             <TouchableOpacity>
-              <Text style={style.stockButtons}>6M</Text>
-            </TouchableOpacity>
-            <TouchableOpacity>
               <Text style={style.stockButtons}>1Y</Text>
             </TouchableOpacity>
             <TouchableOpacity>
-              <Text style={style.stockButtons}>5Y</Text>
+              <Text style={style.stockButtons}>All</Text>
             </TouchableOpacity>
           </View>
 
@@ -229,10 +257,10 @@ const style = StyleSheet.create({
     // alignItems:"flex-end",
     marginRight: 10,
     borderLeftWidth:1,
-    borderLeftColor:'white',
+    borderLeftColor:'lightgrey',
   },
   graphNumberText: {
-    color: 'white',
+    color: 'lightgrey',
     // fontWeight: 'bold',
     fontSize: 14.5,
   },
@@ -321,6 +349,9 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     marginBottom: 10,
+    borderBottomWidth:.5,
+    borderBottomColor:'lightgrey',
+    paddingBottom:9,
   },
   stockButtons: {
     color: 'white',

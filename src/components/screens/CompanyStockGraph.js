@@ -14,7 +14,8 @@ export default class CompanyStockGraph extends Component {
           style={{backgroundColor:'#2a334a',}}
           axisWidth={5}
           axisHeight={5}
-          chartLineColor={'rgb(8, 177, 40)'}
+          chartLineColor={'#91f2b1'}
+          // chartLineColor={'lightgrey'}
           // chartPaddingTop={-47}
           throttleAndroid={true}
           fillColor={'#2a334a'}
@@ -47,8 +48,18 @@ export default class CompanyStockGraph extends Component {
             displayTriangle: false,
             height: 50,
             fontSize: 14,
-            borderRadius: 8,
-            backgroundColor: '#f0f4fc',
+            borderRadius: 18,
+            backgroundColor: '#8b64ff',
+            
+            
+            // backgroundColor: '#2a334a',
+            textStyles:[{color:'white',
+          
+        },
+          {color:'white',
+          fontWeight:'bold',
+          fontSize:14.1,
+          }],
             toolTipTextRenderers: [
               ({scaleX, x}) => ({
                 text: new Date(scaleX.invert(x)).toLocaleDateString('en-US', {
