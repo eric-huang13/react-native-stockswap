@@ -57,7 +57,7 @@ export default class CompanyStockGraph extends Component {
           
         },
           {color:'white',
-          fontWeight:'bold',
+          fontWeight:'700',
           fontSize:14.1,
           }],
             toolTipTextRenderers: [

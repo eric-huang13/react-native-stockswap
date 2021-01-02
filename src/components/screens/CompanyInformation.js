@@ -185,23 +185,23 @@ export class CompanyInformation extends Component {
             <View style={style.vitalsLeftColumn}>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Open:</Text>
-                <Text style={style.vitalDetailsData}>{currentPrice}</Text>
+                <Text style={style.vitalDetailsData}>${currentPrice}</Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>High:</Text>
-                <Text style={style.vitalDetailsData}>{newrange[1]}</Text>
+                <Text style={style.vitalDetailsData}>${newrange[1]}</Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Low:</Text>
-                <Text style={style.vitalDetailsData}>{newrange[0]}</Text>
+                <Text style={style.vitalDetailsData}>${newrange[0]}</Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Volume:</Text>
-                <Text style={style.vitalDetailsData}>{currentPrice}</Text>
+                <Text style={style.vitalDetailsData}>${currentPrice}</Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Avg Vol:</Text>
-                <Text style={style.vitalDetailsData}>{currentPrice}</Text>
+                <Text style={style.vitalDetailsData}>${currentPrice}</Text>
               </View>
             </View>
 
@@ -212,21 +212,31 @@ export class CompanyInformation extends Component {
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>MKT Cap:</Text>
-                <Text style={style.vitalDetailsData}>{currentPrice}</Text>
+                <Text style={style.vitalDetailsData}>${currentPrice}</Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>52w High:</Text>
-                <Text style={style.vitalDetailsData}>{newrange[1]}</Text>
+                <Text style={style.vitalDetailsData}>${newrange[1]}</Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>52w Low:</Text>
-                <Text style={style.vitalDetailsData}>{newrange[0]}</Text>
+                <Text style={style.vitalDetailsData}>${newrange[0]}</Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Div/Yield:</Text>
-                <Text style={style.vitalDetailsData}>{currentPrice}</Text>
+                <Text style={style.vitalDetailsData}>{currentPrice}%</Text>
               </View>
             </View>
+          </View>
+          <View style={style.buyButtonContainer}>
+            <Text style={style.buyButton}>Buy {route.params.item.title}</Text>
+
+          </View>
+          <View style={style.aboutSection}>
+            <Text style={style.aboutHeader}>ABOUT</Text>
+            <Text style={style.sectorData}><Text style={style.sectorText}>Sector:</Text> {route.params.item.sector}</Text>
+            <Text style={style.about}>{route.params.item.about}</Text>
+
           </View>
         </ScrollView>
       </View>
@@ -244,7 +254,8 @@ const style = StyleSheet.create({
     paddingHorizontal:4,
     paddingVertical:14,
     backgroundColor:'#324165',
-    marginBottom:24,
+    marginBottom:20,
+    // marginTop:50,
   },
   graphContainer: {
     // borderWidth:1,
@@ -303,7 +314,7 @@ const style = StyleSheet.create({
     // borderBottomWidth: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 18,
+    paddingHorizontal: 10,
     paddingTop: 4,
   },
   vitalsHeader: {
@@ -312,7 +323,7 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 28,
     textAlign:'left',
-    paddingHorizontal:8,
+    paddingHorizontal:10,
   },
   vitalsLeftColumn: {
     flexDirection: 'column',
@@ -357,5 +368,44 @@ const style = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 16,
+  },  buyButtonContainer:{
+    marginTop:24,
+    alignItems:'center',
   },
+  buyButton:{
+    backgroundColor:'#8b64ff',
+    color:'white',
+    borderRadius:6,
+    fontSize:18,
+    paddingVertical:10,
+    paddingHorizontal:40,
+  },
+  aboutSection:{
+    marginTop:36,
+    marginBottom:22,
+    paddingLeft:8,
+    flexDirection:'column',
+    justifyContent:'space-between',
+  
+  },
+  aboutHeader:{
+    color:'white',
+    fontSize:27,
+    fontWeight:'bold',
+    marginBottom:4,
+    },
+  sectorText:{
+    color:'lightgrey',
+    fontSize:19,
+    },
+  sectorData:{
+    color:'white',
+    fontSize:19,
+    },
+  about:{
+    marginTop:10,
+    color:'white',
+    fontSize:17,
+
+    },
 });
