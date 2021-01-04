@@ -1,9 +1,20 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Dimensions} from 'react-native';
 import {SlideAreaChart} from 'react-native-slide-charts';
+import { LinearGradient, Stop } from 'react-native-svg';
+
+
 
 export default class CompanyStockGraph extends Component {
   render() {
+    const fillGradient = (props) => {
+      return (
+        <LinearGradient x1="40%" y1="0%" x2="40%" y2="100%" {...props}>
+          <Stop stopColor={'#91f2b1'} offset="5%" stopOpacity="0.2" />
+          <Stop stopColor="#4a334a" offset="100%" stopOpacity="0" />
+        </LinearGradient>
+      );
+    };
     return (
       <View style={styles.container}>
         <SlideAreaChart
@@ -18,7 +29,8 @@ export default class CompanyStockGraph extends Component {
           // chartLineColor={'lightgrey'}
           // chartPaddingTop={-47}
           throttleAndroid={true}
-          fillColor={'#2a334a'}
+          // fillColor={'#2a334a'}
+          renderFillGradient={fillGradient}
           cursorProps={{
             cursorLine: true,
             cursorColor: 'black',
@@ -43,23 +55,25 @@ export default class CompanyStockGraph extends Component {
             hideMarkers: true,
             // interval:12,
           }}
+          
           //TOOLTIP
           toolTipProps={{
             displayTriangle: false,
             height: 50,
             fontSize: 14,
-            borderRadius: 18,
+            borderRadius:18,
             backgroundColor: '#8b64ff',
 
 
             // backgroundColor: '#2a334a',
             textStyles: [
               {color: 'white',
-
+              // fontWeight:'700',
         },
           {color:'white',
-          fontWeight:'700',
           fontSize:14.1,
+          fontWeight:'700',
+
           }],
             toolTipTextRenderers: [
               ({scaleX, x}) => ({

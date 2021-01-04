@@ -279,7 +279,7 @@ const style = StyleSheet.create({
   graphNumbers: {
     // marginTop:170,
     flexDirection: 'column-reverse',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
     // alignItems:"flex-end",
     marginRight: 10,
     borderLeftWidth: 1,
