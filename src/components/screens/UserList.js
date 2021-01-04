@@ -243,7 +243,7 @@ const style = StyleSheet.create({
   },
   timeFilterHeader:{
     fontSize:16,
-    paddingLeft:22,
+    paddingLeft:18,
     color:'lightgrey'
   },
   timeFilterContainer: {

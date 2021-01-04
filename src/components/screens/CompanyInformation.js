@@ -121,7 +121,18 @@ export class CompanyInformation extends Component {
             </View>
           </View>
           <View style={style.stockButtonsContainer}>
-            <TouchableOpacity>
+          <TouchableOpacity
+              onPress={() =>
+                this.setState({                  
+                  live: true,
+                  day: false,
+                  week: false,
+                  month: false,
+                  threeMonth: false,
+                  year: false,
+                  all: false,
+                })
+              }>
               <Text
                 style={
                   this.state.live
@@ -131,8 +142,25 @@ export class CompanyInformation extends Component {
                 Live
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Text style={style.stockButtons}>1D</Text>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  live: false,
+                  day: true,
+                  week: false,
+                  month: false,
+                  threeMonth: false,
+                  year: false,
+                  all: false,
+                })
+              }>
+              <Text
+                style={
+                  this.state.day
+                    ? {...style.stockButtons, color: '#8b64ff'}
+                    : {...style.stockButtons}
+                }>
+                1D</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
@@ -182,14 +210,68 @@ export class CompanyInformation extends Component {
                 1M
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Text style={style.stockButtons}>3M</Text>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                 
+                  live: false,
+                  day: false,
+                  week: false,
+                  month: false,
+                  threeMonth: true,
+                  year: false,
+                  all: false,
+                })
+              }>
+              <Text
+                style={
+                  this.state.threeMonth
+                    ? {...style.stockButtons, color: '#8b64ff'}
+                    : {...style.stockButtons}
+                }>
+                3M</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Text style={style.stockButtons}>1Y</Text>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  
+                  live: false,
+                  day: false,
+                  week: false,
+                  month: false,
+                  threeMonth: false,
+                  year: true,
+                  all: false,
+                })
+              }>
+              <Text
+                style={
+                  this.state.year
+                    ? {...style.stockButtons, color: '#8b64ff'}
+                    : {...style.stockButtons}
+                }>
+                1Y</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Text style={style.stockButtons}>All</Text>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  
+                  live: false,
+                  day: false,
+                  week: false,
+                  month: false,
+                  threeMonth: false,
+                  year: false,
+                  all: true,
+                })
+              }>
+              <Text
+                style={
+                  this.state.all
+                    ? {...style.stockButtons, color: '#8b64ff'}
+                    : {...style.stockButtons}
+                }>
+                All</Text>
             </TouchableOpacity>
           </View>
 
