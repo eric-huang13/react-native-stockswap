@@ -247,10 +247,10 @@ const style = StyleSheet.create({
     color:'lightgrey'
   },
   timeFilterContainer: {
-    marginTop: 6,
+    marginTop: 4,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginBottom: 10,
+    marginBottom: 12,
     paddingBottom: 9,
   },
   timeFilterButtons: {

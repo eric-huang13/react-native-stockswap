@@ -5,7 +5,7 @@ import { LinearGradient, Stop } from 'react-native-svg';
 
 
 
-export default class CompanyStockGraph extends Component {
+export default class ProfileGraph extends Component {
   render() {
     const fillGradient = (props) => {
       return (
@@ -15,15 +15,14 @@ export default class CompanyStockGraph extends Component {
         </LinearGradient>
       );
     };
-    
     return (
       <View style={styles.container}>
         <SlideAreaChart
           data={this.props.graphData}
           yRange={this.props.range}
-          width={Dimensions.get('window').width - 40}
+          width={Dimensions.get('window').width - 5}
           height={200}
-          style={{backgroundColor: '#2a334a'}}
+          style={{backgroundColor: '#313c58'}}
           axisWidth={5}
           axisHeight={5}
           chartLineColor={'#91f2b1'}
@@ -34,10 +33,10 @@ export default class CompanyStockGraph extends Component {
           renderFillGradient={fillGradient}
           cursorProps={{
             cursorLine: true,
-            cursorColor: 'black',
+            cursorColor: 'white',
             cursorMarkerWidth: 11,
             cursorMarkerHeight: 15,
-            cursorBorderColor: 'black',
+            cursorBorderColor: 'white',
           }}
           paddingBottom={10}
           paddingLeft={3}
@@ -62,14 +61,14 @@ export default class CompanyStockGraph extends Component {
             displayTriangle: false,
             height: 50,
             fontSize: 14,
-            borderRadius:18,
+            borderRadius:50,
             backgroundColor: '#8b64ff',
 
 
             // backgroundColor: '#2a334a',
             textStyles: [
               {color: 'white',
-              // fontWeight:'700',
+              fontWeight:'700',
         },
           {color:'white',
           fontSize:14.1,
@@ -83,9 +82,9 @@ export default class CompanyStockGraph extends Component {
                   minute: 'numeric',
                 }),
               }),
-              ({scaleY, y}) => ({
-                text: '$' + scaleY.invert(y).toFixed(2).toString(),
-              }),
+              // ({scaleY, y}) => ({
+              //   text: '$' + scaleY.invert(y).toFixed(2).toString(),
+              // }),
             ],
           }}
         />

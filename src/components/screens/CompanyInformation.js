@@ -109,7 +109,6 @@ export class CompanyInformation extends Component {
           )}
           <View style={style.graphContainer}>
             <CompanyStockGraph
-              route={route}
               graphData={graphData}
               range={range}
             />

@@ -1,12 +1,37 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image} from 'react-native';
+import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import ProfileGraph from './ProfileGraph'
 import StockTicker from './StockTicker';
 import LinearGradient from 'react-native-linear-gradient';
 
 export default class Profile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      graphData: [
+        {x: 2, y: 10},
+        {x: 3, y: 11},
+        {x: 4, y: 12},
+        {x: 5, y: 14},
+        {x: 6, y: 14},
+        {x: 7, y: 15},
+      ],
+      percent: '1.22',
+      range: [10, 15],
+      live: true,
+      day: false,
+      week: false,
+      month: false,
+      threeMonth: false,
+      year: false,
+      all: false,
+    };
+  }
   render() {
     console.log(this.props.route, 'props in profile');
     const {item} = this.props.route.params;
+    const {graphData, percent, range} = this.state;
+
     return (
       <LinearGradient
         style={style.linearContainer}
@@ -33,11 +58,161 @@ export default class Profile extends Component {
               <Text>Number</Text>
             </View>
           </View>
-          <View>
-            <Text>Graph</Text>
-          </View>
-          <View>
-            <Text>Buttons</Text>
+          <View style={style.graphContainer}>
+            <ProfileGraph
+              graphData={graphData}
+              range={range}
+            />
+                   </View>
+          <View style={style.timeFilterButtonsContainer}>
+          <TouchableOpacity
+              onPress={() =>
+                this.setState({                  
+                  live: true,
+                  day: false,
+                  week: false,
+                  month: false,
+                  threeMonth: false,
+                  year: false,
+                  all: false,
+                })
+              }>
+              <Text
+                style={
+                  this.state.live
+                    ? {...style.timeFilterButtons, color: '#8b64ff'}
+                    : {...style.timeFilterButtons}
+                }>
+                Live
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  live: false,
+                  day: true,
+                  week: false,
+                  month: false,
+                  threeMonth: false,
+                  year: false,
+                  all: false,
+                })
+              }>
+              <Text
+                style={
+                  this.state.day
+                    ? {...style.timeFilterButtons, color: '#8b64ff'}
+                    : {...style.timeFilterButtons}
+                }>
+                1D</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  
+                  live: false,
+                  day: false,
+                  week: true,
+                  month: false,
+                  threeMonth: false,
+                  year: false,
+                  all: false,
+                })
+              }>
+              <Text
+                style={
+                  this.state.week
+                    ? {...style.timeFilterButtons, color: '#8b64ff'}
+                    : {...style.timeFilterButtons}
+                }>
+                1W
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  
+                  live: false,
+                  day: false,
+                  week: false,
+                  month: true,
+                  threeMonth: false,
+                  year: false,
+                  all: false,
+                })
+              }>
+              <Text
+                style={
+                  this.state.month
+                    ? {...style.timeFilterButtons, color: '#8b64ff'}
+                    : {...style.timeFilterButtons}
+                }>
+                1M
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                 
+                  live: false,
+                  day: false,
+                  week: false,
+                  month: false,
+                  threeMonth: true,
+                  year: false,
+                  all: false,
+                })
+              }>
+              <Text
+                style={
+                  this.state.threeMonth
+                    ? {...style.timeFilterButtons, color: '#8b64ff'}
+                    : {...style.timeFilterButtons}
+                }>
+                3M</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  
+                  live: false,
+                  day: false,
+                  week: false,
+                  month: false,
+                  threeMonth: false,
+                  year: true,
+                  all: false,
+                })
+              }>
+              <Text
+                style={
+                  this.state.year
+                    ? {...style.timeFilterButtons, color: '#8b64ff'}
+                    : {...style.timeFilterButtons}
+                }>
+                1Y</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  
+                  live: false,
+                  day: false,
+                  week: false,
+                  month: false,
+                  threeMonth: false,
+                  year: false,
+                  all: true,
+                })
+              }>
+              <Text
+                style={
+                  this.state.all
+                    ? {...style.timeFilterButtons, color: '#8b64ff'}
+                    : {...style.timeFilterButtons}
+                }>
+                All</Text>
+            </TouchableOpacity>
           </View>
           <View style={style.infoContainer}>
             <View style={style.detailsRow}>
@@ -186,5 +361,24 @@ const style = StyleSheet.create({
     borderRadius: 8,
     fontSize: 16,
     //  width:'20%',
+  },
+  graphContainer: {
+    // borderWidth:1,
+    flexDirection: 'row',
+  },
+
+  timeFilterButtonsContainer: {
+    marginTop: 7,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    marginBottom: 10,
+    borderBottomWidth: 0.5,
+    borderBottomColor: 'lightgrey',
+    paddingBottom: 9,
+  },
+  timeFilterButtons: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16,
   },
 });
