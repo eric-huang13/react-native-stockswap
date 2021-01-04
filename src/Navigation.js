@@ -66,6 +66,10 @@ class Navigation extends Component {
         component={Profile}
         options={{
           title: 'Profile',
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
           headerTitleAlign: {
             textAlign: 'center',
           },

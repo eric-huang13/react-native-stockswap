@@ -22,7 +22,7 @@ export default class ProfileGraph extends Component {
           yRange={this.props.range}
           width={Dimensions.get('window').width - 5}
           height={200}
-          style={{backgroundColor: '#313c58'}}
+          style={{backgroundColor: '#2a334a'}}
           axisWidth={5}
           axisHeight={5}
           chartLineColor={'#91f2b1'}

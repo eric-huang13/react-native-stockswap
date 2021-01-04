@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, Image, TouchableOpacity, ScrollView} from 'react-native';
 import ProfileGraph from './ProfileGraph'
 import StockTicker from './StockTicker';
-import LinearGradient from 'react-native-linear-gradient';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -33,29 +32,19 @@ export default class Profile extends Component {
     const {graphData, percent, range} = this.state;
 
     return (
-      <LinearGradient
-        style={style.linearContainer}
-        start={{x: 0.1, y: 0.1}}
-        end={{x: 1, y: 1}}
-        colors={[
-          '#2c3752',
-          '#2e3955',
-          '#313c58',
-          '#333e5c',
-          '#36415f',
-          '#394463',
-        ]}>
+
         <View style={style.container}>
+          <ScrollView>
           <StockTicker />
 
-          <View style={style.aboveGraphView}>
-            <View>
-              <Text>Portfolio</Text>
-              <Text>Number</Text>
+          <View style={style.aboveGraphContainer}>
+            <View style={style.portfolioHeaderContainer}>
+              <Text style={style.portfolioHeader}>Portfolio</Text>
+              <Text style={style.percentage}>+{item.percentage}%</Text>
+
             </View>
-            <View>
-              <Text>{item.percentage}</Text>
-              <Text>Number</Text>
+            <View style={style.timeNumberContainer}>
+              <Text style={style.timeNumber}>Past hour</Text>
             </View>
           </View>
           <View style={style.graphContainer}>
@@ -251,18 +240,17 @@ export default class Profile extends Component {
           <View style={style.portfolioButtonContainer}>
             <Text style={style.portfolioButton}>Portfolio Button</Text>
           </View>
+          </ScrollView>
         </View>
-      </LinearGradient>
     );
   }
 }
 
 const style = StyleSheet.create({
-  linearContainer: {
-    flex: 1,
-  },
-  container: {
-    // flex:1
+   container: {
+    flex:1,
+    backgroundColor: '#2a334a',
+
   },
   infoContainer: {
     // borderWidth:1,
@@ -300,10 +288,34 @@ const style = StyleSheet.create({
     // borderWidth:1,
     alignItems: 'center',
   },
-  aboveGraphView: {
+  aboveGraphContainer: {
     flexDirection: 'row',
     marginTop: 8,
+    justifyContent:'space-between',
+    paddingHorizontal:8,
   },
+  portfolioHeaderContainer:{
+    flexDirection:'column',
+
+  },
+  portfolioHeader:{
+    color:'white',
+    fontSize:18,
+  },
+  percentage:{
+    color:'white',
+    fontSize:22,
+    fontWeight:'bold',
+  },
+  timeNumberContainer:{
+    flexDirection:'column',
+    alignSelf:'flex-end'
+
+  },
+  timeNumber:{
+    color:'lightgrey',
+    fontSize:12,  
+    },
   image: {
     height: 80,
     width: 80,
@@ -371,7 +383,7 @@ const style = StyleSheet.create({
     marginTop: 7,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    marginBottom: 10,
+    marginBottom: 24,
     borderBottomWidth: 0.5,
     borderBottomColor: 'lightgrey',
     paddingBottom: 9,
