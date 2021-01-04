@@ -93,7 +93,6 @@ export class CompanyInformation extends Component {
       <View style={style.mainContainer}>
         <ScrollView>
           {this.props.route.params ? (
-
             <View style={style.aboveGraphContainer}>
               <View style={style.symbolView}>
                 <Text style={style.symbol}>{route.params.item.symbol}</Text>
@@ -108,10 +107,7 @@ export class CompanyInformation extends Component {
             <Text>Company Information</Text>
           )}
           <View style={style.graphContainer}>
-            <CompanyStockGraph
-              graphData={graphData}
-              range={range}
-            />
+            <CompanyStockGraph graphData={graphData} range={range} />
             <View style={style.graphNumbers}>
               <Text style={style.graphNumberText}>-{chartLow}</Text>
               <Text style={style.graphNumberText}>-{chartOneQuarter}</Text>
@@ -120,9 +116,9 @@ export class CompanyInformation extends Component {
             </View>
           </View>
           <View style={style.stockButtonsContainer}>
-          <TouchableOpacity
+            <TouchableOpacity
               onPress={() =>
-                this.setState({                  
+                this.setState({
                   live: true,
                   day: false,
                   week: false,
@@ -159,7 +155,8 @@ export class CompanyInformation extends Component {
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
-                1D</Text>
+                1D
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
@@ -212,7 +209,6 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                 
                   live: false,
                   day: false,
                   week: false,
@@ -228,12 +224,12 @@ export class CompanyInformation extends Component {
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
-                3M</Text>
+                3M
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  
                   live: false,
                   day: false,
                   week: false,
@@ -249,12 +245,12 @@ export class CompanyInformation extends Component {
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
-                1Y</Text>
+                1Y
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  
                   live: false,
                   day: false,
                   week: false,
@@ -270,10 +266,10 @@ export class CompanyInformation extends Component {
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
-                All</Text>
+                All
+              </Text>
             </TouchableOpacity>
           </View>
-
 
           <Text style={style.vitalsHeader}>STATS</Text>
           <View style={style.vitalsContainer}>
@@ -483,7 +479,6 @@ const style = StyleSheet.create({
     paddingLeft: 8,
     flexDirection: 'column',
     justifyContent: 'space-between',
-
   },
   aboutHeader: {
     color: 'white',

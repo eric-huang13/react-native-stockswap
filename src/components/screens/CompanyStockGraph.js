@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Dimensions} from 'react-native';
 import {SlideAreaChart} from 'react-native-slide-charts';
-import { LinearGradient, Stop } from 'react-native-svg';
-
-
+import {LinearGradient, Stop} from 'react-native-svg';
 
 export default class CompanyStockGraph extends Component {
   render() {
@@ -15,7 +13,7 @@ export default class CompanyStockGraph extends Component {
         </LinearGradient>
       );
     };
-    
+
     return (
       <View style={styles.container}>
         <SlideAreaChart
@@ -56,26 +54,22 @@ export default class CompanyStockGraph extends Component {
             hideMarkers: true,
             // interval:12,
           }}
-          
           //TOOLTIP
           toolTipProps={{
             displayTriangle: false,
             height: 50,
             fontSize: 14,
-            borderRadius:18,
+            borderRadius: 18,
             backgroundColor: '#8b64ff',
-
 
             // backgroundColor: '#2a334a',
             textStyles: [
-              {color: 'white',
-              // fontWeight:'700',
-        },
-          {color:'white',
-          fontSize:14.1,
-          fontWeight:'700',
-
-          }],
+              {
+                color: 'white',
+                // fontWeight:'700',
+              },
+              {color: 'white', fontSize: 14.1, fontWeight: '700'},
+            ],
             toolTipTextRenderers: [
               ({scaleX, x}) => ({
                 text: new Date(scaleX.invert(x)).toLocaleDateString('en-US', {

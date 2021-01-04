@@ -1,6 +1,13 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image, TouchableOpacity, ScrollView} from 'react-native';
-import ProfileGraph from './ProfileGraph'
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
+import ProfileGraph from './ProfileGraph';
 import StockTicker from './StockTicker';
 
 export default class Profile extends Component {
@@ -32,31 +39,26 @@ export default class Profile extends Component {
     const {graphData, percent, range} = this.state;
 
     return (
-
-        <View style={style.container}>
-          <ScrollView>
+      <View style={style.container}>
+        <ScrollView>
           <StockTicker />
 
           <View style={style.aboveGraphContainer}>
             <View style={style.portfolioHeaderContainer}>
               <Text style={style.portfolioHeader}>Portfolio</Text>
               <Text style={style.percentage}>+{item.percentage}%</Text>
-
             </View>
             <View style={style.timeNumberContainer}>
               <Text style={style.timeNumber}>Past hour</Text>
             </View>
           </View>
           <View style={style.graphContainer}>
-            <ProfileGraph
-              graphData={graphData}
-              range={range}
-            />
-                   </View>
+            <ProfileGraph graphData={graphData} range={range} />
+          </View>
           <View style={style.timeFilterButtonsContainer}>
-          <TouchableOpacity
+            <TouchableOpacity
               onPress={() =>
-                this.setState({                  
+                this.setState({
                   live: true,
                   day: false,
                   week: false,
@@ -93,12 +95,12 @@ export default class Profile extends Component {
                     ? {...style.timeFilterButtons, color: '#8b64ff'}
                     : {...style.timeFilterButtons}
                 }>
-                1D</Text>
+                1D
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  
                   live: false,
                   day: false,
                   week: true,
@@ -120,7 +122,6 @@ export default class Profile extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  
                   live: false,
                   day: false,
                   week: false,
@@ -142,7 +143,6 @@ export default class Profile extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                 
                   live: false,
                   day: false,
                   week: false,
@@ -158,12 +158,12 @@ export default class Profile extends Component {
                     ? {...style.timeFilterButtons, color: '#8b64ff'}
                     : {...style.timeFilterButtons}
                 }>
-                3M</Text>
+                3M
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  
                   live: false,
                   day: false,
                   week: false,
@@ -179,12 +179,12 @@ export default class Profile extends Component {
                     ? {...style.timeFilterButtons, color: '#8b64ff'}
                     : {...style.timeFilterButtons}
                 }>
-                1Y</Text>
+                1Y
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  
                   live: false,
                   day: false,
                   week: false,
@@ -200,7 +200,8 @@ export default class Profile extends Component {
                     ? {...style.timeFilterButtons, color: '#8b64ff'}
                     : {...style.timeFilterButtons}
                 }>
-                All</Text>
+                All
+              </Text>
             </TouchableOpacity>
           </View>
           <View style={style.infoContainer}>
@@ -240,17 +241,16 @@ export default class Profile extends Component {
           <View style={style.portfolioButtonContainer}>
             <Text style={style.portfolioButton}>Portfolio Button</Text>
           </View>
-          </ScrollView>
-        </View>
+        </ScrollView>
+      </View>
     );
   }
 }
 
 const style = StyleSheet.create({
-   container: {
-    flex:1,
+  container: {
+    flex: 1,
     backgroundColor: '#2a334a',
-
   },
   infoContainer: {
     // borderWidth:1,
@@ -291,31 +291,29 @@ const style = StyleSheet.create({
   aboveGraphContainer: {
     flexDirection: 'row',
     marginTop: 8,
-    justifyContent:'space-between',
-    paddingHorizontal:8,
+    justifyContent: 'space-between',
+    paddingHorizontal: 8,
   },
-  portfolioHeaderContainer:{
-    flexDirection:'column',
-
+  portfolioHeaderContainer: {
+    flexDirection: 'column',
   },
-  portfolioHeader:{
-    color:'white',
-    fontSize:18,
+  portfolioHeader: {
+    color: 'white',
+    fontSize: 18,
   },
-  percentage:{
-    color:'white',
-    fontSize:22,
-    fontWeight:'bold',
+  percentage: {
+    color: 'white',
+    fontSize: 22,
+    fontWeight: 'bold',
   },
-  timeNumberContainer:{
-    flexDirection:'column',
-    alignSelf:'flex-end'
-
+  timeNumberContainer: {
+    flexDirection: 'column',
+    alignSelf: 'flex-end',
   },
-  timeNumber:{
-    color:'lightgrey',
-    fontSize:12,  
-    },
+  timeNumber: {
+    color: 'lightgrey',
+    fontSize: 12,
+  },
   image: {
     height: 80,
     width: 80,
