@@ -9,8 +9,10 @@ import {
 } from 'react-native';
 import ProfileGraph from './ProfileGraph';
 import StockTicker from './StockTicker';
+import {connect} from 'react-redux';
 
-export default class Profile extends Component {
+
+  class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,6 +37,7 @@ export default class Profile extends Component {
   }
   render() {
     console.log(this.props.route, 'props in profile');
+    console.log(this.props, 'props');
     const {item} = this.props.route.params;
     const {graphData, percent, range} = this.state;
 
@@ -246,6 +249,16 @@ export default class Profile extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    posts: state.posts.posts,
+    comments: state.posts.comments,
+
+  };
+};
+
+export default connect(mapStateToProps)(Profile);
 
 const style = StyleSheet.create({
   container: {
