@@ -9,11 +9,10 @@ import {
 } from 'react-native';
 import ProfileGraph from './ProfileGraph';
 import StockTicker from './StockTicker';
-import UserPosts from './UserPosts'
+import UserPosts from './UserPosts';
 import {connect} from 'react-redux';
 
-
-  class Profile extends Component {
+class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,9 +40,9 @@ import {connect} from 'react-redux';
     console.log(this.props.posts, 'props posts');
     const {item} = this.props.route.params;
     const {graphData, percent, range} = this.state;
-    const filteredPosts = this.props.posts.filter((post) =>
-    post.userId === item.id,
-  );
+    const filteredPosts = this.props.posts.filter(
+      (post) => post.userId === item.id,
+    );
 
     return (
       <View style={style.container}>
@@ -250,10 +249,7 @@ import {connect} from 'react-redux';
           </View>
           <Text style={style.postsHeader}>POSTS</Text>
           <View>
-
-          {filteredPosts.map((post) => 
-             
-              
+            {filteredPosts.map((post) => 
               <TouchableOpacity
                 key={post.id}
                 onPress={() =>
@@ -262,14 +258,14 @@ import {connect} from 'react-redux';
                     params: {post},
                   })
                 }>
-                  
-                {/* <View style={style.postNameContainer}> 
+
+                {/* <View style={style.postNameContainer}>
                     <Image style={style.postUserImage} source={{uri: item.img}}/>
                     <Text style={style.postUserName}>{item.name}</Text>
                 </View> */}
                 <UserPosts post={post} />
               </TouchableOpacity>
-            
+
           )}
           </View>
         </ScrollView>
@@ -282,7 +278,6 @@ const mapStateToProps = (state) => {
   return {
     posts: state.posts.posts,
     comments: state.posts.comments,
-
   };
 };
 
@@ -432,12 +427,11 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
   },
-  postsHeader:{
-    color:'white',
-    fontWeight:'bold',
-    fontSize:26,
-    marginLeft:6,
-
+  postsHeader: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 26,
+    marginLeft: 6,
   },
   // postNameContainer:{
   // flexDirection:'row',

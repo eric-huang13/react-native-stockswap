@@ -126,9 +126,9 @@ export class UserList extends Component {
                   this.state.threeMonth
                     ? {...style.timeFilterButtons, color: '#8b64ff'}
                     : {...style.timeFilterButtons}
-                }
-              >
-              3M</Text>
+                }>
+                3M
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
