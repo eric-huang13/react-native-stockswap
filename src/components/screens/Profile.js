@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import ProfileGraph from './ProfileGraph';
 import StockTicker from './StockTicker';
+import UserPosts from './UserPosts'
 import {connect} from 'react-redux';
 
 
@@ -37,9 +38,12 @@ import {connect} from 'react-redux';
   }
   render() {
     console.log(this.props.route, 'props in profile');
-    console.log(this.props, 'props');
+    console.log(this.props.posts, 'props posts');
     const {item} = this.props.route.params;
     const {graphData, percent, range} = this.state;
+    const filteredPosts = this.props.posts.filter((post) =>
+    post.userId === item.id,
+  );
 
     return (
       <View style={style.container}>
@@ -244,6 +248,23 @@ import {connect} from 'react-redux';
           <View style={style.portfolioButtonContainer}>
             <Text style={style.portfolioButton}>Portfolio Button</Text>
           </View>
+          <Text style={style.postsHeader}>POSTS</Text>
+          <View>
+          {filteredPosts.map((item) => {
+            return (
+              <TouchableOpacity
+                key={item.id}
+                onPress={() =>
+                  this.props.navigation.navigate({
+                    name: 'Posts',
+                    params: {item},
+                  })
+                }>
+                <UserPosts item={item} />
+              </TouchableOpacity>
+            );
+          })}
+          </View>
         </ScrollView>
       </View>
     );
@@ -403,5 +424,12 @@ const style = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 16,
+  },
+  postsHeader:{
+    color:'white',
+    fontWeight:'bold',
+    fontSize:26,
+    marginLeft:6,
+
   },
 });
