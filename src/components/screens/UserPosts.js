@@ -42,7 +42,7 @@ console.log(this.props.navigation,"props in post")
                     params: {filteredComments},
                   })
                 }>
-                <Text style={style.allComments}>View all comments</Text>
+                <Text style={style.allComments}>View all {filteredComments.length} comments</Text>
               </TouchableOpacity>
              
             </View>
