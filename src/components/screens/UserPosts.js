@@ -16,11 +16,12 @@ const filteredComments = comments.filter(
 console.log(this.props.navigation,"props in post")
     return (
       <View style={style.container}>
-          <TouchableOpacity
+          
+                     <TouchableOpacity
                 onPress={() =>
                   this.props.navigation.navigate({
-                    name: 'Comments',
-                    params: {filteredComments},
+                    name: 'PostScreen',
+                    params: {post},
                   })
                 }>
         <View style={style.postNameContainer}>
@@ -45,8 +46,8 @@ console.log(this.props.navigation,"props in post")
             <TouchableOpacity
                 onPress={() =>
                   this.props.navigation.navigate({
-                    name: 'Comments',
-                    params: {filteredComments},
+                    name: 'PostScreen',
+                    params: {post},
                   })
                 }>
                <View style={style.headerContainer}>

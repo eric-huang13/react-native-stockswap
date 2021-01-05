@@ -3,9 +3,10 @@ import { Text, View } from 'react-native'
 
 export default class PostScreen extends Component {
     render() {
-        return (
+        const {post} = this.props.route.params;
+                return (
             <View>
-                <Text> textInComponent </Text>
+                <Text> {post.body} </Text>
             </View>
         )
     }
