@@ -250,20 +250,27 @@ import {connect} from 'react-redux';
           </View>
           <Text style={style.postsHeader}>POSTS</Text>
           <View>
-          {filteredPosts.map((item) => {
-            return (
+
+          {filteredPosts.map((post) => 
+             
+              
               <TouchableOpacity
-                key={item.id}
+                key={post.id}
                 onPress={() =>
                   this.props.navigation.navigate({
                     name: 'Posts',
-                    params: {item},
+                    params: {post},
                   })
                 }>
-                <UserPosts item={item} />
+                  
+                {/* <View style={style.postNameContainer}> 
+                    <Image style={style.postUserImage} source={{uri: item.img}}/>
+                    <Text style={style.postUserName}>{item.name}</Text>
+                </View> */}
+                <UserPosts post={post} />
               </TouchableOpacity>
-            );
-          })}
+            
+          )}
           </View>
         </ScrollView>
       </View>
@@ -432,4 +439,18 @@ const style = StyleSheet.create({
     marginLeft:6,
 
   },
+  // postNameContainer:{
+  // flexDirection:'row',
+  // alignItems:'center',
+  // },
+  // postUserImage:{
+  //   height: 50,
+  //   width: 50,
+  //   borderRadius: 50,
+  // },
+  // postUserName:{
+  //   color:'white',
+  //   fontSize:14,
+  //   fontWeight:'bold',
+  // },
 });

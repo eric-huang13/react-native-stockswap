@@ -3,13 +3,16 @@ import { Text, View, StyleSheet, Image } from 'react-native'
 
 export default class UserPosts extends Component {
     render() {
-        const {item} = this.props;
+        const {post} = this.props;
 
         return (
             <View style={style.container}>
-                <Text>{item.name}</Text>
-                <Image style={style.image} source={{uri: item.img}} />
-                <Text>{item.body}</Text>
+                <View style={style.postNameContainer}>
+                <Image style={style.postUserImage} source={{uri: post.profileImg}} />
+                <Text style={style.postUserName} >{post.name}</Text>
+                </View>
+                <Image style={style.image} source={{uri: post.img}} />
+                <Text>{post.body}</Text>
             </View>
         )
     }
@@ -30,6 +33,22 @@ const style = StyleSheet.create({
         height: 150,
         width: '100%', 
         borderRadius:10,      
+      },
+      postNameContainer:{
+        flexDirection:'row',
+        alignItems:'center',
+        marginBottom:4,
+        },
+      postUserImage:{
+        height: 43,
+        width: 43,
+        borderRadius: 50,
+      },
+      postUserName:{
+        color:'white',
+        fontSize:16,
+        fontWeight:'bold',
+        marginLeft:8,
       },
     
 })
