@@ -54,9 +54,10 @@ const defaultState = {
       name: 'Hallie Fields',
       profileImg:
         'https://images.unsplash.com/photo-1459180129673-eefb56f79b45?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzR8fGJ1c2luZXNzJTIwbWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-      postId:3,
+      postId: 3,
       userId: 1,
-      body:"This is Hallie's comment that is written here. What a great post above.",
+      body:
+        "This is Hallie's comment that is written here. What a great post above.",
       username: 'hfields123',
     },
     {
@@ -64,9 +65,10 @@ const defaultState = {
       name: 'Viola Casey',
       profileImg:
         'https://images.unsplash.com/photo-1459180129673-eefb56f79b45?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzR8fGJ1c2luZXNzJTIwbWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-      postId:1,
+      postId: 1,
       userId: 2,
-      body:"This is Viola's comment that is written here. What a great post above.",
+      body:
+        "This is Viola's comment that is written here. What a great post above.",
       username: 'vcasey123',
     },
     {
@@ -74,9 +76,10 @@ const defaultState = {
       name: 'Rosa Clark',
       profileImg:
         'https://images.unsplash.com/photo-1459180129673-eefb56f79b45?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzR8fGJ1c2luZXNzJTIwbWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-      postId:1,
+      postId: 1,
       userId: 3,
-      body: "This is Rosa's comment that is written here. What a great post above.",
+      body:
+        "This is Rosa's comment that is written here. What a great post above.",
     },
   ],
 };

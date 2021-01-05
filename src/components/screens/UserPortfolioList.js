@@ -3,7 +3,7 @@ import { Text, View, StyleSheet} from 'react-native'
 import {connect} from 'react-redux';
 
 
-export default class UserPortfolioList extends Component {
+class UserPortfolioList extends Component {
     render() {
         return (
                 <View style={style.container}>           

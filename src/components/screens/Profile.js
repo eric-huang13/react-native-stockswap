@@ -42,9 +42,7 @@ class Profile extends Component {
     const {graphData, percent, range} = this.state;
     const {posts, comments} = this.props;
 
-    const filteredPosts = posts.filter(
-      (post) => post.userId === item.id,
-    );
+    const filteredPosts = posts.filter((post) => post.userId === item.id);
 
     return (
       <View style={style.container}>
@@ -251,13 +249,16 @@ class Profile extends Component {
           </View>
           <Text style={style.postsHeader}>POSTS</Text>
           <View>
-            {filteredPosts.map((post) => 
-        
-                <View>
-                <UserPosts post={post} navigation={this.props.navigation} comments={comments} />
-                </View>
+            {filteredPosts.map((post) =>
 
-          )}
+              <View>
+                <UserPosts
+                  post={post}
+                  navigation={this.props.navigation}
+                  comments={comments}
+                />
+              </View>
+            )}
           </View>
         </ScrollView>
       </View>

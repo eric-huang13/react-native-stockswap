@@ -24,7 +24,7 @@ export class CompanyCategory extends Component {
 
   render() {
     const {gainers, losers, highestByVolume} = this.props;
-console.log(this.props.navigation,'props in comp')
+    console.log(this.props.navigation, 'props in comp');
     //boolean for conditional render coming from CompanyBoxList
     const {
       showGainers,

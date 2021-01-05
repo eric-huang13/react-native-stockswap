@@ -16,8 +16,8 @@ import SearchTab from './components/screens/SearchTab';
 import CompanyInformation from './components/screens/CompanyInformation';
 import CompanyCategory from './components/screens/CompanyCategory';
 import Profile from './components/screens/Profile';
-import UserCommentList from './components/screens/UserCommentList'
-import PostScreen from './components/screens/PostScreen'
+import UserCommentList from './components/screens/UserCommentList';
+import PostScreen from './components/screens/PostScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -82,7 +82,7 @@ class Navigation extends Component {
         component={PostScreen}
         options={({route}) => ({
           title: route.params.name,
-          
+
           headerShown: true,
 
           headerStyle: {
@@ -93,8 +93,8 @@ class Navigation extends Component {
             textAlign: 'center',
           },
         })}
-        />
-       
+      />
+
       <SearchStack.Screen
         name="Comments"
         component={UserCommentList}
