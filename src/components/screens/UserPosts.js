@@ -1,10 +1,19 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image} from 'react-native';
+import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import UserCommentList from './UserCommentList'
 
 export default class UserPosts extends Component {
+    constructor(props) {
+        super(props);
+       
+      }
   render() {
-    const {post} = this.props;
-
+    const {post, comments} = this.props;
+const filteredComments = comments.filter(
+    (comment) => comment.postId === post.id,
+  );
+  const lastComment = filteredComments[filteredComments.length-1]
+console.log(this.props.navigation,"props in post")
     return (
       <View style={style.container}>
         <View style={style.postNameContainer}>
@@ -21,6 +30,35 @@ export default class UserPosts extends Component {
           </View>
         </View>
         <Text style={style.body}>{post.body}</Text>
+      
+          <View style={style.commentContainer}>
+            
+            <View style={style.boxContainer}>
+               
+                {lastComment ? 
+                <Text style={style.title}>
+                {lastComment.body.length < 12
+                  ? `${lastComment.body}`
+                  : `${lastComment.body.substring(0,11)}...`}
+              </Text>
+                 : null
+  }
+            </View>
+
+            <View style={style.headerContainer}>
+            <TouchableOpacity
+                onPress={() =>
+                  this.props.navigation.navigate({
+                    name: 'Comments',
+                    params: {filteredComments},
+                  })
+                }>
+                <Text style={style.header}>View all comments</Text>
+              </TouchableOpacity>
+             
+            </View>
+          </View>
+          
       </View>
     );
   }
@@ -88,3 +126,4 @@ const style = StyleSheet.create({
     color: 'white',
   },
 });
+ 

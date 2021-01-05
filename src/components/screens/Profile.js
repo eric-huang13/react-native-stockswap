@@ -40,7 +40,9 @@ class Profile extends Component {
     console.log(this.props.posts, 'props posts');
     const {item} = this.props.route.params;
     const {graphData, percent, range} = this.state;
-    const filteredPosts = this.props.posts.filter(
+    const {posts, comments} = this.props;
+
+    const filteredPosts = posts.filter(
       (post) => post.userId === item.id,
     );
 
@@ -263,7 +265,7 @@ class Profile extends Component {
                     <Image style={style.postUserImage} source={{uri: item.img}}/>
                     <Text style={style.postUserName}>{item.name}</Text>
                 </View> */}
-                <UserPosts post={post} />
+                <UserPosts post={post} navigation={this.props.navigation} comments={comments} />
               </TouchableOpacity>
 
           )}

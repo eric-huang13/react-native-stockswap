@@ -52,6 +52,7 @@ const defaultState = {
     {
       id: 1,
       name: 'Hallie Fields',
+      postId:3,
       userId: 1,
       body: "Hallie's comment",
       username: 'hfields123',
@@ -59,6 +60,7 @@ const defaultState = {
     {
       id: 2,
       name: 'Viola Casey',
+      postId:1,
       userId: 2,
       body: "Viola's comment",
       username: 'vcasey123',
@@ -66,6 +68,7 @@ const defaultState = {
     {
       id: 3,
       name: 'Rosa Clark',
+      postId:1,
       userId: 3,
       body: "Rosa's comment",
     },
