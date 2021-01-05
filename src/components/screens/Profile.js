@@ -252,23 +252,10 @@ class Profile extends Component {
           <Text style={style.postsHeader}>POSTS</Text>
           <View>
             {filteredPosts.map((post) => 
-              // <TouchableOpacity
-              //   key={post.id}
-              //   onPress={() =>
-              //     this.props.navigation.navigate({
-              //       name: 'Posts',
-              //       params: {post},
-              //     })
-              //   }>
-
-                // {/* <View style={style.postNameContainer}>
-                //     <Image style={style.postUserImage} source={{uri: item.img}}/>
-                //     <Text style={style.postUserName}>{item.name}</Text>
-                // </View> */}
+        
                 <View>
                 <UserPosts post={post} navigation={this.props.navigation} comments={comments} />
                 </View>
-              // </TouchableOpacity>
 
           )}
           </View>
