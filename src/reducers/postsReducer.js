@@ -54,7 +54,7 @@ const defaultState = {
       name: 'Hallie Fields',
       postId:3,
       userId: 1,
-      body: "Hallie's comment",
+      body: " This is Hallie's comment that is written here. What a great post above.",
       username: 'hfields123',
     },
     {
@@ -62,7 +62,7 @@ const defaultState = {
       name: 'Viola Casey',
       postId:1,
       userId: 2,
-      body: "Viola's comment",
+      body: " This is Viola's comment that is written here. What a great post above.",
       username: 'vcasey123',
     },
     {
@@ -70,7 +70,7 @@ const defaultState = {
       name: 'Rosa Clark',
       postId:1,
       userId: 3,
-      body: "Rosa's comment",
+      body: "This is Rosa's comment that is written here. What a great post above.",
     },
   ],
 };

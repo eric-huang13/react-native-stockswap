@@ -33,19 +33,8 @@ console.log(this.props.navigation,"props in post")
       
           <View style={style.commentContainer}>
             
-            <View style={style.boxContainer}>
-               
-                {lastComment ? 
-                <Text style={style.title}>
-                {lastComment.body.length < 12
-                  ? `${lastComment.body}`
-                  : `${lastComment.body.substring(0,11)}...`}
-              </Text>
-                 : null
-  }
-            </View>
-
-            <View style={style.headerContainer}>
+            <View style={style.commentContainer}>
+               <View style={style.headerContainer}>
             <TouchableOpacity
                 onPress={() =>
                   this.props.navigation.navigate({
@@ -53,10 +42,25 @@ console.log(this.props.navigation,"props in post")
                     params: {filteredComments},
                   })
                 }>
-                <Text style={style.header}>View all comments</Text>
+                <Text style={style.allComments}>View all comments</Text>
               </TouchableOpacity>
              
             </View>
+
+                {lastComment ? 
+                <View style={style.lastCommentContainer}>
+                    <Text style={style.lastCommentName}>{lastComment.name}:</Text>
+                <Text style={style.lastCommentBody}>
+                {lastComment.body.length < 45
+                  ? `${lastComment.body}`
+                  : `${lastComment.body.substring(0,44)}...`}
+              </Text>
+              </View>
+                 : null
+  }
+            </View>
+
+            
           </View>
           
       </View>
@@ -124,6 +128,25 @@ const style = StyleSheet.create({
     marginTop: 8,
     fontSize: 16,
     color: 'white',
+  },
+  commentContainer:{
+    marginTop:4,
+  },
+  allComments:{
+    color:'#8b64ff',
+    fontStyle:'italic',
+    fontSize:14,
+  },
+  lastCommentContainer:{
+    marginTop:4,
+  },
+  lastCommentName:{
+    color:'white',
+    fontWeight:'bold',
+  },
+  lastCommentBody:{
+    color:'white',
+
   },
 });
  
