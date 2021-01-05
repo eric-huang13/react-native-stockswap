@@ -12,7 +12,16 @@ export default class UserPosts extends Component {
                 <Text style={style.postUserName} >{post.name}</Text>
                 </View>
                 <Image style={style.image} source={{uri: post.img}} />
-                <Text>{post.body}</Text>
+                <View style={style.detailsContainer}>
+
+                <Text style={style.timestamp}>{post.timestamp}</Text>
+
+                <View style={style.likesContainer}>
+                    <Text style={style.likes}>{post.likes}</Text>
+                    <Text style={style.comments}>{post.comments}</Text>
+                </View>
+                </View>
+                <Text style={style.body}>{post.body}</Text>
             </View>
         )
     }
@@ -23,11 +32,11 @@ const style = StyleSheet.create({
         // flex:1,
         flexDirection: 'column',
         justifyContent: 'space-between',
-        marginVertical: 4,
+        marginVertical: 8,
         paddingVertical: 14,
         paddingHorizontal: 10,
         backgroundColor: '#2a334a',
-        borderWidth:1,
+        // borderWidth:1,
       },
       image: {
         height: 150,
@@ -37,7 +46,7 @@ const style = StyleSheet.create({
       postNameContainer:{
         flexDirection:'row',
         alignItems:'center',
-        marginBottom:4,
+        marginBottom:6,
         },
       postUserImage:{
         height: 43,
@@ -50,5 +59,36 @@ const style = StyleSheet.create({
         fontWeight:'bold',
         marginLeft:8,
       },
-    
+      detailsContainer:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between',
+        marginTop:6,
+      },
+      likesContainer:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-around'
+      },
+      timestamp:{
+          fontSize:14,
+        color:'lightgrey',
+      },
+      likes:{
+          fontSize:16,
+        color:'white',
+        
+      },
+      comments:{
+        fontSize:16,
+        color:'white',
+        marginHorizontal:10,
+
+      },
+      body:{
+        marginTop:8,
+        fontSize:16,
+        color:'white',
+      },
+
 })

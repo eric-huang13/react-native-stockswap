@@ -14,7 +14,7 @@ import {
         userId:1,
         likes: 99,
         comments: 15,
-        timestamp: 29,
+        timestamp: "1 hour ago",
         body:
           "Hallie's post body content.",
         username: 'hfields123',
@@ -29,7 +29,7 @@ import {
         userId:1,
         likes: 929,
         comments: 125,
-        timestamp: 29,
+        timestamp: "1 hour ago",
         body:
         "Hallie's Second post body content.",
         username: 'hfields123',
