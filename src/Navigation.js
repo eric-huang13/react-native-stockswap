@@ -17,6 +17,7 @@ import CompanyInformation from './components/screens/CompanyInformation';
 import CompanyCategory from './components/screens/CompanyCategory';
 import Profile from './components/screens/Profile';
 import UserCommentList from './components/screens/UserCommentList'
+import PostScreen from './components/screens/PostScreen'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -76,6 +77,23 @@ class Navigation extends Component {
           },
         }}
       />
+      <SearchStack.Screen
+        name="PostScreen"
+        component={PostScreen}
+        options={({route}) => ({
+          title: route.params.name,
+          
+          headerShown: true,
+
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        })}
+        />
        
       <SearchStack.Screen
         name="Comments"

@@ -16,6 +16,13 @@ const filteredComments = comments.filter(
 console.log(this.props.navigation,"props in post")
     return (
       <View style={style.container}>
+          <TouchableOpacity
+                onPress={() =>
+                  this.props.navigation.navigate({
+                    name: 'Comments',
+                    params: {filteredComments},
+                  })
+                }>
         <View style={style.postNameContainer}>
           <Image style={style.postUserImage} source={{uri: post.profileImg}} />
           <Text style={style.postUserName}>{post.name}</Text>
@@ -30,11 +37,11 @@ console.log(this.props.navigation,"props in post")
           </View>
         </View>
         <Text style={style.body}>{post.body}</Text>
-      
+        </TouchableOpacity>
+
           <View style={style.commentContainer}>
             
             <View style={style.commentContainer}>
-               <View style={style.headerContainer}>
             <TouchableOpacity
                 onPress={() =>
                   this.props.navigation.navigate({
@@ -42,8 +49,9 @@ console.log(this.props.navigation,"props in post")
                     params: {filteredComments},
                   })
                 }>
+               <View style={style.headerContainer}>
+         
                 <Text style={style.allComments}>View all {filteredComments.length} comments</Text>
-              </TouchableOpacity>
              
             </View>
 
@@ -58,6 +66,8 @@ console.log(this.props.navigation,"props in post")
               </View>
                  : null
   }
+              </TouchableOpacity>
+
             </View>
 
             
