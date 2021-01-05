@@ -46,8 +46,8 @@ console.log(this.props.navigation,"props in post")
             <TouchableOpacity
                 onPress={() =>
                   this.props.navigation.navigate({
-                    name: 'PostScreen',
-                    params: {post},
+                    name: 'Comments',
+                    params: {filteredComments},
                   })
                 }>
                <View style={style.headerContainer}>
