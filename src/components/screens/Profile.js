@@ -43,7 +43,7 @@ class Profile extends Component {
     const {posts, comments} = this.props;
 
     const filteredPosts = posts.filter((post) => post.userId === item.id);
-const theId = item.id
+    const theId = item.id;
     return (
       <View style={style.container}>
         <ScrollView>
@@ -245,22 +245,19 @@ const theId = item.id
             </View>
           </View>
           <View style={style.portfolioButtonContainer}>
-          <TouchableOpacity
-                
-                onPress={() =>
-                  this.props.navigation.navigate({
-                    name: 'UserPortfolioList',
-                    params: {item},
-                  })
-                }>
-                <Text style={style.portfolioButton}>Portfolio Button</Text>
-              </TouchableOpacity>
-            
+            <TouchableOpacity
+              onPress={() =>
+                this.props.navigation.navigate({
+                  name: 'UserPortfolioList',
+                  params: {item},
+                })
+              }>
+              <Text style={style.portfolioButton}>Portfolio Button</Text>
+            </TouchableOpacity>
           </View>
           <Text style={style.postsHeader}>POSTS</Text>
           <View>
-            {filteredPosts.map((post) =>
-
+            {filteredPosts.map((post) => (
               <View>
                 <UserPosts
                   post={post}
@@ -268,7 +265,7 @@ const theId = item.id
                   comments={comments}
                 />
               </View>
-            )}
+            ))}
           </View>
         </ScrollView>
       </View>

@@ -34,7 +34,7 @@ export default class PortfolioGraph extends Component {
           renderFillGradient={fillGradient}
           alwaysShowIndicator={false}
           cursorProps={{
-            displayCursor:false,
+            displayCursor: false,
             // cursorLine: true,
             // cursorColor: 'black',
             // cursorMarkerWidth: 11,
