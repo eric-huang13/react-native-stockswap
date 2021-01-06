@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native'
+import UserPortfolioBox from './UserPortfolioBox'
 import {connect} from 'react-redux';
 
 
@@ -22,17 +23,21 @@ class UserPortfolioList extends Component {
             
                 {gainers.map((item) => {
                   return (
-                    <TouchableOpacity
-                      key={item.id}
-                      onPress={() =>
-                        this.props.navigation.navigate({
-                          name: 'CompanyInformation',
-                          params: {item},
-                        })
-                      }>
-                      {/* <CompanyBox item={item} /> */}
-                      <Text>{item.title}</Text>
-                    </TouchableOpacity>
+                    // <TouchableOpacity
+                    //   key={item.id}
+                    //   onPress={() =>
+                    //     this.props.navigation.navigate({
+                    //       name: 'CompanyInformation',
+                    //       params: {item},
+                    //     })
+                    //   }>
+                      // {/* <CompanyBox item={item} /> */}
+
+                      <View>
+                        <UserPortfolioBox item={item}/>
+                        </View>
+                      // <Text>{item.title}</Text>
+                    // {/* </TouchableOpacity> */}
                   );
                 })}
               
