@@ -37,7 +37,7 @@ class UserPortfolioList extends Component {
                     //   }>
                       // {/* <CompanyBox item={item} /> */}
 
-                      <View style={style.con}>
+                      <View style={style.portfolioBoxContainer}>
                         <UserPortfolioBox key={item.id} item={item}/>
                         </View>
                       // <Text>{item.title}</Text>
@@ -68,14 +68,14 @@ const mapStateToProps = (state) => {
         
       },
       boxContainer:{
-        // borderWidth:2,
-        // paddingBottom:10,
+      marginTop:10,
       },
-      con:{
+      portfolioBoxContainer:{
         borderBottomWidth:1,
         borderColor:'lightgrey',
-        padding:.5,
-        // marginBottom:12
+        padding:.1,
+        marginTop:8,
+       
       },
       percentContainer:{
         paddingHorizontal:8,
@@ -91,6 +91,7 @@ const mapStateToProps = (state) => {
 
       },
       percentButtonContainer:{
+        marginTop:12,
         flexDirection:'row',
         justifyContent:'space-between',
         alignItems:'center',

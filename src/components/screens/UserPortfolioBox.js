@@ -39,7 +39,7 @@ export default class UserPortfolioBox extends Component {
 
                 </View>
                 <View style={style.percentContainer}>
-                <Text style={style.percent}>{percent}</Text>
+                <Text style={style.percent}>{percent}%</Text>
                 </View>
             </View>
         )
@@ -50,22 +50,12 @@ const style = StyleSheet.create({
 container:{
         backgroundColor: '#2a334a',
         flexDirection:'row',
-        // borderBottomWidth:1,
         justifyContent:'space-between',
-        // paddingHorizontal:2,
-        // paddingVertical:20,
+        
         flex:1,
-        // borderWidth:2,
-        // borderColor:'lightgrey',
-        // margin:4,
+       
         width:99,
-        // backgroundColor: "#eee",
-    // marginHorizontal: 20,
-    // paddingHorizontal: 2,
-    // paddingBottom: 80,
-    // paddingTop: 10,
-    // borderRadius: 10,
-    // height: "88%",
+     
         
     },
 symbolContainer:{
@@ -108,7 +98,7 @@ price:{
         // paddingBottom:1
     },
     percentContainer:{       
-        justifyContent:'center'
+        justifyContent:'center',
 
     },
     percent:{

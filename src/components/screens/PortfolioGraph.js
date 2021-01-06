@@ -8,7 +8,7 @@ export default class PortfolioGraph extends Component {
     const fillGradient = (props) => {
       return (
         <LinearGradient x1="40%" y1="0%" x2="40%" y2="100%" {...props}>
-          <Stop stopColor={'#91f2b1'} offset="5%" stopOpacity="0.2" />
+          <Stop stopColor={'#91f2b1'} offset="5%" stopOpacity="0.1" />
           <Stop stopColor="#4a334a" offset="100%" stopOpacity="0" />
         </LinearGradient>
       );
@@ -19,7 +19,7 @@ export default class PortfolioGraph extends Component {
         <SlideAreaChart
           data={this.props.graphData}
           yRange={this.props.range}
-          width={Dimensions.get('window').width - 150}
+          width={Dimensions.get('window').width - 162}
           height={200}
           // width={300}
           height={100}
