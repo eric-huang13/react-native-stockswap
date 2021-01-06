@@ -43,7 +43,7 @@ class Profile extends Component {
     const {posts, comments} = this.props;
 
     const filteredPosts = posts.filter((post) => post.userId === item.id);
-
+const theId = item.id
     return (
       <View style={style.container}>
         <ScrollView>
@@ -245,7 +245,17 @@ class Profile extends Component {
             </View>
           </View>
           <View style={style.portfolioButtonContainer}>
-            <Text style={style.portfolioButton}>Portfolio Button</Text>
+          <TouchableOpacity
+                
+                onPress={() =>
+                  this.props.navigation.navigate({
+                    name: 'UserPortfolioList',
+                    params: {item},
+                  })
+                }>
+                <Text style={style.portfolioButton}>Portfolio Button</Text>
+              </TouchableOpacity>
+            
           </View>
           <Text style={style.postsHeader}>POSTS</Text>
           <View>

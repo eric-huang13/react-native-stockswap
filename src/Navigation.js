@@ -18,6 +18,7 @@ import CompanyCategory from './components/screens/CompanyCategory';
 import Profile from './components/screens/Profile';
 import UserCommentList from './components/screens/UserCommentList';
 import PostScreen from './components/screens/PostScreen';
+import UserPortfolioList from './components/screens/UserPortfolioList'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -98,6 +99,19 @@ class Navigation extends Component {
       <SearchStack.Screen
         name="Comments"
         component={UserCommentList}
+        options={{
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      <SearchStack.Screen
+        name="UserPortfolioList"
+        component={UserPortfolioList}
         options={{
           headerStyle: {
             backgroundColor: '#394463',

@@ -1,14 +1,25 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet} from 'react-native'
+import { Text, View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native'
 import {connect} from 'react-redux';
 
 
 class UserPortfolioList extends Component {
     render() {
+      const {gainers} = this.props
+      console.warn(this.props, 'propslist')
+
         return (
-                <View style={style.container}>           
+                <View style={style.container}> 
+                <View>
+                <Text>Search Input</Text> 
+                </View>     
+                <ScrollView>
+                <View>
+                  <Text>Portfolio</Text>
+                  <Text>Stocks</Text>
+                  </View>      
             <View style={style.boxContainer}>
-              <ScrollView>
+            
                 {gainers.map((item) => {
                   return (
                     <TouchableOpacity
@@ -24,9 +35,9 @@ class UserPortfolioList extends Component {
                     </TouchableOpacity>
                   );
                 })}
-              </ScrollView>
+              
             </View>
-                
+               </ScrollView> 
             </View>
         )
     }
