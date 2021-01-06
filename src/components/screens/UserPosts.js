@@ -12,7 +12,7 @@ export default class UserPosts extends Component {
       (comment) => comment.postId === post.id,
     );
     const lastComment = filteredComments[filteredComments.length - 1];
-    console.log(this.props.navigation, 'props in post');
+    // console.log(this.props.navigation, 'props in post');
     return (
       <View style={style.container}>
         <TouchableOpacity

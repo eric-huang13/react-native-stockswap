@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 class UserPortfolioList extends Component {
     render() {
       const {gainers} = this.props
-      // console.log(this.props, 'propslist')
+      console.log(this.props, 'propslist')
 
         return (
                 <View style={style.container}> 
