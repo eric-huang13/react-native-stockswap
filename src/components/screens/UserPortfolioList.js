@@ -15,10 +15,14 @@ class UserPortfolioList extends Component {
                 <Text>Search Input</Text> 
                 </View>     
                 <ScrollView>
-                <View>
-                  <Text>Portfolio</Text>
-                  <Text>Stocks</Text>
-                  </View>      
+                <View style={style.percentContainer}>
+                  <Text style={style.portfolio}>Portfolio</Text>
+                  <Text style={style.percent}>+ 320%</Text>
+                  </View>   
+                  <View style={style.percentButtonContainer}>
+                    <Text style={style.stockHeader}>STOCKS</Text>
+                  <Text style={style.percentChangeButton}>Percent Change</Text>
+                     </View>
             <View style={style.boxContainer}>
             
                 {gainers.map((item) => {
@@ -33,8 +37,8 @@ class UserPortfolioList extends Component {
                     //   }>
                       // {/* <CompanyBox item={item} /> */}
 
-                      <View>
-                        <UserPortfolioBox item={item}/>
+                      <View style={style.con}>
+                        <UserPortfolioBox key={item.id} item={item}/>
                         </View>
                       // <Text>{item.title}</Text>
                     // {/* </TouchableOpacity> */}
@@ -57,5 +61,50 @@ const mapStateToProps = (state) => {
   export default connect(mapStateToProps)(UserPortfolioList);
 
   const style = StyleSheet.create({
-      
+      container:{
+        backgroundColor: '#2a334a',
+        flex:1,
+
+        
+      },
+      boxContainer:{
+        // borderWidth:2,
+        // paddingBottom:10,
+      },
+      con:{
+        borderBottomWidth:1,
+        borderColor:'lightgrey',
+        padding:.5,
+        // marginBottom:12
+      },
+      percentContainer:{
+        paddingHorizontal:8,
+      },
+      portfolio:{
+        color:'white',
+        fontSize:19,
+      },
+      percent:{
+        color:'white',
+        fontSize:26,
+        fontWeight:'bold'
+
+      },
+      percentButtonContainer:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        paddingHorizontal:8,
+
+      },
+      stockHeader:{
+        color:'white',
+        fontSize:24,
+        fontWeight:'bold'
+      },
+      percentChangeButton:{
+        color:'white',
+        fontSize:16,
+      },
+
   })
