@@ -114,7 +114,7 @@ class Navigation extends Component {
         component={UserPortfolioList}
         options={{
           headerStyle: {
-            backgroundColor: '#394463',
+            backgroundColor: '#313c58',
           },
           headerTintColor: 'white',
           headerTitleAlign: {

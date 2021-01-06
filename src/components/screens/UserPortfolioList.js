@@ -1,19 +1,33 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native'
+import { Text, View, StyleSheet, ScrollView, TouchableOpacity, TextInput} from 'react-native'
 import UserPortfolioBox from './UserPortfolioBox'
 import {connect} from 'react-redux';
 
 
 class UserPortfolioList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: '',
+    };
+  }
+  handleChange = (text) => {
+    this.setState({input: text});
+  };
     render() {
       const {gainers} = this.props
       console.log(this.props, 'propslist')
 
         return (
                 <View style={style.container}> 
-                <View>
-                <Text>Search Input</Text> 
-                </View>     
+                    <View style={style.searchInputContainer}>
+            <TextInput
+              style={style.searchInput}
+              placeholder="Search"
+              placeholderTextColor="lightgrey"
+              onChangeText={(text) => this.handleChange(text)}
+            />
+          </View>   
                 <ScrollView>
                 <View style={style.percentContainer}>
                   <Text style={style.portfolio}>Portfolio</Text>
@@ -66,6 +80,20 @@ const mapStateToProps = (state) => {
         flex:1,
 
         
+      },
+      searchInputContainer: {
+        // marginTop: 1,
+        marginBottom: 20,
+      },
+      searchInput: {
+        paddingLeft: 40,
+        alignContent: 'center',
+        backgroundColor: '#3e4d6c',
+        color: 'lightgrey',
+        fontSize: 16,
+        height: 36,
+        fontStyle: 'italic',
+        paddingVertical: 0,
       },
       boxContainer:{
       marginTop:10,
