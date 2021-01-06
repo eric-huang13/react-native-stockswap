@@ -17,6 +17,11 @@ class UserPortfolioList extends Component {
     render() {
       const {gainers} = this.props
       console.log(this.props, 'propslist')
+      const filteredStocks= gainers.filter(
+        (item) =>
+          item.title.toLowerCase().includes(this.state.input.toLowerCase()) ||
+          item.symbol.toLowerCase().includes(this.state.input.toLowerCase()),
+      );
 
         return (
                 <View style={style.container}> 
@@ -39,7 +44,7 @@ class UserPortfolioList extends Component {
                      </View>
             <View style={style.boxContainer}>
             
-                {gainers.map((item) => {
+                {filteredStocks.map((item) => {
                   return (
                     // <TouchableOpacity
                     //   key={item.id}
