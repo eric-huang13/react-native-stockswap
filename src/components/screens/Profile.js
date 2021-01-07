@@ -8,7 +8,7 @@ import {
   ScrollView,
   SafeAreaView
 } from 'react-native';
-import ProfileGraph from './ProfileGraph';
+import ProfileGraph from './ProfileGraphList';
 import UserPosts from './UserPosts';
 import {connect} from 'react-redux';
 

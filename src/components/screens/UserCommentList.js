@@ -3,8 +3,8 @@ import {Text, View, StyleSheet, Image, SafeAreaView} from 'react-native';
 
 export default class UserCommentList extends Component {
   render() {
-    console.log(this.props, 'props in commentsssss');
-    const {filteredComments} = this.props.route.params;
+    // console.log(this.props, 'props in commentsssss');
+    const {filteredComments} = this.props;
     console.log(filteredComments, 'filcom');
 
     return (

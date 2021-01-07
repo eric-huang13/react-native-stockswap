@@ -19,7 +19,7 @@ export default class UserPosts extends Component {
           onPress={() =>
             this.props.navigation.navigate({
               name: 'PostScreen',
-              params: {post},
+              params: {post, filteredComments},
             })
           }>
           <View style={style.postNameContainer}>
@@ -46,8 +46,8 @@ export default class UserPosts extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.props.navigation.navigate({
-                  name: 'Comments',
-                  params: {filteredComments},
+                  name: 'PostScreen',
+              params: {post, filteredComments},
                 })
               }>
               <View style={style.headerContainer}>

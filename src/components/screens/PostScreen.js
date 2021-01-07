@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, Image, SafeAreaView} from 'react-native';
-
+import UserCommentList from './UserCommentList'
 export default class PostScreen extends Component {
   render() {
-    const {post} = this.props.route.params;
+    const {post, filteredComments} = this.props.route.params;
     return (
       <SafeAreaView style={style.mainContainer}>
         <View style={style.commentContainer}>
@@ -12,6 +12,7 @@ export default class PostScreen extends Component {
         </View>
         <Image style={style.postImage} source={{uri: post.img}} />        
         <Text style={style.body}> {post.body} </Text>
+        <UserCommentList filteredComments={filteredComments}/>
 
       </SafeAreaView>
     );

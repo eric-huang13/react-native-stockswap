@@ -3,7 +3,7 @@ import {View, StyleSheet, Dimensions, SafeAreaView} from 'react-native';
 import {SlideAreaChart} from 'react-native-slide-charts';
 import {LinearGradient, Stop} from 'react-native-svg';
 
-export default class ProfileGraph extends Component {
+export default class ProfileGraphList extends Component {
   render() {
     const fillGradient = (props) => {
       return (
