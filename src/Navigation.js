@@ -181,6 +181,20 @@ class Navigation extends Component {
           },
         }}
       />
+      <HomeStack.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          title: 'Profile',
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
     </HomeStack.Navigator>
   );
 

@@ -12,7 +12,6 @@ export default class UserBox extends Component {
             ? {...style.container, backgroundColor: '#2a334a'}
             : {...style.container}
         }>
-        {/* <View style={style.imgDetailContainer}>       */}
         <Image style={style.image} source={{uri: item.img}} />
 
         <View style={style.detailsContainer}>
@@ -25,7 +24,6 @@ export default class UserBox extends Component {
             Followers: <Text style={style.detailsBold}>{item.followers}</Text>
           </Text>
         </View>
-        {/* </View> */}
         <View style={style.percentageView}>
           <Text style={style.percentage}>{item.percentage}%</Text>
         </View>
@@ -38,27 +36,21 @@ const style = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // marginVertical: 4,
     paddingVertical: 14,
     paddingHorizontal: 10,
-    // paddingLeft:2,
     backgroundColor: '#324165',
-    // borderWidth:1,
-    // paddingLeft:20
+    
   },
   image: {
     height: 65,
     width: 65,
     borderRadius: 50,
-    // borderWidth:1,
   },
   imgDetailContainer: {
     flexDirection: 'row',
-    // borderWidth:1,
     marginLeft: -8,
   },
   detailsContainer: {
-    // borderWidth:1,
     flexDirection: 'column',
     marginLeft: -150,
     justifyContent: 'space-between',
@@ -79,7 +71,6 @@ const style = StyleSheet.create({
   percentageView: {
     flexDirection: 'row',
     alignContent: 'center',
-    // alignItems:'center',
   },
   percentage: {
     alignSelf: 'center',
