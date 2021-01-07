@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Dimensions, SafeAreaView} from 'react-native';
+import {StyleSheet, Dimensions, SafeAreaView} from 'react-native';
 import {SlideAreaChart} from 'react-native-slide-charts';
 import {LinearGradient, Stop} from 'react-native-svg';
 
@@ -61,8 +61,8 @@ export default class CompanyStockGraph extends Component {
             fontSize: 14,
             borderRadius: 18,
             backgroundColor: '#8b64ff',
-
             // backgroundColor: '#2a334a',
+
             textStyles: [
               {
                 color: 'white',
@@ -89,11 +89,7 @@ export default class CompanyStockGraph extends Component {
 }
 const styles = StyleSheet.create({
   container: {
-    // margin: 12,
-    // borderWidth: 1,
-
     flex: 1,
-    // padding: 20,
     backgroundColor: '#2a334a',
   },
 });

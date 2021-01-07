@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Dimensions, SafeAreaView} from 'react-native';
+import {StyleSheet, Dimensions, SafeAreaView} from 'react-native';
 import {SlideAreaChart} from 'react-native-slide-charts';
 import {LinearGradient, Stop} from 'react-native-svg';
 
@@ -20,25 +20,18 @@ export default class PortfolioGraph extends Component {
           data={this.props.graphData}
           yRange={this.props.range}
           width={Dimensions.get('window').width - 162}
-          // width={300}
           height={100}
           style={{backgroundColor: '#2a334a'}}
           axisWidth={5}
           axisHeight={5}
           chartLineColor={'#91f2b1'}
-          // chartLineColor={'lightgrey'}
-          // chartPaddingTop={-47}
+     
           throttleAndroid={true}
-          // fillColor={'#2a334a'}
           renderFillGradient={fillGradient}
           alwaysShowIndicator={false}
           cursorProps={{
             displayCursor: false,
-            // cursorLine: true,
-            // cursorColor: 'black',
-            // cursorMarkerWidth: 11,
-            // cursorMarkerHeight: 15,
-            // cursorBorderColor: 'black',
+           
           }}
           paddingBottom={10}
           paddingLeft={3}
@@ -53,38 +46,9 @@ export default class PortfolioGraph extends Component {
 
             //Set graph Y numbers
             numberOfTicks: 0,
-            // markFirstLine: true,
-            // hideMarkers: true,
-            // interval:12,
+           
           }}
-          //TOOLTIP
-          // toolTipProps={{
-          //   displayTriangle: false,
-          //   height: 50,
-          //   fontSize: 14,
-          //   borderRadius: 18,
-          //   backgroundColor: '#8b64ff',
 
-          //   // backgroundColor: '#2a334a',
-          //   textStyles: [
-          //     {
-          //       color: 'white',
-          //       // fontWeight:'700',
-          //     },
-          //     {color: 'white', fontSize: 14.1, fontWeight: '700'},
-          //   ],
-          //   toolTipTextRenderers: [
-          //     ({scaleX, x}) => ({
-          //       text: new Date(scaleX.invert(x)).toLocaleDateString('en-US', {
-          //         hour: '2-digit',
-          //         minute: 'numeric',
-          //       }),
-          //     }),
-          //     ({scaleY, y}) => ({
-          //       text: '$' + scaleY.invert(y).toFixed(2).toString(),
-          //     }),
-          //   ],
-          // }}
         />
       </SafeAreaView>
     );
@@ -92,14 +56,7 @@ export default class PortfolioGraph extends Component {
 }
 const styles = StyleSheet.create({
   container: {
-    // margin: 12,
-    // borderWidth: 1,
-
-    flex: 1,
-    // paddingBottom: 10,
-    // backgroundColor: '#2a334a',
-    // borderBottomWidth:1,
-    // borderColor:'green',
-    // padding:20
+      flex: 1,
+  
   },
 });

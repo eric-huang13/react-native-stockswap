@@ -56,10 +56,10 @@ export default connect(mapStateToProps)(StockTicker);
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-    backgroundColor:'#2e3955',
+    backgroundColor: '#2e3955',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom:5,
+    marginBottom: 5,
   },
   textstyle: {
     color: 'yellow',

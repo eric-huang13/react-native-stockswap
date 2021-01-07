@@ -61,7 +61,6 @@ export default class ProfileGraphList extends Component {
             borderRadius: 50,
             backgroundColor: '#8b64ff',
 
-            // backgroundColor: '#2a334a',
             textStyles: [
               {color: 'white', fontWeight: '700'},
               {color: 'white', fontSize: 14.1, fontWeight: '700'},
@@ -85,11 +84,7 @@ export default class ProfileGraphList extends Component {
 }
 const styles = StyleSheet.create({
   container: {
-    // margin: 12,
-    // borderWidth: 1,
-
     flex: 1,
-    // padding: 20,
     backgroundColor: '#2a334a',
   },
 });

@@ -25,7 +25,6 @@ const Stack = createStackNavigator();
 const SearchStack = createStackNavigator();
 const HomeStack = createStackNavigator();
 
-
 class Navigation extends Component {
   createSearchStack = () => (
     <SearchStack.Navigator>
@@ -128,7 +127,6 @@ class Navigation extends Component {
     </SearchStack.Navigator>
   );
 
-
   createHomeStack = () => (
     <HomeStack.Navigator>
       {/* <HomeStack.Screen
@@ -150,7 +148,7 @@ class Navigation extends Component {
           },
         }}
       />
-     <SearchStack.Screen
+      <SearchStack.Screen
         name="PostScreen"
         component={PostScreen}
         options={({route}) => ({

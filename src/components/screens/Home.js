@@ -2,7 +2,13 @@ import React, {Component} from 'react';
 import UserPosts from './UserPosts';
 import StockTicker from './StockTicker';
 import {connect} from 'react-redux';
-import {Button, SafeAreaView, Text, View, ScrollView, StyleSheet} from 'react-native';
+import {
+  Button,
+  SafeAreaView,
+  Text,
+  ScrollView,
+  StyleSheet,
+} from 'react-native';
 
 import {Logout} from 'actions/user';
 
@@ -12,22 +18,20 @@ class HomeScreen extends Component {
 
     return (
       <SafeAreaView style={style.mainContainer}>
-        
-          <ScrollView>
-          <StockTicker/>
+        <ScrollView>
+          <StockTicker />
 
-            {posts.map((post) => (
-                <UserPosts
-                key={post.id}
-                  post={post}
-                  navigation={this.props.navigation}
-                  comments={comments}
-                />             
-            ))}
-            <Text>Is User Logged in: {'' + isLoggedIn} </Text>
-        <Button title="Logout Button" onPress={() => LogoutUser()} />
-            </ScrollView>
-            
+          {posts.map((post) => (
+            <UserPosts
+              key={post.id}
+              post={post}
+              navigation={this.props.navigation}
+              comments={comments}
+            />
+          ))}
+          <Text>Is User Logged in: {'' + isLoggedIn} </Text>
+          <Button title="Logout Button" onPress={() => LogoutUser()} />
+        </ScrollView>
       </SafeAreaView>
     );
   }
@@ -50,9 +54,8 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
 
 const style = StyleSheet.create({
-mainContainer:{
-  flex: 1,
-  backgroundColor: '#2a334a',
-},
-
-})
+  mainContainer: {
+    flex: 1,
+    backgroundColor: '#2a334a',
+  },
+});

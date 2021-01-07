@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image, TouchableOpacity, SafeAreaView} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  SafeAreaView,
+} from 'react-native';
 import UserCommentList from './UserCommentList';
 
 export default class UserPosts extends Component {
@@ -47,7 +54,7 @@ export default class UserPosts extends Component {
               onPress={() =>
                 this.props.navigation.navigate({
                   name: 'PostScreen',
-              params: {post, filteredComments},
+                  params: {post, filteredComments},
                 })
               }>
               <View style={style.headerContainer}>
@@ -76,14 +83,12 @@ export default class UserPosts extends Component {
 
 const style = StyleSheet.create({
   container: {
-    // flex:1,
     flexDirection: 'column',
     justifyContent: 'space-between',
     marginVertical: 8,
     paddingVertical: 14,
     paddingHorizontal: 10,
     backgroundColor: '#2a334a',
-    // borderWidth:1,
   },
   image: {
     height: 150,

@@ -5,7 +5,7 @@ import {
   StyleSheet,
   TextInput,
   FlatList,
-  SafeAreaView
+  SafeAreaView,
 } from 'react-native';
 
 import {connect} from 'react-redux';

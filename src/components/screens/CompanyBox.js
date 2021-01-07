@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, SafeAreaView,} from 'react-native';
-// import {style} from '../../styles/style';
+import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 export class CompanyBox extends Component {
@@ -86,9 +85,6 @@ const style = StyleSheet.create({
   linearGradient: {
     alignSelf: 'center',
     marginTop: 3,
-    // borderWidth: 1,
-    // borderColor: 'rgb(58, 117, 167)',
-    // backgroundColor: 'rgb(58, 117, 167)',
     borderRadius: 15,
     height: 130,
     width: 125,
@@ -100,28 +96,17 @@ const style = StyleSheet.create({
     marginRight: 4,
   },
   listContainer: {
-    // alignSelf: "center",
-    // marginTop: 3,
-    // borderWidth: 1,
-    // borderColor: 'rgb(58, 117, 167)',
-    // backgroundColor: 'rgb(58, 117, 167)',
     borderRadius: 15,
     flex: 1,
-    // height: 130,
-    // width: 125,
     flexDirection: 'column',
     paddingHorizontal: 4,
     paddingTop: 0,
     justifyContent: 'space-evenly',
-    // marginLeft: 4,
-    // marginRight: 4,
-  },
+      },
   topDetails: {
-    // borderWidth:1,
     marginTop: -4,
   },
   bottomDetails: {
-    // borderWidth:1,
   },
   title: {
     fontSize: 14,
@@ -137,10 +122,7 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 22,
     color: 'rgb(8, 11, 9)',
-    // marginTop:-3,
-    // marginBottom:-8,
-    // marginLeft: 8,
-    // marginBottom: -7,
+   
   },
   percentage: {
     fontSize: 14,

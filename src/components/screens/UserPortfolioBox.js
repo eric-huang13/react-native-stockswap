@@ -33,7 +33,6 @@ export default class UserPortfolioBox extends Component {
         </View>
         <View style={style.graphContainer}>
           <PortfolioGraph graphData={graphData} range={range} />
-          {/* <Text>graph</Text> */}
         </View>
         <View style={style.percentContainer}>
           <Text style={style.percent}>{percent}%</Text>

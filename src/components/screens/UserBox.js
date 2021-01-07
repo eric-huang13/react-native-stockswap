@@ -39,7 +39,6 @@ const style = StyleSheet.create({
     paddingVertical: 14,
     paddingHorizontal: 10,
     backgroundColor: '#324165',
-    
   },
   image: {
     height: 65,

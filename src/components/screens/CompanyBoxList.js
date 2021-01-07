@@ -6,7 +6,7 @@ import {
   StyleSheet,
   TextInput,
   ScrollView,
-  SafeAreaView
+  SafeAreaView,
 } from 'react-native';
 
 import {connect} from 'react-redux';

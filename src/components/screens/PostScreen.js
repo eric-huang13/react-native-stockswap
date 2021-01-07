@@ -1,33 +1,32 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, Image, SafeAreaView} from 'react-native';
-import UserCommentList from './UserCommentList'
+import UserCommentList from './UserCommentList';
 export default class PostScreen extends Component {
   render() {
     const {post, filteredComments} = this.props.route.params;
     return (
       <SafeAreaView style={style.mainContainer}>
-   <View style={style.postNameContainer}>
-            <Image
-              style={style.postUserImage}
-              source={{uri: post.profileImg}}
-            />
-            <Text style={style.postUserName}>{post.name}</Text>
-          </View>
-          <Image style={style.image} source={{uri: post.img}} />
-          <View style={style.detailsContainer}>
-            <Text style={style.timestamp}>{post.timestamp}</Text>
+        <View style={style.postNameContainer}>
+          <Image style={style.postUserImage} source={{uri: post.profileImg}} />
+          <Text style={style.postUserName}>{post.name}</Text>
+        </View>
+        <Image style={style.image} source={{uri: post.img}} />
+        <View style={style.detailsContainer}>
+          <Text style={style.timestamp}>{post.timestamp}</Text>
 
-            <View style={style.likesContainer}>
-              <Text style={style.likes}>{post.likes}</Text>
-              <Text style={style.comments}>{post.comments}</Text>
-              <Text style={style.comments}>Share</Text>
-
-            </View>
+          <View style={style.likesContainer}>
+            <Text style={style.likes}>{post.likes}</Text>
+            <Text style={style.comments}>{post.comments}</Text>
+            <Text style={style.comments}>Share</Text>
           </View>
-          <View style={style.bodyContainer}>
+        </View>
+        <View style={style.bodyContainer}>
           <Text style={style.body}>{post.body}</Text>
-          </View>
-        <UserCommentList filteredComments={filteredComments} navigation={this.props.navigation}/>
+        </View>
+        <UserCommentList
+          filteredComments={filteredComments}
+          navigation={this.props.navigation}
+        />
       </SafeAreaView>
     );
   }
@@ -48,7 +47,6 @@ const style = StyleSheet.create({
     paddingVertical: 14,
     paddingHorizontal: 10,
     backgroundColor: '#2a334a',
-    // borderWidth:1,
   },
   image: {
     height: 150,
@@ -95,21 +93,19 @@ const style = StyleSheet.create({
     color: 'white',
     marginHorizontal: 10,
   },
-  bodyContainer:{
-    borderBottomWidth:.5,
-    borderBottomColor:'lightgrey',
-    paddingBottom:6,
-    marginBottom:6,
+  bodyContainer: {
+    borderBottomWidth: 0.5,
+    borderBottomColor: 'lightgrey',
+    paddingBottom: 6,
+    marginBottom: 6,
   },
   body: {
     marginTop: 8,
     fontSize: 16,
     color: 'white',
-    marginBottom:6,
+    marginBottom: 6,
   },
   commentContainer: {
     marginTop: 4,
   },
-
-  
 });

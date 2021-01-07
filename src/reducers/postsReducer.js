@@ -58,9 +58,9 @@ const defaultState = {
       userId: 1,
       body:
         "This is Hallie's comment that is written here. What a great post above.",
-      time:'1 hour ago',
-      likes:3,
-        username: 'hfields123',
+      time: '1 hour ago',
+      likes: 3,
+      username: 'hfields123',
     },
     {
       id: 2,
@@ -71,9 +71,9 @@ const defaultState = {
       userId: 2,
       body:
         "This is Viola's comment that is written here. What a great post above.",
-      time:'1 hour ago',
-      likes:3,
-        username: 'vcasey123',
+      time: '1 hour ago',
+      likes: 3,
+      username: 'vcasey123',
     },
     {
       id: 3,
@@ -85,10 +85,9 @@ const defaultState = {
       body:
         "This is Rosa's comment that is written here. What a great post above.",
 
-      time:'1 hour ago',
-      likes:3,
-        username: 'rclark123',
-
+      time: '1 hour ago',
+      likes: 3,
+      username: 'rclark123',
     },
   ],
 };

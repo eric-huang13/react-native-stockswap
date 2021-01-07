@@ -52,21 +52,19 @@ class UserPortfolioList extends Component {
           <View style={style.boxContainer}>
             {filteredStocks.map((item) => {
               return (
-                // <TouchableOpacity
-                //   key={item.id}
-                //   onPress={() =>
-                //     this.props.navigation.navigate({
-                //       name: 'CompanyInformation',
-                //       params: {item},
-                //     })
-                //   }>
-                // {/* <CompanyBox item={item} /> */}
+                <TouchableOpacity
+                  key={item.id}
+                  onPress={() =>
+                    this.props.navigation.navigate({
+                      name: 'CompanyInformation',
+                      params: {item},
+                    })
+                  }>
 
                 <View key={item.id} style={style.portfolioBoxContainer}>
                   <UserPortfolioBox item={item} />
                 </View>
-                // <Text>{item.title}</Text>
-                // {/* </TouchableOpacity> */}
+                </TouchableOpacity>
               );
             })}
           </View>

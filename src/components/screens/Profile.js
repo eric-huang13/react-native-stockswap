@@ -6,7 +6,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
-  SafeAreaView
+  SafeAreaView,
 } from 'react-native';
 import ProfileGraph from './ProfileGraphList';
 import UserPosts from './UserPosts';
@@ -42,250 +42,247 @@ class Profile extends Component {
     const {graphData, percent, range} = this.state;
     const {posts, comments, users} = this.props;
 
-    const selectedUser= users.filter((user) => user.id === item.id);
+    const selectedUser = users.filter((user) => user.id === item.id);
     // console.log(user,'user')
-
 
     const filteredPosts = posts.filter((post) => post.userId === item.id);
     const theId = item.id;
     return (
       <SafeAreaView style={style.container}>
-        
+
         <ScrollView>
-{selectedUser.map((user) => {
-          return (
-            <View>
-          <View style={style.aboveGraphContainer}>
-            <View style={style.portfolioHeaderContainer}>
-              <Text style={style.portfolioHeader}>Portfolio</Text>
-              <Text style={style.percentage}>+{user.percentage}%</Text>
-            </View>
-            <View style={style.timeNumberContainer}>
-              <Text style={style.timeNumber}>Past hour</Text>
-            </View>
-          </View>
-          <View style={style.graphContainer}>
-            <ProfileGraph graphData={graphData} range={range} />
-          </View>
-          <View style={style.timeFilterButtonsContainer}>
-            <TouchableOpacity
-              onPress={() =>
-                this.setState({
-                  live: true,
-                  day: false,
-                  week: false,
-                  month: false,
-                  threeMonth: false,
-                  year: false,
-                  all: false,
-                })
-              }>
-              <Text
-                style={
-                  this.state.live
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                Live
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                this.setState({
-                  live: false,
-                  day: true,
-                  week: false,
-                  month: false,
-                  threeMonth: false,
-                  year: false,
-                  all: false,
-                })
-              }>
-              <Text
-                style={
-                  this.state.day
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                1D
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                this.setState({
-                  live: false,
-                  day: false,
-                  week: true,
-                  month: false,
-                  threeMonth: false,
-                  year: false,
-                  all: false,
-                })
-              }>
-              <Text
-                style={
-                  this.state.week
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                1W
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                this.setState({
-                  live: false,
-                  day: false,
-                  week: false,
-                  month: true,
-                  threeMonth: false,
-                  year: false,
-                  all: false,
-                })
-              }>
-              <Text
-                style={
-                  this.state.month
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                1M
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                this.setState({
-                  live: false,
-                  day: false,
-                  week: false,
-                  month: false,
-                  threeMonth: true,
-                  year: false,
-                  all: false,
-                })
-              }>
-              <Text
-                style={
-                  this.state.threeMonth
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                3M
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                this.setState({
-                  live: false,
-                  day: false,
-                  week: false,
-                  month: false,
-                  threeMonth: false,
-                  year: true,
-                  all: false,
-                })
-              }>
-              <Text
-                style={
-                  this.state.year
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                1Y
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                this.setState({
-                  live: false,
-                  day: false,
-                  week: false,
-                  month: false,
-                  threeMonth: false,
-                  year: false,
-                  all: true,
-                })
-              }>
-              <Text
-                style={
-                  this.state.all
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                All
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <View style={style.infoContainer}>
-            <View style={style.detailsRow}>
-              <Image style={style.image} source={{uri: user.img}} />
-              <View style={style.personalDetails}>
-                <Text style={style.name}>{user.name}</Text>
-                <Text style={style.username}>@{user.username}</Text>
-                <Text style={style.website}>{user.website}</Text>
-              </View>
-              <View style={style.followButtonView}>
-                <Text style={style.followButton}>+Follow</Text>
-              </View>
-            </View>
-            <View style={style.bioContainer}>
-              <Text style={style.bio}>{user.bio}</Text>
-            </View>
-            <View style={style.numberRow}>
-              <View style={style.numberColumn}>
-                <Text style={style.numberData}>{user.followers}</Text>
-                <Text style={style.numberText}>Followers</Text>
-              </View>
-              <View style={style.numberColumn}>
-                <Text style={style.numberData}>{user.posts}</Text>
-                <Text style={style.numberText}>Posts</Text>
-              </View>
-              <View style={style.numberColumn}>
-                <Text style={style.numberData}>{user.trades}</Text>
-                <Text style={style.numberText}>Trades </Text>
-              </View>
-              <View style={style.numberColumn}>
-                <Text style={style.numberData}>{user.following}</Text>
-                <Text style={style.numberText}>Following</Text>
-              </View>
-            </View>
-          </View>
-          <View style={style.portfolioButtonContainer}>
-            <TouchableOpacity
-              onPress={() =>
-                this.props.navigation.navigate({
-                  name: 'UserPortfolioList',
-                  // params: {user},
-                })
-              }>
-              <Text style={style.portfolioButton}>Portfolio Button</Text>
-            </TouchableOpacity>
-          </View>
-          </View>
-          );
-        })}
-        
-        {filteredPosts.length > 0 ?
-        <View>
-          <Text style={style.postsHeader}>POSTS</Text>
-          
-          <View>
-            {filteredPosts.map((post) => (
-              
+          {selectedUser.map((user) => {
+            return (
               <View>
-                <UserPosts
-                  post={post}
-                  navigation={this.props.navigation}
-                  comments={comments}
-                />
+                <View style={style.aboveGraphContainer}>
+                  <View style={style.portfolioHeaderContainer}>
+                    <Text style={style.portfolioHeader}>Portfolio</Text>
+                    <Text style={style.percentage}>+{user.percentage}%</Text>
+                  </View>
+                  <View style={style.timeNumberContainer}>
+                    <Text style={style.timeNumber}>Past hour</Text>
+                  </View>
+                </View>
+                <View style={style.graphContainer}>
+                  <ProfileGraph graphData={graphData} range={range} />
+                </View>
+                <View style={style.timeFilterButtonsContainer}>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.setState({
+                        live: true,
+                        day: false,
+                        week: false,
+                        month: false,
+                        threeMonth: false,
+                        year: false,
+                        all: false,
+                      })
+                    }>
+                    <Text
+                      style={
+                        this.state.live
+                          ? {...style.timeFilterButtons, color: '#8b64ff'}
+                          : {...style.timeFilterButtons}
+                      }>
+                      Live
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.setState({
+                        live: false,
+                        day: true,
+                        week: false,
+                        month: false,
+                        threeMonth: false,
+                        year: false,
+                        all: false,
+                      })
+                    }>
+                    <Text
+                      style={
+                        this.state.day
+                          ? {...style.timeFilterButtons, color: '#8b64ff'}
+                          : {...style.timeFilterButtons}
+                      }>
+                      1D
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.setState({
+                        live: false,
+                        day: false,
+                        week: true,
+                        month: false,
+                        threeMonth: false,
+                        year: false,
+                        all: false,
+                      })
+                    }>
+                    <Text
+                      style={
+                        this.state.week
+                          ? {...style.timeFilterButtons, color: '#8b64ff'}
+                          : {...style.timeFilterButtons}
+                      }>
+                      1W
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.setState({
+                        live: false,
+                        day: false,
+                        week: false,
+                        month: true,
+                        threeMonth: false,
+                        year: false,
+                        all: false,
+                      })
+                    }>
+                    <Text
+                      style={
+                        this.state.month
+                          ? {...style.timeFilterButtons, color: '#8b64ff'}
+                          : {...style.timeFilterButtons}
+                      }>
+                      1M
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.setState({
+                        live: false,
+                        day: false,
+                        week: false,
+                        month: false,
+                        threeMonth: true,
+                        year: false,
+                        all: false,
+                      })
+                    }>
+                    <Text
+                      style={
+                        this.state.threeMonth
+                          ? {...style.timeFilterButtons, color: '#8b64ff'}
+                          : {...style.timeFilterButtons}
+                      }>
+                      3M
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.setState({
+                        live: false,
+                        day: false,
+                        week: false,
+                        month: false,
+                        threeMonth: false,
+                        year: true,
+                        all: false,
+                      })
+                    }>
+                    <Text
+                      style={
+                        this.state.year
+                          ? {...style.timeFilterButtons, color: '#8b64ff'}
+                          : {...style.timeFilterButtons}
+                      }>
+                      1Y
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.setState({
+                        live: false,
+                        day: false,
+                        week: false,
+                        month: false,
+                        threeMonth: false,
+                        year: false,
+                        all: true,
+                      })
+                    }>
+                    <Text
+                      style={
+                        this.state.all
+                          ? {...style.timeFilterButtons, color: '#8b64ff'}
+                          : {...style.timeFilterButtons}
+                      }>
+                      All
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+                <View style={style.infoContainer}>
+                  <View style={style.detailsRow}>
+                    <Image style={style.image} source={{uri: user.img}} />
+                    <View style={style.personalDetails}>
+                      <Text style={style.name}>{user.name}</Text>
+                      <Text style={style.username}>@{user.username}</Text>
+                      <Text style={style.website}>{user.website}</Text>
+                    </View>
+                    <View style={style.followButtonView}>
+                      <Text style={style.followButton}>+Follow</Text>
+                    </View>
+                  </View>
+                  <View style={style.bioContainer}>
+                    <Text style={style.bio}>{user.bio}</Text>
+                  </View>
+                  <View style={style.numberRow}>
+                    <View style={style.numberColumn}>
+                      <Text style={style.numberData}>{user.followers}</Text>
+                      <Text style={style.numberText}>Followers</Text>
+                    </View>
+                    <View style={style.numberColumn}>
+                      <Text style={style.numberData}>{user.posts}</Text>
+                      <Text style={style.numberText}>Posts</Text>
+                    </View>
+                    <View style={style.numberColumn}>
+                      <Text style={style.numberData}>{user.trades}</Text>
+                      <Text style={style.numberText}>Trades </Text>
+                    </View>
+                    <View style={style.numberColumn}>
+                      <Text style={style.numberData}>{user.following}</Text>
+                      <Text style={style.numberText}>Following</Text>
+                    </View>
+                  </View>
+                </View>
+                <View style={style.portfolioButtonContainer}>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.props.navigation.navigate({
+                        name: 'UserPortfolioList',
+                        // params: {user},
+                      })
+                    }>
+                    <Text style={style.portfolioButton}>Portfolio Button</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
-            ))}
-          </View>
-          </View>
-          :
-          null}
+            );
+          })}
+
+        {filteredPosts.length > 0 ?
+            <View>
+              <Text style={style.postsHeader}>POSTS</Text>
+
+          <View>
+                {filteredPosts.map((post) => (
+
+              <View>
+                    <UserPosts
+                      post={post}
+                      navigation={this.props.navigation}
+                      comments={comments}
+                    />
+                  </View>
+                ))}
+              </View>
+            </View>
+           : null}
         </ScrollView>
-        
       </SafeAreaView>
     );
   }
@@ -296,7 +293,6 @@ const mapStateToProps = (state) => {
     posts: state.posts.posts,
     comments: state.posts.comments,
     users: state.company.users,
-
   };
 };
 
@@ -313,18 +309,15 @@ const style = StyleSheet.create({
     paddingHorizontal: 7,
   },
   personalDetails: {
-    // borderWidth:1,
     borderColor: 'yellow',
     marginLeft: -90,
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
   detailsRow: {
-    // borderWidth:1,
     borderColor: 'orange',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // alignItems:'center'
   },
   bioContainer: {
     marginVertical: 8,
@@ -340,7 +333,6 @@ const style = StyleSheet.create({
     paddingHorizontal: 12,
   },
   numberColumn: {
-    // borderWidth:1,
     alignItems: 'center',
   },
   aboveGraphContainer: {

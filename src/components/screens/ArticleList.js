@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
-import {View, SafeAreaView, TextInput, ScrollView, StyleSheet} from 'react-native';
+import {
+  View,
+  SafeAreaView,
+  TextInput,
+  ScrollView,
+  StyleSheet,
+} from 'react-native';
 import {connect} from 'react-redux';
 import Article from './Article';
 
