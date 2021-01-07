@@ -131,16 +131,16 @@ class Navigation extends Component {
 
   createHomeStack = () => (
     <HomeStack.Navigator>
-      <HomeStack.Screen
+      {/* <HomeStack.Screen
         name="HomeTab"
         component={HomeScreen}
         options={{headerShown: false}}
-      />
-      {/* <HomeStack.Screen
-        name="CompanyInformation"
-        component={CompanyInformation}
+      /> */}
+      <HomeStack.Screen
+        name="HomeTab"
+        component={HomeScreen}
         options={{
-          title: 'Stock details',
+          title: 'StockSwap',
           headerStyle: {
             backgroundColor: '#394463',
           },
@@ -149,7 +149,7 @@ class Navigation extends Component {
             textAlign: 'center',
           },
         }}
-      /> */}
+      />
      <SearchStack.Screen
         name="PostScreen"
         component={PostScreen}

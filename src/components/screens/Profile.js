@@ -9,7 +9,6 @@ import {
   SafeAreaView
 } from 'react-native';
 import ProfileGraph from './ProfileGraph';
-import StockTicker from './StockTicker';
 import UserPosts from './UserPosts';
 import {connect} from 'react-redux';
 
@@ -48,7 +47,6 @@ class Profile extends Component {
     return (
       <SafeAreaView style={style.container}>
         <ScrollView>
-          <StockTicker />
 
           <View style={style.aboveGraphContainer}>
             <View style={style.portfolioHeaderContainer}>

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import UserPosts from './UserPosts';
+import StockTicker from './StockTicker';
 import {connect} from 'react-redux';
 import {Button, SafeAreaView, Text, View, ScrollView, StyleSheet} from 'react-native';
 
@@ -11,9 +12,10 @@ class HomeScreen extends Component {
 
     return (
       <SafeAreaView style={style.mainContainer}>
-        <Text>Is User Logged in: {'' + isLoggedIn} </Text>
-        <Button title="Logout Button" onPress={() => LogoutUser()} />
+        
           <ScrollView>
+          <StockTicker/>
+
             {posts.map((post) => (
                 <UserPosts
                 key={post.id}
@@ -22,7 +24,10 @@ class HomeScreen extends Component {
                   comments={comments}
                 />             
             ))}
+            <Text>Is User Logged in: {'' + isLoggedIn} </Text>
+        <Button title="Logout Button" onPress={() => LogoutUser()} />
             </ScrollView>
+            
       </SafeAreaView>
     );
   }
