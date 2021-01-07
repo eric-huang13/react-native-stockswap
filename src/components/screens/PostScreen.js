@@ -12,7 +12,7 @@ export default class PostScreen extends Component {
         </View>
         <Image style={style.postImage} source={{uri: post.img}} />        
         <Text style={style.body}> {post.body} </Text>
-        <UserCommentList filteredComments={filteredComments}/>
+        <UserCommentList filteredComments={filteredComments} navigation={this.props.navigation}/>
 
       </SafeAreaView>
     );

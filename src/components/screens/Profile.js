@@ -36,22 +36,29 @@ class Profile extends Component {
     };
   }
   render() {
-    console.log(this.props.route, 'props in profile');
-    console.log(this.props.posts, 'props posts');
+    // console.log(this.props.route, 'props in profile');
+    // console.log(this.props.posts, 'props posts');
     const {item} = this.props.route.params;
     const {graphData, percent, range} = this.state;
-    const {posts, comments} = this.props;
+    const {posts, comments, users} = this.props;
+
+    const selectedUser= users.filter((user) => user.id === item.id);
+    // console.log(user,'user')
+
 
     const filteredPosts = posts.filter((post) => post.userId === item.id);
     const theId = item.id;
     return (
       <SafeAreaView style={style.container}>
+        
         <ScrollView>
-
+{selectedUser.map((user) => {
+          return (
+            <View>
           <View style={style.aboveGraphContainer}>
             <View style={style.portfolioHeaderContainer}>
               <Text style={style.portfolioHeader}>Portfolio</Text>
-              <Text style={style.percentage}>+{item.percentage}%</Text>
+              <Text style={style.percentage}>+{user.percentage}%</Text>
             </View>
             <View style={style.timeNumberContainer}>
               <Text style={style.timeNumber}>Past hour</Text>
@@ -211,34 +218,34 @@ class Profile extends Component {
           </View>
           <View style={style.infoContainer}>
             <View style={style.detailsRow}>
-              <Image style={style.image} source={{uri: item.img}} />
+              <Image style={style.image} source={{uri: user.img}} />
               <View style={style.personalDetails}>
-                <Text style={style.name}>{item.name}</Text>
-                <Text style={style.username}>@{item.username}</Text>
-                <Text style={style.website}>{item.website}</Text>
+                <Text style={style.name}>{user.name}</Text>
+                <Text style={style.username}>@{user.username}</Text>
+                <Text style={style.website}>{user.website}</Text>
               </View>
               <View style={style.followButtonView}>
                 <Text style={style.followButton}>+Follow</Text>
               </View>
             </View>
             <View style={style.bioContainer}>
-              <Text style={style.bio}>{item.bio}</Text>
+              <Text style={style.bio}>{user.bio}</Text>
             </View>
             <View style={style.numberRow}>
               <View style={style.numberColumn}>
-                <Text style={style.numberData}>{item.followers}</Text>
+                <Text style={style.numberData}>{user.followers}</Text>
                 <Text style={style.numberText}>Followers</Text>
               </View>
               <View style={style.numberColumn}>
-                <Text style={style.numberData}>{item.posts}</Text>
+                <Text style={style.numberData}>{user.posts}</Text>
                 <Text style={style.numberText}>Posts</Text>
               </View>
               <View style={style.numberColumn}>
-                <Text style={style.numberData}>{item.trades}</Text>
+                <Text style={style.numberData}>{user.trades}</Text>
                 <Text style={style.numberText}>Trades </Text>
               </View>
               <View style={style.numberColumn}>
-                <Text style={style.numberData}>{item.following}</Text>
+                <Text style={style.numberData}>{user.following}</Text>
                 <Text style={style.numberText}>Following</Text>
               </View>
             </View>
@@ -248,15 +255,23 @@ class Profile extends Component {
               onPress={() =>
                 this.props.navigation.navigate({
                   name: 'UserPortfolioList',
-                  params: {item},
+                  // params: {user},
                 })
               }>
               <Text style={style.portfolioButton}>Portfolio Button</Text>
             </TouchableOpacity>
           </View>
+          </View>
+          );
+        })}
+        
+        {filteredPosts.length > 0 ?
+        <View>
           <Text style={style.postsHeader}>POSTS</Text>
+          
           <View>
             {filteredPosts.map((post) => (
+              
               <View>
                 <UserPosts
                   post={post}
@@ -266,7 +281,11 @@ class Profile extends Component {
               </View>
             ))}
           </View>
+          </View>
+          :
+          null}
         </ScrollView>
+        
       </SafeAreaView>
     );
   }
@@ -276,6 +295,8 @@ const mapStateToProps = (state) => {
   return {
     posts: state.posts.posts,
     comments: state.posts.comments,
+    users: state.company.users,
+
   };
 };
 

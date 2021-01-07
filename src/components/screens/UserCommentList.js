@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image, SafeAreaView} from 'react-native';
+import {Text, View, StyleSheet, Image, SafeAreaView, TouchableOpacity} from 'react-native';
 
 export default class UserCommentList extends Component {
   render() {
@@ -9,15 +9,24 @@ export default class UserCommentList extends Component {
 
     return (
       <SafeAreaView style={style.mainContainer}>
-        {filteredComments.map((comment) => (
-          <View key={comment.id} style={style.commentContainer}>
+        {filteredComments.map((item) => (
+          <View key={item.id} style={style.itemContainer}>
+             <TouchableOpacity
+                key={item.id}
+                onPress={() =>
+                  this.props.navigation.navigate({
+                    name: 'Profile',
+                    params: {item},
+                  })
+                }>
             <Image
               style={style.postUserImage}
-              source={{uri: comment.profileImg}}
+              source={{uri: item.profileImg}}
             />
+             <Text style={style.name}>{item.name} </Text>
 
-            <Text style={style.name}>{comment.name} </Text>
-            <Text style={style.body}>{comment.body} </Text>
+</TouchableOpacity>
+            <Text style={style.body}>{item.body} </Text>
           </View>
         ))}
       </SafeAreaView>
