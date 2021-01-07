@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 // Navigation
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, ThemeProvider} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -23,6 +23,8 @@ import UserPortfolioList from './components/screens/UserPortfolioList';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 const SearchStack = createStackNavigator();
+const HomeStack = createStackNavigator();
+
 
 class Navigation extends Component {
   createSearchStack = () => (
@@ -126,6 +128,62 @@ class Navigation extends Component {
     </SearchStack.Navigator>
   );
 
+
+  createHomeStack = () => (
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        name="HomeTab"
+        component={HomeScreen}
+        options={{headerShown: false}}
+      />
+      {/* <HomeStack.Screen
+        name="CompanyInformation"
+        component={CompanyInformation}
+        options={{
+          title: 'Stock details',
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      /> */}
+     <SearchStack.Screen
+        name="PostScreen"
+        component={PostScreen}
+        options={({route}) => ({
+          title: route.params.name,
+
+          headerShown: true,
+
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        })}
+      />
+
+      <SearchStack.Screen
+        name="Comments"
+        component={UserCommentList}
+        options={{
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+    </HomeStack.Navigator>
+  );
+
   render() {
     const {isLoggedIn} = this.props;
 
@@ -145,7 +203,7 @@ class Navigation extends Component {
                 borderTopColor: 'transparent',
               },
             }}>
-            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Home" component={this.createHomeStack} />
             <Tab.Screen name="Search" component={this.createSearchStack} />
           </Tab.Navigator>
         ) : (
