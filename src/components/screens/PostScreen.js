@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image} from 'react-native';
+import {Text, View, StyleSheet, Image, SafeAreaView} from 'react-native';
 
 export default class PostScreen extends Component {
   render() {
     const {post} = this.props.route.params;
     return (
-      <View style={style.mainContainer}>
+      <SafeAreaView style={style.mainContainer}>
         <View style={style.commentContainer}>
           <Image style={style.postUserImage} source={{uri: post.profileImg}} />
           <Text style={style.name}> {post.name} </Text>
@@ -13,7 +13,7 @@ export default class PostScreen extends Component {
         <Image style={style.postImage} source={{uri: post.img}} />        
         <Text style={style.body}> {post.body} </Text>
 
-      </View>
+      </SafeAreaView>
     );
   }
 }

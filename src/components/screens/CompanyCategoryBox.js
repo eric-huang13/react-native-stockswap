@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
 
 export default class CompanyCategoryBox extends Component {
   render() {
     const {item} = this.props;
 
     return (
-      <View
+      <SafeAreaView
         style={
           item.id % 2 === 0
             ? {...style.container, backgroundColor: '#2a334a'}
@@ -22,7 +22,7 @@ export default class CompanyCategoryBox extends Component {
             <Text style={style.percentage}>{item.percentage}</Text>
           </View>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }

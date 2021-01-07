@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Dimensions} from 'react-native';
+import {View, StyleSheet, Dimensions, SafeAreaView} from 'react-native';
 import {SlideAreaChart} from 'react-native-slide-charts';
 import {LinearGradient, Stop} from 'react-native-svg';
 
@@ -15,7 +15,7 @@ export default class PortfolioGraph extends Component {
     };
 
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <SlideAreaChart
           data={this.props.graphData}
           yRange={this.props.range}
@@ -86,7 +86,7 @@ export default class PortfolioGraph extends Component {
           //   ],
           // }}
         />
-      </View>
+      </SafeAreaView>
     );
   }
 }

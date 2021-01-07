@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, SafeAreaView,} from 'react-native';
 // import {style} from '../../styles/style';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -13,7 +13,7 @@ export class CompanyBox extends Component {
           end={{x: 1, y: 1}}
           colors={['#4c669f', '#3b5998', '#1cab66']}
           style={style.linearGradient}>
-          <View style={style.listContainer}>
+          <SafeAreaView style={style.listContainer}>
             <View style={style.topDetails}>
               <Text style={{...style.symbol, color: '#1cab66'}}>
                 {item.symbol}
@@ -30,7 +30,7 @@ export class CompanyBox extends Component {
                 {item.percentage}
               </Text>
             </View>
-          </View>
+          </SafeAreaView>
         </LinearGradient>
       ) : item.category === 'losers' ? (
         <LinearGradient
@@ -38,7 +38,7 @@ export class CompanyBox extends Component {
           end={{x: 1, y: 1}}
           colors={['#4c669f', '#3b5998', '#ac3b42']}
           style={style.linearGradient}>
-          <View style={style.listContainer}>
+          <SafeAreaView style={style.listContainer}>
             <Text style={{...style.symbol, color: '#ac3b42'}}>
               {item.symbol}
             </Text>
@@ -51,7 +51,7 @@ export class CompanyBox extends Component {
             <Text style={{...style.percentage, color: '#ac3b42'}}>
               {item.percentage}
             </Text>
-          </View>
+          </SafeAreaView>
         </LinearGradient>
       ) : (
         <LinearGradient
@@ -59,7 +59,7 @@ export class CompanyBox extends Component {
           end={{x: 1, y: 1}}
           colors={['#4c669f', 'purple', 'purple']}
           style={style.linearGradient}>
-          <View style={style.listContainer}>
+          <SafeAreaView style={style.listContainer}>
             <Text style={{...style.symbol, color: '#9082cf'}}>
               {item.symbol}
             </Text>
@@ -72,11 +72,11 @@ export class CompanyBox extends Component {
             <Text style={{...style.percentage, color: '#9082cf'}}>
               {item.percentage}
             </Text>
-          </View>
+          </SafeAreaView>
         </LinearGradient>
       );
 
-    return <View>{styledText}</View>;
+    return <SafeAreaView>{styledText}</SafeAreaView>;
   }
 }
 

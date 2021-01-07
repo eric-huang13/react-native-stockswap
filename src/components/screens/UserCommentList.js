@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image} from 'react-native';
+import {Text, View, StyleSheet, Image, SafeAreaView} from 'react-native';
 
 export default class UserCommentList extends Component {
   render() {
@@ -8,7 +8,7 @@ export default class UserCommentList extends Component {
     console.log(filteredComments, 'filcom');
 
     return (
-      <View style={style.mainContainer}>
+      <SafeAreaView style={style.mainContainer}>
         {filteredComments.map((comment) => (
           <View key={comment.id} style={style.commentContainer}>
             <Image
@@ -20,7 +20,7 @@ export default class UserCommentList extends Component {
             <Text style={style.body}>{comment.body} </Text>
           </View>
         ))}
-      </View>
+      </SafeAreaView>
     );
   }
 }

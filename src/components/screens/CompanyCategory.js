@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TextInput,
   FlatList,
+  SafeAreaView
 } from 'react-native';
 
 import {connect} from 'react-redux';
@@ -61,7 +62,7 @@ export class CompanyCategory extends Component {
           '#36415f',
           '#394463',
         ]}>
-        <View style={style.boxContainer}>
+        <SafeAreaView style={style.boxContainer}>
           <View style={style.searchInputContainer}>
             <TextInput
               style={style.searchInput}
@@ -95,7 +96,7 @@ export class CompanyCategory extends Component {
               </TouchableOpacity>
             )}
           />
-        </View>
+        </SafeAreaView>
       </LinearGradient>
     );
   }

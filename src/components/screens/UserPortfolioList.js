@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   TextInput,
+  SafeAreaView,
 } from 'react-native';
 import UserPortfolioBox from './UserPortfolioBox';
 import {connect} from 'react-redux';
@@ -30,7 +31,7 @@ class UserPortfolioList extends Component {
     );
 
     return (
-      <View style={style.container}>
+      <SafeAreaView style={style.container}>
         <View style={style.searchInputContainer}>
           <TextInput
             style={style.searchInput}
@@ -61,8 +62,8 @@ class UserPortfolioList extends Component {
                 //   }>
                 // {/* <CompanyBox item={item} /> */}
 
-                <View style={style.portfolioBoxContainer}>
-                  <UserPortfolioBox key={item.id} item={item} />
+                <View key={item.id} style={style.portfolioBoxContainer}>
+                  <UserPortfolioBox item={item} />
                 </View>
                 // <Text>{item.title}</Text>
                 // {/* </TouchableOpacity> */}
@@ -70,7 +71,7 @@ class UserPortfolioList extends Component {
             })}
           </View>
         </ScrollView>
-      </View>
+      </SafeAreaView>
     );
   }
 }

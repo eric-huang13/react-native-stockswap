@@ -6,6 +6,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  SafeAreaView,
 } from 'react-native';
 import {connect} from 'react-redux';
 import UserBox from './UserBox';
@@ -34,7 +35,7 @@ export class UserList extends Component {
     );
 
     return (
-      <View>
+      <SafeAreaView>
         <ScrollView contentContainerStyle={{paddingBottom: 180}}>
           <View style={style.searchInputContainer}>
             <TextInput
@@ -209,7 +210,7 @@ export class UserList extends Component {
             );
           })}
         </ScrollView>
-      </View>
+      </SafeAreaView>
     );
   }
 }

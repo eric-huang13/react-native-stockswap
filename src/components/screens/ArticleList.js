@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, TextInput, ScrollView, StyleSheet} from 'react-native';
+import {View, SafeAreaView, TextInput, ScrollView, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import Article from './Article';
 
@@ -19,7 +19,7 @@ export class ArticleList extends Component {
       item.headline.toLowerCase().includes(this.state.input.toLowerCase()),
     );
     return (
-      <View>
+      <SafeAreaView>
         <ScrollView contentContainerStyle={{paddingBottom: 180}}>
           <View style={style.searchInputContainer}>
             <TextInput
@@ -33,7 +33,7 @@ export class ArticleList extends Component {
             return <Article key={item.id} item={item} />;
           })}
         </ScrollView>
-      </View>
+      </SafeAreaView>
     );
   }
 }

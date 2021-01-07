@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {Text, View, Image, StyleSheet} from 'react-native';
+import {Text, SafeAreaView, View, Image, StyleSheet} from 'react-native';
 
 export class Article extends Component {
   render() {
     const {item} = this.props;
 
     return (
-      <View style={style.container}>
+      <SafeAreaView style={style.container}>
         <View style={style.imageContainer}>
           <Image style={style.image} source={{uri: item.img}} />
         </View>
@@ -18,7 +18,7 @@ export class Article extends Component {
           <Text style={style.source}>{item.source}</Text>
           <Text style={style.released}>{item.released} ago</Text>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity, SafeAreaView} from 'react-native';
 import CompanyBoxList from './CompanyBoxList';
 import UserList from './UserList.js';
 import ArticleList from './ArticleList';
@@ -35,7 +35,7 @@ export class SearchTab extends Component {
           '#394463',
         ]}
         style={{flex: 1}}>
-        <View>
+        <SafeAreaView>
           {/* <ScrollView> */}
           <LinearGradient
             start={{x: 0.1, y: 0.1}}
@@ -137,7 +137,7 @@ export class SearchTab extends Component {
             </View>
           )}
           {/* </ScrollView> */}
-        </View>
+        </SafeAreaView>
       </LinearGradient>
     );
   }

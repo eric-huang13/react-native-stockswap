@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, Image, TouchableOpacity, SafeAreaView} from 'react-native';
 import UserCommentList from './UserCommentList';
 
 export default class UserPosts extends Component {
@@ -14,7 +14,7 @@ export default class UserPosts extends Component {
     const lastComment = filteredComments[filteredComments.length - 1];
     // console.log(this.props.navigation, 'props in post');
     return (
-      <View style={style.container}>
+      <SafeAreaView style={style.container}>
         <TouchableOpacity
           onPress={() =>
             this.props.navigation.navigate({
@@ -69,7 +69,7 @@ export default class UserPosts extends Component {
             </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }

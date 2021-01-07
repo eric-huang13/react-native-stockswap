@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  SafeAreaView
 } from 'react-native';
 import ProfileGraph from './ProfileGraph';
 import StockTicker from './StockTicker';
@@ -45,7 +46,7 @@ class Profile extends Component {
     const filteredPosts = posts.filter((post) => post.userId === item.id);
     const theId = item.id;
     return (
-      <View style={style.container}>
+      <SafeAreaView style={style.container}>
         <ScrollView>
           <StockTicker />
 
@@ -268,7 +269,7 @@ class Profile extends Component {
             ))}
           </View>
         </ScrollView>
-      </View>
+      </SafeAreaView>
     );
   }
 }

@@ -5,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
+  SafeAreaView
 } from 'react-native';
 import CompanyStockGraph from './CompanyStockGraph';
 
@@ -90,7 +91,7 @@ export class CompanyInformation extends Component {
     const {graphData, percent, range} = this.state;
     console.log(graphData, 'graph Data');
     return (
-      <View style={style.mainContainer}>
+      <SafeAreaView style={style.mainContainer}>
         <ScrollView>
           {this.props.route.params ? (
             <View style={style.aboveGraphContainer}>
@@ -331,7 +332,7 @@ export class CompanyInformation extends Component {
             <Text style={style.about}>{route.params.item.about}</Text>
           </View>
         </ScrollView>
-      </View>
+      </SafeAreaView>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
 import PortfolioGraph from './PortfolioGraph';
 
 export default class UserPortfolioBox extends Component {
@@ -25,7 +25,7 @@ export default class UserPortfolioBox extends Component {
     console.log(item, 'item in portfolioBOX');
 
     return (
-      <View style={style.container}>
+      <SafeAreaView style={style.container}>
         <View style={style.symbolContainer}>
           <Text style={style.symbol}>{item.symbol}</Text>
           <Text style={style.title}>{item.title}</Text>
@@ -38,7 +38,7 @@ export default class UserPortfolioBox extends Component {
         <View style={style.percentContainer}>
           <Text style={style.percent}>{percent}%</Text>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }

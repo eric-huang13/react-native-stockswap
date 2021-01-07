@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, SafeAreaView} from 'react-native';
 import TextTicker from 'react-native-text-ticker';
 import {connect} from 'react-redux';
 
@@ -8,7 +8,7 @@ export class StockTicker extends PureComponent {
     const {gainers} = this.props;
 
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <TextTicker
           style={{fontSize: 24}}
           scrollSpeed={5000}
@@ -41,7 +41,7 @@ export class StockTicker extends PureComponent {
             );
           })}
         </TextTicker>
-      </View>
+      </SafeAreaView>
     );
   }
 }

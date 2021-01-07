@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image} from 'react-native';
+import {Text, View, StyleSheet, Image, SafeAreaView} from 'react-native';
 
 export default class UserBox extends Component {
   render() {
     const {item} = this.props;
 
     return (
-      <View
+      <SafeAreaView
         style={
           item.id % 2 === 0
             ? {...style.container, backgroundColor: '#2a334a'}
@@ -29,7 +29,7 @@ export default class UserBox extends Component {
         <View style={style.percentageView}>
           <Text style={style.percentage}>{item.percentage}%</Text>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }

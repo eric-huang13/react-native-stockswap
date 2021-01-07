@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TextInput,
   ScrollView,
+  SafeAreaView
 } from 'react-native';
 
 import {connect} from 'react-redux';
@@ -37,7 +38,7 @@ export class CompanyBoxList extends Component {
     const {gainers, losers, highestByVolume} = this.props;
 
     return (
-      <View style={style.mainContainer}>
+      <SafeAreaView style={style.mainContainer}>
         <ScrollView contentContainerStyle={{paddingBottom: 180}}>
           <View style={style.searchInputContainer}>
             <TextInput
@@ -211,7 +212,7 @@ export class CompanyBoxList extends Component {
             </View>
           </View>
         </ScrollView>
-      </View>
+      </SafeAreaView>
     );
   }
 }
