@@ -10,8 +10,9 @@ export default class PostScreen extends Component {
           <Image style={style.postUserImage} source={{uri: post.profileImg}} />
           <Text style={style.name}> {post.name} </Text>
         </View>
+        <Image style={style.postImage} source={{uri: post.img}} />        
         <Text style={style.body}> {post.body} </Text>
-        <Image style={style.postImage} source={{uri: post.img}} />
+
       </View>
     );
   }

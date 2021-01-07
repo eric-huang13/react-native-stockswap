@@ -8,14 +8,14 @@ export default class UserPortfolioBox extends Component {
     this.state = {
       graphData: [
         {x: 2, y: 10},
-        {x: 3, y: 11},
-        {x: 4, y: 12},
+        {x: 3, y: 21},
+        {x: 4, y: 32},
         {x: 5, y: 14},
-        {x: 6, y: 14},
-        {x: 7, y: 15},
+        {x: 6, y: 4},
+        {x: 7, y: 25},
       ],
       percent: '1.22',
-      range: [10, 15],
+      range: [5, 30],
     };
   }
 

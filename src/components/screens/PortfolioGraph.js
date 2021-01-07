@@ -20,7 +20,6 @@ export default class PortfolioGraph extends Component {
           data={this.props.graphData}
           yRange={this.props.range}
           width={Dimensions.get('window').width - 162}
-          height={200}
           // width={300}
           height={100}
           style={{backgroundColor: '#2a334a'}}
