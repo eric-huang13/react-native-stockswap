@@ -54,7 +54,7 @@ export default class UserCommentList extends Component {
 const style = StyleSheet.create({
   mainContainer: {
     flexDirection:'column-reverse',
-    backgroundColor: '#324165',
+    backgroundColor: '#2a334a',
     paddingVertical: 4,
     paddingLeft: 4,
     marginTop:10,

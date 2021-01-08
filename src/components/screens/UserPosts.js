@@ -16,9 +16,7 @@ export default class UserPosts extends Component {
       shouldShow: false,
     };
   }
-  // handleShow = () => {
-  //   this.setState({shouldShow: !shouldShow});
-  // };
+  
 
   render() {
     const {shouldShow} = this.state;
