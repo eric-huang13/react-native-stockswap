@@ -10,7 +10,7 @@ import {
 
 export default class UserCommentList extends Component {
   render() {
-    const {filteredComments} = this.props;
+    const {filteredComments, reply} = this.props;
     console.log(filteredComments, 'filcom');
 
     return (

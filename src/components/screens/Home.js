@@ -8,7 +8,7 @@ import {Logout} from 'actions/user';
 
 class HomeScreen extends Component {
   render() {
-    const {isLoggedIn, LogoutUser, posts, comments} = this.props;
+    const {isLoggedIn, LogoutUser, posts, comments, reply} = this.props;
 
     return (
       <SafeAreaView style={style.mainContainer}>
@@ -21,6 +21,7 @@ class HomeScreen extends Component {
               post={post}
               navigation={this.props.navigation}
               comments={comments}
+              reply={reply}
             />
           ))}
           <Text>Is User Logged in: {'' + isLoggedIn} </Text>
@@ -36,6 +37,7 @@ const mapStateToProps = (state) => {
     isLoggedIn: state.user.isLoggedIn,
     posts: state.posts.posts,
     comments: state.posts.comments,
+    reply: state.posts.reply
   };
 };
 

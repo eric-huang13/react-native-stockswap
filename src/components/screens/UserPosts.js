@@ -21,7 +21,7 @@ export default class UserPosts extends Component {
   render() {
     const {shouldShow} = this.state;
 
-    const {post, comments} = this.props;
+    const {post, comments, reply} = this.props;
     const filteredComments = comments.filter(
       (comment) => comment.postId === post.id,
     );
@@ -64,7 +64,7 @@ export default class UserPosts extends Component {
           onPress={() =>
             this.props.navigation.navigate({
               name: 'PostScreen',
-              params: {post, filteredComments},
+              params: {post, filteredComments, reply},
             })
           }>
           <Image style={style.image} source={{uri: post.img}} />
@@ -82,7 +82,7 @@ export default class UserPosts extends Component {
               onPress={() =>
                 this.props.navigation.navigate({
                   name: 'PostScreen',
-                  params: {post, filteredComments},
+                  params: {post, filteredComments, reply},
                 })
               }>
           <Text style={style.body}> {post.body.length < 91
