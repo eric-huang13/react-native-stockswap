@@ -193,6 +193,34 @@ class Navigation extends Component {
           },
         }}
       />
+           <HomeStack.Screen
+        name="UserPortfolioList"
+        component={UserPortfolioList}
+        options={{
+          title: 'Portfolio',
+          headerStyle: {
+            backgroundColor: '#313c58',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+         <HomeStack.Screen
+        name="CompanyInformation"
+        component={CompanyInformation}
+        options={{
+          title: 'Stock details',
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
     </HomeStack.Navigator>
   );
 
