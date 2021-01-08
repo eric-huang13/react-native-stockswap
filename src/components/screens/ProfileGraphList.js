@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Dimensions, SafeAreaView} from 'react-native';
+import {StyleSheet, Dimensions, SafeAreaView} from 'react-native';
 import {SlideAreaChart} from 'react-native-slide-charts';
 import {LinearGradient, Stop} from 'react-native-svg';
 

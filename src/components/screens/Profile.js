@@ -49,7 +49,6 @@ class Profile extends Component {
     const theId = item.id;
     return (
       <SafeAreaView style={style.container}>
-
         <ScrollView>
           {selectedUser.map((user) => {
             return (
@@ -264,14 +263,13 @@ class Profile extends Component {
             );
           })}
 
-        {filteredPosts.length > 0 ?
+          {filteredPosts.length > 0 ? (
             <View>
               <Text style={style.postsHeader}>POSTS</Text>
 
-          <View>
-                {filteredPosts.map((post) => (
-
               <View>
+                {filteredPosts.map((post) => (
+                  <View>
                     <UserPosts
                       post={post}
                       navigation={this.props.navigation}
@@ -281,7 +279,7 @@ class Profile extends Component {
                 ))}
               </View>
             </View>
-           : null}
+          ) : null}
         </ScrollView>
       </SafeAreaView>
     );

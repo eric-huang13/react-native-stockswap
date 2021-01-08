@@ -2,13 +2,7 @@ import React, {Component} from 'react';
 import UserPosts from './UserPosts';
 import StockTicker from './StockTicker';
 import {connect} from 'react-redux';
-import {
-  Button,
-  SafeAreaView,
-  Text,
-  ScrollView,
-  StyleSheet,
-} from 'react-native';
+import {Button, SafeAreaView, Text, ScrollView, StyleSheet} from 'react-native';
 
 import {Logout} from 'actions/user';
 

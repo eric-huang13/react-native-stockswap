@@ -25,13 +25,11 @@ export default class PortfolioGraph extends Component {
           axisWidth={5}
           axisHeight={5}
           chartLineColor={'#91f2b1'}
-     
           throttleAndroid={true}
           renderFillGradient={fillGradient}
           alwaysShowIndicator={false}
           cursorProps={{
             displayCursor: false,
-           
           }}
           paddingBottom={10}
           paddingLeft={3}
@@ -46,9 +44,7 @@ export default class PortfolioGraph extends Component {
 
             //Set graph Y numbers
             numberOfTicks: 0,
-           
           }}
-
         />
       </SafeAreaView>
     );
@@ -56,7 +52,6 @@ export default class PortfolioGraph extends Component {
 }
 const styles = StyleSheet.create({
   container: {
-      flex: 1,
-  
+    flex: 1,
   },
 });

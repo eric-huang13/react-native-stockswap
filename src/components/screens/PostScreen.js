@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image, SafeAreaView, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  SafeAreaView,
+  TouchableOpacity,
+} from 'react-native';
 import UserCommentList from './UserCommentList';
 
 export default class PostScreen extends Component {
@@ -9,7 +16,7 @@ export default class PostScreen extends Component {
       shouldShow: false,
     };
   }
-  
+
 
   render() {
     const {shouldShow} = this.state;
@@ -17,36 +24,37 @@ export default class PostScreen extends Component {
     const {post, filteredComments} = this.props.route.params;
     return (
       <SafeAreaView style={style.container}>
-   
-        <View style={style.postNameContainer}>
-          <View style={{flexDirection:'row', alignItems:'center'}}>
-          <Image
-            style={style.postUserImage}
-            source={{uri: post.profileImg}}
-          />
-          <Text style={style.postUserName}>{post.name}</Text>
-       </View>
 
-<View style={style.dotsDropdownConatiner}>
-<TouchableOpacity
+        <View style={style.postNameContainer}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <Image
+              style={style.postUserImage}
+              source={{uri: post.profileImg}}
+            />
+            <Text style={style.postUserName}>{post.name}</Text>
+          </View>
+
+          <View style={style.dotsDropdownConatiner}>
+            <TouchableOpacity
               onPress={() =>
                 this.setState({
                   shouldShow: !shouldShow,
-                 
+
                 })
               }>
-          <Text style={style.dotsButton}>...</Text></TouchableOpacity>
-          {this.state.shouldShow ? (
-        <View style={style.dropdown}>
-          <Text style={style.dropDownText}>Repost</Text>
-          <Text style={style.dropDownText}>Copy link</Text>
-          <Text style={style.dropDownText}>Turn on notifications</Text>
-          <View style={style.dropDownTextReportContainer}>
-          <Text style={style.dropDownText}>Report</Text>
+              <Text style={style.dotsButton}>...</Text>
+            </TouchableOpacity>
+            {this.state.shouldShow ? (
+              <View style={style.dropdown}>
+                <Text style={style.dropDownText}>Repost</Text>
+                <Text style={style.dropDownText}>Copy link</Text>
+                <Text style={style.dropDownText}>Turn on notifications</Text>
+                <View style={style.dropDownTextReportContainer}>
+                  <Text style={style.dropDownText}>Report</Text>
+                </View>
+              </View>
+            ) : null}
           </View>
-          </View>
-      ) : null}
-      </View>
         </View>
         <Image style={style.image} source={{uri: post.img}} />
         <View style={style.detailsContainer}>
@@ -58,115 +66,111 @@ export default class PostScreen extends Component {
           </View>
         </View>
         <Text style={style.body}>{post.body}</Text>
-      <UserCommentList
+        <UserCommentList
           filteredComments={filteredComments}
           navigation={this.props.navigation}
         />
-      
+
     </SafeAreaView>
-  );
-}
+    );
+  }
 }
 
 const style = StyleSheet.create({
-container: {
-  flex:1,
-  flexDirection: 'column',
-  // justifyContent: 'space-between',
-  paddingVertical: 14,
-  paddingHorizontal: 10,
-  backgroundColor: '#2a334a',
-},
-image: {
-  height: 150,
-  width: '100%',
-  borderRadius: 10,
-},
-postNameContainer: {
-  flexDirection: 'row',
-  alignItems: 'center',
-  marginBottom: 6,
-  justifyContent:'space-between',
-},
-postUserImage: {
-  height: 43,
-  width: 43,
-  borderRadius: 50,
-},
-postUserName: {
-  color: 'white',
-  fontSize: 16,
-  fontWeight: 'bold',
-  marginLeft: 8,
-},
-detailsContainer: {
-  flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  marginTop: 6,
-},
-likesContainer: {
-  flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'space-around',
-},
-timestamp: {
-  fontSize: 14,
-  color: 'lightgrey',
-},
-likes: {
-  fontSize: 16,
-  color: 'white',
-},
-comments: {
-  fontSize: 16,
-  color: 'white',
-  marginHorizontal: 10,
-},
-body: {
-  fontSize: 16,
-  color: 'white',
-  marginVertical:4,
-},
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    // justifyContent: 'space-between',
+    paddingVertical: 14,
+    paddingHorizontal: 10,
+    backgroundColor: '#2a334a',
+  },
+  image: {
+    height: 150,
+    width: '100%',
+    borderRadius: 10,
+  },
+  postNameContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 6,
+    justifyContent: 'space-between',
+  },
+  postUserImage: {
+    height: 43,
+    width: 43,
+    borderRadius: 50,
+  },
+  postUserName: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginLeft: 8,
+  },
+  detailsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 6,
+  },
+  likesContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  timestamp: {
+    fontSize: 14,
+    color: 'lightgrey',
+  },
+  likes: {
+    fontSize: 16,
+    color: 'white',
+  },
+  comments: {
+    fontSize: 16,
+    color: 'white',
+    marginHorizontal: 10,
+  },
+  body: {
+    fontSize: 16,
+    color: 'white',
+    marginVertical: 4,
+  },
 
-dotsDropdownConatiner:{
-  flexDirection:'column',
-  justifyContent:'space-evenly',
-  alignContent:'center',
+  dotsDropdownConatiner: {
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignContent: 'center',
+  },
+  dotsButton: {
+    alignSelf: 'flex-end',
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  dropdown: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    backgroundColor: 'white',
+    width: '100%',
+    marginTop: 1,
+    marginBottom: -125,
+    backgroundColor: '#36415f',
+    zIndex: 1,
+    paddingVertical: 6,
+    // paddingHorizontal:10,
+  },
+  dropDownText: {
+    color: 'white',
+    fontSize: 18,
+    marginHorizontal: 12,
 
 },
-dotsButton:{
-  alignSelf:'flex-end',
-  color:'white',
-  fontWeight:'bold',
-  fontSize:20,
-},
-dropdown:{
-  flex:1,
-  flexDirection:'column',
-  justifyContent:'space-between',
-  backgroundColor:'white',
-  width: '100%',
-  marginTop:1,
-  marginBottom:-125,
-  backgroundColor:'#36415f',
-  zIndex:1,
-  paddingVertical:6,
-  // paddingHorizontal:10,
-},
-dropDownText:{
-  color:'white',
-  fontSize:18,
-  marginHorizontal:12,
+  dropDownTextReportContainer: {
 
-  
-},
-dropDownTextReportContainer:{
-  
   borderTopWidth:1,
-  borderTopColor:'lightgrey',
-  paddingTop:4,
-},
-commentContainer:{
-},
+    borderTopColor: 'lightgrey',
+    paddingTop: 4,
+  },
 });

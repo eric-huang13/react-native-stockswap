@@ -102,12 +102,11 @@ const style = StyleSheet.create({
     paddingHorizontal: 4,
     paddingTop: 0,
     justifyContent: 'space-evenly',
-      },
+  },
   topDetails: {
     marginTop: -4,
   },
-  bottomDetails: {
-  },
+  bottomDetails: {},
   title: {
     fontSize: 14,
 
@@ -122,7 +121,6 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 22,
     color: 'rgb(8, 11, 9)',
-   
   },
   percentage: {
     fontSize: 14,

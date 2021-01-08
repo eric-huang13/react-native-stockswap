@@ -53,11 +53,11 @@ export default class UserCommentList extends Component {
 
 const style = StyleSheet.create({
   mainContainer: {
-    flexDirection:'column-reverse',
+    flexDirection: 'column-reverse',
     backgroundColor: '#2a334a',
     paddingVertical: 4,
     paddingLeft: 4,
-    marginTop:10,
+    marginTop: 10,
   },
   itemContainer: {
     marginBottom: 14,
@@ -101,7 +101,7 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
     paddingLeft: 61.5,
     paddingRight: 6,
-    alignItems:'center',
+    alignItems: 'center',
   },
   time: {
     color: 'lightgrey',

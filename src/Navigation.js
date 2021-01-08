@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 // Navigation
-import {NavigationContainer, ThemeProvider} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -193,7 +193,7 @@ class Navigation extends Component {
           },
         }}
       />
-           <HomeStack.Screen
+      <HomeStack.Screen
         name="UserPortfolioList"
         component={UserPortfolioList}
         options={{
@@ -207,7 +207,7 @@ class Navigation extends Component {
           },
         }}
       />
-         <HomeStack.Screen
+      <HomeStack.Screen
         name="CompanyInformation"
         component={CompanyInformation}
         options={{

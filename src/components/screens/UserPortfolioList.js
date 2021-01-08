@@ -60,10 +60,9 @@ class UserPortfolioList extends Component {
                       params: {item},
                     })
                   }>
-
-                <View key={item.id} style={style.portfolioBoxContainer}>
-                  <UserPortfolioBox item={item} />
-                </View>
+                  <View key={item.id} style={style.portfolioBoxContainer}>
+                    <UserPortfolioBox item={item} />
+                  </View>
                 </TouchableOpacity>
               );
             })}
@@ -127,8 +126,6 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 8,
-    
-
   },
   stockHeader: {
     color: 'white',
@@ -139,7 +136,7 @@ const style = StyleSheet.create({
     color: 'white',
     fontSize: 16.5,
     backgroundColor: '#3e4d6c',
-    padding:6,
-    borderRadius:6
+    padding: 6,
+    borderRadius: 6,
   },
 });

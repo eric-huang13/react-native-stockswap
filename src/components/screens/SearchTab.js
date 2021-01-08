@@ -190,8 +190,6 @@ const style = StyleSheet.create({
     borderBottomWidth: 3,
     borderBottomColor: '#855cff',
     paddingBottom: 1.8,
-
-   
   },
   activeTabHeader: {
     color: '#855cff',
@@ -200,6 +198,5 @@ const style = StyleSheet.create({
     textShadowRadius: 50,
     fontSize: 18,
     fontWeight: 'bold',
-  
   },
 });
