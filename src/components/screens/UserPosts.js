@@ -12,8 +12,17 @@ import UserCommentList from './UserCommentList';
 export default class UserPosts extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      shouldShow: false,
+    };
   }
+  // handleShow = () => {
+  //   this.setState({shouldShow: !shouldShow});
+  // };
+
   render() {
+    const {shouldShow} = this.state;
+
     const {post, comments} = this.props;
     const filteredComments = comments.filter(
       (comment) => comment.postId === post.id,
@@ -30,11 +39,34 @@ export default class UserPosts extends Component {
             })
           }>
           <View style={style.postNameContainer}>
+            <View style={{flexDirection:'row', alignItems:'center'}}>
             <Image
               style={style.postUserImage}
               source={{uri: post.profileImg}}
             />
             <Text style={style.postUserName}>{post.name}</Text>
+         </View>
+
+<View style={style.dotsDropdownConatiner}>
+<TouchableOpacity
+                onPress={() =>
+                  this.setState({
+                    shouldShow: !shouldShow,
+                   
+                  })
+                }>
+            <Text style={style.dotsButton}>...</Text></TouchableOpacity>
+            {this.state.shouldShow ? (
+          <View style={style.dropdown}>
+            <Text style={style.dropDownText}>Repost</Text>
+            <Text style={style.dropDownText}>Copy link</Text>
+            <Text style={style.dropDownText}>Turn on notifications</Text>
+            <View style={style.dropDownTextReportContainer}>
+            <Text style={style.dropDownText}>Report</Text>
+            </View>
+            </View>
+        ) : null}
+        </View>
           </View>
           <Image style={style.image} source={{uri: post.img}} />
           <View style={style.detailsContainer}>
@@ -99,6 +131,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 6,
+    justifyContent:'space-between'
   },
   postUserImage: {
     height: 43,
@@ -158,4 +191,42 @@ const style = StyleSheet.create({
   lastCommentBody: {
     color: 'white',
   },
+  dotsDropdownConatiner:{
+    flexDirection:'column',
+    justifyContent:'space-evenly',
+    alignContent:'center',
+
+  },
+  dotsButton:{
+    alignSelf:'flex-end',
+    color:'white',
+    fontWeight:'bold',
+    fontSize:20,
+  },
+  dropdown:{
+    flex:1,
+    flexDirection:'column',
+    justifyContent:'space-between',
+    backgroundColor:'white',
+    width: '100%',
+    marginTop:1,
+    marginBottom:-125,
+    backgroundColor:'#36415f',
+    zIndex:1,
+    paddingVertical:6,
+    // paddingHorizontal:10,
+  },
+  dropDownText:{
+    color:'white',
+    fontSize:18,
+    marginHorizontal:12,
+
+    
+  },
+  dropDownTextReportContainer:{
+    
+    borderTopWidth:1,
+    borderTopColor:'lightgrey',
+    paddingTop:4,
+  }
 });
