@@ -37,7 +37,7 @@ const mapStateToProps = (state) => {
     isLoggedIn: state.user.isLoggedIn,
     posts: state.posts.posts,
     comments: state.posts.comments,
-    reply: state.posts.reply
+    reply: state.posts.reply,
   };
 };
 

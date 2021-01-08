@@ -83,7 +83,8 @@ const defaultState = {
         'https://images.unsplash.com/photo-1606240569045-aca76646c656?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE1fHx8ZW58MHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
       postId: 1,
       userId: 3,
-      body: 'Cool article! I love reading all of your posts. Keep up the good work! Have a nice day!',
+      body:
+        'Cool article! I love reading all of your posts. Keep up the good work! Have a nice day!',
 
       time: '1 hour ago',
       likes: 3,

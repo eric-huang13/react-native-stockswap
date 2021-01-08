@@ -129,7 +129,6 @@ class Navigation extends Component {
 
   createHomeStack = () => (
     <HomeStack.Navigator>
-    
       <HomeStack.Screen
         name="HomeTab"
         component={HomeScreen}

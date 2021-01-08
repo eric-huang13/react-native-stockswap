@@ -17,7 +17,6 @@ export default class UserPosts extends Component {
     };
   }
 
-
   render() {
     const {shouldShow} = this.state;
 
@@ -29,38 +28,37 @@ export default class UserPosts extends Component {
     // console.log(this.props.navigation, 'props in post');
     return (
       <SafeAreaView style={style.container}>
-      
-          <View style={style.postNameContainer}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Image
-                style={style.postUserImage}
-                source={{uri: post.profileImg}}
-              />
-              <Text style={style.postUserName}>{post.name}</Text>
-            </View>
-
-            <View style={style.dotsDropdownConatiner}>
-              <TouchableOpacity
-                onPress={() =>
-                  this.setState({
-                    shouldShow: !shouldShow,
-                  })
-                }>
-                <Text style={style.dotsButton}>...</Text>
-              </TouchableOpacity>
-              {this.state.shouldShow ? (
-                <View style={style.dropdown}>
-                  <Text style={style.dropDownText}>Repost</Text>
-                  <Text style={style.dropDownText}>Copy link</Text>
-                  <Text style={style.dropDownText}>Turn on notifications</Text>
-                  <View style={style.dropDownTextReportContainer}>
-                    <Text style={style.dropDownText}>Report</Text>
-                  </View>
-                </View>
-              ) : null}
-            </View>
+        <View style={style.postNameContainer}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <Image
+              style={style.postUserImage}
+              source={{uri: post.profileImg}}
+            />
+            <Text style={style.postUserName}>{post.name}</Text>
           </View>
-          <TouchableOpacity
+
+          <View style={style.dotsDropdownConatiner}>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  shouldShow: !shouldShow,
+                })
+              }>
+              <Text style={style.dotsButton}>...</Text>
+            </TouchableOpacity>
+            {this.state.shouldShow ? (
+              <View style={style.dropdown}>
+                <Text style={style.dropDownText}>Repost</Text>
+                <Text style={style.dropDownText}>Copy link</Text>
+                <Text style={style.dropDownText}>Turn on notifications</Text>
+                <View style={style.dropDownTextReportContainer}>
+                  <Text style={style.dropDownText}>Report</Text>
+                </View>
+              </View>
+            ) : null}
+          </View>
+        </View>
+        <TouchableOpacity
           onPress={() =>
             this.props.navigation.navigate({
               name: 'PostScreen',
@@ -68,27 +66,31 @@ export default class UserPosts extends Component {
             })
           }>
           <Image style={style.image} source={{uri: post.img}} />
-          </TouchableOpacity>
+        </TouchableOpacity>
 
-          <View style={style.detailsContainer}>
-            <Text style={style.timestamp}>{post.timestamp}</Text>
+        <View style={style.detailsContainer}>
+          <Text style={style.timestamp}>{post.timestamp}</Text>
 
-            <View style={style.likesContainer}>
-              <Text style={style.likes}>{post.likes}</Text>
-              <Text style={style.comments}>{post.comments}</Text>
-            </View>
+          <View style={style.likesContainer}>
+            <Text style={style.likes}>{post.likes}</Text>
+            <Text style={style.comments}>{post.comments}</Text>
           </View>
-          <TouchableOpacity
-              onPress={() =>
-                this.props.navigation.navigate({
-                  name: 'PostScreen',
-                  params: {post, filteredComments, reply},
-                })
-              }>
-          <Text style={style.body}> {post.body.length < 91
-                      ? `${post.body}`
-                      : `${post.body.substring(0, 90)}...`} <Text style={style.more}>{'       '}More</Text></Text>
-                      </TouchableOpacity>
+        </View>
+        <TouchableOpacity
+          onPress={() =>
+            this.props.navigation.navigate({
+              name: 'PostScreen',
+              params: {post, filteredComments, reply},
+            })
+          }>
+          <Text style={style.body}>
+            {' '}
+            {post.body.length < 91
+              ? `${post.body}`
+              : `${post.body.substring(0, 90)}...`}{' '}
+            <Text style={style.more}>{'       '}More</Text>
+          </Text>
+        </TouchableOpacity>
 
         <View style={style.commentContainer}>
           <View style={style.commentContainer}>
@@ -166,13 +168,11 @@ const style = StyleSheet.create({
   timestamp: {
     fontSize: 14,
     color: 'lightgrey',
-    fontStyle:'italic',
-
+    fontStyle: 'italic',
   },
   likes: {
     fontSize: 16,
     color: 'white',
-
   },
   comments: {
     fontSize: 16,
@@ -183,12 +183,12 @@ const style = StyleSheet.create({
     fontSize: 16.5,
     color: 'white',
     marginTop: 10,
-    marginBottom:4,
+    marginBottom: 4,
   },
-  more:{
-    fontSize:14,
-    color:'#8b64ff',
-    fontStyle:'italic',
+  more: {
+    fontSize: 14,
+    color: '#8b64ff',
+    fontStyle: 'italic',
   },
   commentContainer: {
     marginTop: 4,
@@ -223,7 +223,6 @@ const style = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    backgroundColor: 'white',
     width: '100%',
     marginTop: 1,
     marginBottom: -125,

@@ -12,9 +12,7 @@ export default class UserCommentReply extends Component {
   render() {
     const {reply, id} = this.props;
     console.log(filteredReply, 'filcom');
-    const filteredReply = reply.filter(
-      (reply) => reply.commentId === id
-    );
+    const filteredReply = reply.filter((reply) => reply.commentId === id);
 
     return (
       <SafeAreaView style={style.mainContainer}>
@@ -91,7 +89,7 @@ const style = StyleSheet.create({
   },
   body: {
     color: 'white',
-    fontSize: 14,
+    fontSize: 13.8,
     marginLeft: 8,
   },
   postUserImage: {
@@ -105,7 +103,7 @@ const style = StyleSheet.create({
     paddingLeft: 36.5,
     paddingRight: 6,
     alignItems: 'center',
-    marginTop:4
+    marginTop: 4,
   },
   time: {
     color: 'lightgrey',
