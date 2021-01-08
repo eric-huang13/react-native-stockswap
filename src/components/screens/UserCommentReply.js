@@ -10,8 +10,11 @@ import {
 
 export default class UserCommentReply extends Component {
   render() {
-    const {filteredReply} = this.props;
+    const {reply, id} = this.props;
     console.log(filteredReply, 'filcom');
+    const filteredReply = reply.filter(
+      (reply) => reply.commentId === id
+    );
 
     return (
       <SafeAreaView style={style.mainContainer}>
@@ -56,7 +59,7 @@ const style = StyleSheet.create({
     flexDirection: 'column-reverse',
     backgroundColor: '#2a334a',
     paddingVertical: 4,
-    paddingLeft: 4,
+    paddingLeft: 60,
     marginTop: 10,
   },
   itemContainer: {
@@ -92,14 +95,14 @@ const style = StyleSheet.create({
     marginLeft: 8,
   },
   postUserImage: {
-    height: 53,
-    width: 53,
+    height: 28,
+    width: 28,
     borderRadius: 50,
   },
   belowCommentContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingLeft: 61.5,
+    paddingLeft: 36.5,
     paddingRight: 6,
     alignItems: 'center',
     marginTop:4

@@ -96,7 +96,7 @@ export default class UserPosts extends Component {
               onPress={() =>
                 this.props.navigation.navigate({
                   name: 'PostScreen',
-                  params: {post, filteredComments},
+                  params: {post, filteredComments, reply},
                 })
               }>
               <View style={style.headerContainer}>

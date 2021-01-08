@@ -7,11 +7,13 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
+import UserCommentReply from './UserCommentReply'
 
 export default class UserCommentList extends Component {
   render() {
     const {filteredComments, reply} = this.props;
     console.log(filteredComments, 'filcom');
+    
 
     return (
       <SafeAreaView style={style.mainContainer}>
@@ -44,6 +46,11 @@ export default class UserCommentList extends Component {
                 <Text style={style.reply}>Reply </Text>
               </View>
             </View>
+            <UserCommentReply
+          navigation={this.props.navigation}
+          reply={reply}
+          id={item.id}
+        />
           </View>
         ))}
       </SafeAreaView>
