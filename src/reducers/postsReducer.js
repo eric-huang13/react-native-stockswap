@@ -83,6 +83,45 @@ const defaultState = {
         'https://images.unsplash.com/photo-1606240569045-aca76646c656?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE1fHx8ZW58MHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
       postId: 1,
       userId: 3,
+      body: 'Perfect comment!',
+
+      time: '1 hou ago',
+      likes: 1,
+      username: 'rclark123',
+    },
+  ],
+  reply: [
+    {
+      id: 1,
+      name: 'Hallie Fields',
+      profileImg:
+        'https://images.unsplash.com/photo-1459180129673-eefb56f79b45?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzR8fGJ1c2luZXNzJTIwbWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      commentId: 3,
+      userId: 1,
+      body: 'I agree with this comment',
+      time: '1 hour ago',
+      likes: 3,
+      username: 'hfields123',
+    },
+    {
+      id: 2,
+      name: 'Viola Casey',
+      profileImg:
+        'https://images.unsplash.com/photo-1535324492437-d8dea70a38a7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NzN8fGNsb3NlJTIwaGVhZHNob3R8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      commentId: 1,
+      userId: 3,
+      body: 'I enjoyed this comment.',
+      time: '1 hour ago',
+      likes: 1,
+      username: 'vcasey123',
+    },
+    {
+      id: 3,
+      name: 'Ben Clark',
+      profileImg:
+        'https://images.unsplash.com/photo-1606240569045-aca76646c656?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE1fHx8ZW58MHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
+      commentId: 1,
+      userId: 3,
       body: 'Cool article! I love reading all of your posts. Keep up the good work! Have a nice day!',
 
       time: '1 hour ago',
