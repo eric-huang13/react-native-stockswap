@@ -35,7 +35,7 @@ export class StockTicker extends PureComponent {
                       ? {...styles.marqueePercentage, color: 'red'}
                       : {...styles.marqueePercentage}
                   }>
-                  {item.percentage}{' '}
+                  {item.percentage}{'  '}
                 </Text>
               </>
             );
@@ -65,12 +65,12 @@ const styles = StyleSheet.create({
     color: 'yellow',
   },
   marqueeSymbol: {
-    color: 'green',
-    fontSize: 20,
+    color: '#91f2b1',
+    fontSize: 16.5,
     fontWeight: 'bold',
   },
   marqueePercentage: {
-    color: 'green',
-    fontSize: 15,
+    color: '#91f2b1',
+    fontSize: 14,
   },
 });

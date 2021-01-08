@@ -6,6 +6,7 @@ import {
   Image,
   SafeAreaView,
   TouchableOpacity,
+  ScrollView
 } from 'react-native';
 import UserCommentList from './UserCommentList';
 
@@ -24,6 +25,7 @@ export default class PostScreen extends Component {
     const {post, filteredComments} = this.props.route.params;
     return (
       <SafeAreaView style={style.container}>
+        <ScrollView>
 
         <View style={style.postNameContainer}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -70,7 +72,7 @@ export default class PostScreen extends Component {
           filteredComments={filteredComments}
           navigation={this.props.navigation}
         />
-
+</ScrollView>
     </SafeAreaView>
     );
   }
@@ -81,29 +83,30 @@ const style = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     // justifyContent: 'space-between',
-    paddingVertical: 14,
+    paddingVertical: 21,
     paddingHorizontal: 10,
     backgroundColor: '#2a334a',
+    borderWidth:1,
   },
   image: {
-    height: 150,
+    height: 184,
     width: '100%',
     borderRadius: 10,
   },
   postNameContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 6,
+    marginBottom: 9,
     justifyContent: 'space-between',
   },
   postUserImage: {
-    height: 43,
-    width: 43,
+    height: 38,
+    width: 38,
     borderRadius: 50,
   },
   postUserName: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 16.5,
     fontWeight: 'bold',
     marginLeft: 8,
   },
@@ -111,7 +114,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 6,
+    marginTop: 8,
   },
   likesContainer: {
     flexDirection: 'row',
@@ -121,6 +124,7 @@ const style = StyleSheet.create({
   timestamp: {
     fontSize: 14,
     color: 'lightgrey',
+    fontStyle:'italic',
   },
   likes: {
     fontSize: 16,
@@ -132,9 +136,13 @@ const style = StyleSheet.create({
     marginHorizontal: 10,
   },
   body: {
-    fontSize: 16,
+    fontSize: 16.5,
     color: 'white',
-    marginVertical: 4,
+    marginTop: 10,
+    marginBottom:2,
+    borderBottomWidth: .7,
+    borderBottomColor: 'rgba(158, 150, 150, .4)',
+    paddingBottom:18,
   },
 
   dotsDropdownConatiner: {

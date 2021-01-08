@@ -60,7 +60,7 @@ const style = StyleSheet.create({
     marginTop: 10,
   },
   itemContainer: {
-    marginBottom: 14,
+    marginBottom: 16,
   },
   detailsContainer: {
     flexDirection: 'row',
@@ -102,6 +102,7 @@ const style = StyleSheet.create({
     paddingLeft: 61.5,
     paddingRight: 6,
     alignItems: 'center',
+    marginTop:4
   },
   time: {
     color: 'lightgrey',

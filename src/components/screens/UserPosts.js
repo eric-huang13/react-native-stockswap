@@ -29,13 +29,7 @@ export default class UserPosts extends Component {
     // console.log(this.props.navigation, 'props in post');
     return (
       <SafeAreaView style={style.container}>
-        <TouchableOpacity
-          onPress={() =>
-            this.props.navigation.navigate({
-              name: 'PostScreen',
-              params: {post, filteredComments},
-            })
-          }>
+      
           <View style={style.postNameContainer}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Image
@@ -66,7 +60,16 @@ export default class UserPosts extends Component {
               ) : null}
             </View>
           </View>
+          <TouchableOpacity
+          onPress={() =>
+            this.props.navigation.navigate({
+              name: 'PostScreen',
+              params: {post, filteredComments},
+            })
+          }>
           <Image style={style.image} source={{uri: post.img}} />
+          </TouchableOpacity>
+
           <View style={style.detailsContainer}>
             <Text style={style.timestamp}>{post.timestamp}</Text>
 
@@ -75,8 +78,17 @@ export default class UserPosts extends Component {
               <Text style={style.comments}>{post.comments}</Text>
             </View>
           </View>
-          <Text style={style.body}>{post.body}</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+              onPress={() =>
+                this.props.navigation.navigate({
+                  name: 'PostScreen',
+                  params: {post, filteredComments},
+                })
+              }>
+          <Text style={style.body}> {post.body.length < 91
+                      ? `${post.body}`
+                      : `${post.body.substring(0, 90)}...`} <Text style={style.more}>{'       '}More</Text></Text>
+                      </TouchableOpacity>
 
         <View style={style.commentContainer}>
           <View style={style.commentContainer}>
@@ -95,9 +107,9 @@ export default class UserPosts extends Component {
                 <View style={style.lastCommentContainer}>
                   <Text style={style.lastCommentName}>{lastComment.name}:</Text>
                   <Text style={style.lastCommentBody}>
-                    {lastComment.body.length < 45
+                    {lastComment.body.length < 58
                       ? `${lastComment.body}`
-                      : `${lastComment.body.substring(0, 44)}...`}
+                      : `${lastComment.body.substring(0, 59)}...`}
                   </Text>
                 </View>
               ) : null}
@@ -113,30 +125,30 @@ const style = StyleSheet.create({
   container: {
     flexDirection: 'column',
     justifyContent: 'space-between',
-    marginVertical: 8,
+    marginTop: 3,
     paddingVertical: 14,
     paddingHorizontal: 10,
     backgroundColor: '#2a334a',
   },
   image: {
-    height: 150,
+    height: 184,
     width: '100%',
     borderRadius: 10,
   },
   postNameContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 6,
+    marginBottom: 8.5,
     justifyContent: 'space-between',
   },
   postUserImage: {
-    height: 43,
-    width: 43,
+    height: 42,
+    width: 42,
     borderRadius: 50,
   },
   postUserName: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 16.5,
     fontWeight: 'bold',
     marginLeft: 8,
   },
@@ -144,7 +156,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 6,
+    marginTop: 8,
   },
   likesContainer: {
     flexDirection: 'row',
@@ -154,10 +166,13 @@ const style = StyleSheet.create({
   timestamp: {
     fontSize: 14,
     color: 'lightgrey',
+    fontStyle:'italic',
+
   },
   likes: {
     fontSize: 16,
     color: 'white',
+
   },
   comments: {
     fontSize: 16,
@@ -165,9 +180,15 @@ const style = StyleSheet.create({
     marginHorizontal: 10,
   },
   body: {
-    marginTop: 8,
-    fontSize: 16,
+    fontSize: 16.5,
     color: 'white',
+    marginTop: 10,
+    marginBottom:4,
+  },
+  more:{
+    fontSize:14,
+    color:'#8b64ff',
+    fontStyle:'italic',
   },
   commentContainer: {
     marginTop: 4,

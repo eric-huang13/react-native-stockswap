@@ -129,18 +129,14 @@ class Navigation extends Component {
 
   createHomeStack = () => (
     <HomeStack.Navigator>
-      {/* <HomeStack.Screen
-        name="HomeTab"
-        component={HomeScreen}
-        options={{headerShown: false}}
-      /> */}
+    
       <HomeStack.Screen
         name="HomeTab"
         component={HomeScreen}
         options={{
           title: 'StockSwap',
           headerStyle: {
-            backgroundColor: '#394463',
+            backgroundColor: '#313c58',
           },
           headerTintColor: 'white',
           headerTitleAlign: {
