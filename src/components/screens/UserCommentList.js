@@ -53,18 +53,18 @@ export default class UserCommentList extends Component {
 
 const style = StyleSheet.create({
   mainContainer: {
-    flex: 1,
-    flexDirection: 'column',
+    flexDirection:'column-reverse',
     backgroundColor: '#324165',
     paddingVertical: 4,
     paddingLeft: 4,
+    marginTop:10,
   },
   itemContainer: {
     marginBottom: 14,
   },
   detailsContainer: {
     flexDirection: 'row',
-    marginBottom: 6,
+    // marginBottom: 2,
     paddingRight: 4,
   },
   nameBodyContainer: {
@@ -92,15 +92,16 @@ const style = StyleSheet.create({
     marginLeft: 8,
   },
   postUserImage: {
-    height: 43,
-    width: 43,
+    height: 53,
+    width: 53,
     borderRadius: 50,
   },
   belowCommentContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingLeft: 50,
+    paddingLeft: 61.5,
     paddingRight: 6,
+    alignItems:'center',
   },
   time: {
     color: 'lightgrey',

@@ -429,8 +429,8 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     marginBottom: 24,
-    borderBottomWidth: 0.5,
-    borderBottomColor: 'lightgrey',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(158, 150, 150, .4)',
     paddingBottom: 9,
   },
   timeFilterButtons: {

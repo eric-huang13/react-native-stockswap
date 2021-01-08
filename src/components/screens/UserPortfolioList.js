@@ -101,11 +101,11 @@ const style = StyleSheet.create({
     paddingVertical: 0,
   },
   boxContainer: {
-    marginTop: 10,
+    marginTop: 6,
   },
   portfolioBoxContainer: {
     borderBottomWidth: 1,
-    borderColor: 'lightgrey',
+    borderBottomColor: 'rgba(158, 150, 150, .6)',
     padding: 0.1,
     marginTop: 8,
   },
@@ -118,7 +118,7 @@ const style = StyleSheet.create({
   },
   percent: {
     color: 'white',
-    fontSize: 26,
+    fontSize: 26.5,
     fontWeight: 'bold',
   },
   percentButtonContainer: {
@@ -127,14 +127,19 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 8,
+    
+
   },
   stockHeader: {
     color: 'white',
-    fontSize: 24,
+    fontSize: 25,
     fontWeight: 'bold',
   },
   percentChangeButton: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 16.5,
+    backgroundColor: '#3e4d6c',
+    padding:6,
+    borderRadius:6
   },
 });

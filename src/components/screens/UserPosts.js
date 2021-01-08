@@ -90,9 +90,7 @@ export default class UserPosts extends Component {
                 })
               }>
               <View style={style.headerContainer}>
-                <Text style={style.allComments}>
-                  View all {filteredComments.length} comments
-                </Text>
+                <Text style={style.allComments}>View all comments</Text>
               </View>
 
               {lastComment ? (

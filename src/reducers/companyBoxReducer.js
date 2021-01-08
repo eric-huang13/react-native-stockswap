@@ -838,7 +838,7 @@ const defaultState = {
     },
     {
       id: 3,
-      name: 'Rosa Clark',
+      name: 'Ben Clark',
       posts: 267,
       followers: 10,
       following: 215,
@@ -849,7 +849,7 @@ const defaultState = {
       website: 'www.rclark.com',
       percentage: 43,
       img:
-        'https://images.unsplash.com/photo-1459180129673-eefb56f79b45?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzR8fGJ1c2luZXNzJTIwbWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+        'https://images.unsplash.com/photo-1606240569045-aca76646c656?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE1fHx8ZW58MHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
     },
   ],
 };
