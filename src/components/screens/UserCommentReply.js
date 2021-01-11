@@ -11,7 +11,6 @@ import {
 export default class UserCommentReply extends Component {
   render() {
     const {reply, id} = this.props;
-    console.log(filteredReply, 'filcom');
     const filteredReply = reply.filter((reply) => reply.commentId === id);
 
     return (

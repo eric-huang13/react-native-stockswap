@@ -35,18 +35,14 @@ class Profile extends Component {
       all: false,
     };
   }
-  render() {
-    // console.log(this.props.route, 'props in profile');
-    // console.log(this.props.posts, 'props posts');
+  render() { 
     const {item} = this.props.route.params;
     const {graphData, percent, range} = this.state;
     const {posts, comments, users, reply} = this.props;
 
     const selectedUser = users.filter((user) => user.id === item.id);
-    // console.log(user,'user')
 
     const filteredPosts = posts.filter((post) => post.userId === item.id);
-    const theId = item.id;
     return (
       <SafeAreaView style={style.container}>
         <ScrollView>
@@ -292,7 +288,7 @@ const mapStateToProps = (state) => {
     posts: state.posts.posts,
     comments: state.posts.comments,
     users: state.company.users,
-    reply: state.posts.reply
+    reply: state.posts.reply,
   };
 };
 

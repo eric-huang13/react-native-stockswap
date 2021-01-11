@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from 'react-native';
-import UserCommentList from './UserCommentList';
 
 export default class UserPosts extends Component {
   constructor(props) {
@@ -29,7 +28,7 @@ export default class UserPosts extends Component {
     return (
       <SafeAreaView style={style.container}>
         <View style={style.postNameContainer}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <View style={style.profileImageContainer}>
             <Image
               style={style.postUserImage}
               source={{uri: post.profileImg}}
@@ -142,6 +141,10 @@ const style = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 8.5,
     justifyContent: 'space-between',
+  },
+  profileImageContainer:{
+    flexDirection: 'row', 
+    alignItems: 'center',
   },
   postUserImage: {
     height: 42,
