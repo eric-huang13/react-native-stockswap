@@ -1,11 +1,11 @@
 import {LOGIN_SUCCESS, LOGOUT, SIGNUP_START, SIGNUP_SUCCESS, SIGNUP_ERROR} from 'constants';
+import axios from 'axios';
 
 
 
-export const signUp = (input) => {
+export const Register = (input) => {
   return (dispatch) => {
     dispatch({type: SIGNUP_START});
-
     axios
     .post('https://jiujitsux.herokuapp.com/api/users/register', input)
   
@@ -13,7 +13,7 @@ export const signUp = (input) => {
 })
 
 .catch(error => {dispatch({ type: SIGNUP_ERROR, payload: error.response })
-alert("Please try registering with a different username and password.")
+alert("Please try registering with a different username and password." )
 
 })
   };

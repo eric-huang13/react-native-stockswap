@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-import axios from 'axios';
-
 import { Text, View, TextInput, Button } from 'react-native'
+import axios from 'axios';
+import {connect} from 'react-redux';
+import {Register} from '../../actions/user'
 
-export default class SignUp extends Component {
+
+
+class SignUp extends Component {
     constructor(props) {
         super(props);
         
@@ -13,6 +16,7 @@ export default class SignUp extends Component {
         };
       }
     render() {
+        const {RegisterUser} = this.props;
 
         const handleEmailChange = (email) => {
             this.setState({
@@ -24,15 +28,10 @@ export default class SignUp extends Component {
                password: password,
             });
           };
-        // console.log(this.state,'state in login')
-        const handleSubmit = () => {
-            axios
-              .post("https://jiujitsux.herokuapp.com/api/users/register", this.state)
-              .then((response) => {
-                console.log(response);
-              })
-              .catch((err) => console.log("register error"));
-          };
+   
+          const handleSubmit = () => {        
+            RegisterUser(this.state);        
+      }
         return (
             <View>
         <Text>Login</Text>
@@ -61,3 +60,22 @@ export default class SignUp extends Component {
         )
     }
 }
+
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+        loading: state.user.loading,
+        error: state.user.error,
+    };
+  };
+
+  
+const mapDispatchToProps = (dispatch) => {
+    return {
+      RegisterUser: (input) => dispatch(Register(input)),
+    };
+  };
+  
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
