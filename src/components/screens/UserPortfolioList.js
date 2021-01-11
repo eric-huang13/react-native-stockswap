@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
   SafeAreaView,
-  FlatList
+  FlatList,
 } from 'react-native';
 import UserPortfolioBox from './UserPortfolioBox';
 import {connect} from 'react-redux';
@@ -41,33 +41,32 @@ class UserPortfolioList extends Component {
             onChangeText={(text) => this.handleChange(text)}
           />
         </View>
-          <View style={style.percentContainer}>
-            <Text style={style.portfolio}>Portfolio</Text>
-            <Text style={style.percent}>+ 320%</Text>
-          </View>
-          <View style={style.percentButtonContainer}>
-            <Text style={style.stockHeader}>STOCKS</Text>
-            <Text style={style.percentChangeButton}>Percent Change</Text>
-          </View>
-          <FlatList
-            style={style.boxContainer}
-            data={filteredStocks}
-            renderItem={({item}) => (
-              <TouchableOpacity
-                  key={item.id}
-                  onPress={() =>
-                    this.props.navigation.navigate({
-                      name: 'CompanyInformation',
-                      params: {item},
-                    })
-                  }>
-                  <View key={item.id} style={style.portfolioBoxContainer}>
-                    <UserPortfolioBox item={item} />
-                  </View>
-                </TouchableOpacity>
-            )}
-          />
-        
+        <View style={style.percentContainer}>
+          <Text style={style.portfolio}>Portfolio</Text>
+          <Text style={style.percent}>+ 320%</Text>
+        </View>
+        <View style={style.percentButtonContainer}>
+          <Text style={style.stockHeader}>STOCKS</Text>
+          <Text style={style.percentChangeButton}>Percent Change</Text>
+        </View>
+        <FlatList
+          style={style.boxContainer}
+          data={filteredStocks}
+          renderItem={({item}) => (
+            <TouchableOpacity
+              key={item.id}
+              onPress={() =>
+                this.props.navigation.navigate({
+                  name: 'CompanyInformation',
+                  params: {item},
+                })
+              }>
+              <View key={item.id} style={style.portfolioBoxContainer}>
+                <UserPortfolioBox item={item} />
+              </View>
+            </TouchableOpacity>
+          )}
+        />
       </SafeAreaView>
     );
   }

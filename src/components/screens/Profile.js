@@ -35,7 +35,7 @@ class Profile extends Component {
       all: false,
     };
   }
-  render() { 
+  render() {
     const {item} = this.props.route.params;
     const {graphData, percent, range} = this.state;
     const {posts, comments, users, reply} = this.props;

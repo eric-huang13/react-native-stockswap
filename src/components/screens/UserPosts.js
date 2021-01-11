@@ -142,8 +142,8 @@ const style = StyleSheet.create({
     marginBottom: 8.5,
     justifyContent: 'space-between',
   },
-  profileImageContainer:{
-    flexDirection: 'row', 
+  profileImageContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
   },
   postUserImage: {
