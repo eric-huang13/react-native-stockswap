@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Button, SafeAreaView, Text} from 'react-native';
 
 import {Logout} from 'actions/user';
+import SignUp from './SignUp'
 
 class HomeScreen extends Component {
   render() {
@@ -12,6 +13,8 @@ class HomeScreen extends Component {
       <SafeAreaView>
         <Text>Is User Logged in: {'' + isLoggedIn} </Text>
         <Button title="Logout Button" onPress={() => LogoutUser()} />
+
+        <SignUp/>
       </SafeAreaView>
     );
   }
