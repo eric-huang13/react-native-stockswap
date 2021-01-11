@@ -27,6 +27,7 @@ export default class SignUp extends Component {
           value={this.state.password}
           onChangeText={(password) => this.setState({ password })}
           placeholder='Password'
+          secureTextEntry
           style={{borderWidth:1}}
       
         />
