@@ -1,11 +1,34 @@
-import {LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT} from 'constants';
+import {LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, SIGNUP_START, SIGNUP_SUCCESS, SIGNUP_ERROR} from 'constants';
 
 const defaultState = {
   isLoggedIn: false,
+  user:[],
+  loading: false,
+  error: "",
 };
 
 const userReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case SIGNUP_START:
+        return {
+          ...state,
+          loading: true,
+          error: "",
+        };
+      case SIGNUP_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          error: "",
+          user: action.payload,
+        };
+  
+      case SIGNUP_ERROR:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
     case LOGIN_SUCCESS:
       return {
         ...state,
