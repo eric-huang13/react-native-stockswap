@@ -40,7 +40,7 @@ class Profile extends Component {
     // console.log(this.props.posts, 'props posts');
     const {item} = this.props.route.params;
     const {graphData, percent, range} = this.state;
-    const {posts, comments, users} = this.props;
+    const {posts, comments, users, reply} = this.props;
 
     const selectedUser = users.filter((user) => user.id === item.id);
     // console.log(user,'user')
@@ -274,6 +274,7 @@ class Profile extends Component {
                       post={post}
                       navigation={this.props.navigation}
                       comments={comments}
+                      reply={reply}
                     />
                   </View>
                 ))}
@@ -291,6 +292,7 @@ const mapStateToProps = (state) => {
     posts: state.posts.posts,
     comments: state.posts.comments,
     users: state.company.users,
+    reply: state.posts.reply
   };
 };
 
