@@ -10,10 +10,14 @@ class SignUp extends Component {
     this.state = {
       email: "",
       password: "",
+      confirmPassword:"",
+      error:'',
     };
   }
   render() {
-    const { RegisterUser } = this.props;
+
+    const credentials =  {email:this.state.email, password: this.state.password}  
+      const { RegisterUser } = this.props;
 
     const handleEmailChange = (email) => {
       this.setState({
@@ -26,13 +30,23 @@ class SignUp extends Component {
       });
     };
 
+    const handleConfirmPasswordChange = (confirmPassword) => {
+        this.setState({
+          confirmPassword: confirmPassword,
+        });
+      };
     const handleSubmit = () => {
-      RegisterUser(this.state);
+        this.state.password === this.state.confirmPassword ? (
+      RegisterUser(credentials)) :
+      alert("Passwords do not match")
     };
     return (
         <View style={style.mainContainer}>
+            <View style={style.stockHeader}>
+            <Text style={style.stockText}>Stock</Text><Text style={style.swapText}>Swap</Text>
+            </View>
       <View style={style.container}>
-        <Text style={style.mainHeader}>Sign Up</Text>
+        <Text style={style.signUpHeader}>Sign Up</Text>
        
         <View>
         <Text style={style.inputHeader}>Email</Text>
@@ -58,9 +72,9 @@ class SignUp extends Component {
         <View>
             <Text style={style.inputHeader}>Repeat password</Text>
         <TextInput
-          value={this.state.password}
-          onChangeText={(password) => handlePasswordChange(password)}
-          placeholder="Enter your password"
+          value={this.state.confirmPassword}
+          onChangeText={(confirmPassword) => handleConfirmPasswordChange(confirmPassword)}
+          placeholder="Enter you password"
           placeholderTextColor="#9ea6b5"
           secureTextEntry
           style={style.inputStyle}
@@ -95,30 +109,46 @@ export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
 
 const style = StyleSheet.create({
     mainContainer: {
+        flex:1,
         borderWidth:1,
         padding:8,
-        margin:8,
         backgroundColor:'#323e5b',
+        // paddingVertical:50,
+        paddingHorizontal:30,
         
+      },
+      stockHeader:{
+        flexDirection:'row',
+        justifyContent:'center',
+        marginVertical:20,
+      },
+      stockText:{
+        fontSize:27,
+        fontWeight:'bold',
+        color:'white'
+      },
+      swapText:{
+        fontSize:27,
+        fontWeight:'bold',
+        color:'#b8a0ff',
       },
     container: {
       borderRadius:8,
-      borderWidth:1,
       backgroundColor:'#2c3957',
-      marginHorizontal:20,
-      marginVertical:10,
       paddingHorizontal:20,
       paddingVertical:20,
       flexDirection:'column',
     },
-    mainHeader:{
+    signUpHeader:{
         color:'white',
         fontSize:24,
         fontWeight:'bold',
         marginBottom:14,
     },
     inputHeader:{
-        color:'#c1c5cd'
+        fontSize:14,
+        color:'#c1c5cd',
+        marginBottom:1,
     },
     inputStyle: {
       borderRadius:8,
