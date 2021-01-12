@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, TextInput, Button, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, View, TextInput, StyleSheet, TouchableOpacity, KeyboardAvoidingView, SafeAreaView, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { connect } from "react-redux";
 import { Register } from "../../actions/user";
 
@@ -41,7 +41,14 @@ class SignUp extends Component {
       alert("Passwords do not match")
     };
     return (
-        <View style={style.mainContainer}>
+        <KeyboardAvoidingView
+                behavior={Platform.OS === "ios" ? "padding" : null}
+                style={{ flex: 1 }}
+            >
+        <SafeAreaView style={style.mainContainer}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={style.inner}>
+
             <View style={style.stockHeader}>
             <Text style={style.stockText}>Stock</Text><Text style={style.swapText}>Swap</Text>
             </View>
@@ -87,6 +94,9 @@ class SignUp extends Component {
         </View>
       </View>
       </View>
+      </TouchableWithoutFeedback>
+      </SafeAreaView>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -117,6 +127,10 @@ const style = StyleSheet.create({
         paddingHorizontal:30,
         
       },
+      inner: {
+        // flex: 1,
+        justifyContent: "flex-end",
+    },
       stockHeader:{
         flexDirection:'row',
         justifyContent:'center',
@@ -169,6 +183,7 @@ const style = StyleSheet.create({
         width:150,
         borderRadius:6,
         fontSize:17,
+        borderWidth:1
     },
  
   });
