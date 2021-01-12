@@ -63,7 +63,11 @@ class SignUp extends Component {
           onChangeText={(email) => handleEmailChange(email)}
           placeholder="Enter your email"
           placeholderTextColor="#9ea6b5"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          returnKeyType="next"
           style={style.inputStyle}
+          onSubmitEditing={() => this.passwordInput.focus()}
         /></View>
         <View>
             <Text style={style.inputHeader}>Password</Text>
@@ -73,7 +77,11 @@ class SignUp extends Component {
           placeholder="Enter your password"
           placeholderTextColor="#9ea6b5"
           secureTextEntry
+          returnKeyType="next"
           style={style.inputStyle}
+          ref={(input) => this.passwordInput = input}
+          onSubmitEditing={() => this.confirmPasswordInput.focus()}
+
         />
         </View>
         <View>
@@ -85,6 +93,8 @@ class SignUp extends Component {
           placeholderTextColor="#9ea6b5"
           secureTextEntry
           style={style.inputStyle}
+          ref={(input) => this.confirmPasswordInput = input}
+
         />
         </View>
         <View>
