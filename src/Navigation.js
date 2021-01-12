@@ -17,6 +17,8 @@ import CompanyInformation from './components/screens/CompanyInformation';
 import CompanyCategory from './components/screens/CompanyCategory';
 import Profile from './components/screens/Profile';
 import SignUp from './components/screens/SignUp'
+import TermsAndConditions from './components/screens/TermsAndConditions'
+import { TextInput } from 'react-native-gesture-handler';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -72,6 +74,7 @@ class Navigation extends Component {
           <Tab.Navigator>
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="SignUp" component={SignUp} />
+            <Tab.Screen name="TermsAndConditions" component={TermsAndConditions} />
             <Tab.Screen name="Search" component={this.createSearchStack} />
           </Tab.Navigator>
         ) : (

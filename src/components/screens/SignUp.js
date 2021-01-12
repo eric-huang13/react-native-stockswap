@@ -9,6 +9,7 @@ import {
   SafeAreaView,
   TouchableWithoutFeedback,
   Keyboard,
+  Modal,
 } from "react-native";
 import { connect } from "react-redux";
 import { Register } from "../../actions/user";
@@ -49,7 +50,7 @@ class SignUp extends Component {
         email: this.state.email,
         password: this.state.password,
       }; 
-      
+
     const handleSubmit = () => {
       this.state.password === this.state.confirmPassword
         ? RegisterUser(credentials)
