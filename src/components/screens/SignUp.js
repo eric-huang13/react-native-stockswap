@@ -9,7 +9,7 @@ import {
   SafeAreaView,
   TouchableWithoutFeedback,
   Keyboard,
-  Modal,
+  ScrollView
 } from "react-native";
 import { connect } from "react-redux";
 import { Register } from "../../actions/user";
@@ -63,6 +63,7 @@ class SignUp extends Component {
         style={{ flex: 1 }}
       >
         <SafeAreaView style={style.mainContainer}>
+            <ScrollView>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={style.inner}>
               <View style={style.stockHeader}>
@@ -110,7 +111,7 @@ class SignUp extends Component {
                     onChangeText={(confirmPassword) =>
                       handleConfirmPasswordChange(confirmPassword)
                     }
-                    placeholder="Enter you password"
+                    placeholder="Enter your password"
                     placeholderTextColor="#9ea6b5"
                     secureTextEntry
                     ref={(input) => (this.confirmPasswordInput = input)}
@@ -120,6 +121,7 @@ class SignUp extends Component {
                 <Text style={style.termsText}>
                   I agree with the Terms and Conditions
                 </Text>
+                <Text style={style.termsText}>Login</Text>
                 </View>
                 <View>
                   <TouchableOpacity onPress={handleSubmit}>
@@ -129,6 +131,17 @@ class SignUp extends Component {
               </View>
             </View>
           </TouchableWithoutFeedback>
+          <View style={style.bottomButtonsContainer}>
+          <Text style={style.orText}>--OR--</Text>
+          <View style={style.alternateSignUpContainer}>
+          <Text style={style.alternateSignUpButton}>SIGN UP WITH GOOGLE</Text>
+          <Text style={style.alternateSignUpButton}>SIGN UP WITH FACEBOOK</Text>
+          <Text style={style.alternateSignUpButton}>SIGN UP WITH APPLE</Text>
+          </View>
+          </View>
+
+
+          </ScrollView>
         </SafeAreaView>
       </KeyboardAvoidingView>
     );
@@ -199,10 +212,10 @@ const style = StyleSheet.create({
   inputStyle: {
     borderRadius: 8,
     backgroundColor: "#3e4d6c",
-    fontStyle: "italic",
     marginBottom: 12,
     padding: 8,
     marginTop: 1,
+    fontSize:16
   },
   inputStyleConfirm: {
     borderRadius: 8,
@@ -225,9 +238,37 @@ const style = StyleSheet.create({
   },
   termsContainer:{
     marginBottom:28,
+    flexDirection:'row',
+    justifyContent:'space-between',
+    paddingHorizontal:2,
   },
   termsText: {
     color: "#b8a0ff",
     fontSize: 12,
+  },
+  bottomButtonsContainer:{
+      alignItems:'center',
+  },
+  orText:{
+    marginVertical:16,
+    color:'lightgrey',
+    fontSize:16,
+  },
+  alternateSignUpContainer:{
+      flexDirection:'column',
+      justifyContent:'space-between',
+
+  },
+  alternateSignUpButton: {
+    alignSelf: "center",
+    backgroundColor: "#3e4d6c",
+    color: "white",
+    textAlign: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    width: 330,
+    borderRadius: 6,
+    fontSize: 14,
+    marginBottom:10,
   },
 });
