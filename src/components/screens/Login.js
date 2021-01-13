@@ -36,8 +36,8 @@ class LoginScreen extends Component {
       });
     };
 
-    const handleSubmit = () => {
-      LoginUser(this.state)
+    const handleSubmit = (input) => {
+      LoginUser(input)
     };
 
     return (
@@ -92,14 +92,18 @@ class LoginScreen extends Component {
               <Text style={style.newText}>
                 New to StockSwap?
               </Text>
-              <Text style={style.termsText}>
-              Sign Up
-              </Text>
+              <TouchableOpacity
+                onPress={() =>
+                  this.props.navigation.navigate('SignUp')
+                }>
+              <Text style={style.termsText}>Sign Up</Text>              
+              </TouchableOpacity>
+              
               </View>
               <Text style={style.termsText}>Forgot password?</Text>
               </View>
               <View>
-                <TouchableOpacity onPress={() => LoginUser()}>
+                <TouchableOpacity onPress={() => LoginUser(this.state)}>
                   <Text style={style.button}>Login</Text>
                 </TouchableOpacity>
               </View>
@@ -126,12 +130,15 @@ class LoginScreen extends Component {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
+    user: state.user.user,
+    loading: state.user.loading,
+    error: state.user.error,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    LoginUser: () => dispatch(Login()),
+    LoginUser: (input) => dispatch(Login(input)),
   };
 };
 

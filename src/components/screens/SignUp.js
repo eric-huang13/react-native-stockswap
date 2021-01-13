@@ -121,7 +121,12 @@ class SignUp extends Component {
                 <Text style={style.termsText}>
                   I agree with the Terms and Conditions
                 </Text>
-                <Text style={style.termsText}>Login</Text>
+                <TouchableOpacity
+                onPress={() =>
+                  this.props.navigation.navigate('Login')
+                }>
+              <Text style={style.termsText}>Login</Text>              
+              </TouchableOpacity>
                 </View>
                 <View>
                   <TouchableOpacity onPress={handleSubmit}>

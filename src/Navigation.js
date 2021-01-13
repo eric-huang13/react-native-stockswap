@@ -19,6 +19,7 @@ import Profile from './components/screens/Profile';
 import UserCommentList from './components/screens/UserCommentList';
 import PostScreen from './components/screens/PostScreen';
 import UserPortfolioList from './components/screens/UserPortfolioList';
+import SignUp from './components/screens/SignUp'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -216,6 +217,11 @@ class Navigation extends Component {
           },
         }}
       />
+      {/* <HomeStack.Screen
+        name="SignUp"
+        component={SignUp}
+        options={{headerShown: false}}
+      /> */}
     </HomeStack.Navigator>
   );
 
@@ -243,7 +249,10 @@ class Navigation extends Component {
           </Tab.Navigator>
         ) : (
           <Stack.Navigator>
-            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}
+ />
+ <Stack.Screen name="SignUp" component={SignUp} options={{headerShown: false}}
+ />
           </Stack.Navigator>
         )}
       </NavigationContainer>
