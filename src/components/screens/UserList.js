@@ -16,29 +16,28 @@ export class UserList extends Component {
     super(props);
     this.state = {
       input: '',
-      timeFilter:'day',
-   };
+      timeFilter: 'day',
+    };
   }
-  
-  timeFilterSelect(time){
-      this.setState({ timeFilter:time})
-    }
+
+  timeFilterSelect(time) {
+    this.setState({timeFilter: time});
+  }
   handleChange = (text) => {
     this.setState({input: text});
   };
   render() {
+    const {timeFilter, input} = this.state;
     const {users} = this.props;
 
-    
     const filteredUsers = users.filter((item) =>
-      item.name.toLowerCase().includes(this.state.input.toLowerCase()),
+      item.name.toLowerCase().includes(input.toLowerCase()),
     );
 
     return (
       <SafeAreaView>
         <ScrollView contentContainerStyle={{paddingBottom: 180}}>
           <View style={style.searchInputContainer}>
-            <Text>Time: {this.state.timeFilter}</Text>
             <TextInput
               style={style.searchInput}
               placeholder="Search"
@@ -48,91 +47,70 @@ export class UserList extends Component {
           </View>
           <Text style={style.timeFilterHeader}>Time filter:</Text>
           <View style={style.timeFilterContainer}>
-            <TouchableOpacity
-              onPress={() =>
-                this.timeFilterSelect('day')
-              }>
+            <TouchableOpacity onPress={() => this.timeFilterSelect('day')}>
               <Text
                 style={
-                  this.state.timeFilter === "day"
+                  timeFilter === 'day'
                     ? {...style.timeFilterButtons, color: '#8b64ff'}
                     : {...style.timeFilterButtons}
                 }>
                 1D
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                this.timeFilterSelect('week')
-              }>
+            <TouchableOpacity onPress={() => this.timeFilterSelect('week')}>
               <Text
                 style={
-                  this.state.timeFilter === "week"
+                  timeFilter === 'week'
                     ? {...style.timeFilterButtons, color: '#8b64ff'}
                     : {...style.timeFilterButtons}
                 }>
                 1W
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                this.timeFilterSelect('month')
-              }>
+            <TouchableOpacity onPress={() => this.timeFilterSelect('month')}>
               <Text
                 style={
-                  this.state.timeFilter === "month"
+                  timeFilter === 'month'
                     ? {...style.timeFilterButtons, color: '#8b64ff'}
                     : {...style.timeFilterButtons}
                 }>
                 1M
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                this.timeFilterSelect('3M')
-              }>
+            <TouchableOpacity onPress={() => this.timeFilterSelect('3M')}>
               <Text
                 style={
-                  this.state.timeFilter === "3M"
+                  timeFilter === '3M'
                     ? {...style.timeFilterButtons, color: '#8b64ff'}
                     : {...style.timeFilterButtons}
                 }>
                 3M
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                this.timeFilterSelect('6M')
-              }>
+            <TouchableOpacity onPress={() => this.timeFilterSelect('6M')}>
               <Text
                 style={
-                  this.state.timeFilter === "6M"
+                  timeFilter === '6M'
                     ? {...style.timeFilterButtons, color: '#8b64ff'}
                     : {...style.timeFilterButtons}
                 }>
                 6M
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                this.timeFilterSelect('1Y')
-              }>
+            <TouchableOpacity onPress={() => this.timeFilterSelect('1Y')}>
               <Text
                 style={
-                  this.state.timeFilter === "1Y"
+                  timeFilter === '1Y'
                     ? {...style.timeFilterButtons, color: '#8b64ff'}
                     : {...style.timeFilterButtons}
                 }>
                 1Y
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                this.timeFilterSelect('ALL')
-              }>
+            <TouchableOpacity onPress={() => this.timeFilterSelect('ALL')}>
               <Text
                 style={
-                  this.state.timeFilter === "ALL"
+                  timeFilter === 'ALL'
                     ? {...style.timeFilterButtons, color: '#8b64ff'}
                     : {...style.timeFilterButtons}
                 }>

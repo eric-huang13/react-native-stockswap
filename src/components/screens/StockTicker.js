@@ -17,30 +17,28 @@ export class StockTicker extends PureComponent {
           repeatSpacer={0}
           marqueeDelay={0}
           animationType="scroll">
-          {gainers.map((item) => 
-             (
-              <React.Fragment key={item.id}>
-                <Text
-                  style={
-                    item.percentage[0] === '-'
-                      ? {...styles.marqueeSymbol, color: 'red'}
-                      : {...styles.marqueeSymbol}
-                  }>
-                  {' '}
-                  {item.symbol}{' '}
-                </Text>
-                <Text
-                  style={
-                    item.percentage[0] === '-'
-                      ? {...styles.marqueePercentage, color: 'red'}
-                      : {...styles.marqueePercentage}
-                  }>
-                  {item.percentage}
-                  {'  '}
-                </Text>
-              </React.Fragment>
-            )
-          )}
+          {gainers.map((item) => (
+            <React.Fragment key={item.id}>
+              <Text
+                style={
+                  item.percentage[0] === '-'
+                    ? {...styles.marqueeSymbol, color: 'red'}
+                    : {...styles.marqueeSymbol}
+                }>
+                {' '}
+                {item.symbol}{' '}
+              </Text>
+              <Text
+                style={
+                  item.percentage[0] === '-'
+                    ? {...styles.marqueePercentage, color: 'red'}
+                    : {...styles.marqueePercentage}
+                }>
+                {item.percentage}
+                {'  '}
+              </Text>
+            </React.Fragment>
+          ))}
         </TextTicker>
       </SafeAreaView>
     );

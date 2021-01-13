@@ -23,7 +23,6 @@ export class CompanyCategory extends Component {
   };
 
   render() {
- 
     const {category} = this.props.route.params.params;
 
     const filteredCategory = category.filter(
@@ -77,8 +76,7 @@ export class CompanyCategory extends Component {
   }
 }
 
-
-export default CompanyCategory
+export default CompanyCategory;
 
 const style = StyleSheet.create({
   boxContainer: {

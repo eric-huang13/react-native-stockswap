@@ -24,7 +24,7 @@ export class CompanyBoxList extends Component {
     super(props);
     this.state = {
       input: '',
-         };
+    };
   }
 
   handleChange = (text) => {
@@ -53,7 +53,7 @@ export class CompanyBoxList extends Component {
                   this.props.navigation.navigate('CompanyCategory', {
                     name: 'Gainers',
                     params: {
-                      category:gainers,
+                      category: gainers,
                     },
                   })
                 }>
@@ -64,7 +64,7 @@ export class CompanyBoxList extends Component {
                   this.props.navigation.navigate('CompanyCategory', {
                     name: 'Gainers',
                     params: {
-                      category:gainers
+                      category: gainers,
                     },
                   })
                 }>
@@ -101,7 +101,7 @@ export class CompanyBoxList extends Component {
                   this.props.navigation.navigate('CompanyCategory', {
                     name: 'Losers',
                     params: {
-                      category:losers,
+                      category: losers,
                     },
                   })
                 }>
@@ -112,7 +112,7 @@ export class CompanyBoxList extends Component {
                   this.props.navigation.navigate('CompanyCategory', {
                     name: 'Losers',
                     params: {
-                      category:losers,
+                      category: losers,
                     },
                   })
                 }>
@@ -149,8 +149,8 @@ export class CompanyBoxList extends Component {
                 onPress={() =>
                   this.props.navigation.navigate('CompanyCategory', {
                     name: 'Highest by Volume',
-                    params: {                     
-                      category:highestByVolume,
+                    params: {
+                      category: highestByVolume,
                     },
                   })
                 }>
@@ -161,7 +161,7 @@ export class CompanyBoxList extends Component {
                   this.props.navigation.navigate('CompanyCategory', {
                     name: 'Highest by Volume',
                     params: {
-                      category:highestByVolume,
+                      category: highestByVolume,
                     },
                   })
                 }>
