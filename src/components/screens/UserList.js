@@ -16,20 +16,20 @@ export class UserList extends Component {
     super(props);
     this.state = {
       input: '',
-      day: true,
-      week: false,
-      month: false,
-      threeMonth: false,
-      sixMonth: false,
-      year: false,
-      all: false,
-    };
+      timeFilter:'day',
+   };
   }
+  
+  timeFilterSelect(time){
+      this.setState({ timeFilter:time})
+    }
   handleChange = (text) => {
     this.setState({input: text});
   };
   render() {
     const {users} = this.props;
+
+    
     const filteredUsers = users.filter((item) =>
       item.name.toLowerCase().includes(this.state.input.toLowerCase()),
     );
@@ -38,6 +38,7 @@ export class UserList extends Component {
       <SafeAreaView>
         <ScrollView contentContainerStyle={{paddingBottom: 180}}>
           <View style={style.searchInputContainer}>
+            <Text>Time: {this.state.timeFilter}</Text>
             <TextInput
               style={style.searchInput}
               placeholder="Search"
@@ -49,19 +50,11 @@ export class UserList extends Component {
           <View style={style.timeFilterContainer}>
             <TouchableOpacity
               onPress={() =>
-                this.setState({
-                  day: true,
-                  week: false,
-                  month: false,
-                  threeMonth: false,
-                  sixMonth: false,
-                  year: false,
-                  all: false,
-                })
+                this.timeFilterSelect('day')
               }>
               <Text
                 style={
-                  this.state.day
+                  this.state.timeFilter === "day"
                     ? {...style.timeFilterButtons, color: '#8b64ff'}
                     : {...style.timeFilterButtons}
                 }>
@@ -70,19 +63,11 @@ export class UserList extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
-                this.setState({
-                  day: false,
-                  week: true,
-                  month: false,
-                  threeMonth: false,
-                  sixMonth: false,
-                  year: false,
-                  all: false,
-                })
+                this.timeFilterSelect('week')
               }>
               <Text
                 style={
-                  this.state.week
+                  this.state.timeFilter === "week"
                     ? {...style.timeFilterButtons, color: '#8b64ff'}
                     : {...style.timeFilterButtons}
                 }>
@@ -91,19 +76,11 @@ export class UserList extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
-                this.setState({
-                  day: false,
-                  week: false,
-                  month: true,
-                  threeMonth: false,
-                  sixMonth: false,
-                  year: false,
-                  all: false,
-                })
+                this.timeFilterSelect('month')
               }>
               <Text
                 style={
-                  this.state.month
+                  this.state.timeFilter === "month"
                     ? {...style.timeFilterButtons, color: '#8b64ff'}
                     : {...style.timeFilterButtons}
                 }>
@@ -112,19 +89,11 @@ export class UserList extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
-                this.setState({
-                  day: false,
-                  week: false,
-                  month: false,
-                  threeMonth: true,
-                  sixMonth: false,
-                  year: false,
-                  all: false,
-                })
+                this.timeFilterSelect('3M')
               }>
               <Text
                 style={
-                  this.state.threeMonth
+                  this.state.timeFilter === "3M"
                     ? {...style.timeFilterButtons, color: '#8b64ff'}
                     : {...style.timeFilterButtons}
                 }>
@@ -133,19 +102,11 @@ export class UserList extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
-                this.setState({
-                  day: false,
-                  week: false,
-                  month: false,
-                  threeMonth: false,
-                  sixMonth: true,
-                  year: false,
-                  all: false,
-                })
+                this.timeFilterSelect('6M')
               }>
               <Text
                 style={
-                  this.state.sixMonth
+                  this.state.timeFilter === "6M"
                     ? {...style.timeFilterButtons, color: '#8b64ff'}
                     : {...style.timeFilterButtons}
                 }>
@@ -154,19 +115,11 @@ export class UserList extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
-                this.setState({
-                  day: false,
-                  week: false,
-                  month: false,
-                  threeMonth: false,
-                  sixMonth: false,
-                  year: true,
-                  all: false,
-                })
+                this.timeFilterSelect('1Y')
               }>
               <Text
                 style={
-                  this.state.year
+                  this.state.timeFilter === "1Y"
                     ? {...style.timeFilterButtons, color: '#8b64ff'}
                     : {...style.timeFilterButtons}
                 }>
@@ -175,19 +128,11 @@ export class UserList extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
-                this.setState({
-                  day: false,
-                  week: false,
-                  month: false,
-                  threeMonth: false,
-                  sixMonth: false,
-                  year: false,
-                  all: true,
-                })
+                this.timeFilterSelect('ALL')
               }>
               <Text
                 style={
-                  this.state.all
+                  this.state.timeFilter === "ALL"
                     ? {...style.timeFilterButtons, color: '#8b64ff'}
                     : {...style.timeFilterButtons}
                 }>
