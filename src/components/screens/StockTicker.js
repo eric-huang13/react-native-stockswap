@@ -17,9 +17,9 @@ export class StockTicker extends PureComponent {
           repeatSpacer={0}
           marqueeDelay={0}
           animationType="scroll">
-          {gainers.map((item) => {
-            return (
-              <>
+          {gainers.map((item) => 
+             (
+              <React.Fragment key={item.id}>
                 <Text
                   style={
                     item.percentage[0] === '-'
@@ -38,9 +38,9 @@ export class StockTicker extends PureComponent {
                   {item.percentage}
                   {'  '}
                 </Text>
-              </>
-            );
-          })}
+              </React.Fragment>
+            )
+          )}
         </TextTicker>
       </SafeAreaView>
     );
