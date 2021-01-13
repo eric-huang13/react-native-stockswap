@@ -48,7 +48,7 @@ class Profile extends Component {
         <ScrollView>
           {selectedUser.map((user) => {
             return (
-              <View>
+              <View key={user.id}>
                 <View style={style.aboveGraphContainer}>
                   <View style={style.portfolioHeaderContainer}>
                     <Text style={style.portfolioHeader}>Portfolio</Text>
@@ -265,7 +265,7 @@ class Profile extends Component {
 
               <View>
                 {filteredPosts.map((post) => (
-                  <View>
+                  <View key={post.id}>
                     <UserPosts
                       post={post}
                       navigation={this.props.navigation}
