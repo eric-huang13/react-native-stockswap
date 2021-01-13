@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import {
-  Text,
   View,
   TouchableOpacity,
   StyleSheet,
   TextInput,
+  FlatList,
+  SafeAreaView,
 } from 'react-native';
-import {connect} from 'react-redux';
+
+import LinearGradient from 'react-native-linear-gradient';
 import CompanyCategoryBox from './CompanyCategoryBox';
 
 export class CompanyCategory extends Component {
@@ -21,116 +23,81 @@ export class CompanyCategory extends Component {
   };
 
   render() {
-    const {gainers, losers, highestByVolume} = this.props;
+    const {category} = this.props.route.params.params;
 
-    //boolean for conditional render coming from CompanyBoxList
-    const {
-      showGainers,
-      showLosers,
-      showHighestByVolume,
-    } = this.props.route.params.params;
-
-    const filteredGainers = gainers.filter((item) =>
-      item.title.toLowerCase().includes(this.state.input.toLowerCase()),
-    );
-    const filteredLosers = losers.filter((item) =>
-      item.title.toLowerCase().includes(this.state.input.toLowerCase()),
-    );
-    const filteredhighestByVolume = highestByVolume.filter((item) =>
-      item.title.toLowerCase().includes(this.state.input.toLowerCase()),
+    const filteredCategory = category.filter(
+      (item) =>
+        item.title.toLowerCase().includes(this.state.input.toLowerCase()) ||
+        item.symbol.toLowerCase().includes(this.state.input.toLowerCase()),
     );
 
-    return showGainers ? (
-      <View style={style.boxContainer}>
-        <View style={style.searchInputContainer}>
-          <TextInput
-            style={{borderWidth: 0.5, marginHorizontal: 1}}
-            placeholder="Search by name"
-            onChangeText={(text) => this.handleChange(text)}
-          />
-        </View>
+    return (
+      <LinearGradient
+        style={style.linearContainer}
+        start={{x: 0.1, y: 0.1}}
+        end={{x: 1, y: 1}}
+        colors={[
+          '#2c3752',
+          '#2e3955',
+          '#313c58',
+          '#333e5c',
+          '#36415f',
+          '#394463',
+        ]}>
+        <SafeAreaView style={style.boxContainer}>
+          <View style={style.searchInputContainer}>
+            <TextInput
+              style={style.searchInput}
+              placeholder="Search by name"
+              placeholderTextColor="lightgrey"
+              onChangeText={(text) => this.handleChange(text)}
+            />
+          </View>
 
-        {filteredGainers.map((item) => {
-          return (
-            <TouchableOpacity
-              key={item.id}
-              onPress={() =>
-                this.props.navigation.navigate({
-                  name: 'CompanyInformation',
-                  params: {item},
-                })
-              }>
-              <CompanyCategoryBox item={item} />
-            </TouchableOpacity>
-          );
-        })}
-      </View>
-    ) : showLosers ? (
-      <View style={style.boxContainer}>
-        <View style={style.searchInputContainer}>
-          <TextInput
-            style={style.searchInput}
-            placeholder="Search by name"
-            onChangeText={(text) => this.handleChange(text)}
+          <FlatList
+            style={style.listContainer}
+            data={filteredCategory}
+            renderItem={({item}) => (
+              <TouchableOpacity
+                key={item.id}
+                onPress={() =>
+                  this.props.navigation.navigate({
+                    name: 'CompanyInformation',
+                    params: {item},
+                  })
+                }>
+                <CompanyCategoryBox item={item} />
+              </TouchableOpacity>
+            )}
           />
-        </View>
-
-        {filteredLosers.map((item) => {
-          return (
-            <TouchableOpacity
-              key={item.id}
-              onPress={() =>
-                this.props.navigation.navigate({
-                  name: 'CompanyInformation',
-                  params: {item},
-                })
-              }>
-              <CompanyCategoryBox item={item} />
-            </TouchableOpacity>
-          );
-        })}
-      </View>
-    ) : showHighestByVolume ? (
-      <View style={style.boxContainer}>
-        <View style={style.searchInputContainer}>
-          <TextInput
-            style={style.searchInput}
-            placeholder="Search by name"
-            onChangeText={(text) => this.handleChange(text)}
-          />
-        </View>
-
-        {filteredhighestByVolume.map((item) => {
-          return (
-            <TouchableOpacity
-              key={item.id}
-              onPress={() =>
-                this.props.navigation.navigate({
-                  name: 'CompanyInformation',
-                  params: {item},
-                })
-              }>
-              <CompanyCategoryBox item={item} />
-            </TouchableOpacity>
-          );
-        })}
-      </View>
-    ) : (
-      <View>
-        <Text>Companies</Text>
-      </View>
+        </SafeAreaView>
+      </LinearGradient>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    gainers: state.company.gainers,
-    losers: state.company.losers,
-    highestByVolume: state.company.highestByVolume,
-  };
-};
+export default CompanyCategory;
 
-export default connect(mapStateToProps)(CompanyCategory);
-
-const style = StyleSheet.create({});
+const style = StyleSheet.create({
+  boxContainer: {
+    flex: 1,
+  },
+  linearContainer: {
+    paddingBottom: 5,
+    flex: 1,
+  },
+  listContainer: {},
+  searchInputContainer: {
+    marginBottom: 26,
+  },
+  searchInput: {
+    paddingLeft: 40,
+    alignContent: 'center',
+    backgroundColor: '#3e4d6c',
+    color: 'lightgrey',
+    fontSize: 17,
+    height: 40,
+    fontStyle: 'italic',
+    paddingVertical: 0,
+  },
+});

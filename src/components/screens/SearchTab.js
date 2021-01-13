@@ -3,12 +3,13 @@ import {
   Text,
   View,
   StyleSheet,
-  ScrollView,
   TouchableOpacity,
+  SafeAreaView,
 } from 'react-native';
 import CompanyBoxList from './CompanyBoxList';
 import UserList from './UserList.js';
 import ArticleList from './ArticleList';
+import LinearGradient from 'react-native-linear-gradient';
 
 export class SearchTab extends Component {
   constructor(props) {
@@ -22,62 +23,114 @@ export class SearchTab extends Component {
 
   render() {
     return (
-      <View>
-        <ScrollView>
-          <Text style={style.header}>Search</Text>
-          <View style={style.tabSelectorContainer}>
-            <TouchableOpacity
-              onPress={() =>
-                this.setState({
-                  companies: true,
-                  users: false,
-                  news: false,
-                })
-              }>
-              <Text
-                style={
-                  this.state.companies
-                    ? {backgroundColor: 'white', borderBottomWidth: 1.5}
-                    : {}
+      <LinearGradient
+        start={{x: 0.1, y: 0.1}}
+        end={{x: 1, y: 1}}
+        colors={[
+          '#1d2842',
+          '#1f2a45',
+          '#222d47',
+          '#242f4a',
+          '#27324d',
+          '#293450',
+          '#2c3752',
+          '#2e3955',
+          '#313c58',
+          '#333e5c',
+          '#36415f',
+          '#394463',
+        ]}
+        style={{flex: 1}}>
+        <SafeAreaView>
+          {/* <ScrollView> */}
+          <LinearGradient
+            start={{x: 0.1, y: 0.1}}
+            end={{x: 1, y: 1}}
+            colors={[
+              '#2c3752',
+              '#2e3955',
+              '#313c58',
+              '#333e5c',
+              '#36415f',
+              '#394463',
+            ]}>
+            <Text style={style.header}>Search</Text>
+
+            <View style={style.tabSelectorContainer}>
+              <TouchableOpacity
+                onPress={() =>
+                  this.setState({
+                    companies: true,
+                    users: false,
+                    news: false,
+                  })
                 }>
-                Stocks
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                this.setState({
-                  companies: false,
-                  news: true,
-                  users: false,
-                })
-              }>
-              <Text
-                style={
-                  this.state.news
-                    ? {backgroundColor: 'white', borderBottomWidth: 1.5}
-                    : {}
+                <View
+                  style={
+                    this.state.companies
+                      ? {...style.activeTabHeaderView}
+                      : {...style.tabHeaderView}
+                  }>
+                  <Text
+                    style={
+                      this.state.companies
+                        ? {...style.activeTabHeader}
+                        : {...style.tabHeader}
+                    }>
+                    Stocks
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  this.setState({
+                    companies: false,
+                    news: true,
+                    users: false,
+                  })
                 }>
-                News
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                this.setState({
-                  companies: false,
-                  news: false,
-                  users: true,
-                })
-              }>
-              <Text
-                style={
-                  this.state.users
-                    ? {backgroundColor: 'white', borderBottomWidth: 1.5}
-                    : {}
+                <View
+                  style={
+                    this.state.news
+                      ? {...style.activeTabHeaderView}
+                      : {...style.tabHeaderView}
+                  }>
+                  <Text
+                    style={
+                      this.state.news
+                        ? {...style.activeTabHeader}
+                        : {...style.tabHeader}
+                    }>
+                    News
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  this.setState({
+                    companies: false,
+                    news: false,
+                    users: true,
+                  })
                 }>
-                People
-              </Text>
-            </TouchableOpacity>
-          </View>
+                <View
+                  style={
+                    this.state.users
+                      ? {...style.activeTabHeaderView}
+                      : {...style.tabHeaderView}
+                  }>
+                  <Text
+                    style={
+                      this.state.users
+                        ? {...style.activeTabHeader}
+                        : {...style.tabHeader}
+                    }>
+                    People
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </LinearGradient>
           {this.state.companies ? (
             <CompanyBoxList navigation={this.props.navigation} />
           ) : this.state.news ? (
@@ -89,8 +142,9 @@ export class SearchTab extends Component {
               <Text>Search Screen</Text>
             </View>
           )}
-        </ScrollView>
-      </View>
+          {/* </ScrollView> */}
+        </SafeAreaView>
+      </LinearGradient>
     );
   }
 }
@@ -115,14 +169,34 @@ const style = StyleSheet.create({
     paddingLeft: 5,
   },
   header: {
-    fontSize: 19,
+    color: 'white',
+    fontSize: 20,
     fontWeight: '700',
-    marginTop: 8.5,
+    marginVertical: 8,
     textAlign: 'center',
   },
   tabSelectorContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginVertical: 15,
+    paddingBottom: 2,
+  },
+  tabHeader: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  activeTabHeaderView: {
+    borderBottomWidth: 3,
+    borderBottomColor: '#855cff',
+    paddingBottom: 1.8,
+  },
+  activeTabHeader: {
+    color: '#855cff',
+    textShadowColor: '#855cff',
+    textShadowOffset: {width: 1, height: 1},
+    textShadowRadius: 50,
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });

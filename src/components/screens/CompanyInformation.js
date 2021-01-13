@@ -5,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
+  SafeAreaView,
 } from 'react-native';
 import CompanyStockGraph from './CompanyStockGraph';
 
@@ -22,6 +23,13 @@ export class CompanyInformation extends Component {
       ],
       percent: '1.22',
       range: [10, 15],
+      live: true,
+      day: false,
+      week: false,
+      month: false,
+      threeMonth: false,
+      year: false,
+      all: false,
     };
   }
 
@@ -83,25 +91,73 @@ export class CompanyInformation extends Component {
     const {graphData, percent, range} = this.state;
     console.log(graphData, 'graph Data');
     return (
-      <View>
+      <SafeAreaView style={style.mainContainer}>
         <ScrollView>
           {this.props.route.params ? (
-            <View>
-              <View style={styles.symbolView}>
-                <Text style={styles.symbol}>{route.params.item.symbol}</Text>
-                <Text style={styles.price}>${currentPrice}</Text>
+            <View style={style.aboveGraphContainer}>
+              <View style={style.symbolView}>
+                <Text style={style.symbol}>{route.params.item.symbol}</Text>
+                <Text style={style.price}>${currentPrice}</Text>
               </View>
-              <View style={styles.titleView}>
-                <Text style={styles.title}>{route.params.item.title}</Text>
-                <Text style={styles.percentage}>({percent}%)</Text>
+              <View style={style.titleView}>
+                <Text style={style.title}>{route.params.item.title}</Text>
+                <Text style={style.percentage}>({percent}%)</Text>
               </View>
             </View>
           ) : (
             <Text>Company Information</Text>
           )}
-          <View style={styles.stockButtonsContainer}>
-            <TouchableOpacity>
-              <Text style={styles.stockButtons}>1D</Text>
+          <View style={style.graphContainer}>
+            <CompanyStockGraph graphData={graphData} range={range} />
+            <View style={style.graphNumbers}>
+              <Text style={style.graphNumberText}>-{chartLow}</Text>
+              <Text style={style.graphNumberText}>-{chartOneQuarter}</Text>
+              <Text style={style.graphNumberText}>-{chartThreeQuarter}</Text>
+              <Text style={style.graphNumberText}>-{chartHigh}</Text>
+            </View>
+          </View>
+          <View style={style.stockButtonsContainer}>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  live: true,
+                  day: false,
+                  week: false,
+                  month: false,
+                  threeMonth: false,
+                  year: false,
+                  all: false,
+                })
+              }>
+              <Text
+                style={
+                  this.state.live
+                    ? {...style.stockButtons, color: '#8b64ff'}
+                    : {...style.stockButtons}
+                }>
+                Live
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  live: false,
+                  day: true,
+                  week: false,
+                  month: false,
+                  threeMonth: false,
+                  year: false,
+                  all: false,
+                })
+              }>
+              <Text
+                style={
+                  this.state.day
+                    ? {...style.stockButtons, color: '#8b64ff'}
+                    : {...style.stockButtons}
+                }>
+                1D
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
@@ -109,9 +165,23 @@ export class CompanyInformation extends Component {
                   graphData: weekData,
                   percent: percentChange,
                   range: weekRange,
+                  live: false,
+                  day: false,
+                  week: true,
+                  month: false,
+                  threeMonth: false,
+                  year: false,
+                  all: false,
                 })
               }>
-              <Text style={styles.stockButtons}>1W</Text>
+              <Text
+                style={
+                  this.state.week
+                    ? {...style.stockButtons, color: '#8b64ff'}
+                    : {...style.stockButtons}
+                }>
+                1W
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
@@ -119,94 +189,167 @@ export class CompanyInformation extends Component {
                   graphData: monthData,
                   percent: percentChangeMonth,
                   range: newrange,
+                  live: false,
+                  day: false,
+                  week: false,
+                  month: true,
+                  threeMonth: false,
+                  year: false,
+                  all: false,
                 })
               }>
-              <Text style={styles.stockButtons}>1M</Text>
+              <Text
+                style={
+                  this.state.month
+                    ? {...style.stockButtons, color: '#8b64ff'}
+                    : {...style.stockButtons}
+                }>
+                1M
+              </Text>
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Text style={styles.stockButtons}>3M</Text>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  live: false,
+                  day: false,
+                  week: false,
+                  month: false,
+                  threeMonth: true,
+                  year: false,
+                  all: false,
+                })
+              }>
+              <Text
+                style={
+                  this.state.threeMonth
+                    ? {...style.stockButtons, color: '#8b64ff'}
+                    : {...style.stockButtons}
+                }>
+                3M
+              </Text>
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Text style={styles.stockButtons}>6M</Text>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  live: false,
+                  day: false,
+                  week: false,
+                  month: false,
+                  threeMonth: false,
+                  year: true,
+                  all: false,
+                })
+              }>
+              <Text
+                style={
+                  this.state.year
+                    ? {...style.stockButtons, color: '#8b64ff'}
+                    : {...style.stockButtons}
+                }>
+                1Y
+              </Text>
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Text style={styles.stockButtons}>1Y</Text>
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Text style={styles.stockButtons}>5Y</Text>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  live: false,
+                  day: false,
+                  week: false,
+                  month: false,
+                  threeMonth: false,
+                  year: false,
+                  all: true,
+                })
+              }>
+              <Text
+                style={
+                  this.state.all
+                    ? {...style.stockButtons, color: '#8b64ff'}
+                    : {...style.stockButtons}
+                }>
+                All
+              </Text>
             </TouchableOpacity>
           </View>
 
-          <View style={styles.graphContainer}>
-            <CompanyStockGraph
-              route={route}
-              graphData={graphData}
-              range={range}
-            />
-            <View style={styles.graphNumbers}>
-              <Text style={styles.graphNumberText}>{chartLow}</Text>
-              <Text style={styles.graphNumberText}>{chartOneQuarter}</Text>
-              <Text style={styles.graphNumberText}>{chartThreeQuarter}</Text>
-              <Text style={styles.graphNumberText}>{chartHigh}</Text>
-            </View>
-          </View>
-          <Text style={styles.vitalsHeader}>Vitals</Text>
-          <View style={styles.vitalsContainer}>
-            <View style={styles.vitalsLeftColumn}>
-              <View style={styles.vitalsRow}>
-                <Text style={styles.vitalDetails}>Open</Text>
-                <Text style={styles.vitalDetails}>{currentPrice}</Text>
+          <Text style={style.vitalsHeader}>STATS</Text>
+          <View style={style.vitalsContainer}>
+            <View style={style.vitalsLeftColumn}>
+              <View style={style.vitalsRow}>
+                <Text style={style.vitalDetails}>Open:</Text>
+                <Text style={style.vitalDetailsData}>${currentPrice}</Text>
               </View>
-              <View style={styles.vitalsRow}>
-                <Text style={styles.vitalDetails}>High</Text>
-                <Text style={styles.vitalDetailsData}>{newrange[1]}</Text>
+              <View style={style.vitalsRow}>
+                <Text style={style.vitalDetails}>High:</Text>
+                <Text style={style.vitalDetailsData}>${newrange[1]}</Text>
               </View>
-              <View style={styles.vitalsRow}>
-                <Text style={styles.vitalDetails}>Low</Text>
-                <Text style={styles.vitalDetailsData}>{newrange[0]}</Text>
+              <View style={style.vitalsRow}>
+                <Text style={style.vitalDetails}>Low:</Text>
+                <Text style={style.vitalDetailsData}>${newrange[0]}</Text>
               </View>
-              <View style={styles.vitalsRow}>
-                <Text style={styles.vitalDetails}>Volume</Text>
-                <Text style={styles.vitalDetailsData}>{currentPrice}</Text>
+              <View style={style.vitalsRow}>
+                <Text style={style.vitalDetails}>Volume:</Text>
+                <Text style={style.vitalDetailsData}>${currentPrice}</Text>
               </View>
-              <View style={styles.vitalsRow}>
-                <Text style={styles.vitalDetails}>Avg Vol</Text>
-                <Text style={styles.vitalDetailsData}>{currentPrice}</Text>
+              <View style={style.vitalsRow}>
+                <Text style={style.vitalDetails}>Avg Vol:</Text>
+                <Text style={style.vitalDetailsData}>${currentPrice}</Text>
               </View>
             </View>
 
-            <View style={styles.vitalsRightColumn}>
-              <View style={styles.vitalsRow}>
-                <Text style={styles.vitalDetails}>P/E</Text>
-                <Text style={styles.vitalDetailsData}>{currentPrice}</Text>
+            <View style={style.vitalsRightColumn}>
+              <View style={style.vitalsRow}>
+                <Text style={style.vitalDetails}>P/E:</Text>
+                <Text style={style.vitalDetailsData}>{currentPrice}</Text>
               </View>
-              <View style={styles.vitalsRow}>
-                <Text style={styles.vitalDetails}>MKT Cap</Text>
-                <Text style={styles.vitalDetailsData}>{currentPrice}</Text>
+              <View style={style.vitalsRow}>
+                <Text style={style.vitalDetails}>MKT Cap:</Text>
+                <Text style={style.vitalDetailsData}>${currentPrice}</Text>
               </View>
-              <View style={styles.vitalsRow}>
-                <Text style={styles.vitalDetails}>52w High</Text>
-                <Text style={styles.vitalDetailsData}>{newrange[1]}</Text>
+              <View style={style.vitalsRow}>
+                <Text style={style.vitalDetails}>52w High:</Text>
+                <Text style={style.vitalDetailsData}>${newrange[1]}</Text>
               </View>
-              <View style={styles.vitalsRow}>
-                <Text style={styles.vitalDetails}>52w Low</Text>
-                <Text style={styles.vitalDetailsData}>{newrange[0]}</Text>
+              <View style={style.vitalsRow}>
+                <Text style={style.vitalDetails}>52w Low:</Text>
+                <Text style={style.vitalDetailsData}>${newrange[0]}</Text>
               </View>
-              <View style={styles.vitalsRow}>
-                <Text style={styles.vitalDetails}>Div/Yield</Text>
-                <Text style={styles.vitalDetailsData}>{currentPrice}</Text>
+              <View style={style.vitalsRow}>
+                <Text style={style.vitalDetails}>Div/Yield:</Text>
+                <Text style={style.vitalDetailsData}>{currentPrice}%</Text>
               </View>
             </View>
+          </View>
+          <View style={style.buyButtonContainer}>
+            <Text style={style.buyButton}>Buy {route.params.item.title}</Text>
+          </View>
+          <View style={style.aboutSection}>
+            <Text style={style.aboutHeader}>ABOUT</Text>
+            <Text style={style.sectorData}>
+              <Text style={style.sectorText}>Sector:</Text>{' '}
+              {route.params.item.sector}
+            </Text>
+            <Text style={style.about}>{route.params.item.about}</Text>
           </View>
         </ScrollView>
-      </View>
+      </SafeAreaView>
     );
   }
 }
 
 export default CompanyInformation;
 
-const styles = StyleSheet.create({
+const style = StyleSheet.create({
+  mainContainer: {
+    backgroundColor: '#2a334a',
+  },
+  aboveGraphContainer: {
+    paddingHorizontal: 4,
+    paddingVertical: 14,
+    backgroundColor: '#324165',
+    marginBottom: 20,
+    // marginTop:50,
+  },
   graphContainer: {
     // borderWidth:1,
     flexDirection: 'row',
@@ -214,13 +357,15 @@ const styles = StyleSheet.create({
   graphNumbers: {
     // marginTop:170,
     flexDirection: 'column-reverse',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
     // alignItems:"flex-end",
     marginRight: 10,
+    borderLeftWidth: 1,
+    borderLeftColor: 'lightgrey',
   },
   graphNumberText: {
-    color: 'black',
-    fontWeight: 'bold',
+    color: 'lightgrey',
+    // fontWeight: 'bold',
     fontSize: 14.5,
   },
   symbolView: {
@@ -240,38 +385,38 @@ const styles = StyleSheet.create({
   symbol: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'rgb(8, 177, 40)',
+    color: 'white',
   },
   price: {
-    color: 'rgb(8, 177, 40)',
-    fontSize: 34,
+    color: 'white',
+    fontSize: 24,
     fontWeight: 'bold',
   },
   title: {
-    color: 'rgb(8, 177, 40)',
-    fontSize: 42,
-    fontWeight: 'bold',
+    color: 'lightgrey',
+    fontSize: 14,
   },
   percentage: {
     color: 'rgb(8, 177, 40)',
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: 'bold',
   },
   vitalsContainer: {
     marginTop: 6,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
+    // borderTopWidth: 1,
+    // borderBottomWidth: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 18,
+    paddingHorizontal: 10,
     paddingTop: 4,
   },
   vitalsHeader: {
-    textAlign: 'center',
-    color: 'black',
-    fontSize: 31,
+    color: 'white',
+    fontSize: 26,
     fontWeight: 'bold',
     marginTop: 28,
+    textAlign: 'left',
+    paddingHorizontal: 10,
   },
   vitalsLeftColumn: {
     flexDirection: 'column',
@@ -291,14 +436,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   vitalDetails: {
-    color: 'black',
-    fontSize: 20,
-    fontWeight: 'bold',
+    color: 'lightgrey',
+    fontSize: 18,
+    // fontWeight: 'bold',
     marginBottom: 10,
   },
   vitalDetailsData: {
-    color: 'black',
-    fontSize: 20,
+    color: 'white',
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
     marginLeft: 55,
@@ -308,10 +453,51 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     marginBottom: 10,
+    borderBottomWidth: 0.5,
+    borderBottomColor: 'lightgrey',
+    paddingBottom: 9,
   },
   stockButtons: {
-    color: 'black',
+    color: 'white',
     fontWeight: 'bold',
-    fontSize: 15,
+    fontSize: 16,
+  },
+  buyButtonContainer: {
+    marginTop: 24,
+    alignItems: 'center',
+  },
+  buyButton: {
+    backgroundColor: '#8b64ff',
+    color: 'white',
+    borderRadius: 6,
+    fontSize: 18,
+    paddingVertical: 10,
+    paddingHorizontal: 40,
+  },
+  aboutSection: {
+    marginTop: 36,
+    marginBottom: 22,
+    paddingLeft: 8,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  aboutHeader: {
+    color: 'white',
+    fontSize: 27,
+    fontWeight: 'bold',
+    marginBottom: 4,
+  },
+  sectorText: {
+    color: 'lightgrey',
+    fontSize: 19,
+  },
+  sectorData: {
+    color: 'white',
+    fontSize: 19,
+  },
+  about: {
+    marginTop: 10,
+    color: 'white',
+    fontSize: 17,
   },
 });
