@@ -8,7 +8,6 @@ import {
   SafeAreaView,
 } from 'react-native';
 
-import {connect} from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import CompanyCategoryBox from './CompanyCategoryBox';
 
@@ -24,26 +23,10 @@ export class CompanyCategory extends Component {
   };
 
   render() {
-    const {gainers, losers, highestByVolume} = this.props;
-    console.log(this.props.navigation, 'props in comp');
-    //boolean for conditional render coming from CompanyBoxList
-    const {
-      showGainers,
-      showLosers,
-      showHighestByVolume,
-    } = this.props.route.params.params;
+ 
+    const {category} = this.props.route.params.params;
 
-    const filteredGainers = gainers.filter(
-      (item) =>
-        item.title.toLowerCase().includes(this.state.input.toLowerCase()) ||
-        item.symbol.toLowerCase().includes(this.state.input.toLowerCase()),
-    );
-    const filteredLosers = losers.filter(
-      (item) =>
-        item.title.toLowerCase().includes(this.state.input.toLowerCase()) ||
-        item.symbol.toLowerCase().includes(this.state.input.toLowerCase()),
-    );
-    const filteredhighestByVolume = highestByVolume.filter(
+    const filteredCategory = category.filter(
       (item) =>
         item.title.toLowerCase().includes(this.state.input.toLowerCase()) ||
         item.symbol.toLowerCase().includes(this.state.input.toLowerCase()),
@@ -74,15 +57,7 @@ export class CompanyCategory extends Component {
 
           <FlatList
             style={style.listContainer}
-            data={
-              showGainers
-                ? filteredGainers
-                : showLosers
-                ? filteredLosers
-                : showHighestByVolume
-                ? filteredhighestByVolume
-                : null
-            }
+            data={filteredCategory}
             renderItem={({item}) => (
               <TouchableOpacity
                 key={item.id}
@@ -102,15 +77,8 @@ export class CompanyCategory extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    gainers: state.company.gainers,
-    losers: state.company.losers,
-    highestByVolume: state.company.highestByVolume,
-  };
-};
 
-export default connect(mapStateToProps)(CompanyCategory);
+export default CompanyCategory
 
 const style = StyleSheet.create({
   boxContainer: {
