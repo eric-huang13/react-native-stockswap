@@ -1,5 +1,8 @@
 import {LOGIN_START, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, SIGNUP_START, SIGNUP_SUCCESS, SIGNUP_ERROR} from 'constants';
 import axios from 'axios';
+import deviceStorage from '../components/screens/DeviceStorage'
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 
 
@@ -24,11 +27,17 @@ export const Login = (input) => {
   return (dispatch) => {
     dispatch({type: LOGIN_START});
     axios
-    .post('https://jiujitsux.herokuapp.com/api/users/login', input)
-  // .then((response) => {
-  //               console.log(response, 'LOGIN RES')
-  //           })
-    .then(response =>{ dispatch({ type: LOGIN_SUCCESS, payload: response.data }) 
+        
+            .post('https://jiujitsux.herokuapp.com/api/users/login', input)
+            // .then((response) => {
+            //     console.log(response, 'response')
+            //     // window.location.reload();
+            // }) console.log('token', response.data.token)
+        .then(response =>{ deviceStorage.saveItem('token', response.data.token), dispatch({ type: LOGIN_SUCCESS, payload: response.data })
+       
+         
+   
+     
 })
 
 .catch(error => {dispatch({ type: SIGNUP_ERROR, payload: error.response })
