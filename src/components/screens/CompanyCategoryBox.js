@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
 
 export default class CompanyCategoryBox extends Component {
   render() {
     const {item} = this.props;
 
     return (
-      <View style={style.container}>
+      <SafeAreaView
+        style={
+          item.id % 2 === 0
+            ? {...style.container, backgroundColor: '#2a334a'}
+            : {...style.container}
+        }>
         <View key={item.id} style={style.companyRow}>
           <View style={style.nameContainer}>
             <Text style={style.symbol}>{item.symbol}</Text>
@@ -17,49 +22,47 @@ export default class CompanyCategoryBox extends Component {
             <Text style={style.percentage}>{item.percentage}</Text>
           </View>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }
 
 const style = StyleSheet.create({
-  searchInputContainer: {
-    alignItems: 'center',
-    padding: 4.8,
-    marginTop: 0,
+  container: {
+    backgroundColor: '#324165',
+    paddingVertical: 4,
   },
-  searchInput: {
-    borderWidth: 1,
-    width: '90%',
-    fontSize: 15,
-    fontStyle: 'italic',
-    textAlign: 'center',
-    padding: 2.5,
-    opacity: 0.8,
-    marginBottom: 20,
-  },
-
   companyRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 12,
     alignContent: 'space-between',
-    marginVertical: 8,
+    marginVertical: 6,
   },
   nameContainer: {
     flexDirection: 'column',
+    justifyContent: 'space-evenly',
+  },
+  detailsContainer: {
+    marginTop: 5,
   },
   symbol: {
-    fontSize: 20,
+    color: 'white',
+    fontSize: 22,
     fontWeight: 'bold',
   },
   title: {
-    color: 'grey',
+    color: '#d0d3dc',
+    marginTop: 3,
   },
   price: {
-    fontSize: 20,
+    color: 'white',
+    fontSize: 22,
+    fontWeight: 'bold',
   },
   percentage: {
-    color: 'grey',
+    color: '#5fc48c',
+    alignSelf: 'flex-end',
+    marginTop: 3,
   },
 });

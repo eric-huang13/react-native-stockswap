@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, Text, SafeAreaView} from 'react-native';
 import TextTicker from 'react-native-text-ticker';
 import {connect} from 'react-redux';
 
@@ -8,7 +8,7 @@ export class StockTicker extends PureComponent {
     const {gainers} = this.props;
 
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <TextTicker
           style={{fontSize: 24}}
           scrollSpeed={5000}
@@ -17,31 +17,30 @@ export class StockTicker extends PureComponent {
           repeatSpacer={0}
           marqueeDelay={0}
           animationType="scroll">
-          {gainers.map((item) => {
-            return (
-              <>
-                <Text
-                  style={
-                    item.percentage[0] === '-'
-                      ? {...styles.marqueeSymbol, color: 'red'}
-                      : {...styles.marqueeSymbol}
-                  }>
-                  {' '}
-                  {item.symbol}{' '}
-                </Text>
-                <Text
-                  style={
-                    item.percentage[0] === '-'
-                      ? {...styles.marqueePercentage, color: 'red'}
-                      : {...styles.marqueePercentage}
-                  }>
-                  {item.percentage}{' '}
-                </Text>
-              </>
-            );
-          })}
+          {gainers.map((item) => (
+            <React.Fragment key={item.id}>
+              <Text
+                style={
+                  item.percentage[0] === '-'
+                    ? {...styles.marqueeSymbol, color: 'red'}
+                    : {...styles.marqueeSymbol}
+                }>
+                {' '}
+                {item.symbol}{' '}
+              </Text>
+              <Text
+                style={
+                  item.percentage[0] === '-'
+                    ? {...styles.marqueePercentage, color: 'red'}
+                    : {...styles.marqueePercentage}
+                }>
+                {item.percentage}
+                {'  '}
+              </Text>
+            </React.Fragment>
+          ))}
         </TextTicker>
-      </View>
+      </SafeAreaView>
     );
   }
 }
@@ -56,19 +55,21 @@ export default connect(mapStateToProps)(StockTicker);
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
+    backgroundColor: '#2e3955',
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 5,
   },
   textstyle: {
     color: 'yellow',
   },
   marqueeSymbol: {
-    color: 'green',
-    fontSize: 20,
+    color: '#91f2b1',
+    fontSize: 16.5,
     fontWeight: 'bold',
   },
   marqueePercentage: {
-    color: 'green',
-    fontSize: 15,
+    color: '#91f2b1',
+    fontSize: 14,
   },
 });

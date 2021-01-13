@@ -1,73 +1,115 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
-// import {style} from '../../styles/style';
+import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 export class CompanyBox extends Component {
   render() {
     const {item} = this.props;
+    const styledText =
+      item.category === 'gainers' ? (
+        <LinearGradient
+          start={{x: 0.1, y: 0.1}}
+          end={{x: 1, y: 1}}
+          colors={['#4c669f', '#3b5998', '#1cab66']}
+          style={style.linearGradient}>
+          <SafeAreaView style={style.listContainer}>
+            <View style={style.topDetails}>
+              <Text style={{...style.symbol, color: '#1cab66'}}>
+                {item.symbol}
+              </Text>
+              <Text style={style.title}>
+                {item.title.length < 15
+                  ? `${item.title}`
+                  : `${item.title.substring(0, 14)}...`}
+              </Text>
+            </View>
+            <View style={style.bottomDetails}>
+              <Text style={style.price}>${item.price}</Text>
+              <Text style={{...style.percentage, color: '#1cab66'}}>
+                {item.percentage}
+              </Text>
+            </View>
+          </SafeAreaView>
+        </LinearGradient>
+      ) : item.category === 'losers' ? (
+        <LinearGradient
+          start={{x: 0.1, y: 0.1}}
+          end={{x: 1, y: 1}}
+          colors={['#4c669f', '#3b5998', '#ac3b42']}
+          style={style.linearGradient}>
+          <SafeAreaView style={style.listContainer}>
+            <Text style={{...style.symbol, color: '#ac3b42'}}>
+              {item.symbol}
+            </Text>
+            <Text style={style.title}>
+              {item.title.length < 15
+                ? `${item.title}`
+                : `${item.title.substring(0, 14)}...`}
+            </Text>
+            <Text style={style.price}>${item.price}</Text>
+            <Text style={{...style.percentage, color: '#ac3b42'}}>
+              {item.percentage}
+            </Text>
+          </SafeAreaView>
+        </LinearGradient>
+      ) : (
+        <LinearGradient
+          start={{x: 0.1, y: 0.1}}
+          end={{x: 1, y: 1}}
+          colors={['#4c669f', 'purple', 'purple']}
+          style={style.linearGradient}>
+          <SafeAreaView style={style.listContainer}>
+            <Text style={{...style.symbol, color: '#9082cf'}}>
+              {item.symbol}
+            </Text>
+            <Text style={style.title}>
+              {item.title.length < 15
+                ? `${item.title}`
+                : `${item.title.substring(0, 14)}...`}
+            </Text>
+            <Text style={style.price}>${item.price}</Text>
+            <Text style={{...style.percentage, color: '#9082cf'}}>
+              {item.percentage}
+            </Text>
+          </SafeAreaView>
+        </LinearGradient>
+      );
 
-    return (
-      <View>
-        <View
-          style={style.listContainer}
-
-          //Commented out code styling from original mock design in case new design is similar
-
-          // style={
-          //   item.category === 'gainers'
-          //     ? {
-          //         ...style.listContainer,
-          //         backgroundColor: 'rgb(8, 177, 40)',
-          //       }
-          //     : item.category === 'losers'
-          //     ? {
-          //         ...style.listContainer,
-          //         backgroundColor: 'rgb(196, 38, 0)',
-          //       }
-          //     : {
-          //         ...style.listContainer,
-          //         backgroundColor: 'rgb(58, 117, 167)',
-          //       }
-          // }
-        >
-          <Text style={style.symbol}>{item.symbol}</Text>
-          <Text style={style.title}>{item.title}</Text>
-          {/* <View style={style.detailsContainer}> */}
-          <Text style={style.price}>{item.price}</Text>
-
-          <Text style={style.percentage}>{item.percentage}</Text>
-          {/* </View> */}
-        </View>
-      </View>
-    );
+    return <SafeAreaView>{styledText}</SafeAreaView>;
   }
 }
 
 export default CompanyBox;
 
 const style = StyleSheet.create({
-  listContainer: {
+  linearGradient: {
     alignSelf: 'center',
     marginTop: 3,
-    borderWidth: 1,
-    borderColor: 'rgb(58, 117, 167)',
-    // backgroundColor: 'rgb(58, 117, 167)',
     borderRadius: 15,
     height: 130,
     width: 125,
     flexDirection: 'column',
     padding: 3,
-    justifyContent: 'space-evenly',
+    paddingTop: 0,
+    justifyContent: 'space-around',
     marginLeft: 4,
     marginRight: 4,
   },
+  listContainer: {
+    borderRadius: 15,
+    flex: 1,
+    flexDirection: 'column',
+    paddingHorizontal: 4,
+    paddingTop: 0,
+    justifyContent: 'space-evenly',
+  },
+  topDetails: {
+    marginTop: -4,
+  },
+  bottomDetails: {},
   title: {
-    // alignSelf: 'center',
-    // fontWeight: 'bold',
     fontSize: 14,
-    // marginTop: 3,
-    // color: 'rgb(246, 252, 247)',
-    // marginBottom: 20,
+
     color: 'grey',
   },
   detailsContainer: {
@@ -79,18 +121,13 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 22,
     color: 'rgb(8, 11, 9)',
-    // marginLeft: 8,
-    // marginBottom: -7,
   },
   percentage: {
-    // fontWeight: 'bold',
     fontSize: 14,
-    // color: 'rgb(8, 11, 9)',
     color: 'grey',
   },
   price: {
-    // fontWeight: 'bold',
     fontSize: 20,
-    color: 'rgb(8, 11, 9)',
+    color: 'lightgrey',
   },
 });
