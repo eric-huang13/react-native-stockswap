@@ -10,6 +10,7 @@ import {Button, SafeAreaView, Text,
   Keyboard,
   ScrollView} from 'react-native';
 import {Login} from 'actions/user';
+import axios from 'axios'
 
 class LoginScreen extends Component {
   constructor(props) {
@@ -37,7 +38,16 @@ class LoginScreen extends Component {
    handleSubmit = (input) => {
     LoginUser(input)
   };
-    render() {
+  testAPI = () => {
+    axios.get('/')
+    .then(response => response.data)
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err => console.log(err))
+  }
+
+  render() {
     const {isLoggedIn, LoginUser} = this.props;
 
     
