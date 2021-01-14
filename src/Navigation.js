@@ -20,6 +20,7 @@ import UserCommentList from './components/screens/UserCommentList';
 import PostScreen from './components/screens/PostScreen';
 import UserPortfolioList from './components/screens/UserPortfolioList';
 import SignUp from './components/screens/SignUp'
+import ProfileInfoForm from './components/screens/ProfileInfoForm'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -246,6 +247,8 @@ class Navigation extends Component {
             }}>
             <Tab.Screen name="Home" component={this.createHomeStack} />
             <Tab.Screen name="Search" component={this.createSearchStack} />
+            <Tab.Screen name="ProfileForm" component={ProfileInfoForm} />
+
           </Tab.Navigator>
         ) : (
           <Stack.Navigator>
