@@ -6,8 +6,8 @@ import axios from 'axios'
 
 class LoginScreen extends Component {
   testAPI = () => {
-    fetch('http://10.0.2.2:9000')
-    .then(response => response.json())
+    axios.get('/')
+    .then(response => response.data)
     .then(data => {
         console.log(data);
     })
