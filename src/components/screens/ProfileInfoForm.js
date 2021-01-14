@@ -63,7 +63,9 @@ class ProfileInfoForm extends Component {
             {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}> */}
             
             <Text style={style.header}>Fill Profile Info</Text>
-            
+            <View style={style.uploadPhotoContainer}>
+                <Text style={style.uploadPhotoText}>Tap to upload your photo</Text>
+            </View>
 
             <View style={style.topRow}>
               <View style={style.rowInputContainer}>
@@ -77,7 +79,6 @@ class ProfileInfoForm extends Component {
                   returnKeyType="next"
                   onSubmitEditing={() => this.username.focus()}
                   ref={(input) => (this.name = input)}
-
                 />
               </View>
 
@@ -126,23 +127,24 @@ class ProfileInfoForm extends Component {
               <View>
                 <Text style={style.inputHeader}>Bio</Text>
                 <TextInput
-                  style={style.inputStyle}
+                  style={style.inputStyleBio}
                   value={this.state.bio}
                   onChangeText={(text) => this.handleBioChange(text)}
                   placeholder="Enter your bio"
                   placeholderTextColor="#9ea6b5"
                   secureTextEntry
-                  style={style.inputStyle}
+                  multiline = {true}
+                  numberOfLines = {4}
                   ref={(input) => (this.bio = input)}
                 />
               </View>
 
-              <View style={style.termsContainer}>
-                <Text style={style.newText}>Account Privacy</Text>
+              <View style={style.privacyContainer}>
+                <Text style={style.privacyText}>Account Privacy</Text>
                 <TouchableOpacity
                   onPress={() => console.log("Account Privacy Button")}
                 >
-                  <Text style={style.termsText}>Visible for all</Text>
+                  <Text style={style.buttonText}>Visible for all</Text>
                 </TouchableOpacity>
               </View>
               <View>
@@ -184,9 +186,22 @@ const style = StyleSheet.create({
     backgroundColor: "#323e5b",
     paddingHorizontal: 30,
   },
-  imageContainer:{
-    
+  uploadPhotoContainer:{
+    alignSelf:'center',
+    backgroundColor: "#515581",
+    borderRadius:100,
+    width:135,
+    height:135,
+    marginBottom:30,
+    paddingVertical:40,
+    paddingHorizontal:10
   },
+  uploadPhotoText:{
+      color:'white',
+      textAlign:'center',
+      fontSize:15.5,
+
+   },
   header: {
     textAlign: "center",
     fontSize: 19,
@@ -201,16 +216,7 @@ const style = StyleSheet.create({
   rowInputContainer: {
       width:168,     
   },
- 
-//   container: {
-//     borderRadius: 8,
-//     backgroundColor: "#2c3957",
-//     paddingHorizontal: 20,
-//     paddingVertical: 20,
-//     flexDirection: "column",
-//   },
-
- 
+  
   inputHeader: {
     fontSize: 14.5,
     color: "#c1c5cd",
@@ -224,6 +230,15 @@ const style = StyleSheet.create({
     marginTop: 1,
     fontSize: 16,
   },
+  inputStyleBio: {
+    borderRadius: 8,
+    backgroundColor: "#3e4d6c",
+    marginBottom: 12,
+    padding: 8,
+    marginTop: 1,
+    fontSize: 16,
+    textAlignVertical:'top',
+  },
  
   button: {
     alignSelf: "center",
@@ -236,21 +251,25 @@ const style = StyleSheet.create({
     borderRadius: 6,
     fontSize: 17,
   },
-  termsContainer: {
+  privacyContainer: {
     marginBottom: 28,
     flexDirection: "column",
     justifyContent: "space-between",
     paddingHorizontal: 2,
   },
  
-  newText: {
-    color: "white",
-    fontSize: 12,
+  privacyText: {
+    color: "#c1c5cd",
+    fontSize: 14,
     marginRight: 3,
   },
-  termsText: {
-    color: "#b8a0ff",
-    fontSize: 12,
+  buttonText: {
+    backgroundColor: "#3e4d6c",
+    color: "white",
+    fontSize: 18,
+    paddingVertical:5,
+    paddingHorizontal:8,
+    borderRadius:4,
   },
   
  
