@@ -20,25 +20,27 @@ class LoginScreen extends Component {
       password: "",
       
     };
+   
   }
+  handleEmailChange = (text) => {
+    this.setState({
+      email: text,
+    });
+  };
+
+   handlePasswordChange = (text) => {
+    this.setState({
+      password: text,
+    });
+  };
+
+   handleSubmit = (input) => {
+    LoginUser(input)
+  };
     render() {
     const {isLoggedIn, LoginUser} = this.props;
 
-    const handleEmailChange = (email) => {
-      this.setState({
-        email: email,
-      });
-    };
-
-    const handlePasswordChange = (password) => {
-      this.setState({
-        password: password,
-      });
-    };
-
-    const handleSubmit = (input) => {
-      LoginUser(input)
-    };
+    
 
     return (
       <KeyboardAvoidingView
@@ -64,7 +66,7 @@ class LoginScreen extends Component {
                 <TextInput
                   style={style.inputStyle}
                   value={this.state.email}
-                  onChangeText={(email) => handleEmailChange(email)}
+                  onChangeText={(text) => this.handleEmailChange(text)}
                   placeholder="Enter your email"
                   placeholderTextColor="#9ea6b5"
                   keyboardType="email-address"
@@ -78,7 +80,7 @@ class LoginScreen extends Component {
                 <TextInput
                   style={style.inputStyle}
                   value={this.state.password}
-                  onChangeText={(password) => handlePasswordChange(password)}
+                  onChangeText={(text) => this.handlePasswordChange(text)}
                   placeholder="Enter your password"
                   placeholderTextColor="#9ea6b5"
                   secureTextEntry
