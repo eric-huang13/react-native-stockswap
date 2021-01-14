@@ -41,9 +41,7 @@ class HomeScreen extends Component {
       <SafeAreaView style={style.mainContainer}>
         <ScrollView>
           <StockTicker />
-          <Text>{this.state.token}</Text>
-          <Button title="Get Token" onPress={() => getData()} />
-
+          
 
           {posts.map((post) => (
             <UserPosts
@@ -56,6 +54,9 @@ class HomeScreen extends Component {
           ))}
           <Text>Is User Logged in: {'' + isLoggedIn} </Text>
           <Button title="Logout Button" onPress={() => LogoutUser()} />
+          <Text>{this.state.token}</Text>
+          <Button title="Get Token" onPress={() => getData()} />
+
         </ScrollView>
       </SafeAreaView>
     );
