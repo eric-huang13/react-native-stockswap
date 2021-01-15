@@ -13,6 +13,8 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import { Register } from "../../actions/user";
+import CheckBox from '@react-native-community/checkbox';
+
 
 class SignUp extends Component {
   constructor(props) {
@@ -23,6 +25,7 @@ class SignUp extends Component {
       password: "",
       confirmPassword: "",
       error: "",
+      check: false,
     };
   }
 
@@ -44,6 +47,12 @@ class SignUp extends Component {
     });
   };
 
+  checkBoxText() {
+    this.setState({
+        check:!this.state.check
+    })
+   alert("Value Changed to " + this.state.check)
+} 
 
   render() {      
     const { RegisterUser } = this.props;  
@@ -52,11 +61,14 @@ class SignUp extends Component {
         email: this.state.email,
         password: this.state.password,
       }; 
-
+      // ? RegisterUser(credentials)
+      // : alert("Passwords do not match");
     const handleSubmit = () => {
-      this.state.password === this.state.confirmPassword
-        ? RegisterUser(credentials)
-        : alert("Passwords do not match");
+      this.state.password !== this.state.confirmPassword 
+        ? alert("Passwords do not match")
+        : this.state.check === false 
+        ? alert("Please check Terms and Conditions")
+        : RegisterUser(credentials)
     };
 
     return (
@@ -120,6 +132,8 @@ class SignUp extends Component {
                   />
                 </View>
                 <View style={style.termsContainer}>
+                <CheckBox  value={this.state.check}
+                            onChange={()=>this.checkBoxText()} />
                 <Text style={style.termsText}>
                   I agree with the Terms and Conditions
                 </Text>
