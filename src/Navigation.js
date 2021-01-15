@@ -21,6 +21,7 @@ import PostScreen from './components/screens/PostScreen';
 import UserPortfolioList from './components/screens/UserPortfolioList';
 import SignUp from './components/screens/SignUp'
 import ProfileInfoForm from './components/screens/ProfileInfoForm'
+import TermsAndConditions from './components/screens/TermsAndConditions'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -247,7 +248,7 @@ class Navigation extends Component {
             }}>
             <Tab.Screen name="Home" component={this.createHomeStack} />
             <Tab.Screen name="Search" component={this.createSearchStack} />
-            <Tab.Screen name="ProfileForm" component={ProfileInfoForm} />
+            <Tab.Screen name="ProfileForm" component={ProfileInfoForm}  />
 
           </Tab.Navigator>
         ) : (
@@ -255,6 +256,17 @@ class Navigation extends Component {
             <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}
  />
  <Stack.Screen name="SignUp" component={SignUp} options={{headerShown: false}}
+ />
+  <Stack.Screen name="TermsAndConditions" component={TermsAndConditions} options={{
+          title: 'StockSwap',
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }} 
  />
           </Stack.Navigator>
         )}

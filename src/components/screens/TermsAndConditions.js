@@ -8,7 +8,9 @@ export default class TermsAndConditions extends Component {
                 <Text style={style.header}> Terms and Conditions </Text>
 
                 <View>
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={() =>
+                  this.props.navigation.navigate('SignUp')
+                }>
                     <Text style={style.agreeButton}>I agree</Text>
                   </TouchableOpacity>
                 </View>
@@ -20,7 +22,6 @@ export default class TermsAndConditions extends Component {
 const style = StyleSheet.create({
     container: {
       flex: 1,
-      borderWidth: 1,
       padding: 8,
       backgroundColor: "#323e5b",
       // paddingVertical:50,

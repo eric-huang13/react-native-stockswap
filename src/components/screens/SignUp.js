@@ -136,9 +136,14 @@ class SignUp extends Component {
                             onChange={()=>this.checkBoxText()}       tintColors={{ true: "#b8a0ff", false: 'lightgrey' }}
                             
                             />
-                <Text style={style.termsText}>
+                            <TouchableOpacity
+                onPress={() =>
+                  this.props.navigation.navigate('TermsAndConditions')
+                }>
+              <Text style={style.termsText}>
                   I agree with the Terms and Conditions
-                </Text>
+                </Text>              
+              </TouchableOpacity>            
                 </View>
                 <TouchableOpacity
                 onPress={() =>
