@@ -50,9 +50,8 @@ class SignUp extends Component {
   checkBoxText() {
     this.setState({
         check:!this.state.check
-    })
-   alert("Value Changed to " + this.state.check)
-} 
+    });
+  ;} 
 
   render() {      
     const { RegisterUser } = this.props;  
@@ -61,8 +60,7 @@ class SignUp extends Component {
         email: this.state.email,
         password: this.state.password,
       }; 
-      // ? RegisterUser(credentials)
-      // : alert("Passwords do not match");
+  
     const handleSubmit = () => {
       this.state.password !== this.state.confirmPassword 
         ? alert("Passwords do not match")
@@ -80,6 +78,7 @@ class SignUp extends Component {
             <ScrollView>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={style.inner}>
+            <Text>Checkbox: {'' + this.state.check} </Text>
               <View style={style.stockHeader}>
                 <Text style={style.stockText}>Stock</Text>
                 <Text style={style.swapText}>Swap</Text>
@@ -120,7 +119,7 @@ class SignUp extends Component {
                 <View>
                   <Text style={style.inputHeader}>Repeat password</Text>
                   <TextInput
-                    style={style.inputStyle}
+                    style={style.inputStyleConfirm}
                     value={this.state.confirmPassword}
                     onChangeText={(text) =>
                       this.handleConfirmPasswordChange(text)
@@ -131,12 +130,16 @@ class SignUp extends Component {
                     ref={(input) => (this.confirmPasswordInput = input)}
                   />
                 </View>
-                <View style={style.termsContainer}>
-                <CheckBox  value={this.state.check}
-                            onChange={()=>this.checkBoxText()} />
+                <View style={style.termsOuterContainer}>
+                  <View style={style.termsInnerContainer}> 
+                <CheckBox style={style.checkbox}  value={this.state.check}
+                            onChange={()=>this.checkBoxText()}       tintColors={{ true: "#b8a0ff", false: 'lightgrey' }}
+                            
+                            />
                 <Text style={style.termsText}>
                   I agree with the Terms and Conditions
                 </Text>
+                </View>
                 <TouchableOpacity
                 onPress={() =>
                   this.props.navigation.navigate('Login')
@@ -241,10 +244,10 @@ const style = StyleSheet.create({
   inputStyleConfirm: {
     borderRadius: 8,
     backgroundColor: "#3e4d6c",
-    fontStyle: "italic",
-    marginBottom: 10,
+    marginBottom: 4,
     padding: 8,
     marginTop: 1,
+    fontSize:16
   },
   button: {
     alignSelf: "center",
@@ -257,15 +260,23 @@ const style = StyleSheet.create({
     borderRadius: 6,
     fontSize: 17,
   },
-  termsContainer:{
+  termsOuterContainer:{
     marginBottom:28,
     flexDirection:'row',
     justifyContent:'space-between',
     paddingHorizontal:2,
+    alignItems:'center',
+  },
+  termsInnerContainer:{
+    flexDirection:'row',
+    alignItems:'center',
   },
   termsText: {
     color: "#b8a0ff",
     fontSize: 12,
+    
+  },
+  checkbox:{
   },
   bottomButtonsContainer:{
       alignItems:'center',
