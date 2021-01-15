@@ -38,6 +38,7 @@ class LoginScreen extends Component {
    handleSubmit = (input) => {
     LoginUser(input)
   };
+
   testAPI = () => {
     axios.get('/')
     .then(response => response.data)
@@ -130,8 +131,6 @@ class LoginScreen extends Component {
         <Text style={style.alternateSignUpButton}>LOGIN WITH APPLE</Text>
         </View>
         </View>
-
-
         </ScrollView>
       </SafeAreaView>
     </KeyboardAvoidingView>
@@ -159,10 +158,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
 const style = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    borderWidth: 1,
     padding: 8,
     backgroundColor: "#323e5b",
-    // paddingVertical:50,
     paddingHorizontal: 30,
   },
   inner: {
@@ -200,11 +197,10 @@ const style = StyleSheet.create({
     color:'#9299a9',
     marginBottom: 14,
     fontSize:16.5,
-
   },
   inputHeader: {
     fontSize: 14,
-    color: "#c1c5cd",
+    color: "#babec8",
     marginBottom: 1,
   },
   inputStyle: {
@@ -242,7 +238,6 @@ const style = StyleSheet.create({
   },
   leftTerms:{
     flexDirection:'row',
-
   },
   newText:{
     color: "white",
@@ -264,7 +259,6 @@ const style = StyleSheet.create({
   alternateSignUpContainer:{
       flexDirection:'column',
       justifyContent:'space-between',
-
   },
   alternateSignUpButton: {
     alignSelf: "center",

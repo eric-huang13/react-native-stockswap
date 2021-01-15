@@ -33,8 +33,8 @@ const style = StyleSheet.create({
       fontWeight:'bold',
     },
     agreeButton:{
-        color:'white',
-        backgroundColor:'#b8a0ff',
+        backgroundColor: "#8B64FF",
+        color: "white",
         width:160,
         alignSelf: "center",
         textAlign: "center",

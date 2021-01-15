@@ -24,7 +24,6 @@ class SignUp extends Component {
       email: "",
       password: "",
       confirmPassword: "",
-      error: "",
       check: false,
     };
   }
@@ -78,7 +77,6 @@ class SignUp extends Component {
             <ScrollView>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={style.inner}>
-            <Text>Checkbox: {'' + this.state.check} </Text>
               <View style={style.stockHeader}>
                 <Text style={style.stockText}>Stock</Text>
                 <Text style={style.swapText}>Swap</Text>
@@ -196,10 +194,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
 const style = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    borderWidth: 1,
     padding: 8,
     backgroundColor: "#323e5b",
-    // paddingVertical:50,
     paddingHorizontal: 30,
   },
   inner: {
@@ -235,7 +231,7 @@ const style = StyleSheet.create({
   },
   inputHeader: {
     fontSize: 14,
-    color: "#c1c5cd",
+    color: "#babec8",
     marginBottom: 1,
   },
   inputStyle: {
@@ -256,8 +252,8 @@ const style = StyleSheet.create({
   },
   button: {
     alignSelf: "center",
-    backgroundColor: "#646a7e",
-    color: "#c1c5cd",
+    backgroundColor: "#8B64FF",
+    color: "white",
     textAlign: "center",
     paddingVertical: 12,
     paddingHorizontal: 20,

@@ -1,7 +1,6 @@
 import {LOGIN_START, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, SIGNUP_START, SIGNUP_SUCCESS, SIGNUP_ERROR} from 'constants';
 import axios from 'axios';
 import deviceStorage from '../components/screens/DeviceStorage'
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
