@@ -86,16 +86,18 @@ const style = StyleSheet.create({
     marginVertical: 8,
   },
 
-  name: {
-    color: 'white',
-    fontSize: 17,
-    fontWeight: 'bold',
+  name: {    
+    fontSize: 15,
     marginLeft: 8,
+    color: '#FFFFFF',
+    fontFamily:'Montserrat-Bold',
+    marginBottom:3,
   },
   body: {
-    color: 'white',
-    fontSize: 14,
+    color: 'lightgrey',
+    fontSize: 13,
     marginLeft: 8,
+    fontFamily:'Montserrat-Medium',
   },
   postUserImage: {
     height: 53,
@@ -111,19 +113,22 @@ const style = StyleSheet.create({
     marginTop: 4,
   },
   time: {
+    fontSize: 12.5,
     color: 'lightgrey',
-    fontStyle: 'italic',
+    fontFamily:'Montserrat-Italic',
   },
   likesContainer: {
     flexDirection: 'row',
   },
   likes: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontFamily:'Montserrat-SemiBold',
+    fontSize:13,
   },
   reply: {
-    color: '#9082cf',
+    color: '#B8A0FF',
     marginLeft: 16,
-    fontWeight: 'bold',
+    fontFamily:'Montserrat-SemiBold',
+    fontSize:13,
   },
 });

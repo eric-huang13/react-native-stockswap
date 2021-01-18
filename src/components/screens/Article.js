@@ -55,16 +55,17 @@ const style = StyleSheet.create({
     marginBottom: 6,
   },
   headline: {
-    color: 'white',
+    color: '#FFFFFF',
     fontSize: 15,
     marginTop: 8.5,
     marginBottom: 10,
     fontFamily:'Montserrat-Bold',
   },
   intro: {
-    color: 'white',
-    fontSize: 16,
+    color: '#FFFFFF',
+    fontSize: 15,
     fontFamily:'Montserrat-Medium',
+    
   },
   imageContainer: {
     // paddingLeft: 3,

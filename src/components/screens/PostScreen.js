@@ -102,10 +102,10 @@ const style = StyleSheet.create({
     borderRadius: 50,
   },
   postUserName: {
-    color: 'white',
-    fontSize: 16.5,
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontSize: 16,
     marginLeft: 8,
+    fontFamily:'Montserrat-Bold',
   },
   detailsContainer: {
     flexDirection: 'row',
@@ -119,27 +119,31 @@ const style = StyleSheet.create({
     justifyContent: 'space-around',
   },
   timestamp: {
-    fontSize: 14,
+    fontSize: 12.5,
     color: 'lightgrey',
-    fontStyle: 'italic',
+    fontFamily:'Montserrat-Italic',
   },
   likes: {
     fontSize: 16,
-    color: 'white',
+    color: 'lightgrey',
+    fontFamily:'Montserrat-Medium',
   },
   comments: {
     fontSize: 16,
-    color: 'white',
+    color: 'lightgrey',
+    fontFamily:'Montserrat-Medium',
     marginHorizontal: 10,
   },
   body: {
-    fontSize: 16.5,
-    color: 'white',
+    fontSize: 15,
+    color: '#FFFFFF',
     marginTop: 10,
     marginBottom: 2,
     borderBottomWidth: 0.7,
     borderBottomColor: 'rgba(158, 150, 150, .4)',
+    // borderBottomColor:'#CBCDD7',
     paddingBottom: 18,
+    fontFamily:'Montserrat-Medium',
   },
 
   dotsDropdownConatiner: {

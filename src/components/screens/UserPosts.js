@@ -169,7 +169,7 @@ const style = StyleSheet.create({
     justifyContent: 'space-around',
   },
   timestamp: {
-    fontSize: 13,
+    fontSize: 12.5,
     color: 'lightgrey',
     fontFamily:'Montserrat-Italic',
   },
@@ -187,7 +187,7 @@ const style = StyleSheet.create({
   },
   body: {
     fontSize: 15,
-    color: 'white',
+    color: '#FFFFFF',
     marginTop: 10,
     marginBottom: 4,
     fontFamily:'Montserrat-Medium',
