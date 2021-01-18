@@ -84,9 +84,9 @@ export default class UserPosts extends Component {
           }>
           <Text style={style.body}>
             {' '}
-            {post.body.length < 91
+            {post.body.length < 88
               ? `${post.body}`
-              : `${post.body.substring(0, 90)}...`}{' '}
+              : `${post.body.substring(0, 88)}...`}{' '}
             <Text style={style.more}>{'       '}More</Text>
           </Text>
         </TouchableOpacity>
@@ -100,17 +100,17 @@ export default class UserPosts extends Component {
                   params: {post, filteredComments, reply},
                 })
               }>
-              <View style={style.headerContainer}>
+              {/* <View style={style.headerContainer}>
                 <Text style={style.allComments}>View all comments</Text>
-              </View>
+              </View> */}
 
               {lastComment ? (
                 <View style={style.lastCommentContainer}>
                   <Text style={style.lastCommentName}>{lastComment.name}:</Text>
                   <Text style={style.lastCommentBody}>
-                    {lastComment.body.length < 58
+                    {lastComment.body.length < 55
                       ? `${lastComment.body}`
-                      : `${lastComment.body.substring(0, 59)}...`}
+                      : `${lastComment.body.substring(0, 55)}...`}
                   </Text>
                 </View>
               ) : null}
@@ -147,15 +147,15 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   postUserImage: {
-    height: 42,
-    width: 42,
+    height: 40,
+    width: 40,
     borderRadius: 50,
   },
   postUserName: {
-    color: 'white',
-    fontSize: 16.5,
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontSize: 16,
     marginLeft: 8,
+    fontFamily:'Montserrat-Bold',
   },
   detailsContainer: {
     flexDirection: 'row',
@@ -169,29 +169,33 @@ const style = StyleSheet.create({
     justifyContent: 'space-around',
   },
   timestamp: {
-    fontSize: 14,
+    fontSize: 13,
     color: 'lightgrey',
-    fontStyle: 'italic',
+    fontFamily:'Montserrat-Italic',
   },
   likes: {
     fontSize: 16,
-    color: 'white',
+    color: 'lightgrey',
+    fontFamily:'Montserrat-Medium',
+    
   },
   comments: {
     fontSize: 16,
-    color: 'white',
+    color: 'lightgrey',
     marginHorizontal: 10,
+    fontFamily:'Montserrat-Medium',
   },
   body: {
-    fontSize: 16.5,
+    fontSize: 15,
     color: 'white',
     marginTop: 10,
     marginBottom: 4,
+    fontFamily:'Montserrat-Medium',
   },
   more: {
-    fontSize: 14,
-    color: '#8b64ff',
-    fontStyle: 'italic',
+    fontSize: 13,
+    color: '#B8A0FF',
+    fontFamily:'Montserrat-SemiBoldItalic',
   },
   commentContainer: {
     marginTop: 4,
@@ -202,14 +206,17 @@ const style = StyleSheet.create({
     fontSize: 14,
   },
   lastCommentContainer: {
-    marginTop: 4,
+    // marginTop: 1,
   },
   lastCommentName: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: '#999999',
+    fontFamily:'Montserrat-Bold',
+    marginBottom:1,
   },
   lastCommentBody: {
-    color: 'white',
+    color: '#FFFFFF',
+    fontSize:13,
+    fontFamily:'Montserrat-Regular',
   },
   dotsDropdownConatiner: {
     flexDirection: 'column',
