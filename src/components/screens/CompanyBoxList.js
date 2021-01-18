@@ -241,6 +241,7 @@ const style = StyleSheet.create({
     fontSize: 20,
     marginLeft: 5.5,
     color: 'lightgrey',
+    fontFamily:'Montserrat-Regular'
     // marginBottom: 3.5,
   },
   seeAllHeader: {
