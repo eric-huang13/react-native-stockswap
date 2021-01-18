@@ -20,7 +20,8 @@ class HomeScreen extends Component {
     };
   }
   render() {
-    const {isLoggedIn, LogoutUser, posts, comments, reply} = this.props;
+    const {isLoggedIn, LogoutUser, posts, comments, reply, userData} = this.props;
+    console.log(userData,"USERDATA IN HOME")
     
      const getData = async () => {
     try {
@@ -41,7 +42,7 @@ class HomeScreen extends Component {
       <SafeAreaView style={style.mainContainer}>
         <ScrollView>
           <StockTicker />
-          
+          <Text>{userData.message}</Text>
 
           {posts.map((post) => (
             <UserPosts
@@ -69,6 +70,8 @@ const mapStateToProps = (state) => {
     posts: state.posts.posts,
     comments: state.posts.comments,
     reply: state.posts.reply,
+    userData: state.user.userData,
+
   };
 };
 

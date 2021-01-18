@@ -2,7 +2,7 @@ import {LOGIN_START, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, SIGNUP_START, SIGNUP_SU
 
 const defaultState = {
   isLoggedIn: false,
-  user:[],
+  userData:[],
   loading: false,
   error: "",
 };
@@ -20,7 +20,7 @@ const userReducer = (state = defaultState, action) => {
           ...state,
           loading: false,
           error: "",
-          user: action.payload,
+          userData: action.payload,
         };
   
       case SIGNUP_ERROR:
@@ -41,7 +41,7 @@ const userReducer = (state = defaultState, action) => {
           loading: false,
           isLoggedIn: true,
           error: "",
-          user: action.payload,
+          userData: action.payload,
         };
   
       case LOGIN_ERROR:
