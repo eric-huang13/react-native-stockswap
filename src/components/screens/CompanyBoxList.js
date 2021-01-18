@@ -214,20 +214,23 @@ export default connect(mapStateToProps)(CompanyBoxList);
 
 const style = StyleSheet.create({
   mainContainer: {
-    width: '98%',
+    // width: '100%',
+    
     alignSelf: 'center',
     paddingBottom: 40,
   },
   container: {
     marginBottom: 18,
     borderBottomColor: 'gray',
+    paddingHorizontal:2,
+    
     // paddingBottom: 40,
     // width: '98%',
     // alignSelf: 'center',
     // alignItems:"flex-start"
   },
   boxContainer: {
-    // paddingLeft:1,
+    paddingLeft:1,
     // flexDirection: 'row',
     // justifyContent: 'space-around',
   },
@@ -238,31 +241,35 @@ const style = StyleSheet.create({
     marginBottom: 4,
   },
   header: {
-    fontSize: 20,
+    // fontSize: 16,
+    fontSize: 19,
     marginLeft: 5.5,
     color: 'lightgrey',
-    fontFamily:'Montserrat-Regular'
+    fontFamily:'Montserrat-Regular',
     // marginBottom: 3.5,
   },
   seeAllHeader: {
     paddingTop: 3.5,
     paddingRight: 2,
-    fontSize: 16.5,
+    // fontSize: 14,
+    fontSize: 15,
     color: '#B8A0FF',
-    fontWeight: 'bold',
+    fontFamily:'Montserrat-SemiBold'
   },
   searchInputContainer: {
     // marginTop: 1,
     marginBottom: 15,
+    
   },
   searchInput: {
     paddingLeft: 40,
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 18,
+    fontSize: 17,
     height: 36,
     fontStyle: 'italic',
     paddingVertical: 0,
+    // lineHeight:18,
   },
 });

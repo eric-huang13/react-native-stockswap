@@ -85,9 +85,11 @@ const style = StyleSheet.create({
   linearGradient: {
     alignSelf: 'center',
     marginTop: 3,
-    borderRadius: 15,
-    height: 130,
-    width: 125,
+    borderRadius: 12,
+    // height: 109,
+    // width: 117,
+    height: 120,
+    width: 127,
     flexDirection: 'column',
     padding: 3,
     paddingTop: 0,
@@ -108,8 +110,9 @@ const style = StyleSheet.create({
   },
   bottomDetails: {},
   title: {
-    fontSize: 14,
-
+    // fontSize: 12,
+    fontSize: 13,
+    fontFamily:'Montserrat-Regular',
     color: 'grey',
   },
   detailsContainer: {
@@ -118,17 +121,22 @@ const style = StyleSheet.create({
     marginLeft: 2,
   },
   symbol: {
-    fontWeight: 'bold',
-    fontSize: 22,
+    // fontWeight: 'bold',
+    // fontSize: 18,
+    fontSize: 21,
     color: 'rgb(8, 11, 9)',
+    fontFamily:'Montserrat-Bold',
 
   },
   percentage: {
-    fontSize: 14,
+    fontSize: 13,
     color: 'grey',
+    fontFamily:'Montserrat-SemiBold'
   },
   price: {
-    fontSize: 20,
+    // fontSize: 18,
+    fontSize: 19,
     color: 'lightgrey',
+    fontFamily:'Montserrat-Regular',
   },
 });
