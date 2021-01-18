@@ -22,7 +22,7 @@ export class StockTicker extends PureComponent {
               <Text
                 style={
                   item.percentage[0] === '-'
-                    ? {...styles.marqueeSymbol, color: 'red'}
+                    ? {...styles.marqueeSymbol, color: '#F66E6E'}
                     : {...styles.marqueeSymbol}
                 }>
                 {' '}
@@ -31,7 +31,7 @@ export class StockTicker extends PureComponent {
               <Text
                 style={
                   item.percentage[0] === '-'
-                    ? {...styles.marqueePercentage, color: 'red'}
+                    ? {...styles.marqueePercentage, color: '#F66E6E'}
                     : {...styles.marqueePercentage}
                 }>
                 {item.percentage}
@@ -61,15 +61,18 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   textstyle: {
-    color: 'yellow',
+    
   },
   marqueeSymbol: {
-    color: '#91f2b1',
-    fontSize: 16.5,
-    fontWeight: 'bold',
-  },
-  marqueePercentage: {
+    color:'#1AB968',
     color: '#91f2b1',
     fontSize: 14,
+    fontFamily:'Montserrat-Bold',
+  },
+  marqueePercentage: {
+    color:'#1AB968',
+    color: '#91f2b1',
+    fontSize: 13,
+    fontFamily:'Montserrat-Medium',
   },
 });
