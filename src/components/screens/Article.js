@@ -41,11 +41,13 @@ const style = StyleSheet.create({
   source: {
     color: 'grey',
     marginRight: 4,
-    fontSize: 16,
+    fontSize: 15,
+    fontFamily:'Montserrat-Regular',
   },
   released: {
     color: 'grey',
-    fontSize: 14,
+    fontSize: 13,
+    fontFamily:'Montserrat-Regular',
   },
   headlineContainer: {
     flexDirection: 'column',
@@ -54,14 +56,15 @@ const style = StyleSheet.create({
   },
   headline: {
     color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 15,
     marginTop: 8.5,
     marginBottom: 10,
+    fontFamily:'Montserrat-Bold',
   },
   intro: {
     color: 'white',
     fontSize: 16,
+    fontFamily:'Montserrat-Medium',
   },
   imageContainer: {
     // paddingLeft: 3,

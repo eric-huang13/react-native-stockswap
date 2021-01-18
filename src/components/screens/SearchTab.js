@@ -18,6 +18,7 @@ export class SearchTab extends Component {
       companies: true,
       users: false,
       news: false,
+      
     };
   }
 
@@ -169,7 +170,7 @@ const style = StyleSheet.create({
     paddingLeft: 5,
   },
   header: {
-    color: 'white',
+    color: '#FFFFFF',
     fontSize: 19,
     fontWeight: '700',
     marginVertical: 8,
@@ -182,7 +183,7 @@ const style = StyleSheet.create({
     paddingBottom: 2,
   },
   tabHeader: {
-    color: 'white',
+    color: '#FFFFFF',
     fontSize: 17,
     fontWeight: 'bold',
   },

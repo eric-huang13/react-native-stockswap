@@ -30,7 +30,7 @@ export class ArticleList extends Component {
           <View style={style.searchInputContainer}>
             <TextInput
               style={style.searchInput}
-              placeholder="Search by name"
+              placeholder="Search"
               placeholderTextColor="lightgrey"
               onChangeText={(text) => this.handleChange(text)}
             />
@@ -63,8 +63,8 @@ const style = StyleSheet.create({
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
     fontSize: 16,
-    height: 36,
-    fontStyle: 'italic',
+    height: 34,
     paddingVertical: 0,
+    fontFamily:'Montserrat-Regular',
   },
 });
