@@ -95,7 +95,7 @@ const style = StyleSheet.create({
   },
   body: {
     color: 'lightgrey',
-    fontSize: 13,
+    fontSize: 13.5,
     marginLeft: 8,
     fontFamily:'Montserrat-Medium',
   },
