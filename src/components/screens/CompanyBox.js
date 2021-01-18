@@ -10,11 +10,11 @@ export class CompanyBox extends Component {
         <LinearGradient
           start={{x: 0.1, y: 0.1}}
           end={{x: 1, y: 1}}
-          colors={['#4c669f', '#3b5998', '#1cab66']}
+          colors={['#2C3957', '#2C572E']}
           style={style.linearGradient}>
           <SafeAreaView style={style.listContainer}>
             <View style={style.topDetails}>
-              <Text style={{...style.symbol, color: '#1cab66'}}>
+              <Text style={{...style.symbol, color: '#1AB968'}}>
                 {item.symbol}
               </Text>
               <Text style={style.title}>
@@ -25,7 +25,7 @@ export class CompanyBox extends Component {
             </View>
             <View style={style.bottomDetails}>
               <Text style={style.price}>${item.price}</Text>
-              <Text style={{...style.percentage, color: '#1cab66'}}>
+              <Text style={{...style.percentage, color: '#1AB968'}}>
                 {item.percentage}
               </Text>
             </View>
@@ -35,10 +35,10 @@ export class CompanyBox extends Component {
         <LinearGradient
           start={{x: 0.1, y: 0.1}}
           end={{x: 1, y: 1}}
-          colors={['#4c669f', '#3b5998', '#ac3b42']}
+          colors={['#2C3957',  '#572C3D']}
           style={style.linearGradient}>
           <SafeAreaView style={style.listContainer}>
-            <Text style={{...style.symbol, color: '#ac3b42'}}>
+            <Text style={{...style.symbol, color: '#D13C3D'}}>
               {item.symbol}
             </Text>
             <Text style={style.title}>
@@ -47,7 +47,7 @@ export class CompanyBox extends Component {
                 : `${item.title.substring(0, 14)}...`}
             </Text>
             <Text style={style.price}>${item.price}</Text>
-            <Text style={{...style.percentage, color: '#ac3b42'}}>
+            <Text style={{...style.percentage, color: '#D13C3D'}}>
               {item.percentage}
             </Text>
           </SafeAreaView>
@@ -56,10 +56,10 @@ export class CompanyBox extends Component {
         <LinearGradient
           start={{x: 0.1, y: 0.1}}
           end={{x: 1, y: 1}}
-          colors={['#4c669f', 'purple', 'purple']}
+          colors={['#2C3957', '#5B449B']}
           style={style.linearGradient}>
           <SafeAreaView style={style.listContainer}>
-            <Text style={{...style.symbol, color: '#9082cf'}}>
+            <Text style={{...style.symbol, color: '#B8A0FF'}}>
               {item.symbol}
             </Text>
             <Text style={style.title}>
@@ -68,7 +68,7 @@ export class CompanyBox extends Component {
                 : `${item.title.substring(0, 14)}...`}
             </Text>
             <Text style={style.price}>${item.price}</Text>
-            <Text style={{...style.percentage, color: '#9082cf'}}>
+            <Text style={{...style.percentage, color: '#1AB968'}}>
               {item.percentage}
             </Text>
           </SafeAreaView>
@@ -121,6 +121,7 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 22,
     color: 'rgb(8, 11, 9)',
+
   },
   percentage: {
     fontSize: 14,

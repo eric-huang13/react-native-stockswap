@@ -192,8 +192,8 @@ const style = StyleSheet.create({
     paddingBottom: 1.8,
   },
   activeTabHeader: {
-    color: '#855cff',
-    textShadowColor: '#855cff',
+    color: '#8257FF',
+    textShadowColor: '#8257FF',
     textShadowOffset: {width: 1, height: 1},
     textShadowRadius: 50,
     fontSize: 18,

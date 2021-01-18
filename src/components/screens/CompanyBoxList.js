@@ -247,7 +247,7 @@ const style = StyleSheet.create({
     paddingTop: 3.5,
     paddingRight: 2,
     fontSize: 16.5,
-    color: '#9082cf',
+    color: '#B8A0FF',
     fontWeight: 'bold',
   },
   searchInputContainer: {

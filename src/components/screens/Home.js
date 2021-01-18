@@ -14,8 +14,7 @@ class HomeScreen extends Component {
     super(props);
 
     this.state = {
-      token: "",
-   
+      token: "",  
       
     };
   }
@@ -33,16 +32,14 @@ class HomeScreen extends Component {
       }
     } catch (error) {
       console.log('error')
-      // error reading value
     }
   };
-    // const token = AsyncStorage.getItem("userToken")
-    // console.log(token, "TOKEN")
+    
     return (
       <SafeAreaView style={style.mainContainer}>
         <ScrollView>
           <StockTicker />
-          <Text>{userData.message}</Text>
+          
 
           {posts.map((post) => (
             <UserPosts
