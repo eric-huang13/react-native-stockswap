@@ -265,7 +265,7 @@ const style = StyleSheet.create({
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 16,
+    fontSize: 16.5,
     height: 36,
     paddingVertical: 0,
     fontFamily: 'Montserrat-Regular',
