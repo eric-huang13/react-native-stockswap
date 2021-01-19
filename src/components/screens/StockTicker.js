@@ -35,7 +35,7 @@ export class StockTicker extends PureComponent {
                     : {...styles.marqueePercentage}
                 }>
                 {item.percentage}
-                {'  '}
+                {'   '}
               </Text>
             </React.Fragment>
           ))}

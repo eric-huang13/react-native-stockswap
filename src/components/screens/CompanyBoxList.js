@@ -9,6 +9,8 @@ import {
   SafeAreaView,
 } from 'react-native';
 
+import SearchIcon from '../../icons/SearchIcon'
+
 import {connect} from 'react-redux';
 // import {style} from '../../styles/style';
 import CompanyBox from './CompanyBox';
@@ -38,6 +40,7 @@ export class CompanyBoxList extends Component {
       <SafeAreaView style={style.mainContainer}>
         <ScrollView contentContainerStyle={{paddingBottom: 180}}>
           <View style={style.searchInputContainer}>
+            <SearchIcon/>
             <TextInput
               style={style.searchInput}
               placeholder="Search"
