@@ -26,6 +26,8 @@ import TermsAndConditions from './components/screens/TermsAndConditions'
 //icons
 import SearchIconInactive from './icons/SearchIconInactive'
 import SearchIcon from './icons/SearchIcon'
+import HomeTabInactive from './icons/HomeTabInactive'
+import HomeTabActive from './icons/HomeTabActive'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -242,9 +244,7 @@ class Navigation extends Component {
               activeTintColor: '#9082cf',
               inactiveTintColor: 'lightgray',
               // showLabel:false,
-              // showIcon:true,
-              
-              
+              // showIcon:true,            
               // activeBackgroundColor: '#333e5c',
               // inactiveBackgroundColor: '#333e5c',
               style: {
@@ -255,20 +255,21 @@ class Navigation extends Component {
               },
             }}
             screenOptions={({ route }) => ({
-              tabBarIcon: ({ focused, color, size }) => {
+              tabBarIcon: ({ focused }) => {
                 
     
                 if (route.name === 'Search') {
-                  return <SearchIcon/>
+                  return focused ? <SearchIcon/> : <SearchIconInactive/>
                 } 
-    
-                // You can return any component that you like here!
-                
+                if (route.name === 'Home') {
+                  return focused ? <HomeTabActive/> : <HomeTabInactive/>
+                }     
+               
               },
             })}
             >
             <Tab.Screen name="Home" component={this.createHomeStack} />
-            <Tab.Screen name="Search" component={this.createSearchStack} options={{tabBarIcon:() => <SearchIconInactive/>}} />
+            <Tab.Screen name="Search" component={this.createSearchStack}/>
             <Tab.Screen name="ProfileForm" component={ProfileInfoForm}  />
 
           </Tab.Navigator>
