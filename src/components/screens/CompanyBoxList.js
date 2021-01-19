@@ -9,8 +9,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 
-import SearchIcon from '../../icons/SearchIcon'
-
+import SearchInput from '../../icons/SearchInput'
 import {connect} from 'react-redux';
 // import {style} from '../../styles/style';
 import CompanyBox from './CompanyBox';
@@ -40,7 +39,17 @@ export class CompanyBoxList extends Component {
       <SafeAreaView style={style.mainContainer}>
         <ScrollView contentContainerStyle={{paddingBottom: 180}}>
           <View style={style.searchInputContainer}>
-            <SearchIcon/>
+            
+            <View
+        style={{
+          position: "absolute",
+          zIndex: 1,
+          left: 14,
+          top:10
+        }}
+      >
+        <SearchInput/>
+      </View>
             <TextInput
               style={style.searchInput}
               placeholder="Search"
@@ -260,18 +269,20 @@ const style = StyleSheet.create({
     fontFamily: 'Montserrat-SemiBold',
   },
   searchInputContainer: {
+    flexDirection:'row',
     // marginTop: 1,
     marginBottom: 15,
   },
   searchInput: {
+    flex:1,
     paddingLeft: 40,
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 16.5,
+    fontSize: 16,
     height: 36,
     paddingVertical: 0,
-    fontFamily: 'Montserrat-Regular',
+    fontFamily: 'Montserrat-Italic',
     // lineHeight:18,
   },
 });

@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import Article from './Article';
+import SearchInput from '../../icons/SearchInput'
+
 
 export class ArticleList extends Component {
   constructor(props) {
@@ -28,6 +30,17 @@ export class ArticleList extends Component {
       <SafeAreaView>
         <ScrollView contentContainerStyle={{paddingBottom: 180}}>
           <View style={style.searchInputContainer}>
+          <View
+        style={{
+          position: "absolute",
+          zIndex: 1,
+          left: 14,
+          top:10
+        }}
+      >
+        <SearchInput/>
+      </View>
+            
             <TextInput
               style={style.searchInput}
               placeholder="Search"
@@ -62,9 +75,9 @@ const style = StyleSheet.create({
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 16.5,
+    fontSize: 16,
     height: 36,
     paddingVertical: 0,
-    fontFamily:'Montserrat-Regular',
+    fontFamily:'Montserrat-Italic',
   },
 });

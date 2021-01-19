@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import UserBox from './UserBox';
+import SearchInput from '../../icons/SearchInput'
+
 
 export class UserList extends Component {
   constructor(props) {
@@ -38,6 +40,16 @@ export class UserList extends Component {
       <SafeAreaView>
         <ScrollView contentContainerStyle={{paddingBottom: 180}}>
           <View style={style.searchInputContainer}>
+          <View
+        style={{
+          position: "absolute",
+          zIndex: 1,
+          left: 14,
+          top:10
+        }}
+      >
+        <SearchInput/>
+      </View>
             <TextInput
               style={style.searchInput}
               placeholder="Search"
@@ -156,9 +168,9 @@ const style = StyleSheet.create({
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 18,
+    fontSize: 16,
     height: 36,
-    fontStyle: 'italic',
+    fontFamily: 'Montserrat-Italic',
     paddingVertical: 0,
   },
   timeFilterHeader: {
