@@ -11,6 +11,9 @@ import {Button, SafeAreaView, Text,
   ScrollView} from 'react-native';
 import {Login} from 'actions/user';
 import axios from 'axios'
+import LinearGradient from 'react-native-linear-gradient';
+
+
 
 class LoginScreen extends Component {
   constructor(props) {
@@ -54,6 +57,15 @@ class LoginScreen extends Component {
     
 
     return (
+      <LinearGradient
+        start={{x: 0.1, y: 1}}
+        end={{x: 0.1, y: 0.1}}
+        colors={[
+          '#1D2842',
+          '#3d4b6e',
+          
+        ]}
+        style={{flex: 1}}>
       <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : null}
       style={{ flex: 1 }}
@@ -134,6 +146,7 @@ class LoginScreen extends Component {
         </ScrollView>
       </SafeAreaView>
     </KeyboardAvoidingView>
+    </LinearGradient>
     );
   }
 }
@@ -158,8 +171,8 @@ const style = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 8,
-    backgroundColor: "#323e5b",
-    paddingHorizontal: 30,
+    // backgroundColor: "#323e5b",
+    paddingHorizontal: 22,
   },
   inner: {
     justifyContent: "flex-end",
@@ -180,35 +193,52 @@ const style = StyleSheet.create({
     color: "#b8a0ff",
   },
   container: {
+    
     borderRadius: 8,
     backgroundColor: "#2c3957",
     paddingHorizontal: 20,
     paddingVertical: 20,
     flexDirection: "column",
+    shadowColor: "rgba(0,0,0,0.13)",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 2,
+    
   },
   welcomeHeader: {
-    color: "white",
-    fontSize: 24.5,
-    fontWeight: "bold",
+    color: "#FFFFFF",
+    fontSize: 22,
     marginBottom:3,
+    fontFamily:'Montserrat-Bold',
   },
   loginHeader:{
     color:'#9299a9',
     marginBottom: 14,
-    fontSize:16.5,
+    fontSize:16,
+    fontFamily:'Montserrat-Medium',
   },
   inputHeader: {
     fontSize: 14,
     color: "#babec8",
     marginBottom: 1,
+    fontFamily:'Montserrat-Regular',
+   
   },
   inputStyle: {
-    borderRadius: 8,
-    backgroundColor: "#3e4d6c",
+    borderRadius: 8,       
     marginBottom: 12,
     padding: 8,
     marginTop: 1,
-    fontSize:16
+    fontSize:16,
+    fontFamily:'Montserrat-Italic',
+    backgroundColor: "#536183",
+    opacity:0.7
+    
   },
   inputStyleConfirm: {
     borderRadius: 8,
@@ -220,14 +250,15 @@ const style = StyleSheet.create({
   },
   button: {
     alignSelf: "center",
-    backgroundColor: "#8b64ff",
-    color: "white",
+    backgroundColor: "#8B64FF",
+    color: "#FFFFFF",
     textAlign: "center",
     paddingVertical: 12,
     paddingHorizontal: 20,
-    width: 150,
+    width: 152,
     borderRadius: 6,
-    fontSize: 17,
+    fontSize: 16,
+    fontFamily:'Montserrat-SemiBold',
   },
   termsContainer:{
     marginBottom:28,
@@ -239,21 +270,24 @@ const style = StyleSheet.create({
     flexDirection:'row',
   },
   newText:{
-    color: "white",
+    color: "#FFFFFF",
     fontSize: 12,
     marginRight:3,
+    fontFamily:'Montserrat-Medium',
   },
   termsText: {
-    color: "#b8a0ff",
+    color: "#B8A0FF",
     fontSize: 12,
+    fontFamily:'Montserrat-Medium',
   },
   bottomButtonsContainer:{
       alignItems:'center',
   },
   orText:{
     marginVertical:16,
-    color:'lightgrey',
-    fontSize:16,
+    color:'#CBCDD7',
+    fontSize:14,
+    fontFamily:'Montserrat-Regular',
   },
   alternateSignUpContainer:{
       flexDirection:'column',
@@ -261,14 +295,23 @@ const style = StyleSheet.create({
   },
   alternateSignUpButton: {
     alignSelf: "center",
-    backgroundColor: "#3e4d6c",
+    backgroundColor: "#2C3957",
     color: "white",
     textAlign: "center",
     paddingVertical: 12,
     paddingHorizontal: 20,
-    width: 330,
+    width: 350,
     borderRadius: 6,
     fontSize: 14,
     marginBottom:10,
+    fontFamily:'Montserrat-SemiBold',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    
+    elevation: 1,
   },
 });

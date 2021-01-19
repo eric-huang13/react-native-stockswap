@@ -230,7 +230,7 @@ const style = StyleSheet.create({
     // alignItems:"flex-start"
   },
   boxContainer: {
-    paddingLeft: 1,
+    paddingLeft: 2,
     // flexDirection: 'row',
     // justifyContent: 'space-around',
   },
