@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 import { Register } from "../../actions/user";
 import CheckBox from '@react-native-community/checkbox';
 import LinearGradient from 'react-native-linear-gradient';
+import SmallStockSwap from '../../icons/SmallStockSwap'
 
 
 
@@ -88,8 +89,9 @@ class SignUp extends Component {
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={style.inner}>
               <View style={style.stockHeader}>
-                <Text style={style.stockText}>Stock</Text>
-                <Text style={style.swapText}>Swap</Text>
+                <SmallStockSwap/>
+                {/* <Text style={style.stockText}>Stock</Text>
+                <Text style={style.swapText}>Swap</Text> */}
               </View>
               <View style={style.container}>
                 <Text style={style.signUpHeader}>Sign Up</Text>
@@ -214,8 +216,8 @@ const style = StyleSheet.create({
   stockHeader: {
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 30,
-    marginBottom:10,
+    marginTop:2,
+    marginBottom:6,
   },
   stockText: {
     fontSize: 27,
