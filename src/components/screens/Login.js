@@ -337,6 +337,8 @@ const style = StyleSheet.create({
     backgroundColor: "#3A4A6D",
     borderRadius:7,
     marginVertical:-8,
-    marginRight:63,    
+    marginRight:63,
+    alignSelf: "center",
+    
   },
 });
