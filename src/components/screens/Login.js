@@ -12,6 +12,7 @@ import {Button, SafeAreaView, Text,
 import {Login} from 'actions/user';
 import axios from 'axios'
 import LinearGradient from 'react-native-linear-gradient';
+import SmallStockSwap from '../../icons/SmallStockSwap'
 
 
 
@@ -74,10 +75,11 @@ class LoginScreen extends Component {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={style.inner}>
             <View style={style.stockHeader}>
-              <Text style={style.stockText}>Stock</Text>
-              <Text style={style.swapText}>Swap</Text>
+              {/* <Text style={style.stockText}>Stock</Text>
+              <Text style={style.swapText}>Swap</Text> */}
+              <SmallStockSwap/>
             </View>
-            <Text>Is User Logged in: {'' + isLoggedIn} </Text>
+            {/* <Text>Is User Logged in: {'' + isLoggedIn} </Text> */}
             <View style={style.container}>
               <Text style={style.welcomeHeader}>Welcome</Text>
               <Text style={style.loginHeader}>Login</Text>
@@ -178,8 +180,8 @@ const style = StyleSheet.create({
   stockHeader: {
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 30,
-    marginBottom:10,
+    marginTop: 20,
+    marginBottom:20,
   },
   stockText: {
     fontSize: 27,
@@ -192,7 +194,7 @@ const style = StyleSheet.create({
     color: "#b8a0ff",
   },
   container: {    
-    borderRadius: 8,
+    borderRadius: 16,
     backgroundColor: "#303e5e",
     paddingHorizontal: 20,
     paddingVertical: 18,
