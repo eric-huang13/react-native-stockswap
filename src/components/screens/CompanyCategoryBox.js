@@ -47,22 +47,34 @@ const style = StyleSheet.create({
     marginTop: 5,
   },
   symbol: {
-    color: 'white',
-    fontSize: 22,
-    fontWeight: 'bold',
+    // color: 'white',
+    // fontSize: 22,
+    // fontWeight: 'bold',
+    fontFamily:'Montserrat-Bold',
+    color:'#FFFFFF',
+    fontSize:20.5
+  
   },
   title: {
     color: '#d0d3dc',
     marginTop: 3,
+    fontFamily:'Montserrat-Regular',
+    fontSize:14
   },
   price: {
     color: 'white',
     fontSize: 22,
     fontWeight: 'bold',
+    fontFamily:'Montserrat-Bold',
+    color:'#FFFFFF',
+    fontSize:20.5
   },
   percentage: {
     color: '#5fc48c',
     alignSelf: 'flex-end',
     marginTop: 3,
+    fontFamily:'Montserrat-Medium',
+    fontSize:14
+    
   },
 });

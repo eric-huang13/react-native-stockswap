@@ -88,16 +88,16 @@ const style = StyleSheet.create({
   },
   listContainer: {},
   searchInputContainer: {
-    marginBottom: 26,
+    marginBottom: 32,
   },
   searchInput: {
     paddingLeft: 40,
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 17,
+    fontSize: 16.5,
     height: 40,
-    fontStyle: 'italic',
     paddingVertical: 0,
+    fontFamily:'Montserrat-Regular',
   },
 });
