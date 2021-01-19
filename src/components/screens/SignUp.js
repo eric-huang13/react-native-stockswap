@@ -14,6 +14,8 @@ import {
 import { connect } from "react-redux";
 import { Register } from "../../actions/user";
 import CheckBox from '@react-native-community/checkbox';
+import LinearGradient from 'react-native-linear-gradient';
+
 
 
 class SignUp extends Component {
@@ -69,6 +71,14 @@ class SignUp extends Component {
     };
 
     return (
+      <LinearGradient
+        start={{x: 0.1, y: 1}}
+        end={{x: 0.1, y: 0.1}}
+        colors={[
+          '#1D2842',
+          '#3d4b6e',          
+        ]}
+        style={{flex: 1}}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : null}
         style={{ flex: 1 }}
@@ -171,6 +181,7 @@ class SignUp extends Component {
           </ScrollView>
         </SafeAreaView>
       </KeyboardAvoidingView>
+      </LinearGradient>
     );
   }
 }
@@ -195,8 +206,7 @@ const style = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 8,
-    backgroundColor: "#323e5b",
-    paddingHorizontal: 30,
+    paddingHorizontal: 24,
   },
   inner: {
     justifyContent: "flex-end",
@@ -204,7 +214,8 @@ const style = StyleSheet.create({
   stockHeader: {
     flexDirection: "row",
     justifyContent: "center",
-    marginVertical: 20,
+    marginTop: 30,
+    marginBottom:10,
   },
   stockText: {
     fontSize: 27,
@@ -218,37 +229,51 @@ const style = StyleSheet.create({
   },
   container: {
     borderRadius: 8,
-    backgroundColor: "#2c3957",
+    backgroundColor: "#303e5e",
     paddingHorizontal: 20,
-    paddingVertical: 20,
+    paddingVertical: 18,
     flexDirection: "column",
+    shadowColor: "rgba(0,0,0,0.13)",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 1,
   },
   signUpHeader: {
-    color: "white",
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 14,
+    color: "#FFFFFF",
+    fontSize: 22,
+    fontFamily:'Montserrat-Bold',
+    marginBottom: 18,
   },
   inputHeader: {
     fontSize: 14,
     color: "#babec8",
     marginBottom: 1,
+    fontFamily:'Montserrat-Regular',
   },
   inputStyle: {
     borderRadius: 8,
-    backgroundColor: "#3e4d6c",
-    marginBottom: 12,
+    marginBottom: 14,
     padding: 8,
     marginTop: 1,
-    fontSize:16
+    fontSize:16,
+    fontFamily:'Montserrat-Italic',
+    backgroundColor: "#536183",
+    opacity:0.7
   },
   inputStyleConfirm: {
     borderRadius: 8,
-    backgroundColor: "#3e4d6c",
     marginBottom: 4,
     padding: 8,
     marginTop: 1,
-    fontSize:16
+    fontSize:16,
+    fontFamily:'Montserrat-Italic',
+    backgroundColor: "#536183",
+    opacity:0.7
   },
   button: {
     alignSelf: "center",
@@ -257,9 +282,10 @@ const style = StyleSheet.create({
     textAlign: "center",
     paddingVertical: 12,
     paddingHorizontal: 20,
-    width: 150,
+    width: 162,
     borderRadius: 6,
-    fontSize: 17,
+    fontSize: 16,
+    fontFamily:'Montserrat-SemiBold',
   },
   termsOuterContainer:{
     marginBottom:28,
@@ -274,7 +300,8 @@ const style = StyleSheet.create({
   },
   termsText: {
     color: "#b8a0ff",
-    fontSize: 12,
+    fontSize: 11,
+    fontFamily:'Montserrat-Medium',
     
   },
   checkbox:{
@@ -284,8 +311,9 @@ const style = StyleSheet.create({
   },
   orText:{
     marginVertical:16,
-    color:'lightgrey',
-    fontSize:16,
+    color:'#CBCDD7',
+    fontSize:14,
+    fontFamily:'Montserrat-Regular',
   },
   alternateSignUpContainer:{
       flexDirection:'column',
@@ -294,8 +322,9 @@ const style = StyleSheet.create({
   },
   alternateSignUpButton: {
     alignSelf: "center",
-    backgroundColor: "#3e4d6c",
-    color: "white",
+    backgroundColor: "#303e5e",
+    backgroundColor: "#2C3957",
+    color: "#FFFFFF",
     textAlign: "center",
     paddingVertical: 12,
     paddingHorizontal: 20,
@@ -303,5 +332,14 @@ const style = StyleSheet.create({
     borderRadius: 6,
     fontSize: 14,
     marginBottom:10,
+    fontFamily:'Montserrat-SemiBold',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    
+    elevation: 1,
   },
 });

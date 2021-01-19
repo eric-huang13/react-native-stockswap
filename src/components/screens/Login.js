@@ -62,8 +62,7 @@ class LoginScreen extends Component {
         end={{x: 0.1, y: 0.1}}
         colors={[
           '#1D2842',
-          '#3d4b6e',
-          
+          '#3d4b6e',          
         ]}
         style={{flex: 1}}>
       <KeyboardAvoidingView
@@ -101,13 +100,12 @@ class LoginScreen extends Component {
               <View>
                 <Text style={style.inputHeader}>Password</Text>
                 <TextInput
-                  style={style.inputStyle}
                   value={this.state.password}
                   onChangeText={(text) => this.handlePasswordChange(text)}
                   placeholder="Enter your password"
                   placeholderTextColor="#9ea6b5"
                   secureTextEntry
-                  style={style.inputStyle}
+                  style={style.inputStyleConfirm}
                   ref={(input) => (this.passwordInput = input)}
                 />
               </View>
@@ -172,7 +170,7 @@ const style = StyleSheet.create({
     flex: 1,
     padding: 8,
     // backgroundColor: "#323e5b",
-    paddingHorizontal: 22,
+    paddingHorizontal: 24,
   },
   inner: {
     justifyContent: "flex-end",
@@ -180,7 +178,8 @@ const style = StyleSheet.create({
   stockHeader: {
     flexDirection: "row",
     justifyContent: "center",
-    marginVertical: 20,
+    marginTop: 30,
+    marginBottom:10,
   },
   stockText: {
     fontSize: 27,
@@ -192,12 +191,11 @@ const style = StyleSheet.create({
     fontWeight: "bold",
     color: "#b8a0ff",
   },
-  container: {
-    
+  container: {    
     borderRadius: 8,
-    backgroundColor: "#2c3957",
+    backgroundColor: "#303e5e",
     paddingHorizontal: 20,
-    paddingVertical: 20,
+    paddingVertical: 18,
     flexDirection: "column",
     shadowColor: "rgba(0,0,0,0.13)",
     shadowOffset: {
@@ -207,18 +205,18 @@ const style = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
 
-    elevation: 2,
+    elevation: 1,
     
   },
   welcomeHeader: {
     color: "#FFFFFF",
     fontSize: 22,
-    marginBottom:3,
+    marginBottom:4,
     fontFamily:'Montserrat-Bold',
   },
   loginHeader:{
     color:'#9299a9',
-    marginBottom: 14,
+    marginBottom: 20,
     fontSize:16,
     fontFamily:'Montserrat-Medium',
   },
@@ -231,7 +229,7 @@ const style = StyleSheet.create({
   },
   inputStyle: {
     borderRadius: 8,       
-    marginBottom: 12,
+    marginBottom: 18,
     padding: 8,
     marginTop: 1,
     fontSize:16,
@@ -241,12 +239,14 @@ const style = StyleSheet.create({
     
   },
   inputStyleConfirm: {
-    borderRadius: 8,
-    backgroundColor: "#3e4d6c",
-    fontStyle: "italic",
-    marginBottom: 10,
+    borderRadius: 8,       
+    marginBottom: 12,
     padding: 8,
     marginTop: 1,
+    fontSize:16,
+    fontFamily:'Montserrat-Italic',
+    backgroundColor: "#536183",
+    opacity:0.7
   },
   button: {
     alignSelf: "center",
@@ -255,7 +255,7 @@ const style = StyleSheet.create({
     textAlign: "center",
     paddingVertical: 12,
     paddingHorizontal: 20,
-    width: 152,
+    width: 162,
     borderRadius: 6,
     fontSize: 16,
     fontFamily:'Montserrat-SemiBold',
@@ -296,7 +296,8 @@ const style = StyleSheet.create({
   alternateSignUpButton: {
     alignSelf: "center",
     backgroundColor: "#2C3957",
-    color: "white",
+    // backgroundColor:'#303e5e',
+    color: "#FFFFFF",
     textAlign: "center",
     paddingVertical: 12,
     paddingHorizontal: 20,
