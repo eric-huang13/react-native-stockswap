@@ -20,7 +20,6 @@ class HomeScreen extends Component {
   }
   render() {
     const {isLoggedIn, LogoutUser, posts, comments, reply, userData} = this.props;
-    console.log(userData,"USERDATA IN HOME")
     
      const getData = async () => {
     try {

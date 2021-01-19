@@ -28,6 +28,13 @@ import SearchIconInactive from './icons/SearchIconInactive'
 import SearchIcon from './icons/SearchIcon'
 import HomeTabInactive from './icons/HomeTabInactive'
 import HomeTabActive from './icons/HomeTabActive'
+import LeaderboardInactive from './icons/LeaderboardInactive'
+import LeaderboardActive from './icons/LeaderboardActive'
+import ProfileInactive from './icons/ProfileInactive'
+import ProfileActive from './icons/ProfileActive'
+import CreatePostInactive from './icons/CreatePostInactive'
+import CreatePostActive from './icons/CreatePostActive'
+import { UserList } from './components/screens/UserList';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -243,7 +250,7 @@ class Navigation extends Component {
             tabBarOptions={{
               activeTintColor: '#9082cf',
               inactiveTintColor: 'lightgray',
-              // showLabel:false,
+              showLabel:false,
               // showIcon:true,            
               // activeBackgroundColor: '#333e5c',
               // inactiveBackgroundColor: '#333e5c',
@@ -263,6 +270,15 @@ class Navigation extends Component {
                 } 
                 if (route.name === 'Home') {
                   return focused ? <HomeTabActive/> : <HomeTabInactive/>
+                }  
+                if (route.name === 'PostScreen') {
+                  return focused ? <CreatePostActive/> : <CreatePostInactive/>
+                }
+                if (route.name === 'UserList') {
+                  return focused ? <LeaderboardActive/> : <LeaderboardInactive/>
+                }
+                if (route.name === 'Profile') {
+                  return focused ? <ProfileActive/> : <ProfileInactive/>
                 }     
                
               },
@@ -270,7 +286,9 @@ class Navigation extends Component {
             >
             <Tab.Screen name="Home" component={this.createHomeStack} />
             <Tab.Screen name="Search" component={this.createSearchStack}/>
-            <Tab.Screen name="ProfileForm" component={ProfileInfoForm}  />
+            <Tab.Screen name="PostScreen" component={ProfileInfoForm}  />
+            <Tab.Screen name="UserList" component={TermsAndConditions}  />
+            <Tab.Screen name="Profile" component={SignUp}  />
 
           </Tab.Navigator>
         ) : (
