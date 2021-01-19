@@ -1,6 +1,5 @@
 import React from "react"
 import Svg, { Path } from "react-native-svg"
-/* SVGR has dropped some elements not supported by react-native-svg: title */
 
 function LeaderboardInactive() {
   return (

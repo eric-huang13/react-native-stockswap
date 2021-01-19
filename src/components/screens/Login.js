@@ -13,6 +13,9 @@ import {Login} from 'actions/user';
 import axios from 'axios'
 import LinearGradient from 'react-native-linear-gradient';
 import SmallStockSwap from '../../icons/SmallStockSwap'
+import GoogleIcon from '../../icons/GoogleIcon'
+import AppleIcon from '../../icons/AppleIcon'
+import FacebookIcon from '../../icons/FacebookIcon'
 
 
 
@@ -138,9 +141,17 @@ class LoginScreen extends Component {
         <View style={style.bottomButtonsContainer}>
         <Text style={style.orText}>--OR--</Text>
         <View style={style.alternateSignUpContainer}>
-        <Text style={style.alternateSignUpButton}>LOGIN WITH GOOGLE</Text>
+          <View style={style.alternateSignupInner}>
+            <View style={style.signupIcon}><GoogleIcon/></View>
+        <Text style={style.alternateSignUpButton}>LOGIN WITH GOOGLE</Text></View>
+        <View style={style.alternateSignupInner}>
+        <View style={style.signupIcon}><FacebookIcon/></View>
         <Text style={style.alternateSignUpButton}>LOGIN WITH FACEBOOK</Text>
+        </View>
+        <View style={style.alternateSignupInner}>
+        <View style={style.signupIcon}><AppleIcon/></View>
         <Text style={style.alternateSignUpButton}>LOGIN WITH APPLE</Text>
+        </View>
         </View>
         </View>
         </ScrollView>
@@ -297,24 +308,35 @@ const style = StyleSheet.create({
   },
   alternateSignUpButton: {
     alignSelf: "center",
-    backgroundColor: "#2C3957",
-    // backgroundColor:'#303e5e',
+    justifyContent:'center',
     color: "#FFFFFF",
-    textAlign: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    width: 350,
-    borderRadius: 6,
+    textAlign: "center",    
     fontSize: 14,
-    marginBottom:10,
     fontFamily:'Montserrat-SemiBold',
     shadowOffset: {
       width: 0,
       height: 2,
     },
     shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    
+    shadowRadius: 3.84,    
     elevation: 1,
+  },
+  alternateSignupInner:{
+    alignSelf: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 4,
+    backgroundColor: "#2C3957",
+    width: 350,
+    borderRadius: 8,
+    marginBottom:10,
+    flexDirection:'row',
+    // justifyContent:'flex-start'
+  },
+  signupIcon:{ 
+    padding:7,
+    backgroundColor: "#3A4A6D",
+    borderRadius:7,
+    marginVertical:-8,
+    marginRight:63,    
   },
 });
