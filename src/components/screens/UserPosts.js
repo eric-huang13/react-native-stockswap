@@ -38,7 +38,7 @@ export default class UserPosts extends Component {
             <Text style={style.postUserName}>{post.name}</Text>
           </View>
 
-          <View style={style.dotsDropdownConatiner}>
+          <View style={style.dotsDropdownContainer}>
             <TouchableOpacity
               onPress={() =>
                 this.setState({
@@ -46,6 +46,7 @@ export default class UserPosts extends Component {
                 })
               }>
               <Text style={style.dotsButton}>...</Text>
+           
             </TouchableOpacity>
             {this.state.shouldShow ? (
               <View style={style.dropdown}>
@@ -191,7 +192,7 @@ const style = StyleSheet.create({
     color: 'lightgrey',
     fontFamily:'Montserrat-Medium',
     marginLeft:3,
-    marginRight:12,
+    marginRight:14,
     
   },
   comments: {
@@ -234,7 +235,7 @@ const style = StyleSheet.create({
     fontSize:13,
     fontFamily:'Montserrat-Regular',
   },
-  dotsDropdownConatiner: {
+  dotsDropdownContainer: {
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     alignContent: 'center',

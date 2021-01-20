@@ -2,6 +2,7 @@ import {LOGIN_START, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, SIGNUP_START, SIGNUP_SU
 import axios from 'axios';
 import deviceStorage from '../components/screens/DeviceStorage'
 import apiInstance from '../util/axiosConfig'
+import {navigate} from '../../RootNavigation'
 
 
 
@@ -13,6 +14,7 @@ export const Register = (input) => {
     .post('https://jiujitsux.herokuapp.com/api/users/register', input)
   
     .then(response =>{ dispatch({ type: SIGNUP_SUCCESS, payload: response.data }) 
+    navigate('ProfileInfoForm')
 })
 
 .catch(error => {dispatch({ type: SIGNUP_ERROR, payload: error.response })

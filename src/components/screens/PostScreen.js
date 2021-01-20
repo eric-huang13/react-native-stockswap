@@ -141,7 +141,7 @@ const style = StyleSheet.create({
     color: 'lightgrey',
     fontFamily:'Montserrat-Medium',
     marginLeft:3,
-    marginRight:12,
+    marginRight:14,
   },
   comments: {
     fontSize: 16,

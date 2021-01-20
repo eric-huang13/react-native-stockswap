@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
-
+import {navigationRef} from '../RootNavigation'
 // Components
 import LoginScreen from 'components/screens/Login';
 import HomeScreen from 'components/screens/Home';
@@ -245,7 +245,7 @@ class Navigation extends Component {
     const {isLoggedIn} = this.props;
 
     return (
-      <NavigationContainer>
+      <NavigationContainer ref={navigationRef}>
         {isLoggedIn ? (
           <Tab.Navigator
             tabBarOptions={{
@@ -297,6 +297,8 @@ class Navigation extends Component {
             <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}
  />
  <Stack.Screen name="SignUp" component={SignUp} options={{headerShown: false}}
+ />
+ <Stack.Screen name="ProfileInfoForm" component={ProfileInfoForm} options={{headerShown: false}}
  />
   <Stack.Screen name="TermsAndConditions" component={TermsAndConditions} options={{
           title: 'StockSwap',
