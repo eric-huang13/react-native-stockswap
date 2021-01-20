@@ -156,7 +156,7 @@ class ProfileInfoForm extends Component {
                 </TouchableOpacity>
               </View>
               <View>
-                <TouchableOpacity onPress={() => LoginUser(this.state)}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
                   <Text style={style.button}>Next</Text>
                 </TouchableOpacity>
               </View>
