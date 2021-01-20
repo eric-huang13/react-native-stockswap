@@ -7,10 +7,13 @@ import {
   StyleSheet,
   Text,
   SafeAreaView,
+  TouchableWithoutFeedback,
+  Keyboard
 } from 'react-native';
 import {connect} from 'react-redux';
 import UserBox from './UserBox';
 import SearchInput from '../../icons/SearchInput'
+import UserListImage from '../../icons/UserListImage'
 
 
 export class UserList extends Component {
@@ -38,7 +41,7 @@ export class UserList extends Component {
 
     return (
       <SafeAreaView>
-        <ScrollView contentContainerStyle={{paddingBottom: 180}}>
+        
           <View style={style.searchInputContainer}>
           <View
         style={{
@@ -57,80 +60,19 @@ export class UserList extends Component {
               onChangeText={(text) => this.handleChange(text)}
             />
           </View>
-          <Text style={style.timeFilterHeader}>Time filter:</Text>
-          <View style={style.timeFilterContainer}>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('day')}>
-              <Text
-                style={
-                  timeFilter === 'day'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                1D
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('week')}>
-              <Text
-                style={
-                  timeFilter === 'week'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                1W
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('month')}>
-              <Text
-                style={
-                  timeFilter === 'month'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                1M
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('3M')}>
-              <Text
-                style={
-                  timeFilter === '3M'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                3M
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('6M')}>
-              <Text
-                style={
-                  timeFilter === '6M'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                6M
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('1Y')}>
-              <Text
-                style={
-                  timeFilter === '1Y'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                1Y
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('ALL')}>
-              <Text
-                style={
-                  timeFilter === 'ALL'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                All
-              </Text>
-            </TouchableOpacity>
-          </View>
-          {filteredUsers.map((item) => {
+         {this.state.input === '' ? 
+        <View style={style.backgroundImageContainer}>          
+         <UserListImage/>   
+         <Text style={style.backgroundImageText}>Find any person on the platform</Text> 
+      
+        </View> 
+          :  
+       <ScrollView contentContainerStyle={{paddingBottom: 180}}>
+                   <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+
+       
+        <View>
+            {filteredUsers.map((item) => {
             return (
               <TouchableOpacity
                 key={item.id}
@@ -144,7 +86,10 @@ export class UserList extends Component {
               </TouchableOpacity>
             );
           })}
-        </ScrollView>
+          </View>   
+    </TouchableWithoutFeedback>
+          </ScrollView>
+  }
       </SafeAreaView>
     );
   }
@@ -189,5 +134,19 @@ const style = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 18,
+  },
+  backgroundImageContainer:{
+    flex:1,
+    marginTop:125,
+    alignItems:'center',
+  },
+  backgroundImageText:{
+  marginTop:10,
+  fontFamily:'Montserrat-SemiBold',
+  fontSize:18,
+  color:'#9ea6b5',
+  width:180,
+  textAlign:'center',
+
   },
 });
