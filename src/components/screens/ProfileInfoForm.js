@@ -13,6 +13,8 @@ import {
   ScrollView,
 } from "react-native";
 
+import LinearGradient from 'react-native-linear-gradient';
+
 class ProfileInfoForm extends Component {
   constructor(props) {
     super(props);
@@ -54,6 +56,15 @@ class ProfileInfoForm extends Component {
 
   render() {
     return (
+      <LinearGradient
+        start={{x: 0.1, y: 1}}
+        end={{x: 0.1, y: 0.1}}
+        colors={[
+          '#1D2842',       
+          // '#485476',  
+           '#3d4b6e',           
+        ]}
+        style={{flex:1}}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : null}
         style={{ flex: 1 }}
@@ -100,7 +111,6 @@ class ProfileInfoForm extends Component {
             <View style={style.imageContainer}>
             <Text style={style.inputHeader}>Image</Text>
                 <TextInput
-                  style={style.inputStyle}
                   value={this.state.bio}
                   onChangeText={(text) => this.handleImageChange(text)}
                   placeholder="Image"
@@ -158,6 +168,7 @@ class ProfileInfoForm extends Component {
           </ScrollView>
         </SafeAreaView>
       </KeyboardAvoidingView>
+      </LinearGradient>
     );
   }
 }
@@ -183,12 +194,13 @@ const style = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 8,
-    backgroundColor: "#323e5b",
+    // backgroundColor: "#323e5b",
     paddingHorizontal: 30,
   },
   uploadPhotoContainer:{
     alignSelf:'center',
     backgroundColor: "#515581",
+    // backgroundColor: "#B8A0FF",    
     borderRadius:100,
     width:135,
     height:135,
@@ -197,17 +209,19 @@ const style = StyleSheet.create({
     paddingHorizontal:10
   },
   uploadPhotoText:{
-      color:'white',
+      color:'#FFFFFF',
       textAlign:'center',
-      fontSize:15.5,
+      fontSize:16,
+      fontFamily:'Montserrat-Regular',
 
    },
   header: {
     textAlign: "center",
-    fontSize: 19,
-    color: "white",
-    fontWeight: "bold",
+    fontSize: 18,
+    color: "#FFFFFF",
     marginBottom:20,
+    fontFamily:'Montserrat-Bold',
+
   },
   topRow: {
     flexDirection: "row",
@@ -218,17 +232,26 @@ const style = StyleSheet.create({
   },
   
   inputHeader: {
-    fontSize: 14.5,
-    color: "#c1c5cd",
+    fontSize: 14,
+    color: "#babec8",
     marginBottom: 1,
+    fontFamily:'Montserrat-Regular',
+    
+
   },
   inputStyle: {
     borderRadius: 8,
-    backgroundColor: "#3e4d6c",
     marginBottom: 12,
     padding: 8,
     marginTop: 1,
     fontSize: 16,
+    backgroundColor: "#536183",
+    opacity:0.7,
+    fontFamily:'Montserrat-Italic',
+    color:'#9ea6b5'
+    
+    
+
   },
   inputStyleBio: {
     borderRadius: 8,
@@ -238,6 +261,7 @@ const style = StyleSheet.create({
     marginTop: 1,
     fontSize: 16,
     textAlignVertical:'top',
+    color:'#9ea6b5'
   },
  
   button: {

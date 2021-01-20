@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import LargeStockSwap from '../../icons/LargeStockSwap'
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -10,8 +10,9 @@ export default class SplashScreen extends Component {
         start={{x: 0.1, y: 1}}
         end={{x: 0.1, y: 0.1}}
         colors={[
-          '#1D2842',
-          '#3d4b6e',          
+          '#1D2842',       
+        //   '#485476',  
+           '#3d4b6e',           
         ]}
         style={style.mainContainer}>
                 <LargeStockSwap/>

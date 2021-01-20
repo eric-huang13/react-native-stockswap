@@ -248,7 +248,8 @@ const style = StyleSheet.create({
     fontSize:16,
     fontFamily:'Montserrat-Italic',
     backgroundColor: "#536183",
-    opacity:0.7
+    opacity:0.7,
+    color:'#9ea6b5'
     
   },
   inputStyleConfirm: {
@@ -259,7 +260,8 @@ const style = StyleSheet.create({
     fontSize:16,
     fontFamily:'Montserrat-Italic',
     backgroundColor: "#536183",
-    opacity:0.7
+    opacity:0.7,
+    color:'#9ea6b5'
   },
   button: {
     alignSelf: "center",
