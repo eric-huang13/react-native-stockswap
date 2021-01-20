@@ -16,7 +16,7 @@ import Svg, {Path, Defs, G, Rect} from 'react-native-svg'
 
 const SearchIcon = () => {
     return (
-      <View style={{flexDirection:'column', justifyContent:'center', alignContent:'center', alignItems:'center'}}>
+      <View style={{flexDirection:'column', justifyContent:'center', alignContent:'center', alignItems:'center', marginBottom:-7}}>
         <Svg
       width={24}
       height={24}
@@ -34,7 +34,7 @@ const SearchIcon = () => {
     <Svg
       width={126}
       height={10}
-      viewBox="0 10 126 28"
+      viewBox="2 12 126 28"
       xmlns="http://www.w3.org/2000/svg"
  
     >

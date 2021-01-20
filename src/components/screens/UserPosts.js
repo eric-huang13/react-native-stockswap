@@ -236,19 +236,21 @@ const style = StyleSheet.create({
     width: '100%',
     marginTop: 1,
     marginBottom: -125,
-    backgroundColor: '#36415f',
+    backgroundColor: '#2C3957',
     zIndex: 1,
     paddingVertical: 6,
     // paddingHorizontal:10,
   },
   dropDownText: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 16,
     marginHorizontal: 12,
+    fontFamily:'Montserrat-Medium',
   },
   dropDownTextReportContainer: {
     borderTopWidth: 1,
-    borderTopColor: 'lightgrey',
+    borderTopColor: '#CBCDD7',
     paddingTop: 4,
+    backgroundColor:'#2C3957'
   },
 });
