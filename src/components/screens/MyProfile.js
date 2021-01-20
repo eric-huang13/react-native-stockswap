@@ -146,9 +146,9 @@ class Profile extends Component {
                       <Text style={style.username}>@{user.username}</Text>
                       <Text style={style.website}>{user.website}</Text>
                     </View>
-                    <View style={style.followButtonView}>
+                    {/* <View style={style.followButtonView}>
                       <Text style={style.followButton}>+Follow</Text>
-                    </View>
+                    </View> */}
                   </View>
                   <View style={style.bioContainer}>
                     <Text style={style.bio}>{user.bio}</Text>
@@ -172,7 +172,7 @@ class Profile extends Component {
                     </View>
                   </View>
                 </View>
-                <View style={style.portfolioButtonContainer}>
+                {/* <View style={style.portfolioButtonContainer}>
                   <TouchableOpacity
                     onPress={() =>
                       this.props.navigation.navigate({
@@ -182,7 +182,7 @@ class Profile extends Component {
                     }>
                     <Text style={style.portfolioButton}>Portfolio Button</Text>
                   </TouchableOpacity>
-                </View>
+                </View> */}
               </View>
             );
           })}
@@ -215,23 +215,27 @@ const style = StyleSheet.create({
     paddingHorizontal: 7,
   },
   personalDetails: {
-    borderColor: 'yellow',
-    marginLeft: -90,
+    borderColor: 'yellow',    
+    marginLeft:8,
     flexDirection: 'column',
     justifyContent: 'space-between',
+    // alignSelf:'center'
   },
   detailsRow: {
+    // borderWidth:1,
     borderColor: 'orange',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
   },
   bioContainer: {
     marginVertical: 8,
     paddingHorizontal: 3,
   },
   bio: {
-    color: 'white',
+    color: '#FFFFFF',
     fontSize: 16,
+    fontFamily:'Montserrat-Medium',
+
   },
   numberRow: {
     flexDirection: 'row',
@@ -259,8 +263,8 @@ const style = StyleSheet.create({
   },
   gain: {
     color: 'white',
-    fontSize: 30,
-    fontFamily:'Montserrat-Bold',
+    fontSize: 26,
+    fontFamily:'Montserrat-ExtraBold',
     
   },
   timeNumberContainer: {
@@ -272,9 +276,9 @@ const style = StyleSheet.create({
     fontSize: 12,
   },
   image: {
-    height: 80,
-    width: 80,
-    borderRadius: 50,
+    height: 70,
+    width: 70,
+    borderRadius: 80,
   },
   followButtonView: {
     flexDirection: 'column',
@@ -291,28 +295,33 @@ const style = StyleSheet.create({
     fontSize: 16,
   },
   name: {
-    color: 'white',
-    fontSize: 22,
+    color: '#FFFFFF',
+    fontSize: 20,
     fontFamily:'Montserrat-Black',
 
   },
   username: {
-    color: 'white',
-    fontSize: 15,
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontFamily:'Montserrat-Regular',
   },
   website: {
     color: '#9082cf',
-    fontSize: 15,
+    fontFamily:'Montserrat-Medium',
+    fontSize: 14,
   },
+  
 
   numberData: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: '#FFFFFF',
     fontSize: 18,
+    fontFamily:'Montserrat-Bold',
+
   },
   numberText: {
     color: 'lightgrey',
     fontSize: 14,
+    fontFamily:'Montserrat-Regular',    
   },
 
   portfolioButtonContainer: {

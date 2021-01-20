@@ -816,7 +816,7 @@ const defaultState = {
       bio:
         'Business major interested in finding new stock buying opportunities.',
       username: 'hfields123',
-      website: 'www.hfl.com',
+      website: '#Myhashtag',
       gain:2103.24,
       percentage: 31.1,
       img:
