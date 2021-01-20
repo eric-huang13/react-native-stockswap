@@ -44,10 +44,10 @@ class Profile extends Component {
     const {graphData, percent, range, timeFilter} = this.state;
     const {posts, comments, users, reply} = this.props;
     const id = 1
-
     const selectedUser = users.filter((user) => user.id === id);
+    console.log(selectedUser,"userdata")
 
-    const filteredPosts = posts.filter((post) => post.userId === item.id);
+    // const filteredPosts = posts.filter((post) => post.userId === item.id);
     return (
       <SafeAreaView style={style.container}>
         <ScrollView>
@@ -57,7 +57,7 @@ class Profile extends Component {
                 <View style={style.aboveGraphContainer}>
                   <View style={style.portfolioHeaderContainer}>
                     <Text style={style.portfolioHeader}>Portfolio</Text>
-                    <Text style={style.percentage}>+{user.percentage}%</Text>
+                    <Text style={style.percentage}>{user.gain}</Text>
                   </View>
                   <View style={style.timeNumberContainer}>
                     <Text style={style.timeNumber}>Past hour</Text>

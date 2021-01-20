@@ -23,6 +23,7 @@ import SignUp from './components/screens/SignUp'
 import ProfileInfoForm from './components/screens/ProfileInfoForm'
 import TermsAndConditions from './components/screens/TermsAndConditions'
 import SplashScreen from './components/screens/SplashScreen'
+import MyProfile from './components/screens/MyProfile'
 
 //icons
 import SearchIconInactive from './icons/SearchIconInactive'
@@ -41,6 +42,8 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 const SearchStack = createStackNavigator();
 const HomeStack = createStackNavigator();
+const MyProfileStack = createStackNavigator();
+
 
 class Navigation extends Component {
   createSearchStack = () => (
@@ -233,11 +236,120 @@ class Navigation extends Component {
           },
         }}
       />
+      <HomeStack.Screen
+        name="MyProfile"
+        component={MyProfile}
+        options={{
+          title: 'My Profile',
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
       {/* <HomeStack.Screen
         name="SignUp"
         component={SignUp}
         options={{headerShown: false}}
       /> */}
+    </HomeStack.Navigator>
+  );
+
+  createMyProfileStack = () => (
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        name="MyProfile"
+        component={MyProfile}
+        options={{
+          title: 'My Profile',
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      
+      <SearchStack.Screen
+        name="PostScreen"
+        component={PostScreen}
+        options={({route}) => ({
+          title: route.params.name,
+
+          headerShown: true,
+
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        })}
+      />
+
+      <SearchStack.Screen
+        name="Comments"
+        component={UserCommentList}
+        options={{
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      <HomeStack.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          title: 'Profile',
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      <HomeStack.Screen
+        name="UserPortfolioList"
+        component={UserPortfolioList}
+        options={{
+          title: 'Portfolio',
+          headerStyle: {
+            backgroundColor: '#313c58',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      <HomeStack.Screen
+        name="CompanyInformation"
+        component={CompanyInformation}
+        options={{
+          title: 'Stock details',
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      
+      
     </HomeStack.Navigator>
   );
 
@@ -278,7 +390,7 @@ class Navigation extends Component {
                 if (route.name === 'UserList') {
                   return focused ? <LeaderboardActive/> : <LeaderboardInactive/>
                 }
-                if (route.name === 'SplashScreen') {
+                if (route.name === 'MyProfile') {
                   return focused ? <ProfileActive/> : <ProfileInactive/>
                 }     
                
@@ -289,7 +401,7 @@ class Navigation extends Component {
             <Tab.Screen name="Search" component={this.createSearchStack}/>
             <Tab.Screen name="PostScreen" component={ProfileInfoForm}  />
             <Tab.Screen name="UserList" component={LoginScreen}  />
-            <Tab.Screen name="SplashScreen" component={SplashScreen}  />
+            <Tab.Screen name="MyProfile" component={this.createMyProfileStack}  />
 
           </Tab.Navigator>
         ) : (
