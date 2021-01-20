@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from 'react-native';
+import LikeInactiveIcon from '../../icons/LikeInactiveIcon'
+import CommentIcon from '../../icons/CommentIcon'
 
 export default class UserPosts extends Component {
   constructor(props) {
@@ -71,9 +73,15 @@ export default class UserPosts extends Component {
           <Text style={style.timestamp}>{post.timestamp}</Text>
 
           <View style={style.likesContainer}>
-            <Text style={style.likes}>{post.likes}</Text>
-            <Text style={style.comments}>{post.comments}</Text>
-          </View>
+              <View style={style.iconContainer}>
+                <LikeInactiveIcon/>
+              <Text style={style.likes}>{post.likes}</Text>
+              </View>
+              <View style={style.iconContainer}>
+                <CommentIcon/>
+              <Text style={style.comments}>{post.comments}</Text>
+              </View>
+            </View>
         </View>
         <TouchableOpacity
           onPress={() =>
@@ -173,17 +181,25 @@ const style = StyleSheet.create({
     color: 'lightgrey',
     fontFamily:'Montserrat-Italic',
   },
+  iconContainer:{
+    flexDirection:'row',
+     alignItems:'center',
+     justifyContent:'space-between',
+  },
   likes: {
     fontSize: 16,
     color: 'lightgrey',
     fontFamily:'Montserrat-Medium',
+    marginLeft:3,
+    marginRight:12,
     
   },
   comments: {
     fontSize: 16,
     color: 'lightgrey',
-    marginHorizontal: 10,
     fontFamily:'Montserrat-Medium',
+    marginRight: 1,
+    marginLeft:3,
   },
   body: {
     fontSize: 15,
