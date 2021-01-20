@@ -57,7 +57,7 @@ class Profile extends Component {
                 <View style={style.aboveGraphContainer}>
                   <View style={style.portfolioHeaderContainer}>
                     <Text style={style.portfolioHeader}>Portfolio</Text>
-                    <Text style={style.percentage}>{user.gain}</Text>
+                    <Text style={style.gain}>${user.gain}</Text>
                   </View>
                   <View style={style.timeNumberContainer}>
                     <Text style={style.timeNumber}>Past hour</Text>
@@ -186,25 +186,7 @@ class Profile extends Component {
               </View>
             );
           })}
-{/* 
-          {filteredPosts.length > 0 ? (
-            <View>
-              <Text style={style.postsHeader}>POSTS</Text>
 
-              <View>
-                {filteredPosts.map((post) => (
-                  <View key={post.id}>
-                    <UserPosts
-                      post={post}
-                      navigation={this.props.navigation}
-                      comments={comments}
-                      reply={reply}
-                    />
-                  </View>
-                ))}
-              </View>
-            </View>
-          ) : null} */}
         </ScrollView>
       </SafeAreaView>
     );
@@ -269,13 +251,17 @@ const style = StyleSheet.create({
     flexDirection: 'column',
   },
   portfolioHeader: {
-    color: 'white',
+    color: '#FFFFFF',
     fontSize: 18,
+    fontFamily:'Montserrat-Regular',
+    marginBottom:0
+
   },
-  percentage: {
+  gain: {
     color: 'white',
-    fontSize: 22,
-    fontWeight: 'bold',
+    fontSize: 30,
+    fontFamily:'Montserrat-Bold',
+    
   },
   timeNumberContainer: {
     flexDirection: 'column',
@@ -306,8 +292,9 @@ const style = StyleSheet.create({
   },
   name: {
     color: 'white',
-    fontWeight: 'bold',
     fontSize: 22,
+    fontFamily:'Montserrat-Black',
+
   },
   username: {
     color: 'white',
@@ -358,8 +345,8 @@ const style = StyleSheet.create({
     paddingBottom: 9,
   },
   timeFilterButtons: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontFamily:'Montserrat-Bold',
     fontSize: 16,
   },
   postsHeader: {
