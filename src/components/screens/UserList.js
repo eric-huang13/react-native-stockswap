@@ -61,11 +61,16 @@ export class UserList extends Component {
             />
           </View>
          {this.state.input === '' ? 
+         <ScrollView>
+                              <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+
         <View style={style.backgroundImageContainer}>          
          <UserListImage/>   
          <Text style={style.backgroundImageText}>Find any person on the platform</Text> 
       
-        </View> 
+        </View>
+        </TouchableWithoutFeedback>
+        </ScrollView> 
           :  
        <ScrollView contentContainerStyle={{paddingBottom: 180}}>
                    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
