@@ -130,7 +130,7 @@ const style = StyleSheet.create({
   },
   symbol: {
     // fontSize: 18,
-    fontSize: 21,
+    fontSize: 19,
     color: 'rgb(8, 11, 9)',
     fontFamily:'Montserrat-Bold',
 

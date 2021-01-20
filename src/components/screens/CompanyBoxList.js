@@ -69,7 +69,7 @@ export class CompanyBoxList extends Component {
                     },
                   })
                 }>
-                <Text style={style.header}>Gainers</Text>
+                <Text style={style.header}>Daily Gainers</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() =>
@@ -117,7 +117,7 @@ export class CompanyBoxList extends Component {
                     },
                   })
                 }>
-                <Text style={style.header}>Losers</Text>
+                <Text style={style.header}>Daily Losers</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() =>
@@ -166,7 +166,7 @@ export class CompanyBoxList extends Component {
                     },
                   })
                 }>
-                <Text style={style.header}>Highest by Volume</Text>
+                <Text style={style.header}>Daily Highest by Volume</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() =>
@@ -254,7 +254,7 @@ const style = StyleSheet.create({
   },
   header: {
     // fontSize: 16,
-    fontSize: 19,
+    fontSize: 17,
     marginLeft: 5.5,
     color: 'lightgrey',
     fontFamily: 'Montserrat-Regular',

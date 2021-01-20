@@ -1,12 +1,26 @@
 import React from 'react'
-import Svg, {Path} from 'react-native-svg'
+import {
+  Text,
+  View,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  SafeAreaView,
+  TouchableWithoutFeedback,
+  Keyboard,
+  ScrollView
+} from "react-native";
+import Svg, {Path, Defs, G, Rect} from 'react-native-svg'
+
 
 const SearchIcon = () => {
     return (
+      <View style={{flexDirection:'column', justifyContent:'center', alignContent:'center', alignItems:'center'}}>
         <Svg
       width={24}
       height={24}
-      viewBox="0 0 20 20"
+      viewBox="0 1 20 15"
       xmlns="http://www.w3.org/2000/svg"
      
     >
@@ -17,6 +31,26 @@ const SearchIcon = () => {
         stroke="#8B64FF"
       />
     </Svg>
+    <Svg
+      width={126}
+      height={10}
+      viewBox="0 10 126 28"
+      xmlns="http://www.w3.org/2000/svg"
+ 
+    >
+      <Defs></Defs>
+      <G transform="translate(30 30)" fill="none" fillRule="evenodd">
+        <Rect fill="#8257FF" x={6} y={3} width={74} height={3} rx={1.5} />
+        <Rect
+          fill="#916BFF"
+          filter="url(#prefix__a)"
+          width={96}
+          height={10}
+          rx={2}
+        />
+      </G>
+    </Svg>
+    </View>
     )
 }
 
