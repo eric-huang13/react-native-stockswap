@@ -22,6 +22,7 @@ import UserPortfolioList from './components/screens/UserPortfolioList';
 import SignUp from './components/screens/SignUp'
 import ProfileInfoForm from './components/screens/ProfileInfoForm'
 import TermsAndConditions from './components/screens/TermsAndConditions'
+import SplashScreen from './components/screens/SplashScreen'
 
 //icons
 import SearchIconInactive from './icons/SearchIconInactive'
@@ -34,7 +35,7 @@ import ProfileInactive from './icons/ProfileInactive'
 import ProfileActive from './icons/ProfileActive'
 import CreatePostInactive from './icons/CreatePostInactive'
 import CreatePostActive from './icons/CreatePostActive'
-import { UserList } from './components/screens/UserList';
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -277,7 +278,7 @@ class Navigation extends Component {
                 if (route.name === 'UserList') {
                   return focused ? <LeaderboardActive/> : <LeaderboardInactive/>
                 }
-                if (route.name === 'Profile') {
+                if (route.name === 'SplashScreen') {
                   return focused ? <ProfileActive/> : <ProfileInactive/>
                 }     
                
@@ -288,7 +289,7 @@ class Navigation extends Component {
             <Tab.Screen name="Search" component={this.createSearchStack}/>
             <Tab.Screen name="PostScreen" component={ProfileInfoForm}  />
             <Tab.Screen name="UserList" component={TermsAndConditions}  />
-            <Tab.Screen name="Profile" component={SignUp}  />
+            <Tab.Screen name="SplashScreen" component={SplashScreen}  />
 
           </Tab.Navigator>
         ) : (
