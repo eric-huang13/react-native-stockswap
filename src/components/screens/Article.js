@@ -39,13 +39,13 @@ const style = StyleSheet.create({
     paddingHorizontal: 6,
   },
   source: {
-    color: 'grey',
+    color:'#9ea6b5',
     marginRight: 4,
     fontSize: 15,
     fontFamily:'Montserrat-Regular',
   },
   released: {
-    color: 'grey',
+    color: '#9ea6b5',
     fontSize: 13,
     fontFamily:'Montserrat-Regular',
   },

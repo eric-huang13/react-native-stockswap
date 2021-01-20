@@ -55,7 +55,7 @@ export class UserList extends Component {
       </View>
             <TextInput
               style={style.searchInput}
-              placeholder="Search"
+              placeholder="Search by name"
               placeholderTextColor="lightgrey"
               onChangeText={(text) => this.handleChange(text)}
             />
@@ -118,7 +118,7 @@ const style = StyleSheet.create({
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 16,
+    fontSize: 15,
     height: 36,
     fontFamily: 'Montserrat-Italic',
     paddingVertical: 0,
@@ -142,7 +142,7 @@ const style = StyleSheet.create({
   },
   backgroundImageContainer:{
     flex:1,
-    marginTop:125,
+    marginTop:120,
     alignItems:'center',
   },
   backgroundImageText:{
