@@ -288,7 +288,7 @@ class Navigation extends Component {
             <Tab.Screen name="Home" component={this.createHomeStack} />
             <Tab.Screen name="Search" component={this.createSearchStack}/>
             <Tab.Screen name="PostScreen" component={ProfileInfoForm}  />
-            <Tab.Screen name="UserList" component={TermsAndConditions}  />
+            <Tab.Screen name="UserList" component={LoginScreen}  />
             <Tab.Screen name="SplashScreen" component={SplashScreen}  />
 
           </Tab.Navigator>

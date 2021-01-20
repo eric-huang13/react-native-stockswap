@@ -99,7 +99,7 @@ class ProfileInfoForm extends Component {
                   style={style.inputStyle}
                   value={this.state.username}
                   onChangeText={(text) => this.handleUsernameChange(text)}
-                  placeholder="Enter your username"
+                  placeholder="@example"
                   placeholderTextColor="#9ea6b5"
                   style={style.inputStyle}
                   ref={(input) => (this.username = input)}
@@ -115,19 +115,18 @@ class ProfileInfoForm extends Component {
                   onChangeText={(text) => this.handleImageChange(text)}
                   placeholder="Image"
                   placeholderTextColor="#9ea6b5"
-                  secureTextEntry
                   style={style.inputStyle}
                   ref={(input) => (this.image = input)}
                   onSubmitEditing={() => this.hashtag.focus()}                />
             </View>
               <View>
-                <Text style={style.inputHeader}>Hashtag</Text>
+                <Text style={style.inputHeader}>Hashtag (up to 3 tags)</Text>
 
                 <TextInput
                   style={style.inputStyle}
                   value={this.state.hashtag}
                   onChangeText={(text) => this.handleHashtagChange(text)}
-                  placeholder="Enter your hashtag"
+                  placeholder="Add hashtags which describe you"
                   placeholderTextColor="#9ea6b5"
                   returnKeyType="next"
                   ref={(input) => (this.hashtag = input)}
@@ -140,9 +139,8 @@ class ProfileInfoForm extends Component {
                   style={style.inputStyleBio}
                   value={this.state.bio}
                   onChangeText={(text) => this.handleBioChange(text)}
-                  placeholder="Enter your bio"
+                  placeholder="Tell a bit about yourself"
                   placeholderTextColor="#9ea6b5"
-                  secureTextEntry
                   multiline = {true}
                   numberOfLines = {4}
                   ref={(input) => (this.bio = input)}
@@ -211,13 +209,13 @@ const style = StyleSheet.create({
   uploadPhotoText:{
       color:'#FFFFFF',
       textAlign:'center',
-      fontSize:16,
+      fontSize:14,
       fontFamily:'Montserrat-Regular',
 
    },
   header: {
     textAlign: "center",
-    fontSize: 18,
+    fontSize: 16,
     color: "#FFFFFF",
     marginBottom:20,
     fontFamily:'Montserrat-Bold',
@@ -232,7 +230,7 @@ const style = StyleSheet.create({
   },
   
   inputHeader: {
-    fontSize: 14,
+    fontSize: 12,
     color: "#babec8",
     marginBottom: 1,
     fontFamily:'Montserrat-Regular',
@@ -261,39 +259,49 @@ const style = StyleSheet.create({
     marginTop: 1,
     fontSize: 16,
     textAlignVertical:'top',
+    backgroundColor: "#536183",
+    opacity:0.7,
+    fontFamily:'Montserrat-Italic',
     color:'#9ea6b5'
   },
  
   button: {
     alignSelf: "center",
     backgroundColor: "#8b64ff",
-    color: "white",
+    color: "#FFFFFF",
     textAlign: "center",
     paddingVertical: 12,
     paddingHorizontal: 20,
     width: 150,
     borderRadius: 6,
-    fontSize: 17,
+    fontSize: 14,
+    fontFamily:'Montserrat-SemiBold',
+
   },
   privacyContainer: {
     marginBottom: 28,
     flexDirection: "column",
     justifyContent: "space-between",
     paddingHorizontal: 2,
+    
   },
  
   privacyText: {
-    color: "#c1c5cd",
-    fontSize: 14,
+    color: "#babec8",
+    fontSize: 12,
     marginRight: 3,
+    fontFamily:'Montserrat-Regular',
+
   },
   buttonText: {
-    backgroundColor: "#3e4d6c",
-    color: "white",
-    fontSize: 18,
-    paddingVertical:5,
-    paddingHorizontal:8,
-    borderRadius:4,
+    backgroundColor: "#3E4D6C",
+    color: "#FFFFFF",
+    fontSize: 16,
+    paddingVertical:12,
+    paddingHorizontal:10,
+    borderRadius:6,
+    fontFamily:'Montserrat-Medium',
+
   },
   
  
