@@ -9,12 +9,9 @@ export default class MyProfileSettings extends Component {
           enabled: false,          
         };
       }
-      toggleSwitch() {
-        this.setState({
-            enabled:!this.state.enabled
-        });
-      }
-    render() {
+   
+    toggleSwitch = value =>{ this.setState({ enabled: value});
+};    render() {
         return (
             <SafeAreaView style={style.container}>
                 <ScrollView>
@@ -59,9 +56,9 @@ export default class MyProfileSettings extends Component {
                 <View style={style.notificationsContainer}>
                     <Text style={style.middleDetailsText}>Turn off notifications</Text>
                     <Switch
-        trackColor={{ false: "#767577", true: "#81b0ff" }}
-        thumbColor={this.state.enabled ? "#f5dd4b" : "#f4f3f4"}
-        ios_backgroundColor="#3e3e3e"
+        trackColor={{ false: "#767577", true: "#B8A0FF" }}
+        thumbColor={this.state.enabled ? "#f4f3f4" : "#f4f3f4"}
+        // ios_backgroundColor="#3e3e3e"
         onValueChange={this.toggleSwitch}
         value={this.state.enabled}
        
