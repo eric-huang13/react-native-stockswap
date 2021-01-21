@@ -9,7 +9,6 @@ import {
   SafeAreaView,
 } from 'react-native';
 import ProfileGraph from './ProfileGraphList';
-import UserPosts from './UserPosts';
 import {connect} from 'react-redux';
 
 class Profile extends Component {
@@ -40,14 +39,12 @@ class Profile extends Component {
     this.setState({timeFilter: time});
   }
   render() {
-    // const {item} = this.props.route.params;
     const {graphData, percent, range, timeFilter} = this.state;
     const {posts, comments, users, reply} = this.props;
     const id = 1
     const selectedUser = users.filter((user) => user.id === id);
     console.log(selectedUser,"userdata")
 
-    // const filteredPosts = posts.filter((post) => post.userId === item.id);
     return (
       <SafeAreaView style={style.container}>
         <ScrollView>
@@ -146,9 +143,7 @@ class Profile extends Component {
                       <Text style={style.username}>@{user.username}</Text>
                       <Text style={style.hashtag}>{user.hashtag}</Text>
                     </View>
-                    {/* <View style={style.followButtonView}>
-                      <Text style={style.followButton}>+Follow</Text>
-                    </View> */}
+                    
                   </View>
                   <View style={style.bioContainer}>
                     <Text style={style.bio}>{user.bio}</Text>
@@ -220,7 +215,6 @@ const style = StyleSheet.create({
     paddingVertical:10,
   },
   infoContainer: {
-    // borderWidth:1,
     borderColor: 'red',
     paddingHorizontal: 7,
   },
@@ -229,13 +223,10 @@ const style = StyleSheet.create({
     marginLeft:8,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    // alignSelf:'center'
   },
   detailsRow: {
-    // borderWidth:1,
     borderColor: 'orange',
     flexDirection: 'row',
-    // justifyContent: 'space-between',
   },
   bioContainer: {
     marginVertical: 12,

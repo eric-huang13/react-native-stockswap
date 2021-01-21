@@ -250,41 +250,17 @@ class Navigation extends Component {
           headerTintColor: 'white',
           headerTitleAlign: {
             textAlign: 'center',
-          },
-         
+          },         
         }}
       />
-      {/* <HomeStack.Screen
-        name="SignUp"
-        component={SignUp}
-        options={{headerShown: false}}
-      /> */}
+    
     </HomeStack.Navigator>
   );
 
-  createMyProfileStack = (navigation) => (
+  createMyProfileStack = () => (
     <MyProfileStack.Navigator>
-      {/* <MyProfileStack.Screen
-        name="MyProfile"
-        component={MyProfile}
-        options={{
-          title: 'My Profile',
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-          headerRight: (navigation, na) => (
-            <TouchableOpacity onPress={() =>navigation.navigate('MyProfileSettings')}>
-                  <Text>Settings</Text>
-                </TouchableOpacity>
-          ),
-        }}
-      /> */}
       <MyProfileStack.Screen
-        name="My Profile"
+        name="MyProfile"
         component={MyProfile}
         options={({ navigation}) => ({
           headerShown: true,
@@ -308,19 +284,29 @@ class Navigation extends Component {
         })}
       />
 
-      <MyProfileStack.Screen
+       <MyProfileStack.Screen
         name="MyProfileSettings"
         component={MyProfileSettings}
-        options={{
+        options={({ navigation}) => ({
           title: 'Settings',
+          headerShown: true,
           headerStyle: {
             backgroundColor: '#394463',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
           },
           headerTintColor: 'white',
           headerTitleAlign: {
             textAlign: 'center',
           },
-        }}
+          headerRight: () => (
+            <TouchableOpacity onPress={() =>navigation.navigate('EditProfile')}>
+                  <Text style={style.button}>Edit Profile</Text>
+                </TouchableOpacity>
+          ),          
+        })}
       />
       <MyProfileStack.Screen
         name="EditProfile"
@@ -329,6 +315,10 @@ class Navigation extends Component {
           title: 'Settings',
           headerStyle: {
             backgroundColor: '#394463',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
           },
           headerTintColor: 'white',
           headerTitleAlign: {
@@ -426,9 +416,6 @@ class Navigation extends Component {
               activeTintColor: '#9082cf',
               inactiveTintColor: 'lightgray',
               showLabel:false,
-              // showIcon:true,            
-              // activeBackgroundColor: '#333e5c',
-              // inactiveBackgroundColor: '#333e5c',
               style: {
                 backgroundColor: '#333e5c',
                 paddingBottom: 3,
@@ -488,7 +475,6 @@ class Navigation extends Component {
           </Stack.Navigator>
         )}
       </NavigationContainer>
-      // </LinearGradient>
     );
   }
 }

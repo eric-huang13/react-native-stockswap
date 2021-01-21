@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView,Switch } from 'react-native'
+import { Text, View, StyleSheet, ScrollView, SafeAreaView,Switch } from 'react-native'
 import TriangleIcon from '../../icons/TriangleIcon'
-export default class MyProfileSettings extends Component {
+import { connect } from "react-redux";
+import {Logout} from 'actions/user';
+
+
+class MyProfileSettings extends Component {
     constructor(props) {
         super(props);
     
@@ -11,13 +15,13 @@ export default class MyProfileSettings extends Component {
       }
    
     toggleSwitch = value =>{ this.setState({ enabled: value});
-};    render() {
+};    
+    render() {
+        const {LogoutUser} = this.props
+
         return (
             <SafeAreaView style={style.container}>
                 <ScrollView>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('EditProfile')}>
-                  <Text style={style.button}>Edit profile</Text>
-                </TouchableOpacity>
                 <View style={style.topDetailsContainer}>
                     <View style={style.detailsRow}>
                     <View style={style.detailsColumn}>
@@ -61,7 +65,7 @@ export default class MyProfileSettings extends Component {
                     <Switch 
         trackColor={{ false: "#767577", true: "#B8A0FF" }}
         thumbColor={this.state.enabled ? "#f4f3f4" : "#f4f3f4"}
-        // ios_backgroundColor="#3e3e3e"
+        ios_backgroundColor="#f4f3f4"
         onValueChange={this.toggleSwitch}
         value={this.state.enabled}
         style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }}
@@ -83,13 +87,28 @@ export default class MyProfileSettings extends Component {
 
                 </View>
                 <View style={style.logoutButtonContainer}>
-                <Text style={style.logoutButton}>Log Out</Text>
+                <Text style={style.logoutButton} onPress={() => LogoutUser()}>Log Out</Text>
                 </View>
                 </ScrollView>
             </SafeAreaView>
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+      user: state.user.user,    
+    };
+  };
+  
+  const mapDispatchToProps = (dispatch) => {
+    return {
+        LogoutUser: (userCredentials) => dispatch(Logout(userCredentials)),
+
+    };
+  };
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(MyProfileSettings);
 
 const style = StyleSheet.create({
     container: {

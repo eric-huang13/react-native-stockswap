@@ -8,8 +8,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   KeyboardAvoidingView,
-  TouchableWithoutFeedback,
-  Keyboard,
   ScrollView,
   Image
 } from "react-native";
@@ -89,7 +87,6 @@ class EditProfile extends Component {
       >
         <SafeAreaView style={style.mainContainer}>
           <ScrollView>
-            {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}> */}
             
             <Text style={style.header}>Fill Profile Info</Text>
             
@@ -171,16 +168,15 @@ class EditProfile extends Component {
 
           
               <View style={style.buttonsContainer}>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('MyProfile')}>
                   <Text style={style.cancelButton}>Cancel</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('MyProfile')}>
                   <Text style={style.saveButton}>Save</Text>
                 </TouchableOpacity>
               </View>
             </View>
 
-            {/* </TouchableWithoutFeedback> */}
           </ScrollView>
         </SafeAreaView>
       </KeyboardAvoidingView>
@@ -198,7 +194,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    LoginUser: (input) => dispatch(Login(input)),
   };
 };
 
@@ -208,7 +203,6 @@ const style = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 8,
-    // backgroundColor: "#323e5b",
     paddingHorizontal: 30,
   },
   uploadPhotoContainer:{
@@ -264,7 +258,6 @@ const style = StyleSheet.create({
     marginBottom: 1,
     fontFamily:'Montserrat-Regular',
     
-
   },
   inputStyle: {
     borderRadius: 8,
@@ -272,14 +265,10 @@ const style = StyleSheet.create({
     padding: 8,
     marginTop: 1,
     fontSize: 14,
-    // backgroundColor: "#536183",
-    // opacity:0.7,
     backgroundColor: "#3e4d6c",
     fontFamily:'Montserrat-SemiBold',
-    color:'#FFFFFF'
+    color:'#FFFFFF'  
     
-    
-
   },
   inputStyleBio: {
     borderRadius: 8,
@@ -289,8 +278,6 @@ const style = StyleSheet.create({
     marginTop: 1,
     fontSize: 14,
     textAlignVertical:'top',
-    // backgroundColor: "#536183",
-    // opacity:0.7,
     fontFamily:'Montserrat-SemiBold',
     color:'#FFFFFF'
   },
@@ -326,7 +313,6 @@ const style = StyleSheet.create({
     borderRadius: 6,
     fontSize: 14,
     fontFamily:'Montserrat-SemiBold',
-
   },
    
   });

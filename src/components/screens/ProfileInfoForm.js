@@ -71,7 +71,6 @@ class ProfileInfoForm extends Component {
       >
         <SafeAreaView style={style.mainContainer}>
           <ScrollView>
-            {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}> */}
             
             <Text style={style.header}>Fill Profile Info</Text>
             <View style={style.uploadPhotoContainer}>
@@ -162,7 +161,6 @@ class ProfileInfoForm extends Component {
               </View>
             </View>
 
-            {/* </TouchableWithoutFeedback> */}
           </ScrollView>
         </SafeAreaView>
       </KeyboardAvoidingView>
@@ -171,18 +169,15 @@ class ProfileInfoForm extends Component {
   }
 }
 
+//Redux for easy hookup later
 const mapStateToProps = (state) => {
   return {
-    isLoggedIn: state.user.isLoggedIn,
-    user: state.user.user,
-    loading: state.user.loading,
-    error: state.user.error,
+    user: state.user.user,    
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    LoginUser: (input) => dispatch(Login(input)),
   };
 };
 
