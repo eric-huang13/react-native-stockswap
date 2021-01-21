@@ -172,7 +172,16 @@ class Profile extends Component {
                     </View>
                   </View>
                 </View>
-                {/* <View style={style.portfolioButtonContainer}>
+                <View style={style.portfolioButtonContainer}>
+                <TouchableOpacity
+                    onPress={() =>
+                      this.props.navigation.navigate({
+                        name: 'UserPortfolioList',
+                        // params: {user},
+                      })
+                    }>
+                    <Text style={style.portfolioButton}>All my posts</Text>
+                  </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() =>
                       this.props.navigation.navigate({
@@ -180,9 +189,9 @@ class Profile extends Component {
                         // params: {user},
                       })
                     }>
-                    <Text style={style.portfolioButton}>Portfolio Button</Text>
+                    <Text style={style.portfolioButton}>Manage Portfolio</Text>
                   </TouchableOpacity>
-                </View> */}
+                </View>
               </View>
             );
           })}
@@ -208,6 +217,7 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#2a334a',
+    paddingVertical:10,
   },
   infoContainer: {
     // borderWidth:1,
@@ -233,7 +243,7 @@ const style = StyleSheet.create({
   },
   bio: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: 14,
     fontFamily:'Montserrat-Medium',
 
   },
@@ -256,14 +266,14 @@ const style = StyleSheet.create({
   },
   portfolioHeader: {
     color: '#FFFFFF',
-    fontSize: 18,
+    fontSize: 16,
     fontFamily:'Montserrat-Regular',
     marginBottom:0
 
   },
   gain: {
     color: 'white',
-    fontSize: 26,
+    fontSize: 24,
     fontFamily:'Montserrat-ExtraBold',
     
   },
@@ -273,11 +283,11 @@ const style = StyleSheet.create({
   },
   timeNumber: {
     color: 'lightgrey',
-    fontSize: 12,
+    fontSize: 10,
   },
   image: {
-    height: 70,
-    width: 70,
+    height: 60,
+    width: 60,
     borderRadius: 80,
   },
   followButtonView: {
@@ -296,48 +306,56 @@ const style = StyleSheet.create({
   },
   name: {
     color: '#FFFFFF',
-    fontSize: 20,
+    fontSize: 18,
     fontFamily:'Montserrat-Black',
 
   },
   username: {
     color: '#FFFFFF',
-    fontSize: 14,
+    fontSize: 12,
     fontFamily:'Montserrat-Regular',
   },
   website: {
     color: '#9082cf',
     fontFamily:'Montserrat-Medium',
-    fontSize: 14,
+    fontSize: 12,
   },
   
 
   numberData: {
     color: '#FFFFFF',
-    fontSize: 18,
+    fontSize: 16,
     fontFamily:'Montserrat-Bold',
 
   },
   numberText: {
     color: 'lightgrey',
-    fontSize: 14,
+    fontSize: 12,
     fontFamily:'Montserrat-Regular',    
   },
 
   portfolioButtonContainer: {
     marginTop: 18,
-    // justifyContent:'center',
+    flexDirection:'row',
+    paddingHorizontal:20,
+    justifyContent:'space-between',
+    marginTop:35,
+    marginBottom:30,    
+    
   },
   portfolioButton: {
     textAlign: 'center',
     borderWidth: 1.4,
     borderColor: '#9082cf',
-    color: '#9082cf',
+    color: '#FFFFFF',
     padding: 10,
-    marginHorizontal: 120,
     borderRadius: 8,
-    fontSize: 16,
-    //  width:'20%',
+    fontSize: 15,
+     width:180,
+     height:42,
+     backgroundColor:'#8B64FF',
+     fontFamily:'Montserrat-SemiBold',
+
   },
   graphContainer: {
     // borderWidth:1,
@@ -356,7 +374,7 @@ const style = StyleSheet.create({
   timeFilterButtons: {
     color: '#FFFFFF',
     fontFamily:'Montserrat-Bold',
-    fontSize: 16,
+    fontSize: 14,
   },
   postsHeader: {
     color: 'white',
