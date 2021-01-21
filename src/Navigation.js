@@ -1,5 +1,6 @@
 // React Imports
 import React, {Component} from 'react';
+import {StyleSheet, TouchableOpacity, Text} from 'react-native'
 
 // Redux
 import {connect} from 'react-redux';
@@ -250,6 +251,7 @@ class Navigation extends Component {
           headerTitleAlign: {
             textAlign: 'center',
           },
+         
         }}
       />
       {/* <HomeStack.Screen
@@ -260,9 +262,9 @@ class Navigation extends Component {
     </HomeStack.Navigator>
   );
 
-  createMyProfileStack = () => (
+  createMyProfileStack = (navigation) => (
     <MyProfileStack.Navigator>
-      <MyProfileStack.Screen
+      {/* <MyProfileStack.Screen
         name="MyProfile"
         component={MyProfile}
         options={{
@@ -274,8 +276,38 @@ class Navigation extends Component {
           headerTitleAlign: {
             textAlign: 'center',
           },
+          headerRight: (navigation, na) => (
+            <TouchableOpacity onPress={() =>navigation.navigate('MyProfileSettings')}>
+                  <Text>Settings</Text>
+                </TouchableOpacity>
+          ),
         }}
+      /> */}
+      <MyProfileStack.Screen
+        name="My Profile"
+        component={MyProfile}
+        options={({ navigation}) => ({
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+          headerRight: () => (
+            <TouchableOpacity onPress={() =>navigation.navigate('MyProfileSettings')}>
+                  <Text style={style.button}>Settings</Text>
+                </TouchableOpacity>
+          ),          
+        })}
       />
+
       <MyProfileStack.Screen
         name="MyProfileSettings"
         component={MyProfileSettings}
@@ -472,3 +504,13 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
+
+const style = StyleSheet.create({
+  button:{
+    fontSize:14,
+    color:'#B8A0FF',
+    marginRight:12,
+    fontFamily:'Montserrat-SemiBold',
+
+  },
+})
