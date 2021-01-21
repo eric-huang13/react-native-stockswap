@@ -15,6 +15,9 @@ export default class MyProfileSettings extends Component {
         return (
             <SafeAreaView style={style.container}>
                 <ScrollView>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('EditProfile')}>
+                  <Text style={style.button}>Edit profile</Text>
+                </TouchableOpacity>
                 <View style={style.topDetailsContainer}>
                     <View style={style.detailsRow}>
                     <View style={style.detailsColumn}>
@@ -55,12 +58,13 @@ export default class MyProfileSettings extends Component {
                 </View>
                 <View style={style.notificationsContainer}>
                     <Text style={style.middleDetailsText}>Turn off notifications</Text>
-                    <Switch
+                    <Switch 
         trackColor={{ false: "#767577", true: "#B8A0FF" }}
         thumbColor={this.state.enabled ? "#f4f3f4" : "#f4f3f4"}
         // ios_backgroundColor="#3e3e3e"
         onValueChange={this.toggleSwitch}
         value={this.state.enabled}
+        style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }}
        
       />
                 </View>
@@ -91,7 +95,8 @@ const style = StyleSheet.create({
     container: {
     flex: 1,
     backgroundColor: '#2a334a',
-    paddingVertical:10,
+    paddingTop:10,
+    paddingBottom:20,
     },
     topDetailsContainer:{
     paddingHorizontal:12,
@@ -170,7 +175,7 @@ const style = StyleSheet.create({
     notificationsContainer:{
         flexDirection:'row',
         justifyContent:'space-between',
-        marginTop:30,
+        marginTop:36,
         marginBottom:10,
 
     },

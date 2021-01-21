@@ -25,6 +25,7 @@ import TermsAndConditions from './components/screens/TermsAndConditions'
 import SplashScreen from './components/screens/SplashScreen'
 import MyProfile from './components/screens/MyProfile'
 import MyProfileSettings from './components/screens/MyProfileSettings'
+import EditProfile from './components/screens/EditProfile'
 
 //icons
 import SearchIconInactive from './icons/SearchIconInactive'
@@ -278,6 +279,20 @@ class Navigation extends Component {
       <MyProfileStack.Screen
         name="MyProfileSettings"
         component={MyProfileSettings}
+        options={{
+          title: 'Settings',
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      <MyProfileStack.Screen
+        name="EditProfile"
+        component={EditProfile}
         options={{
           title: 'Settings',
           headerStyle: {
