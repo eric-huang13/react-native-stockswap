@@ -28,7 +28,7 @@ import MyProfileSettings from './components/screens/MyProfileSettings'
 
 //icons
 import SearchIconInactive from './icons/SearchIconInactive'
-import SearchIcon from './icons/SearchIcon'
+import SearchIconActive from './icons/SearchIconActive'
 import HomeTabInactive from './icons/HomeTabInactive'
 import HomeTabActive from './icons/HomeTabActive'
 import LeaderboardInactive from './icons/LeaderboardInactive'
@@ -394,7 +394,7 @@ class Navigation extends Component {
                 
     
                 if (route.name === 'Search') {
-                  return focused ? <SearchIcon/> : <SearchIconInactive/>
+                  return focused ? <SearchIconActive/> : <SearchIconInactive/>
                 } 
                 if (route.name === 'Home') {
                   return focused ? <HomeTabActive/> : <HomeTabInactive/>

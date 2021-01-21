@@ -14,7 +14,7 @@ import {
 import Svg, {Path, Defs, G, Rect} from 'react-native-svg'
 
 
-const SearchIcon = () => {
+const SearchIconActive = () => {
     return (
       <View style={{flexDirection:'column', justifyContent:'center', alignContent:'center', alignItems:'center', marginBottom:-7}}>
         <Svg
@@ -54,4 +54,4 @@ const SearchIcon = () => {
     )
 }
 
-export default SearchIcon
+export default SearchIconActive

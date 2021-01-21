@@ -1,7 +1,19 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native'
-
+import { Text, View, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView,Switch } from 'react-native'
+import TriangleIcon from '../../icons/TriangleIcon'
 export default class MyProfileSettings extends Component {
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          enabled: false,          
+        };
+      }
+      toggleSwitch() {
+        this.setState({
+            enabled:!this.state.enabled
+        });
+      }
     render() {
         return (
             <SafeAreaView style={style.container}>
@@ -41,11 +53,19 @@ export default class MyProfileSettings extends Component {
                     <Text style={style.detailsText}>Account privacy</Text>
                     <View style={style.visibleButtonContainer}>
                         <Text style={style.middleDetailsText}>Visible for all</Text>
+                        <TriangleIcon/>
                     </View>
                 </View>
                 <View style={style.notificationsContainer}>
                     <Text style={style.middleDetailsText}>Turn off notifications</Text>
-                    <Text>Button</Text>
+                    <Switch
+        trackColor={{ false: "#767577", true: "#81b0ff" }}
+        thumbColor={this.state.enabled ? "#f5dd4b" : "#f4f3f4"}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={this.toggleSwitch}
+        value={this.state.enabled}
+       
+      />
                 </View>
 
                 </View>
@@ -138,6 +158,9 @@ const style = StyleSheet.create({
         borderRadius:6,
         backgroundColor:'#3E4D6C',
         marginTop:4,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center'
         
     },
     middleDetailsText:{
