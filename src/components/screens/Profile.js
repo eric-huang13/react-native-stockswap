@@ -143,7 +143,7 @@ class Profile extends Component {
                     <View style={style.personalDetails}>
                       <Text style={style.name}>{user.name}</Text>
                       <Text style={style.username}>@{user.username}</Text>
-                      <Text style={style.website}>{user.website}</Text>
+                      <Text style={style.hashtag}>{user.hashtag}</Text>
                     </View>
                     <View style={style.followButtonView}>
                       <Text style={style.followButton}>+Follow</Text>
@@ -312,7 +312,7 @@ const style = StyleSheet.create({
     color: 'white',
     fontSize: 15,
   },
-  website: {
+  hashtag: {
     color: '#9082cf',
     fontSize: 15,
   },

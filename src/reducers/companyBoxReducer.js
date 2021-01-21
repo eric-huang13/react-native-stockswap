@@ -816,7 +816,7 @@ const defaultState = {
       bio:
         'Business major interested in finding new stock buying opportunities.',
       username: 'hfields123',
-      website: '#Myhashtag',
+      hashtag: '#Myhashtag',
       gain:2103.24,
       percentage: 31.1,
       img:
@@ -832,7 +832,7 @@ const defaultState = {
       bio:
         'Business major interested in finding new stock buying opportunities.',
       username: 'vcasey123',
-      website: 'www.vc.com',
+      hashtag: 'www.vc.com',
       gain:2103.24,
       percentage: 24,
       img:
@@ -848,7 +848,7 @@ const defaultState = {
       bio:
         'Business major interested in finding new stock buying opportunities.',
       username: 'clark123',
-      website: 'www.rclark.com',
+      hashtag: 'www.rclark.com',
       gain:2103.24,
       percentage: 43,
       img:
