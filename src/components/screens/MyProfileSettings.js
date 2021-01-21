@@ -5,7 +5,7 @@ export default class MyProfileSettings extends Component {
     render() {
         return (
             <View style={style.container}>
-                <View style={style.detailsContainer}>
+                <View style={style.topDetailsContainer}>
                     <View style={style.detailsRow}>
                     <View style={style.detailsColumn}>
                     <Text style={style.detailsText}>Email</Text>
@@ -32,11 +32,23 @@ export default class MyProfileSettings extends Component {
                     <Text style={style.detailsButtonChange}>Change</Text>
                     </View>
                     </View>
-                    
-                </View>
-                <View>
 
                 </View>
+
+                <View style={style.middleContainer}>
+                <View style={style.accountPrivacyContainer}>
+                    <Text style={style.detailsText}>Account privacy</Text>
+                    <View style={style.visibleButtonContainer}>
+                        <Text style={style.middleDetailsText}>Visible for all</Text>
+                    </View>
+                </View>
+                <View style={style.notificationsContainer}>
+                    <Text style={style.middleDetailsText}>Turn off notifications</Text>
+                    <Text>Button</Text>
+                </View>
+
+                </View>
+
                 <Text> textInComponent </Text>
             </View>
         )
@@ -49,9 +61,9 @@ const style = StyleSheet.create({
     backgroundColor: '#2a334a',
     paddingVertical:10,
     },
-    detailsContainer:{
+    topDetailsContainer:{
     paddingHorizontal:12,
-    paddingVertical:18,
+    paddingVertical:16,
     borderBottomWidth:1,
     borderBottomColor: 'rgba(158, 150, 150, .4)',
 
@@ -75,6 +87,7 @@ const style = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 16,
     fontFamily:'Montserrat-SemiBold',
+    marginTop:1,
 
     },
     detailsButton:{
@@ -95,4 +108,34 @@ const style = StyleSheet.create({
     alignSelf:'flex-end',
     marginLeft:24,  
     },
-})
+    middleContainer:{
+    paddingHorizontal:12,
+    paddingVertical:30,
+    borderBottomWidth:1,
+    borderBottomColor: 'rgba(158, 150, 150, .4)',
+
+    },
+    accountPrivacyContainer:{
+    },
+    visibleButtonContainer:{
+        paddingHorizontal:10,
+        paddingVertical:10,
+        borderRadius:6,
+        backgroundColor:'#3E4D6C',
+        marginTop:4,
+        
+    },
+    middleDetailsText:{
+    fontFamily:'Montserrat-Medium',
+    color:'#FFFFFF',
+    fontSize:16
+        
+    },
+    notificationsContainer:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        marginTop:30,
+        marginBottom:10,
+
+    },
+})      
