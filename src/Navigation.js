@@ -24,6 +24,7 @@ import ProfileInfoForm from './components/screens/ProfileInfoForm'
 import TermsAndConditions from './components/screens/TermsAndConditions'
 import SplashScreen from './components/screens/SplashScreen'
 import MyProfile from './components/screens/MyProfile'
+import MyProfileSettings from './components/screens/MyProfileSettings'
 
 //icons
 import SearchIconInactive from './icons/SearchIconInactive'
@@ -163,7 +164,7 @@ class Navigation extends Component {
           },
         }}
       />
-      <SearchStack.Screen
+      <HomeStack.Screen
         name="PostScreen"
         component={PostScreen}
         options={({route}) => ({
@@ -181,7 +182,7 @@ class Navigation extends Component {
         })}
       />
 
-      <SearchStack.Screen
+      <HomeStack.Screen
         name="Comments"
         component={UserCommentList}
         options={{
@@ -259,8 +260,8 @@ class Navigation extends Component {
   );
 
   createMyProfileStack = () => (
-    <HomeStack.Navigator>
-      <HomeStack.Screen
+    <MyProfileStack.Navigator>
+      <MyProfileStack.Screen
         name="MyProfile"
         component={MyProfile}
         options={{
@@ -274,8 +275,22 @@ class Navigation extends Component {
           },
         }}
       />
+      <MyProfileStack.Screen
+        name="MyProfileSettings"
+        component={MyProfileSettings}
+        options={{
+          title: 'Settings',
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
       
-      <SearchStack.Screen
+      <MyProfileStack.Screen
         name="PostScreen"
         component={PostScreen}
         options={({route}) => ({
@@ -293,7 +308,7 @@ class Navigation extends Component {
         })}
       />
 
-      <SearchStack.Screen
+      <MyProfileStack.Screen
         name="Comments"
         component={UserCommentList}
         options={{
@@ -306,7 +321,7 @@ class Navigation extends Component {
           },
         }}
       />
-      <HomeStack.Screen
+      <MyProfileStack.Screen
         name="Profile"
         component={Profile}
         options={{
@@ -320,7 +335,7 @@ class Navigation extends Component {
           },
         }}
       />
-      <HomeStack.Screen
+      <MyProfileStack.Screen
         name="UserPortfolioList"
         component={UserPortfolioList}
         options={{
@@ -334,7 +349,7 @@ class Navigation extends Component {
           },
         }}
       />
-      <HomeStack.Screen
+      <MyProfileStack.Screen
         name="CompanyInformation"
         component={CompanyInformation}
         options={{
@@ -350,7 +365,7 @@ class Navigation extends Component {
       />
       
       
-    </HomeStack.Navigator>
+    </MyProfileStack.Navigator>
   );
 
   render() {

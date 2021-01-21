@@ -56,6 +56,9 @@ class Profile extends Component {
               <View key={user.id}>
                 <View style={style.aboveGraphContainer}>
                   <View style={style.portfolioHeaderContainer}>
+                  <TouchableOpacity onPress={() => this.props.navigation.navigate('MyProfileSettings')}>
+                  <Text style={style.button}>Settings</Text>
+                </TouchableOpacity>
                     <Text style={style.portfolioHeader}>Portfolio</Text>
                     <Text style={style.gain}>${user.gain}</Text>
                   </View>

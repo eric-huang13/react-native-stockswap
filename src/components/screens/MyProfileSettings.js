@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 
 export default class MyProfileSettings extends Component {
     render() {
         return (
-            <View>
+            <View style={style.container}>
                 <View>
                     <View>
                     <View>
@@ -32,10 +32,16 @@ export default class MyProfileSettings extends Component {
                     
                 </View>
                 <View>
-                    
+
                 </View>
                 <Text> textInComponent </Text>
             </View>
         )
     }
 }
+
+const style = StyleSheet.create({
+    container: {
+      flex:1
+    },
+})
