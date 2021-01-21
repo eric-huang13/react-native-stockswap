@@ -238,7 +238,7 @@ const style = StyleSheet.create({
     // justifyContent: 'space-between',
   },
   bioContainer: {
-    marginVertical: 8,
+    marginVertical: 12,
     paddingHorizontal: 3,
   },
   bio: {
@@ -251,6 +251,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 12,
+    marginTop:8,
   },
   numberColumn: {
     alignItems: 'center',
@@ -290,20 +291,7 @@ const style = StyleSheet.create({
     width: 60,
     borderRadius: 80,
   },
-  followButtonView: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-  },
-  followButton: {
-    // alignSelf:'center',
-    borderWidth: 1.4,
-    borderColor: '#9082cf',
-    color: '#9082cf',
-    borderRadius: 3,
-    paddingVertical: 2,
-    paddingHorizontal: 12,
-    fontSize: 16,
-  },
+
   name: {
     color: '#FFFFFF',
     fontSize: 18,
@@ -335,11 +323,10 @@ const style = StyleSheet.create({
   },
 
   portfolioButtonContainer: {
-    marginTop: 18,
     flexDirection:'row',
     paddingHorizontal:20,
     justifyContent:'space-between',
-    marginTop:35,
+    marginTop:46,
     marginBottom:30,    
     
   },
@@ -350,7 +337,7 @@ const style = StyleSheet.create({
     color: '#FFFFFF',
     padding: 10,
     borderRadius: 8,
-    fontSize: 15,
+    fontSize: 14,
      width:180,
      height:42,
      backgroundColor:'#8B64FF',
@@ -358,7 +345,6 @@ const style = StyleSheet.create({
 
   },
   graphContainer: {
-    // borderWidth:1,
     flexDirection: 'row',
   },
 
@@ -376,24 +362,5 @@ const style = StyleSheet.create({
     fontFamily:'Montserrat-Bold',
     fontSize: 14,
   },
-  postsHeader: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 26,
-    marginLeft: 6,
-  },
-  // postNameContainer:{
-  // flexDirection:'row',
-  // alignItems:'center',
-  // },
-  // postUserImage:{
-  //   height: 50,
-  //   width: 50,
-  //   borderRadius: 50,
-  // },
-  // postUserName:{
-  //   color:'white',
-  //   fontSize:14,
-  //   fontWeight:'bold',
-  // },
+
 });
