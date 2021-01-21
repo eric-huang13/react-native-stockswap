@@ -108,7 +108,7 @@ class EditProfile extends Component {
                   value={this.state.name}
                   onChangeText={(text) => this.handleNameChange(text)}
                   placeholder="Enter your name"
-                  placeholderTextColor="#9ea6b5"
+                  placeholderTextColor="#FFFFFF"
                   returnKeyType="next"
                   onSubmitEditing={() => this.username.focus()}
                   ref={(input) => (this.name = input)}
@@ -122,7 +122,7 @@ class EditProfile extends Component {
                   value={this.state.username}
                   onChangeText={(text) => this.handleUsernameChange(text)}
                   placeholder="@example"
-                  placeholderTextColor="#9ea6b5"
+                  placeholderTextColor="#FFFFFF"
                   style={style.inputStyle}
                   ref={(input) => (this.username = input)}
                   onSubmitEditing={() => this.image.focus()}
@@ -170,9 +170,12 @@ class EditProfile extends Component {
               </View>
 
           
-              <View>
+              <View style={style.buttonsContainer}>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
-                  <Text style={style.button}>Next</Text>
+                  <Text style={style.cancelButton}>Cancel</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
+                  <Text style={style.saveButton}>Save</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -268,11 +271,12 @@ const style = StyleSheet.create({
     marginBottom: 12,
     padding: 8,
     marginTop: 1,
-    fontSize: 16,
-    backgroundColor: "#536183",
-    opacity:0.7,
-    fontFamily:'Montserrat-Italic',
-    color:'#9ea6b5'
+    fontSize: 14,
+    // backgroundColor: "#536183",
+    // opacity:0.7,
+    backgroundColor: "#3e4d6c",
+    fontFamily:'Montserrat-SemiBold',
+    color:'#FFFFFF'
     
     
 
@@ -283,53 +287,46 @@ const style = StyleSheet.create({
     marginBottom: 12,
     padding: 8,
     marginTop: 1,
-    fontSize: 16,
+    fontSize: 14,
     textAlignVertical:'top',
-    backgroundColor: "#536183",
-    opacity:0.7,
-    fontFamily:'Montserrat-Italic',
-    color:'#9ea6b5'
+    // backgroundColor: "#536183",
+    // opacity:0.7,
+    fontFamily:'Montserrat-SemiBold',
+    color:'#FFFFFF'
   },
  
-  button: {
+  buttonsContainer:{
+      marginTop:28,
+      flexDirection:'row',
+      justifyContent:'space-between'
+
+  },
+  cancelButton: {
+    alignSelf: "center",
+    color: "#8b64ff",
+    textAlign: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    width:170,
+    borderRadius: 6,
+    fontSize: 14,
+    fontFamily:'Montserrat-SemiBold',
+    borderWidth:1,
+    borderColor:'#8b64ff'
+
+  },
+  saveButton: {
     alignSelf: "center",
     backgroundColor: "#8b64ff",
     color: "#FFFFFF",
     textAlign: "center",
     paddingVertical: 12,
     paddingHorizontal: 20,
-    width: 150,
+    width:170,
     borderRadius: 6,
     fontSize: 14,
     fontFamily:'Montserrat-SemiBold',
 
   },
-  privacyContainer: {
-    marginBottom: 28,
-    flexDirection: "column",
-    justifyContent: "space-between",
-    paddingHorizontal: 2,
-    
-  },
- 
-  privacyText: {
-    color: "#babec8",
-    fontSize: 12,
-    marginRight: 3,
-    fontFamily:'Montserrat-Regular',
-
-  },
-  buttonText: {
-    backgroundColor: "#3E4D6C",
-    color: "#FFFFFF",
-    fontSize: 16,
-    paddingVertical:12,
-    paddingHorizontal:10,
-    borderRadius:6,
-    fontFamily:'Montserrat-Medium',
-
-  },
-  
- 
-  
+   
   });
