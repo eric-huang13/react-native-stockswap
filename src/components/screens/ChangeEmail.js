@@ -159,6 +159,7 @@ const style = StyleSheet.create({
     fontSize: 20,
     marginBottom:16,
     fontFamily:'Montserrat-Bold',
+    textAlign:'center',
   },
   currentEmailContainer:{
     marginTop:16,  

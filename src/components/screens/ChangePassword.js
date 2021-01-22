@@ -24,9 +24,10 @@ class ChangePassword extends Component {
     super(props);
 
     this.state = {
-      newPassword: "",
+      newPassword:'',
       confirmPassword:'',      
       currentEmail:'',
+      error:'',
            
     };
    
@@ -117,7 +118,11 @@ class ChangePassword extends Component {
                           
               <View>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('MyProfileSettings')}>
-                  <Text style={style.button}>Apply</Text>
+                  <Text style={
+                        this.state.newPassword ==='' || this.state.confirmPassword ==='' || this.state.newPassword !== this.state.confirmPassword
+                          ? {...style.button, backgroundColor: '#9F9CA7'}
+                          : {...style.button}
+                      }>Apply</Text>
                 </TouchableOpacity>
               </View>
             </View>
