@@ -19,21 +19,26 @@ import FacebookIcon from '../../icons/FacebookIcon'
 
 
 
-class ChangeEmail extends Component {
+class ChangePassword extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      newEmail: "",
-      currentEmail:''
+      newPassword: "",
+      confirmPassword:'',      
+      currentEmail:'',
            
     };
    
   }
-  handleEmailChange = (text) => {
+  handlePasswordChange = (text) => {
     this.setState({
-      newEmail: text,
-      
+      newPassword: text,      
+    });
+  };
+  handleConfirmPasswordChange = (text) => {
+    this.setState({
+      confirmPassword: text,      
     });
   };
 
@@ -76,26 +81,39 @@ class ChangeEmail extends Component {
       <SafeAreaView style={style.mainContainer}>
           
             <View style={style.container}>
-              <Text style={style.changeEmailHeader}>Change email address</Text>
+              <Text style={style.changeEmailHeader}>Change password</Text>
 
-              <View style={style.currentEmailContainer}>
-                <Text style={style.inputHeader}>Current email</Text>
+              {/* <View style={style.currentEmailContainer}>
+                <Text style={style.inputHeader}>Current password</Text>
                 <Text style={style.currentEmail}>{this.state.currentEmail}</Text>
-              </View>
+              </View> */}
 
               <View style={style.inputEmailContainer}>
-                <Text style={style.inputHeader}>New Email</Text>
+                <Text style={style.inputHeader}>New Password</Text>
 
                 <TextInput
                   style={style.inputStyle}
-                  value={this.state.email}
-                  onChangeText={(text) => this.handleEmailChange(text)}
-                  placeholder="Enter new email address"
+                  value={this.state.newPassword}
+                  onChangeText={(text) => this.handlePasswordChange(text)}
+                  placeholder="Enter new password"
                   placeholderTextColor="#9ea6b5"
                   keyboardType="email-address"
                   autoCapitalize="none"
                 />
-              </View>             
+              </View> 
+              <View style={style.inputEmailContainer}>
+                <Text style={style.inputHeader}>Repeat</Text>
+
+                <TextInput
+                  style={style.inputStyle}
+                  value={this.state.confirmPassword}
+                  onChangeText={(text) => this.handleConfirmPasswordChange(text)}
+                  placeholder="Repeat new password"
+                  placeholderTextColor="#9ea6b5"
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                />
+              </View>              
                           
               <View>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('MyProfileSettings')}>
@@ -125,7 +143,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChangeEmail);
+export default connect(mapStateToProps, mapDispatchToProps)(ChangePassword);
 
 const style = StyleSheet.create({
   mainContainer: {
@@ -159,6 +177,7 @@ const style = StyleSheet.create({
     fontSize: 20,
     marginBottom:16,
     fontFamily:'Montserrat-Bold',
+    textAlign:'center'
   },
   currentEmailContainer:{
     marginTop:16,  
@@ -173,7 +192,7 @@ const style = StyleSheet.create({
   },
   inputEmailContainer:{
     marginTop:16,
-    marginBottom:16,
+    // marginBottom:16,
 
   },
 
@@ -208,6 +227,7 @@ const style = StyleSheet.create({
     borderRadius: 6,
     fontSize: 16,
     fontFamily:'Montserrat-SemiBold',
+    marginTop:10,
   },
   termsContainer:{
     marginBottom:28,

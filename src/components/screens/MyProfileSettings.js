@@ -38,7 +38,7 @@ class MyProfileSettings extends Component {
                     <Text style={style.detailsText}>Phone Number</Text>
                     <Text style={style.detailsData}>Test</Text>
                     </View>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('ChangeEmail')}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('ChangePassword')}>
                     <Text style={style.detailsButton}>Change</Text>                
                     </TouchableOpacity>
                     </View>
@@ -50,7 +50,10 @@ class MyProfileSettings extends Component {
                     </View>
                     <View style={style.detailsButtonContainer}>
                     <Text style={style.detailsButton}>Show</Text>
+                    <TouchableOpacity style={style.detailsButtonChange} onPress={() => this.props.navigation.navigate('ChangePassword')}>
                     <Text style={style.detailsButtonChange}>Change</Text>
+                    </TouchableOpacity>
+
                     </View>
                     </View>
 
