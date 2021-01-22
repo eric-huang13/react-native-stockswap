@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, ScrollView, SafeAreaView,Switch } from 'react-native'
+import { Text, View, StyleSheet, ScrollView, SafeAreaView,Switch, TouchableOpacity } from 'react-native'
 import TriangleIcon from '../../icons/TriangleIcon'
 import { connect } from "react-redux";
 import {Logout} from 'actions/user';
@@ -28,7 +28,9 @@ class MyProfileSettings extends Component {
                     <Text style={style.detailsText}>Email</Text>
                     <Text style={style.detailsData}>Test</Text>
                     </View >
-                    <Text style={style.detailsButton}>Change</Text>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('ChangeEmail')}>
+                    <Text style={style.detailsButton}>Change</Text>                
+                    </TouchableOpacity>
                     </View>
 
                     <View style={style.detailsRow}>
@@ -36,7 +38,9 @@ class MyProfileSettings extends Component {
                     <Text style={style.detailsText}>Phone Number</Text>
                     <Text style={style.detailsData}>Test</Text>
                     </View>
-                    <Text style={style.detailsButton}>Change</Text>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('ChangeEmail')}>
+                    <Text style={style.detailsButton}>Change</Text>                
+                    </TouchableOpacity>
                     </View>
 
                     <View style={style.detailsRow}>

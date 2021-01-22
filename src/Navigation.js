@@ -27,6 +27,7 @@ import SplashScreen from './components/screens/SplashScreen'
 import MyProfile from './components/screens/MyProfile'
 import MyProfileSettings from './components/screens/MyProfileSettings'
 import EditProfile from './components/screens/EditProfile'
+import ChangeEmail from './components/screens/ChangeEmail'
 
 //icons
 import SearchIconInactive from './icons/SearchIconInactive'
@@ -312,9 +313,27 @@ class Navigation extends Component {
       <MyProfileStack.Screen
         name="EditProfile"
         component={EditProfile}
-        options={{
-          title: 'Settings',
+        options={{   
+          title: 'Settings',       
           headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      <MyProfileStack.Screen
+        name="ChangeEmail"
+        component={ChangeEmail}
+        options={{
+          headerShown: false,
+              headerStyle: {
             backgroundColor: '#394463',
           },
           headerTitleStyle:{

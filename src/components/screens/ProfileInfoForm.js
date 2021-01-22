@@ -241,10 +241,8 @@ const style = StyleSheet.create({
     backgroundColor: "#536183",
     opacity:0.7,
     fontFamily:'Montserrat-Italic',
-    color:'#9ea6b5'
+    color:'#9ea6b5'   
     
-    
-
   },
   inputStyleBio: {
     borderRadius: 8,
