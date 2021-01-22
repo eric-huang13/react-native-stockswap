@@ -10,12 +10,23 @@ class MyProfileSettings extends Component {
         super(props);
     
         this.state = {
-          enabled: false,          
+          enabled: false,
+          currentEmail:'',          
         };
       }
    
     toggleSwitch = value =>{ this.setState({ enabled: value});
 };    
+componentDidMount() {
+    const {users} = this.props
+    const id = 1
+    const selectedUser = users.filter((user) => user.id === id);
+    {selectedUser.map((user) => {
+      this.setState({
+        currentEmail: user.email,        
+      })
+    })}
+  }
     render() {
         const {LogoutUser} = this.props
 
@@ -26,7 +37,7 @@ class MyProfileSettings extends Component {
                     <View style={style.detailsRow}>
                     <View style={style.detailsColumn}>
                     <Text style={style.detailsText}>Email</Text>
-                    <Text style={style.detailsData}>Test</Text>
+                    <Text style={style.detailsData}>{this.state.currentEmail}</Text>
                     </View >
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('ChangeEmail')}>
                     <Text style={style.detailsButton}>Change</Text>                
@@ -51,7 +62,7 @@ class MyProfileSettings extends Component {
                     <View style={style.detailsButtonContainer}>
                     <Text style={style.detailsButton}>Show</Text>
                     <TouchableOpacity style={style.detailsButtonChange} onPress={() => this.props.navigation.navigate('ChangePassword')}>
-                    <Text style={style.detailsButtonChange}>Change</Text>
+                    <Text style={style.detailsButton}>Change</Text>
                     </TouchableOpacity>
 
                     </View>
@@ -85,11 +96,11 @@ class MyProfileSettings extends Component {
                 <View style={style.bottomContainer}>
                 <View style={style.bottomInnerContiner}>
                     <Text style={style.bottomText}>Privacy policy</Text>
-                    <Text style={style.detailsButtonChangeBottom}>Show</Text>
+                    <Text style={style.detailsButton}>Show</Text>
                 </View>
                 <View style={style.bottomInnerContiner}>
                     <Text style={style.bottomText}>Terms and conditions</Text>
-                    <Text style={style.detailsButtonChangeBottom}>Show</Text>
+                    <Text style={style.detailsButton}>Show</Text>
                 </View>
 
                 </View>
@@ -104,7 +115,9 @@ class MyProfileSettings extends Component {
 
 const mapStateToProps = (state) => {
     return {
-      user: state.user.user,    
+      user: state.user.user,
+      users: state.company.users,
+    
     };
   };
   
@@ -157,7 +170,8 @@ const style = StyleSheet.create({
     color: '#B8A0FF',
     fontSize: 14,
     fontFamily:'Montserrat-SemiBold',
-    alignSelf:'flex-end'
+    alignSelf:'flex-end',
+    marginRight:6,
 
     },
     detailsButtonContainer:{
@@ -224,13 +238,7 @@ const style = StyleSheet.create({
     fontSize:16,
 
     },
-    detailsButtonChangeBottom:{
-        color: '#B8A0FF',
-        fontSize: 14,
-        fontFamily:'Montserrat-SemiBold',
-        marginLeft:24,  
-
-        },
+    
     logoutButtonContainer:{
     marginTop:34,
     marginHorizontal:20,
