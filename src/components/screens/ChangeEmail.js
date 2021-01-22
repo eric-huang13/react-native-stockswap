@@ -25,8 +25,7 @@ class ChangeEmail extends Component {
 
     this.state = {
       email: "",
-      password: "",
-      
+           
     };
    
   }
@@ -43,7 +42,17 @@ class ChangeEmail extends Component {
   };
 
   
-
+  componentDidMount() {
+    const {users} = this.props
+    const id = 1
+    const selectedUser = users.filter((user) => user.id === id);
+    {selectedUser.map((user) => {
+      this.setState({
+        email: user.email,
+        
+      })
+    })}
+  }
   render() {
 
     
@@ -66,15 +75,15 @@ class ChangeEmail extends Component {
       <SafeAreaView style={style.mainContainer}>
           
             <View style={style.container}>
-              <Text style={style.welcomeHeader}>Change email address</Text>
+              <Text style={style.changeEmailHeader}>Change email address</Text>
 
               <View style={style.currentEmailContainer}>
                 <Text style={style.inputHeader}>Current email</Text>
-                <Text>Data</Text>
+                <Text style={style.currentEmail}>{this.state.email}</Text>
               </View>
 
               <View style={style.inputEmailContainer}>
-                <Text style={style.inputHeader}>Email</Text>
+                <Text style={style.inputHeader}>New Email</Text>
 
                 <TextInput
                   style={style.inputStyle}
@@ -85,10 +94,8 @@ class ChangeEmail extends Component {
                   keyboardType="email-address"
                   autoCapitalize="none"
                 />
-              </View>
-              
-            
-              
+              </View>             
+                          
               <View>
                 <TouchableOpacity onPress={() => LoginUser(this.state)}>
                   <Text style={style.button}>Apply</Text>
@@ -107,7 +114,8 @@ class ChangeEmail extends Component {
 
 const mapStateToProps = (state) => {
   return {
-  
+    users: state.company.users,
+
   };
 };
 
@@ -125,16 +133,14 @@ const style = StyleSheet.create({
     backgroundColor: "#323e5b",
     paddingHorizontal: 2,
     justifyContent:'center',
-borderWidth:1,    
-  },
- 
+  }, 
   
   container: {  
-    borderWidth:1,     
-    borderRadius: 16,
+    width:'85%',
+    borderRadius: 8,
     backgroundColor: "#2C3957",
-    paddingHorizontal: 40,
-    paddingVertical: 40,
+    paddingHorizontal: 35,
+    paddingVertical: 28,
     flexDirection: "column",
     shadowColor: "rgba(0,0,0,0.13)",
     alignSelf:'center',
@@ -144,21 +150,37 @@ borderWidth:1,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
     elevation: 1,
     
   },
-  welcomeHeader: {
+  changeEmailHeader: {
     color: "#FFFFFF",
-    fontSize: 22,
-    marginBottom:4,
+    fontSize: 20,
+    marginBottom:16,
     fontFamily:'Montserrat-Bold',
+  },
+  currentEmailContainer:{
+    marginTop:16,  
+    marginBottom:16,  
+
+  },
+  currentEmail:{
+    fontFamily:'Montserrat-SemiBold',
+    color:'#FFFFFF',
+    fontSize:16,
+
+  },
+  inputEmailContainer:{
+    marginTop:16,
+    marginBottom:16,
+
   },
 
   inputHeader: {
-    fontSize: 14,
+    fontSize: 12,
+    lineHeight:15, 
     color: "#babec8",
-    marginBottom: 1,
+    marginBottom: 2,
     fontFamily:'Montserrat-Regular',
    
   },
@@ -173,8 +195,7 @@ borderWidth:1,
     opacity:0.7,
     color:'#9ea6b5'
     
-  },
- 
+  }, 
   button: {
     alignSelf: "center",
     backgroundColor: "#8B64FF",
@@ -192,7 +213,6 @@ borderWidth:1,
     flexDirection:'row',
     justifyContent:'space-between',
     paddingHorizontal:2,
-  },
-  
+  }, 
   
 });

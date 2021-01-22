@@ -809,6 +809,7 @@ const defaultState = {
     {
       id: 1,
       name: 'Hallie Fields',
+      email:'hallieemail@email.com',
       posts: 19182,
       followers: 92,
       following: 319,
@@ -825,6 +826,7 @@ const defaultState = {
     {
       id: 2,
       name: 'Viola Casey',
+      email:'violaemail@email.com',
       posts: 99,
       followers: 15,
       following: 29,
@@ -841,6 +843,7 @@ const defaultState = {
     {
       id: 3,
       name: 'Ben Clark',
+      email:'benemail@email.com',
       posts: 267,
       followers: 10,
       following: 215,
