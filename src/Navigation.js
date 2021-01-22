@@ -243,7 +243,7 @@ class Navigation extends Component {
         name="MyProfile"
         component={MyProfile}
         options={{
-          title: 'My Profile',
+          title:'My Profile',
           headerStyle: {
             backgroundColor: '#394463',
           },
@@ -263,6 +263,7 @@ class Navigation extends Component {
         name="MyProfile"
         component={MyProfile}
         options={({ navigation}) => ({
+          title:'My Profile',
           headerShown: true,
           headerStyle: {
             backgroundColor: '#394463',
