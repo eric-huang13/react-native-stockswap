@@ -19,8 +19,7 @@ class MyProfilePosts extends Component {
     this.state = {
       shouldShow: false,
     };
-  }
-  
+  } 
  
 
 
@@ -61,11 +60,9 @@ class MyProfilePosts extends Component {
             </TouchableOpacity>
             {this.state.shouldShow ? (
               <View style={style.dropdown}>
-                <Text style={style.dropDownText}>Repost</Text>
-                <Text style={style.dropDownText}>Copy link</Text>
-                <Text style={style.dropDownText}>Turn on notifications</Text>
+                <Text style={style.dropDownText}>Edit post</Text>                
                 <View style={style.dropDownTextReportContainer}>
-                  <Text style={style.dropDownText}>Report</Text>
+                  <Text style={style.dropDownText}>Remove post</Text>
                 </View>
               </View>
             ) : null}
@@ -281,7 +278,7 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
     marginTop: 1,
-    marginBottom: -125,
+    marginBottom: -55,
     backgroundColor: '#2C3957',
     zIndex: 1,
     paddingVertical: 6,
@@ -292,11 +289,12 @@ const style = StyleSheet.create({
     fontSize: 16,
     marginHorizontal: 12,
     fontFamily:'Montserrat-Medium',
+    paddingBottom:6,
   },
   dropDownTextReportContainer: {
     borderTopWidth: 1,
     borderTopColor: '#CBCDD7',
-    paddingTop: 4,
+    paddingVertical: 6,
     backgroundColor:'#2C3957'
   },
 });
