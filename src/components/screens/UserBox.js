@@ -23,6 +23,9 @@ export default class UserBox extends Component {
           <Text style={style.followers}>
             Followers: <Text style={style.detailsBold}>{item.followers}</Text>
           </Text>
+          <Text style={style.followers}>
+            Trading since: <Text style={style.detailsBold}>{item.followers}</Text>
+          </Text>
         </View>
         <View style={style.percentageView}>
           <Text style={style.percentage}>{item.percentage}%</Text>
@@ -41,8 +44,8 @@ const style = StyleSheet.create({
     backgroundColor: '#324165',
   },
   image: {
-    height: 65,
-    width: 65,
+    height: 63,
+    width: 63,
     borderRadius: 50,
   },
   imgDetailContainer: {
@@ -55,17 +58,19 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
   },
   name: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 16,
+    color: '#FFFFFF',
+    fontFamily:'Montserrat-Bold',
   },
   posts: {
-    color: 'white',
-    fontSize: 14,
+    color: 'lightgrey',
+    fontFamily:'Montserrat-Regular',
+    fontSize: 12,
   },
   followers: {
-    color: 'white',
-    fontSize: 14,
+    color: 'lightgrey',
+    fontFamily:'Montserrat-Regular',
+    fontSize: 12,
   },
   percentageView: {
     flexDirection: 'row',
@@ -73,11 +78,16 @@ const style = StyleSheet.create({
   },
   percentage: {
     alignSelf: 'center',
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 19,
+    color: '#1AB968',
+    fontSize: 16,
+    fontFamily:'Montserrat-Bold',
+
   },
   detailsBold: {
-    fontWeight: 'bold',
+    fontFamily:'Montserrat-Medium',
+    color: '#FFFFFF',
+    fontSize: 12,
+
+
   },
 });
