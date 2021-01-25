@@ -31,6 +31,9 @@ class UserPortfolioList extends Component {
         item.symbol.toLowerCase().includes(this.state.input.toLowerCase()),
     );
 
+    
+
+
     return (
       <SafeAreaView style={style.container}>
         <View style={style.searchInputContainer}>

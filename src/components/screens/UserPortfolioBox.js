@@ -19,11 +19,61 @@ export default class UserPortfolioBox extends Component {
     };
   }
 
+  componentDidMount() {
+    const {item} = this.props;
+
+    //X and Y
+    //X
+    const xDates = item.dates.map(
+      (item) => new Date(item * 1000),
+    );
+    //Y
+    const yPrices = item.priceHistory;
+    //X and Y data
+    const xyData = xDates.map((stockDate, stockPrice) => {
+      return {x: stockDate, y: yPrices[stockPrice]};
+    });
+     //Data periods
+    // Data for week
+    const weekData = xyData.slice(xyData.length - 7);
+    //Data for month
+    const monthData = xyData.slice(xyData.length - 31);
+    //Week range of stock prices
+    const weekRange = [
+      Math.min(...yPrices.slice(yPrices.length - 7)),
+      Math.max(...yPrices.slice(yPrices.length - 7)),
+    ];
+      this.setState({
+        graphData: weekData,
+        range: weekRange,
+
+      })
+    
+  }
+
   render() {
     const {item} = this.props;
     const {graphData, percent, range} = this.state;
     console.log(item, 'item in portfolioBOX');
+  //X and Y
+    //X
+    const xDates = item.dates.map(
+      (item) => new Date(item * 1000),
+    );
+    //Y
+    const yPrices = item.priceHistory;
+    //X and Y data
+    const xyData = xDates.map((stockDate, stockPrice) => {
+      return {x: stockDate, y: yPrices[stockPrice]};
+    });
 
+    //Data periods
+    // Data for week
+    const weekData = xyData.slice(xyData.length - 7);
+    //Data for month
+    const monthData = xyData.slice(xyData.length - 31);
+
+    
     return (
       <SafeAreaView style={style.container}>
         <View style={style.symbolContainer}>
