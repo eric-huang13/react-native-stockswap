@@ -281,7 +281,7 @@ const style = StyleSheet.create({
     marginBottom: -55,
     backgroundColor: '#2C3957',
     zIndex: 1,
-    paddingVertical: 6,
+    paddingVertical: 8,
     // paddingHorizontal:10,
   },
   dropDownText: {
@@ -290,11 +290,13 @@ const style = StyleSheet.create({
     marginHorizontal: 12,
     fontFamily:'Montserrat-Medium',
     paddingBottom:6,
+    paddingTop:6,
   },
   dropDownTextReportContainer: {
     borderTopWidth: 1,
     borderTopColor: '#CBCDD7',
-    paddingVertical: 6,
+    paddingTop: 6,
+    paddingBottom:6,
     backgroundColor:'#2C3957'
   },
 });

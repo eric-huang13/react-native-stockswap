@@ -30,6 +30,7 @@ import EditProfile from './components/screens/EditProfile'
 import ChangeEmail from './components/screens/ChangeEmail'
 import ChangePassword from './components/screens/ChangePassword'
 import MyProfilePosts from './components/screens/MyProfilePosts'
+import TopUsers from './components/screens/TopUsers'
 
 
 //icons
@@ -50,6 +51,7 @@ const Stack = createStackNavigator();
 const SearchStack = createStackNavigator();
 const HomeStack = createStackNavigator();
 const MyProfileStack = createStackNavigator();
+const TopUsersStack = createStackNavigator();
 
 
 class Navigation extends Component {
@@ -464,6 +466,209 @@ class Navigation extends Component {
     </MyProfileStack.Navigator>
   );
 
+  createTopUsersStack = () => (
+    <TopUsersStack.Navigator>
+      <TopUsersStack.Screen
+        name="TopUsers"
+        component={TopUsers}
+        options={({ navigation}) => ({
+          title:'Top Users',
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+          headerRight: () => (
+            <TouchableOpacity onPress={() =>navigation.navigate('MyProfileSettings')}>
+                  <Text style={style.button}>Settings</Text>
+                </TouchableOpacity>
+          ),          
+        })}
+      />
+
+       <TopUsersStack.Screen
+        name="MyProfileSettings"
+        component={MyProfileSettings}
+        options={({ navigation}) => ({
+          title: 'Settings',
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+          headerRight: () => (
+            <TouchableOpacity onPress={() =>navigation.navigate('EditProfile')}>
+                  <Text style={style.button}>Edit Profile</Text>
+                </TouchableOpacity>
+          ),          
+        })}
+      />
+      <TopUsersStack.Screen
+        name="EditProfile"
+        component={EditProfile}
+        options={{   
+          title: 'Settings',       
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      <TopUsersStack.Screen
+        name="ChangeEmail"
+        component={ChangeEmail}
+        options={{
+          headerShown: false,
+              headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      <TopUsersStack.Screen
+        name="ChangePassword"
+        component={ChangePassword}
+        options={{
+          headerShown: false,
+              headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      <TopUsersStack.Screen
+        name="MyProfilePosts"
+        component={MyProfilePosts}
+        options={{
+          title: 'All my posts',
+              headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      
+      <TopUsersStack.Screen
+        name="PostScreen"
+        component={PostScreen}
+        options={({route}) => ({
+          title: route.params.name,
+
+          headerShown: true,
+
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        })}
+      />
+
+      <TopUsersStack.Screen
+        name="Comments"
+        component={UserCommentList}
+        options={{
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      <TopUsersStack.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          title: 'Profile',
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      <TopUsersStack.Screen
+        name="UserPortfolioList"
+        component={UserPortfolioList}
+        options={{
+          title: 'Portfolio',
+          headerStyle: {
+            backgroundColor: '#313c58',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      <TopUsersStack.Screen
+        name="CompanyInformation"
+        component={CompanyInformation}
+        options={{
+          title: 'Stock details',
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      
+      
+    </TopUsersStack.Navigator>
+  );
+
   render() {
     const {isLoggedIn} = this.props;
 
@@ -508,7 +713,7 @@ class Navigation extends Component {
             <Tab.Screen name="Home" component={this.createHomeStack} />
             <Tab.Screen name="Search" component={this.createSearchStack}/>
             <Tab.Screen name="PostScreen" component={ProfileInfoForm}  />
-            <Tab.Screen name="UserList" component={LoginScreen}  />
+            <Tab.Screen name="UserList" component={this.createTopUsersStack}  />
             <Tab.Screen name="MyProfile" component={this.createMyProfileStack}  />
 
           </Tab.Navigator>
