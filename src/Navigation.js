@@ -471,126 +471,22 @@ class Navigation extends Component {
       <TopUsersStack.Screen
         name="TopUsers"
         component={TopUsers}
-        options={({ navigation}) => ({
-          title:'Top Users',
-          headerShown: true,
+        options={{  
+          headerShown:false, 
           headerStyle: {
             backgroundColor: '#394463',
           },
           headerTitleStyle:{
             fontFamily:'Montserrat-Bold',
             fontSize:16
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />        
 
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-          headerRight: () => (
-            <TouchableOpacity onPress={() =>navigation.navigate('MyProfileSettings')}>
-                  <Text style={style.button}>Settings</Text>
-                </TouchableOpacity>
-          ),          
-        })}
-      />
-
-       <TopUsersStack.Screen
-        name="MyProfileSettings"
-        component={MyProfileSettings}
-        options={({ navigation}) => ({
-          title: 'Settings',
-          headerShown: true,
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-          headerRight: () => (
-            <TouchableOpacity onPress={() =>navigation.navigate('EditProfile')}>
-                  <Text style={style.button}>Edit Profile</Text>
-                </TouchableOpacity>
-          ),          
-        })}
-      />
-      <TopUsersStack.Screen
-        name="EditProfile"
-        component={EditProfile}
-        options={{   
-          title: 'Settings',       
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-      <TopUsersStack.Screen
-        name="ChangeEmail"
-        component={ChangeEmail}
-        options={{
-          headerShown: false,
-              headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-      <TopUsersStack.Screen
-        name="ChangePassword"
-        component={ChangePassword}
-        options={{
-          headerShown: false,
-              headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-      <TopUsersStack.Screen
-        name="MyProfilePosts"
-        component={MyProfilePosts}
-        options={{
-          title: 'All my posts',
-              headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-      
       <TopUsersStack.Screen
         name="PostScreen"
         component={PostScreen}

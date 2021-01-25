@@ -1,3 +1,4 @@
+  
 import React, {Component} from 'react';
 import {
   View,
@@ -9,16 +10,20 @@ import {
   SafeAreaView,
 } from 'react-native';
 import {connect} from 'react-redux';
-import UserBox from './UserBox';
-import SearchInput from '../../icons/SearchInput'
+import TopUsersAllPeople from './TopUsersAllPeople'
+
+import LinearGradient from 'react-native-linear-gradient';
 
 
-export class UserList extends Component {
+export class TopUsers extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: '  ',
+      input: '',
       timeFilter: 'day',
+      allPeople: true,
+      following: false,
+      trending: false,
     };
   }
 
@@ -37,115 +42,132 @@ export class UserList extends Component {
     );
 
     return (
-      <SafeAreaView>
-        <ScrollView contentContainerStyle={{paddingBottom: 180}}>
-          <View style={style.searchInputContainer}>
-          <View
-        style={{
-          position: "absolute",
-          zIndex: 1,
-          left: 14,
-          top:10
-        }}
-      >
-        <SearchInput/>
-      </View>
-            <TextInput
-              style={style.searchInput}
-              placeholder="Search"
-              placeholderTextColor="lightgrey"
-              onChangeText={(text) => this.handleChange(text)}
-            />
-          </View>
-          <Text style={style.timeFilterHeader}>Time filter:</Text>
-          <View style={style.timeFilterContainer}>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('day')}>
-              <Text
-                style={
-                  timeFilter === 'day'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                1D
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('week')}>
-              <Text
-                style={
-                  timeFilter === 'week'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                1W
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('month')}>
-              <Text
-                style={
-                  timeFilter === 'month'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                1M
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('3M')}>
-              <Text
-                style={
-                  timeFilter === '3M'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                3M
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('6M')}>
-              <Text
-                style={
-                  timeFilter === '6M'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                6M
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('1Y')}>
-              <Text
-                style={
-                  timeFilter === '1Y'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                1Y
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('ALL')}>
-              <Text
-                style={
-                  timeFilter === 'ALL'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                All
-              </Text>
-            </TouchableOpacity>
-          </View>
-          {filteredUsers.map((item) => {
-            return (
+
+<LinearGradient
+        start={{x: 0.1, y: 0.1}}
+        end={{x: 1, y: 1}}
+        colors={[
+          '#1d2842',
+          '#1f2a45',
+          '#222d47',
+          '#242f4a',
+          '#27324d',
+          '#293450',
+          '#2c3752',
+          '#2e3955',
+          '#313c58',
+          '#333e5c',
+          '#36415f',
+          '#394463',
+        ]}
+        style={{flex: 1}}>
+        <SafeAreaView>
+          {/* <ScrollView> */}
+          <LinearGradient
+            start={{x: 0.1, y: 0.1}}
+            end={{x: 1, y: 1}}
+            colors={[
+              '#2c3752',
+              '#2e3955',
+              '#313c58',
+              '#333e5c',
+              '#36415f',
+              '#394463',
+            ]}>
+            <Text style={style.header}>Top Users</Text>
+
+            <View style={style.tabSelectorContainer}>
               <TouchableOpacity
-                key={item.id}
                 onPress={() =>
-                  this.props.navigation.navigate({
-                    name: 'Profile',
-                    params: {item},
+                  this.setState({
+                    allPeople: true,
+                    users: false,
+                    following: false,
                   })
                 }>
-                <UserBox item={item} />
+                <View
+                  style={
+                    this.state.allPeople
+                      ? {...style.activeTabHeaderView}
+                      : {...style.tabHeaderView}
+                  }>
+                  <Text
+                    style={
+                      this.state.allPeople
+                        ? {...style.activeTabHeader}
+                        : {...style.tabHeader}
+                    }>
+                    All people
+                  </Text>
+                </View>
               </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
-      </SafeAreaView>
+              <TouchableOpacity
+                onPress={() =>
+                  this.setState({
+                    allPeople: false,
+                    following: true,
+                    trending: false,
+                  })
+                }>
+                <View
+                  style={
+                    this.state.following
+                      ? {...style.activeTabHeaderView}
+                      : {...style.tabHeaderView}
+                  }>
+                  <Text
+                    style={
+                      this.state.following
+                        ? {...style.activeTabHeader}
+                        : {...style.tabHeader}
+                    }>
+                    Following
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  this.setState({
+                    allPeople: false,
+                    following: false,
+                    trending: true,
+                  })
+                }>
+                <View
+                  style={
+                    this.state.trending
+                      ? {...style.activeTabHeaderView}
+                      : {...style.tabHeaderView}
+                  }>
+                  <Text
+                    style={
+                      this.state.trending
+                        ? {...style.activeTabHeader}
+                        : {...style.tabHeader}
+                    }>
+                    Trending
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </LinearGradient>
+          {this.state.allPeople ? (
+            <TopUsersAllPeople navigation={this.props.navigation} />
+          ) : this.state.following ? (
+            <TopUsersAllPeople />
+          ) : this.state.trending ? (
+            <TopUsersAllPeople navigation={this.props.navigation} />
+          ) : (
+            <View>
+              <Text>Search Screen</Text>
+            </View>
+          )}
+          {/* </ScrollView> */}
+        </SafeAreaView>
+      </LinearGradient>
+
+
+      
     );
   }
 }
@@ -156,38 +178,55 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(UserList);
+export default connect(mapStateToProps)(TopUsers);
 
 const style = StyleSheet.create({
   searchInputContainer: {
-    // marginTop: 1,
-    marginBottom: 15,
+    alignItems: 'center',
+    padding: 4.8,
+    marginTop: 0,
   },
   searchInput: {
-    paddingLeft: 40,
-    alignContent: 'center',
-    backgroundColor: '#3e4d6c',
-    color: 'lightgrey',
-    fontSize: 16,
-    height: 36,
-    fontFamily: 'Montserrat-Italic',
-    paddingVertical: 0,
+    borderWidth: 0.5,
+    width: '90%',
+    fontSize: 17,
+    fontStyle: 'italic',
+    textAlign: 'left',
+    padding: 2.5,
+    opacity: 0.8,
+    marginBottom: 20,
+    paddingLeft: 5,
   },
-  timeFilterHeader: {
-    fontSize: 16,
-    paddingLeft: 18,
-    color: 'lightgrey',
+  header: {
+    color: '#FFFFFF',
+    fontSize: 19,
+    fontWeight: '700',
+    marginVertical: 8,
+    textAlign: 'center',
   },
-  timeFilterContainer: {
-    marginTop: 4,
+  tabSelectorContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginBottom: 12,
-    paddingBottom: 9,
+    marginVertical: 15,
+    paddingBottom: 2,
   },
-  timeFilterButtons: {
-    color: 'white',
+  tabHeader: {
+    color: '#FFFFFF',
+    fontSize: 17,
     fontWeight: 'bold',
-    fontSize: 18,
   },
+  activeTabHeaderView: {
+    borderBottomWidth: 3,
+    borderBottomColor: '#855cff',
+    paddingBottom: 1.8,
+  },
+  activeTabHeader: {
+    color: '#8257FF',
+    textShadowColor: '#8257FF',
+    textShadowOffset: {width: 1, height: 1},
+    textShadowRadius: 50,
+    fontSize: 17,
+    fontWeight: 'bold',
+  },
+
 });
