@@ -12,7 +12,7 @@ import {
 import {connect} from 'react-redux';
 import UserBox from './UserBox';
  
-export class TopUsersAllPeople extends Component {
+export class TopUsersPeople extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,7 +52,7 @@ export class TopUsersAllPeople extends Component {
               <Text
                 style={
                   timeFilter === 'day'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
+                    ? {...style.timeFilterButtons, color: '#8257FF'}
                     : {...style.timeFilterButtons}
                 }>
                 1D
@@ -145,7 +145,7 @@ const mapStateToProps = (state) => {
   };
 };
  
-export default connect(mapStateToProps)(TopUsersAllPeople);
+export default connect(mapStateToProps)(TopUsersPeople);
  
 const style = StyleSheet.create({
   mainContainer:{
@@ -165,9 +165,11 @@ const style = StyleSheet.create({
     paddingVertical: 0,
   },
   timeFilterHeader: {
-    fontSize: 16,
+    fontSize: 14,
     paddingLeft: 18,
     color: 'lightgrey',
+    fontFamily:'Montserrat-Regular',
+
   },
   timeFilterContainer: {
     marginTop: 4,
@@ -177,9 +179,9 @@ const style = StyleSheet.create({
     paddingBottom: 9,
   },
   timeFilterButtons: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 18,
+    color: '#FFFFFF',
+    fontFamily:'Montserrat-Bold',
+    fontSize: 16,
   },
 });
 

@@ -10,7 +10,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import {connect} from 'react-redux';
-import TopUsersAllPeople from './TopUsersAllPeople'
+import TopUsersPeople from './TopUsersPeople'
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -151,12 +151,14 @@ export class TopUsers extends Component {
               </TouchableOpacity>
             </View>
           </LinearGradient>
+
+          {/* //Most likey this will instead be determining which data gets passed into the TopUsersPeople component, unless for some reason we need 3 different components here. I will wait to mess with it until there's actual data coming from backend */}
           {this.state.allPeople ? (
-            <TopUsersAllPeople navigation={this.props.navigation} />
+            <TopUsersPeople navigation={this.props.navigation} />
           ) : this.state.following ? (
-            <TopUsersAllPeople />
+            <TopUsersPeople navigation={this.props.navigation}/>
           ) : this.state.trending ? (
-            <TopUsersAllPeople navigation={this.props.navigation} />
+            <TopUsersPeople navigation={this.props.navigation} />
           ) : (
             <View>
               <Text>Search Screen</Text>
@@ -212,8 +214,8 @@ const style = StyleSheet.create({
   },
   tabHeader: {
     color: '#FFFFFF',
-    fontSize: 17,
-    fontWeight: 'bold',
+    fontSize: 14,
+    fontFamily:'Montserrat-Bold',
   },
   activeTabHeaderView: {
     borderBottomWidth: 3,
@@ -221,12 +223,12 @@ const style = StyleSheet.create({
     paddingBottom: 1.8,
   },
   activeTabHeader: {
+    fontFamily:'Montserrat-Bold',
     color: '#8257FF',
     textShadowColor: '#8257FF',
     textShadowOffset: {width: 1, height: 1},
     textShadowRadius: 50,
-    fontSize: 17,
-    fontWeight: 'bold',
+    fontSize: 14,
   },
 
 });
