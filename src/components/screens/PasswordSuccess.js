@@ -5,13 +5,17 @@ import {Button, SafeAreaView, Text,
   StyleSheet,
   TouchableOpacity,
  } from 'react-native';
-
+ 
+import PasswordIcon from '../../icons/PasswordIcon'
 import LinearGradient from 'react-native-linear-gradient';
 
 
 
 
-class PasswordSuccess extends Component {
+class PasswordSuccess extends Component {  
+    constructor(props) {
+    super(props); 
+  }
   
   
   render() {    
@@ -27,11 +31,11 @@ class PasswordSuccess extends Component {
         style={{flex: 1}}>
          
 
-      <SafeAreaView style={style.mainContainer}>
-          
+      <SafeAreaView style={style.mainContainer}>          
             <View style={style.container}>
+            <PasswordIcon style={style.icon}/>
               <Text style={style.header}>Success</Text>
-              <Text style={style.belowHeader}>Password sucessfully changed</Text>
+              <Text style={style.belowHeader}>Password sucessfully changed.</Text>
             
                           
               <View style={style.buttonContainer}>
@@ -80,10 +84,16 @@ const style = StyleSheet.create({
     elevation: 1,
     
   },
+  icon:{
+      marginTop:30,
+      alignSelf:'center',
+
+  },
   header: {
     color: "#FFFFFF",
     fontSize: 20,
-    marginBottom:16,
+    marginTop:20,
+    marginBottom:5,
     fontFamily:'Montserrat-Bold',
     textAlign:'center'
   },
@@ -95,7 +105,7 @@ const style = StyleSheet.create({
     textAlign:'center'
   },
 buttonContainer:{
-borderWidth:1,
+    marginTop:10,
 },
   button: {
     alignSelf: "center",
