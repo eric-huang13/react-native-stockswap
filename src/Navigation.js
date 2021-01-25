@@ -31,6 +31,7 @@ import ChangeEmail from './components/screens/ChangeEmail'
 import ChangePassword from './components/screens/ChangePassword'
 import MyProfilePosts from './components/screens/MyProfilePosts'
 import TopUsers from './components/screens/TopUsers'
+import PasswordSuccess from './components/screens/PasswordSuccess'
 
 
 //icons
@@ -369,6 +370,24 @@ class Navigation extends Component {
           },
         }}
       />
+       <MyProfileStack.Screen
+        name="PasswordSuccess"
+        component={PasswordSuccess}
+        options={{
+          headerShown: false,
+              headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
       <MyProfileStack.Screen
         name="MyProfilePosts"
         component={MyProfilePosts}
@@ -608,7 +627,7 @@ class Navigation extends Component {
             >
             <Tab.Screen name="Home" component={this.createHomeStack} />
             <Tab.Screen name="Search" component={this.createSearchStack}/>
-            <Tab.Screen name="PostScreen" component={ProfileInfoForm}  />
+            <Tab.Screen name="PostScreen" component={PasswordSuccess}  />
             <Tab.Screen name="UserList" component={this.createTopUsersStack}  />
             <Tab.Screen name="MyProfile" component={this.createMyProfileStack}  />
 
