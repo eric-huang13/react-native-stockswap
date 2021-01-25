@@ -18,57 +18,35 @@ class MyProfilePosts extends Component {
     super(props);
     this.state = {
       shouldShow: false,
-      users:'',
-      comments:'',
-      id:'',
-        name: '',
-        profileImg: '',
-        likes:'',
-        timestamp:'',
-        comments:'',
-        img: '',
-        body:'',
     };
   }
+  
  
-  componentDidMount() {
-    const {posts} = this.props
-    // const id = 1
-    // const selectedUser = users.filter((user) => user.id === id);
-    {posts.map((post) => {
-      this.setState({
-        id:post.id,
-        name: post.name,
-        profileImg: post.profileImg,
-        likes: post.likes,
-        timestamp:post.timestamp,
-        comments: post.comments,
-        img: post.img,
-        body: post.body
-      })
-    })}
-  }
- 
+
+
   render() {
     const {shouldShow} = this.state;
     const {isLoggedIn, LogoutUser, posts, comments, reply,} = this.props;
+    const id = 1
+    const selectedPosts = posts.filter((user) => user.id === id); 
  
- 
-    // const {post, comments, reply} = this.props;
     const filteredComments = comments.filter(
-      (comment) => comment.postId === this.state.id,
+      (comment) => comment.postId === id,
     );
     const lastComment = filteredComments[filteredComments.length - 1];
     // console.log(this.props.navigation, 'props in post');
     return (
       <SafeAreaView style={style.container}>
+           {selectedPosts.map((post) => {
+            return (
+                <View key={post.id}>
         <View style={style.postNameContainer}>
           <View style={style.profileImageContainer}>
             <Image
               style={style.postUserImage}
-              source={{uri: this.state.profileImg}}
+              source={{uri: post.profileImg}}
             />
-            <Text style={style.postUserName}>{this.state.name}</Text>
+            <Text style={style.postUserName}>{post.name}</Text>
           </View>
  
           <View style={style.dotsDropdownContainer}>
@@ -100,20 +78,20 @@ class MyProfilePosts extends Component {
               params: {post, filteredComments, reply},
             })
           }>
-          <Image style={style.image} source={{uri: this.state.img}} />
+          <Image style={style.image} source={{uri: post.img}} />
         </TouchableOpacity>
  
         <View style={style.detailsContainer}>
-          <Text style={style.timestamp}>{this.state.timestamp}</Text>
+          <Text style={style.timestamp}>{post.timestamp}</Text>
  
           <View style={style.likesContainer}>
               <View style={style.iconContainer}>
                 <LikeInactiveIcon/>
-              <Text style={style.likes}>{this.state.likes}</Text>
+              <Text style={style.likes}>{post.likes}</Text>
               </View>
               <View style={style.iconContainer}>
                 <CommentIcon/>
-              <Text style={style.comments}>{this.state.comments}</Text>
+              <Text style={style.comments}>{post.comments}</Text>
               </View>
             </View>
         </View>
@@ -126,15 +104,18 @@ class MyProfilePosts extends Component {
           }>
           <Text style={style.body}>
             {' '}
-            {this.state.body.length < 88
-              ? `${this.state.body}`
-              : `${this.state.body.substring(0, 88)}...`}{' '}
+            {post.body.length < 88
+              ? `${post.body}`
+              : `${post.body.substring(0, 88)}...`}{' '}
             <Text style={style.more}>{'       '}More</Text>
           </Text>
         </TouchableOpacity>
- 
+
+        </View>
+            );
+          })}
+
         <View style={style.commentContainer}>
-          <View style={style.commentContainer}>
             <TouchableOpacity
               onPress={() =>
                 this.props.navigation.navigate({
@@ -142,9 +123,7 @@ class MyProfilePosts extends Component {
                   params: {post, filteredComments, reply},
                 })
               }>
-              {/* <View style={style.headerContainer}>
-                <Text style={style.allComments}>View all comments</Text>
-              </View> */}
+             
  
               {lastComment ? (
                 <View style={style.lastCommentContainer}>
@@ -157,7 +136,6 @@ class MyProfilePosts extends Component {
                 </View>
               ) : null}
             </TouchableOpacity>
-          </View>
         </View>
       </SafeAreaView>
     );
@@ -184,13 +162,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(MyProfilePosts);
  
  
 const style = StyleSheet.create({
-  container: {
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    marginTop: 3,
+  container: {    
+    flexDirection: 'column',  
     paddingVertical: 14,
     paddingHorizontal: 10,
     backgroundColor: '#2a334a',
+    flex:1,
   },
   image: {
     height: 184,
