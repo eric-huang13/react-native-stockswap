@@ -98,7 +98,7 @@ class ChangeEmail extends Component {
               </View>             
                           
               <View>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('MyProfileSettings')}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('EmailSuccess')}>
                   <Text style={style.button}>Apply</Text>
                 </TouchableOpacity>
               </View>

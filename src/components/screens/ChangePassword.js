@@ -117,7 +117,7 @@ class ChangePassword extends Component {
               </View>              
                           
               <View>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('MyProfileSettings')}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('PasswordSuccess')}>
                   <Text style={
                         this.state.newPassword ==='' || this.state.confirmPassword ==='' || this.state.newPassword !== this.state.confirmPassword
                           ? {...style.button, backgroundColor: '#9F9CA7'}
