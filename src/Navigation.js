@@ -408,6 +408,20 @@ class Navigation extends Component {
           },
         }}
       />
+       <MyProfileStack.Screen
+        name="TermsAndConditions"
+        component={TermsAndConditions}
+        options={{
+          title: 'Terms and Conditions',
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
       <MyProfileStack.Screen
         name="MyProfilePosts"
         component={MyProfilePosts}

@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, ScrollView, SafeAreaView,Switch, TouchableOpaci
 import TriangleIcon from '../../icons/TriangleIcon'
 import { connect } from "react-redux";
 import {Logout} from 'actions/user';
+import PasswordIcon from '../../icons/PasswordIcon';
 
 
 class MyProfileSettings extends Component {
@@ -99,8 +100,12 @@ componentDidMount() {
                     <Text style={style.detailsButton}>Show</Text>
                 </View>
                 <View style={style.bottomInnerContiner}>
+
                     <Text style={style.bottomText}>Terms and conditions</Text>
+                    <TouchableOpacity style={style.detailsButtonChange} onPress={() => this.props.navigation.navigate('TermsAndConditions')}>
+
                     <Text style={style.detailsButton}>Show</Text>
+                    </TouchableOpacity>
                 </View>
 
                 </View>
