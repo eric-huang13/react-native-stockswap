@@ -29,6 +29,7 @@ import MyProfileSettings from './components/screens/MyProfileSettings'
 import EditProfile from './components/screens/EditProfile'
 import ChangeEmail from './components/screens/ChangeEmail'
 import ChangePassword from './components/screens/ChangePassword'
+import MyProfilePosts from './components/screens/MyProfilePosts'
 
 
 //icons
@@ -353,6 +354,24 @@ class Navigation extends Component {
         component={ChangePassword}
         options={{
           headerShown: false,
+              headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      <MyProfileStack.Screen
+        name="MyProfilePosts"
+        component={MyProfilePosts}
+        options={{
+          title: 'All my posts',
               headerStyle: {
             backgroundColor: '#394463',
           },
