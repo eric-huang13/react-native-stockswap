@@ -97,7 +97,10 @@ componentDidMount() {
                 <View style={style.bottomContainer}>
                 <View style={style.bottomInnerContiner}>
                     <Text style={style.bottomText}>Privacy policy</Text>
+                    <TouchableOpacity style={style.detailsButtonChange} onPress={() => this.props.navigation.navigate('PrivacyPolicy')}>
+
                     <Text style={style.detailsButton}>Show</Text>
+                    </TouchableOpacity>
                 </View>
                 <View style={style.bottomInnerContiner}>
 

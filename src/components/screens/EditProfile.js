@@ -168,7 +168,7 @@ class EditProfile extends Component {
 
           
               <View style={style.buttonsContainer}>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('MyProfile')}>
+                <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
                   <Text style={style.cancelButton}>Cancel</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('MyProfile')}>

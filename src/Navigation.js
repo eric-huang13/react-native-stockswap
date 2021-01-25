@@ -33,6 +33,7 @@ import MyProfilePosts from './components/screens/MyProfilePosts'
 import TopUsers from './components/screens/TopUsers'
 import PasswordSuccess from './components/screens/PasswordSuccess'
 import EmailSuccess from './components/screens/EmailSuccess'
+import PrivacyPolicy from './components/screens/PrivacyPolicy'
 
 
 
@@ -413,6 +414,20 @@ class Navigation extends Component {
         component={TermsAndConditions}
         options={{
           title: 'Terms and Conditions',
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      <MyProfileStack.Screen
+        name="PrivacyPolicy"
+        component={PrivacyPolicy}
+        options={{
+          title: 'Privacy Policy',
           headerStyle: {
             backgroundColor: '#394463',
           },
