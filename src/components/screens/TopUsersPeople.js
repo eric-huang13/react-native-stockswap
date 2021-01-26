@@ -9,6 +9,7 @@ import {
   Text,
   SafeAreaView,
 } from 'react-native';
+import SearchInput from '../../icons/SearchInput'
 import {connect} from 'react-redux';
 import UserBox from './UserBox';
  
@@ -38,7 +39,17 @@ export class TopUsersPeople extends Component {
     return (
       <SafeAreaView style={style.mainContainer}>
         <ScrollView contentContainerStyle={{paddingBottom: 180, backgroundColor:'#2a334a'}}>
-          <View style={style.searchInputContainer}>
+        <View style={style.searchInputContainer}>
+          <View
+        style={{
+          position: "absolute",
+          zIndex: 1,
+          left: 14,
+          top:10
+        }}
+      >
+        <SearchInput/>
+      </View>
             <TextInput
               style={style.searchInput}
               placeholder="Search"
@@ -151,7 +162,6 @@ const style = StyleSheet.create({
   mainContainer:{
   },
   searchInputContainer: {
-    // marginTop: 1,
     marginBottom: 15,
   },
   searchInput: {
@@ -159,9 +169,9 @@ const style = StyleSheet.create({
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 18,
+    fontSize: 15,
     height: 36,
-    fontStyle: 'italic',
+    fontFamily: 'Montserrat-Italic',
     paddingVertical: 0,
   },
   timeFilterHeader: {

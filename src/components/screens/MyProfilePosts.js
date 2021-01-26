@@ -200,6 +200,7 @@ const style = StyleSheet.create({
     height: 36,
     fontFamily: 'Montserrat-Italic',
     paddingVertical: 0,
+    marginBottom:10,
   },
   postContainer:{
     paddingHorizontal: 10,

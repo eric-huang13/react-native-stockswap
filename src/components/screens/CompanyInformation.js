@@ -49,6 +49,7 @@ export class CompanyInformation extends Component {
     //Data periods
     // Data for week
     const weekData = xyData.slice(xyData.length - 7);
+    console.log(weekData,"DATAT")
     //Data for month
     const monthData = xyData.slice(xyData.length - 31);
 
@@ -57,23 +58,24 @@ export class CompanyInformation extends Component {
     const currentPrice = yPrices[yPrices.length - 1];
     // Growth/Loss percentage
     const percentChange = (
-      ((currentPrice - yPrices.length - 7) / yPrices.length - 7) *
-      100
-    ).toFixed(2);
+      ((currentPrice - yPrices[yPrices.length - 7]) / yPrices[yPrices.length - 7]) *100).toFixed(2);
+
     // Growth/Loss percentage
     const percentChangeMonth = (
-      ((currentPrice - yPrices.length - 30) / yPrices.length - 30) *
+      ((currentPrice - yPrices[yPrices.length - 30]) / yPrices[yPrices.length - 30]) *
       100
     ).toFixed(2);
 
     //Range of highest and lowest numbers on graph, passed into graph component
     //Total range of stock prices
     const newrange = [Math.min(...yPrices), Math.max(...yPrices)];
+
+   const newweek = yPrices.slice(yPrices.length - 7)
     //Week range of stock prices
     const weekRange = [
-      Math.min(...yPrices.slice(yPrices.length - 7)),
-      Math.max(...yPrices.slice(yPrices.length - 7)),
-    ];
+      Math.min(...newweek),
+      Math.max(...newweek),
+         ];
 
     //Numbers to display graph numbers, can also use use built in graph numbers instead
     //Graph high number

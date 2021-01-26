@@ -51,17 +51,33 @@ export default class UserPortfolioBox extends Component {
    const weekStart = yPrices[yPrices.length - 7];
    const weekEnd = yPrices[yPrices.length - 1];
 
+      //Info to display
+    //Current stock price
+    const currentPrice = yPrices[yPrices.length - 1];
+    console.log(currentPrice,"cur price")
+
+    const seven = yPrices[yPrices.length - 7];
+    console.log(seven,"seven price")
+
+    const testing =currentPrice - yPrices[yPrices.length - 7]
+    console.log(testing,"testing")
+
+    // Growth/Loss percentage
+    const percentChange = (
+      ((currentPrice - yPrices[yPrices.length - 7]) / yPrices[yPrices.length - 7]) *100).toFixed(2);
+      console.log(percentChange,"change")
+
+
       this.setState({
         graphData: weekData,
         range: weekRange,
-        start:weekStart,
-        end:weekEnd
+        percent:percentChange
       })    
   }
 
   render() {
     const {item} = this.props;
-    const {graphData, percent, range, start, end} = this.state;
+    const {graphData, percent, range} = this.state;
 
     
     return (
@@ -72,10 +88,10 @@ export default class UserPortfolioBox extends Component {
           <Text style={style.price}>Price: ${item.price}</Text>
         </View>
         <View style={style.graphContainer}>
-          <PortfolioGraph graphData={graphData} range={range} />
+          <PortfolioGraph graphData={graphData} range={range} percent={percent} />
         </View>
         <View style={style.percentContainer}>
-           { start < end ? <BullIcon style={style.icon}/>
+           { percent > 0 ? <BullIcon style={style.icon}/>
            :
            <BearIcon style={style.icon}/>           
           }
