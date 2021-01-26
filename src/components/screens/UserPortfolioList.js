@@ -22,7 +22,7 @@ class UserPortfolioList extends Component {
     this.state = {
       input: '',
       shouldShow:false,
-      dropDown:''
+      dropDown:'Percent Change',
     };
   }
   handleChange = (text) => {
@@ -68,8 +68,13 @@ class UserPortfolioList extends Component {
         </View>
         <View style={style.percentButtonContainer}>
           <Text style={style.stockHeader}>STOCKS</Text>
-          <ModalDropdown style={style.percentChangeButton} options={dropDownOptions}  onSelect= {(idx,value) => this.setState({dropDown:  value})}/>
-          {/* <View style={style.dotsDropdownConatiner}>
+{/* 
+          <View style={style.percentChangeContainer}>
+          <ModalDropdown style={style.dropdown_2} dropdownStyle={style.dropdown_2_dropdown} textStyle={style.dropdown_2_text} options={dropDownOptions}  onSelect= {(idx,value) => this.setState({dropDown:  value})} />
+          <TriangleIcon/>
+          </View>
+           */}
+          <View style={style.dotsDropdownConatiner}>
               <TouchableOpacity
                 onPress={() =>
                   this.setState({
@@ -98,7 +103,7 @@ class UserPortfolioList extends Component {
                   
                 </View>
               ) : null}
-            </View> */}
+            </View>
           
         </View>
         <FlatList
@@ -114,7 +119,7 @@ class UserPortfolioList extends Component {
                 })
               }>
               <View key={item.id} style={style.portfolioBoxContainer}>
-                {/* <UserPortfolioBox item={item} /> */}
+                <UserPortfolioBox item={item} />
               </View>
             </TouchableOpacity>
           )}
@@ -135,6 +140,33 @@ const style = StyleSheet.create({
   container: {
     backgroundColor: '#2a334a',
     flex: 1,
+  },
+  dropdown_2: {
+    alignSelf: 'flex-end',
+    width: 150,
+    marginTop: 32,
+    right: 8,
+    borderWidth: 0,
+    borderRadius: 3,
+    backgroundColor: 'yellow',
+  },
+  dropdown_2_text: {
+    marginVertical: 10,
+    marginHorizontal: 6,
+    fontSize: 18,
+    color: 'white',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    backgroundColor:'yellow'
+
+  },
+  dropdown_2_dropdown: {
+    width: 150,
+    height: 300,
+    borderColor: 'cornflowerblue',
+    borderWidth: 2,
+    borderRadius: 3,
+    backgroundColor:'yellow'
   },
   searchInputContainer: {
     marginBottom: 20,
@@ -191,7 +223,7 @@ const style = StyleSheet.create({
     borderRadius: 6,
     fontFamily:'Montserrat-Medium',
     marginRight:6,
-    width:180
+    // width:180
 
   },
   percentChangeContainer:{
