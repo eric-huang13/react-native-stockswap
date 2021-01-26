@@ -505,9 +505,13 @@ class Navigation extends Component {
         name="UserPortfolioList"
         component={UserPortfolioList}
         options={{
-          title: 'Portfolio',
+          title: 'Manage Portfolio',
           headerStyle: {
             backgroundColor: '#313c58',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
           },
           headerTintColor: 'white',
           headerTitleAlign: {
@@ -607,6 +611,10 @@ class Navigation extends Component {
           title: 'Portfolio',
           headerStyle: {
             backgroundColor: '#313c58',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
           },
           headerTintColor: 'white',
           headerTitleAlign: {

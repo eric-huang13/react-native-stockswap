@@ -10,6 +10,7 @@ import {
   FlatList,
 } from 'react-native';
 import UserPortfolioBox from './UserPortfolioBox';
+import SearchInput from '../../icons/SearchInput'
 import {connect} from 'react-redux';
 
 class UserPortfolioList extends Component {
@@ -37,13 +38,23 @@ class UserPortfolioList extends Component {
     return (
       <SafeAreaView style={style.container}>
         <View style={style.searchInputContainer}>
-          <TextInput
-            style={style.searchInput}
-            placeholder="Search"
-            placeholderTextColor="lightgrey"
-            onChangeText={(text) => this.handleChange(text)}
-          />
-        </View>
+          <View
+        style={{
+          position: "absolute",
+          zIndex: 1,
+          left: 14,
+          top:10
+        }}
+      >
+        <SearchInput/>
+      </View>
+            <TextInput
+              style={style.searchInput}
+              placeholder="Search"
+              placeholderTextColor="lightgrey"
+              onChangeText={(text) => this.handleChange(text)}
+            />
+          </View>
         <View style={style.percentContainer}>
           <Text style={style.portfolio}>Portfolio</Text>
           <Text style={style.percent}>+ 320%</Text>
@@ -88,7 +99,6 @@ const style = StyleSheet.create({
     flex: 1,
   },
   searchInputContainer: {
-    // marginTop: 1,
     marginBottom: 20,
   },
   searchInput: {
@@ -96,9 +106,9 @@ const style = StyleSheet.create({
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 16,
+    fontSize: 15,
     height: 36,
-    fontStyle: 'italic',
+    fontFamily: 'Montserrat-Italic',
     paddingVertical: 0,
   },
   boxContainer: {
@@ -114,13 +124,15 @@ const style = StyleSheet.create({
     paddingHorizontal: 8,
   },
   portfolio: {
-    color: 'white',
-    fontSize: 19,
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontFamily:'Montserrat-Regular',
+
   },
   percent: {
-    color: 'white',
-    fontSize: 26.5,
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontSize: 24,
+    fontFamily:'Montserrat-ExtraBold',
   },
   percentButtonContainer: {
     marginTop: 12,
@@ -130,15 +142,17 @@ const style = StyleSheet.create({
     paddingHorizontal: 8,
   },
   stockHeader: {
-    color: 'white',
-    fontSize: 25,
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontSize: 22,
+    fontFamily:'Montserrat-Bold',
   },
   percentChangeButton: {
-    color: 'white',
-    fontSize: 16.5,
+    color: '#FFFFFF',
+    fontSize: 14,
     backgroundColor: '#3e4d6c',
     padding: 6,
     borderRadius: 6,
+    fontFamily:'Montserrat-Medium',
+
   },
 });
