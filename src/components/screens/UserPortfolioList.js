@@ -19,6 +19,7 @@ class UserPortfolioList extends Component {
     super(props);
     this.state = {
       input: '',
+      shouldShow:false,
     };
   }
   handleChange = (text) => {
@@ -33,7 +34,7 @@ class UserPortfolioList extends Component {
         item.symbol.toLowerCase().includes(this.state.input.toLowerCase()),
     );
 
-    
+    const {shouldShow} = this.state;   
 
 
     return (
@@ -62,10 +63,31 @@ class UserPortfolioList extends Component {
         </View>
         <View style={style.percentButtonContainer}>
           <Text style={style.stockHeader}>STOCKS</Text>
-          <View style={style.percentChangeContainer}>
+          <View style={style.dotsDropdownConatiner}>
+              <TouchableOpacity
+                onPress={() =>
+                  this.setState({
+                    shouldShow: !shouldShow,
+                  })
+                }>
+                  <View style={style.percentChangeContainer}>
           <Text style={style.percentChangeButton}>Total Percent Change</Text>
-          <TriangleIcon/>
+        <TriangleIcon/>        
           </View>
+              </TouchableOpacity>
+              {this.state.shouldShow ? (
+                <View style={style.dropdown}>
+                  <Text style={style.dropDownText}>Percent Change</Text>
+                  <Text style={style.dropDownText}>Last price</Text>
+                  <Text style={style.dropDownText}>Total percent change</Text>
+                  <Text style={style.dropDownText}>Your equity</Text>
+                  <Text style={style.dropDownText}>Today's return</Text>
+                  <Text style={style.dropDownText}>Total return</Text>
+                  
+                </View>
+              ) : null}
+            </View>
+          
         </View>
         <FlatList
           style={style.boxContainer}
@@ -153,7 +175,7 @@ const style = StyleSheet.create({
   percentChangeButton: {
     color: '#FFFFFF',
     fontSize: 14,
-    backgroundColor: '#3e4d6c',
+    backgroundColor: '#3E4D6C',
     borderRadius: 6,
     fontFamily:'Montserrat-Medium',
     marginRight:6,
@@ -168,5 +190,42 @@ const style = StyleSheet.create({
     justifyContent:'space-between',
     alignItems:'center'
     
+},
+dotsDropdownConatiner: {
+  flexDirection: 'column',
+  justifyContent: 'space-evenly',
+  alignContent: 'center',
+},
+dotsButton: {
+  alignSelf: 'flex-end',
+  color: 'white',
+  fontWeight: 'bold',
+  fontSize: 20,
+},
+dropdown: {
+  flex: 1,
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  width: '100%',
+  marginTop: 1,
+  marginBottom: -185,
+  backgroundColor: '#3E4D6C',
+  zIndex: 1,
+  paddingVertical: 6,
+  // paddingHorizontal:10,
+},
+dropDownText: {
+  color: 'white',
+  fontSize: 16,
+  marginHorizontal: 12,
+  fontFamily:'Montserrat-Medium',
+  marginBottom:6,
+},
+dropDownTextReportContainer: {
+  borderTopWidth: 1,
+  borderTopColor: 'lightgrey',
+  paddingTop: 4,
+  backgroundColor:'#2C3957'
+
 },
 });
