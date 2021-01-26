@@ -13,6 +13,8 @@ import UserPortfolioBox from './UserPortfolioBox';
 import SearchInput from '../../icons/SearchInput'
 import TriangleIcon from '../../icons/TriangleIcon'
 import {connect} from 'react-redux';
+import ModalDropdown from 'react-native-modal-dropdown';
+
 
 class UserPortfolioList extends Component {
   constructor(props) {
@@ -20,7 +22,7 @@ class UserPortfolioList extends Component {
     this.state = {
       input: '',
       shouldShow:false,
-      dropDown:'Total Percent Change'
+      dropDown:''
     };
   }
   handleChange = (text) => {
@@ -36,6 +38,7 @@ class UserPortfolioList extends Component {
     );
 
     const {shouldShow} = this.state;   
+    const dropDownOptions = ['Percent Change', 'Last price', 'Total percent change', 'Your equity', 'Todays return', 'Total return'];
 
 
     return (
@@ -59,12 +62,14 @@ class UserPortfolioList extends Component {
             />
           </View>
         <View style={style.percentContainer}>
+          <Text>{this.state.dropDown}</Text>
           <Text style={style.portfolio}>Portfolio</Text>
           <Text style={style.percent}>+ 320%</Text>
         </View>
         <View style={style.percentButtonContainer}>
           <Text style={style.stockHeader}>STOCKS</Text>
-          <View style={style.dotsDropdownConatiner}>
+          <ModalDropdown style={style.percentChangeButton} options={dropDownOptions}  onSelect= {(idx,value) => this.setState({dropDown:  value})}/>
+          {/* <View style={style.dotsDropdownConatiner}>
               <TouchableOpacity
                 onPress={() =>
                   this.setState({
@@ -93,7 +98,7 @@ class UserPortfolioList extends Component {
                   
                 </View>
               ) : null}
-            </View>
+            </View> */}
           
         </View>
         <FlatList
