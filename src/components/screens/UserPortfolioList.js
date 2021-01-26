@@ -20,6 +20,7 @@ class UserPortfolioList extends Component {
     this.state = {
       input: '',
       shouldShow:false,
+      dropDown:'Total Percent Change'
     };
   }
   handleChange = (text) => {
@@ -71,14 +72,20 @@ class UserPortfolioList extends Component {
                   })
                 }>
                   <View style={style.percentChangeContainer}>
-          <Text style={style.percentChangeButton}>Total Percent Change</Text>
+          <Text style={style.percentChangeButton}>{this.state.dropDown}</Text>
         <TriangleIcon/>        
           </View>
               </TouchableOpacity>
               {this.state.shouldShow ? (
                 <View style={style.dropdown}>
                   <Text style={style.dropDownText}>Percent Change</Text>
-                  <Text style={style.dropDownText}>Last price</Text>
+                  <TouchableOpacity
+                onPress={() =>
+                  this.setState({
+                    dropDown:'Last price',
+                  })
+                }>
+                  <Text style={style.dropDownText}>Last price</Text></TouchableOpacity>
                   <Text style={style.dropDownText}>Total percent change</Text>
                   <Text style={style.dropDownText}>Your equity</Text>
                   <Text style={style.dropDownText}>Today's return</Text>
@@ -102,7 +109,7 @@ class UserPortfolioList extends Component {
                 })
               }>
               <View key={item.id} style={style.portfolioBoxContainer}>
-                <UserPortfolioBox item={item} />
+                {/* <UserPortfolioBox item={item} /> */}
               </View>
             </TouchableOpacity>
           )}
@@ -179,6 +186,7 @@ const style = StyleSheet.create({
     borderRadius: 6,
     fontFamily:'Montserrat-Medium',
     marginRight:6,
+    width:180
 
   },
   percentChangeContainer:{
