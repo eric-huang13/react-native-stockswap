@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   ScrollView,
+  TextInput
 } from 'react-native';
 import UserCommentList from './UserCommentList';
 import LikeInactiveIcon from '../../icons/LikeInactiveIcon'
@@ -26,7 +27,7 @@ export default class PostScreen extends Component {
     const {post, filteredComments, reply} = this.props.route.params;
     return (
       <SafeAreaView style={style.container}>
-        <ScrollView>
+        <ScrollView style={style.scrollContainer}>
           <View style={style.postNameContainer}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Image
@@ -79,6 +80,14 @@ export default class PostScreen extends Component {
             reply={reply}
           />
         </ScrollView>
+        <View style={style.searchInputContainer}>
+         
+            <TextInput
+              style={style.searchInput}
+              placeholder="Enter your comment"
+              placeholderTextColor="lightgrey"
+            />
+          </View>
       </SafeAreaView>
     );
   }
@@ -90,8 +99,11 @@ const style = StyleSheet.create({
     flexDirection: 'column',
     // justifyContent: 'space-between',
     paddingVertical: 21,
-    paddingHorizontal: 10,
+    // paddingHorizontal: 10,
     backgroundColor: '#2a334a',
+  },
+  scrollContainer: {   
+    paddingHorizontal: 10,
   },
   image: {
     height: 184,
@@ -198,5 +210,23 @@ const style = StyleSheet.create({
     paddingTop: 4,
     backgroundColor:'#2C3957'
 
+  },
+  searchInputContainer: {
+    backgroundColor:'#2C3957',
+    marginBottom:-10,
+    paddingHorizontal:10,
+
+  },
+  searchInput: {
+    marginTop:10,
+    paddingLeft: 20,
+    alignContent: 'center',
+    backgroundColor: '#3e4d6c',
+    color: 'lightgrey',
+    fontSize: 15,
+    height: 36,
+    fontFamily: 'Montserrat-Italic',
+    paddingVertical: 10,
+    borderRadius:6,
   },
 });

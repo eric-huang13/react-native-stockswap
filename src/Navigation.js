@@ -181,6 +181,7 @@ class Navigation extends Component {
         component={PostScreen}
         options={({route}) => ({
           title: route.params.name,
+          
 
           headerShown: true,
 
