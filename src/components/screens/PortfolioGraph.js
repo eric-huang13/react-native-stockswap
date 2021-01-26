@@ -21,7 +21,7 @@ console.log(this.props.percent,"PERCENTTTT")
         <SlideAreaChart
           data={this.props.graphData}
           yRange={this.props.range}
-          width={Dimensions.get('window').width - 162}
+          width={Dimensions.get('window').width - 172}
           height={100}
           style={{backgroundColor: '#2a334a'}}
           axisWidth={5}

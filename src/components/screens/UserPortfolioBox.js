@@ -83,7 +83,7 @@ export default class UserPortfolioBox extends Component {
     return (
       <SafeAreaView style={style.container}>
         <View style={style.symbolContainer}>
-          <Text style={style.symbol}>{item.symbol}</Text>
+          <Text style={percent > 0 ? style.symbolGain : style.symbolLoss}>{item.symbol}</Text>
           <Text style={style.title}>{item.title}</Text>
           <Text style={style.price}>Price: ${item.price}</Text>
         </View>
@@ -95,7 +95,7 @@ export default class UserPortfolioBox extends Component {
            :
            <BearIcon style={style.icon}/>           
           }
-          <Text style={style.percent}>{percent}%</Text>
+          <Text style={percent > 0 ? style.percentGain : style.percentLoss}>{percent}%</Text>
           <Text style={style.price}>Portfolio:</Text>
         </View>
       </SafeAreaView>
@@ -122,8 +122,14 @@ const style = StyleSheet.create({
     width: '100%',
     textAlign: 'left',
   },
-  symbol: {
+  symbolGain: {
     color: '#71F59C',
+    fontFamily:'Montserrat-Bold',
+    fontSize: 16,
+    textAlign: 'left',
+  },
+  symbolLoss: {
+    color: '#F66E6E',
     fontFamily:'Montserrat-Bold',
     fontSize: 16,
     textAlign: 'left',
@@ -142,12 +148,26 @@ const style = StyleSheet.create({
     fontSize: 12,
   },
   percentContainer: {
-    justifyContent: 'center',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    paddingVertical: 4,
+    paddingRight: 30,
+    alignItems:'flex-end',
+    // width: '100%',
+    // textAlign: 'left',
+
   },
-  percent: {
+  percentGain: {
     color: '#71F59C',
     fontFamily:'Montserrat-Bold',
     fontSize: 16,
     textAlign: 'left',
   },
+  percentLoss: {
+    color: '#F66E6E',
+    fontFamily:'Montserrat-Bold',
+    fontSize: 16,
+    textAlign: 'left',
+  },
+  
 });
