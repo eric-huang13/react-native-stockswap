@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import UserPortfolioBox from './UserPortfolioBox';
 import SearchInput from '../../icons/SearchInput'
+import TriangleIcon from '../../icons/TriangleIcon'
 import {connect} from 'react-redux';
 
 class UserPortfolioList extends Component {
@@ -61,7 +62,10 @@ class UserPortfolioList extends Component {
         </View>
         <View style={style.percentButtonContainer}>
           <Text style={style.stockHeader}>STOCKS</Text>
-          <Text style={style.percentChangeButton}>Percent Change</Text>
+          <View style={style.percentChangeContainer}>
+          <Text style={style.percentChangeButton}>Total Percent Change</Text>
+          <TriangleIcon/>
+          </View>
         </View>
         <FlatList
           style={style.boxContainer}
@@ -150,9 +154,19 @@ const style = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 14,
     backgroundColor: '#3e4d6c',
-    padding: 6,
     borderRadius: 6,
     fontFamily:'Montserrat-Medium',
+    marginRight:6,
 
   },
+  percentChangeContainer:{
+    padding:8,
+    borderRadius:6,
+    backgroundColor:'#3E4D6C',
+    marginTop:4,
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems:'center'
+    
+},
 });
