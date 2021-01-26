@@ -7,9 +7,11 @@ import {
   Image,
   TouchableOpacity,
   SafeAreaView,
+  TextInput
 } from 'react-native';
 import LikeInactiveIcon from '../../icons/LikeInactiveIcon'
 import CommentIcon from '../../icons/CommentIcon'
+import SearchInput from '../../icons/SearchInput'
 import {connect} from 'react-redux';
  
  
@@ -18,9 +20,13 @@ class MyProfilePosts extends Component {
     super(props);
     this.state = {
       shouldShow: false,
+      input: '',
+
     };
   } 
- 
+  handleChange = (text) => {
+    this.setState({input: text});
+  };
 
 
   render() {
@@ -36,9 +42,27 @@ class MyProfilePosts extends Component {
     // console.log(this.props.navigation, 'props in post');
     return (
       <SafeAreaView style={style.container}>
+        <View style={style.searchInputContainer}>
+          <View
+        style={{
+          position: "absolute",
+          zIndex: 1,
+          left: 14,
+          top:10
+        }}
+      >
+        <SearchInput/>
+      </View>
+            <TextInput
+              style={style.searchInput}
+              placeholder="Search by name"
+              placeholderTextColor="lightgrey"
+              onChangeText={(text) => this.handleChange(text)}
+            />
+          </View>
            {selectedPosts.map((post) => {
             return (
-                <View key={post.id}>
+                <View style={style.postContainer} key={post.id}>
         <View style={style.postNameContainer}>
           <View style={style.profileImageContainer}>
             <Image
@@ -161,10 +185,24 @@ export default connect(mapStateToProps, mapDispatchToProps)(MyProfilePosts);
 const style = StyleSheet.create({
   container: {    
     flexDirection: 'column',  
-    paddingVertical: 14,
-    paddingHorizontal: 10,
     backgroundColor: '#2a334a',
     flex:1,
+  },
+  searchInputContainer: {
+    marginBottom: 15,
+  },
+  searchInput: {
+    paddingLeft: 40,
+    alignContent: 'center',
+    backgroundColor: '#3e4d6c',
+    color: 'lightgrey',
+    fontSize: 15,
+    height: 36,
+    fontFamily: 'Montserrat-Italic',
+    paddingVertical: 0,
+  },
+  postContainer:{
+    paddingHorizontal: 10,
   },
   image: {
     height: 184,
@@ -242,6 +280,7 @@ const style = StyleSheet.create({
   },
   commentContainer: {
     marginTop: 4,
+    paddingHorizontal:10,
   },
   allComments: {
     color: '#8b64ff',

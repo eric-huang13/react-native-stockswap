@@ -110,7 +110,6 @@ export default connect(mapStateToProps)(UserList);
 
 const style = StyleSheet.create({
   searchInputContainer: {
-    // marginTop: 1,
     marginBottom: 15,
   },
   searchInput: {
