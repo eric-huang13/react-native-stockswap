@@ -25,7 +25,6 @@ export default class UserPortfolioBox extends Component {
 
   componentDidMount() {
     const {item} = this.props;
-
     //X and Y
     //X
     const xDates = item.dates.map(
@@ -78,12 +77,10 @@ export default class UserPortfolioBox extends Component {
         <View style={style.percentContainer}>
            { start < end ? <BullIcon style={style.icon}/>
            :
-           <BearIcon style={style.icon}/>
-           
-  }
+           <BearIcon style={style.icon}/>           
+          }
           <Text style={style.percent}>{percent}%</Text>
           <Text style={style.price}>Portfolio:</Text>
-
         </View>
       </SafeAreaView>
     );
@@ -95,9 +92,7 @@ const style = StyleSheet.create({
     backgroundColor: '#2a334a',
     flexDirection: 'row',
     justifyContent: 'space-between',
-
     flex: 1,
-
     width: 99,
   },
   icon:{
@@ -106,45 +101,37 @@ const style = StyleSheet.create({
   symbolContainer: {
     flexDirection: 'column',
     justifyContent: 'space-evenly',
-    // borderBottomWidth:.5,
-    // borderColor:'lightgrey',
     paddingVertical: 4,
     paddingLeft: 8,
-
     width: '100%',
-    // height:'100%',
-    // alignItems:'le',
-    // alignContent:'left',
     textAlign: 'left',
   },
   symbol: {
-    color: '#91f2b1',
-    fontWeight: 'bold',
-    fontSize: 18,
+    color: '#71F59C',
+    fontFamily:'Montserrat-Bold',
+    fontSize: 16,
     textAlign: 'left',
   },
   title: {
     color: 'lightgrey',
-    fontSize: 12,
+    fontSize: 10,
     textAlign: 'left',
+    fontFamily:'Montserrat-Regular',
+
   },
   price: {
-    color: 'white',
+    color: '#FFFFFF',
     textAlign: 'left',
-    fontSize: 13,
-  },
-  graphContainer: {
-    // borderWidth:.5,
-    // borderColor:'lightgrey',
-    // paddingBottom:1
+    fontFamily:'Montserrat-Regular',
+    fontSize: 12,
   },
   percentContainer: {
     justifyContent: 'center',
   },
   percent: {
-    color: '#91f2b1',
-    fontWeight: 'bold',
-    fontSize: 17,
+    color: '#71F59C',
+    fontFamily:'Montserrat-Bold',
+    fontSize: 16,
     textAlign: 'left',
   },
 });
