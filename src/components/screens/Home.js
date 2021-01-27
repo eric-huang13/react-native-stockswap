@@ -19,7 +19,7 @@ class HomeScreen extends Component {
     };
   }
   render() {
-    const {isLoggedIn, LogoutUser, posts, comments, reply, userData} = this.props;
+    const {isLoggedIn, LogoutUser, posts, comments, reply, userData, userAccount} = this.props;
     
      const getData = async () => {
     try {
@@ -38,7 +38,7 @@ class HomeScreen extends Component {
       <SafeAreaView style={style.mainContainer}>
         <ScrollView>
           <StockTicker />
-          
+          <Text>{userAccount.id}</Text>
 
           {posts.map((post) => (
             <UserPosts
@@ -47,6 +47,7 @@ class HomeScreen extends Component {
               navigation={this.props.navigation}
               comments={comments}
               reply={reply}
+              userAccount={userAccount}
             />
           ))}
           <Text>Is User Logged in: {'' + isLoggedIn} </Text>
@@ -67,6 +68,7 @@ const mapStateToProps = (state) => {
     comments: state.posts.comments,
     reply: state.posts.reply,
     userData: state.user.userData,
+    userAccount: state.user.userFakeData
 
   };
 };

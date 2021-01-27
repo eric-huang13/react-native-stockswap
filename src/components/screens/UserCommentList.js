@@ -10,8 +10,26 @@ import {
 import UserCommentReply from './UserCommentReply';
 
 export default class UserCommentList extends Component {
+
+  accountId = this.props.userAccount.id
+  
+
+   navigationByCondition = item => {
+    const {navigation} = this.props;
+    if (item.userId === this.accountId) {
+      navigation.navigate({
+        name: 'MyProfile',
+        params: {item},
+      })
+    } else {
+      navigation.navigate({
+        name: 'Profile',
+        params: {item},
+      })
+    }
+  };
   render() {
-    const {filteredComments, reply} = this.props;
+    const {filteredComments, reply, userAccount} = this.props;
     console.log(filteredComments, 'filcom');
 
     return (
@@ -24,14 +42,10 @@ export default class UserCommentList extends Component {
                 source={{uri: item.profileImg}}
               />
               <View style={style.nameBodyContainer}>
-                <TouchableOpacity
-                  key={item.id}
-                  onPress={() =>
-                    this.props.navigation.navigate({
-                      name: 'Profile',
-                      params: {item},
-                    })
-                  }>
+              <TouchableOpacity
+                    key={item.id}
+                    onPress={()=>this.navigationByCondition(item)             
+                    }>
                   <Text style={style.name}>{item.name} </Text>
                 </TouchableOpacity>
 
@@ -49,6 +63,7 @@ export default class UserCommentList extends Component {
               navigation={this.props.navigation}
               reply={reply}
               id={item.id}
+              userAccount={userAccount}
             />
           </View>
         ))}

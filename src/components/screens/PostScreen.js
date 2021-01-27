@@ -24,7 +24,7 @@ export default class PostScreen extends Component {
   render() {
     const {shouldShow} = this.state;
 
-    const {post, filteredComments, reply} = this.props.route.params;
+    const {post, filteredComments, reply, userAccount} = this.props.route.params;
     return (
       <SafeAreaView style={style.container}>
         <ScrollView style={style.scrollContainer}>
@@ -78,6 +78,7 @@ export default class PostScreen extends Component {
             filteredComments={filteredComments}
             navigation={this.props.navigation}
             reply={reply}
+            userAccount={userAccount}
           />
         </ScrollView>
         <View style={style.searchInputContainer}>

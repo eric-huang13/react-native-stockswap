@@ -9,6 +9,23 @@ import {
 } from 'react-native';
 
 export default class UserCommentReply extends Component {
+
+  accountId = this.props.userAccount.id
+
+  navigationByCondition = item => {
+   const {navigation} = this.props;
+   if (item.id === this.accountId) {
+     navigation.navigate({
+       name: 'MyProfile',
+       params: {item},
+     })
+   } else {
+     navigation.navigate({
+       name: 'Profile',
+       params: {item},
+     })
+   }
+ };
   render() {
     const {reply, id} = this.props;
     const filteredReply = reply.filter((reply) => reply.commentId === id);
@@ -25,11 +42,7 @@ export default class UserCommentReply extends Component {
               <View style={style.nameBodyContainer}>
                 <TouchableOpacity
                   key={item.id}
-                  onPress={() =>
-                    this.props.navigation.navigate({
-                      name: 'Profile',
-                      params: {item},
-                    })
+                  onPress={()=>this.navigationByCondition(item)             
                   }>
                   <Text style={style.name}>{item.name} </Text>
                 </TouchableOpacity>
