@@ -28,6 +28,10 @@ class UserPortfolioList extends Component {
   handleChange = (text) => {
     this.setState({input: text});
   };
+  
+  dropDownSelect(pick) {
+    this.setState({dropDown:pick, shouldShow:false});
+  }
   render() {
     const {gainers} = this.props;
     console.log(this.props, 'propslist');
@@ -68,12 +72,12 @@ class UserPortfolioList extends Component {
         </View>
         <View style={style.percentButtonContainer}>
           <Text style={style.stockHeader}>STOCKS</Text>
-{/* 
-          <View style={style.percentChangeContainer}>
+
+          {/* <View style={style.percentChangeContainer}>
           <ModalDropdown style={style.dropdown_2} dropdownStyle={style.dropdown_2_dropdown} textStyle={style.dropdown_2_text} options={dropDownOptions}  onSelect= {(idx,value) => this.setState({dropDown:  value})} />
           <TriangleIcon/>
-          </View>
-           */}
+          </View> */}
+          
           <View style={style.dotsDropdownConatiner}>
               <TouchableOpacity
                 onPress={() =>
@@ -89,18 +93,18 @@ class UserPortfolioList extends Component {
               {this.state.shouldShow ? (
                 <View style={style.dropdown}>
                   <Text style={style.dropDownText}>Percent Change</Text>
-                  <TouchableOpacity
-                onPress={() =>
-                  this.setState({
-                    dropDown:'Last price',
-                  })
-                }>
+                  <TouchableOpacity onPress={() => this.dropDownSelect('Last price')}>
+
                   <Text style={style.dropDownText}>Last price</Text></TouchableOpacity>
-                  <Text style={style.dropDownText}>Total percent change</Text>
-                  <Text style={style.dropDownText}>Your equity</Text>
-                  <Text style={style.dropDownText}>Today's return</Text>
+                  <TouchableOpacity onPress={() => this.dropDownSelect('Total percent change')}>
+                  <Text style={style.dropDownText}>Total percent change</Text></TouchableOpacity>
+                  <TouchableOpacity onPress={() => this.dropDownSelect('Your equity')}>
+                  <Text style={style.dropDownText}>Your equity</Text></TouchableOpacity>
+                  <TouchableOpacity onPress={() => this.dropDownSelect("Today's return")}>
+                  <Text style={style.dropDownText}>Today's return</Text></TouchableOpacity>
+                  <TouchableOpacity onPress={() => this.dropDownSelect('Total return')}>
                   <Text style={style.dropDownText}>Total return</Text>
-                  
+                  </TouchableOpacity>
                 </View>
               ) : null}
             </View>
@@ -142,22 +146,21 @@ const style = StyleSheet.create({
     flex: 1,
   },
   dropdown_2: {
-    alignSelf: 'flex-end',
-    width: 150,
-    marginTop: 32,
-    right: 8,
-    borderWidth: 0,
-    borderRadius: 3,
-    backgroundColor: 'yellow',
+    color: '#FFFFFF',
+    fontSize: 14,
+    backgroundColor: '#3E4D6C',
+    borderRadius: 6,
+    fontFamily:'Montserrat-Medium',
+    marginRight:6,
   },
   dropdown_2_text: {
-    marginVertical: 10,
+    marginVertical: 6,
     marginHorizontal: 6,
     fontSize: 18,
     color: 'white',
     textAlign: 'center',
     textAlignVertical: 'center',
-    backgroundColor:'yellow'
+    backgroundColor:'#3E4D6C'
 
   },
   dropdown_2_dropdown: {
@@ -223,7 +226,7 @@ const style = StyleSheet.create({
     borderRadius: 6,
     fontFamily:'Montserrat-Medium',
     marginRight:6,
-    // width:180
+    width:180
 
   },
   percentChangeContainer:{
@@ -240,6 +243,7 @@ dotsDropdownConatiner: {
   flexDirection: 'column',
   justifyContent: 'space-evenly',
   alignContent: 'center',
+  // width:170,
 },
 dotsButton: {
   alignSelf: 'flex-end',
