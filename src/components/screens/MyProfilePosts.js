@@ -31,8 +31,8 @@ class MyProfilePosts extends Component {
 
   render() {
     const {shouldShow} = this.state;
-    const {isLoggedIn, LogoutUser, posts, comments, reply,} = this.props;
-    const id = 1
+    const {isLoggedIn, LogoutUser, posts, comments, reply, userAccount} = this.props;
+    const id = this.props.userAccount.id
     const selectedPosts = posts.filter((user) => user.id === id); 
  
     const filteredComments = comments.filter(
@@ -169,6 +169,7 @@ const mapStateToProps = (state) => {
     comments: state.posts.comments,
     reply: state.posts.reply,
     userData: state.user.userData,
+    userAccount: state.user.userFakeData
  
   };
 };
