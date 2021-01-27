@@ -4,6 +4,23 @@ import {LOGIN_START, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, SIGNUP_START, SIGNUP_SU
 const defaultState = {
   isLoggedIn: false,
   userData:[],
+  userFakeData:{
+      id: 1,
+      name: 'Bob Fields',
+      email:'bob@email.com',
+      posts: 1182,
+      followers: 82,
+      following: 219,
+      trades: 29,
+      bio:
+        'New to the trading world.',
+      username: 'bob123',
+      hashtag: '#Myhashtag',
+      gain:1103.24,
+      percentage: 28.1,
+      img:
+        'https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTh8fGhlYWRzaG90JTIwc3VpdHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+    },
   loading: false,
   error: "",
 };

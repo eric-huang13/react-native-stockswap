@@ -40,16 +40,15 @@ class Profile extends Component {
   }
   render() {
     const {graphData, percent, range, timeFilter} = this.state;
-    const {posts, comments, users, reply} = this.props;
-    const id = 1;
+    const {posts, comments, users, reply, user} = this.props;
+    const id = 2;
     const selectedUser = users.filter((user) => user.id === id);
-    console.log(selectedUser, 'userdata');
-
+    console.log(user.name,'userdata')
     return (
       <SafeAreaView style={style.container}>
         <ScrollView>
-          {selectedUser.map((user) => {
-            return (
+          {/* {selectedUser.map((user) => { */}
+            {/* return ( */}
               <View key={user.id}>
                 <View style={style.aboveGraphContainer}>
                   <View style={style.portfolioHeaderContainer}>
@@ -193,8 +192,8 @@ class Profile extends Component {
                   </TouchableOpacity>
                 </View>
               </View>
-            );
-          })}
+            {/* ); */}
+          {/* })} */}
         </ScrollView>
       </SafeAreaView>
     );
@@ -207,6 +206,7 @@ const mapStateToProps = (state) => {
     comments: state.posts.comments,
     users: state.people.users,
     reply: state.posts.reply,
+    user: state.user.userFakeData
   };
 };
 

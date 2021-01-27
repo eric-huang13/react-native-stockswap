@@ -12,7 +12,6 @@ import {
   Image,
 } from 'react-native';
 import {EditUser} from '../../actions/user'
-
 import LinearGradient from 'react-native-linear-gradient';
 
 class EditProfile extends Component {
@@ -22,10 +21,10 @@ class EditProfile extends Component {
     this.state = {
       id:'',
       name: '',
-      description: '',
-      // hashtag: '',
-      // bio: '',
-      // image: '',
+      username: '',
+      hashtag: '',
+      bio: '',
+      image: '',
     };
   }
   handleNameChange = (text) => {
@@ -36,7 +35,7 @@ class EditProfile extends Component {
 
   handleUsernameChange = (text) => {
     this.setState({
-      description: text,
+      username: text,
     });
   };
 
@@ -56,29 +55,22 @@ class EditProfile extends Component {
     });
   };
   componentDidMount() {
-    // const {users} = this.props;
+    const {users} = this.props;
     const userid = 15;
-    // const selectedUser = users.filter((user) => user.id === userid);
-    // {
-    //   selectedUser.map((user) => {
-    //     this.setState({
-    //       id:15,
-    //       name: user.name,
-    //       username: user.username,
-    //       // hashtag: user.hashtag,
-    //       // bio: user.bio,
-    //       // image: user.img,
-    //     });
-    //   });
-    // }
-    this.setState({
-      id:userid,
-      // name: user.name,
-      // username: user.username,
-      // hashtag: user.hashtag,
-      // bio: user.bio,
-      // image: user.img,
-    });
+    const selectedUser = users.filter((user) => user.id === userid);
+    {
+      selectedUser.map((user) => {
+        this.setState({
+          id:15,
+          name: user.name,
+          username: user.username,
+          hashtag: user.hashtag,
+          bio: user.bio,
+          image: user.img,
+        });
+      });
+    }
+  
   }
   handleSubmit = (input) => {
     EditUserAccount(input)
