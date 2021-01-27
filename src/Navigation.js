@@ -637,6 +637,31 @@ class Navigation extends Component {
           },
         }}
       />
+      <TopUsersStack.Screen
+        name="MyProfile"
+        component={MyProfile}
+        options={({ navigation}) => ({
+          title:'My Profile',
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+          headerRight: () => (
+            <TouchableOpacity onPress={() =>navigation.navigate('MyProfileSettings')}>
+                  <Text style={style.button}>Settings</Text>
+                </TouchableOpacity>
+          ),          
+        })}
+      />
       
       
     </TopUsersStack.Navigator>

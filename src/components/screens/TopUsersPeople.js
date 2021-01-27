@@ -27,14 +27,33 @@ export class TopUsersPeople extends Component {
   handleChange = (text) => {
     this.setState({input: text});
   };
+   accountId = this.props.userAccount.id
+
+   navigationByCondition = item => {
+    const {navigation} = this.props;
+    if (item.id === this.accountId) {
+      navigation.navigate({
+        name: 'MyProfile',
+        params: {item},
+      })
+    } else {
+      navigation.navigate({
+        name: 'Profile',
+        params: {item},
+      })
+    }
+  };
+
   render() {
     const {timeFilter, input} = this.state;
-    const {users} = this.props;
+    const {users, userAccount} = this.props;
+
+    const accountId = userAccount.id
 
     const filteredUsers = users.filter((item) =>
       item.name.toLowerCase().includes(input.toLowerCase()),
     );
-
+   
     return (
       <SafeAreaView style={style.mainContainer}>
         <ScrollView
@@ -134,14 +153,11 @@ export class TopUsersPeople extends Component {
           </View>
           {filteredUsers.map((item) => {
             return (
+              
               <TouchableOpacity
                 key={item.id}
-                onPress={() =>
-                  this.props.navigation.navigate({
-                    name: 'Profile',
-                    params: {item},
-                  })
-                }>
+                onPress={()=>this.navigationByCondition(item)             
+}>
                 <UserBox item={item} />
               </TouchableOpacity>
             );
@@ -155,6 +171,7 @@ export class TopUsersPeople extends Component {
 const mapStateToProps = (state) => {
   return {
     users: state.people.users,
+    userAccount: state.user.userFakeData,
   };
 };
 

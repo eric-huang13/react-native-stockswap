@@ -5,7 +5,7 @@ const defaultState = {
   isLoggedIn: false,
   userData:[],
   userFakeData:{
-      id: 1,
+      id: 4,
       name: 'Bob Fields',
       email:'bob@email.com',
       posts: 1182,

@@ -20,19 +20,35 @@ export class UserList extends Component {
     super(props);
     this.state = {
       input: '',
-      timeFilter: 'day',
+   
     };
   }
 
-  timeFilterSelect(time) {
-    this.setState({timeFilter: time});
-  }
-  handleChange = (text) => {
+   handleChange = (text) => {
     this.setState({input: text});
   };
+
+  accountId = this.props.userAccount.id
+
+   navigationByCondition = item => {
+    const {navigation} = this.props;
+    if (item.id === this.accountId) {
+      navigation.navigate({
+        name: 'MyProfile',
+        params: {item},
+      })
+    } else {
+      navigation.navigate({
+        name: 'Profile',
+        params: {item},
+      })
+    }
+  };
   render() {
-    const {timeFilter, input} = this.state;
-    const {users} = this.props;
+    const {input} = this.state;
+    const {users, userAccount} = this.props;
+
+    const accountId = userAccount.id
 
     const filteredUsers = users.filter((item) =>
       item.name.toLowerCase().includes(input.toLowerCase()),
@@ -75,13 +91,9 @@ export class UserList extends Component {
                 {filteredUsers.map((item) => {
                   return (
                     <TouchableOpacity
-                      key={item.id}
-                      onPress={() =>
-                        this.props.navigation.navigate({
-                          name: 'Profile',
-                          params: {item},
-                        })
-                      }>
+                    key={item.id}
+                    onPress={()=>this.navigationByCondition(item)             
+                    }>
                       <UserBox item={item} />
                     </TouchableOpacity>
                   );
@@ -98,6 +110,8 @@ export class UserList extends Component {
 const mapStateToProps = (state) => {
   return {
     users: state.people.users,
+    userAccount: state.user.userFakeData,
+
   };
 };
 
