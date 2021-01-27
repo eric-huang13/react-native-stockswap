@@ -1,4 +1,3 @@
- 
 import React, {Component} from 'react';
 import {
   View,
@@ -9,10 +8,10 @@ import {
   Text,
   SafeAreaView,
 } from 'react-native';
-import SearchInput from '../../icons/SearchInput'
+import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
 import UserBox from './UserBox';
- 
+
 export class TopUsersPeople extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +20,7 @@ export class TopUsersPeople extends Component {
       timeFilter: 'day',
     };
   }
- 
+
   timeFilterSelect(time) {
     this.setState({timeFilter: time});
   }
@@ -31,25 +30,28 @@ export class TopUsersPeople extends Component {
   render() {
     const {timeFilter, input} = this.state;
     const {users} = this.props;
- 
+
     const filteredUsers = users.filter((item) =>
       item.name.toLowerCase().includes(input.toLowerCase()),
     );
- 
+
     return (
       <SafeAreaView style={style.mainContainer}>
-        <ScrollView contentContainerStyle={{paddingBottom: 180, backgroundColor:'#2a334a'}}>
-        <View style={style.searchInputContainer}>
-          <View
-        style={{
-          position: "absolute",
-          zIndex: 1,
-          left: 14,
-          top:10
-        }}
-      >
-        <SearchInput/>
-      </View>
+        <ScrollView
+          contentContainerStyle={{
+            paddingBottom: 180,
+            backgroundColor: '#2a334a',
+          }}>
+          <View style={style.searchInputContainer}>
+            <View
+              style={{
+                position: 'absolute',
+                zIndex: 1,
+                left: 14,
+                top: 10,
+              }}>
+              <SearchInput />
+            </View>
             <TextInput
               style={style.searchInput}
               placeholder="Search"
@@ -149,18 +151,17 @@ export class TopUsersPeople extends Component {
     );
   }
 }
- 
+
 const mapStateToProps = (state) => {
   return {
-    users: state.company.users,
+    users: state.people.users,
   };
 };
- 
+
 export default connect(mapStateToProps)(TopUsersPeople);
- 
+
 const style = StyleSheet.create({
-  mainContainer:{
-  },
+  mainContainer: {},
   searchInputContainer: {
     marginBottom: 15,
   },
@@ -178,8 +179,7 @@ const style = StyleSheet.create({
     fontSize: 14,
     paddingLeft: 18,
     color: 'lightgrey',
-    fontFamily:'Montserrat-Regular',
-
+    fontFamily: 'Montserrat-Regular',
   },
   timeFilterContainer: {
     marginTop: 4,
@@ -190,8 +190,7 @@ const style = StyleSheet.create({
   },
   timeFilterButtons: {
     color: '#FFFFFF',
-    fontFamily:'Montserrat-Bold',
+    fontFamily: 'Montserrat-Bold',
     fontSize: 16,
   },
 });
-

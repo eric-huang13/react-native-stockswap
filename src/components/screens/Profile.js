@@ -66,7 +66,8 @@ class Profile extends Component {
                   <ProfileGraph graphData={graphData} range={range} />
                 </View>
                 <View style={style.timeFilterButtonsContainer}>
-                <TouchableOpacity onPress={() => this.timeFilterSelect('live')}>
+                  <TouchableOpacity
+                    onPress={() => this.timeFilterSelect('live')}>
                     <Text
                       style={
                         timeFilter === 'live'
@@ -76,7 +77,8 @@ class Profile extends Component {
                       Live
                     </Text>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => this.timeFilterSelect('day')}>
+                  <TouchableOpacity
+                    onPress={() => this.timeFilterSelect('day')}>
                     <Text
                       style={
                         timeFilter === 'day'
@@ -86,7 +88,8 @@ class Profile extends Component {
                       1D
                     </Text>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => this.timeFilterSelect('week')}>
+                  <TouchableOpacity
+                    onPress={() => this.timeFilterSelect('week')}>
                     <Text
                       style={
                         timeFilter === 'week'
@@ -96,7 +99,8 @@ class Profile extends Component {
                       1W
                     </Text>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => this.timeFilterSelect('month')}>
+                  <TouchableOpacity
+                    onPress={() => this.timeFilterSelect('month')}>
                     <Text
                       style={
                         timeFilter === 'month'
@@ -116,7 +120,8 @@ class Profile extends Component {
                       3M
                     </Text>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => this.timeFilterSelect('year')}>
+                  <TouchableOpacity
+                    onPress={() => this.timeFilterSelect('year')}>
                     <Text
                       style={
                         timeFilter === 'year'
@@ -126,7 +131,8 @@ class Profile extends Component {
                       1Y
                     </Text>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => this.timeFilterSelect('all')}>
+                  <TouchableOpacity
+                    onPress={() => this.timeFilterSelect('all')}>
                     <Text
                       style={
                         timeFilter === 'all'
@@ -214,7 +220,7 @@ const mapStateToProps = (state) => {
   return {
     posts: state.posts.posts,
     comments: state.posts.comments,
-    users: state.company.users,
+    users: state.people.users,
     reply: state.posts.reply,
   };
 };

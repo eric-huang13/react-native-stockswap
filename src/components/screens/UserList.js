@@ -8,13 +8,12 @@ import {
   Text,
   SafeAreaView,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
 } from 'react-native';
 import {connect} from 'react-redux';
 import UserBox from './UserBox';
-import SearchInput from '../../icons/SearchInput'
-import UserListImage from '../../icons/UserListImage'
-
+import SearchInput from '../../icons/SearchInput';
+import UserListImage from '../../icons/UserListImage';
 
 export class UserList extends Component {
   constructor(props) {
@@ -41,60 +40,56 @@ export class UserList extends Component {
 
     return (
       <SafeAreaView>
-        
-          <View style={style.searchInputContainer}>
+        <View style={style.searchInputContainer}>
           <View
-        style={{
-          position: "absolute",
-          zIndex: 1,
-          left: 14,
-          top:10
-        }}
-      >
-        <SearchInput/>
-      </View>
-            <TextInput
-              style={style.searchInput}
-              placeholder="Search by name"
-              placeholderTextColor="lightgrey"
-              onChangeText={(text) => this.handleChange(text)}
-            />
+            style={{
+              position: 'absolute',
+              zIndex: 1,
+              left: 14,
+              top: 10,
+            }}>
+            <SearchInput />
           </View>
-         {this.state.input === '' ? 
-         <ScrollView>
-                              <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-
-        <View style={style.backgroundImageContainer}>          
-         <UserListImage/>   
-         <Text style={style.backgroundImageText}>Find any person on the platform</Text> 
-      
+          <TextInput
+            style={style.searchInput}
+            placeholder="Search by name"
+            placeholderTextColor="lightgrey"
+            onChangeText={(text) => this.handleChange(text)}
+          />
         </View>
-        </TouchableWithoutFeedback>
-        </ScrollView> 
-          :  
-       <ScrollView contentContainerStyle={{paddingBottom: 180}}>
-                   <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-
-       
-        <View>
-            {filteredUsers.map((item) => {
-            return (
-              <TouchableOpacity
-                key={item.id}
-                onPress={() =>
-                  this.props.navigation.navigate({
-                    name: 'Profile',
-                    params: {item},
-                  })
-                }>
-                <UserBox item={item} />
-              </TouchableOpacity>
-            );
-          })}
-          </View>   
-    </TouchableWithoutFeedback>
+        {this.state.input === '' ? (
+          <ScrollView>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+              <View style={style.backgroundImageContainer}>
+                <UserListImage />
+                <Text style={style.backgroundImageText}>
+                  Find any person on the platform
+                </Text>
+              </View>
+            </TouchableWithoutFeedback>
           </ScrollView>
-  }
+        ) : (
+          <ScrollView contentContainerStyle={{paddingBottom: 180}}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+              <View>
+                {filteredUsers.map((item) => {
+                  return (
+                    <TouchableOpacity
+                      key={item.id}
+                      onPress={() =>
+                        this.props.navigation.navigate({
+                          name: 'Profile',
+                          params: {item},
+                        })
+                      }>
+                      <UserBox item={item} />
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+            </TouchableWithoutFeedback>
+          </ScrollView>
+        )}
       </SafeAreaView>
     );
   }
@@ -102,7 +97,7 @@ export class UserList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.company.users,
+    users: state.people.users,
   };
 };
 
@@ -139,18 +134,17 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18,
   },
-  backgroundImageContainer:{
-    flex:1,
-    marginTop:120,
-    alignItems:'center',
+  backgroundImageContainer: {
+    flex: 1,
+    marginTop: 120,
+    alignItems: 'center',
   },
-  backgroundImageText:{
-  marginTop:10,
-  fontFamily:'Montserrat-SemiBold',
-  fontSize:18,
-  color:'#9ea6b5',
-  width:180,
-  textAlign:'center',
-
+  backgroundImageText: {
+    marginTop: 10,
+    fontFamily: 'Montserrat-SemiBold',
+    fontSize: 18,
+    color: '#9ea6b5',
+    width: 180,
+    textAlign: 'center',
   },
 });

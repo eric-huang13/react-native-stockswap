@@ -22,7 +22,7 @@ class UserPortfolioList extends Component {
     this.state = {
       input: '',
       shouldShow:false,
-      dropDown:'Percent Change',
+      dropDown:'Select sorting',
     };
   }
   handleChange = (text) => {
@@ -92,7 +92,10 @@ class UserPortfolioList extends Component {
               </TouchableOpacity>
               {this.state.shouldShow ? (
                 <View style={style.dropdown}>
+                  <TouchableOpacity onPress={() => this.dropDownSelect('Last price')}>
+
                   <Text style={style.dropDownText}>Percent Change</Text>
+              </TouchableOpacity>
                   <TouchableOpacity onPress={() => this.dropDownSelect('Last price')}>
 
                   <Text style={style.dropDownText}>Last price</Text></TouchableOpacity>
@@ -224,7 +227,7 @@ const style = StyleSheet.create({
     fontSize: 14,
     backgroundColor: '#3E4D6C',
     borderRadius: 6,
-    fontFamily:'Montserrat-Medium',
+    fontFamily:'Montserrat-Italic',
     marginRight:6,
     width:180
 

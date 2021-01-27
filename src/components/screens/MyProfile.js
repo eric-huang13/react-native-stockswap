@@ -41,9 +41,9 @@ class Profile extends Component {
   render() {
     const {graphData, percent, range, timeFilter} = this.state;
     const {posts, comments, users, reply} = this.props;
-    const id = 1
+    const id = 1;
     const selectedUser = users.filter((user) => user.id === id);
-    console.log(selectedUser,"userdata")
+    console.log(selectedUser, 'userdata');
 
     return (
       <SafeAreaView style={style.container}>
@@ -53,7 +53,7 @@ class Profile extends Component {
               <View key={user.id}>
                 <View style={style.aboveGraphContainer}>
                   <View style={style.portfolioHeaderContainer}>
-                  <Text style={style.portfolioHeader}>Portfolio</Text>
+                    <Text style={style.portfolioHeader}>Portfolio</Text>
                     <Text style={style.gain}>${user.gain}</Text>
                   </View>
                   <View style={style.timeNumberContainer}>
@@ -64,7 +64,8 @@ class Profile extends Component {
                   <ProfileGraph graphData={graphData} range={range} />
                 </View>
                 <View style={style.timeFilterButtonsContainer}>
-                <TouchableOpacity onPress={() => this.timeFilterSelect('live')}>
+                  <TouchableOpacity
+                    onPress={() => this.timeFilterSelect('live')}>
                     <Text
                       style={
                         timeFilter === 'live'
@@ -74,7 +75,8 @@ class Profile extends Component {
                       Live
                     </Text>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => this.timeFilterSelect('day')}>
+                  <TouchableOpacity
+                    onPress={() => this.timeFilterSelect('day')}>
                     <Text
                       style={
                         timeFilter === 'day'
@@ -84,7 +86,8 @@ class Profile extends Component {
                       1D
                     </Text>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => this.timeFilterSelect('week')}>
+                  <TouchableOpacity
+                    onPress={() => this.timeFilterSelect('week')}>
                     <Text
                       style={
                         timeFilter === 'week'
@@ -94,7 +97,8 @@ class Profile extends Component {
                       1W
                     </Text>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => this.timeFilterSelect('month')}>
+                  <TouchableOpacity
+                    onPress={() => this.timeFilterSelect('month')}>
                     <Text
                       style={
                         timeFilter === 'month'
@@ -114,7 +118,8 @@ class Profile extends Component {
                       3M
                     </Text>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => this.timeFilterSelect('year')}>
+                  <TouchableOpacity
+                    onPress={() => this.timeFilterSelect('year')}>
                     <Text
                       style={
                         timeFilter === 'year'
@@ -124,7 +129,8 @@ class Profile extends Component {
                       1Y
                     </Text>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => this.timeFilterSelect('all')}>
+                  <TouchableOpacity
+                    onPress={() => this.timeFilterSelect('all')}>
                     <Text
                       style={
                         timeFilter === 'all'
@@ -143,7 +149,6 @@ class Profile extends Component {
                       <Text style={style.username}>@{user.username}</Text>
                       <Text style={style.hashtag}>{user.hashtag}</Text>
                     </View>
-                    
                   </View>
                   <View style={style.bioContainer}>
                     <Text style={style.bio}>{user.bio}</Text>
@@ -168,7 +173,7 @@ class Profile extends Component {
                   </View>
                 </View>
                 <View style={style.portfolioButtonContainer}>
-                <TouchableOpacity
+                  <TouchableOpacity
                     onPress={() =>
                       this.props.navigation.navigate({
                         name: 'MyProfilePosts',
@@ -190,7 +195,6 @@ class Profile extends Component {
               </View>
             );
           })}
-
         </ScrollView>
       </SafeAreaView>
     );
@@ -201,7 +205,7 @@ const mapStateToProps = (state) => {
   return {
     posts: state.posts.posts,
     comments: state.posts.comments,
-    users: state.company.users,
+    users: state.people.users,
     reply: state.posts.reply,
   };
 };
@@ -212,15 +216,15 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#2a334a',
-    paddingVertical:10,
+    paddingVertical: 10,
   },
   infoContainer: {
     borderColor: 'red',
     paddingHorizontal: 7,
   },
   personalDetails: {
-    borderColor: 'yellow',    
-    marginLeft:8,
+    borderColor: 'yellow',
+    marginLeft: 8,
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
@@ -235,14 +239,13 @@ const style = StyleSheet.create({
   bio: {
     color: '#FFFFFF',
     fontSize: 14,
-    fontFamily:'Montserrat-Medium',
-
+    fontFamily: 'Montserrat-Medium',
   },
   numberRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 12,
-    marginTop:8,
+    marginTop: 8,
   },
   numberColumn: {
     alignItems: 'center',
@@ -259,15 +262,13 @@ const style = StyleSheet.create({
   portfolioHeader: {
     color: '#FFFFFF',
     fontSize: 16,
-    fontFamily:'Montserrat-Regular',
-    marginBottom:0
-
+    fontFamily: 'Montserrat-Regular',
+    marginBottom: 0,
   },
   gain: {
     color: 'white',
     fontSize: 24,
-    fontFamily:'Montserrat-ExtraBold',
-    
+    fontFamily: 'Montserrat-ExtraBold',
   },
   timeNumberContainer: {
     flexDirection: 'column',
@@ -286,40 +287,36 @@ const style = StyleSheet.create({
   name: {
     color: '#FFFFFF',
     fontSize: 18,
-    fontFamily:'Montserrat-Black',
-
+    fontFamily: 'Montserrat-Black',
   },
   username: {
     color: '#FFFFFF',
     fontSize: 12,
-    fontFamily:'Montserrat-Regular',
+    fontFamily: 'Montserrat-Regular',
   },
   hashtag: {
     color: '#9082cf',
-    fontFamily:'Montserrat-Medium',
+    fontFamily: 'Montserrat-Medium',
     fontSize: 12,
   },
-  
 
   numberData: {
     color: '#FFFFFF',
     fontSize: 16,
-    fontFamily:'Montserrat-Bold',
-
+    fontFamily: 'Montserrat-Bold',
   },
   numberText: {
     color: 'lightgrey',
     fontSize: 12,
-    fontFamily:'Montserrat-Regular',    
+    fontFamily: 'Montserrat-Regular',
   },
 
   portfolioButtonContainer: {
-    flexDirection:'row',
-    paddingHorizontal:20,
-    justifyContent:'space-between',
-    marginTop:46,
-    marginBottom:30,    
-    
+    flexDirection: 'row',
+    paddingHorizontal: 20,
+    justifyContent: 'space-between',
+    marginTop: 46,
+    marginBottom: 30,
   },
   portfolioButton: {
     textAlign: 'center',
@@ -329,11 +326,10 @@ const style = StyleSheet.create({
     padding: 10,
     borderRadius: 8,
     fontSize: 14,
-     width:180,
-     height:42,
-     backgroundColor:'#8B64FF',
-     fontFamily:'Montserrat-SemiBold',
-
+    width: 180,
+    height: 42,
+    backgroundColor: '#8B64FF',
+    fontFamily: 'Montserrat-SemiBold',
   },
   graphContainer: {
     flexDirection: 'row',
@@ -350,8 +346,7 @@ const style = StyleSheet.create({
   },
   timeFilterButtons: {
     color: '#FFFFFF',
-    fontFamily:'Montserrat-Bold',
+    fontFamily: 'Montserrat-Bold',
     fontSize: 14,
   },
-
 });

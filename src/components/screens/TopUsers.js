@@ -1,4 +1,3 @@
-  
 import React, {Component} from 'react';
 import {
   View,
@@ -10,10 +9,9 @@ import {
   SafeAreaView,
 } from 'react-native';
 import {connect} from 'react-redux';
-import TopUsersPeople from './TopUsersPeople'
+import TopUsersPeople from './TopUsersPeople';
 
 import LinearGradient from 'react-native-linear-gradient';
-
 
 export class TopUsers extends Component {
   constructor(props) {
@@ -42,8 +40,7 @@ export class TopUsers extends Component {
     );
 
     return (
-
-<LinearGradient
+      <LinearGradient
         start={{x: 0.1, y: 0.1}}
         end={{x: 1, y: 1}}
         colors={[
@@ -156,7 +153,7 @@ export class TopUsers extends Component {
           {this.state.allPeople ? (
             <TopUsersPeople navigation={this.props.navigation} />
           ) : this.state.following ? (
-            <TopUsersPeople navigation={this.props.navigation}/>
+            <TopUsersPeople navigation={this.props.navigation} />
           ) : this.state.trending ? (
             <TopUsersPeople navigation={this.props.navigation} />
           ) : (
@@ -167,16 +164,13 @@ export class TopUsers extends Component {
           {/* </ScrollView> */}
         </SafeAreaView>
       </LinearGradient>
-
-
-      
     );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    users: state.company.users,
+    users: state.people.users,
   };
 };
 
@@ -215,7 +209,7 @@ const style = StyleSheet.create({
   tabHeader: {
     color: '#FFFFFF',
     fontSize: 14,
-    fontFamily:'Montserrat-Bold',
+    fontFamily: 'Montserrat-Bold',
   },
   activeTabHeaderView: {
     borderBottomWidth: 3,
@@ -223,12 +217,11 @@ const style = StyleSheet.create({
     paddingBottom: 1.8,
   },
   activeTabHeader: {
-    fontFamily:'Montserrat-Bold',
+    fontFamily: 'Montserrat-Bold',
     color: '#8257FF',
     textShadowColor: '#8257FF',
     textShadowOffset: {width: 1, height: 1},
     textShadowRadius: 50,
     fontSize: 14,
   },
-
 });
