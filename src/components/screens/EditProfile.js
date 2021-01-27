@@ -11,6 +11,7 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
+import {EditUser} from '../../actions/user'
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -19,11 +20,12 @@ class EditProfile extends Component {
     super(props);
 
     this.state = {
+      id:'',
       name: '',
-      username: '',
-      hashtag: '',
-      bio: '',
-      image: '',
+      description: '',
+      // hashtag: '',
+      // bio: '',
+      // image: '',
     };
   }
   handleNameChange = (text) => {
@@ -34,7 +36,7 @@ class EditProfile extends Component {
 
   handleUsernameChange = (text) => {
     this.setState({
-      username: text,
+      description: text,
     });
   };
 
@@ -54,23 +56,35 @@ class EditProfile extends Component {
     });
   };
   componentDidMount() {
-    const {users} = this.props;
-    const userid = 1;
-    const selectedUser = users.filter((user) => user.id === userid);
-    {
-      selectedUser.map((user) => {
-        this.setState({
-          id:userid,
-          name: user.name,
-          username: user.username,
-          hashtag: user.hashtag,
-          bio: user.bio,
-          image: user.img,
-        });
-      });
-    }
+    // const {users} = this.props;
+    const userid = 15;
+    // const selectedUser = users.filter((user) => user.id === userid);
+    // {
+    //   selectedUser.map((user) => {
+    //     this.setState({
+    //       id:15,
+    //       name: user.name,
+    //       username: user.username,
+    //       // hashtag: user.hashtag,
+    //       // bio: user.bio,
+    //       // image: user.img,
+    //     });
+    //   });
+    // }
+    this.setState({
+      id:userid,
+      // name: user.name,
+      // username: user.username,
+      // hashtag: user.hashtag,
+      // bio: user.bio,
+      // image: user.img,
+    });
   }
+  handleSubmit = (input) => {
+    EditUserAccount(input)
+  };
   render() {
+    const {EditUserAccount} = this.props;
     return (
       <LinearGradient
         start={{x: 0.1, y: 1}}
@@ -128,7 +142,7 @@ class EditProfile extends Component {
                   <Text style={style.inputHeader}>Image</Text>
                   <TextInput
                     value={this.state.image}
-                    onChangeText={(text) => this.handleImageChange(text)}
+                    // onChangeText={(text) => this.handleImageChange(text)}
                     placeholder="Image"
                     placeholderTextColor="#9ea6b5"
                     style={style.inputStyle}
@@ -142,7 +156,7 @@ class EditProfile extends Component {
                   <TextInput
                     style={style.inputStyle}
                     value={this.state.hashtag}
-                    onChangeText={(text) => this.handleHashtagChange(text)}
+                    // onChangeText={(text) => this.handleHashtagChange(text)}
                     placeholder="Add hashtags which describe you"
                     placeholderTextColor="#9ea6b5"
                     returnKeyType="next"
@@ -155,7 +169,7 @@ class EditProfile extends Component {
                   <TextInput
                     style={style.inputStyleBio}
                     value={this.state.bio}
-                    onChangeText={(text) => this.handleBioChange(text)}
+                    // onChangeText={(text) => this.handleBioChange(text)}
                     placeholder="Tell a bit about yourself"
                     placeholderTextColor="#9ea6b5"
                     multiline={true}
@@ -170,7 +184,7 @@ class EditProfile extends Component {
                     <Text style={style.cancelButton}>Cancel</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('MyProfile')}>
+                    onPress={() => EditUserAccount(this.state)}>
                     <Text style={style.saveButton}>Save</Text>
                   </TouchableOpacity>
                 </View>
@@ -190,7 +204,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    EditUserAccount: (input) => dispatch(EditUser(input)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);
