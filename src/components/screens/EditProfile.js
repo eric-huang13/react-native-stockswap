@@ -55,11 +55,12 @@ class EditProfile extends Component {
   };
   componentDidMount() {
     const {users} = this.props;
-    const id = 1;
-    const selectedUser = users.filter((user) => user.id === id);
+    const userid = 1;
+    const selectedUser = users.filter((user) => user.id === userid);
     {
       selectedUser.map((user) => {
         this.setState({
+          id:userid,
           name: user.name,
           username: user.username,
           hashtag: user.hashtag,

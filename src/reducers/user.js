@@ -1,4 +1,5 @@
-import {LOGIN_START, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, SIGNUP_START, SIGNUP_SUCCESS, SIGNUP_ERROR} from 'constants';
+import {LOGIN_START, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, SIGNUP_START, SIGNUP_SUCCESS, SIGNUP_ERROR, EDITUSER_START,
+  EDITUSER_SUCCESS, EDITUSER_ERROR,} from 'constants';
 
 const defaultState = {
   isLoggedIn: false,
@@ -43,7 +44,25 @@ const userReducer = (state = defaultState, action) => {
           error: "",
           userData: action.payload,
         };
-  
+          case EDITUSER_START:
+        return {
+          ...state,
+          loading: true,
+          error: "",
+        };
+      case EDITUSER_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          error: "",
+          userData: action.payload,
+        };
+      case EDITUSER_ERROR:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };  
       case LOGIN_ERROR:
         return {
           ...state,

@@ -1,8 +1,8 @@
-import {
-    MARKETGAINERS_FETCHING,
-    MARKETGAINERS_SUCCESS,
-    MARKETGAINERS_FAILURE,
-  } from '../constants';
+// import {
+//     EDITUSER_START,
+//     EDITUSER_SUCCESS,
+//     EDITUSER_ERROR,
+//   } from '../constants';
   
   const defaultState = {
   
@@ -64,20 +64,20 @@ import {
   const peopleReducer = (state = defaultState, action) => {
     switch (action.type) {
       //Ready for hook up
-      // case MARKETGAINERS_FETCHING:
+      // case EDITUSER_START:
       //   return {
       //     ...state,
       //     loading: true,
       //     error: "",
       //   };
-      // case MARKETGAINERS_SUCCESS:
+      // case EDITUSER_SUCCESS:
       //   return {
       //     ...state,
       //     loading: false,
       //     error: "",
       //     marketGainers: action.payload,
       //   };
-      // case MARKETGAINERS_FAILURE:
+      // case EDITUSER_ERROR:
       //   return {
       //     ...state,
       //     loading: false,
