@@ -50,6 +50,20 @@ const defaultState = {
       img:
         'https://images.unsplash.com/photo-1579407364450-481fe19dbfaa?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8c3RvY2tzfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60',
     },
+    {
+      id: 4,
+      name: 'Bob Fields',
+      profileImg:
+      'https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTh8fGhlYWRzaG90JTIwc3VpdHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+      userId: 4,
+      likes: 19,
+      comments: 10,
+      timestamp: '1 hour ago',
+      body:
+        'My first post. Nice!',
+      img:
+      'https://images.unsplash.com/photo-1462206092226-f46025ffe607?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8YnVzaW5lc3N8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+    },
   ],
   comments: [
     {

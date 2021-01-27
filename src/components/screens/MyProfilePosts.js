@@ -96,7 +96,7 @@ class MyProfilePosts extends Component {
           onPress={() =>
             this.props.navigation.navigate({
               name: 'PostScreen',
-              params: {post, filteredComments, reply},
+              params: {post, filteredComments, reply, userAccount},
             })
           }>
           <Image style={style.image} source={{uri: post.img}} />
@@ -120,7 +120,7 @@ class MyProfilePosts extends Component {
           onPress={() =>
             this.props.navigation.navigate({
               name: 'PostScreen',
-              params: {post, filteredComments, reply},
+              params: {post, filteredComments, reply, userAccount},
             })
           }>
           <Text style={style.body}>
@@ -141,7 +141,7 @@ class MyProfilePosts extends Component {
               onPress={() =>
                 this.props.navigation.navigate({
                   name: 'PostScreen',
-                  params: {post, filteredComments, reply},
+                  params: {post, filteredComments, reply, userAccount},
                 })
               }>
              
