@@ -264,6 +264,24 @@ class Navigation extends Component {
           },         
         }}
       />
+      <HomeStack.Screen
+        name="MyProfilePosts"
+        component={MyProfilePosts}
+        options={{
+          title: 'All my posts',
+              headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
     
     </HomeStack.Navigator>
   );

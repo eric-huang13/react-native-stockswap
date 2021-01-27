@@ -104,6 +104,44 @@ const defaultState = {
       likes: 3,
       username: 'rclark123',
     },
+    {
+      id: 4,
+      name: 'Hallie Fields',
+      profileImg:
+        'https://images.unsplash.com/photo-1459180129673-eefb56f79b45?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzR8fGJ1c2luZXNzJTIwbWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      postId: 4,
+      userId: 1,
+      body: 'Welcome!',
+      time: '1 hour ago',
+      likes: 3,
+      username: 'hfields123',
+    },
+    {
+      id:5,
+      name: 'Bob Fields',
+      profileImg:
+      'https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTh8fGhlYWRzaG90JTIwc3VpdHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+      postId: 1,
+      userId: 4,
+      body: 'Wow, awesome!',
+      time: '1 hour ago',
+      likes: 2,
+      username: 'bob123',
+    },
+    {
+      id: 6,
+      name: 'Ben Clark',
+      profileImg:
+        'https://images.unsplash.com/photo-1606240569045-aca76646c656?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE1fHx8ZW58MHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
+      postId: 4,
+      userId: 3,
+      body:
+        'Cool!',
+
+      time: '1 hour ago',
+      likes: 3,
+      username: 'rclark123',
+    },
   ],
   reply: [
     {

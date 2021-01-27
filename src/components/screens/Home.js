@@ -38,7 +38,7 @@ class HomeScreen extends Component {
       <SafeAreaView style={style.mainContainer}>
         <ScrollView>
           <StockTicker />
-          <Text>{userAccount.id}</Text>
+          
 
           {posts.map((post) => (
             <UserPosts

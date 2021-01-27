@@ -41,12 +41,13 @@ class Profile extends Component {
   }
   render() {
     const {item} = this.props.route.params;
+    console.log(item,"ITEMMMMMMM")
     const {graphData, percent, range, timeFilter} = this.state;
     const {posts, comments, users, reply, userAccount} = this.props;
 
-    const selectedUser = users.filter((user) => user.id === item.id);
+    const selectedUser = users.filter((user) => user.id === item.userId);
 
-    const filteredPosts = posts.filter((post) => post.userId === item.id);
+    const filteredPosts = posts.filter((post) => post.userId === item.userId);
     return (
       <SafeAreaView style={style.container}>
         <ScrollView>
