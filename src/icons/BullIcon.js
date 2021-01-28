@@ -5,8 +5,8 @@ import Svg, { Path } from "react-native-svg"
 function BullIcon(props) {
   return (
     <Svg
-      width={24}
-      height={24}
+      width={22}
+      height={22}
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       {...props}

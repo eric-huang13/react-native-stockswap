@@ -93,8 +93,6 @@ class SignUp extends Component {
             <View style={style.inner}>
               <View style={style.stockHeader}>
                 <SmallStockSwap/>
-                {/* <Text style={style.stockText}>Stock</Text>
-                <Text style={style.swapText}>Swap</Text> */}
               </View>
               <View style={style.container}>
                 <Text style={style.signUpHeader}>Sign Up</Text>

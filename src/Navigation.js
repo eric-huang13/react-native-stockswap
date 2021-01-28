@@ -470,6 +470,11 @@ class Navigation extends Component {
           headerStyle: {
             backgroundColor: '#394463',
           },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+
+          },
           headerTintColor: 'white',
           headerTitleAlign: {
             textAlign: 'center',
@@ -484,6 +489,11 @@ class Navigation extends Component {
           headerStyle: {
             backgroundColor: '#394463',
           },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+
+          },
           headerTintColor: 'white',
           headerTitleAlign: {
             textAlign: 'center',
@@ -497,6 +507,11 @@ class Navigation extends Component {
           title: 'All my posts',
               headerStyle: {
             backgroundColor: '#394463',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+
           },
           headerTitleStyle:{
             fontFamily:'Montserrat-Bold',
@@ -520,6 +535,11 @@ class Navigation extends Component {
           headerStyle: {
             backgroundColor: '#394463',
           },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+
+          },
           headerTintColor: 'white',
           headerTitleAlign: {
             textAlign: 'center',
@@ -534,6 +554,11 @@ class Navigation extends Component {
           headerStyle: {
             backgroundColor: '#394463',
           },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+
+          },
           headerTintColor: 'white',
           headerTitleAlign: {
             textAlign: 'center',
@@ -547,6 +572,11 @@ class Navigation extends Component {
           title: 'Profile',
           headerStyle: {
             backgroundColor: '#394463',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+
           },
           headerTintColor: 'white',
           headerTitleAlign: {
@@ -566,6 +596,11 @@ class Navigation extends Component {
             fontFamily:'Montserrat-Bold',
             fontSize:16
           },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+
+          },
           headerTintColor: 'white',
           headerTitleAlign: {
             textAlign: 'center',
@@ -579,6 +614,11 @@ class Navigation extends Component {
           title: 'Stock details',
           headerStyle: {
             backgroundColor: '#394463',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+
           },
           headerTintColor: 'white',
           headerTitleAlign: {
@@ -594,6 +634,11 @@ class Navigation extends Component {
           headerStyle: {
             backgroundColor: '#394463',
           },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+
+          },
           headerTintColor: 'white',
           headerTitleAlign: {
             textAlign: 'center',
@@ -607,6 +652,11 @@ class Navigation extends Component {
           title: 'Manage Portfolio',
           headerStyle: {
             backgroundColor: '#394463',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+
           },
           headerTintColor: 'white',
           headerTitleAlign: {
