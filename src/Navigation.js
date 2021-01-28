@@ -34,6 +34,7 @@ import TopUsers from './components/screens/TopUsers'
 import PasswordSuccess from './components/screens/PasswordSuccess'
 import EmailSuccess from './components/screens/EmailSuccess'
 import PrivacyPolicy from './components/screens/PrivacyPolicy'
+import ManagePortfolio from './components/screens/ManagePortfolio'
 
 
 
@@ -575,6 +576,20 @@ class Navigation extends Component {
         component={CompanyInformation}
         options={{
           title: 'Stock details',
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      <MyProfileStack.Screen
+        name="ManagePortfolio"
+        component={ManagePortfolio}
+        options={{
+          title: 'Manage Portfolio',
           headerStyle: {
             backgroundColor: '#394463',
           },

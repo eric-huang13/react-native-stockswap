@@ -183,7 +183,7 @@ class Profile extends Component {
                   <TouchableOpacity
                     onPress={() =>
                       this.props.navigation.navigate({
-                        name: 'UserPortfolioList',
+                        name: 'ManagePortfolio',
                         // params: {user},
                       })
                     }>
