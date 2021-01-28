@@ -14,7 +14,7 @@ export default class UserCommentReply extends Component {
 
   navigationByCondition = item => {
    const {navigation} = this.props;
-   if (item.id === this.accountId) {
+   if (item.userId === this.accountId) {
      navigation.navigate({
        name: 'MyProfile',
        params: {item},

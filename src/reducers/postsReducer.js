@@ -181,6 +181,32 @@ const defaultState = {
       likes: 3,
       username: 'rclark123',
     },
+    {
+      id: 4,
+      name: 'Ben Clark',
+      profileImg:
+        'https://images.unsplash.com/photo-1606240569045-aca76646c656?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE1fHx8ZW58MHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
+      commentId: 5,
+      userId: 3,
+      body: 'Hey!!',
+
+      time: '1 hour ago',
+      likes: 2,
+      username: 'rclark123',
+    },
+    {
+      id: 5,
+      name: 'Bob Fields',
+      profileImg:
+        'https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTh8fGhlYWRzaG90JTIwc3VpdHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+      commentId: 5,
+      userId: 4,
+      body: 'Good to see you!',
+
+      time: '1 hour ago',
+      likes: 4,
+      username: 'bob123',
+    },
   ],
 };
 
