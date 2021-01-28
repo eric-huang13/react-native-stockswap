@@ -66,7 +66,7 @@ export default class UserCommentReply extends Component {
 
 const style = StyleSheet.create({
   mainContainer: {
-    flexDirection: 'column-reverse',
+    flexDirection: 'column',
     backgroundColor: '#2a334a',
     paddingVertical: 4,
     paddingLeft: 60,

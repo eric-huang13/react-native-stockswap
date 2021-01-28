@@ -28,12 +28,28 @@ class MyProfilePosts extends Component {
     this.setState({input: text});
   };
 
+  accountId = this.props.userAccount.id
+  
 
+  navigationByCondition = lastComment => {
+   const {navigation} = this.props;
+   if (lastComment.userId === this.accountId) {
+     navigation.navigate({
+       name: 'MyProfile',
+       params: {item: lastComment},
+     })
+   } else {
+     navigation.navigate({
+       name: 'Profile',
+       params: {item: lastComment},
+     })
+   }
+ };
   render() {
     const {shouldShow} = this.state;
-    const {isLoggedIn, LogoutUser, posts, comments, reply, userAccount} = this.props;
+    const {isLoggedIn, LogoutUser, post, comments, reply, userAccount} = this.props;
     const id = this.props.userAccount.id
-    const selectedPosts = posts.filter((user) => user.id === id); 
+    const selectedPosts = post.filter((user) => user.id === id); 
  
     const filteredComments = comments.filter(
       (comment) => comment.postId === id,
@@ -117,12 +133,9 @@ class MyProfilePosts extends Component {
             </View>
         </View>
         <TouchableOpacity
-          onPress={() =>
-            this.props.navigation.navigate({
-              name: 'PostScreen',
-              params: {post, filteredComments, reply, userAccount},
-            })
-          }>
+                    key={lastComment.id}
+                    onPress={()=>this.navigationByCondition(lastComment)             
+                    }>
           <Text style={style.body}>
             {' '}
             {post.body.length < 88
@@ -136,17 +149,13 @@ class MyProfilePosts extends Component {
             );
           })}
 
-        <View style={style.commentContainer}>
-            <TouchableOpacity
-              onPress={() =>
-                this.props.navigation.navigate({
-                  name: 'PostScreen',
-                  params: {post, filteredComments, reply, userAccount},
-                })
-              }>
+        <View style={style.commentContainer}>         
              
  
               {lastComment ? (
+                  <TouchableOpacity
+                  onPress={()=>this.navigationByCondition(lastComment)             
+                  }>
                 <View style={style.lastCommentContainer}>
                   <Text style={style.lastCommentName}>{lastComment.name}:</Text>
                   <Text style={style.lastCommentBody}>
@@ -154,9 +163,10 @@ class MyProfilePosts extends Component {
                       ? `${lastComment.body}`
                       : `${lastComment.body.substring(0, 55)}...`}
                   </Text>
-                </View>
+                </View>            
+                </TouchableOpacity>
+
               ) : null}
-            </TouchableOpacity>
         </View>
       </SafeAreaView>
     );
@@ -165,7 +175,7 @@ class MyProfilePosts extends Component {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
-    posts: state.posts.posts,
+    post: state.posts.posts,
     comments: state.posts.comments,
     reply: state.posts.reply,
     userData: state.user.userData,
