@@ -19,13 +19,12 @@ export default class UserCommentList extends Component {
     if (item.userId === this.accountId) {
       navigation.navigate({
         name: 'MyProfile',
-        params: {item},
+        params: {id: item.id},
       })
     } else {
       navigation.navigate({
         name: 'Profile',
-        params: {item},
-      })
+        params: {id: item.userId}      })
     }
   };
   render() {

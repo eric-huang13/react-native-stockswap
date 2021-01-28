@@ -35,12 +35,12 @@ export class UserList extends Component {
     if (item.id === this.accountId) {
       navigation.navigate({
         name: 'MyProfile',
-        params: {item},
+        params: {id: item.id},
       })
     } else {
       navigation.navigate({
         name: 'Profile',
-        params: {item},
+        params: {id: item.id},
       })
     }
   };

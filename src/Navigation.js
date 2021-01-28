@@ -157,6 +157,38 @@ class Navigation extends Component {
           },
         }}
       />
+      <SearchStack.Screen
+        name="MyProfile"
+        component={MyProfile}
+        options={{
+          title:'My Profile',
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },         
+        }}
+      />
+      <SearchStack.Screen
+        name="MyProfilePosts"
+        component={MyProfilePosts}
+        options={{
+          title: 'All my posts',
+              headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
     </SearchStack.Navigator>
   );
 

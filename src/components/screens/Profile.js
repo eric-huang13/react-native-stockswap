@@ -40,14 +40,14 @@ class Profile extends Component {
     this.setState({timeFilter: time});
   }
   render() {
-    const {item} = this.props.route.params;
-    console.log(item,"ITEMMMMMMM")
+    const {id} = this.props.route.params;
+    console.log(this.props.route.params,"ITEMMMMMMM")
     const {graphData, percent, range, timeFilter} = this.state;
     const {posts, comments, users, reply, userAccount} = this.props;
 
-    const selectedUser = users.filter((user) => user.id === item.userId);
+    const selectedUser = users.filter((user) => user.id === id);
 
-    const filteredPosts = posts.filter((post) => post.userId === item.userId);
+    const filteredPosts = posts.filter((post) => post.userId === id);
     return (
       <SafeAreaView style={style.container}>
         <ScrollView>

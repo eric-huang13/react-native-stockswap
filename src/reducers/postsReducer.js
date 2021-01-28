@@ -207,6 +207,19 @@ const defaultState = {
       likes: 4,
       username: 'bob123',
     },
+    {
+      id: 6,
+      name: 'Bob Fields',
+      profileImg:
+        'https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTh8fGhlYWRzaG90JTIwc3VpdHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+      commentId: 6,
+      userId: 4,
+      body: 'Thanks!!',
+
+      time: '1 hour ago',
+      likes: 2,
+      username: 'bob123',
+    },
   ],
 };
 

@@ -36,12 +36,12 @@ class MyProfilePosts extends Component {
    if (lastComment.userId === this.accountId) {
      navigation.navigate({
        name: 'MyProfile',
-       params: {item: lastComment},
+       params: {id: lastComment.id},
      })
    } else {
      navigation.navigate({
        name: 'Profile',
-       params: {item: lastComment},
+       params: {id: lastComment.userId},
      })
    }
  };
