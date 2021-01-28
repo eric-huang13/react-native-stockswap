@@ -85,6 +85,7 @@ export default class UserPortfolioBox extends Component {
         <View style={style.symbolContainer}>
           <Text style={percent > 0 ? style.symbolGain : style.symbolLoss}>{item.symbol}</Text>
           <Text style={style.title}>{item.title}</Text>
+          <Text style={style.price}>Shares: 22</Text>
           <Text style={style.price}>Price: ${item.price}</Text>
         </View>
         <View style={style.graphContainer}>

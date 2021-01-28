@@ -9,11 +9,9 @@ import {
   SafeAreaView,
   FlatList,
 } from 'react-native';
-import UserPortfolioBox from './UserPortfolioBox';
 import SearchInput from '../../icons/SearchInput'
 import TriangleIcon from '../../icons/TriangleIcon'
 import {connect} from 'react-redux';
-import ModalDropdown from 'react-native-modal-dropdown';
 import ManagePortfolioBox from './ManagePortfolioBox'
 
 
@@ -42,23 +40,14 @@ class ManagaPortfolio extends Component {
         item.symbol.toLowerCase().includes(this.state.input.toLowerCase()),
     );
 
-    const {shouldShow} = this.state;   
-    const dropDownOptions = ['Percent Change', 'Last price', 'Total percent change', 'Your equity', 'Todays return', 'Total return'];
-
+    const {shouldShow} = this.state;  
 
     return (
       <SafeAreaView style={style.container}>
         <View style={style.searchInputContainer}>
-          <View
-        style={{
-          position: "absolute",
-          zIndex: 1,
-          left: 14,
-          top:10
-        }}
-      >
+          <View style={style.searchInputInnerContainer}>
         <SearchInput/>
-      </View>
+         </View>
             <TextInput
               style={style.searchInput}
               placeholder="Search"
@@ -66,19 +55,20 @@ class ManagaPortfolio extends Component {
               onChangeText={(text) => this.handleChange(text)}
             />
           </View>
+          <View style={style.innerContainer}>
+          <View style={style.topDetailsRow}>
         <View style={style.percentContainer}>
-          <Text>{this.state.dropDown}</Text>
+          {/* <Text>{this.state.dropDown}</Text> */}
           <Text style={style.portfolio}>Portfolio</Text>
           <Text style={style.percent}>$3,201</Text>
         </View>
+        <View style={style.gainDetailsContainer}>
+          <Text style={style.gain}>gain/loss</Text>
+          <Text style={style.gainTime}>time</Text>
+        </View>
+        </View>
         <View style={style.percentButtonContainer}>
-          <Text style={style.stockHeader}>STOCKS</Text>
-
-          {/* <View style={style.percentChangeContainer}>
-          <ModalDropdown style={style.dropdown_2} dropdownStyle={style.dropdown_2_dropdown} textStyle={style.dropdown_2_text} options={dropDownOptions}  onSelect= {(idx,value) => this.setState({dropDown:  value})} />
-          <TriangleIcon/>
-          </View> */}
-          
+          <Text style={style.stockHeader}>STOCKS</Text>          
           <View style={style.dotsDropdownContainer}>
               <TouchableOpacity
                 onPress={() =>
@@ -93,12 +83,10 @@ class ManagaPortfolio extends Component {
               </TouchableOpacity>
               {this.state.shouldShow ? (
                 <View style={style.dropdown}>
-                  <TouchableOpacity onPress={() => this.dropDownSelect('Last price')}>
-
+                  <TouchableOpacity onPress={() => this.dropDownSelect('Percent Change')}>
                   <Text style={style.dropDownText}>Percent Change</Text>
               </TouchableOpacity>
                   <TouchableOpacity onPress={() => this.dropDownSelect('Last price')}>
-
                   <Text style={style.dropDownText}>Last price</Text></TouchableOpacity>
                   <TouchableOpacity onPress={() => this.dropDownSelect('Total percent change')}>
                   <Text style={style.dropDownText}>Total percent change</Text></TouchableOpacity>
@@ -111,8 +99,7 @@ class ManagaPortfolio extends Component {
                   </TouchableOpacity>
                 </View>
               ) : null}
-            </View>
-          
+            </View>          
         </View>
         <FlatList
           style={style.boxContainer}
@@ -129,9 +116,11 @@ class ManagaPortfolio extends Component {
               <View key={item.id} style={style.portfolioBoxContainer}>
                 <ManagePortfolioBox item={item} />
               </View>
+              
             </TouchableOpacity>
           )}
         />
+        </View>
       </SafeAreaView>
     );
   }
@@ -148,33 +137,7 @@ const style = StyleSheet.create({
   container: {
     backgroundColor: '#2a334a',
     flex: 1,
-  },
-  dropdown_2: {
-    color: '#FFFFFF',
-    fontSize: 14,
-    backgroundColor: '#3E4D6C',
-    borderRadius: 6,
-    fontFamily:'Montserrat-Medium',
-    marginRight:6,
-  },
-  dropdown_2_text: {
-    marginVertical: 6,
-    marginHorizontal: 6,
-    fontSize: 18,
-    color: 'white',
-    textAlign: 'center',
-    textAlignVertical: 'center',
-    backgroundColor:'#3E4D6C'
-
-  },
-  dropdown_2_dropdown: {
-    width: 150,
-    height: 300,
-    borderColor: 'cornflowerblue',
-    borderWidth: 2,
-    borderRadius: 3,
-    backgroundColor:'yellow'
-  },
+  },  
   searchInputContainer: {
     marginBottom: 20,
   },
@@ -187,6 +150,35 @@ const style = StyleSheet.create({
     height: 36,
     fontFamily: 'Montserrat-Italic',
     paddingVertical: 0,
+  },
+  searchInputInnerContainer:{
+    position: "absolute",
+    zIndex: 1,
+    left: 14,
+    top:10
+  },
+  innerContainer:{
+    paddingHorizontal:6,
+  },
+  topDetailsRow:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+  },
+  gainDetailsContainer:{
+    flexDirection:'row',
+    alignItems:'center',
+    paddingHorizontal:4,
+  },
+  gain:{
+    fontFamily:'Montserrat-Medium',
+    color:'#F66E6E',
+    fontSize:12,
+  },
+  gainTime:{
+    fontFamily: 'Montserrat-Medium',
+    color:'lightgrey',
+    fontSize:10,
+    marginLeft:8,
   },
   boxContainer: {
     marginTop: 6,
@@ -204,7 +196,6 @@ const style = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 16,
     fontFamily:'Montserrat-Regular',
-
   },
   percent: {
     color: '#FFFFFF',
@@ -230,9 +221,7 @@ const style = StyleSheet.create({
     borderRadius: 6,
     fontFamily:'Montserrat-Italic',
     marginLeft:6,
-    width:190,
-    
-
+    width:190,   
   },
   percentChangeContainer:{
     // padding:8,
@@ -242,26 +231,10 @@ const style = StyleSheet.create({
     flexDirection:'row',
     justifyContent:'space-between',
     alignItems:'center',
-    height:30,
-    
+    height:30,    
 },
-// dotsDropdownContainer: {
-//   backgroundColor:'#3E4D6C',
-//   flexDirection: 'column',
-//   alignContent: 'center',
-//   // width:170,
-//   zIndex:1,
-//   borderRadius:6,
-  
-// },
-// dotsButton: {
-//   alignSelf: 'flex-end',
-//   color: 'white',
-//   fontWeight: 'bold',
-//   fontSize: 20,
-// },
+
 dropdown: {
-  // flex: 1,
   flexDirection: 'column',
   justifyContent: 'space-between',
   width: '100%',
@@ -270,22 +243,19 @@ dropdown: {
   backgroundColor: '#3E4D6C',
   zIndex: 1,
   paddingVertical: 6,
-  // paddingHorizontal:10,
 },
 dropDownText: {
   color: 'white',
   fontSize: 16,
   marginHorizontal: 12,
   fontFamily:'Montserrat-Medium',
-  marginBottom:6,
-  
+  marginBottom:6,  
 },
 dropDownTextReportContainer: {
   borderTopWidth: 1,
   borderTopColor: 'lightgrey',
   paddingTop: 4,
-  backgroundColor:'#2C3957'
-
+  backgroundColor:'#2C3957',
 },
 icon:{
   marginRight:4,

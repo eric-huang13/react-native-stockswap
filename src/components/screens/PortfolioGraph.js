@@ -6,11 +6,10 @@ import {LinearGradient, Stop} from 'react-native-svg';
 export default class PortfolioGraph extends Component {
   render() {
     const lineColor = this.props.percent > 0 ? "#91f2b1" : "#F66E6E"
-console.log(this.props.percent,"PERCENTTTT")
     const fillGradient = (props) => {
       return (
         <LinearGradient x1="40%" y1="0%" x2="40%" y2="100%" {...props}>
-          <Stop stopColor={'#91f2b1'} offset="5%" stopOpacity="0.1" />
+          <Stop stopColor={lineColor} offset="5%" stopOpacity="0.1" />
           <Stop stopColor="#4a334a" offset="100%" stopOpacity="0" />
         </LinearGradient>
       );
