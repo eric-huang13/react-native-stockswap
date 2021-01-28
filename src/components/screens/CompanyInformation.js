@@ -49,7 +49,6 @@ export class CompanyInformation extends Component {
     //Data periods
     // Data for week
     const weekData = xyData.slice(xyData.length - 7);
-    console.log(weekData,"DATAT")
     //Data for month
     const monthData = xyData.slice(xyData.length - 31);
 
@@ -91,7 +90,6 @@ export class CompanyInformation extends Component {
 
     const {route} = this.props;
     const {graphData, percent, range} = this.state;
-    console.log(graphData, 'graph Data');
     return (
       <SafeAreaView style={style.mainContainer}>
         <ScrollView>

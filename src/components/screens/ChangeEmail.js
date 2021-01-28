@@ -41,16 +41,20 @@ class ChangeEmail extends Component {
   };
 
   componentDidMount() {
-    const {users} = this.props;
-    const id = 1;
-    const selectedUser = users.filter((user) => user.id === id);
-    {
-      selectedUser.map((user) => {
-        this.setState({
-          currentEmail: user.email,
-        });
-      });
-    }
+    const {users, userAccount} = this.props;
+    this.setState({
+      currentEmail: userAccount.email,
+    })
+
+    // const id = 1;
+    // const selectedUser = users.filter((user) => user.id === id);
+    // {
+    //   selectedUser.map((user) => {
+    //     this.setState({
+    //       currentEmail: user.email,
+    //     });
+    //   });
+    // }
   }
   render() {
     return (
@@ -110,6 +114,7 @@ class ChangeEmail extends Component {
 const mapStateToProps = (state) => {
   return {
     users: state.people.users,
+    userAccount: state.user.userFakeData,
   };
 };
 

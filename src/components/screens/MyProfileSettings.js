@@ -27,16 +27,20 @@ class MyProfileSettings extends Component {
     this.setState({enabled: value});
   };
   componentDidMount() {
-    const {users} = this.props;
-    const id = 1;
-    const selectedUser = users.filter((user) => user.id === id);
-    {
-      selectedUser.map((user) => {
-        this.setState({
-          currentEmail: user.email,
-        });
-      });
-    }
+    const {users, userAccount} = this.props;
+    this.setState({
+      currentEmail: userAccount.email,
+    })
+
+    // const id = 1;
+    // const selectedUser = users.filter((user) => user.id === id);
+    // {
+    //   selectedUser.map((user) => {
+    //     this.setState({
+    //       currentEmail: user.email,
+    //     });
+    //   });
+    // }
   }
   render() {
     const {LogoutUser} = this.props;
@@ -145,6 +149,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user.user,
     users: state.people.users,
+    userAccount: state.user.userFakeData
   };
 };
 

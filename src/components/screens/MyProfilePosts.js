@@ -133,9 +133,12 @@ class MyProfilePosts extends Component {
             </View>
         </View>
         <TouchableOpacity
-                    key={lastComment.id}
-                    onPress={()=>this.navigationByCondition(lastComment)             
-                    }>
+          onPress={() =>
+            this.props.navigation.navigate({
+              name: 'PostScreen',
+              params: {post, filteredComments, reply, userAccount},
+            })
+          }>
           <Text style={style.body}>
             {' '}
             {post.body.length < 88

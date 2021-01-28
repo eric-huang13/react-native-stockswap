@@ -55,20 +55,20 @@ class EditProfile extends Component {
     });
   };
   componentDidMount() {
-    const {users} = this.props;
+    const {user, userAccount} = this.props;
     const userid = 15;
-    const selectedUser = users.filter((user) => user.id === userid);
+    // const selectedUser = users.filter((user) => user.id === userid);
     {
-      selectedUser.map((user) => {
+      // selectedUser.map((user) => {
         this.setState({
-          id:15,
-          name: user.name,
-          username: user.username,
-          hashtag: user.hashtag,
-          bio: user.bio,
-          image: user.img,
+          id:userAccount.id,
+          name: userAccount.name,
+          username: userAccount.username,
+          hashtag: userAccount.hashtag,
+          bio: userAccount.bio,
+          image: userAccount.img,
         });
-      });
+      // });
     }
   
   }
@@ -192,6 +192,7 @@ class EditProfile extends Component {
 const mapStateToProps = (state) => {
   return {
     users: state.people.users,
+    userAccount: state.user.userFakeData
   };
 };
 
