@@ -14,6 +14,7 @@ import SearchInput from '../../icons/SearchInput'
 import TriangleIcon from '../../icons/TriangleIcon'
 import {connect} from 'react-redux';
 import ModalDropdown from 'react-native-modal-dropdown';
+import ManagePortfolioBox from './ManagePortfolioBox'
 
 
 class ManagaPortfolio extends Component {
@@ -68,7 +69,7 @@ class ManagaPortfolio extends Component {
         <View style={style.percentContainer}>
           <Text>{this.state.dropDown}</Text>
           <Text style={style.portfolio}>Portfolio</Text>
-          <Text style={style.percent}>+ 320%</Text>
+          <Text style={style.percent}>$3,201</Text>
         </View>
         <View style={style.percentButtonContainer}>
           <Text style={style.stockHeader}>STOCKS</Text>
@@ -126,7 +127,7 @@ class ManagaPortfolio extends Component {
                 })
               }>
               <View key={item.id} style={style.portfolioBoxContainer}>
-                <UserPortfolioBox item={item} />
+                <ManagePortfolioBox item={item} />
               </View>
             </TouchableOpacity>
           )}

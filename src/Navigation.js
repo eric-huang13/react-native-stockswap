@@ -35,6 +35,7 @@ import PasswordSuccess from './components/screens/PasswordSuccess'
 import EmailSuccess from './components/screens/EmailSuccess'
 import PrivacyPolicy from './components/screens/PrivacyPolicy'
 import ManagePortfolio from './components/screens/ManagePortfolio'
+import ManagePortfolioBox from './components/screens/ManagePortfolioBox'
 
 
 
@@ -588,6 +589,20 @@ class Navigation extends Component {
       <MyProfileStack.Screen
         name="ManagePortfolio"
         component={ManagePortfolio}
+        options={{
+          title: 'Manage Portfolio',
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      <MyProfileStack.Screen
+        name="ManagePortfolioBox"
+        component={ManagePortfolioBox}
         options={{
           title: 'Manage Portfolio',
           headerStyle: {
