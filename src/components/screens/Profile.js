@@ -186,7 +186,7 @@ class Profile extends Component {
                         // params: {user},
                       })
                     }>
-                    <Text style={style.portfolioButton}>Portfolio Button</Text>
+                    <Text style={style.portfolioButton}>Portfolio</Text>
                   </TouchableOpacity>
                 </View>
               </View>

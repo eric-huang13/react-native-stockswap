@@ -34,7 +34,6 @@ class UserPortfolioList extends Component {
   }
   render() {
     const {gainers} = this.props;
-    console.log(this.props, 'propslist');
     const filteredStocks = gainers.filter(
       (item) =>
         item.title.toLowerCase().includes(this.state.input.toLowerCase()) ||
@@ -42,22 +41,13 @@ class UserPortfolioList extends Component {
     );
 
     const {shouldShow} = this.state;   
-    const dropDownOptions = ['Percent Change', 'Last price', 'Total percent change', 'Your equity', 'Todays return', 'Total return'];
-
 
     return (
       <SafeAreaView style={style.container}>
         <View style={style.searchInputContainer}>
-          <View
-        style={{
-          position: "absolute",
-          zIndex: 1,
-          left: 14,
-          top:10
-        }}
-      >
-        <SearchInput/>
-      </View>
+        <View style={style.searchInputInnerContainer}>
+          <SearchInput/>
+        </View>
             <TextInput
               style={style.searchInput}
               placeholder="Search"
@@ -66,18 +56,11 @@ class UserPortfolioList extends Component {
             />
           </View>
         <View style={style.percentContainer}>
-          <Text>{this.state.dropDown}</Text>
           <Text style={style.portfolio}>Portfolio</Text>
           <Text style={style.percent}>+ 320%</Text>
         </View>
         <View style={style.percentButtonContainer}>
           <Text style={style.stockHeader}>STOCKS</Text>
-
-          {/* <View style={style.percentChangeContainer}>
-          <ModalDropdown style={style.dropdown_2} dropdownStyle={style.dropdown_2_dropdown} textStyle={style.dropdown_2_text} options={dropDownOptions}  onSelect= {(idx,value) => this.setState({dropDown:  value})} />
-          <TriangleIcon/>
-          </View> */}
-          
           <View style={style.dotsDropdownContainer}>
               <TouchableOpacity
                 onPress={() =>
@@ -92,26 +75,18 @@ class UserPortfolioList extends Component {
               </TouchableOpacity>
               {this.state.shouldShow ? (
                 <View style={style.dropdown}>
+                  <TouchableOpacity onPress={() => this.dropDownSelect('Percent Change')}>
+                  <Text style={style.dropDownText}>Percent Change</Text>             
+                   </TouchableOpacity>
                   <TouchableOpacity onPress={() => this.dropDownSelect('Last price')}>
-
-                  <Text style={style.dropDownText}>Percent Change</Text>
-              </TouchableOpacity>
-                  <TouchableOpacity onPress={() => this.dropDownSelect('Last price')}>
-
-                  <Text style={style.dropDownText}>Last price</Text></TouchableOpacity>
+                  <Text style={style.dropDownText}>Last price</Text>
+                  </TouchableOpacity>
                   <TouchableOpacity onPress={() => this.dropDownSelect('Total percent change')}>
-                  <Text style={style.dropDownText}>Total percent change</Text></TouchableOpacity>
-                  <TouchableOpacity onPress={() => this.dropDownSelect('Your equity')}>
-                  <Text style={style.dropDownText}>Your equity</Text></TouchableOpacity>
-                  <TouchableOpacity onPress={() => this.dropDownSelect("Today's return")}>
-                  <Text style={style.dropDownText}>Today's return</Text></TouchableOpacity>
-                  <TouchableOpacity onPress={() => this.dropDownSelect('Total return')}>
-                  <Text style={style.dropDownText}>Total return</Text>
+                  <Text style={style.dropDownText}>Total percent change</Text>
                   </TouchableOpacity>
                 </View>
               ) : null}
-            </View>
-          
+            </View>          
         </View>
         <FlatList
           style={style.boxContainer}
@@ -148,34 +123,8 @@ const style = StyleSheet.create({
     backgroundColor: '#2a334a',
     flex: 1,
   },
-  dropdown_2: {
-    color: '#FFFFFF',
-    fontSize: 14,
-    backgroundColor: '#3E4D6C',
-    borderRadius: 6,
-    fontFamily:'Montserrat-Medium',
-    marginRight:6,
-  },
-  dropdown_2_text: {
-    marginVertical: 6,
-    marginHorizontal: 6,
-    fontSize: 18,
-    color: 'white',
-    textAlign: 'center',
-    textAlignVertical: 'center',
-    backgroundColor:'#3E4D6C'
-
-  },
-  dropdown_2_dropdown: {
-    width: 150,
-    height: 300,
-    borderColor: 'cornflowerblue',
-    borderWidth: 2,
-    borderRadius: 3,
-    backgroundColor:'yellow'
-  },
   searchInputContainer: {
-    marginBottom: 20,
+    marginBottom: 22,
   },
   searchInput: {
     paddingLeft: 40,
@@ -186,6 +135,12 @@ const style = StyleSheet.create({
     height: 36,
     fontFamily: 'Montserrat-Italic',
     paddingVertical: 0,
+  },
+  searchInputInnerContainer:{
+    position: "absolute",
+    zIndex: 1,
+    left: 14,
+    top:10
   },
   boxContainer: {
     marginTop: 6,
@@ -203,7 +158,6 @@ const style = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 16,
     fontFamily:'Montserrat-Regular',
-
   },
   percent: {
     color: '#FFFFFF',
@@ -229,8 +183,7 @@ const style = StyleSheet.create({
     borderRadius: 6,
     fontFamily:'Montserrat-Italic',
     marginLeft:6,
-    width:190,
-    
+    width:190,   
 
   },
   percentChangeContainer:{
@@ -241,35 +194,20 @@ const style = StyleSheet.create({
     flexDirection:'row',
     justifyContent:'space-between',
     alignItems:'center',
-    height:30,
-    
+    height:30,    
 },
-// dotsDropdownContainer: {
-//   backgroundColor:'#3E4D6C',
-//   flexDirection: 'column',
-//   alignContent: 'center',
-//   // width:170,
-//   zIndex:1,
-//   borderRadius:6,
-  
-// },
-// dotsButton: {
-//   alignSelf: 'flex-end',
-//   color: 'white',
-//   fontWeight: 'bold',
-//   fontSize: 20,
-// },
 dropdown: {
-  // flex: 1,
   flexDirection: 'column',
   justifyContent: 'space-between',
   width: '100%',
-  marginTop: 1,
-  marginBottom: -185,
+  marginTop: 29,
+  marginBottom: 0,
   backgroundColor: '#3E4D6C',
   zIndex: 1,
   paddingVertical: 6,
-  // paddingHorizontal:10,
+  height:100,
+  position:'absolute'
+
 },
 dropDownText: {
   color: 'white',

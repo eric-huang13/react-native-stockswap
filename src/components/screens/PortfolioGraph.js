@@ -20,7 +20,7 @@ export default class PortfolioGraph extends Component {
         <SlideAreaChart
           data={this.props.graphData}
           yRange={this.props.range}
-          width={Dimensions.get('window').width - 172}
+          width={Dimensions.get('window').width - 180}
           height={100}
           style={{backgroundColor: '#2a334a'}}
           axisWidth={5}

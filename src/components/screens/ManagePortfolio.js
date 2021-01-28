@@ -139,7 +139,7 @@ const style = StyleSheet.create({
     flex: 1,
   },  
   searchInputContainer: {
-    marginBottom: 20,
+    marginBottom: 22,
   },
   searchInput: {
     paddingLeft: 40,
@@ -238,11 +238,13 @@ dropdown: {
   flexDirection: 'column',
   justifyContent: 'space-between',
   width: '100%',
-  marginTop: 1,
-  marginBottom: -185,
+  marginTop: 29,
+  // marginBottom: -185,
   backgroundColor: '#3E4D6C',
   zIndex: 1,
   paddingVertical: 6,
+  height:200,
+  position:'absolute'
 },
 dropDownText: {
   color: 'white',
