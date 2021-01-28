@@ -245,6 +245,7 @@ const style = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 20,
+  
   },
   dropdown: {
     flex: 1,
@@ -255,16 +256,16 @@ const style = StyleSheet.create({
     marginBottom: -125,
     backgroundColor: '#2C3957',
     zIndex: 1,
-    paddingVertical: 6,
+    // paddingVertical: 6,
     // paddingHorizontal:10,
   },
   dropDownText: {
     color: 'white',
     fontSize: 16,
-    marginHorizontal: 12,
+    // marginHorizontal: 12,
     fontFamily:'Montserrat-Medium',
   },
-  dropDownTextReportContainer: {
+  dropDsownTextReportContainer: {
     borderTopWidth: 1,
     borderTopColor: '#CBCDD7',
     paddingTop: 4,
