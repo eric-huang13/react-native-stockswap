@@ -78,7 +78,7 @@ class UserPortfolioList extends Component {
           <TriangleIcon/>
           </View> */}
           
-          <View style={style.dotsDropdownConatiner}>
+          <View style={style.dotsDropdownContainer}>
               <TouchableOpacity
                 onPress={() =>
                   this.setState({
@@ -87,7 +87,7 @@ class UserPortfolioList extends Component {
                 }>
                   <View style={style.percentChangeContainer}>
           <Text style={style.percentChangeButton}>{this.state.dropDown}</Text>
-        <TriangleIcon/>        
+        <TriangleIcon style={style.icon}/>        
           </View>
               </TouchableOpacity>
               {this.state.shouldShow ? (
@@ -214,7 +214,7 @@ const style = StyleSheet.create({
     marginTop: 12,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    // alignItems: 'center',
     paddingHorizontal: 8,
   },
   stockHeader: {
@@ -228,34 +228,39 @@ const style = StyleSheet.create({
     backgroundColor: '#3E4D6C',
     borderRadius: 6,
     fontFamily:'Montserrat-Italic',
-    marginRight:6,
-    width:180
+    marginLeft:6,
+    width:190,
+    
 
   },
   percentChangeContainer:{
-    padding:8,
+    // padding:8,
     borderRadius:6,
     backgroundColor:'#3E4D6C',
-    marginTop:4,
+    // marginTop:4,
     flexDirection:'row',
     justifyContent:'space-between',
-    alignItems:'center'
+    alignItems:'center',
+    height:30,
     
 },
-dotsDropdownConatiner: {
-  flexDirection: 'column',
-  justifyContent: 'space-evenly',
-  alignContent: 'center',
-  // width:170,
-},
-dotsButton: {
-  alignSelf: 'flex-end',
-  color: 'white',
-  fontWeight: 'bold',
-  fontSize: 20,
-},
+// dotsDropdownContainer: {
+//   backgroundColor:'#3E4D6C',
+//   flexDirection: 'column',
+//   alignContent: 'center',
+//   // width:170,
+//   zIndex:1,
+//   borderRadius:6,
+  
+// },
+// dotsButton: {
+//   alignSelf: 'flex-end',
+//   color: 'white',
+//   fontWeight: 'bold',
+//   fontSize: 20,
+// },
 dropdown: {
-  flex: 1,
+  // flex: 1,
   flexDirection: 'column',
   justifyContent: 'space-between',
   width: '100%',
@@ -272,6 +277,7 @@ dropDownText: {
   marginHorizontal: 12,
   fontFamily:'Montserrat-Medium',
   marginBottom:6,
+  
 },
 dropDownTextReportContainer: {
   borderTopWidth: 1,
@@ -279,5 +285,8 @@ dropDownTextReportContainer: {
   paddingTop: 4,
   backgroundColor:'#2C3957'
 
+},
+icon:{
+  marginRight:4,
 },
 });

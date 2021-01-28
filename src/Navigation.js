@@ -705,11 +705,7 @@ class Navigation extends Component {
           headerTitleAlign: {
             textAlign: 'center',
           },
-          headerRight: () => (
-            <TouchableOpacity onPress={() =>navigation.navigate('MyProfileSettings')}>
-                  <Text style={style.button}>Settings</Text>
-                </TouchableOpacity>
-          ),          
+                   
         })}
       />
       
