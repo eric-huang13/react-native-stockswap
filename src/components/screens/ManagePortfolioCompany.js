@@ -96,11 +96,14 @@ export class ManagePortfolioCompany extends Component {
           {this.props.route.params ? (
             <View style={style.aboveGraphContainer}>
               <View style={style.symbolView}>
-                <Text style={style.symbol}>{route.params.item.symbol}</Text>
-                <Text style={style.price}>${currentPrice}</Text>
+                <Text style={style.title}>{route.params.item.title}</Text>
               </View>
               <View style={style.titleView}>
-                <Text style={style.title}>{route.params.item.title}</Text>
+                  <View style={style.priceSharesContainer}>
+                <Text style={style.price}>{route.params.item.price}</Text>
+                <Text style={style.shares}>Shares</Text>
+
+                </View>
                 <Text style={style.percentage}>({percent}%)</Text>
               </View>
             </View>
@@ -321,15 +324,7 @@ export class ManagePortfolioCompany extends Component {
             </View>
           </View>
           <View style={style.buyButtonContainer}>
-            <Text style={style.buyButton}>Buy {route.params.item.title}</Text>
-          </View>
-          <View style={style.aboutSection}>
-            <Text style={style.aboutHeader}>ABOUT</Text>
-            <Text style={style.sectorData}>
-              <Text style={style.sectorText}>Sector:</Text>{' '}
-              {route.params.item.sector}
-            </Text>
-            <Text style={style.about}>{route.params.item.about}</Text>
+            <Text style={style.buyButton}>Publish a trade</Text>
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -344,10 +339,9 @@ const style = StyleSheet.create({
     backgroundColor: '#2a334a',
   },
   aboveGraphContainer: {
-    paddingHorizontal: 4,
     paddingVertical: 14,
-    backgroundColor: '#324165',
-    marginBottom: 20,
+    // backgroundColor: '#324165',
+    marginBottom: 10,
     // marginTop:50,
   },
   graphContainer: {
@@ -382,24 +376,37 @@ const style = StyleSheet.create({
     color: 'rgb(8, 177, 40)',
     alignItems: 'center',
   },
-  symbol: {
+  priceSharesContainer:{
+    flexDirection:'row',
+    alignItems:'center',
+  },
+  price: {
     fontSize: 24,
     fontWeight: 'bold',
     color: 'white',
   },
   price: {
-    color: 'white',
+    color: '#FFFFFF',
     fontSize: 24,
-    fontWeight: 'bold',
+    fontFamily:'Montserrat-ExtraBold',
   },
   title: {
     color: 'lightgrey',
-    fontSize: 14,
+    fontSize: 16,
+    fontFamily:'Montserrat-Regular',
+
+  },
+  shares: {
+    color: 'lightgrey',
+    fontSize: 12,
+    marginLeft:10,
+    fontFamily:'Montserrat-Regular',
+
   },
   percentage: {
     color: 'rgb(8, 177, 40)',
-    fontSize: 14,
-    fontWeight: 'bold',
+    fontSize: 12,
+    fontFamily:'Montserrat-Medium',
   },
   vitalsContainer: {
     marginTop: 6,
@@ -411,9 +418,9 @@ const style = StyleSheet.create({
     paddingTop: 4,
   },
   vitalsHeader: {
-    color: 'white',
-    fontSize: 26,
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontSize: 22,
+    fontFamily:'Montserrat-Bold',
     marginTop: 28,
     textAlign: 'left',
     paddingHorizontal: 10,
@@ -437,14 +444,14 @@ const style = StyleSheet.create({
   },
   vitalDetails: {
     color: 'lightgrey',
-    fontSize: 18,
-    // fontWeight: 'bold',
+    fontSize: 14,
+    fontFamily:'Montserrat-Medium',
     marginBottom: 10,
   },
   vitalDetailsData: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontFamily:'Montserrat-Bold',
     marginBottom: 10,
     marginLeft: 55,
   },
@@ -468,11 +475,13 @@ const style = StyleSheet.create({
   },
   buyButton: {
     backgroundColor: '#8b64ff',
-    color: 'white',
+    color: '#FFFFFF',
     borderRadius: 6,
-    fontSize: 18,
+    fontSize: 14,
     paddingVertical: 10,
     paddingHorizontal: 40,
+    fontFamily:'Montserrat-SemiBold',
+
   },
   aboutSection: {
     marginTop: 36,
