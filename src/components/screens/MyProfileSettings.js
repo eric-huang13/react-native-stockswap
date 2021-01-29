@@ -20,7 +20,7 @@ class MyProfileSettings extends Component {
     this.state = {
       enabled: false,
       currentEmail: '',
-      shouldShow:true,
+      shouldShow:false,
       dropDown:'Visible for all',
     };
   }
