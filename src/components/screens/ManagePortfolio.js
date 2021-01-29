@@ -109,7 +109,7 @@ class ManagaPortfolio extends Component {
               key={item.id}
               onPress={() =>
                 this.props.navigation.navigate({
-                  name: 'CompanyInformation',
+                  name: 'ManagePortfolioCompany',
                   params: {item},
                 })
               }>
