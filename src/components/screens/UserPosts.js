@@ -256,16 +256,16 @@ const style = StyleSheet.create({
     marginBottom: -125,
     backgroundColor: '#2C3957',
     zIndex: 1,
-    // paddingVertical: 6,
+    paddingVertical: 6,
     // paddingHorizontal:10,
   },
   dropDownText: {
     color: 'white',
     fontSize: 16,
-    // marginHorizontal: 12,
+    marginHorizontal: 12,
     fontFamily:'Montserrat-Medium',
   },
-  dropDsownTextReportContainer: {
+  dropDownTextReportContainer: {
     borderTopWidth: 1,
     borderTopColor: '#CBCDD7',
     paddingTop: 4,
