@@ -75,7 +75,9 @@ class SignUp extends Component {
       }; 
   
     const handleSubmit = () => {
-      this.state.password !== this.state.confirmPassword 
+          this.state.email === ""
+        ? this.errorInput('email')
+        : this.state.password !== this.state.confirmPassword 
         ? this.errorInput('passwords')        
         : this.state.check === false 
         ? this.errorInput('checkbox') 
@@ -111,7 +113,7 @@ class SignUp extends Component {
                   <Text style={style.inputHeader}>Email</Text>
 
                   <TextInput
-                    style={style.inputStyle}
+                    style={ this.state.error === 'email' ? {...style.inputStyle, backgroundColor:'#F66E6E'} : {...style.inputStyle}}
                     value={this.state.email}
                     onChangeText={(text) => this.handleEmailChange(text)}
                     placeholder="Enter your email"
