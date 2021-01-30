@@ -8,6 +8,8 @@ import {
   SafeAreaView,
 } from 'react-native';
 import CompanyStockGraph from './CompanyStockGraph';
+import TriangleIcon from '../../icons/TriangleIcon';
+
 
 export class ManagePortfolioCompany extends Component {
   constructor(props) {
@@ -30,7 +32,12 @@ export class ManagePortfolioCompany extends Component {
       threeMonth: false,
       year: false,
       all: false,
+      shouldShow:false,
+      dropDown:'Visible for all',
     };
+  }
+  dropDownSelect(pick) {
+    this.setState({dropDown:pick, shouldShow:false});
   }
 
   render() {
@@ -89,7 +96,7 @@ export class ManagePortfolioCompany extends Component {
     const chartOneQuarter = (chartLow + numberDifference).toFixed(0);
 
     const {route} = this.props;
-    const {graphData, percent, range} = this.state;
+    const {graphData, percent, range, shouldShow} = this.state;
     return (
       <SafeAreaView style={style.mainContainer}>
         <ScrollView>
@@ -274,6 +281,40 @@ export class ManagePortfolioCompany extends Component {
               </Text>
             </TouchableOpacity>
           </View>
+          <View style={style.accountPrivacyContainer}>
+              <Text style={style.detailsText}>Account privacy</Text>
+
+              <View style={style.dotsDropdownContainer}>
+              <TouchableOpacity
+                onPress={() =>
+                  this.setState({
+                    shouldShow: !shouldShow,
+                  })
+                }>
+                  <View style={style.visibleButtonContainer}>
+          <Text style={style.middleDetailsText}>{this.state.dropDown}</Text>
+        <TriangleIcon style={style.icon}/>        
+          </View>
+              </TouchableOpacity>
+              {this.state.shouldShow ? (
+                <View style={style.dropdown}>
+                  { this.state.dropDown == 'Visible for all' ?
+                  <TouchableOpacity onPress={() => this.dropDownSelect('Private')}>
+                  <Text style={style.dropDownText}>Private</Text>
+              </TouchableOpacity>
+              :
+              <TouchableOpacity onPress={() => this.dropDownSelect('Visible for all')}>
+                  <Text style={style.dropDownText}>Visible for all</Text>
+              </TouchableOpacity>
+              
+                  }          
+                </View>
+              ) : null}
+            </View>         
+
+
+              
+            </View>
 
           <Text style={style.vitalsHeader}>STATS</Text>
           <View style={style.vitalsContainer}>
@@ -337,6 +378,7 @@ export default ManagePortfolioCompany;
 const style = StyleSheet.create({
   mainContainer: {
     backgroundColor: '#2a334a',
+    paddingVertical:10,
   },
   aboveGraphContainer: {
     paddingVertical: 14,
@@ -408,6 +450,60 @@ const style = StyleSheet.create({
     fontSize: 12,
     fontFamily:'Montserrat-Medium',
   },
+  accountPrivacyContainer: {
+      paddingHorizontal:6,
+  },
+  visibleButtonContainer: {
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    borderRadius: 6,
+    backgroundColor: '#3E4D6C',
+    marginTop: 4,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  middleDetailsText: {
+    fontFamily: 'Montserrat-Medium',
+    color: '#FFFFFF',
+    fontSize: 16,
+  },
+  detailsText: {
+    color: 'lightgrey',
+    fontSize: 12,
+    fontFamily: 'Montserrat-Regular',
+    paddingLeft: 2,
+    marginTop:6,
+  },
+  dropdown: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginTop: 44,
+    backgroundColor: '#3E4D6C',
+    zIndex: 1,
+    paddingVertical: 4,
+    height:35,
+    position:'absolute',
+    borderBottomLeftRadius:6,
+    borderBottomRightRadius:6,
+  },
+  dropDownText: {
+    color: 'white',
+    fontSize: 16,
+    marginHorizontal: 12,
+    fontFamily:'Montserrat-Medium',
+    marginBottom:6,  
+  },
+  dropDownTextReportContainer: {
+    borderTopWidth: 1,
+    borderTopColor: 'lightgrey',
+    paddingTop: 4,
+    backgroundColor:'#2C3957',
+  },
+  icon:{
+    marginRight:4,
+  },
   vitalsContainer: {
     marginTop: 6,
     // borderTopWidth: 1,
@@ -472,6 +568,7 @@ const style = StyleSheet.create({
   buyButtonContainer: {
     marginTop: 24,
     alignItems: 'center',
+    marginBottom:4,
   },
   buyButton: {
     backgroundColor: '#8b64ff',
