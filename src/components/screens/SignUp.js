@@ -31,6 +31,7 @@ class SignUp extends Component {
       password: "",
       confirmPassword: "",
       check: false,
+      error:"",
     };
   }
 
@@ -58,6 +59,13 @@ class SignUp extends Component {
     });
   ;} 
 
+  errorInput(text) {
+    this.setState({
+        error:text
+    })
+  
+  ;} 
+
   render() {      
     const { RegisterUser } = this.props;  
 
@@ -68,9 +76,9 @@ class SignUp extends Component {
   
     const handleSubmit = () => {
       this.state.password !== this.state.confirmPassword 
-        ? alert("Passwords do not match")
+        ? this.errorInput('passwords')        
         : this.state.check === false 
-        ? alert("Please check Terms and Conditions")
+        ? this.errorInput('checkbox') 
         : RegisterUser(credentials)
     };
 
@@ -95,6 +103,8 @@ class SignUp extends Component {
                 <SmallStockSwap/>
               </View>
               <View style={style.container}>
+              <Text style={style.signUpHeader}>{this.state.error}</Text>
+
                 <Text style={style.signUpHeader}>Sign Up</Text>
 
                 <View>
@@ -115,14 +125,13 @@ class SignUp extends Component {
                 <View>
                   <Text style={style.inputHeader}>Password</Text>
                   <TextInput
-                    style={style.inputStyle}
+                    style={ this.state.error === 'passwords' ? {...style.inputStyle, backgroundColor:'#F66E6E'} : {...style.inputStyle}}
                     value={this.state.password}
                     onChangeText={(text) => this.handlePasswordChange(text)}
                     placeholder="Enter your password"
                     placeholderTextColor="#9ea6b5"
                     secureTextEntry
                     returnKeyType="next"
-                    style={style.inputStyle}
                     ref={(input) => (this.passwordInput = input)}
                     onSubmitEditing={() => this.confirmPasswordInput.focus()}
                   />
@@ -130,7 +139,7 @@ class SignUp extends Component {
                 <View>
                   <Text style={style.inputHeader}>Repeat password</Text>
                   <TextInput
-                    style={style.inputStyleConfirm}
+                    style={ this.state.error === 'passwords' ? {...style.inputStyleConfirm, backgroundColor:'#F66E6E'} : {...style.inputStyleConfirm}}
                     value={this.state.confirmPassword}
                     onChangeText={(text) =>
                       this.handleConfirmPasswordChange(text)
@@ -151,7 +160,7 @@ class SignUp extends Component {
                 onPress={() =>
                   this.props.navigation.navigate('TermsAndConditions')
                 }>
-              <Text style={style.termsText}>
+              <Text style={ this.state.error === 'checkbox' ? {...style.termsText, color:'#F66E6E'} : {...style.termsText}}>
                   I agree with the Terms and Conditions
                 </Text>              
               </TouchableOpacity>            
@@ -288,6 +297,7 @@ const style = StyleSheet.create({
     opacity:0.7,
     color:'#9ea6b5'
   },
+ 
   button: {
     alignSelf: "center",
     backgroundColor: "#8B64FF",
