@@ -93,6 +93,7 @@ const userReducer = (state = defaultState, action) => {
           loading: false,
           error: "",
           userData: action.payload,
+          isLoggedIn: true,
         };
       case PROFILEPOST_ERROR:
         return {

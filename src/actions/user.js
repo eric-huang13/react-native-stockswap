@@ -109,7 +109,7 @@ export const ProfilePost = (input) => {
     .post('https://jiujitsux.herokuapp.com/api/users/register', input)
   
     .then(response =>{ dispatch({ type: PROFILEPOST_SUCCESS, payload: response.data }) 
-    navigate('Login')
+    // navigate('Login')
 })
 
 .catch(error => {dispatch({ type: PROFILEPOST_ERROR, payload: error.response })
