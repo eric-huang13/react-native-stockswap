@@ -1,4 +1,4 @@
-import {LOGIN_START, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, SIGNUP_START, SIGNUP_SUCCESS, SIGNUP_ERROR, EDITUSER_START, EDITUSER_SUCCESS, EDITUSER_ERROR,} from 'constants';
+import {LOGIN_START, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, SIGNUP_START, SIGNUP_SUCCESS, SIGNUP_ERROR, EDITUSER_START, EDITUSER_SUCCESS, EDITUSER_ERROR, PROFILEPOST_START,PROFILEPOST_SUCCESS,PROFILEPOST_ERROR,} from 'constants';
 import axios from 'axios';
 import deviceStorage from '../components/screens/DeviceStorage'
 import apiInstance from '../util/axiosConfig'
@@ -97,6 +97,24 @@ export const EditUser = (input) => {
  .catch(error => {dispatch({ type: EDITUSER_ERROR, payload: error.response })
 console.log(error.response )
  
+})
+  };
+};
+
+
+export const ProfilePost = (input) => {
+  return (dispatch) => {
+    dispatch({type: PROFILEPOST_START});
+    axios
+    .post('https://jiujitsux.herokuapp.com/api/users/register', input)
+  
+    .then(response =>{ dispatch({ type: PROFILEPOST_SUCCESS, payload: response.data }) 
+    navigate('home')
+})
+
+.catch(error => {dispatch({ type: PROFILEPOST_ERROR, payload: error.response })
+alert("Error creating profile" )
+
 })
   };
 };

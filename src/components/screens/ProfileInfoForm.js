@@ -54,6 +54,10 @@ class ProfileInfoForm extends Component {
     });
   };
 
+  handleSubmit = (input) => {
+    EditUserAccount(input)
+  };
+
   render() {
     return (
       <LinearGradient
