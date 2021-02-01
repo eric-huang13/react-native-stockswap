@@ -1,5 +1,6 @@
 import {LOGIN_START, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, SIGNUP_START, SIGNUP_SUCCESS, SIGNUP_ERROR, EDITUSER_START,
-  EDITUSER_SUCCESS, EDITUSER_ERROR,} from 'constants';
+  EDITUSER_SUCCESS, EDITUSER_ERROR, PROFILEPOST_START,
+  PROFILEPOST_SUCCESS, PROFILEPOST_ERROR,} from 'constants';
 
 const defaultState = {
   isLoggedIn: false,
@@ -79,7 +80,26 @@ const userReducer = (state = defaultState, action) => {
           ...state,
           loading: false,
           error: action.payload,
-        };  
+        };
+        case PROFILEPOST_START:
+        return {
+          ...state,
+          loading: true,
+          error: "",
+        };
+      case PROFILEPOST_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          error: "",
+          userData: action.payload,
+        };
+      case PROFILEPOST_ERROR:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };   
       case LOGIN_ERROR:
         return {
           ...state,
