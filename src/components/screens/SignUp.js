@@ -75,8 +75,12 @@ class SignUp extends Component {
       }; 
   
     const handleSubmit = () => {
-          this.state.email === ""
+        this.state.email === "" && this.state.password === ""
+        ? this.errorInput('all')
+        : this.state.email === ""
         ? this.errorInput('email')
+        : this.state.password === "" || this.state.confirmPassword === ''
+        ? this.errorInput('passwords')
         : this.state.password !== this.state.confirmPassword 
         ? this.errorInput('passwords')        
         : this.state.check === false 
@@ -105,7 +109,6 @@ class SignUp extends Component {
                 <SmallStockSwap/>
               </View>
               <View style={style.container}>
-              <Text style={style.signUpHeader}>{this.state.error}</Text>
 
                 <Text style={style.signUpHeader}>Sign Up</Text>
 
@@ -113,7 +116,7 @@ class SignUp extends Component {
                   <Text style={style.inputHeader}>Email</Text>
 
                   <TextInput
-                    style={ this.state.error === 'email' ? {...style.inputStyle, backgroundColor:'#F66E6E'} : {...style.inputStyle}}
+                    style={ this.state.error === 'email' ||  this.state.error === 'all' ? {...style.inputStyle, backgroundColor:'#F66E6E'} : {...style.inputStyle}}
                     value={this.state.email}
                     onChangeText={(text) => this.handleEmailChange(text)}
                     placeholder="Enter your email"
@@ -127,7 +130,7 @@ class SignUp extends Component {
                 <View>
                   <Text style={style.inputHeader}>Password</Text>
                   <TextInput
-                    style={ this.state.error === 'passwords' ? {...style.inputStyle, backgroundColor:'#F66E6E'} : {...style.inputStyle}}
+                    style={ this.state.error === 'passwords' ||  this.state.error === 'all' ? {...style.inputStyle, backgroundColor:'#F66E6E'} : {...style.inputStyle}}
                     value={this.state.password}
                     onChangeText={(text) => this.handlePasswordChange(text)}
                     placeholder="Enter your password"
@@ -141,7 +144,7 @@ class SignUp extends Component {
                 <View>
                   <Text style={style.inputHeader}>Repeat password</Text>
                   <TextInput
-                    style={ this.state.error === 'passwords' ? {...style.inputStyleConfirm, backgroundColor:'#F66E6E'} : {...style.inputStyleConfirm}}
+                    style={ this.state.error === 'passwords' ||  this.state.error === 'all' ? {...style.inputStyleConfirm, backgroundColor:'#F66E6E'} : {...style.inputStyleConfirm}}
                     value={this.state.confirmPassword}
                     onChangeText={(text) =>
                       this.handleConfirmPasswordChange(text)

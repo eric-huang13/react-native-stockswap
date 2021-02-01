@@ -26,6 +26,7 @@ class LoginScreen extends Component {
     this.state = {
       email: "",
       password: "",
+      error:"",
       
     };
    
@@ -46,6 +47,12 @@ class LoginScreen extends Component {
     LoginUser(input)
   };
 
+  errorInput(text) {
+    this.setState({
+        error:text
+    });  
+  };
+
   testAPI = () => {
     axios.get('/')
     .then(response => response.data)
@@ -57,6 +64,20 @@ class LoginScreen extends Component {
 
   render() {
     const {isLoggedIn, LoginUser} = this.props;
+    const credentials = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+
+    const handleSubmit = () => {
+      this.state.email === "" && this.state.password === ""
+    ? this.errorInput('all')
+    : this.state.email === ""
+    ? this.errorInput('email')
+    : this.state.password === ""
+    ? this.errorInput('password')        
+    : LoginUser(credentials)
+};
 
     
 
@@ -91,7 +112,7 @@ class LoginScreen extends Component {
                 <Text style={style.inputHeader}>Email</Text>
 
                 <TextInput
-                  style={style.inputStyle}
+                  style={ this.state.error === 'email' ||  this.state.error === 'all' ? {...style.inputStyle, backgroundColor:'#F66E6E'} : {...style.inputStyle}}
                   value={this.state.email}
                   onChangeText={(text) => this.handleEmailChange(text)}
                   placeholder="Enter your email"
@@ -110,7 +131,7 @@ class LoginScreen extends Component {
                   placeholder="Enter your password"
                   placeholderTextColor="#9ea6b5"
                   secureTextEntry
-                  style={style.inputStyleConfirm}
+                  style={ this.state.error === 'password' ||  this.state.error === 'all' ? {...style.inputStyleConfirm, backgroundColor:'#F66E6E'} : {...style.inputStyleConfirm}}
                   ref={(input) => (this.passwordInput = input)}
                 />
               </View>
@@ -131,7 +152,7 @@ class LoginScreen extends Component {
               <Text style={style.termsText}>Forgot password?</Text>
               </View>
               <View>
-                <TouchableOpacity onPress={() => LoginUser(this.state)}>
+                <TouchableOpacity onPress={handleSubmit}>
                   <Text style={style.button}>Login</Text>
                 </TouchableOpacity>
               </View>
