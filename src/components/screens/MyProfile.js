@@ -325,7 +325,7 @@ const style = StyleSheet.create({
     padding: 10,
     borderRadius: 8,
     fontSize: 14,
-    width: 180,
+    width: 170,
     height: 42,
     backgroundColor: '#8B64FF',
     fontFamily: 'Montserrat-SemiBold',

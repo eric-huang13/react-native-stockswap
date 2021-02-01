@@ -816,31 +816,28 @@ class Navigation extends Component {
   );
 
   createCreatePostStack = () => (
-    <CreatePost.Navigator>
-      <CreatePost.Screen
+    <CreatePostStack.Navigator>
+      <CreatePostStack.Screen
         name="CreatePost"
         component={CreatePost}
-        options={({ navigation}) => ({
-          title:'Create Post',
-          headerShown: true,
+        options={{
+          title: 'Create Post',
           headerStyle: {
-            backgroundColor: '#394463',
+            backgroundColor: '#313c58',
           },
           headerTitleStyle:{
             fontFamily:'Montserrat-Bold',
             fontSize:16
-
           },
           headerTintColor: 'white',
           headerTitleAlign: {
             textAlign: 'center',
           },
-                    
-        })}
+        }}
       />
 
       
-    </CreatePost.Navigator>
+    </CreatePostStack.Navigator>
   );
 
   render() {

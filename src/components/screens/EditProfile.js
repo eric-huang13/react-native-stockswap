@@ -251,9 +251,8 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
   },
   rowInputContainer: {
-    width: 168,
+    width: 160,
   },
-
   inputHeader: {
     fontSize: 12,
     color: '#babec8',
@@ -293,7 +292,7 @@ const style = StyleSheet.create({
     textAlign: 'center',
     paddingVertical: 12,
     paddingHorizontal: 20,
-    width: 170,
+    width: 160,
     borderRadius: 6,
     fontSize: 14,
     fontFamily: 'Montserrat-SemiBold',
@@ -307,7 +306,7 @@ const style = StyleSheet.create({
     textAlign: 'center',
     paddingVertical: 12,
     paddingHorizontal: 20,
-    width: 170,
+    width: 160,
     borderRadius: 6,
     fontSize: 14,
     fontFamily: 'Montserrat-SemiBold',
