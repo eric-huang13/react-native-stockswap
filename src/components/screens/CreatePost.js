@@ -16,11 +16,17 @@ export default class CreatePost extends Component {
       toggleSwitch = (value) => {
         this.setState({enabled: value});
       };
+      handleImageChange = (text) => {
+        this.setState({
+          image: text,
+        });
+      };
       handleBodyChange = (text) => {
         this.setState({
           body: text,
         });
       };
+      
     render() {
         
         return (
@@ -32,8 +38,16 @@ export default class CreatePost extends Component {
           behavior={Platform.OS === 'ios' ? 'padding' : null}
           style={{flex: 1}}>
                 <Text style={style.header}> Post a Publication </Text>
-                <View style={style.uploadImageContainer}>
-                    <Text style={style.uploadImageText}>Tap to upload cover image</Text>
+                <View style={style.uploadImageContainer}>               
+                  <TextInput
+                    value={this.state.image}
+                    onChangeText={(text) => this.handleImageChange(text)}
+                    placeholder="Upload cover image"
+                    placeholderTextColor="#FFFFFF"
+                    style={style.inputStyleImage}
+                    ref={(input) => (this.image = input)}
+                    onSubmitEditing={() => this.hashtag.focus()}
+                  />
                 </View>
                 <View style={style.postContainer}>
                   <Text style={style.inputHeader}>Post</Text>
@@ -45,6 +59,7 @@ export default class CreatePost extends Component {
                     placeholderTextColor="#9ea6b5"
                     multiline={true}
                     numberOfLines={4}
+                    ref={(input) => (this.body = input)}
                   />
                 </View>
                 
@@ -96,7 +111,7 @@ const style = StyleSheet.create({
     },
     uploadImageContainer:{
         marginTop:20,
-        backgroundColor:'#B8A0FF',
+        backgroundColor:'#46486e',
         width:'100%',
         alignSelf:'center',
         height:130,
@@ -110,6 +125,13 @@ const style = StyleSheet.create({
         fontFamily: 'Montserrat-Regular',
 
     },
+    inputStyleImage: {
+        fontFamily: 'Montserrat-Regular',
+        color: '#FFFFFF',
+        width:200,
+        textAlign:'center'
+                
+      },
     postContainer:{
         width:'100%',
         alignSelf:'center',
