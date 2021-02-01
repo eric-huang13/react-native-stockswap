@@ -50,7 +50,7 @@ export default class CreatePost extends Component {
                 
                 <View style={style.notificationsContainer}>
               <Text style={style.middleDetailsText}>
-                Turn off notifications
+                Turn off comments
               </Text>
               <Switch
                 trackColor={{false: '#1A2542', true: '#B8A0FF'}}
@@ -68,7 +68,7 @@ export default class CreatePost extends Component {
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => EditUserAccount(this.state)}>
-                    <Text style={style.saveButton}>Save</Text>
+                    <Text style={style.previewButton}>Preview</Text>
                   </TouchableOpacity>
                 </View>
                 </KeyboardAvoidingView>
@@ -88,6 +88,7 @@ const style = StyleSheet.create({
         paddingHorizontal:26,  
         },
     header:{
+        marginTop:20,
         fontSize:20,
         fontFamily: 'Montserrat-Bold',
         color:'#FFFFFF', 
@@ -98,9 +99,10 @@ const style = StyleSheet.create({
         backgroundColor:'#B8A0FF',
         width:'100%',
         alignSelf:'center',
-        height:100,
+        height:130,
         alignItems:'center',
-        justifyContent:'center'
+        justifyContent:'center',
+        borderRadius:2,
     },
     uploadImageText:{
         fontSize:14,
@@ -135,17 +137,17 @@ const style = StyleSheet.create({
       notificationsContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 36,
+        marginTop: 10,
         marginBottom: 10,
         // marginHorizontal:30,
       },
       middleDetailsText: {
-        fontFamily: 'Montserrat-Medium',
+        fontFamily: 'Montserrat-SemiBold',
         color: '#FFFFFF',
         fontSize: 16,
       },
       buttonsContainer: {
-        marginTop: 28,
+        marginTop: 40,
         flexDirection: 'row',
         justifyContent: 'space-between',
         // marginHorizontal:30,
@@ -163,7 +165,7 @@ const style = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#8b64ff',
       },
-      saveButton: {
+      previewButton: {
         alignSelf: 'center',
         backgroundColor: '#8b64ff',
         color: '#FFFFFF',
