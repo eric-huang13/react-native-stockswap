@@ -38,6 +38,8 @@ import ManagePortfolio from './components/screens/ManagePortfolio'
 import ManagePortfolioBox from './components/screens/ManagePortfolioBox'
 import ManagePortfolioCompany from './components/screens/ManagePortfolioCompany'
 import CreatePost from './components/screens/CreatePost'
+import PostType from './components/screens/PostType'
+
 
 
 
@@ -817,6 +819,24 @@ class Navigation extends Component {
 
   createCreatePostStack = () => (
     <CreatePostStack.Navigator>
+       <CreatePostStack.Screen
+        name="PostType"
+        component={PostType}
+        options={{
+          title: 'Create Post',
+          headerStyle: {
+            backgroundColor: '#313c58',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
       <CreatePostStack.Screen
         name="CreatePost"
         component={CreatePost}
