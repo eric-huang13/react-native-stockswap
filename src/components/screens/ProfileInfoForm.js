@@ -12,6 +12,8 @@ import {
   Keyboard,
   ScrollView,
 } from "react-native";
+import { ProfilePost } from "../../actions/user";
+
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -20,21 +22,21 @@ class ProfileInfoForm extends Component {
     super(props);
 
     this.state = {
-      name: "",
-      username: "",
-      hashtag: "",
-      bio: "",
-      image: "",
+      email: "",
+      password: "",
+      // hashtag: "",
+      // bio: "",
+      // image: "",
     };    
   }handleNameChange = (text) => {
     this.setState({
-      name: text,
+      email: text,
     });
   };
 
   handleUsernameChange = (text) => {
     this.setState({
-      username: text,
+      password: text,
     });
   };
 
@@ -54,11 +56,16 @@ class ProfileInfoForm extends Component {
     });
   };
 
-  handleSubmit = (input) => {
-    EditUserAccount(input)
-  };
+  
 
   render() {
+    const { AddProfile, userData } = this.props;  
+    console.log(userData, "USERDATA in PROFILE")
+
+    const handleSubmit = (input) => {
+      AddProfile(input)
+    };
+
     return (
       <LinearGradient
         start={{x: 0.1, y: 1}}
@@ -159,7 +166,7 @@ class ProfileInfoForm extends Component {
                 </TouchableOpacity>
               </View>
               <View>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
+                <TouchableOpacity onPress={() => handleSubmit(this.state)}>
                   <Text style={style.button}>Next</Text>
                 </TouchableOpacity>
               </View>
@@ -176,12 +183,13 @@ class ProfileInfoForm extends Component {
 //Redux for easy hookup later
 const mapStateToProps = (state) => {
   return {
-    user: state.user.user,    
+    userData: state.user.userData,    
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    AddProfile: (input) => dispatch(ProfilePost(input)),
   };
 };
 

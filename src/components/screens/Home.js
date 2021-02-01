@@ -20,7 +20,7 @@ class HomeScreen extends Component {
   }
   render() {
     const {isLoggedIn, LogoutUser, posts, comments, reply, userData, userAccount} = this.props;
-    
+    console.log(userData, "USERDATA in HOME")
      const getData = async () => {
     try {
       const value = await AsyncStorage.getItem("token");
