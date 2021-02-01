@@ -37,6 +37,7 @@ import PrivacyPolicy from './components/screens/PrivacyPolicy'
 import ManagePortfolio from './components/screens/ManagePortfolio'
 import ManagePortfolioBox from './components/screens/ManagePortfolioBox'
 import ManagePortfolioCompany from './components/screens/ManagePortfolioCompany'
+import CreatePost from './components/screens/CreatePost'
 
 
 
@@ -59,6 +60,7 @@ const SearchStack = createStackNavigator();
 const HomeStack = createStackNavigator();
 const MyProfileStack = createStackNavigator();
 const TopUsersStack = createStackNavigator();
+const CreatePostStack = createStackNavigator();
 
 
 class Navigation extends Component {
@@ -813,6 +815,34 @@ class Navigation extends Component {
     </TopUsersStack.Navigator>
   );
 
+  createCreatePostStack = () => (
+    <CreatePost.Navigator>
+      <CreatePost.Screen
+        name="CreatePost"
+        component={CreatePost}
+        options={({ navigation}) => ({
+          title:'Create Post',
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: '#394463',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+                    
+        })}
+      />
+
+      
+    </CreatePost.Navigator>
+  );
+
   render() {
     const {isLoggedIn} = this.props;
 
@@ -856,7 +886,7 @@ class Navigation extends Component {
             >
             <Tab.Screen name="Home" component={this.createHomeStack} />
             <Tab.Screen name="Search" component={this.createSearchStack}/>
-            <Tab.Screen name="PostScreen" component={PasswordSuccess}  />
+            <Tab.Screen name="PostScreen" component={this.createCreatePostStack}  />
             <Tab.Screen name="UserList" component={this.createTopUsersStack}  />
             <Tab.Screen name="MyProfile" component={this.createMyProfileStack}  />
 
