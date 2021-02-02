@@ -29,7 +29,6 @@ export default class UserCommentList extends Component {
   };
   render() {
     const {filteredComments, reply, userAccount} = this.props;
-    console.log(filteredComments, 'filcom');
 
     return (
       <SafeAreaView style={style.mainContainer}>

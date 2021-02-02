@@ -7,6 +7,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 //Components
 import CreatePost from '../components/screens/CreatePost'
 import PostType from '../components/screens/PostType'
+import CreatePostPreview from '../components/screens/CreatePostPreview'
 
 
 const PostStack = createStackNavigator();
@@ -38,6 +39,24 @@ export default class PostStackNavigator extends Component {
         component={CreatePost}
         options={{
           title: 'Create Post',
+          headerStyle: {
+            backgroundColor: '#313c58',
+          },
+          headerTitleStyle:{
+            fontFamily:'Montserrat-Bold',
+            fontSize:16
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: {
+            textAlign: 'center',
+          },
+        }}
+      />
+      <PostStack.Screen
+        name="CreatePostPreview"
+        component={CreatePostPreview}
+        options={{
+          title: 'Post Preview',
           headerStyle: {
             backgroundColor: '#313c58',
           },

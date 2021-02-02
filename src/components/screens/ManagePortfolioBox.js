@@ -54,18 +54,14 @@ export default class UserPortfolioBox extends Component {
       //Info to display
     //Current stock price
     const currentPrice = yPrices[yPrices.length - 1];
-    console.log(currentPrice,"cur price")
 
     const seven = yPrices[yPrices.length - 7];
-    console.log(seven,"seven price")
 
     const testing =currentPrice - yPrices[yPrices.length - 7]
-    console.log(testing,"testing")
 
     // Growth/Loss percentage
     const percentChange = (
       ((currentPrice - yPrices[yPrices.length - 7]) / yPrices[yPrices.length - 7]) *100).toFixed(2);
-      console.log(percentChange,"change")
 
 
       this.setState({

@@ -1,6 +1,5 @@
 // React Imports
 import React, {Component} from 'react';
-import {StyleSheet} from 'react-native'
 
 // Redux
 import {connect} from 'react-redux';
@@ -8,14 +7,10 @@ import {connect} from 'react-redux';
 // Navigation
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
 import {navigationRef} from '../RootNavigation'
 
 // Components
-import LoginScreen from 'components/screens/Login';
-import SignUp from './components/screens/SignUp'
-import ProfileInfoForm from './components/screens/ProfileInfoForm'
-import TermsAndConditions from './components/screens/TermsAndConditions'
+
 
 //icons
 import SearchIconInactive from './icons/SearchIconInactive'

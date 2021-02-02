@@ -60,7 +60,6 @@ class ProfileInfoForm extends Component {
 
   render() {
     const { AddProfile, userData } = this.props;  
-    console.log(userData, "USERDATA in PROFILE")
 
     const handleSubmit = (input) => {
       AddProfile(input)
