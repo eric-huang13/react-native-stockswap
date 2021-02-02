@@ -4,6 +4,24 @@ import LikeInactiveIcon from '../../icons/LikeInactiveIcon'
 import CommentIcon from '../../icons/CommentIcon'
 
 export default class CreatePostPreview extends Component {
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          enabled:'',
+          image:'',
+          body:'',
+        };
+      }
+      componentDidMount() {
+        const {data} = this.props.route.params
+     
+            this.setState({
+                enabled:data.enabled,
+                image:data.image,
+                body:data.body,
+            });      
+      }
     render() {
         return (
             <SafeAreaView style={style.container}>
@@ -17,8 +35,12 @@ export default class CreatePostPreview extends Component {
               <Text style={style.postUserName}>Test</Text>
             </View>
           </View>
-          <Image style={style.image} source={{uri: 'https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTh8fGhlYWRzaG90JTIwc3VpdHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60'}} />
-          <View style={style.detailsContainer}>
+          {this.state.image === '' ? (
+                <View style={style.uploadImageContainer}></View>
+              ) : (
+                <Image style={style.image} source={{uri: this.state.image}} />
+              )}         
+               <View style={style.detailsContainer}>
             <Text style={style.timestamp}>just now</Text>
 
             <View style={style.likesContainer}>
@@ -32,7 +54,7 @@ export default class CreatePostPreview extends Component {
               </View>
             </View>
           </View>
-          <Text style={style.body}>Test body</Text>
+          <Text style={style.body}>{this.state.body}</Text>
         
         </ScrollView>
             </SafeAreaView>
@@ -50,6 +72,16 @@ const style = StyleSheet.create({
     },
     scrollContainer: {   
       paddingHorizontal: 10,
+    },
+    uploadImageContainer:{
+        marginTop:20,
+        backgroundColor:'#46486e',
+        width:'100%',
+        alignSelf:'center',
+        height:130,
+        alignItems:'center',
+        justifyContent:'center',
+        borderRadius:2,
     },
     image: {
       height: 182,

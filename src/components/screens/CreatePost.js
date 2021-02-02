@@ -83,7 +83,11 @@ export default class CreatePost extends Component {
                   </TouchableOpacity>
                   <TouchableOpacity
                 onPress={() =>
-                  this.props.navigation.navigate('CreatePostPreview')
+                  this.props.navigation.navigate({
+                    name: 'CreatePostPreview',
+                    params: {data: this.state},
+                  })
+                  
                 }>
                   <Text style={style.previewButton}>Preview</Text>
                 </TouchableOpacity>

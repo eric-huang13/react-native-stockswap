@@ -58,7 +58,7 @@ class EditProfile extends Component {
     const {user, userAccount} = this.props;
     const userid = 15;
     // const selectedUser = users.filter((user) => user.id === userid);
-    {
+    
       // selectedUser.map((user) => {
         this.setState({
           id:userAccount.id,
@@ -69,7 +69,7 @@ class EditProfile extends Component {
           image: userAccount.img,
         });
       // });
-    }
+    
   
   }
   handleSubmit = (input) => {
