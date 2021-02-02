@@ -57,6 +57,7 @@ export default class PostStackNavigator extends Component {
         component={CreatePostPreview}
         options={{
           title: 'Post Preview',
+          headerShown: false,
           headerStyle: {
             backgroundColor: '#313c58',
           },

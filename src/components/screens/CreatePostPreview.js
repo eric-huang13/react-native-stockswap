@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
-import { Text, View, SafeAreaView, ScrollView, StyleSheet, Image } from 'react-native'
+import {connect} from 'react-redux'
+import { Text, View, SafeAreaView, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import LikeInactiveIcon from '../../icons/LikeInactiveIcon'
 import CommentIcon from '../../icons/CommentIcon'
 
-export default class CreatePostPreview extends Component {
+class CreatePostPreview extends Component {
     constructor(props) {
         super(props);
     
         this.state = {
+          name:'',
+          profileImage:' ',
           enabled:'',
           image:'',
           body:'',
@@ -15,14 +18,21 @@ export default class CreatePostPreview extends Component {
       }
       componentDidMount() {
         const {data} = this.props.route.params
+        const {userAccount} = this.props;
+
      
             this.setState({
+                id:userAccount.id,
+                name: userAccount.name,
+                profileImage: userAccount.img,
                 enabled:data.enabled,
                 image:data.image,
                 body:data.body,
             });      
       }
     render() {
+        const {userAccount} = this.props;
+console.log(this.state,"STATE")
         return (
             <SafeAreaView style={style.container}>
                 <ScrollView style={style.scrollContainer}>
@@ -30,13 +40,13 @@ export default class CreatePostPreview extends Component {
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Image
                 style={style.postUserImage}
-                source={{uri: 'https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTh8fGhlYWRzaG90JTIwc3VpdHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60'}}
+                source={{uri: this.state.profileImage}}
               />
-              <Text style={style.postUserName}>Test</Text>
+              <Text style={style.postUserName}>{this.state.name}</Text>
             </View>
           </View>
           {this.state.image === '' ? (
-                <View style={style.uploadImageContainer}></View>
+                null
               ) : (
                 <Image style={style.image} source={{uri: this.state.image}} />
               )}         
@@ -55,6 +65,16 @@ export default class CreatePostPreview extends Component {
             </View>
           </View>
           <Text style={style.body}>{this.state.body}</Text>
+          <View style={style.buttonsContainer}>
+                  <TouchableOpacity
+                    onPress={() => this.props.navigation.goBack()}>
+                    <Text style={style.backButton}>Back</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => EditUserAccount(this.state)}>
+                    <Text style={style.publishButton}>Preview</Text>
+                  </TouchableOpacity>
+                </View>
         
         </ScrollView>
             </SafeAreaView>
@@ -62,6 +82,19 @@ export default class CreatePostPreview extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+      users: state.people.users,
+      userAccount: state.user.userFakeData
+    };
+  };
+  
+  const mapDispatchToProps = (dispatch) => {
+    return {
+    };
+  };
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(CreatePostPreview);
 
 const style = StyleSheet.create({
     container: {
@@ -72,16 +105,6 @@ const style = StyleSheet.create({
     },
     scrollContainer: {   
       paddingHorizontal: 10,
-    },
-    uploadImageContainer:{
-        marginTop:20,
-        backgroundColor:'#46486e',
-        width:'100%',
-        alignSelf:'center',
-        height:130,
-        alignItems:'center',
-        justifyContent:'center',
-        borderRadius:2,
     },
     image: {
       height: 182,
@@ -149,5 +172,36 @@ const style = StyleSheet.create({
       paddingBottom: 18,
       fontFamily:'Montserrat-Medium',
     },
+    buttonsContainer: {
+        marginTop: 40,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginHorizontal:15,
+      },
+      backButton: {
+        alignSelf: 'center',
+        color: '#8b64ff',
+        textAlign: 'center',
+        paddingVertical: 12,
+        paddingHorizontal: 20,
+        width: 160,
+        borderRadius: 6,
+        fontSize: 14,
+        fontFamily: 'Montserrat-SemiBold',
+        borderWidth: 1,
+        borderColor: '#8b64ff',
+      },
+      publishButton: {
+        alignSelf: 'center',
+        backgroundColor: '#8b64ff',
+        color: '#FFFFFF',
+        textAlign: 'center',
+        paddingVertical: 12,
+        paddingHorizontal: 20,
+        width: 160,
+        borderRadius: 6,
+        fontSize: 14,
+        fontFamily: 'Montserrat-SemiBold',
+      },
     });
   
