@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import { Text, View, SafeAreaView, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import LikeInactiveIcon from '../../icons/LikeInactiveIcon'
 import CommentIcon from '../../icons/CommentIcon'
+import {UserPost} from '../../actions/posts'
+
 
 class CreatePostPreview extends Component {
     constructor(props) {
@@ -30,8 +32,18 @@ class CreatePostPreview extends Component {
                 body:data.body,
             });      
       }
+
+      handleSubmit = (input) => {
+        UserPost(input)
+      };
     render() {
-        const {userAccount} = this.props;
+        const credentials = {
+            name: this.state.name,
+            description:this.state.body,
+            image_url:this.state.image
+            
+          }; 
+        const {UserPost} = this.props;
 console.log(this.state,"STATE")
         return (
             <SafeAreaView style={style.container}>
@@ -48,7 +60,7 @@ console.log(this.state,"STATE")
           {this.state.image === '' ? (
                 null
               ) : (
-                <Image style={style.image} source={{uri: this.state.image}} />
+                <Image style={style.image} source={{uri:this.state.image}} />
               )}         
                <View style={style.detailsContainer}>
             <Text style={style.timestamp}>just now</Text>
@@ -71,7 +83,7 @@ console.log(this.state,"STATE")
                     <Text style={style.backButton}>Back</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={() => EditUserAccount(this.state)}>
+                    onPress={() => UserPost(credentials)}>
                     <Text style={style.publishButton}>Preview</Text>
                   </TouchableOpacity>
                 </View>
@@ -84,14 +96,14 @@ console.log(this.state,"STATE")
 
 const mapStateToProps = (state) => {
     return {
-      users: state.people.users,
       userAccount: state.user.userFakeData
     };
   };
   
   const mapDispatchToProps = (dispatch) => {
     return {
-    };
+        UserPost: (input) => dispatch(UserPost(input)),
+      };
   };
   
   export default connect(mapStateToProps, mapDispatchToProps)(CreatePostPreview);
