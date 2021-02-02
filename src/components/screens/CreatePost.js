@@ -85,8 +85,7 @@ export default class CreatePost extends Component {
                 onPress={() =>
                   this.props.navigation.navigate('CreatePostPreview')
                 }>
-                                      <Text style={style.previewButton}>Preview</Text>
-
+                  <Text style={style.previewButton}>Preview</Text>
                 </TouchableOpacity>
                   {/* <TouchableOpacity
                     onPress={() => EditUserAccount(this.state)}>
