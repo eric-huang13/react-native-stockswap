@@ -55,6 +55,9 @@ import ProfileActive from './icons/ProfileActive'
 import CreatePostInactive from './icons/CreatePostInactive'
 import CreatePostActive from './icons/CreatePostActive'
 
+//Stack Navigators
+import CreatePostStackNavigator from './NavigationStacks/CreatePostStackNavigator'
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -903,7 +906,7 @@ class Navigation extends Component {
             >
             <Tab.Screen name="Home" component={this.createHomeStack} />
             <Tab.Screen name="Search" component={this.createSearchStack}/>
-            <Tab.Screen name="PostScreen" component={this.createCreatePostStack}  />
+            <Tab.Screen name="PostScreen" component={CreatePostStackNavigator}  />
             <Tab.Screen name="UserList" component={this.createTopUsersStack}  />
             <Tab.Screen name="MyProfile" component={this.createMyProfileStack}  />
 
