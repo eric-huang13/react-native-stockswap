@@ -1,6 +1,6 @@
 // React Imports
 import React, {Component} from 'react';
-import {StyleSheet, TouchableOpacity, Text} from 'react-native'
+import {StyleSheet} from 'react-native'
 
 // Redux
 import {connect} from 'react-redux';
@@ -10,38 +10,12 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import {navigationRef} from '../RootNavigation'
+
 // Components
 import LoginScreen from 'components/screens/Login';
-import HomeScreen from 'components/screens/Home';
-import SearchTab from './components/screens/SearchTab';
-import CompanyInformation from './components/screens/CompanyInformation';
-import CompanyCategory from './components/screens/CompanyCategory';
-import Profile from './components/screens/Profile';
-import UserCommentList from './components/screens/UserCommentList';
-import PostScreen from './components/screens/PostScreen';
-import UserPortfolioList from './components/screens/UserPortfolioList';
 import SignUp from './components/screens/SignUp'
 import ProfileInfoForm from './components/screens/ProfileInfoForm'
 import TermsAndConditions from './components/screens/TermsAndConditions'
-import SplashScreen from './components/screens/SplashScreen'
-import MyProfile from './components/screens/MyProfile'
-import MyProfileSettings from './components/screens/MyProfileSettings'
-import EditProfile from './components/screens/EditProfile'
-import ChangeEmail from './components/screens/ChangeEmail'
-import ChangePassword from './components/screens/ChangePassword'
-import MyProfilePosts from './components/screens/MyProfilePosts'
-import TopUsers from './components/screens/TopUsers'
-import PasswordSuccess from './components/screens/PasswordSuccess'
-import EmailSuccess from './components/screens/EmailSuccess'
-import PrivacyPolicy from './components/screens/PrivacyPolicy'
-import ManagePortfolio from './components/screens/ManagePortfolio'
-import ManagePortfolioBox from './components/screens/ManagePortfolioBox'
-import ManagePortfolioCompany from './components/screens/ManagePortfolioCompany'
-// import CreatePost from './components/screens/CreatePost'
-// import PostType from './components/screens/PostType'
-
-
-
 
 //icons
 import SearchIconInactive from './icons/SearchIconInactive'
@@ -56,6 +30,7 @@ import CreatePostInactive from './icons/CreatePostInactive'
 import CreatePostActive from './icons/CreatePostActive'
 
 //Stack Navigators
+import LoggedOutStackNavigator from './NavigationStacks/LoggedOutStackNavigator'
 import PostStackNavigator from './NavigationStacks/PostStackNavigator'
 import TopUsersStackNavigator from './NavigationStacks/TopUsersStackNavigator'
 import MyProfileStackNavigator from './NavigationStacks/MyProfileStackNavigator'
@@ -64,8 +39,6 @@ import SearchStackNavigator from './NavigationStacks/SearchStackNavigator'
 
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
-
 
 class Navigation extends Component {
 
@@ -118,25 +91,7 @@ class Navigation extends Component {
 
           </Tab.Navigator>
         ) : (
-          <Stack.Navigator>
-            <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}
- />
- <Stack.Screen name="SignUp" component={SignUp} options={{headerShown: false}}
- />
- <Stack.Screen name="ProfileInfoForm" component={ProfileInfoForm} options={{headerShown: false}}
- />
-  <Stack.Screen name="TermsAndConditions" component={TermsAndConditions} options={{
-          title: 'StockSwap',
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }} 
- />
-          </Stack.Navigator>
+          <LoggedOutStackNavigator/>
         )}
       </NavigationContainer>
     );
@@ -149,18 +104,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = () => {
   return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
 
-const style = StyleSheet.create({
-  button:{
-    fontSize:14,
-    color:'#B8A0FF',
-    marginRight:12,
-    fontFamily:'Montserrat-SemiBold',
-
-  },
-})
