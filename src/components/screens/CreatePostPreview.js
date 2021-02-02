@@ -33,18 +33,15 @@ class CreatePostPreview extends Component {
             });      
       }
 
-      handleSubmit = (input) => {
-        UserPost(input)
-      };
+      
     render() {
-        const credentials = {
-            name: this.state.name,
-            description:this.state.body,
-            image_url:this.state.image
-            
-          }; 
+        //for testing
+        // const credentials = {
+        //     name: this.state.name,
+        //     description:this.state.body,
+        //     image_url:this.state.image            
+        //   }; 
         const {UserPost} = this.props;
-console.log(this.state,"STATE")
         return (
             <SafeAreaView style={style.container}>
                 <ScrollView style={style.scrollContainer}>
@@ -83,8 +80,8 @@ console.log(this.state,"STATE")
                     <Text style={style.backButton}>Back</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={() => UserPost(credentials)}>
-                    <Text style={style.publishButton}>Preview</Text>
+                    onPress={() => UserPost(this.state)}>
+                    <Text style={style.publishButton}>Publish</Text>
                   </TouchableOpacity>
                 </View>
         

@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 import { Text, View, StyleSheet, TextInput, SafeAreaView, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback,Switch, TouchableOpacity } from 'react-native'
+import {UserPost} from '../../actions/posts'
 
 
-export default class CreatePost extends Component {
+class CreatePost extends Component {
     constructor(props) {
         super(props);
     
@@ -26,13 +28,17 @@ export default class CreatePost extends Component {
           body: text,
         });
       };
-      
+   
     render() {
-        
-        return (
-        
-        
-              <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      //for testing
+      // const credentials = {
+      //       name: this.state.body,
+      //       description:this.state.image,          
+      //       }; 
+      const {UserPost} = this.props;   
+
+        return (       
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <SafeAreaView style={style.mainContainer}>
             <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : null}
@@ -77,8 +83,8 @@ export default class CreatePost extends Component {
               />
             </View>
             <View style={style.buttonsContainer}>
-                  <TouchableOpacity
-                    onPress={() => this.props.navigation.goBack()}>
+            <TouchableOpacity
+                    onPress={() => UserPost(this.state)}>
                     <Text style={style.publishButton}>Publish</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
@@ -91,10 +97,6 @@ export default class CreatePost extends Component {
                 }>
                   <Text style={style.previewButton}>Preview</Text>
                 </TouchableOpacity>
-                  {/* <TouchableOpacity
-                    onPress={() => EditUserAccount(this.state)}>
-                    <Text style={style.previewButton}>Preview</Text>
-                  </TouchableOpacity> */}
                 </View>
                 </KeyboardAvoidingView>
             </SafeAreaView>
@@ -104,6 +106,19 @@ export default class CreatePost extends Component {
         )
     }
 }
+const mapStateToProps = (state) => {
+  return {
+    userAccount: state.user.userFakeData
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      UserPost: (input) => dispatch(UserPost(input)),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePost);
 
 const style = StyleSheet.create({
     mainContainer: {
