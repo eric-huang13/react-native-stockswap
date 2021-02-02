@@ -9,13 +9,13 @@ import CreatePost from '../components/screens/CreatePost'
 import PostType from '../components/screens/PostType'
 
 
-const CreatePostStack = createStackNavigator();
+const PostStack = createStackNavigator();
 
-export default class CreatePostStackNavigator extends Component {
+export default class PostStackNavigator extends Component {
   render() {
     return (
-      <CreatePostStack.Navigator>
-       <CreatePostStack.Screen
+      <PostStack.Navigator>
+       <PostStack.Screen
         name="PostType"
         component={PostType}
         options={{
@@ -33,7 +33,7 @@ export default class CreatePostStackNavigator extends Component {
           },
         }}
       />
-      <CreatePostStack.Screen
+      <PostStack.Screen
         name="CreatePost"
         component={CreatePost}
         options={{
@@ -53,7 +53,7 @@ export default class CreatePostStackNavigator extends Component {
       />
 
       
-    </CreatePostStack.Navigator>
+    </PostStack.Navigator>
     )
   }
 }

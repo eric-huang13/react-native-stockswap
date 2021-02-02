@@ -37,8 +37,8 @@ import PrivacyPolicy from './components/screens/PrivacyPolicy'
 import ManagePortfolio from './components/screens/ManagePortfolio'
 import ManagePortfolioBox from './components/screens/ManagePortfolioBox'
 import ManagePortfolioCompany from './components/screens/ManagePortfolioCompany'
-import CreatePost from './components/screens/CreatePost'
-import PostType from './components/screens/PostType'
+// import CreatePost from './components/screens/CreatePost'
+// import PostType from './components/screens/PostType'
 
 
 
@@ -56,7 +56,8 @@ import CreatePostInactive from './icons/CreatePostInactive'
 import CreatePostActive from './icons/CreatePostActive'
 
 //Stack Navigators
-import CreatePostStackNavigator from './NavigationStacks/CreatePostStackNavigator'
+import PostStackNavigator from './NavigationStacks/PostStackNavigator'
+import TopUsersStackNavigator from './NavigationStacks/TopUsersStackNavigator'
 
 
 const Tab = createBottomTabNavigator();
@@ -64,8 +65,8 @@ const Stack = createStackNavigator();
 const SearchStack = createStackNavigator();
 const HomeStack = createStackNavigator();
 const MyProfileStack = createStackNavigator();
-const TopUsersStack = createStackNavigator();
-const CreatePostStack = createStackNavigator();
+// const TopUsersStack = createStackNavigator();
+// const CreatePostStack = createStackNavigator();
 
 
 class Navigation extends Component {
@@ -696,172 +697,172 @@ class Navigation extends Component {
     </MyProfileStack.Navigator>
   );
 
-  createTopUsersStack = () => (
-    <TopUsersStack.Navigator>
-      <TopUsersStack.Screen
-        name="TopUsers"
-        component={TopUsers}
-        options={{  
-          headerShown:false, 
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />        
+  // createTopUsersStack = () => (
+  //   <TopUsersStack.Navigator>
+  //     <TopUsersStack.Screen
+  //       name="TopUsers"
+  //       component={TopUsers}
+  //       options={{  
+  //         headerShown:false, 
+  //         headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />        
 
-      <TopUsersStack.Screen
-        name="PostScreen"
-        component={PostScreen}
-        options={({route}) => ({
-          title: route.params.name,
+  //     <TopUsersStack.Screen
+  //       name="PostScreen"
+  //       component={PostScreen}
+  //       options={({route}) => ({
+  //         title: route.params.name,
 
-          headerShown: true,
+  //         headerShown: true,
 
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        })}
-      />
+  //         headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       })}
+  //     />
 
-      <TopUsersStack.Screen
-        name="Comments"
-        component={UserCommentList}
-        options={{
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-      <TopUsersStack.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          title: 'Profile',
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-      <TopUsersStack.Screen
-        name="UserPortfolioList"
-        component={UserPortfolioList}
-        options={{
-          title: 'Portfolio',
-          headerStyle: {
-            backgroundColor: '#313c58',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-      <TopUsersStack.Screen
-        name="CompanyInformation"
-        component={CompanyInformation}
-        options={{
-          title: 'Stock details',
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-      <TopUsersStack.Screen
-        name="MyProfile"
-        component={MyProfile}
-        options={({ navigation}) => ({
-          title:'My Profile',
-          headerShown: true,
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
+  //     <TopUsersStack.Screen
+  //       name="Comments"
+  //       component={UserCommentList}
+  //       options={{
+  //         headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
+  //     <TopUsersStack.Screen
+  //       name="Profile"
+  //       component={Profile}
+  //       options={{
+  //         title: 'Profile',
+  //         headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
+  //     <TopUsersStack.Screen
+  //       name="UserPortfolioList"
+  //       component={UserPortfolioList}
+  //       options={{
+  //         title: 'Portfolio',
+  //         headerStyle: {
+  //           backgroundColor: '#313c58',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
+  //     <TopUsersStack.Screen
+  //       name="CompanyInformation"
+  //       component={CompanyInformation}
+  //       options={{
+  //         title: 'Stock details',
+  //         headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
+  //     <TopUsersStack.Screen
+  //       name="MyProfile"
+  //       component={MyProfile}
+  //       options={({ navigation}) => ({
+  //         title:'My Profile',
+  //         headerShown: true,
+  //         headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
 
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
                    
-        })}
-      />
+  //       })}
+  //     />
       
       
-    </TopUsersStack.Navigator>
-  );
+  //   </TopUsersStack.Navigator>
+  // );
 
-  createCreatePostStack = () => (
-    <CreatePostStack.Navigator>
-       <CreatePostStack.Screen
-        name="PostType"
-        component={PostType}
-        options={{
-          title: 'Create Post',
-          headerStyle: {
-            backgroundColor: '#313c58',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-      <CreatePostStack.Screen
-        name="CreatePost"
-        component={CreatePost}
-        options={{
-          title: 'Create Post',
-          headerStyle: {
-            backgroundColor: '#313c58',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
+  // createCreatePostStack = () => (
+  //   <CreatePostStack.Navigator>
+  //      <CreatePostStack.Screen
+  //       name="PostType"
+  //       component={PostType}
+  //       options={{
+  //         title: 'Create Post',
+  //         headerStyle: {
+  //           backgroundColor: '#313c58',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
+  //     <CreatePostStack.Screen
+  //       name="CreatePost"
+  //       component={CreatePost}
+  //       options={{
+  //         title: 'Create Post',
+  //         headerStyle: {
+  //           backgroundColor: '#313c58',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
 
       
-    </CreatePostStack.Navigator>
-  );
+  //   </CreatePostStack.Navigator>
+  // );
 
   render() {
     const {isLoggedIn} = this.props;
@@ -906,8 +907,8 @@ class Navigation extends Component {
             >
             <Tab.Screen name="Home" component={this.createHomeStack} />
             <Tab.Screen name="Search" component={this.createSearchStack}/>
-            <Tab.Screen name="PostScreen" component={CreatePostStackNavigator}  />
-            <Tab.Screen name="UserList" component={this.createTopUsersStack}  />
+            <Tab.Screen name="PostScreen" component={PostStackNavigator}  />
+            <Tab.Screen name="UserList" component={TopUsersStackNavigator}  />
             <Tab.Screen name="MyProfile" component={this.createMyProfileStack}  />
 
           </Tab.Navigator>
