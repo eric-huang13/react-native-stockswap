@@ -58,13 +58,14 @@ import CreatePostActive from './icons/CreatePostActive'
 //Stack Navigators
 import PostStackNavigator from './NavigationStacks/PostStackNavigator'
 import TopUsersStackNavigator from './NavigationStacks/TopUsersStackNavigator'
+import MyProfileStackNavigator from './NavigationStacks/MyProfileStackNavigator'
 
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 const SearchStack = createStackNavigator();
 const HomeStack = createStackNavigator();
-const MyProfileStack = createStackNavigator();
+// const MyProfileStack = createStackNavigator();
 // const TopUsersStack = createStackNavigator();
 // const CreatePostStack = createStackNavigator();
 
@@ -329,373 +330,373 @@ class Navigation extends Component {
     </HomeStack.Navigator>
   );
 
-  createMyProfileStack = () => (
-    <MyProfileStack.Navigator>
-      <MyProfileStack.Screen
-        name="MyProfile"
-        component={MyProfile}
-        options={({ navigation}) => ({
-          title:'My Profile',
-          headerShown: true,
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
+  // createMyProfileStack = () => (
+  //   <MyProfileStack.Navigator>
+  //     <MyProfileStack.Screen
+  //       name="MyProfile"
+  //       component={MyProfile}
+  //       options={({ navigation}) => ({
+  //         title:'My Profile',
+  //         headerShown: true,
+  //         headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
 
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-          headerRight: () => (
-            <TouchableOpacity onPress={() =>navigation.navigate('MyProfileSettings')}>
-                  <Text style={style.button}>Settings</Text>
-                </TouchableOpacity>
-          ),          
-        })}
-      />
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //         headerRight: () => (
+  //           <TouchableOpacity onPress={() =>navigation.navigate('MyProfileSettings')}>
+  //                 <Text style={style.button}>Settings</Text>
+  //               </TouchableOpacity>
+  //         ),          
+  //       })}
+  //     />
 
-       <MyProfileStack.Screen
-        name="MyProfileSettings"
-        component={MyProfileSettings}
-        options={({ navigation}) => ({
-          title: 'Settings',
-          headerShown: true,
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-          headerRight: () => (
-            <TouchableOpacity onPress={() =>navigation.navigate('EditProfile')}>
-                  <Text style={style.button}>Edit Profile</Text>
-                </TouchableOpacity>
-          ),          
-        })}
-      />
-      <MyProfileStack.Screen
-        name="EditProfile"
-        component={EditProfile}
-        options={{   
-          title: 'Settings',       
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-      <MyProfileStack.Screen
-        name="ChangeEmail"
-        component={ChangeEmail}
-        options={{
-          headerShown: false,
-              headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-      <MyProfileStack.Screen
-        name="ChangePassword"
-        component={ChangePassword}
-        options={{
-          headerShown: false,
-              headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-       <MyProfileStack.Screen
-        name="PasswordSuccess"
-        component={PasswordSuccess}
-        options={{
-          headerShown: false,
-              headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-       <MyProfileStack.Screen
-        name="EmailSuccess"
-        component={EmailSuccess}
-        options={{
-          headerShown: false,
-              headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-       <MyProfileStack.Screen
-        name="TermsAndConditions"
-        component={TermsAndConditions}
-        options={{
-          title: 'Terms and Conditions',
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
+  //      <MyProfileStack.Screen
+  //       name="MyProfileSettings"
+  //       component={MyProfileSettings}
+  //       options={({ navigation}) => ({
+  //         title: 'Settings',
+  //         headerShown: true,
+  //         headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //         headerRight: () => (
+  //           <TouchableOpacity onPress={() =>navigation.navigate('EditProfile')}>
+  //                 <Text style={style.button}>Edit Profile</Text>
+  //               </TouchableOpacity>
+  //         ),          
+  //       })}
+  //     />
+  //     <MyProfileStack.Screen
+  //       name="EditProfile"
+  //       component={EditProfile}
+  //       options={{   
+  //         title: 'Settings',       
+  //         headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
+  //     <MyProfileStack.Screen
+  //       name="ChangeEmail"
+  //       component={ChangeEmail}
+  //       options={{
+  //         headerShown: false,
+  //             headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
+  //     <MyProfileStack.Screen
+  //       name="ChangePassword"
+  //       component={ChangePassword}
+  //       options={{
+  //         headerShown: false,
+  //             headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
+  //      <MyProfileStack.Screen
+  //       name="PasswordSuccess"
+  //       component={PasswordSuccess}
+  //       options={{
+  //         headerShown: false,
+  //             headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
+  //      <MyProfileStack.Screen
+  //       name="EmailSuccess"
+  //       component={EmailSuccess}
+  //       options={{
+  //         headerShown: false,
+  //             headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
+  //      <MyProfileStack.Screen
+  //       name="TermsAndConditions"
+  //       component={TermsAndConditions}
+  //       options={{
+  //         title: 'Terms and Conditions',
+  //         headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
 
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-      <MyProfileStack.Screen
-        name="PrivacyPolicy"
-        component={PrivacyPolicy}
-        options={{
-          title: 'Privacy Policy',
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
+  //     <MyProfileStack.Screen
+  //       name="PrivacyPolicy"
+  //       component={PrivacyPolicy}
+  //       options={{
+  //         title: 'Privacy Policy',
+  //         headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
 
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-      <MyProfileStack.Screen
-        name="MyProfilePosts"
-        component={MyProfilePosts}
-        options={{
-          title: 'All my posts',
-              headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
+  //     <MyProfileStack.Screen
+  //       name="MyProfilePosts"
+  //       component={MyProfilePosts}
+  //       options={{
+  //         title: 'All my posts',
+  //             headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
 
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
       
-      <MyProfileStack.Screen
-        name="PostScreen"
-        component={PostScreen}
-        options={({route}) => ({
-          title: route.params.name,
+  //     <MyProfileStack.Screen
+  //       name="PostScreen"
+  //       component={PostScreen}
+  //       options={({route}) => ({
+  //         title: route.params.name,
 
-          headerShown: true,
+  //         headerShown: true,
 
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
+  //         headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
 
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        })}
-      />
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       })}
+  //     />
 
-      <MyProfileStack.Screen
-        name="Comments"
-        component={UserCommentList}
-        options={{
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
+  //     <MyProfileStack.Screen
+  //       name="Comments"
+  //       component={UserCommentList}
+  //       options={{
+  //         headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
 
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-      <MyProfileStack.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          title: 'Profile',
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
+  //     <MyProfileStack.Screen
+  //       name="Profile"
+  //       component={Profile}
+  //       options={{
+  //         title: 'Profile',
+  //         headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
 
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-      <MyProfileStack.Screen
-        name="UserPortfolioList"
-        component={UserPortfolioList}
-        options={{
-          title: 'Manage Portfolio',
-          headerStyle: {
-            backgroundColor: '#313c58',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
+  //     <MyProfileStack.Screen
+  //       name="UserPortfolioList"
+  //       component={UserPortfolioList}
+  //       options={{
+  //         title: 'Manage Portfolio',
+  //         headerStyle: {
+  //           backgroundColor: '#313c58',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
 
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-      <MyProfileStack.Screen
-        name="CompanyInformation"
-        component={CompanyInformation}
-        options={{
-          title: 'Stock details',
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
+  //     <MyProfileStack.Screen
+  //       name="CompanyInformation"
+  //       component={CompanyInformation}
+  //       options={{
+  //         title: 'Stock details',
+  //         headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
 
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-      <MyProfileStack.Screen
-        name="ManagePortfolio"
-        component={ManagePortfolio}
-        options={{
-          title: 'Manage Portfolio',
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
+  //     <MyProfileStack.Screen
+  //       name="ManagePortfolio"
+  //       component={ManagePortfolio}
+  //       options={{
+  //         title: 'Manage Portfolio',
+  //         headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
 
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-      <MyProfileStack.Screen
-        name="ManagePortfolioBox"
-        component={ManagePortfolioBox}
-        options={{
-          title: 'Manage Portfolio',
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
+  //     <MyProfileStack.Screen
+  //       name="ManagePortfolioBox"
+  //       component={ManagePortfolioBox}
+  //       options={{
+  //         title: 'Manage Portfolio',
+  //         headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
 
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
-          <MyProfileStack.Screen
-        name="ManagePortfolioCompany"
-        component={ManagePortfolioCompany}
-        options={{
-          title: 'Manage Portfolio',
-          headerStyle: {
-            backgroundColor: '#394463',
-          },
-          headerTitleStyle:{
-            fontFamily:'Montserrat-Bold',
-            fontSize:16
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
+  //         <MyProfileStack.Screen
+  //       name="ManagePortfolioCompany"
+  //       component={ManagePortfolioCompany}
+  //       options={{
+  //         title: 'Manage Portfolio',
+  //         headerStyle: {
+  //           backgroundColor: '#394463',
+  //         },
+  //         headerTitleStyle:{
+  //           fontFamily:'Montserrat-Bold',
+  //           fontSize:16
 
-          },
-          headerTintColor: 'white',
-          headerTitleAlign: {
-            textAlign: 'center',
-          },
-        }}
-      />
+  //         },
+  //         headerTintColor: 'white',
+  //         headerTitleAlign: {
+  //           textAlign: 'center',
+  //         },
+  //       }}
+  //     />
       
       
-    </MyProfileStack.Navigator>
-  );
+  //   </MyProfileStack.Navigator>
+  // );
 
   // createTopUsersStack = () => (
   //   <TopUsersStack.Navigator>
@@ -909,7 +910,7 @@ class Navigation extends Component {
             <Tab.Screen name="Search" component={this.createSearchStack}/>
             <Tab.Screen name="PostScreen" component={PostStackNavigator}  />
             <Tab.Screen name="UserList" component={TopUsersStackNavigator}  />
-            <Tab.Screen name="MyProfile" component={this.createMyProfileStack}  />
+            <Tab.Screen name="MyProfile" component={MyProfileStackNavigator}  />
 
           </Tab.Navigator>
         ) : (
