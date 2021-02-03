@@ -208,7 +208,7 @@ const style = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 8,
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
   },
   uploadPhotoContainer: {
     alignSelf: 'center',
@@ -251,7 +251,7 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
   },
   rowInputContainer: {
-    width: 160,
+    width: 168,
   },
   inputHeader: {
     fontSize: 12,
@@ -282,7 +282,7 @@ const style = StyleSheet.create({
   },
 
   buttonsContainer: {
-    marginTop: 28,
+    marginTop: 26,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -292,7 +292,7 @@ const style = StyleSheet.create({
     textAlign: 'center',
     paddingVertical: 12,
     paddingHorizontal: 20,
-    width: 160,
+    width: 168,
     borderRadius: 6,
     fontSize: 14,
     fontFamily: 'Montserrat-SemiBold',
@@ -306,7 +306,7 @@ const style = StyleSheet.create({
     textAlign: 'center',
     paddingVertical: 12,
     paddingHorizontal: 20,
-    width: 160,
+    width: 168,
     borderRadius: 6,
     fontSize: 14,
     fontFamily: 'Montserrat-SemiBold',

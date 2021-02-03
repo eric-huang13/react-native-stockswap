@@ -9,8 +9,10 @@ export default class PostType extends Component {
             <SafeAreaView style={style.mainContainer}>
                 <Text style={style.header}> SELECT POST TYPE </Text>
                 <View style={style.typeRow}>
+                <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('CreateTrade')}>
                     <View style={style.typeColumn}><View><TradeIcon/></View><Text style={style.typeText}>Trade</Text></View>
-                    
+              </TouchableOpacity>                    
                     <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('CreatePost')}>
                     <View style={style.typeColumn}><View><PostIcon/></View><Text style={style.typeText}>Post</Text></View>
