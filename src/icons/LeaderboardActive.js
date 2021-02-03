@@ -1,13 +1,19 @@
 import React from "react"
+import {
+  View, StyleSheet,
+} from "react-native";
 import Svg, { Path } from "react-native-svg"
 
 function LeaderboardActive() {
   return (
+    <View style={style.outterContainer}>
+
     <Svg
       width={28}
       height={28}
       viewBox="0 0 24 20"
       xmlns="http://www.w3.org/2000/svg"
+      
     
     >
       <Path
@@ -17,7 +23,20 @@ function LeaderboardActive() {
         stroke="#8B64FF"
       />
     </Svg>
+    </View>
   )
 }
 
 export default LeaderboardActive
+
+const style = StyleSheet.create({
+  outterContainer:{
+    borderBottomWidth:3, 
+    borderBottomColor: '#855cff',
+    paddingBottom: 1.8,
+    width:40,
+    paddingBottom:4,
+    alignItems:'center',
+    marginBottom:-7,
+  },
+})

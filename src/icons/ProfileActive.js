@@ -1,8 +1,12 @@
 import React from "react"
+import {
+  View, StyleSheet,
+} from "react-native";
 import Svg, { Path } from "react-native-svg"
 
 function ProfileActive() {
   return (
+    <View style={style.outterContainer}>
     <Svg
       width={24}
       height={24}
@@ -17,7 +21,20 @@ function ProfileActive() {
         stroke="#8B64FF"
       />
     </Svg>
+    </View>
   )
 }
 
 export default ProfileActive
+
+const style = StyleSheet.create({
+  outterContainer:{
+    borderBottomWidth:4, 
+    borderBottomColor: '#855cff',
+    paddingBottom: 1.8,
+    width:40,
+    paddingBottom:4,
+    alignItems:'center',
+    marginBottom:-8,
+  },
+})

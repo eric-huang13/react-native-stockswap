@@ -1,13 +1,12 @@
 import React from 'react'
 import {
-  View, 
+  View, StyleSheet,
 } from "react-native";
-import Svg, {Path, Defs, G, Rect} from 'react-native-svg'
-
+import Svg, {Path} from 'react-native-svg'
 
 const HomeTabActive = () => {
     return (
-      <View style={{flexDirection:'column', justifyContent:'center', alignContent:'center', alignItems:'center', marginBottom:-7}}>
+      <View style={style.outterContainer}>
         <Svg
       width={27}
       height={27}
@@ -21,27 +20,20 @@ const HomeTabActive = () => {
         stroke="#8B64FF"
       />
     </Svg>
-    <Svg
-      width={126}
-      height={10}
-      viewBox="2 12 140 28"
-      xmlns="http://www.w3.org/2000/svg"
- 
-    >
-      <Defs></Defs>
-      <G transform="translate(30 30)" fill="none" fillRule="evenodd">
-        <Rect fill="#8257FF" x={6} y={3} width={4} height={3} rx={1.5} />
-        <Rect
-          fill="#916BFF"
-          filter="url(#prefix__a)"
-          width={96}
-          height={10}
-          rx={2}
-        />
-      </G>
-    </Svg>
     </View>
     )
 }
 
 export default HomeTabActive
+
+const style = StyleSheet.create({
+  outterContainer:{
+    borderBottomWidth:3.5, 
+    borderBottomColor: '#855cff',
+    paddingBottom: 1.8,
+    width:40,
+    paddingBottom:4,
+    alignItems:'center',
+    marginBottom:-8,
+  },
+})
