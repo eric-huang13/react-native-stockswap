@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, TextInput, SafeAreaView, TouchableOpacity } from 'react-native'
+import { Text, View, StyleSheet, TextInput, SafeAreaView, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback, TouchableOpacity } from 'react-native'
 import TriangleIcon from '../../icons/TriangleIcon';
 
 export default class CreateTrade extends Component {
@@ -22,12 +22,20 @@ export default class CreateTrade extends Component {
       orderTypeSelect(type) {
         this.setState({orderType: type});
       }
-    
+      handleInputChange = (inputName, inputValue) => {
+        this.setState(state => ({ 
+          ...state,
+          [inputName]: inputValue 
+        }))
+      }
+
     render() {
         const {shouldShow} = this.state; 
 
         return (
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <SafeAreaView style={style.mainContainer}>
+            <KeyboardAvoidingView>
                 <Text style={style.header}>Post a Trade</Text>
                 <View style={style.uploadContainer}>
                     <Text style={style.uploadText}>Upload trade screenshot for autofill</Text>
@@ -36,9 +44,8 @@ export default class CreateTrade extends Component {
                   <Text style={style.inputHeader}>Stock name</Text>
                   <TextInput
                     style={style.inputStyleBody}
-                    // value={this.state.body}
-                    // onChangeText={(text) => this.handleBodyChange(text)}
-                    placeholder="Start typing stock name"
+                    value={this.state.name}                    
+                    onChangeText={value => this.handleInputChange('name', value)}
                     placeholderTextColor="#9ea6b5"
                     multiline={true}
                     numberOfLines={4}
@@ -61,9 +68,8 @@ export default class CreateTrade extends Component {
                   <Text style={style.inputHeader}>Time</Text>
                   <TextInput
                     style={style.inputStyleBody}
-                    // value={this.state.body}
-                    // onChangeText={(text) => this.handleBodyChange(text)}
-                    placeholder="Time when you sell it"
+                    value={this.state.time}
+                    onChangeText={value => this.handleInputChange('time', value)}                     placeholder="Time when you sell it"
                     placeholderTextColor="#9ea6b5"
                     multiline={true}
                     numberOfLines={4}
@@ -74,8 +80,8 @@ export default class CreateTrade extends Component {
                   <Text style={style.inputHeader}>Quantity</Text>
                   <TextInput
                     style={style.inputStyleBody}
-                    // value={this.state.body}
-                    // onChangeText={(text) => this.handleBodyChange(text)}
+                    value={this.state.orderType}
+                    onChangeText={value => this.handleInputChange('orderType', value)} 
                     placeholder="Number of shares"
                     placeholderTextColor="#9ea6b5"
                     multiline={true}
@@ -120,7 +126,9 @@ export default class CreateTrade extends Component {
                 <Text style={style.publishButton}>Publish</Text>
 
 
+                </KeyboardAvoidingView>
             </SafeAreaView>
+            </TouchableWithoutFeedback>
         )
     }
 }
