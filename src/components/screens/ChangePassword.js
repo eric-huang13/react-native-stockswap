@@ -26,10 +26,10 @@ class ChangePassword extends Component {
     super(props);
 
     this.state = {
-      newPassword: '',
-      confirmPassword: '',
-      currentEmail: '',
-      error: '',
+      newPassword:'',
+      confirmPassword:'',
+      currentEmail:'',
+      error:'',
     };
   }
   handlePasswordChange = (text) => {
@@ -42,9 +42,18 @@ class ChangePassword extends Component {
       confirmPassword: text,
     });
   };
+  errorInput(text) {
+    this.setState({
+        error:text
+    })  
+  ;} 
 
-  handleSubmit = (input) => {
-    LoginUser(input);
+  handleSubmit = () => {
+    this.state.newPassword === '' || this.state.confirmPassword === '' 
+    ? this.errorInput('passwords')
+    : this.state.newPassword !== this.state.confirmPassword
+    ? alert ('Passwords do not match')
+    : this.props.navigation.navigate('PasswordSuccess')
   };
 
   componentDidMount() {
@@ -83,7 +92,7 @@ class ChangePassword extends Component {
                   <Text style={style.inputHeader}>New Password</Text>
 
                   <TextInput
-                    style={style.inputStyle}
+                    style={ this.state.error === 'passwords' ? {...style.inputStyle, backgroundColor:'#F66E6E'} : {...style.inputStyle}}
                     value={this.state.newPassword}
                     onChangeText={(text) => this.handlePasswordChange(text)}
                     placeholder="Enter new password"
@@ -96,7 +105,7 @@ class ChangePassword extends Component {
                   <Text style={style.inputHeader}>Repeat</Text>
 
                   <TextInput
-                    style={style.inputStyle}
+                    style={ this.state.error === 'passwords' ? {...style.inputStyle, backgroundColor:'#F66E6E'} : {...style.inputStyle}}
                     value={this.state.confirmPassword}
                     onChangeText={(text) =>
                       this.handleConfirmPasswordChange(text)
@@ -110,8 +119,7 @@ class ChangePassword extends Component {
 
                 <View>
                   <TouchableOpacity
-                    onPress={() =>
-                      this.props.navigation.navigate('PasswordSuccess')
+                    onPress={this.handleSubmit
                     }>
                     <Text
                       style={
