@@ -28,6 +28,7 @@ class ChangeEmail extends Component {
     this.state = {
       newEmail: '',
       currentEmail: '',
+      errorInput:''
     };
   }
   handleEmailChange = (text) => {
@@ -35,9 +36,17 @@ class ChangeEmail extends Component {
       newEmail: text,
     });
   };
+  errorInput(text) {
+    this.setState({
+        error:text
+    })  
+  ;} 
 
-  handleSubmit = (input) => {
-    LoginUser(input);
+  handleSubmit = () => {
+    this.state.newEmail !== '' ?
+    this.props.navigation.navigate('EmailSuccess')
+    :
+    this.errorInput('email')
   };
 
   componentDidMount() {
@@ -84,7 +93,7 @@ class ChangeEmail extends Component {
                   <Text style={style.inputHeader}>New Email</Text>
 
                   <TextInput
-                    style={style.inputStyle}
+                    style={ this.state.error === 'email' ? {...style.inputStyle, backgroundColor:'#F66E6E'} : {...style.inputStyle}}
                     value={this.state.email}
                     onChangeText={(text) => this.handleEmailChange(text)}
                     placeholder="Enter new email address"
@@ -96,8 +105,7 @@ class ChangeEmail extends Component {
 
                 <View>
                   <TouchableOpacity
-                    onPress={() =>
-                      this.props.navigation.navigate('EmailSuccess')
+                    onPress={this.handleSubmit
                     }>
                     <Text style={style.button}>Apply</Text>
                   </TouchableOpacity>
