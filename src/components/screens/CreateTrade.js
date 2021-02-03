@@ -1,9 +1,26 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, TextInput, SafeAreaView } from 'react-native'
+import { Text, StyleSheet, View, TextInput, SafeAreaView, TouchableOpacity } from 'react-native'
+import TriangleIcon from '../../icons/TriangleIcon';
 
 export default class CreateTrade extends Component {
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          enabled: false,
+          currentEmail: '',
+          shouldShow:false,
+          dropDown:'Visible for all',
+        };
+      }
+      dropDownSelect(pick) {
+        this.setState({dropDown:pick, shouldShow:false});
+      }
+    
     
     render() {
+        const {shouldShow} = this.state; 
+
         return (
             <SafeAreaView style={style.mainContainer}>
                 <Text style={style.header}>Post a Trade</Text>
@@ -59,7 +76,36 @@ export default class CreateTrade extends Component {
                     <Text style={style.inputHeader}>
                         Stock privacy
                     </Text>
+
+               
+                <View style={style.dotsDropdownContainer}>
+              <TouchableOpacity
+                onPress={() =>
+                  this.setState({
+                    shouldShow: !shouldShow,
+                  })
+                }>
+                  <View style={style.visibleButtonContainer}>
+          <Text style={style.middleDetailsText}>{this.state.dropDown}</Text>
+        <TriangleIcon style={style.icon}/>        
+          </View>
+              </TouchableOpacity>
+              {this.state.shouldShow ? (
+                <View style={style.dropdown}>
+                  { this.state.dropDown == 'Visible for all' ?
+                  <TouchableOpacity onPress={() => this.dropDownSelect('Private')}>
+                  <Text style={style.dropDownText}>Private</Text>
+              </TouchableOpacity>
+              :
+              <TouchableOpacity onPress={() => this.dropDownSelect('Visible for all')}>
+                  <Text style={style.dropDownText}>Visible for all</Text>
+              </TouchableOpacity>
+              
+                  }          
                 </View>
+              ) : null}
+            </View> 
+            </View>
                 <Text style={style.publishButton}>Publish</Text>
 
 
@@ -102,7 +148,7 @@ const style = StyleSheet.create({
         color: '#babec8',
         marginBottom: 1,
         fontFamily: 'Montserrat-Regular',
-        marginBottom:2,
+        marginBottom:3,
     },
     inputStyleBody: {
         borderRadius: 6,
@@ -146,6 +192,50 @@ const style = StyleSheet.create({
         fontSize: 14,
         fontFamily: 'Montserrat-SemiBold',
       },
+      visibleButtonContainer: {
+        paddingHorizontal: 10,
+        paddingVertical: 10,
+        borderRadius: 6,
+        backgroundColor: '#3E4D6C',
+        // marginTop: 4,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      },
+      middleDetailsText: {
+        fontFamily: 'Montserrat-Medium',
+        color: '#FFFFFF',
+        fontSize: 16,
+      },
+      dropdown: {
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        width: '100%',
+        marginTop: 44,
+        backgroundColor: '#3E4D6C',
+        zIndex: 1,
+        paddingVertical: 4,
+        height:35,
+        position:'absolute',
+        borderBottomLeftRadius:6,
+        borderBottomRightRadius:6,
+      },
+      dropDownText: {
+        color: 'white',
+        fontSize: 16,
+        marginHorizontal: 12,
+        fontFamily:'Montserrat-Medium',
+        marginBottom:6,  
+      },
+      dropDownTextReportContainer: {
+        borderTopWidth: 1,
+        borderTopColor: 'lightgrey',
+        paddingTop: 4,
+        backgroundColor:'#2C3957',
+      },
+      icon:{
+        marginRight:4,
+      },
       publishButton: {
         alignSelf: 'center',
         backgroundColor: '#8b64ff',
@@ -156,6 +246,7 @@ const style = StyleSheet.create({
         width: 303,
         borderRadius: 6,
         fontSize: 14,
+        marginTop:30,
         fontFamily: 'Montserrat-SemiBold',
       },
 })
