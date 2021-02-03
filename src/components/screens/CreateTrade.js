@@ -6,17 +6,22 @@ export default class CreateTrade extends Component {
     constructor(props) {
         super(props);
     
-        this.state = {
-          enabled: false,
-          currentEmail: '',
+        this.state = {          
+          name: '',
+          orderType:'',
+          time:'',
+          quantity:'',        
+          privacy:'Visible for all', 
           shouldShow:false,
-          dropDown:'Visible for all',
         };
       }
-      dropDownSelect(pick) {
-        this.setState({dropDown:pick, shouldShow:false});
+
+      dropDownSelect(setting) {
+        this.setState({privacy:setting, shouldShow:false});
       }
-    
+      orderTypeSelect(type) {
+        this.setState({orderType: type});
+      }
     
     render() {
         const {shouldShow} = this.state; 
@@ -43,8 +48,14 @@ export default class CreateTrade extends Component {
                 <View>
                     <Text style={style.inputHeader}>Order Type</Text>
                 <View style={style.buttonsContainer}>
+                <TouchableOpacity
+                    onPress={() => this.orderTypeSelect('buy')}>
                     <Text style={style.buyButton}>Buy</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                    onPress={() => this.orderTypeSelect('sell')}>
                     <Text style={style.sellButton}>Sell</Text>
+                    </TouchableOpacity>
                 </View></View>
                 <View style={style.TimeContainer}>
                   <Text style={style.inputHeader}>Time</Text>
@@ -86,13 +97,13 @@ export default class CreateTrade extends Component {
                   })
                 }>
                   <View style={style.visibleButtonContainer}>
-          <Text style={style.middleDetailsText}>{this.state.dropDown}</Text>
+          <Text style={style.middleDetailsText}>{this.state.privacy}</Text>
         <TriangleIcon style={style.icon}/>        
           </View>
               </TouchableOpacity>
               {this.state.shouldShow ? (
                 <View style={style.dropdown}>
-                  { this.state.dropDown == 'Visible for all' ?
+                  { this.state.privacy == 'Visible for all' ?
                   <TouchableOpacity onPress={() => this.dropDownSelect('Private')}>
                   <Text style={style.dropDownText}>Private</Text>
               </TouchableOpacity>
@@ -211,7 +222,7 @@ const style = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'space-between',
         width: '100%',
-        marginTop: 44,
+        marginTop: 41,
         backgroundColor: '#3E4D6C',
         zIndex: 1,
         paddingVertical: 4,
