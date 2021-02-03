@@ -18,16 +18,12 @@ class CreatePost extends Component {
       toggleSwitch = (value) => {
         this.setState({enabled: value});
       };
-      handleImageChange = (text) => {
-        this.setState({
-          image: text,
-        });
-      };
-      handleBodyChange = (text) => {
-        this.setState({
-          body: text,
-        });
-      };
+      handleInputChange = (inputName, inputValue) => {
+        this.setState(state => ({ 
+          ...state,
+          [inputName]: inputValue 
+        }))
+      }
    
     render() {
       //for testing
@@ -47,7 +43,7 @@ class CreatePost extends Component {
                 <View style={style.uploadImageContainer}>               
                   <TextInput
                     value={this.state.image}
-                    onChangeText={(text) => this.handleImageChange(text)}
+                    onChangeText={value => this.handleInputChange('image', value)}                     placeholder="Time when you sell it"
                     placeholder="Upload cover image"
                     placeholderTextColor="#FFFFFF"
                     style={style.inputStyleImage}
@@ -60,7 +56,7 @@ class CreatePost extends Component {
                   <TextInput
                     style={style.inputStyleBody}
                     value={this.state.body}
-                    onChangeText={(text) => this.handleBodyChange(text)}
+                    onChangeText={value => this.handleInputChange('body', value)}                     placeholder="Time when you sell it"
                     placeholder="Enter post text"
                     placeholderTextColor="#9ea6b5"
                     multiline={true}

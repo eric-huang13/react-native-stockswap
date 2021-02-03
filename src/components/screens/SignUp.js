@@ -35,23 +35,12 @@ class SignUp extends Component {
     };
   }
 
-   handleEmailChange = (text) => {
-    this.setState({
-      email: text,
-    });
-  };
-
-   handlePasswordChange = (text) => {
-    this.setState({
-      password: text,
-    });
-  };
-
-   handleConfirmPasswordChange = (text) => {
-    this.setState({
-      confirmPassword: text,
-    });
-  };
+  handleInputChange = (inputName, inputValue) => {
+    this.setState(state => ({ 
+      ...state,
+      [inputName]: inputValue 
+    }))
+  }
 
   checkBoxText() {
     this.setState({
@@ -118,7 +107,7 @@ class SignUp extends Component {
                   <TextInput
                     style={ this.state.error === 'email' ||  this.state.error === 'all' ? {...style.inputStyle, backgroundColor:'#F66E6E'} : {...style.inputStyle}}
                     value={this.state.email}
-                    onChangeText={(text) => this.handleEmailChange(text)}
+                    onChangeText={value => this.handleInputChange('email', value)}
                     placeholder="Enter your email"
                     placeholderTextColor="#9ea6b5"
                     keyboardType="email-address"
@@ -132,7 +121,7 @@ class SignUp extends Component {
                   <TextInput
                     style={ this.state.error === 'passwords' ||  this.state.error === 'all' ? {...style.inputStyle, backgroundColor:'#F66E6E'} : {...style.inputStyle}}
                     value={this.state.password}
-                    onChangeText={(text) => this.handlePasswordChange(text)}
+                    onChangeText={value => this.handleInputChange('password', value)}
                     placeholder="Enter your password"
                     placeholderTextColor="#9ea6b5"
                     secureTextEntry
@@ -146,9 +135,7 @@ class SignUp extends Component {
                   <TextInput
                     style={ this.state.error === 'passwords' ||  this.state.error === 'all' ? {...style.inputStyleConfirm, backgroundColor:'#F66E6E'} : {...style.inputStyleConfirm}}
                     value={this.state.confirmPassword}
-                    onChangeText={(text) =>
-                      this.handleConfirmPasswordChange(text)
-                    }
+                    onChangeText={value => this.handleInputChange('confirmPassword', value)}
                     placeholder="Enter your password"
                     placeholderTextColor="#9ea6b5"
                     secureTextEntry

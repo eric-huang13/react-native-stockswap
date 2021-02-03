@@ -22,42 +22,23 @@ class ProfileInfoForm extends Component {
     super(props);
 
     this.state = {
-      email: "",
-      password: "",
-      // hashtag: "",
-      // bio: "",
-      // image: "",
+      name: "",
+      username: "",
+      image: "",
+      hashtag: "",     
+      bio: "",
+      
     };    
-  }handleNameChange = (text) => {
-    this.setState({
-      email: text,
-    });
-  };
-
-  handleUsernameChange = (text) => {
-    this.setState({
-      password: text,
-    });
-  };
-
-  handleHashtagChange = (text) => {
-    this.setState({
-      hashtag: text,
-    });
-  };
-  handleBioChange = (text) => {
-    this.setState({
-      bio: text,
-    });
-  };
-  handleImageChange = (text) => {
-    this.setState({
-      image: text,
-    });
-  };
+  }
+  
+  handleInputChange = (inputName, inputValue) => {
+    this.setState(state => ({ 
+      ...state,
+      [inputName]: inputValue 
+    }))
+  }
 
   
-
   render() {
     const { AddProfile, userData } = this.props;  
 
@@ -93,7 +74,7 @@ class ProfileInfoForm extends Component {
                 <TextInput
                   style={style.inputStyle}
                   value={this.state.name}
-                  onChangeText={(text) => this.handleNameChange(text)}
+                  onChangeText={value => this.handleInputChange('name', value)}
                   placeholder="Enter your name"
                   placeholderTextColor="#9ea6b5"
                   returnKeyType="next"
@@ -107,7 +88,7 @@ class ProfileInfoForm extends Component {
                 <TextInput
                   style={style.inputStyle}
                   value={this.state.username}
-                  onChangeText={(text) => this.handleUsernameChange(text)}
+                  onChangeText={value => this.handleInputChange('username', value)}
                   placeholder="@example"
                   placeholderTextColor="#9ea6b5"
                   style={style.inputStyle}
@@ -120,8 +101,8 @@ class ProfileInfoForm extends Component {
             <View style={style.imageContainer}>
             <Text style={style.inputHeader}>Image</Text>
                 <TextInput
-                  value={this.state.bio}
-                  onChangeText={(text) => this.handleImageChange(text)}
+                  value={this.state.image}
+                  onChangeText={value => this.handleInputChange('image', value)}
                   placeholder="Image"
                   placeholderTextColor="#9ea6b5"
                   style={style.inputStyle}
@@ -134,7 +115,7 @@ class ProfileInfoForm extends Component {
                 <TextInput
                   style={style.inputStyle}
                   value={this.state.hashtag}
-                  onChangeText={(text) => this.handleHashtagChange(text)}
+                  onChangeText={value => this.handleInputChange('hashtag', value)}
                   placeholder="Add hashtags which describe you"
                   placeholderTextColor="#9ea6b5"
                   returnKeyType="next"
@@ -147,7 +128,7 @@ class ProfileInfoForm extends Component {
                 <TextInput
                   style={style.inputStyleBio}
                   value={this.state.bio}
-                  onChangeText={(text) => this.handleBioChange(text)}
+                  onChangeText={value => this.handleInputChange('bio', value)}
                   placeholder="Tell a bit about yourself"
                   placeholderTextColor="#9ea6b5"
                   multiline = {true}
@@ -165,7 +146,7 @@ class ProfileInfoForm extends Component {
                 </TouchableOpacity>
               </View>
               <View>
-                <TouchableOpacity onPress={() => handleSubmit(this.state)}>
+                <TouchableOpacity onPress={() => console.log(this.state)}>
                   <Text style={style.button}>Next</Text>
                 </TouchableOpacity>
               </View>

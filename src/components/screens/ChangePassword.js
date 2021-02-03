@@ -32,16 +32,22 @@ class ChangePassword extends Component {
       error:'',
     };
   }
-  handlePasswordChange = (text) => {
-    this.setState({
-      newPassword: text,
-    });
-  };
-  handleConfirmPasswordChange = (text) => {
-    this.setState({
-      confirmPassword: text,
-    });
-  };
+  // handlePasswordChange = (text) => {
+  //   this.setState({
+  //     newPassword: text,
+  //   });
+  // };
+  // handleConfirmPasswordChange = (text) => {
+  //   this.setState({
+  //     confirmPassword: text,
+  //   });
+  // };
+  handleInputChange = (inputName, inputValue) => {
+    this.setState(state => ({ 
+      ...state,
+      [inputName]: inputValue 
+    }))
+  }
   errorInput(text) {
     this.setState({
         error:text
@@ -94,7 +100,7 @@ class ChangePassword extends Component {
                   <TextInput
                     style={ this.state.error === 'passwords' ? {...style.inputStyle, backgroundColor:'#F66E6E'} : {...style.inputStyle}}
                     value={this.state.newPassword}
-                    onChangeText={(text) => this.handlePasswordChange(text)}
+                    onChangeText={value => this.handleInputChange('newPassword', value)}
                     placeholder="Enter new password"
                     placeholderTextColor="#9ea6b5"
                     keyboardType="email-address"
@@ -107,9 +113,7 @@ class ChangePassword extends Component {
                   <TextInput
                     style={ this.state.error === 'passwords' ? {...style.inputStyle, backgroundColor:'#F66E6E'} : {...style.inputStyle}}
                     value={this.state.confirmPassword}
-                    onChangeText={(text) =>
-                      this.handleConfirmPasswordChange(text)
-                    }
+                    onChangeText={value => this.handleInputChange('confirmPassword', value)}
                     placeholder="Repeat new password"
                     placeholderTextColor="#9ea6b5"
                     keyboardType="email-address"

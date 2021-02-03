@@ -27,33 +27,13 @@ class EditProfile extends Component {
       image: '',
     };
   }
-  handleNameChange = (text) => {
-    this.setState({
-      name: text,
-    });
-  };
-
-  handleUsernameChange = (text) => {
-    this.setState({
-      username: text,
-    });
-  };
-
-  handleHashtagChange = (text) => {
-    this.setState({
-      hashtag: text,
-    });
-  };
-  handleBioChange = (text) => {
-    this.setState({
-      bio: text,
-    });
-  };
-  handleImageChange = (text) => {
-    this.setState({
-      image: text,
-    });
-  };
+ 
+  handleInputChange = (inputName, inputValue) => {
+    this.setState(state => ({ 
+      ...state,
+      [inputName]: inputValue 
+    }))
+  }
   componentDidMount() {
     const {user, userAccount} = this.props;
     const userid = 15;
@@ -106,7 +86,7 @@ class EditProfile extends Component {
                   <TextInput
                     style={style.inputStyle}
                     value={this.state.name}
-                    onChangeText={(text) => this.handleNameChange(text)}
+                    onChangeText={value => this.handleInputChange('name', value)} 
                     placeholder="Enter your name"
                     placeholderTextColor="#FFFFFF"
                     returnKeyType="next"
@@ -120,7 +100,7 @@ class EditProfile extends Component {
                   <TextInput
                     style={style.inputStyle}
                     value={this.state.username}
-                    onChangeText={(text) => this.handleUsernameChange(text)}
+                    onChangeText={value => this.handleInputChange('username', value)} 
                     placeholder="@example"
                     placeholderTextColor="#FFFFFF"
                     style={style.inputStyle}
@@ -134,7 +114,7 @@ class EditProfile extends Component {
                   <Text style={style.inputHeader}>Image</Text>
                   <TextInput
                     value={this.state.image}
-                    // onChangeText={(text) => this.handleImageChange(text)}
+                    onChangeText={value => this.handleInputChange('image', value)} 
                     placeholder="Image"
                     placeholderTextColor="#9ea6b5"
                     style={style.inputStyle}
@@ -148,7 +128,7 @@ class EditProfile extends Component {
                   <TextInput
                     style={style.inputStyle}
                     value={this.state.hashtag}
-                    // onChangeText={(text) => this.handleHashtagChange(text)}
+                    onChangeText={value => this.handleInputChange('hashtag', value)} 
                     placeholder="Add hashtags which describe you"
                     placeholderTextColor="#9ea6b5"
                     returnKeyType="next"
@@ -161,7 +141,7 @@ class EditProfile extends Component {
                   <TextInput
                     style={style.inputStyleBio}
                     value={this.state.bio}
-                    // onChangeText={(text) => this.handleBioChange(text)}
+                    onChangeText={value => this.handleInputChange('bio', value)} 
                     placeholder="Tell a bit about yourself"
                     placeholderTextColor="#9ea6b5"
                     multiline={true}
@@ -176,7 +156,7 @@ class EditProfile extends Component {
                     <Text style={style.cancelButton}>Cancel</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={() => EditUserAccount(this.state)}>
+                    onPress={() => console.log(this.state)}>
                     <Text style={style.saveButton}>Save</Text>
                   </TouchableOpacity>
                 </View>
