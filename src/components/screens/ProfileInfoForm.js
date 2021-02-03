@@ -21,11 +21,11 @@ class ProfileInfoForm extends Component {
     super(props);
 
     this.state = {
-      name: "",
-      username: "",
-      image: "",
-      hashtag: "",     
-      bio: "",
+      name:"",
+      username:"",
+      image:"",
+      hashtag:"",     
+      bio:"",
       privacy:'Visible for all', 
       shouldShow:false,      
     };    
@@ -46,7 +46,11 @@ class ProfileInfoForm extends Component {
   render() {
     const { AddProfile, userData } = this.props;
     const {shouldShow} = this.state; 
-
+//for testing
+      const credentials = {
+            email: this.state.name,
+            password:this.state.username,          
+            }; 
 
     const handleSubmit = (input) => {
       AddProfile(input)
@@ -178,7 +182,7 @@ class ProfileInfoForm extends Component {
             </View> 
             </View>
               <View style={style.buttonContainer}>
-                <TouchableOpacity onPress={() => console.log(this.state)}>
+                <TouchableOpacity onPress={() => handleSubmit(credentials)}>
                   <Text style={style.button}>Next</Text>
                 </TouchableOpacity>
               </View>
@@ -192,7 +196,6 @@ class ProfileInfoForm extends Component {
   }
 }
 
-//Redux for easy hookup later
 const mapStateToProps = (state) => {
   return {
     userData: state.user.userData,    

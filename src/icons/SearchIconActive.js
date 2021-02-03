@@ -1,15 +1,6 @@
 import React from 'react'
 import {
-  Text,
-  View,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  SafeAreaView,
-  TouchableWithoutFeedback,
-  Keyboard,
-  ScrollView
+  View, 
 } from "react-native";
 import Svg, {Path, Defs, G, Rect} from 'react-native-svg'
 
