@@ -29,7 +29,7 @@ export default ProfileActive
 
 const style = StyleSheet.create({
   outterContainer:{
-    borderBottomWidth:4, 
+    borderBottomWidth:3, 
     borderBottomColor: '#855cff',
     paddingBottom: 1.8,
     width:40,
