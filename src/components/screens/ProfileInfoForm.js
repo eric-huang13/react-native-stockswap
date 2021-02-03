@@ -8,11 +8,10 @@ import {
   StyleSheet,
   TouchableOpacity,
   KeyboardAvoidingView,
-  TouchableWithoutFeedback,
-  Keyboard,
   ScrollView,
 } from "react-native";
 import { ProfilePost } from "../../actions/user";
+import TriangleIcon from '../../icons/TriangleIcon';
 
 
 import LinearGradient from 'react-native-linear-gradient';
@@ -27,8 +26,13 @@ class ProfileInfoForm extends Component {
       image: "",
       hashtag: "",     
       bio: "",
-      
+      privacy:'Visible for all', 
+      shouldShow:false,      
     };    
+  }
+
+  dropDownSelect(setting) {
+    this.setState({privacy:setting, shouldShow:false});
   }
   
   handleInputChange = (inputName, inputValue) => {
@@ -40,7 +44,9 @@ class ProfileInfoForm extends Component {
 
   
   render() {
-    const { AddProfile, userData } = this.props;  
+    const { AddProfile, userData } = this.props;
+    const {shouldShow} = this.state; 
+
 
     const handleSubmit = (input) => {
       AddProfile(input)
@@ -137,15 +143,41 @@ class ProfileInfoForm extends Component {
                 />
               </View>
 
-              <View style={style.privacyContainer}>
-                <Text style={style.privacyText}>Account Privacy</Text>
-                <TouchableOpacity
-                  onPress={() => console.log("Account Privacy Button")}
-                >
-                  <Text style={style.buttonText}>Visible for all</Text>
-                </TouchableOpacity>
-              </View>
               <View>
+                    <Text style={style.privacyText}>
+                        Account privacy
+                    </Text>
+
+               
+                <View style={style.dotsDropdownContainer}>
+              <TouchableOpacity
+                onPress={() =>
+                  this.setState({
+                    shouldShow: !shouldShow,
+                  })
+                }>
+                  <View style={style.visibleButtonContainer}>
+          <Text style={style.middleDetailsText}>{this.state.privacy}</Text>
+        <TriangleIcon style={style.icon}/>        
+          </View>
+              </TouchableOpacity>
+              {this.state.shouldShow ? (
+                <View style={style.dropdown}>
+                  { this.state.privacy == 'Visible for all' ?
+                  <TouchableOpacity onPress={() => this.dropDownSelect('Private')}>
+                  <Text style={style.dropDownText}>Private</Text>
+              </TouchableOpacity>
+              :
+              <TouchableOpacity onPress={() => this.dropDownSelect('Visible for all')}>
+                  <Text style={style.dropDownText}>Visible for all</Text>
+              </TouchableOpacity>
+              
+                  }          
+                </View>
+              ) : null}
+            </View> 
+            </View>
+              <View style={style.buttonContainer}>
                 <TouchableOpacity onPress={() => console.log(this.state)}>
                   <Text style={style.button}>Next</Text>
                 </TouchableOpacity>
@@ -180,7 +212,7 @@ const style = StyleSheet.create({
     flex: 1,
     padding: 8,
     // backgroundColor: "#323e5b",
-    paddingHorizontal: 30,
+    paddingHorizontal: 24,
   },
   uploadPhotoContainer:{
     alignSelf:'center',
@@ -213,7 +245,7 @@ const style = StyleSheet.create({
     justifyContent: "space-between",
   },
   rowInputContainer: {
-      width:168,     
+      width:164,     
   },
   
   inputHeader: {
@@ -249,7 +281,50 @@ const style = StyleSheet.create({
     fontFamily:'Montserrat-Italic',
     color:'#9ea6b5'
   },
- 
+  visibleButtonContainer: {
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    borderRadius: 6,
+    backgroundColor: '#3E4D6C',
+    // marginTop: 4,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  middleDetailsText: {
+    fontFamily: 'Montserrat-Medium',
+    color: '#FFFFFF',
+    fontSize: 16,
+  },
+  dropdown: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginTop: 41,
+    backgroundColor: '#3E4D6C',
+    zIndex: 1,
+    paddingVertical: 4,
+    height:35,
+    position:'absolute',
+    borderBottomLeftRadius:6,
+    borderBottomRightRadius:6,
+  },
+  dropDownText: {
+    color: 'white',
+    fontSize: 16,
+    marginHorizontal: 12,
+    fontFamily:'Montserrat-Medium',
+    marginBottom:6,  
+  },
+  dropDownTextReportContainer: {
+    borderTopWidth: 1,
+    borderTopColor: 'lightgrey',
+    paddingTop: 4,
+    backgroundColor:'#2C3957',
+  },
+  icon:{
+    marginRight:4,
+  },
   button: {
     alignSelf: "center",
     backgroundColor: "#8b64ff",
@@ -262,33 +337,19 @@ const style = StyleSheet.create({
     fontSize: 14,
     fontFamily:'Montserrat-SemiBold',
 
-  },
-  privacyContainer: {
-    marginBottom: 28,
-    flexDirection: "column",
-    justifyContent: "space-between",
-    paddingHorizontal: 2,
-    
-  },
- 
+  }, 
   privacyText: {
     color: "#babec8",
     fontSize: 12,
     marginRight: 3,
+    marginBottom:3,
     fontFamily:'Montserrat-Regular',
 
   },
-  buttonText: {
-    backgroundColor: "#3E4D6C",
-    color: "#FFFFFF",
-    fontSize: 16,
-    paddingVertical:12,
-    paddingHorizontal:10,
-    borderRadius:6,
-    fontFamily:'Montserrat-Medium',
+  buttonContainer: {
+  marginTop:42,
 
-  },
-  
+  }, 
  
   
   });
