@@ -100,7 +100,15 @@ class MyProfilePosts extends Component {
             </TouchableOpacity>
             {this.state.shouldShow ? (
               <View style={style.dropdown}>
-                <Text style={style.dropDownText}>Edit post</Text>                
+                <TouchableOpacity
+          onPress={() =>
+            this.props.navigation.navigate({
+              name: 'EditPost',
+              params: {post, filteredComments, reply, userAccount},
+            })
+          }>
+            <Text style={style.dropDownText}>Edit post</Text>
+                </TouchableOpacity>                
                 <View style={style.dropDownTextReportContainer}>
                   <Text style={style.dropDownText}>Remove post</Text>
                 </View>

@@ -25,6 +25,7 @@ import PrivacyPolicy from '../components/screens/PrivacyPolicy'
 import ManagePortfolio from '../components/screens/ManagePortfolio'
 import ManagePortfolioBox from '../components/screens/ManagePortfolioBox'
 import ManagePortfolioCompany from '../components/screens/ManagePortfolioCompany'
+import EditPost from '../components/screens/EditPost'
 
 
 const MyProfileStack = createStackNavigator();
@@ -380,6 +381,25 @@ export default class MyProfileStackNavigator extends Component {
           component={ManagePortfolioCompany}
           options={{
             title: 'Manage Portfolio',
+            headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTitleStyle:{
+              fontFamily:'Montserrat-Bold',
+              fontSize:16
+  
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+        <MyProfileStack.Screen
+          name="EditPost"
+          component={EditPost}
+          options={{
+            title: 'Edit Post',
             headerStyle: {
               backgroundColor: '#394463',
             },
