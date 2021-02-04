@@ -27,6 +27,7 @@ import ManagePortfolioBox from '../components/screens/ManagePortfolioBox'
 import ManagePortfolioCompany from '../components/screens/ManagePortfolioCompany'
 import EditPost from '../components/screens/EditPost'
 import CreatePostPreview from '../components/screens/CreatePostPreview'
+import MyFollowers from '../components/screens/MyFollowers'
 
 
 const MyProfileStack = createStackNavigator();
@@ -420,6 +421,25 @@ export default class MyProfileStackNavigator extends Component {
           component={CreatePostPreview}
           options={{
             title: 'Post preview',
+            headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTitleStyle:{
+              fontFamily:'Montserrat-Bold',
+              fontSize:16
+  
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+        <MyProfileStack.Screen
+          name="MyFollowers"
+          component={MyFollowers}
+          options={{
+            title: 'Followers',
             headerStyle: {
               backgroundColor: '#394463',
             },
