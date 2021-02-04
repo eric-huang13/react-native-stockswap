@@ -42,6 +42,7 @@ class CreatePostPreview extends Component {
         //     image_url:this.state.image            
         //   }; 
         const {UserPost} = this.props;
+        // console.log(this.props.route.params.edit)
         return (
             <SafeAreaView style={style.container}>
                 <ScrollView style={style.scrollContainer}>
@@ -79,6 +80,8 @@ class CreatePostPreview extends Component {
                     onPress={() => this.props.navigation.goBack()}>
                     <Text style={style.backButton}>Back</Text>
                   </TouchableOpacity>
+
+                  {/* this.props.route.params.edit is the ID of the post to edit */}
                   { this.props.route.params.edit ? 
                   <TouchableOpacity
                     onPress={() => console.log(this.state)}>

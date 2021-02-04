@@ -34,12 +34,14 @@ class EditPost extends Component {
             }
 
             render() {
+                console.log(this.props.route.params.post.id, "props in edit")
                 //for testing
                 // const credentials = {
                 //       name: this.state.body,
                 //       description:this.state.image,          
                 //       }; 
                 const {UserPost} = this.props;   
+                const postId = this.props.route.params.post.id
           
                   return (       
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -95,7 +97,7 @@ class EditPost extends Component {
                           onPress={() =>
                             this.props.navigation.navigate({
                               name: 'CreatePostPreview',
-                              params: {data: this.state, edit:true},
+                              params: {data: this.state, edit:postId},
                             })
                             
                           }>
