@@ -80,7 +80,7 @@ class CreatePostPreview extends Component {
                     <Text style={style.backButton}>Back</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={() => UserPost(this.state)}>
+                    onPress={() => console.log(this.state)}>
                     <Text style={style.publishButton}>Publish</Text>
                   </TouchableOpacity>
                 </View>

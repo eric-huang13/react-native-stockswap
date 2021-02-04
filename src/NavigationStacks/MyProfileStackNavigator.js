@@ -26,6 +26,7 @@ import ManagePortfolio from '../components/screens/ManagePortfolio'
 import ManagePortfolioBox from '../components/screens/ManagePortfolioBox'
 import ManagePortfolioCompany from '../components/screens/ManagePortfolioCompany'
 import EditPost from '../components/screens/EditPost'
+import CreatePostPreview from '../components/screens/CreatePostPreview'
 
 
 const MyProfileStack = createStackNavigator();
@@ -400,6 +401,25 @@ export default class MyProfileStackNavigator extends Component {
           component={EditPost}
           options={{
             title: 'Edit Post',
+            headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTitleStyle:{
+              fontFamily:'Montserrat-Bold',
+              fontSize:16
+  
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+        <MyProfileStack.Screen
+          name="CreatePostPreview"
+          component={CreatePostPreview}
+          options={{
+            title: 'Post preview',
             headerStyle: {
               backgroundColor: '#394463',
             },
