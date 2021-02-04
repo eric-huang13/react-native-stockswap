@@ -104,7 +104,7 @@ class MyProfilePosts extends Component {
           onPress={() =>
             this.props.navigation.navigate({
               name: 'EditPost',
-              params: {post, filteredComments, reply, userAccount},
+              params: {post, userAccount},
             })
           }>
             <Text style={style.dropDownText}>Edit post</Text>
