@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
-import UserBox from './UserBox';
+import MyFollowersBox from './MyFollowersBox'
 
 export class MyFollowers extends Component {
   constructor(props) {
@@ -72,11 +72,11 @@ export class MyFollowers extends Component {
           <FlatList
             style={style.listContainer}
             data={filteredUsers}
-            renderItem={({item}) => (
+            renderItem={({item, index}) => (
                 <TouchableOpacity
                 key={item.id}
                 onPress={()=>this.navigationByCondition(item)}>
-                <Text>{item.name}</Text>
+                <MyFollowersBox item={item} index={index}/>
               </TouchableOpacity>
             )}
           />
