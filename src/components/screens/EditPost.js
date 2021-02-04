@@ -95,7 +95,7 @@ class EditPost extends Component {
                           onPress={() =>
                             this.props.navigation.navigate({
                               name: 'CreatePostPreview',
-                              params: {data: this.state},
+                              params: {data: this.state, edit:true},
                             })
                             
                           }>

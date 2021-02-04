@@ -79,10 +79,17 @@ class CreatePostPreview extends Component {
                     onPress={() => this.props.navigation.goBack()}>
                     <Text style={style.backButton}>Back</Text>
                   </TouchableOpacity>
+                  { this.props.route.params.edit ? 
+                  <TouchableOpacity
+                    onPress={() => console.log(this.state)}>
+                    <Text style={style.publishButton}>Confirm Edit</Text>
+                  </TouchableOpacity>
+                  :
                   <TouchableOpacity
                     onPress={() => console.log(this.state)}>
                     <Text style={style.publishButton}>Publish</Text>
                   </TouchableOpacity>
+    }
                 </View>
         
         </ScrollView>
