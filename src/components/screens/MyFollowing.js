@@ -9,10 +9,10 @@ import {
 } from 'react-native';
 import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
-import MyFollowersBox from './MyFollowersBox'
+import MyFollowingBox from './MyFollowingBox'
 
 
-export class MyFollowers extends Component {
+export class MyFollowing extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -75,7 +75,7 @@ export class MyFollowers extends Component {
                 <TouchableOpacity
                 key={item.id}
                 onPress={()=>this.navigationByCondition(item)}>
-                <MyFollowersBox item={item} index={index}/>
+                <MyFollowingBox item={item} index={index}/>
               </TouchableOpacity>
             )}
           />
@@ -91,7 +91,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(MyFollowers);
+export default connect(mapStateToProps)(MyFollowing);
 
 const style = StyleSheet.create({
   mainContainer: { 

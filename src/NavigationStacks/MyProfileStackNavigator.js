@@ -28,6 +28,8 @@ import ManagePortfolioCompany from '../components/screens/ManagePortfolioCompany
 import EditPost from '../components/screens/EditPost'
 import CreatePostPreview from '../components/screens/CreatePostPreview'
 import MyFollowers from '../components/screens/MyFollowers'
+import MyFollowing from '../components/screens/MyFollowing'
+
 
 
 
@@ -441,6 +443,25 @@ export default class MyProfileStackNavigator extends Component {
           component={MyFollowers}
           options={{
             title: 'Followers',
+            headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTitleStyle:{
+              fontFamily:'Montserrat-Bold',
+              fontSize:16
+  
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+        <MyProfileStack.Screen
+          name="MyFollowing"
+          component={MyFollowing}
+          options={{
+            title: 'Following',
             headerStyle: {
               backgroundColor: '#394463',
             },

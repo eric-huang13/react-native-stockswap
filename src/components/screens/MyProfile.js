@@ -172,10 +172,18 @@ class Profile extends Component {
                       <Text style={style.numberData}>{user.trades}</Text>
                       <Text style={style.numberText}>Trades </Text>
                     </View>
+                    <TouchableOpacity
+                    onPress={() =>
+                      this.props.navigation.navigate({
+                        name: 'MyFollowing',
+                        params: {user},
+                      })
+                    }>
                     <View style={style.numberColumn}>
                       <Text style={style.numberData}>{user.following}</Text>
                       <Text style={style.numberText}>Following</Text>
                     </View>
+                    </TouchableOpacity>
                   </View>
                 </View>
                 <View style={style.portfolioButtonContainer}>
