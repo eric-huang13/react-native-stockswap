@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import { Text, View, SafeAreaView, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import LikeInactiveIcon from '../../icons/LikeInactiveIcon'
 import CommentIcon from '../../icons/CommentIcon'
-import {UserPost} from '../../actions/posts'
+import {UserPost, EditPost} from '../../actions/posts'
 
 
 class CreatePostPreview extends Component {
@@ -36,13 +36,14 @@ class CreatePostPreview extends Component {
       
     render() {
         //for testing
-        // const credentials = {
-        //     name: this.state.name,
-        //     description:this.state.body,
-        //     image_url:this.state.image            
-        //   }; 
-        const {UserPost} = this.props;
-        // console.log(this.props.route.params.edit)
+        const credentials = {
+            description: this.state.name,
+            name:this.state.body,
+            image_url:this.state.image            
+          }; 
+        const {UserPost, EditPost} = this.props;
+        
+        const id = this.props.route.params.edit
         return (
             <SafeAreaView style={style.container}>
                 <ScrollView style={style.scrollContainer}>
@@ -81,15 +82,14 @@ class CreatePostPreview extends Component {
                     <Text style={style.backButton}>Back</Text>
                   </TouchableOpacity>
 
-                  {/* this.props.route.params.edit is the ID of the post to edit */}
                   { this.props.route.params.edit ? 
                   <TouchableOpacity
-                    onPress={() => console.log(this.state)}>
+                    onPress={() => EditPost(credentials, id)}>
                     <Text style={style.publishButton}>Confirm Edit</Text>
                   </TouchableOpacity>
                   :
                   <TouchableOpacity
-                    onPress={() => console.log(this.state)}>
+                    onPress={() => UserPost(credentials)}>
                     <Text style={style.publishButton}>Publish</Text>
                   </TouchableOpacity>
     }
@@ -110,6 +110,7 @@ const mapStateToProps = (state) => {
   const mapDispatchToProps = (dispatch) => {
     return {
         UserPost: (input) => dispatch(UserPost(input)),
+        EditPost: (input, id) => dispatch(EditPost(input, id)),
       };
   };
   

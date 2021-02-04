@@ -53,7 +53,7 @@ class EditProfile extends Component {
   
   }
   handleSubmit = (input) => {
-    EditUserAccount(input)
+    44(input)
   };
   render() {
     const {EditUserAccount} = this.props;

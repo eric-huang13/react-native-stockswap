@@ -1,4 +1,4 @@
-import { USERPOST_START,USERPOST_SUCCESS,USERPOST_ERROR,} from 'constants';
+import { USERPOST_START,USERPOST_SUCCESS,USERPOST_ERROR,EDITPOST_START, EDITPOST_SUCCESS, EDITPOST_ERROR,} from 'constants';
 import axios from 'axios';
 import deviceStorage from '../components/screens/DeviceStorage'
 import apiInstance from '../util/axiosConfig'
@@ -30,6 +30,25 @@ console.log(error.response, "ERROR response" )
   };
 };
 
+
+
+export const EditPost = (input, id) => {
+  return (dispatch) => {
+    dispatch({type: EDITPOST_START});
+    apiInstance        
+            .put(`https://jiujitsux.herokuapp.com/api/moves/takedown/${id}`, (input))
+            .then((response) => {
+                console.log(response, 'TAKEDOWN edit response')
+                // window.location.reload();
+            })
+        // .then(response =>{ deviceStorage.saveItem('token', response.data.token), dispatch({ type: EDITPOST_SUCCESS, payload: response.data })     
+                 
+ .catch(error => {dispatch({ type: EDITPOST_ERROR, payload: error.response })
+console.log(error.response )
+ 
+})
+  };
+};
 
 
 
