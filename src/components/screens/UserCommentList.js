@@ -11,8 +11,7 @@ import UserCommentReply from './UserCommentReply';
 
 export default class UserCommentList extends Component {
 
-  accountId = this.props.userAccount.id
-  
+  accountId = this.props.userAccount.id 
 
    navigationByCondition = item => {
     const {navigation} = this.props;

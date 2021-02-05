@@ -159,10 +159,18 @@ class Profile extends Component {
                     <Text style={style.bio}>{user.bio}</Text>
                   </View>
                   <View style={style.numberRow}>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.props.navigation.navigate({
+                        name: 'Followers',
+                        params: {user},
+                      })
+                    }>
                     <View style={style.numberColumn}>
                       <Text style={style.numberData}>{user.followers}</Text>
                       <Text style={style.numberText}>Followers</Text>
                     </View>
+                    </TouchableOpacity>
                     <View style={style.numberColumn}>
                       <Text style={style.numberData}>{user.posts}</Text>
                       <Text style={style.numberText}>Posts</Text>

@@ -13,6 +13,9 @@ import PostScreen from '../components/screens/PostScreen';
 import UserPortfolioList from '../components/screens/UserPortfolioList';
 import MyProfile from '../components/screens/MyProfile'
 import MyProfilePosts from '../components/screens/MyProfilePosts'
+import Followers from '../components/screens/Followers'
+
+
 
 
 const HomeStack = createStackNavigator();
@@ -141,6 +144,25 @@ export default class HomeStackNavigator extends Component {
             },
           }}
         />
+        <HomeStack.Screen
+          name="Followers"
+          component={Followers}
+          options={{
+            title: 'Followers',
+                headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTitleStyle:{
+              fontFamily:'Montserrat-Bold',
+              fontSize:16
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+      
       
       </HomeStack.Navigator>
     )
