@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
-import MyFollowingBox from './MyFollowingBox'
+import FollowingBox from './FollowingBox'
 
 
 export class Following extends Component {
@@ -75,7 +75,7 @@ export class Following extends Component {
                 <TouchableOpacity
                 key={item.id}
                 onPress={()=>this.navigationByCondition(item)}>
-                <MyFollowingBox item={item} index={index}/>
+                <FollowingBox item={item} index={index}/>
               </TouchableOpacity>
             )}
           />
