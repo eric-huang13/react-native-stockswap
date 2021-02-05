@@ -164,29 +164,11 @@ export default class HomeStackNavigator extends Component {
             },
           })}
         />
-        {/* <HomeStack.Screen
-          name="CompanyCategory"
-          component={CompanyCategory}
-          options={({route}) => ({
-            title: route.params.name,
-            //Need to figure out way to make header height shown when transparent or add Linearcolors directly
-            // headerTransparent: true,
-            headerShown: true,
-  
-            headerStyle: {
-              backgroundColor: '#394463',
-            },
-            headerTintColor: 'white',
-            headerTitleAlign: {
-              textAlign: 'center',
-            },
-          })}
-        /> */}
       <HomeStack.Screen
           name="Following"
           component={Following}
-          options={{
-            title: 'Following',
+          options={({route}) => ({
+            title: route.params.name,
                 headerStyle: {
               backgroundColor: '#394463',
             },
@@ -198,7 +180,7 @@ export default class HomeStackNavigator extends Component {
             headerTitleAlign: {
               textAlign: 'center',
             },
-          }}
+          })}
         />
       
       </HomeStack.Navigator>

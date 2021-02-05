@@ -69,11 +69,11 @@ export class Following extends Component {
             />
           </View>
           <FlatList
+          keyExtractor = { (item, index) => index.toString() }
             style={style.listContainer}
             data={filteredUsers}
             renderItem={({item, index}) => (
                 <TouchableOpacity
-                key={item.id}
                 onPress={()=>this.navigationByCondition(item)}>
                 <FollowingBox item={item} index={index}/>
               </TouchableOpacity>

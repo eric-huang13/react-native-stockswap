@@ -155,7 +155,7 @@ class Profile extends Component {
                   <TouchableOpacity
                     onPress={() =>
                       this.props.navigation.navigate({
-                        name: 'Followers',
+                        name: 'MyFollowers',
                         params: {user},
                       })
                     }>

@@ -69,6 +69,7 @@ export class MyFollowers extends Component {
             />
           </View>
           <FlatList
+            keyExtractor = { (item, index) => index.toString() }
             style={style.listContainer}
             data={filteredUsers}
             renderItem={({item, index}) => (
