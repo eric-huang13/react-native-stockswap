@@ -17,6 +17,19 @@ export default class UserPosts extends Component {
       shouldShow: false,
     };
   }
+  navigationByCondition = post => {
+    const {navigation} = this.props;
+    if (post.userId === this.accountId) {
+      navigation.navigate({
+        name: 'MyProfile',
+        params: {id: post.id},
+      })
+    } else {
+      navigation.navigate({
+        name: 'Profile',
+        params: {id: post.userId}      })
+    }
+  };
 
   render() {
     const {shouldShow} = this.state;
@@ -30,6 +43,10 @@ export default class UserPosts extends Component {
     return (
       <SafeAreaView style={style.container}>
         <View style={style.postNameContainer}>
+        <TouchableOpacity
+                    key={post.id}
+                    onPress={()=>this.navigationByCondition(post)             
+                    }>
           <View style={style.profileImageContainer}>
             <Image
               style={style.postUserImage}
@@ -37,6 +54,7 @@ export default class UserPosts extends Component {
             />
             <Text style={style.postUserName}>{post.name}</Text>
           </View>
+          </TouchableOpacity>
 
           <View style={style.dotsDropdownContainer}>
             <TouchableOpacity
