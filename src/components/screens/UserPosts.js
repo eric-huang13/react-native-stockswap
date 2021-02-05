@@ -111,13 +111,16 @@ export default class UserPosts extends Component {
               params: {post, filteredComments, reply, userAccount},
             })
           }>
-          <Text style={style.body}>
-            {' '}
-            {post.body.length < 88
-              ? `${post.body}`
-              : `${post.body.substring(0, 88)}...`}{' '}
+
+             {post.body.length < 80
+             ?
+          <Text style={style.body}>          
+            {post.body}
+               </Text>
+              : <Text style={style.body}> {post.body.substring(0, 80)}...
             <Text style={style.more}>{'       '}More</Text>
           </Text>
+  }
         </TouchableOpacity>
 
         <View style={style.commentContainer}>
@@ -233,6 +236,8 @@ const style = StyleSheet.create({
     fontSize: 13,
     color: '#B8A0FF',
     fontFamily:'Montserrat-SemiBoldItalic',
+  //   alignSelf:'flex-end',
+  //  textAlign:'right'
   },
   commentContainer: {
     marginTop: 4,
