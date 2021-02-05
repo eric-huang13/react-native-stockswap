@@ -14,6 +14,8 @@ import UserPortfolioList from '../components/screens/UserPortfolioList';
 import MyProfile from '../components/screens/MyProfile'
 import MyProfilePosts from '../components/screens/MyProfilePosts'
 import Followers from '../components/screens/Followers'
+import Following from '../components/screens/Following'
+
 
 
 
@@ -162,7 +164,24 @@ export default class HomeStackNavigator extends Component {
             },
           }}
         />
-      
+      <HomeStack.Screen
+          name="Following"
+          component={Following}
+          options={{
+            title: 'Following',
+                headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTitleStyle:{
+              fontFamily:'Montserrat-Bold',
+              fontSize:16
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
       
       </HomeStack.Navigator>
     )
