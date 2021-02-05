@@ -17,6 +17,8 @@ export default class UserPosts extends Component {
       shouldShow: false,
     };
   }
+  accountId = this.props.userAccount.id
+
   navigationByCondition = post => {
     const {navigation} = this.props;
     if (post.userId === this.accountId) {

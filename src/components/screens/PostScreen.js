@@ -20,6 +20,21 @@ export default class PostScreen extends Component {
       shouldShow: false,
     };
   }
+  accountId = this.props.route.params.userAccount.id
+
+  navigationByCondition = post => {
+    const {navigation} = this.props;
+    if (post.userId === this.accountId) {
+      navigation.navigate({
+        name: 'MyProfile',
+        params: {id: post.id},
+      })
+    } else {
+      navigation.navigate({
+        name: 'Profile',
+        params: {id: post.userId}      })
+    }
+  };
 
   render() {
     const {shouldShow} = this.state;
@@ -29,6 +44,10 @@ export default class PostScreen extends Component {
       <SafeAreaView style={style.container}>
         <ScrollView style={style.scrollContainer}>
           <View style={style.postNameContainer}>
+          <TouchableOpacity
+                    key={post.id}
+                    onPress={()=>this.navigationByCondition(post)             
+                    }>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Image
                 style={style.postUserImage}
@@ -36,7 +55,7 @@ export default class PostScreen extends Component {
               />
               <Text style={style.postUserName}>{post.name}</Text>
             </View>
-
+           </TouchableOpacity>
             <View style={style.dotsDropdownConatiner}>
               <TouchableOpacity
                 onPress={() =>
