@@ -40,12 +40,13 @@ export default class CreateTrade extends Component {
                 <View style={style.uploadContainer}>
                     <Text style={style.uploadText}>Upload trade screenshot for autofill</Text>
                 </View>
-                <View style={style.postContainer}>
+                <View style={style.nameInputContainer}>
                   <Text style={style.inputHeader}>Stock name</Text>
                   <TextInput
                     style={style.inputStyleBody}
                     value={this.state.name}                    
                     onChangeText={value => this.handleInputChange('name', value)}
+                    placeholder="Start typing stock name"
                     placeholderTextColor="#9ea6b5"
                     multiline={true}
                     numberOfLines={4}
@@ -69,7 +70,8 @@ export default class CreateTrade extends Component {
                   <TextInput
                     style={style.inputStyleBody}
                     value={this.state.time}
-                    onChangeText={value => this.handleInputChange('time', value)}                     placeholder="Time when you sell it"
+                    onChangeText={value => this.handleInputChange('time', value)}                     
+                    placeholder="Time when you sell it"
                     placeholderTextColor="#9ea6b5"
                     multiline={true}
                     numberOfLines={4}
@@ -141,13 +143,14 @@ const style = StyleSheet.create({
         paddingHorizontal:36,  
         flexDirection:'column',
         borderWidth:1,
-        justifyContent:'space-evenly'
+        justifyContent:'space-around'
         },
     header:{
         fontSize:20,
         fontFamily: 'Montserrat-Bold',
         color:'#FFFFFF', 
-        textAlign:'center',   
+        textAlign:'center', 
+        marginBottom:12,  
     },
     uploadContainer:{
         backgroundColor:'#46486e',
@@ -161,6 +164,9 @@ const style = StyleSheet.create({
         color:'#FFFFFF',
         fontFamily: 'Montserrat-Regular',
         fontSize:14,
+    },
+    nameInputContainer:{
+        marginTop:20,
     },
     inputHeader:{
         fontSize: 12,
@@ -185,7 +191,8 @@ const style = StyleSheet.create({
     buttonsContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        // marginHorizontal:30,
+        marginBottom:8,
+        
       },
       buyButton: {
         alignSelf: 'center',
