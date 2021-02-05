@@ -55,9 +55,10 @@ export class CompanyCategory extends Component {
           </View>
 
           <FlatList
+          keyExtractor = { (item, index) => index.toString() }
             style={style.listContainer}
             data={filteredCategory}
-            renderItem={({item}) => (
+            renderItem={({item, index}) => (
               <TouchableOpacity
                 key={item.id}
                 onPress={() =>
@@ -66,7 +67,7 @@ export class CompanyCategory extends Component {
                     params: {item},
                   })
                 }>
-                <CompanyCategoryBox item={item} />
+                <CompanyCategoryBox item={item} index={index} />
               </TouchableOpacity>
             )}
           />
