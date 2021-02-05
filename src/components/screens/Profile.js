@@ -161,8 +161,8 @@ class Profile extends Component {
                   <View style={style.numberRow}>
                   <TouchableOpacity
                     onPress={() =>
-                      this.props.navigation.navigate({
-                        name: 'Followers',
+                      this.props.navigation.navigate('Followers',{
+                        name: `${user.name}'s followers`,
                         params: {user},
                       })
                     }>
