@@ -14,6 +14,7 @@ import PostScreen from '../components/screens/PostScreen';
 import UserPortfolioList from '../components/screens/UserPortfolioList';
 import MyProfile from '../components/screens/MyProfile'
 import MyProfilePosts from '../components/screens/MyProfilePosts'
+import CompanySymbolList from '../components/screens/CompanySymbolList'
 
 
 const SearchStack = createStackNavigator();
@@ -137,6 +138,24 @@ export default class SearchStackNavigator extends Component {
           component={MyProfilePosts}
           options={{
             title: 'All my posts',
+                headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTitleStyle:{
+              fontFamily:'Montserrat-Bold',
+              fontSize:16
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+        <SearchStack.Screen
+          name="CompanySymbolList"
+          component={CompanySymbolList}
+          options={{
+            title: 'Companies',
                 headerStyle: {
               backgroundColor: '#394463',
             },

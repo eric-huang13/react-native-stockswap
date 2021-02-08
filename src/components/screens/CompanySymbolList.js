@@ -12,11 +12,15 @@ import {connect} from 'react-redux';
 import CompanyBox from './CompanyBox';
 
 export class CompanySymbolList extends Component {
+    constructor(props) {
+        super(props);
+   
+      }
  
 
   render() {
     const {gainers} = this.props;
-
+    console.log(this.props.navigation,'props in symbol list')
     return (
       <SafeAreaView style={style.mainContainer}>        
 

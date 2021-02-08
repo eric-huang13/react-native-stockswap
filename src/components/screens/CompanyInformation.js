@@ -24,15 +24,10 @@ export class CompanyInformation extends Component {
       ],
       percent: '1.22',
       range: [10, 15],
-      live: true,
-      day: false,
-      week: false,
-      month: false,
-      threeMonth: false,
-      year: false,
-      all: false,
+      timeFilter:'live'
     };
   }
+
 
   render() {
     //X and Y
@@ -88,12 +83,13 @@ export class CompanyInformation extends Component {
     const chartThreeQuarter = (chartHigh - numberDifference).toFixed(0);
     //Graph quarter number
     const chartOneQuarter = (chartLow + numberDifference).toFixed(0);
-
+console.log(weekData, 'WEEKDATAAAAA')
     const {route} = this.props;
-    const {graphData, percent, range} = this.state;
+    const {graphData, percent, range, timeFilter} = this.state;
+    console.log(this.props.navigation, 'info props')
     return (
       <SafeAreaView style={style.mainContainer}> 
-       <CompanySymbolList/>
+       <CompanySymbolList navigation={this.props.navigation}/>
         <ScrollView>
       
 
@@ -124,18 +120,12 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  live: true,
-                  day: false,
-                  week: false,
-                  month: false,
-                  threeMonth: false,
-                  year: false,
-                  all: false,
+                  timeFilter:live
                 })
               }>
               <Text
                 style={
-                  this.state.live
+                  this.state.timeFilter ==='live'
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
@@ -144,19 +134,13 @@ export class CompanyInformation extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
-                this.setState({
-                  live: false,
-                  day: true,
-                  week: false,
-                  month: false,
-                  threeMonth: false,
-                  year: false,
-                  all: false,
+                this.setState({               
+                  timeFilter:'day'
                 })
               }>
               <Text
                 style={
-                  this.state.day
+                  this.state.timeFilter === 'day'
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
@@ -169,18 +153,12 @@ export class CompanyInformation extends Component {
                   graphData: weekData,
                   percent: percentChange,
                   range: weekRange,
-                  live: false,
-                  day: false,
-                  week: true,
-                  month: false,
-                  threeMonth: false,
-                  year: false,
-                  all: false,
+                  timeFilter:'week',
                 })
               }>
               <Text
                 style={
-                  this.state.week
+                  this.state.timeFilter==='week'
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
@@ -193,18 +171,12 @@ export class CompanyInformation extends Component {
                   graphData: monthData,
                   percent: percentChangeMonth,
                   range: newrange,
-                  live: false,
-                  day: false,
-                  week: false,
-                  month: true,
-                  threeMonth: false,
-                  year: false,
-                  all: false,
+                  timeFilter:'month'
                 })
               }>
               <Text
                 style={
-                  this.state.month
+                  this.state.timeFilter==='month'
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
@@ -214,18 +186,12 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  live: false,
-                  day: false,
-                  week: false,
-                  month: false,
-                  threeMonth: true,
-                  year: false,
-                  all: false,
+                  timeFilter:'3 months'
                 })
               }>
               <Text
                 style={
-                  this.state.threeMonth
+                  this.state.timeFilter==='3 months'
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
@@ -235,18 +201,12 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  live: false,
-                  day: false,
-                  week: false,
-                  month: false,
-                  threeMonth: false,
-                  year: true,
-                  all: false,
+                  timeFilter:'year'
                 })
               }>
               <Text
                 style={
-                  this.state.year
+                  this.state.timeFilter==='year'
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
@@ -256,18 +216,12 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  live: false,
-                  day: false,
-                  week: false,
-                  month: false,
-                  threeMonth: false,
-                  year: false,
-                  all: true,
+                  timeFilter:'all'
                 })
               }>
               <Text
                 style={
-                  this.state.all
+                  this.state.timeFilter==='all'
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
