@@ -20,7 +20,7 @@ export class CompanySymbolList extends Component {
 
   render() {
     const {gainers} = this.props;
-    console.log(this.props.navigation,'props in symbol list')
+    console.log(this.props,'props in symbol list')
     return (
       <SafeAreaView style={style.mainContainer}>        
 
@@ -42,7 +42,11 @@ export class CompanySymbolList extends Component {
                         })
                       }>
                         <View style={style.symbolBox}>
-                      <Text style={style.symbol}>{item.symbol}</Text>
+                      <Text style={
+                  this.props.symbol === item.symbol
+                    ? {...style.symbol, backgroundColor: '#8B64FF'}
+                    : {...style.symbol}
+                }>{item.symbol}</Text>
                       </View>
                     </TouchableOpacity>
                   );
@@ -86,7 +90,7 @@ const style = StyleSheet.create({
   },
   symbol:{   
     textAlign:'center',
-    backgroundColor:'#8B64FF',
+    backgroundColor:'#3e475b',
     fontFamily:'Montserrat-Medium',
     color:'#FFFFFF',
     paddingVertical:4,

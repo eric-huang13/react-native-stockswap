@@ -89,7 +89,7 @@ console.log(weekData, 'WEEKDATAAAAA')
     console.log(this.props.navigation, 'info props')
     return (
       <SafeAreaView style={style.mainContainer}> 
-       <CompanySymbolList navigation={this.props.navigation}/>
+       <CompanySymbolList navigation={this.props.navigation} symbol={route.params.item.symbol}/>
         <ScrollView>
       
 
@@ -108,7 +108,7 @@ console.log(weekData, 'WEEKDATAAAAA')
             <Text>Company Information</Text>
           )}
           <View style={style.graphContainer}>
-            <CompanyStockGraph graphData={graphData} range={range} />
+            <CompanyStockGraph graphData={graphData} symbol={route.params.item.title} range={range} />
             <View style={style.graphNumbers}>
               <Text style={style.graphNumberText}>-{chartLow}</Text>
               <Text style={style.graphNumberText}>-{chartOneQuarter}</Text>
@@ -120,7 +120,7 @@ console.log(weekData, 'WEEKDATAAAAA')
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  timeFilter:live
+                  timeFilter:'live'
                 })
               }>
               <Text
