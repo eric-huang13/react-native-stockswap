@@ -300,6 +300,7 @@ export default CompanyInformation;
 const style = StyleSheet.create({
   mainContainer: {
     backgroundColor: '#2a334a',
+    flex:1,
   },
   aboveGraphContainer: {
     paddingHorizontal: 4,
@@ -325,6 +326,8 @@ const style = StyleSheet.create({
     color: 'lightgrey',
     // fontWeight: 'bold',
     fontSize: 14.5,
+    fontFamily: 'Montserrat-Medium',
+
   },
   symbolView: {
     paddingHorizontal: 15,
@@ -341,23 +344,26 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   symbol: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white',
+    fontSize: 20,
+    fontFamily: 'Montserrat-Bold',
+    color: '#FFFFFF',
   },
   price: {
-    color: 'white',
-    fontSize: 24,
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontSize: 20,
+    fontFamily: 'Montserrat-Bold',
   },
   title: {
     color: 'lightgrey',
-    fontSize: 14,
+    fontFamily: 'Montserrat-Regular',
+    fontSize:12,
+
   },
   percentage: {
     color: 'rgb(8, 177, 40)',
-    fontSize: 14,
-    fontWeight: 'bold',
+    fontSize: 12,
+    fontFamily: 'Montserrat-Medium',
+
   },
   vitalsContainer: {
     marginTop: 6,
@@ -369,25 +375,20 @@ const style = StyleSheet.create({
     paddingTop: 4,
   },
   vitalsHeader: {
-    color: 'white',
-    fontSize: 26,
-    fontWeight: 'bold',
-    marginTop: 28,
+    fontFamily: 'Montserrat-Bold',
+    color: '#FFFFFF',
+    fontSize: 22,
+    marginTop: 14,
     textAlign: 'left',
     paddingHorizontal: 10,
   },
   vitalsLeftColumn: {
     flexDirection: 'column',
-    color: 'black',
-    fontSize: 31,
-    fontWeight: 'bold',
-    // justifyContent:'space-between'
+    
   },
   vitalsRightColumn: {
     flexDirection: 'column',
-    color: 'black',
-    fontSize: 31,
-    fontWeight: 'bold',
+   
   },
   vitalsRow: {
     flexDirection: 'row',
@@ -395,14 +396,14 @@ const style = StyleSheet.create({
   },
   vitalDetails: {
     color: 'lightgrey',
-    fontSize: 18,
-    // fontWeight: 'bold',
+    fontSize: 14,
+    fontFamily: 'Montserrat-Medium',
     marginBottom: 10,
   },
   vitalDetailsData: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontFamily: 'Montserrat-Bold',
     marginBottom: 10,
     marginLeft: 55,
   },
@@ -416,9 +417,9 @@ const style = StyleSheet.create({
     paddingBottom: 9,
   },
   stockButtons: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 16,
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat-Bold',
+    fontSize: 15,
   },
   buyButtonContainer: {
     marginTop: 24,
@@ -426,9 +427,10 @@ const style = StyleSheet.create({
   },
   buyButton: {
     backgroundColor: '#8b64ff',
-    color: 'white',
+    color: '#FFFFFF',
     borderRadius: 6,
-    fontSize: 18,
+    fontFamily: 'Montserrat-SemiBold',
+    fontSize: 14,
     paddingVertical: 10,
     paddingHorizontal: 40,
   },
@@ -440,22 +442,25 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
   },
   aboutHeader: {
-    color: 'white',
-    fontSize: 27,
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontSize: 22,
+    fontFamily: 'Montserrat-Bold',
     marginBottom: 4,
   },
   sectorText: {
     color: 'lightgrey',
-    fontSize: 19,
+    fontFamily: 'Montserrat-Regular',
+    fontSize: 16,
   },
   sectorData: {
-    color: 'white',
-    fontSize: 19,
+    color: '#FFFFFF', 
+    fontFamily: 'Montserrat-SemiBold',
+    fontSize: 16,
   },
   about: {
     marginTop: 10,
-    color: 'white',
-    fontSize: 17,
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat-Medium',
+    fontSize: 14,
   },
 });

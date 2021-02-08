@@ -81,7 +81,6 @@ const style = StyleSheet.create({
 
   },
   symbolBox:{
-    // borderWidth:1,
     marginHorizontal:12,
     width:63,
     height:23,

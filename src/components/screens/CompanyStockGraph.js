@@ -13,7 +13,7 @@ export default class CompanyStockGraph extends Component {
         </LinearGradient>
       );
     };
-
+console.log(this.props.graphData, "DATA COMING IN")
     return (
       <SafeAreaView style={styles.container}>
         <SlideAreaChart
