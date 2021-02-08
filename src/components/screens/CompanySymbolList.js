@@ -5,7 +5,8 @@ import {
   StyleSheet,
   ScrollView,
   SafeAreaView,
-  Text
+  Text,
+  FlatList
 } from 'react-native';
 
 import {connect} from 'react-redux';
@@ -25,14 +26,14 @@ export class CompanySymbolList extends Component {
       <SafeAreaView style={style.mainContainer}>        
 
          
-              <ScrollView
-              style={style.scollContainer}
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
+              <FlatList
+                keyExtractor = { (item, index) => index.toString() }
+                data={gainers}
+                style={style.scollContainer}
+                horizontal
                 alignItems='center'
-                justifyContent="space-between">
-                {gainers.map((item) => {
-                  return (
+                renderItem={({item, index}) => (
+               
                     <TouchableOpacity
                       key={item.id}
                       onPress={() =>
@@ -49,9 +50,9 @@ export class CompanySymbolList extends Component {
                 }>{item.symbol}</Text>
                       </View>
                     </TouchableOpacity>
-                  );
-                })}
-              </ScrollView>
+                  
+                )}
+              />
     
       </SafeAreaView>
     );
