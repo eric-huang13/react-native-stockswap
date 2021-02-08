@@ -22,8 +22,10 @@ export class CompanySymbolList extends Component {
 
          
               <ScrollView
+              style={style.scollContainer}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
+                alignItems='center'
                 justifyContent="space-between">
                 {gainers.map((item) => {
                   return (
@@ -35,7 +37,9 @@ export class CompanySymbolList extends Component {
                           params: {item},
                         })
                       }>
-                      <Text>{item.symbol}</Text>
+                        <View style={style.symbolBox}>
+                      <Text style={style.symbol}>{item.symbol}</Text>
+                      </View>
                     </TouchableOpacity>
                   );
                 })}
@@ -59,7 +63,31 @@ export default connect(mapStateToProps)(CompanySymbolList);
 
 const style = StyleSheet.create({
   mainContainer: {
+    //   borderWidth:1,
+      paddingVertical:10,
+      height:60,
     
+  },
+  scollContainer:{
+// borderWidth:1,
+
+  },
+  symbolBox:{
+    // borderWidth:1,
+    marginHorizontal:12,
+    width:63,
+    height:23,
+    alignContent:'center',
+    justifyContent:'center'
+  },
+  symbol:{   
+    textAlign:'center',
+    backgroundColor:'#8B64FF',
+    fontFamily:'Montserrat-Medium',
+    color:'#FFFFFF',
+    paddingVertical:4,
+  
+
   },
 
   
