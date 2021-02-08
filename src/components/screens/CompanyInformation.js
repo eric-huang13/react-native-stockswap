@@ -8,6 +8,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import CompanyStockGraph from './CompanyStockGraph';
+import CompanySymbolList from './CompanySymbolList'
 
 export class CompanyInformation extends Component {
   constructor(props) {
@@ -91,8 +92,11 @@ export class CompanyInformation extends Component {
     const {route} = this.props;
     const {graphData, percent, range} = this.state;
     return (
-      <SafeAreaView style={style.mainContainer}>
+      <SafeAreaView style={style.mainContainer}> 
+       <CompanySymbolList/>
         <ScrollView>
+      
+
           {this.props.route.params ? (
             <View style={style.aboveGraphContainer}>
               <View style={style.symbolView}>
