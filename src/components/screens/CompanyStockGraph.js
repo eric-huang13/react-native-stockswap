@@ -4,7 +4,36 @@ import {SlideAreaChart} from 'react-native-slide-charts';
 import {LinearGradient, Stop} from 'react-native-svg';
 
 export default class CompanyStockGraph extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      graphData:[]
+    };
+  }
+  
+  componentDidMount() {
+    const {graphData} = this.props;
+    
+        this.setState({
+          graphData:graphData,
+         
+        });
+    
+  
+  }
+  componentDidUpdate(prevProps) {
+    
+    if (this.props.graphData !== prevProps.graphData) {
+      this.setState({
+        graphData:this.props.graphData,
+       
+      });
+    }
+   }
+ 
   render() {
+    console.log(this.props.graphData,'Graph Data')
     const fillGradient = (props) => {
       return (
         <LinearGradient x1="40%" y1="0%" x2="40%" y2="100%" {...props}>
@@ -13,11 +42,11 @@ export default class CompanyStockGraph extends Component {
         </LinearGradient>
       );
     };
-console.log(this.props.graphData, "DATA COMING IN")
+// console.log(this.props.graphData, "DATA COMING IN")
     return (
       <SafeAreaView style={styles.container}>
         <SlideAreaChart
-          data={this.props.graphData}
+          data={this.state.graphData}
           yRange={this.props.range}
           width={Dimensions.get('window').width - 40}
           height={200}

@@ -17,11 +17,21 @@ export class CompanySymbolList extends Component {
         super(props);
    
       }
- 
 
+      componentDidMount() {
+      
+       const  goIndex = () => {
+
+          this.flatList_Ref.scrollToIndex({animated: true,index:5});
+         
+         };
+        
+      
+      }
+ 
   render() {
     const {gainers} = this.props;
-    console.log(this.props,'props in symbol list')
+    // console.log(this.props,'props in symbol list')
     return (
       <SafeAreaView style={style.mainContainer}>        
 
@@ -32,6 +42,7 @@ export class CompanySymbolList extends Component {
                 style={style.scollContainer}
                 horizontal
                 alignItems='center'
+                ref={(ref) => { this.flatListRef = ref; }}
                 renderItem={({item, index}) => (
                
                     <TouchableOpacity

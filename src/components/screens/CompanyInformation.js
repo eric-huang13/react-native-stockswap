@@ -24,21 +24,54 @@ export class CompanyInformation extends Component {
       ],
       percent: '1.22',
       range: [10, 15],
-      timeFilter:'live'
+      timeFilter:'live',
+      xDates:[],
+      yPrices:[],
     };
   }
 
 
+  //All logic needs to be handled before hand, either in backend or in action? Will change this when we actually have data coming in
+  
+  componentDidMount() {
+    
+        //X
+        const xDates = this.props.route.params.item.dates.map(
+          (item) => new Date(item * 1000),
+        );
+        //Y
+        const yPrices = this.props.route.params.item.priceHistory;
+        
+    
+        this.setState({
+          xDates:xDates,
+          yPrices:yPrices,
+          });
+    
+  
+  }
+  
+  componentDidUpdate(prevProps) {
+    
+    if (this.props.route.params.item.dates !== prevProps.route.params.item.dates) {
+      this.setState({
+        xDates:this.props.route.params.item.dates,
+        yPrices:this.props.route.params.item.priceHistory,
+        });
+    }
+   }
+ 
+
   render() {
     //X and Y
     //X
-    const xDates = this.props.route.params.item.dates.map(
-      (item) => new Date(item * 1000),
-    );
+    // const xDates = this.props.route.params.item.dates.map(
+    //   (item) => new Date(item * 1000),
+    // );
     //Y
-    const yPrices = this.props.route.params.item.priceHistory;
+    const yPrices = this.state.yPrices;
     //X and Y data
-    const xyData = xDates.map((stockDate, stockPrice) => {
+    const xyData = this.state.xDates.map((stockDate, stockPrice) => {
       return {x: stockDate, y: yPrices[stockPrice]};
     });
 
@@ -50,7 +83,7 @@ export class CompanyInformation extends Component {
 
     //Info to display
     //Current stock price
-    const currentPrice = yPrices[yPrices.length - 1];
+    const currentPrice = this.state.yPrices[yPrices.length - 1];
     // Growth/Loss percentage
     const percentChange = (
       ((currentPrice - yPrices[yPrices.length - 7]) / yPrices[yPrices.length - 7]) *100).toFixed(2);
@@ -83,10 +116,9 @@ export class CompanyInformation extends Component {
     const chartThreeQuarter = (chartHigh - numberDifference).toFixed(0);
     //Graph quarter number
     const chartOneQuarter = (chartLow + numberDifference).toFixed(0);
-console.log(weekData, 'WEEKDATAAAAA')
+console.log(weekData, 'WEEKDATA')
     const {route} = this.props;
-    const {graphData, percent, range, timeFilter} = this.state;
-    console.log(this.props.navigation, 'info props')
+    const {graphData, percent, range} = this.state;
     return (
       <SafeAreaView style={style.mainContainer}> 
        <CompanySymbolList navigation={this.props.navigation} symbol={route.params.item.symbol}/>
@@ -101,7 +133,7 @@ console.log(weekData, 'WEEKDATAAAAA')
               </View>
               <View style={style.titleView}>
                 <Text style={style.title}>{route.params.item.title}</Text>
-                <Text style={style.percentage}>({percent}%)</Text>
+                <Text style={style.percentage}>({route.params.item.percentage})</Text>
               </View>
             </View>
           ) : (
