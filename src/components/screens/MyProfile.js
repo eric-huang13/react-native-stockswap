@@ -213,43 +213,10 @@ class Profile extends Component {
                   </TouchableOpacity>
                 </View>
               </View>
-            {/* ); */}
-          {/* })} */}
-          {/* {selectedPosts.map((post) => (
-            <MyProfilePosts
-              key={post.id}
-              post={post}
-              navigation={this.props.navigation}
-              // comments={comments}
-              // reply={reply}
-              // userAccount={userAccount}
-            />
-          ))} */}
+                        <MyProfilePostsGrid navigation={this.props.navigation}/>
 
-{/* <FlatList
-          keyExtractor = { (item, index) => index.toString() }
-            // style={style.listContainer}
-            data={selectedPosts}
-            renderItem={({item, index}) => (
-              <TouchableOpacity
-                key={item.id}
-                onPress={() =>
-                  this.props.navigation.navigate({
-                    name: 'CompanyInformation',
-                    params: {item},
-                  })
-                }>
-               <MyProfilePosts
-               key={item.id}
-               item={item}
-               navigation={this.props.navigation}
-               />
-              </TouchableOpacity>
-            )}
-          /> */}
-          <MyProfilePostsGrid navigation={this.props.navigation}/>
         </ScrollView>
-        
+
       </SafeAreaView>
     );
   }

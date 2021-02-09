@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   TextInput, 
-  FlatList
+  FlatList,
   
 } from 'react-native';
 import LikeInactiveIcon from '../../icons/LikeInactiveIcon'
@@ -49,37 +49,16 @@ class MyProfilePosts extends Component {
  };
   render() {
     const {shouldShow} = this.state;
-    const {isLoggedIn, LogoutUser, post, comments, reply, userAccount, item} = this.props;
+    const {comments, reply, userAccount, item} = this.props;
     const id = this.props.userAccount.id
-    // const selectedPosts = item.filter((user) => user.userId === id); 
  
     const filteredComments = comments.filter(
       (comment) => comment.postId === item.id,
     );
     const lastComment = filteredComments[filteredComments.length - 1];
-    // console.log(post, 'props in post');
     return (
-      <SafeAreaView style={style.container}>
-        <View style={style.searchInputContainer}>
-          <View
-        style={{
-          position: "absolute",
-          zIndex: 1,
-          left: 14,
-          top:10
-        }}
-      >
-        <SearchInput/>
-      </View>
-            <TextInput
-              style={style.searchInput}
-              placeholder="Search by name"
-              placeholderTextColor="lightgrey"
-              onChangeText={(text) => this.handleChange(text)}
-            />
-          </View>
-           
-                <View style={style.postContainer} key={item.id}>
+      <SafeAreaView style={style.container}>   
+        <View style={style.postContainer} key={item.id}>
         <View style={style.postNameContainer}>
           <View style={style.profileImageContainer}>
             <Image
@@ -209,6 +188,8 @@ const style = StyleSheet.create({
     flexDirection: 'column',  
     backgroundColor: '#2a334a',
     flex:1,
+    // width:130,
+    borderWidth:1,
   },
   searchInputContainer: {
     marginBottom: 15,

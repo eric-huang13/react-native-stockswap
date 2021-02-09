@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, FlatList } from 'react-native'
+import { Text, StyleSheet, View, FlatList, Dimensions } from 'react-native'
 import {connect} from 'react-redux';
 import MyProfilePostBox from './MyProfilePostBox'
 
@@ -14,21 +14,13 @@ class MyProfilePostsGrid extends Component {
           keyExtractor = { (item, index) => index.toString() }
             // style={style.listContainer}
             data={selectedPosts}
-            renderItem={({item, index}) => (
-            //   <TouchableOpacity
-            //     key={item.id}
-            //     onPress={() =>
-            //       this.props.navigation.navigate({
-            //         name: 'CompanyInformation',
-            //         params: {item},
-            //       })
-            //     }>
+            numColumns={3}
+            renderItem={({item, index}) => (  
                <MyProfilePostBox
                key={item.id}
                item={item}
                navigation={this.props.navigation}
                />
-            //   </TouchableOpacity>
             )}
           />
             </View>
