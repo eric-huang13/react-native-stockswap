@@ -29,6 +29,7 @@ import EditPost from '../components/screens/EditPost'
 import CreatePostPreview from '../components/screens/CreatePostPreview'
 import MyFollowers from '../components/screens/MyFollowers'
 import MyFollowing from '../components/screens/MyFollowing'
+import MyProfilePostsGrid from '../components/screens/MyProfilePostsGrid'
 
 
 
@@ -462,6 +463,25 @@ export default class MyProfileStackNavigator extends Component {
           component={MyFollowing}
           options={{
             title: 'Following',
+            headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTitleStyle:{
+              fontFamily:'Montserrat-Bold',
+              fontSize:16
+  
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+         <MyProfileStack.Screen
+          name="MyProfilePostsGrid"
+          component={MyProfilePostsGrid}
+          options={{
+            title: 'My Posts',
             headerStyle: {
               backgroundColor: '#394463',
             },

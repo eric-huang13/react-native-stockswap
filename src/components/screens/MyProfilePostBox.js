@@ -105,7 +105,7 @@ class MyProfilePosts extends Component {
           onPress={() =>
             this.props.navigation.navigate({
               name: 'EditPost',
-              params: {post, userAccount},
+              params: {post:item, userAccount},
             })
           }>
             <Text style={style.dropDownText}>Edit post</Text>
@@ -121,7 +121,7 @@ class MyProfilePosts extends Component {
           onPress={() =>
             this.props.navigation.navigate({
               name: 'PostScreen',
-              params: {post, filteredComments, reply, userAccount},
+              params: {post:item, filteredComments, reply, userAccount},
             })
           }>
           <Image style={style.image} source={{uri: item.img}} />
@@ -145,7 +145,7 @@ class MyProfilePosts extends Component {
           onPress={() =>
             this.props.navigation.navigate({
               name: 'PostScreen',
-              params: {post, filteredComments, reply, userAccount},
+              params: {post:item, filteredComments, reply, userAccount},
             })
           }>
           <Text style={style.body}>

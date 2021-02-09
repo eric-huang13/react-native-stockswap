@@ -12,7 +12,7 @@ import {
 import ProfileGraph from './ProfileGraph';
 import {connect} from 'react-redux';
 import MyProfilePosts from './MyProfilePosts'
-import MyProfilePostsList from './MyProfilePostsGrid'
+import MyProfilePostsGrid from './MyProfilePostsGrid'
 
 class Profile extends Component {
   constructor(props) {
@@ -247,7 +247,7 @@ class Profile extends Component {
               </TouchableOpacity>
             )}
           /> */}
-          <MyProfilePostsList/>
+          <MyProfilePostsGrid navigation={this.props.navigation}/>
         </ScrollView>
         
       </SafeAreaView>
