@@ -12,6 +12,7 @@ import {
 import ProfileGraph from './ProfileGraph';
 import {connect} from 'react-redux';
 import MyProfilePosts from './MyProfilePosts'
+import MyProfilePostsList from './MyProfilePostsGrid'
 
 class Profile extends Component {
   constructor(props) {
@@ -225,7 +226,7 @@ class Profile extends Component {
             />
           ))} */}
 
-<FlatList
+{/* <FlatList
           keyExtractor = { (item, index) => index.toString() }
             // style={style.listContainer}
             data={selectedPosts}
@@ -245,7 +246,8 @@ class Profile extends Component {
                />
               </TouchableOpacity>
             )}
-          />
+          /> */}
+          <MyProfilePostsList/>
         </ScrollView>
         
       </SafeAreaView>
