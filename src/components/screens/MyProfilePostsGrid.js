@@ -5,6 +5,16 @@ import MyProfilePostBox from './MyProfilePostBox'
 
 class MyProfilePostsGrid extends Component {
     render() {
+      const ListHeader = () => {
+        //View to set in Header
+        return (
+          <View style={styles.headerFooterStyle}>
+            <Text style={styles.textStyle}>
+                This is Header
+            </Text>
+          </View>
+        );
+      };
         const {user, post, } = this.props;
         const id = this.props.user.id
         const selectedPosts = post.filter((user) => user.userId === id);
@@ -13,6 +23,8 @@ class MyProfilePostsGrid extends Component {
               <FlatList
           keyExtractor = { (item, index) => index.toString() }
             // style={style.listContainer}
+            ListHeaderComponent={ListHeader}
+
             data={selectedPosts}
             numColumns={3}
             renderItem={({item, index}) => (  
