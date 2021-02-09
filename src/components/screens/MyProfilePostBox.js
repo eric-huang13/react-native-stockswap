@@ -9,6 +9,7 @@ import {
   SafeAreaView,
   TextInput, 
   FlatList,
+  Dimensions
   
 } from 'react-native';
 import LikeInactiveIcon from '../../icons/LikeInactiveIcon'
@@ -58,17 +59,17 @@ class MyProfilePosts extends Component {
     const lastComment = filteredComments[filteredComments.length - 1];
     return (
       <SafeAreaView style={style.container}>   
-        <View style={style.postContainer} key={item.id}>
-        <View style={style.postNameContainer}>
-          <View style={style.profileImageContainer}>
+        {/* <View style={style.postContainer} key={item.id}>
+        <View style={style.postNameContainer}> */}
+          {/* <View style={style.profileImageContainer}>
             <Image
               style={style.postUserImage}
               source={{uri: item.profileImg}}
             />
             <Text style={style.postUserName}>{item.name}</Text>
           </View>
- 
-          <View style={style.dotsDropdownContainer}>
+  */}
+          {/* <View style={style.dotsDropdownContainer}>
             <TouchableOpacity
               onPress={() =>
                 this.setState({
@@ -94,8 +95,8 @@ class MyProfilePosts extends Component {
                 </View>
               </View>
             ) : null}
-          </View>
-        </View>
+          </View> */}
+        {/* </View> */}
         <TouchableOpacity
           onPress={() =>
             this.props.navigation.navigate({
@@ -106,7 +107,7 @@ class MyProfilePosts extends Component {
           <Image style={style.image} source={{uri: item.img}} />
         </TouchableOpacity>
  
-        <View style={style.detailsContainer}>
+        {/* <View style={style.detailsContainer}>
           <Text style={style.timestamp}>{item.timestamp}</Text>
  
           <View style={style.likesContainer}>
@@ -119,7 +120,7 @@ class MyProfilePosts extends Component {
               <Text style={style.comments}>{item.comments}</Text>
               </View>
             </View>
-        </View>
+        </View> */}
         <TouchableOpacity
           onPress={() =>
             this.props.navigation.navigate({
@@ -127,18 +128,18 @@ class MyProfilePosts extends Component {
               params: {post:item, filteredComments, reply, userAccount},
             })
           }>
-          <Text style={style.body}>
+          {/* <Text style={style.body}>
             {' '}
             {item.body.length < 88
               ? `${item.body}`
               : `${item.body.substring(0, 88)}...`}{' '}
             <Text style={style.more}>{'       '}More</Text>
-          </Text>
+          </Text> */}
         </TouchableOpacity>
 
-        </View>
+        {/* </View> */}
           
-
+{/* 
         <View style={style.commentContainer}>         
              
  
@@ -157,7 +158,7 @@ class MyProfilePosts extends Component {
                 </TouchableOpacity>
 
               ) : null}
-        </View>
+        </View> */}
       </SafeAreaView>
     );
   }
@@ -185,11 +186,16 @@ export default connect(mapStateToProps, mapDispatchToProps)(MyProfilePosts);
  
 const style = StyleSheet.create({
   container: {    
-    flexDirection: 'column',  
-    backgroundColor: '#2a334a',
-    flex:1,
+    // flexDirection: 'column',  
+    // backgroundColor: '#2a334a',
+    // flex:1,
     // width:130,
-    borderWidth:1,
+    // borderWidth:1,
+   
+    width: Dimensions.get('window').width / 3 - 2,
+    margin: 1,
+    // height:350
+    
   },
   searchInputContainer: {
     marginBottom: 15,
@@ -209,9 +215,9 @@ const style = StyleSheet.create({
     paddingHorizontal: 10,
   },
   image: {
-    height: 184,
+    height: Dimensions.get('window').width / 3 - 2,
     width: '100%',
-    borderRadius: 10,
+    // borderRadius: 10,
   },
   postNameContainer: {
     flexDirection: 'row',
