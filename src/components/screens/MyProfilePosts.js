@@ -7,7 +7,9 @@ import {
   Image,
   TouchableOpacity,
   SafeAreaView,
-  TextInput
+  TextInput,
+  ScrollView, 
+  
 } from 'react-native';
 import LikeInactiveIcon from '../../icons/LikeInactiveIcon'
 import CommentIcon from '../../icons/CommentIcon'
@@ -49,15 +51,16 @@ class MyProfilePosts extends Component {
     const {shouldShow} = this.state;
     const {isLoggedIn, LogoutUser, post, comments, reply, userAccount} = this.props;
     const id = this.props.userAccount.id
-    const selectedPosts = post.filter((user) => user.id === id); 
+    const selectedPosts = post.filter((user) => user.userId === id); 
  
     const filteredComments = comments.filter(
       (comment) => comment.postId === id,
     );
     const lastComment = filteredComments[filteredComments.length - 1];
-    // console.log(this.props.navigation, 'props in post');
+    console.log(post, 'props in post');
     return (
       <SafeAreaView style={style.container}>
+        <ScrollView>
         <View style={style.searchInputContainer}>
           <View
         style={{
@@ -179,6 +182,7 @@ class MyProfilePosts extends Component {
 
               ) : null}
         </View>
+        </ScrollView>
       </SafeAreaView>
     );
   }
