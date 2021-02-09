@@ -7,8 +7,8 @@ import {
   Image,
   TouchableOpacity,
   SafeAreaView,
-  TextInput,
-  ScrollView, 
+  TextInput, 
+  FlatList
   
 } from 'react-native';
 import LikeInactiveIcon from '../../icons/LikeInactiveIcon'
@@ -49,18 +49,17 @@ class MyProfilePosts extends Component {
  };
   render() {
     const {shouldShow} = this.state;
-    const {isLoggedIn, LogoutUser, post, comments, reply, userAccount} = this.props;
+    const {isLoggedIn, LogoutUser, post, comments, reply, userAccount, item} = this.props;
     const id = this.props.userAccount.id
-    const selectedPosts = post.filter((user) => user.userId === id); 
+    // const selectedPosts = item.filter((user) => user.userId === id); 
  
     const filteredComments = comments.filter(
-      (comment) => comment.postId === id,
+      (comment) => comment.postId === item.id,
     );
     const lastComment = filteredComments[filteredComments.length - 1];
-    console.log(post, 'props in post');
+    // console.log(post, 'props in post');
     return (
       <SafeAreaView style={style.container}>
-        <ScrollView>
         <View style={style.searchInputContainer}>
           <View
         style={{
@@ -79,16 +78,15 @@ class MyProfilePosts extends Component {
               onChangeText={(text) => this.handleChange(text)}
             />
           </View>
-           {selectedPosts.map((post) => {
-            return (
-                <View style={style.postContainer} key={post.id}>
+           
+                <View style={style.postContainer} key={item.id}>
         <View style={style.postNameContainer}>
           <View style={style.profileImageContainer}>
             <Image
               style={style.postUserImage}
-              source={{uri: post.profileImg}}
+              source={{uri: item.profileImg}}
             />
-            <Text style={style.postUserName}>{post.name}</Text>
+            <Text style={style.postUserName}>{item.name}</Text>
           </View>
  
           <View style={style.dotsDropdownContainer}>
@@ -126,20 +124,20 @@ class MyProfilePosts extends Component {
               params: {post, filteredComments, reply, userAccount},
             })
           }>
-          <Image style={style.image} source={{uri: post.img}} />
+          <Image style={style.image} source={{uri: item.img}} />
         </TouchableOpacity>
  
         <View style={style.detailsContainer}>
-          <Text style={style.timestamp}>{post.timestamp}</Text>
+          <Text style={style.timestamp}>{item.timestamp}</Text>
  
           <View style={style.likesContainer}>
               <View style={style.iconContainer}>
                 <LikeInactiveIcon/>
-              <Text style={style.likes}>{post.likes}</Text>
+              <Text style={style.likes}>{item.likes}</Text>
               </View>
               <View style={style.iconContainer}>
                 <CommentIcon/>
-              <Text style={style.comments}>{post.comments}</Text>
+              <Text style={style.comments}>{item.comments}</Text>
               </View>
             </View>
         </View>
@@ -152,16 +150,15 @@ class MyProfilePosts extends Component {
           }>
           <Text style={style.body}>
             {' '}
-            {post.body.length < 88
-              ? `${post.body}`
-              : `${post.body.substring(0, 88)}...`}{' '}
+            {item.body.length < 88
+              ? `${item.body}`
+              : `${item.body.substring(0, 88)}...`}{' '}
             <Text style={style.more}>{'       '}More</Text>
           </Text>
         </TouchableOpacity>
 
         </View>
-            );
-          })}
+          
 
         <View style={style.commentContainer}>         
              
@@ -182,7 +179,6 @@ class MyProfilePosts extends Component {
 
               ) : null}
         </View>
-        </ScrollView>
       </SafeAreaView>
     );
   }

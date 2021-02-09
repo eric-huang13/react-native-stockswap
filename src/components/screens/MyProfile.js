@@ -7,9 +7,11 @@ import {
   TouchableOpacity,
   ScrollView,
   SafeAreaView,
+  FlatList
 } from 'react-native';
 import ProfileGraph from './ProfileGraph';
 import {connect} from 'react-redux';
+import MyProfilePosts from './MyProfilePosts'
 
 class Profile extends Component {
   constructor(props) {
@@ -40,7 +42,10 @@ class Profile extends Component {
   }
   render() {
     const {graphData, percent, range, timeFilter} = this.state;
-    const {user} = this.props;
+    const {user, post, } = this.props;
+    const id = this.props.user.id
+    const selectedPosts = post.filter((user) => user.userId === id); 
+ console.log(selectedPosts,"selPOSTS")
     // const id = 1;
     // const selectedUser = users.filter((user) => user.id === id);
     return (
@@ -209,7 +214,40 @@ class Profile extends Component {
               </View>
             {/* ); */}
           {/* })} */}
+          {/* {selectedPosts.map((post) => (
+            <MyProfilePosts
+              key={post.id}
+              post={post}
+              navigation={this.props.navigation}
+              // comments={comments}
+              // reply={reply}
+              // userAccount={userAccount}
+            />
+          ))} */}
+
+<FlatList
+          keyExtractor = { (item, index) => index.toString() }
+            // style={style.listContainer}
+            data={selectedPosts}
+            renderItem={({item, index}) => (
+              <TouchableOpacity
+                key={item.id}
+                onPress={() =>
+                  this.props.navigation.navigate({
+                    name: 'CompanyInformation',
+                    params: {item},
+                  })
+                }>
+               <MyProfilePosts
+               key={item.id}
+               item={item}
+               navigation={this.props.navigation}
+               />
+              </TouchableOpacity>
+            )}
+          />
         </ScrollView>
+        
       </SafeAreaView>
     );
   }
@@ -217,7 +255,7 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    posts: state.posts.posts,
+    post: state.posts.posts,
     comments: state.posts.comments,
     users: state.people.users,
     reply: state.posts.reply,
