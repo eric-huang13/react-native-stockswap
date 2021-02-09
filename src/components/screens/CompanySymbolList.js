@@ -6,32 +6,32 @@ import {
   ScrollView,
   SafeAreaView,
   Text,
-  FlatList
+  FlatList,
+  Dimensions
 } from 'react-native';
 
 import {connect} from 'react-redux';
 import CompanyBox from './CompanyBox';
 
+const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height;
+
 export class CompanySymbolList extends Component {
-    constructor(props) {
-        super(props);
-   
-      }
+  constructor(props) {
+    super(props);
+    this.state = {
+      initialIndex:4,
+    };
+  }
 
-      componentDidMount() {
-      
-       const  goIndex = () => {
 
-          this.flatList_Ref.scrollToIndex({animated: true,index:5});
-         
-         };
-        
-      
-      }
- 
   render() {
+  const getItemLayout = (data, index) => (
+      {length: 89, offset: 89 * index, index}
+    );
+  
     const {gainers} = this.props;
-    // console.log(this.props,'props in symbol list')
+    console.log(this.props.itemId,'props in symbol list')
     return (
       <SafeAreaView style={style.mainContainer}>        
 
@@ -42,7 +42,10 @@ export class CompanySymbolList extends Component {
                 style={style.scollContainer}
                 horizontal
                 alignItems='center'
-                ref={(ref) => { this.flatListRef = ref; }}
+                showsHorizontalScrollIndicator={false}
+                initialScrollIndex={this.props.itemId-1}
+                getItemLayout={getItemLayout}
+                // ref={(ref) => { this.flatListRef = ref; }}
                 renderItem={({item, index}) => (
                
                     <TouchableOpacity
@@ -83,7 +86,6 @@ export default connect(mapStateToProps)(CompanySymbolList);
 
 const style = StyleSheet.create({
   mainContainer: {
-    //   borderWidth:1,
       paddingVertical:10,
       height:60,
     

@@ -121,7 +121,7 @@ console.log(weekData, 'WEEKDATA')
     const {graphData, percent, range} = this.state;
     return (
       <SafeAreaView style={style.mainContainer}> 
-       <CompanySymbolList navigation={this.props.navigation} symbol={route.params.item.symbol}/>
+       <CompanySymbolList navigation={this.props.navigation} symbol={route.params.item.symbol} itemId={route.params.item.id}/>
         <ScrollView>
       
 
