@@ -15,6 +15,9 @@ import MyProfile from '../components/screens/MyProfile'
 import MyProfilePosts from '../components/screens/MyProfilePosts'
 import Followers from '../components/screens/Followers'
 import Following from '../components/screens/Following'
+import EditPost from'../components/screens/EditPost'
+import CreatePostPreview from'../components/screens/CreatePostPreview'
+
 
 
 
@@ -181,6 +184,44 @@ export default class HomeStackNavigator extends Component {
               textAlign: 'center',
             },
           })}
+        />
+        <HomeStack.Screen
+          name="EditPost"
+          component={EditPost}
+          options={{
+            title: 'Edit Post',
+            headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTitleStyle:{
+              fontFamily:'Montserrat-Bold',
+              fontSize:16
+  
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+        <HomeStack.Screen
+          name="CreatePostPreview"
+          component={CreatePostPreview}
+          options={{
+            title: 'Post preview',
+            headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTitleStyle:{
+              fontFamily:'Montserrat-Bold',
+              fontSize:16
+  
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
         />
       
       </HomeStack.Navigator>
