@@ -100,7 +100,7 @@ class MyProfilePosts extends Component {
         <TouchableOpacity
           onPress={() =>
             this.props.navigation.navigate({
-              name: 'PostScreen',
+              name: 'MyProfilePostScreen',
               params: {post:item, filteredComments, reply, userAccount},
             })
           }>
@@ -124,7 +124,7 @@ class MyProfilePosts extends Component {
         <TouchableOpacity
           onPress={() =>
             this.props.navigation.navigate({
-              name: 'PostScreen',
+              name: 'MyProfilePostScreen',
               params: {post:item, filteredComments, reply, userAccount},
             })
           }>
