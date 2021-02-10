@@ -56,26 +56,56 @@ export default class PostScreen extends Component {
               <Text style={style.postUserName}>{post.name}</Text>
             </View>
            </TouchableOpacity>
+           {userAccount.id === post.userId ? 
             <View style={style.dotsDropdownConatiner}>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  shouldShow: !shouldShow,
+                })
+              }>
+              <Text style={style.dotsButton}>...</Text>
+            </TouchableOpacity>
+            {this.state.shouldShow ? (
+              <View style={style.dropdownEdit}>
               <TouchableOpacity
-                onPress={() =>
-                  this.setState({
-                    shouldShow: !shouldShow,
-                  })
-                }>
-                <Text style={style.dotsButton}>...</Text>
-              </TouchableOpacity>
-              {this.state.shouldShow ? (
-                <View style={style.dropdown}>
-                  <Text style={style.dropDownText}>Repost</Text>
-                  <Text style={style.dropDownText}>Copy link</Text>
-                  <Text style={style.dropDownText}>Turn on notifications</Text>
-                  <View style={style.dropDownTextReportContainer}>
-                    <Text style={style.dropDownText}>Report</Text>
-                  </View>
-                </View>
-              ) : null}
+        onPress={() =>
+          this.props.navigation.navigate({
+            name: 'EditPost',
+            params: {post, userAccount},
+          })
+        }>
+          <Text style={style.dropDownText}>Edit post</Text>
+              </TouchableOpacity>                
+              <View style={style.dropDownTextReportContainer}>
+                <Text style={style.dropDownText}>Remove post</Text>
+              </View>
             </View>
+            ) : null}
+          </View>
+            :
+            <View style={style.dotsDropdownContainer}>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  shouldShow: !shouldShow,
+                })
+              }>
+              <Text style={style.dotsButton}>...</Text>
+           
+            </TouchableOpacity>
+            {this.state.shouldShow ? (
+              <View style={style.dropdown}>
+                <Text style={style.dropDownText}>Repost</Text>
+                <Text style={style.dropDownText}>Copy link</Text>
+                <Text style={style.dropDownText}>Turn on notifications</Text>
+                <View style={style.dropDownTextReportContainer}>
+                  <Text style={style.dropDownText}>Report</Text>
+                </View>
+              </View>
+            ) : null}
+          </View>
+            }
           </View>
           <Image style={style.image} source={{uri: post.img}} />
           <View style={style.detailsContainer}>

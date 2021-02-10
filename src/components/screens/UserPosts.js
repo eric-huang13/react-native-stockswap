@@ -58,7 +58,7 @@ export default class UserPosts extends Component {
             <Text style={style.postUserName}>{post.name}</Text>
           </View>
           </TouchableOpacity>        
-            {userAccount.id === post.id ? 
+            {userAccount.id === post.userId ? 
             <View style={style.dotsDropdownConatiner}>
             <TouchableOpacity
               onPress={() =>
