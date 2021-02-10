@@ -5,13 +5,11 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  ScrollView,
   SafeAreaView,
   FlatList
 } from 'react-native';
 import ProfileGraph from './ProfileGraph';
 import {connect} from 'react-redux';
-import MyProfilePosts from './MyProfilePosts'
 import MyProfilePostBox from './MyProfilePostBox'
 
 class Profile extends Component {
@@ -28,13 +26,6 @@ class Profile extends Component {
       ],
       percent: '1.22',
       range: [10, 15],
-      live: true,
-      day: false,
-      week: false,
-      month: false,
-      threeMonth: false,
-      year: false,
-      all: false,
       timeFilter: 'day',
     };
   }
@@ -215,175 +206,10 @@ class Profile extends Component {
     // const selectedUser = users.filter((user) => user.id === id);
     return (
       <SafeAreaView style={style.container}>
-        {/* <ScrollView> */}
-          {/* {selectedUser.map((user) => { */}
-            {/* return ( */}
-              {/* <View key={user.id}>
-                <View style={style.aboveGraphContainer}>
-                  <View style={style.portfolioHeaderContainer}>
-                    <Text style={style.portfolioHeader}>Portfolio</Text>
-                    <Text style={style.gain}>${user.gain}</Text>
-                  </View>
-                  <View style={style.timeNumberContainer}>
-                    <Text style={style.timeNumber}>Past hour</Text>
-                  </View>
-                </View>
-                <View style={style.graphContainer}>
-                  <ProfileGraph graphData={graphData} range={range} />
-                </View>
-                <View style={style.timeFilterButtonsContainer}>
-                  <TouchableOpacity
-                    onPress={() => this.timeFilterSelect('live')}>
-                    <Text
-                      style={
-                        timeFilter === 'live'
-                          ? {...style.timeFilterButtons, color: '#8b64ff'}
-                          : {...style.timeFilterButtons}
-                      }>
-                      Live
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => this.timeFilterSelect('day')}>
-                    <Text
-                      style={
-                        timeFilter === 'day'
-                          ? {...style.timeFilterButtons, color: '#8b64ff'}
-                          : {...style.timeFilterButtons}
-                      }>
-                      1D
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => this.timeFilterSelect('week')}>
-                    <Text
-                      style={
-                        timeFilter === 'week'
-                          ? {...style.timeFilterButtons, color: '#8b64ff'}
-                          : {...style.timeFilterButtons}
-                      }>
-                      1W
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => this.timeFilterSelect('month')}>
-                    <Text
-                      style={
-                        timeFilter === 'month'
-                          ? {...style.timeFilterButtons, color: '#8b64ff'}
-                          : {...style.timeFilterButtons}
-                      }>
-                      1M
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={() => this.timeFilterSelect('3M')}>
-                    <Text
-                      style={
-                        timeFilter === '3M'
-                          ? {...style.timeFilterButtons, color: '#8b64ff'}
-                          : {...style.timeFilterButtons}
-                      }>
-                      3M
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => this.timeFilterSelect('year')}>
-                    <Text
-                      style={
-                        timeFilter === 'year'
-                          ? {...style.timeFilterButtons, color: '#8b64ff'}
-                          : {...style.timeFilterButtons}
-                      }>
-                      1Y
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => this.timeFilterSelect('all')}>
-                    <Text
-                      style={
-                        timeFilter === 'all'
-                          ? {...style.timeFilterButtons, color: '#8b64ff'}
-                          : {...style.timeFilterButtons}
-                      }>
-                      All
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={style.infoContainer}>
-                  <View style={style.detailsRow}>
-                    <Image style={style.image} source={{uri: user.img}} />
-                    <View style={style.personalDetails}>
-                      <Text style={style.name}>{user.name}</Text>
-                      <Text style={style.username}>@{user.username}</Text>
-                      <Text style={style.hashtag}>{user.hashtag}</Text>
-                    </View>
-                  </View>
-                  <View style={style.bioContainer}>
-                    <Text style={style.bio}>{user.bio}</Text>
-                  </View>
-                  <View style={style.numberRow}>
-                  <TouchableOpacity
-                    onPress={() =>
-                      this.props.navigation.navigate({
-                        name: 'MyFollowers',
-                        params: {user},
-                      })
-                    }>
-                    <View style={style.numberColumn}>
-                      <Text style={style.numberData}>{user.followers}</Text>
-                      <Text style={style.numberText}>Followers</Text>
-                    </View>
-                    </TouchableOpacity>
-                    <View style={style.numberColumn}>
-                      <Text style={style.numberData}>{user.posts}</Text>
-                      <Text style={style.numberText}>Posts</Text>
-                    </View>
-                    <View style={style.numberColumn}>
-                      <Text style={style.numberData}>{user.trades}</Text>
-                      <Text style={style.numberText}>Trades </Text>
-                    </View>
-                    <TouchableOpacity
-                    onPress={() =>
-                      this.props.navigation.navigate({
-                        name: 'MyFollowing',
-                        params: {user},
-                      })
-                    }>
-                    <View style={style.numberColumn}>
-                      <Text style={style.numberData}>{user.following}</Text>
-                      <Text style={style.numberText}>Following</Text>
-                    </View>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-                <View style={style.portfolioButtonContainer}>
-                  <TouchableOpacity
-                    onPress={() =>
-                      this.props.navigation.navigate({
-                        name: 'MyProfilePosts',
-                        // params: {user},
-                      })
-                    }>
-                    <Text style={style.portfolioButton}>All my posts</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() =>
-                      this.props.navigation.navigate({
-                        name: 'ManagePortfolio',
-                        // params: {user},
-                      })
-                    }>
-                    <Text style={style.portfolioButton}>Manage Portfolio</Text>
-                  </TouchableOpacity>
-                </View>
-              </View> */}
-
               <View>
               <FlatList
-          keyExtractor = { (item, index) => index.toString() }
-            // style={style.listContainer}
+            keyExtractor = { (item, index) => index.toString() }
             ListHeaderComponent={ListHeader}
-
             data={selectedPosts}
             numColumns={3}
             renderItem={({item, index}) => (  
@@ -395,8 +221,6 @@ class Profile extends Component {
             )}
           />
             </View>
-        {/* </ScrollView> */}
-
       </SafeAreaView>
     );
   }
