@@ -29,11 +29,11 @@ class UserCommentList extends Component {
     }
   };
   render() {
-    const {comments, reply, userAccount, postId} = this.props;
+    const {comments, reply, userAccount} = this.props;
+    const postId = this.props.postId ? this.props.postId : this.props.route.params.postId 
     const filteredComments = comments.filter(
       (comment) => comment.postId === postId,
     );
-    // console.log(this.props.postId, 'comments')
     return (
       <SafeAreaView style={style.mainContainer}>
         {filteredComments.map((item) => (
@@ -50,7 +50,6 @@ class UserCommentList extends Component {
                     }>
                   <Text style={style.name}>{item.name} </Text>
                 </TouchableOpacity>
-
                 <Text style={style.body}>{item.body} </Text>
               </View>
             </View>
@@ -77,6 +76,8 @@ const mapStateToProps = (state) => {
   return {   
     comments: state.posts.comments,
     reply: state.posts.reply,
+    userAccount: state.user.userFakeData
+
    
 
   };
@@ -92,11 +93,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(UserCommentList);
 
 const style = StyleSheet.create({
   mainContainer: {
+    flex:1,
     flexDirection: 'column',
     backgroundColor: '#2a334a',
-    paddingVertical: 4,
+    paddingVertical: 10,
     paddingLeft: 4,
-    marginTop: 10,
   },
   itemContainer: {
     marginBottom: 16,

@@ -161,8 +161,8 @@ export default class UserPosts extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.props.navigation.navigate({
-                  name: 'PostScreen',
-                  params: {post, filteredComments, reply, userAccount},
+                  name: 'UserCommentList',
+                  params: {postId:post.id, userAccount},
                 })
               }>
               {/* <View style={style.headerContainer}>

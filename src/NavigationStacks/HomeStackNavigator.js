@@ -63,9 +63,10 @@ export default class HomeStackNavigator extends Component {
         />
   
         <HomeStack.Screen
-          name="Comments"
+          name="UserCommentList"
           component={UserCommentList}
           options={{
+            title:'Comments',
             headerStyle: {
               backgroundColor: '#394463',
             },
