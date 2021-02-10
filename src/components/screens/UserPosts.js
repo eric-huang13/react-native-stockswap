@@ -37,6 +37,7 @@ export default class UserPosts extends Component {
     const {shouldShow} = this.state;
 
     const {post, comments, reply, userAccount} = this.props;
+    
     const filteredComments = comments.filter(
       (comment) => comment.postId === post.id,
     );
@@ -56,9 +57,36 @@ export default class UserPosts extends Component {
             />
             <Text style={style.postUserName}>{post.name}</Text>
           </View>
-          </TouchableOpacity>
-
-          <View style={style.dotsDropdownContainer}>
+          </TouchableOpacity>        
+            {userAccount.id === post.id ? 
+            <View style={style.dotsDropdownConatiner}>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  shouldShow: !shouldShow,
+                })
+              }>
+              <Text style={style.dotsButton}>...</Text>
+            </TouchableOpacity>
+            {this.state.shouldShow ? (
+              <View style={style.dropdownEdit}>
+              <TouchableOpacity
+        onPress={() =>
+          this.props.navigation.navigate({
+            name: 'EditPost',
+            params: {post, userAccount},
+          })
+        }>
+          <Text style={style.dropDownText}>Edit post</Text>
+              </TouchableOpacity>                
+              <View style={style.dropDownTextReportContainer}>
+                <Text style={style.dropDownText}>Remove post</Text>
+              </View>
+            </View>
+            ) : null}
+          </View>
+            :
+            <View style={style.dotsDropdownContainer}>
             <TouchableOpacity
               onPress={() =>
                 this.setState({
@@ -79,6 +107,8 @@ export default class UserPosts extends Component {
               </View>
             ) : null}
           </View>
+            }
+             
         </View>
         <TouchableOpacity
           onPress={() =>
@@ -271,6 +301,18 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20,
   
+  },
+  dropdownEdit: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginTop: 1,
+    marginBottom: -60,
+    backgroundColor: '#2C3957',
+    zIndex: 1,
+    paddingVertical: 6,
+    // paddingHorizontal:10,
   },
   dropdown: {
     flex: 1,
