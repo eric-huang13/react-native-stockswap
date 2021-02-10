@@ -1,20 +1,13 @@
 
 import React, {Component} from 'react';
 import {
-  Text,
-  View,
   StyleSheet,
   Image,
   TouchableOpacity,
   SafeAreaView,
-  TextInput, 
-  FlatList,
   Dimensions
   
 } from 'react-native';
-import LikeInactiveIcon from '../../icons/LikeInactiveIcon'
-import CommentIcon from '../../icons/CommentIcon'
-import SearchInput from '../../icons/SearchInput'
 import {connect} from 'react-redux';
  
  
@@ -27,12 +20,8 @@ class MyProfilePosts extends Component {
 
     };
   } 
-  handleChange = (text) => {
-    this.setState({input: text});
-  };
 
-  accountId = this.props.userAccount.id
-  
+  accountId = this.props.userAccount.id  
 
   navigationByCondition = lastComment => {
    const {navigation} = this.props;
@@ -49,54 +38,14 @@ class MyProfilePosts extends Component {
    }
  };
   render() {
-    const {shouldShow} = this.state;
     const {comments, reply, userAccount, item} = this.props;
-    const id = this.props.userAccount.id
- 
+
     const filteredComments = comments.filter(
       (comment) => comment.postId === item.id,
     );
-    const lastComment = filteredComments[filteredComments.length - 1];
+    
     return (
       <SafeAreaView style={style.container}>   
-        {/* <View style={style.postContainer} key={item.id}>
-        <View style={style.postNameContainer}> */}
-          {/* <View style={style.profileImageContainer}>
-            <Image
-              style={style.postUserImage}
-              source={{uri: item.profileImg}}
-            />
-            <Text style={style.postUserName}>{item.name}</Text>
-          </View>
-  */}
-          {/* <View style={style.dotsDropdownContainer}>
-            <TouchableOpacity
-              onPress={() =>
-                this.setState({
-                  shouldShow: !shouldShow,
-                })
-              }>
-              <Text style={style.dotsButton}>...</Text>
-           
-            </TouchableOpacity>
-            {this.state.shouldShow ? (
-              <View style={style.dropdown}>
-                <TouchableOpacity
-          onPress={() =>
-            this.props.navigation.navigate({
-              name: 'EditPost',
-              params: {post:item, userAccount},
-            })
-          }>
-            <Text style={style.dropDownText}>Edit post</Text>
-                </TouchableOpacity>                
-                <View style={style.dropDownTextReportContainer}>
-                  <Text style={style.dropDownText}>Remove post</Text>
-                </View>
-              </View>
-            ) : null}
-          </View> */}
-        {/* </View> */}
         <TouchableOpacity
           onPress={() =>
             this.props.navigation.navigate({
@@ -106,59 +55,6 @@ class MyProfilePosts extends Component {
           }>
           <Image style={style.image} source={{uri: item.img}} />
         </TouchableOpacity>
- 
-        {/* <View style={style.detailsContainer}>
-          <Text style={style.timestamp}>{item.timestamp}</Text>
- 
-          <View style={style.likesContainer}>
-              <View style={style.iconContainer}>
-                <LikeInactiveIcon/>
-              <Text style={style.likes}>{item.likes}</Text>
-              </View>
-              <View style={style.iconContainer}>
-                <CommentIcon/>
-              <Text style={style.comments}>{item.comments}</Text>
-              </View>
-            </View>
-        </View> */}
-        {/* <TouchableOpacity
-          onPress={() =>
-            this.props.navigation.navigate({
-              name: 'MyProfilePostScreen',
-              params: {post:item, filteredComments, reply, userAccount},
-            })
-          }> */}
-          {/* <Text style={style.body}>
-            {' '}
-            {item.body.length < 88
-              ? `${item.body}`
-              : `${item.body.substring(0, 88)}...`}{' '}
-            <Text style={style.more}>{'       '}More</Text>
-          </Text> */}
-        {/* </TouchableOpacity> */}
-
-        {/* </View> */}
-          
-{/* 
-        <View style={style.commentContainer}>         
-             
- 
-              {lastComment ? (
-                  <TouchableOpacity
-                  onPress={()=>this.navigationByCondition(lastComment)             
-                  }>
-                <View style={style.lastCommentContainer}>
-                  <Text style={style.lastCommentName}>{lastComment.name}:</Text>
-                  <Text style={style.lastCommentBody}>
-                    {lastComment.body.length < 55
-                      ? `${lastComment.body}`
-                      : `${lastComment.body.substring(0, 55)}...`}
-                  </Text>
-                </View>            
-                </TouchableOpacity>
-
-              ) : null}
-        </View> */}
       </SafeAreaView>
     );
   }
@@ -186,16 +82,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(MyProfilePosts);
  
 const style = StyleSheet.create({
   container: {    
-    // flexDirection: 'column',  
-    // backgroundColor: '#2a334a',
-    // flex:1,
-    // width:130,
-    // borderWidth:1,
-   
     width: Dimensions.get('window').width / 3 - 2,
-    margin: 1,
-    // height:350
-    
+    margin: 1,    
   },
   searchInputContainer: {
     marginBottom: 15,

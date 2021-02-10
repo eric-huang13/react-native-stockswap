@@ -129,10 +129,8 @@ export default class PostScreen extends Component {
           </View>
           <Text style={style.body}>{post.body}</Text>
           <UserCommentList
-            // filteredComments={filteredComments}
             postId={post.id}
             navigation={this.props.navigation}
-            // reply={reply}
             userAccount={userAccount}
           />
         </ScrollView>

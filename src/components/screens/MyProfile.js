@@ -178,17 +178,7 @@ class Profile extends Component {
           <TouchableOpacity
             onPress={() =>
               this.props.navigation.navigate({
-                name: 'MyProfilePosts',
-                // params: {user},
-              })
-            }>
-            <Text style={style.portfolioButton}>All my posts</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() =>
-              this.props.navigation.navigate({
                 name: 'ManagePortfolio',
-                // params: {user},
               })
             }>
             <Text style={style.portfolioButton}>Manage Portfolio</Text>
@@ -340,7 +330,7 @@ const style = StyleSheet.create({
   portfolioButtonContainer: {
     flexDirection: 'row',
     paddingHorizontal: 20,
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     marginTop: 46,
     marginBottom: 30,
   },
@@ -352,7 +342,7 @@ const style = StyleSheet.create({
     padding: 10,
     borderRadius: 8,
     fontSize: 14,
-    width: 170,
+    width: 210,
     height: 42,
     backgroundColor: '#8B64FF',
     fontFamily: 'Montserrat-SemiBold',

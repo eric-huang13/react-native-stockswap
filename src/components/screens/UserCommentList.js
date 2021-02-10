@@ -76,9 +76,7 @@ const mapStateToProps = (state) => {
   return {   
     comments: state.posts.comments,
     reply: state.posts.reply,
-    userAccount: state.user.userFakeData
-
-   
+    userAccount: state.user.userFakeData  
 
   };
 };
@@ -104,7 +102,6 @@ const style = StyleSheet.create({
   },
   detailsContainer: {
     flexDirection: 'row',
-    // marginBottom: 2,
     paddingRight: 4,
   },
   nameBodyContainer: {
