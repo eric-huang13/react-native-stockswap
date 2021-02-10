@@ -35,6 +35,13 @@ export default class PostScreen extends Component {
         params: {id: post.userId}      })
     }
   };
+  dropDownSelect(post, userAccount) {
+    this.setState({shouldShow:false})
+    this.props.navigation.navigate({
+      name: 'EditPost',
+      params: {post, userAccount},
+    })
+  }
 
   render() {
     const {shouldShow} = this.state;
@@ -69,11 +76,7 @@ export default class PostScreen extends Component {
             {this.state.shouldShow ? (
               <View style={style.dropdownEdit}>
               <TouchableOpacity
-        onPress={() =>
-          this.props.navigation.navigate({
-            name: 'EditPost',
-            params: {post, userAccount},
-          })
+        onPress={() => this.dropDownSelect(post, userAccount)
         }>
           <Text style={style.dropDownText}>Edit post</Text>
               </TouchableOpacity>                
@@ -235,6 +238,18 @@ const style = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 20,
+  },
+  dropdownEdit: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginTop: 1,
+    marginBottom: -60,
+    backgroundColor: '#2C3957',
+    zIndex: 1,
+    paddingVertical: 6,
+    // paddingHorizontal:10,
   },
   dropdown: {
     flex: 1,

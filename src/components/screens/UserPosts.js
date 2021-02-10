@@ -32,6 +32,13 @@ export default class UserPosts extends Component {
         params: {id: post.userId}      })
     }
   };
+  dropDownSelect(post, userAccount) {
+    this.setState({shouldShow:false})
+    this.props.navigation.navigate({
+      name: 'EditPost',
+      params: {post, userAccount},
+    })
+  }
 
   render() {
     const {shouldShow} = this.state;
@@ -71,11 +78,7 @@ export default class UserPosts extends Component {
             {this.state.shouldShow ? (
               <View style={style.dropdownEdit}>
               <TouchableOpacity
-        onPress={() =>
-          this.props.navigation.navigate({
-            name: 'EditPost',
-            params: {post, userAccount},
-          })
+        onPress={() => this.dropDownSelect(post, userAccount)
         }>
           <Text style={style.dropDownText}>Edit post</Text>
               </TouchableOpacity>                
