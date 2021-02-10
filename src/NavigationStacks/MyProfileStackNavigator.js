@@ -29,10 +29,6 @@ import EditPost from '../components/screens/EditPost'
 import CreatePostPreview from '../components/screens/CreatePostPreview'
 import MyFollowers from '../components/screens/MyFollowers'
 import MyFollowing from '../components/screens/MyFollowing'
-import MyProfilePostScreen from '../components/screens/MyProfilePostScreen'
-
-
-
 
 const MyProfileStack = createStackNavigator();
 
@@ -476,27 +472,7 @@ export default class MyProfileStackNavigator extends Component {
               textAlign: 'center',
             },
           }}
-        />
-         <MyProfileStack.Screen
-          name="MyProfilePostScreen"
-          component={MyProfilePostScreen}
-          options={{
-            title: 'My Post',
-            headerStyle: {
-              backgroundColor: '#394463',
-            },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-  
-            },
-            headerTintColor: 'white',
-            headerTitleAlign: {
-              textAlign: 'center',
-            },
-          }}
-        />
-        
+        />       
         
       </MyProfileStack.Navigator>
     )

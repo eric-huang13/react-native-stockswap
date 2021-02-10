@@ -100,7 +100,7 @@ class MyProfilePosts extends Component {
         <TouchableOpacity
           onPress={() =>
             this.props.navigation.navigate({
-              name: 'MyProfilePostScreen',
+              name: 'PostScreen',
               params: {post:item, filteredComments, reply, userAccount},
             })
           }>
@@ -121,13 +121,13 @@ class MyProfilePosts extends Component {
               </View>
             </View>
         </View> */}
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() =>
             this.props.navigation.navigate({
               name: 'MyProfilePostScreen',
               params: {post:item, filteredComments, reply, userAccount},
             })
-          }>
+          }> */}
           {/* <Text style={style.body}>
             {' '}
             {item.body.length < 88
@@ -135,7 +135,7 @@ class MyProfilePosts extends Component {
               : `${item.body.substring(0, 88)}...`}{' '}
             <Text style={style.more}>{'       '}More</Text>
           </Text> */}
-        </TouchableOpacity>
+        {/* </TouchableOpacity> */}
 
         {/* </View> */}
           
