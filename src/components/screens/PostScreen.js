@@ -64,7 +64,8 @@ export default class PostScreen extends Component {
             </View>
            </TouchableOpacity>
            {userAccount.id === post.userId ? 
-            <View style={style.dotsDropdownConatiner}>
+            <View style={style.dotsDropdownContainer}>
+              <View>
             <TouchableOpacity
               onPress={() =>
                 this.setState({
@@ -73,6 +74,7 @@ export default class PostScreen extends Component {
               }>
               <Text style={style.dotsButton}>...</Text>
             </TouchableOpacity>
+            </View>
             {this.state.shouldShow ? (
               <View style={style.dropdownEdit}>
               <TouchableOpacity
@@ -127,9 +129,10 @@ export default class PostScreen extends Component {
           </View>
           <Text style={style.body}>{post.body}</Text>
           <UserCommentList
-            filteredComments={filteredComments}
+            // filteredComments={filteredComments}
+            postId={post.id}
             navigation={this.props.navigation}
-            reply={reply}
+            // reply={reply}
             userAccount={userAccount}
           />
         </ScrollView>
@@ -228,7 +231,7 @@ const style = StyleSheet.create({
     fontFamily:'Montserrat-Medium',
   },
 
-  dotsDropdownConatiner: {
+  dotsDropdownContainer: {
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     alignContent: 'center',
@@ -238,6 +241,7 @@ const style = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 20,
+    marginBottom:8,
   },
   dropdownEdit: {
     flex: 1,
@@ -273,7 +277,7 @@ const style = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: 'lightgrey',
     paddingTop: 4,
-    backgroundColor:'#2C3957'
+    backgroundColor:'#2C3957',
 
   },
   searchInputContainer: {

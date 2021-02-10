@@ -66,7 +66,7 @@ export default class UserPosts extends Component {
           </View>
           </TouchableOpacity>        
             {userAccount.id === post.userId ? 
-            <View style={style.dotsDropdownConatiner}>
+            <View style={style.dotsDropdownContainer}>
             <TouchableOpacity
               onPress={() =>
                 this.setState({
@@ -303,7 +303,7 @@ const style = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 20,
-  
+    marginBottom:8, 
   },
   dropdownEdit: {
     flex: 1,

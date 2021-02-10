@@ -7,9 +7,11 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
+import {connect} from 'react-redux';
+
 import UserCommentReply from './UserCommentReply';
 
-export default class UserCommentList extends Component {
+class UserCommentList extends Component {
 
   accountId = this.props.userAccount.id 
 
@@ -27,8 +29,11 @@ export default class UserCommentList extends Component {
     }
   };
   render() {
-    const {filteredComments, reply, userAccount} = this.props;
-
+    const {comments, reply, userAccount, postId} = this.props;
+    const filteredComments = comments.filter(
+      (comment) => comment.postId === postId,
+    );
+    // console.log(this.props.postId, 'comments')
     return (
       <SafeAreaView style={style.mainContainer}>
         {filteredComments.map((item) => (
@@ -68,6 +73,22 @@ export default class UserCommentList extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {   
+    comments: state.posts.comments,
+    reply: state.posts.reply,
+   
+
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserCommentList);
+
 
 const style = StyleSheet.create({
   mainContainer: {
