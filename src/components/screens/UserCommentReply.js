@@ -9,7 +9,12 @@ import {
 } from 'react-native';
 
 export default class UserCommentReply extends Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      shouldShow: false,
+    };
+  }
   accountId = this.props.userAccount.id
 
   navigationByCondition = item => {
@@ -28,11 +33,27 @@ export default class UserCommentReply extends Component {
  };
   render() {
     const {reply, id} = this.props;
+    const {shouldShow} = this.state;
+
     const filteredReply = reply.filter((reply) => reply.commentId === id);
 
     return (
       <SafeAreaView style={style.mainContainer}>
-        {filteredReply.map((item) => (
+        
+
+
+        {this.state.shouldShow ? (
+
+              <View>
+                <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  shouldShow: !shouldShow,
+                })
+              }>
+              <Text style={style.dotsButton}>Hide replies</Text>
+            </TouchableOpacity>
+               {filteredReply.map((item) => (
           <View key={item.id} style={style.itemContainer}>
             <View style={style.detailsContainer}>
               <Image
@@ -59,6 +80,19 @@ export default class UserCommentReply extends Component {
             </View>
           </View>
         ))}
+            </View>
+
+            ) : 
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  shouldShow: !shouldShow,
+                })
+              }>
+              <Text style={style.dotsButton}>Show replies</Text>
+            </TouchableOpacity>
+            }
+       
       </SafeAreaView>
     );
   }
