@@ -183,6 +183,14 @@ class Profile extends Component {
             }>
             <Text style={style.portfolioButton}>Manage Portfolio</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              this.props.navigation.navigate({
+                name: 'LikedPosts',
+              })
+            }>
+            <Text style={style.portfolioButton}>Liked Posts</Text>
+          </TouchableOpacity>
         </View>
       </View>
       );
