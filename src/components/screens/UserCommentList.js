@@ -6,6 +6,7 @@ import {
   Image,
   SafeAreaView,
   TouchableOpacity,
+  FlatList
 } from 'react-native';
 import {connect} from 'react-redux';
 
@@ -36,7 +37,10 @@ class UserCommentList extends Component {
     );
     return (
       <SafeAreaView style={style.mainContainer}>
-        {filteredComments.map((item) => (
+        <FlatList
+            keyExtractor = { (item, index) => index.toString() }
+            data={filteredComments}
+            renderItem={({item, index}) => ( 
           <View key={item.id} style={style.itemContainer}>
             <View style={style.detailsContainer}>
               <Image
@@ -67,7 +71,8 @@ class UserCommentList extends Component {
               userAccount={userAccount}
             />
           </View>
-        ))}
+        )}
+        />
       </SafeAreaView>
     );
   }
