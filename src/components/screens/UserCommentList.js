@@ -6,11 +6,13 @@ import {
   Image,
   SafeAreaView,
   TouchableOpacity,
-  FlatList
 } from 'react-native';
 import {connect} from 'react-redux';
-
 import UserCommentReply from './UserCommentReply';
+// import {  Swipeable } from 'react-native-gesture-handler'; 
+
+
+
 
 class UserCommentList extends Component {
 
@@ -35,12 +37,18 @@ class UserCommentList extends Component {
     const filteredComments = comments.filter(
       (comment) => comment.postId === postId,
     );
+    // const rightAction = () => {
+    //   <View>
+    //     <Text>Delete</Text>
+    //   </View>
+    // }
     return (
       <SafeAreaView style={style.mainContainer}>
-        <FlatList
-            keyExtractor = { (item, index) => index.toString() }
-            data={filteredComments}
-            renderItem={({item, index}) => ( 
+        {filteredComments.map((item) => (
+          // <Swipeable
+          // renderLeftActions={rightAction}
+          
+          // >
           <View key={item.id} style={style.itemContainer}>
             <View style={style.detailsContainer}>
               <Image
@@ -64,15 +72,17 @@ class UserCommentList extends Component {
                 <Text style={style.reply}>Reply </Text>
               </View>
             </View>
+            <View>
             <UserCommentReply
               navigation={this.props.navigation}
               reply={reply}
               id={item.id}
               userAccount={userAccount}
             />
+            </View>
           </View>
-        )}
-        />
+          // </Swipeable>
+        ))}
       </SafeAreaView>
     );
   }
