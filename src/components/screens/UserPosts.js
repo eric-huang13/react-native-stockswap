@@ -303,7 +303,7 @@ const style = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 20,
-    marginBottom:8, 
+    marginBottom:10, 
   },
   dropdownEdit: {
     flex: 1,

@@ -239,7 +239,7 @@ const style = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 20,
-    marginBottom:8,
+    marginBottom:10,
   },
   dropdownEdit: {
     flex: 1,
@@ -247,7 +247,7 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
     marginTop: 1,
-    marginBottom: -60,
+    marginBottom: -77,
     backgroundColor: '#2C3957',
     zIndex: 1,
     paddingVertical: 6,
@@ -269,12 +269,13 @@ const style = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     marginHorizontal: 12,
+    paddingVertical:2,
     fontFamily:'Montserrat-Medium',
   },
   dropDownTextReportContainer: {
     borderTopWidth: 1,
     borderTopColor: 'lightgrey',
-    paddingTop: 4,
+    paddingTop: 6,
     backgroundColor:'#2C3957',
 
   },

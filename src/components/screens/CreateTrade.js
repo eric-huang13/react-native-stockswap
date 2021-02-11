@@ -142,7 +142,6 @@ const style = StyleSheet.create({
         paddingVertical:8, 
         paddingHorizontal:36,  
         flexDirection:'column',
-        borderWidth:1,
         justifyContent:'space-around'
         },
     header:{

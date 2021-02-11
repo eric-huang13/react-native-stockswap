@@ -278,6 +278,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 12,
+    marginVertical:10,
   },
   numberColumn: {
     alignItems: 'center',
@@ -352,7 +353,7 @@ const style = StyleSheet.create({
   },
 
   portfolioButtonContainer: {
-    marginTop: 18,
+    marginTop: 8,
     // justifyContent:'center',
   },
   portfolioButton: {
@@ -390,6 +391,7 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 26,
     marginLeft: 6,
+    marginTop:30,
   },
   // postNameContainer:{
   // flexDirection:'row',
