@@ -7,7 +7,8 @@ import {
   SafeAreaView,
   TouchableOpacity,
   ScrollView,
-  TextInput
+  TextInput,
+  Modal
 } from 'react-native';
 import UserCommentList from './UserCommentList';
 import LikeInactiveIcon from '../../icons/LikeInactiveIcon'
@@ -18,6 +19,7 @@ export default class PostScreen extends Component {
     super(props);
     this.state = {
       shouldShow: false,
+      reportModal:false,
     };
   }
   accountId = this.props.route.params.userAccount.id
@@ -42,13 +44,28 @@ export default class PostScreen extends Component {
       params: {post, userAccount},
     })
   }
+  // reportModal(post, userAccount) {
+  //   this.setState({reportModal:false})
+  // }
 
   render() {
-    const {shouldShow} = this.state;
+    const {shouldShow, reportModal} = this.state;
 
     const {post, filteredComments, reply, userAccount} = this.props.route.params;
     return (
       <SafeAreaView style={style.container}>
+        <Modal visible={reportModal} animationType='slide'>
+          <View>
+          <TouchableOpacity
+                    key={post.id}
+                    onPress={() =>
+                      this.setState({
+                        reportModal: false,
+                      })
+                    }><Text>Close</Text></TouchableOpacity>
+            <Text>Why would you like to report this post?</Text>
+          </View>
+        </Modal>
         <ScrollView style={style.scrollContainer}>
           <View style={style.postNameContainer}>
           <TouchableOpacity
@@ -101,12 +118,22 @@ export default class PostScreen extends Component {
             </TouchableOpacity>
             {this.state.shouldShow ? (
               <View style={style.dropdown}>
+                
                 <Text style={style.dropDownText}>Repost</Text>
+               
                 <Text style={style.dropDownText}>Copy link</Text>
                 <Text style={style.dropDownText}>Turn on notifications</Text>
+                <TouchableOpacity
+                    key={post.id}
+                    onPress={() =>
+                      this.setState({
+                        reportModal: true,
+                      })
+                    }>
                 <View style={style.dropDownTextReportContainer}>
                   <Text style={style.dropDownText}>Report</Text>
                 </View>
+                </TouchableOpacity>
               </View>
             ) : null}
           </View>
