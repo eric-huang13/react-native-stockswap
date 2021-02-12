@@ -12,6 +12,7 @@ import {
   
 } from "react-native";
 import UserCommentList from "./UserCommentList";
+import ReportModal from './ReportModal';
 import LikeInactiveIcon from "../../icons/LikeInactiveIcon";
 import CommentIcon from "../../icons/CommentIcon";
 
@@ -20,7 +21,7 @@ export default class PostScreen extends Component {
     super(props);
     this.state = {
       shouldShow: false,
-      reportModal: false,
+      reportModalState: false,
     };
   }
   accountId = this.props.route.params.userAccount.id;
@@ -47,34 +48,20 @@ export default class PostScreen extends Component {
     });
   }
   reportModal(item) {
-    this.setState({reportModal:item, shouldShow:false})
+    this.setState({reportModalState:item, shouldShow:false})
   }
 
   render() {
-    const { shouldShow, reportModal } = this.state;
+    const { shouldShow, reportModalState } = this.state;
 
     const {
       post,
-      filteredComments,
-      reply,
       userAccount,
     } = this.props.route.params;
     return (
       <SafeAreaView style={style.container}>
-        <Modal transparent={true} visible={reportModal} animationType="slide">
-          <View style={style.reportModalContainer}>
-            <TouchableOpacity
-              onPress={() => this.reportModal(false)}
-            >
-              <Text style={style.optionModalText}>Close</Text>
-            </TouchableOpacity>
-            <Text style={style.dropDownText}>Why would you like to report this post?</Text>
-            <View style={style.innerReportContainer}>
-              <Text style={style.dropDownText}>Option 1</Text>
-              <Text style={style.dropDownText}>Option 2</Text>
-              <Text style={style.dropDownText}>Option 3</Text>
-            </View>
-          </View>
+        <Modal transparent={true} visible={reportModalState} animationType="slide">
+          <ReportModal reportModal={this.reportModal.bind(this)}/>
         </Modal>
         <ScrollView style={style.scrollContainer}>
           <View style={style.postNameContainer}>
