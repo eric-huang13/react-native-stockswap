@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import {
   Text,
   View,
@@ -8,149 +8,167 @@ import {
   TouchableOpacity,
   ScrollView,
   TextInput,
-  Modal
-} from 'react-native';
-import UserCommentList from './UserCommentList';
-import LikeInactiveIcon from '../../icons/LikeInactiveIcon'
-import CommentIcon from '../../icons/CommentIcon'
+  Modal,
+  
+} from "react-native";
+import UserCommentList from "./UserCommentList";
+import LikeInactiveIcon from "../../icons/LikeInactiveIcon";
+import CommentIcon from "../../icons/CommentIcon";
 
 export default class PostScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       shouldShow: false,
-      reportModal:false,
+      reportModal: true,
     };
   }
-  accountId = this.props.route.params.userAccount.id
+  accountId = this.props.route.params.userAccount.id;
 
-  navigationByCondition = post => {
-    const {navigation} = this.props;
+  navigationByCondition = (post) => {
+    const { navigation } = this.props;
     if (post.userId === this.accountId) {
       navigation.navigate({
-        name: 'MyProfile',
-        params: {id: post.id},
-      })
+        name: "MyProfile",
+        params: { id: post.id },
+      });
     } else {
       navigation.navigate({
-        name: 'Profile',
-        params: {id: post.userId}      })
+        name: "Profile",
+        params: { id: post.userId },
+      });
     }
   };
   dropDownSelect(post, userAccount) {
-    this.setState({shouldShow:false})
+    this.setState({ shouldShow: false });
     this.props.navigation.navigate({
-      name: 'EditPost',
-      params: {post, userAccount},
-    })
+      name: "EditPost",
+      params: { post, userAccount },
+    });
   }
   // reportModal(post, userAccount) {
   //   this.setState({reportModal:false})
   // }
 
   render() {
-    const {shouldShow, reportModal} = this.state;
+    const { shouldShow, reportModal } = this.state;
 
-    const {post, filteredComments, reply, userAccount} = this.props.route.params;
+    const {
+      post,
+      filteredComments,
+      reply,
+      userAccount,
+    } = this.props.route.params;
     return (
       <SafeAreaView style={style.container}>
-        <Modal visible={reportModal} animationType='slide'>
-          <View>
-          <TouchableOpacity
-                    key={post.id}
-                    onPress={() =>
-                      this.setState({
-                        reportModal: false,
-                      })
-                    }><Text>Close</Text></TouchableOpacity>
-            <Text>Why would you like to report this post?</Text>
+        <Modal transparent={true} visible={reportModal} animationType="slide">
+          <View style={style.reportModalContainer}>
+            <TouchableOpacity
+              key={post.id}
+              onPress={() =>
+                this.setState({
+                  reportModal: false,
+                })
+              }
+            >
+              <Text style={style.optionModalText}>Close</Text>
+            </TouchableOpacity>
+            <Text style={style.dropDownText}>Why would you like to report this post?</Text>
+            <View style={style.innerReportContainer}>
+              <Text style={style.dropDownText}>Option 1</Text>
+              <Text style={style.dropDownText}>Option 2</Text>
+              <Text style={style.dropDownText}>Option 3</Text>
+            </View>
           </View>
         </Modal>
         <ScrollView style={style.scrollContainer}>
           <View style={style.postNameContainer}>
-          <TouchableOpacity
-                    key={post.id}
-                    onPress={()=>this.navigationByCondition(post)             
-                    }>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Image
-                style={style.postUserImage}
-                source={{uri: post.profileImg}}
-              />
-              <Text style={style.postUserName}>{post.name}</Text>
-            </View>
-           </TouchableOpacity>
-           {userAccount.id === post.userId ? 
-            <View style={style.dotsDropdownContainer}>
-              <View>
             <TouchableOpacity
-              onPress={() =>
-                this.setState({
-                  shouldShow: !shouldShow,
-                })
-              }>
-              <Text style={style.dotsButton}>...</Text>
-            </TouchableOpacity>
-            </View>
-            {this.state.shouldShow ? (
-              <View style={style.dropdownEdit}>
-              <TouchableOpacity
-        onPress={() => this.dropDownSelect(post, userAccount)
-        }>
-          <Text style={style.dropDownText}>Edit post</Text>
-              </TouchableOpacity>                
-              <View style={style.dropDownTextReportContainer}>
-                <Text style={style.dropDownText}>Remove post</Text>
+              key={post.id}
+              onPress={() => this.navigationByCondition(post)}
+            >
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Image
+                  style={style.postUserImage}
+                  source={{ uri: post.profileImg }}
+                />
+                <Text style={style.postUserName}>{post.name}</Text>
               </View>
-            </View>
-            ) : null}
-          </View>
-            :
-            <View style={style.dotsDropdownContainer}>
-            <TouchableOpacity
-              onPress={() =>
-                this.setState({
-                  shouldShow: !shouldShow,
-                })
-              }>
-              <Text style={style.dotsButton}>...</Text>
-           
             </TouchableOpacity>
-            {this.state.shouldShow ? (
-              <View style={style.dropdown}>
-                
-                <Text style={style.dropDownText}>Repost</Text>
-               
-                <Text style={style.dropDownText}>Copy link</Text>
-                <Text style={style.dropDownText}>Turn on notifications</Text>
-                <TouchableOpacity
-                    key={post.id}
+            {userAccount.id === post.userId ? (
+              <View style={style.dotsDropdownContainer}>
+                <View>
+                  <TouchableOpacity
                     onPress={() =>
                       this.setState({
-                        reportModal: true,
+                        shouldShow: !shouldShow,
                       })
-                    }>
-                <View style={style.dropDownTextReportContainer}>
-                  <Text style={style.dropDownText}>Report</Text>
+                    }
+                  >
+                    <Text style={style.dotsButton}>...</Text>
+                  </TouchableOpacity>
                 </View>
-                </TouchableOpacity>
+                {this.state.shouldShow ? (
+                  <View style={style.dropdownEdit}>
+                    <TouchableOpacity
+                      onPress={() => this.dropDownSelect(post, userAccount)}
+                    >
+                      <Text style={style.dropDownText}>Edit post</Text>
+                    </TouchableOpacity>
+                    <View style={style.dropDownTextReportContainer}>
+                      <Text style={style.dropDownText}>Remove post</Text>
+                    </View>
+                  </View>
+                ) : null}
               </View>
-            ) : null}
+            ) : (
+              <View style={style.dotsDropdownContainer}>
+                <TouchableOpacity
+                  onPress={() =>
+                    this.setState({
+                      shouldShow: !shouldShow,
+                    })
+                  }
+                >
+                  <Text style={style.dotsButton}>...</Text>
+                </TouchableOpacity>
+                {this.state.shouldShow ? (
+                  <View style={style.dropdown}>
+                    <Text style={style.dropDownText}>Repost</Text>
+
+                    <Text style={style.dropDownText}>Copy link</Text>
+                    <Text style={style.dropDownText}>
+                      Turn on notifications
+                    </Text>
+                    <TouchableOpacity
+                      key={post.id}
+                      onPress={() =>
+                        this.setState({
+                          reportModal: true,
+                        })
+                      }
+                    >
+                      <View style={style.dropDownTextReportContainer}>
+                        <Text style={style.dropDownText}>Report</Text>
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                ) : null}
+              </View>
+            )}
           </View>
-            }
-          </View>
-          <Image style={style.image} source={{uri: post.img}} />
+          <Image style={style.image} source={{ uri: post.img }} />
           <View style={style.detailsContainer}>
             <Text style={style.timestamp}>{post.timestamp}</Text>
 
             <View style={style.likesContainer}>
               <View style={style.iconContainer}>
-                <LikeInactiveIcon/>
-              <Text style={style.likes}>{post.likes}</Text>
+                <LikeInactiveIcon />
+                <Text style={style.likes}>{post.likes}</Text>
               </View>
               <View style={style.iconContainer}>
-                <CommentIcon/>
-              <Text style={style.comments}>{post.comments}</Text>
+                <CommentIcon />
+                <Text style={style.comments}>{post.comments}</Text>
               </View>
             </View>
           </View>
@@ -162,13 +180,12 @@ export default class PostScreen extends Component {
           />
         </ScrollView>
         <View style={style.searchInputContainer}>
-         
-            <TextInput
-              style={style.searchInput}
-              placeholder="Enter your comment"
-              placeholderTextColor="lightgrey"
-            />
-          </View>
+          <TextInput
+            style={style.searchInput}
+            placeholder="Enter your comment"
+            placeholderTextColor="lightgrey"
+          />
+        </View>
       </SafeAreaView>
     );
   }
@@ -177,25 +194,57 @@ export default class PostScreen extends Component {
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: "column",
     // justifyContent: 'space-between',
     paddingVertical: 21,
     // paddingHorizontal: 10,
-    backgroundColor: '#2a334a',
+    backgroundColor: "#2a334a",
   },
-  scrollContainer: {   
+
+  reportModalContainer: {
+    flex: 1,
+    marginTop: 310,
+    backgroundColor: "#3e4d6c",
+    borderRadius: 20,
+    padding: 24,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  innerReportContainer:{
+    marginTop:10,
+    flexDirection:'column',
+    justifyContent:'space-between',
+    height:'50%',
+
+  },
+  optionModalText: {
+    color: "#B8A0FF",
+    marginLeft: 16,
+    fontFamily: "Montserrat-SemiBold",
+    fontSize: 13,
+    marginBottom: 10,
+  },
+
+  scrollContainer: {
     paddingHorizontal: 10,
   },
   image: {
     height: 184,
-    width: '100%',
+    width: "100%",
     borderRadius: 10,
   },
   postNameContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 9,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
   postUserImage: {
     height: 38,
@@ -203,125 +252,122 @@ const style = StyleSheet.create({
     borderRadius: 50,
   },
   postUserName: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     fontSize: 16,
     marginLeft: 8,
-    fontFamily:'Montserrat-Bold',
+    fontFamily: "Montserrat-Bold",
   },
   detailsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     marginTop: 8,
   },
   likesContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
   },
   timestamp: {
     fontSize: 12.5,
-    color: 'lightgrey',
-    fontFamily:'Montserrat-Italic',
+    color: "lightgrey",
+    fontFamily: "Montserrat-Italic",
   },
-  iconContainer:{
-    flexDirection:'row',
-     alignItems:'center',
-     justifyContent:'space-between',
+  iconContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   likes: {
     fontSize: 16,
-    color: 'lightgrey',
-    fontFamily:'Montserrat-Medium',
-    marginLeft:3,
-    marginRight:14,
+    color: "lightgrey",
+    fontFamily: "Montserrat-Medium",
+    marginLeft: 3,
+    marginRight: 14,
   },
   comments: {
     fontSize: 16,
-    color: 'lightgrey',
-    fontFamily:'Montserrat-Medium',
+    color: "lightgrey",
+    fontFamily: "Montserrat-Medium",
     marginRight: 1,
-    marginLeft:3,
-
+    marginLeft: 3,
   },
   body: {
     fontSize: 15,
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     marginTop: 10,
     marginBottom: 2,
     borderBottomWidth: 0.7,
-    borderBottomColor: 'rgba(158, 150, 150, .4)',
+    borderBottomColor: "rgba(158, 150, 150, .4)",
     // borderBottomColor:'#CBCDD7',
     paddingBottom: 18,
-    fontFamily:'Montserrat-Medium',
+    fontFamily: "Montserrat-Medium",
   },
 
   dotsDropdownContainer: {
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
-    alignContent: 'center',
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+    alignContent: "center",
   },
   dotsButton: {
-    alignSelf: 'flex-end',
-    color: 'white',
-    fontWeight: 'bold',
+    alignSelf: "flex-end",
+    color: "white",
+    fontWeight: "bold",
     fontSize: 20,
-    marginBottom:10,
+    marginBottom: 10,
   },
   dropdownEdit: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    width: '100%',
+    flexDirection: "column",
+    justifyContent: "space-between",
+    width: "100%",
     marginTop: 1,
     marginBottom: -77,
-    backgroundColor: '#2C3957',
+    backgroundColor: "#2C3957",
     zIndex: 1,
     paddingVertical: 6,
     // paddingHorizontal:10,
   },
   dropdown: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    width: '100%',
+    flexDirection: "column",
+    justifyContent: "space-between",
+    width: "100%",
     marginTop: 1,
     marginBottom: -125,
-    backgroundColor: '#2C3957',
+    backgroundColor: "#2C3957",
     zIndex: 1,
     paddingVertical: 6,
     // paddingHorizontal:10,
   },
   dropDownText: {
-    color: 'white',
+    color: "white",
     fontSize: 16,
     marginHorizontal: 12,
-    paddingVertical:2,
-    fontFamily:'Montserrat-Medium',
+    paddingVertical: 2,
+    fontFamily: "Montserrat-Medium",
   },
   dropDownTextReportContainer: {
     borderTopWidth: 1,
-    borderTopColor: 'lightgrey',
+    borderTopColor: "lightgrey",
     paddingTop: 6,
-    backgroundColor:'#2C3957',
-
+    backgroundColor: "#2C3957",
   },
   searchInputContainer: {
-    backgroundColor:'#2C3957',
-    marginBottom:-10,
-    paddingHorizontal:10,
-
+    backgroundColor: "#2C3957",
+    marginBottom: -10,
+    paddingHorizontal: 10,
   },
   searchInput: {
-    marginTop:10,
+    marginTop: 10,
     paddingLeft: 20,
-    alignContent: 'center',
-    backgroundColor: '#3e4d6c',
-    color: 'lightgrey',
+    alignContent: "center",
+    backgroundColor: "#3e4d6c",
+    color: "lightgrey",
     fontSize: 15,
     height: 36,
-    fontFamily: 'Montserrat-Italic',
+    fontFamily: "Montserrat-Italic",
     paddingVertical: 10,
-    borderRadius:6,
+    borderRadius: 6,
   },
 });
