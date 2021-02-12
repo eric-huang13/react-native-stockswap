@@ -20,7 +20,7 @@ export default class PostScreen extends Component {
     super(props);
     this.state = {
       shouldShow: false,
-      reportModal: true,
+      reportModal: false,
     };
   }
   accountId = this.props.route.params.userAccount.id;
@@ -46,9 +46,9 @@ export default class PostScreen extends Component {
       params: { post, userAccount },
     });
   }
-  // reportModal(post, userAccount) {
-  //   this.setState({reportModal:false})
-  // }
+  reportModal(item) {
+    this.setState({reportModal:item, shouldShow:false})
+  }
 
   render() {
     const { shouldShow, reportModal } = this.state;
@@ -64,12 +64,7 @@ export default class PostScreen extends Component {
         <Modal transparent={true} visible={reportModal} animationType="slide">
           <View style={style.reportModalContainer}>
             <TouchableOpacity
-              key={post.id}
-              onPress={() =>
-                this.setState({
-                  reportModal: false,
-                })
-              }
+              onPress={() => this.reportModal(false)}
             >
               <Text style={style.optionModalText}>Close</Text>
             </TouchableOpacity>
@@ -142,11 +137,7 @@ export default class PostScreen extends Component {
                     </Text>
                     <TouchableOpacity
                       key={post.id}
-                      onPress={() =>
-                        this.setState({
-                          reportModal: true,
-                        })
-                      }
+                      onPress={() => this.reportModal(true)}
                     >
                       <View style={style.dropDownTextReportContainer}>
                         <Text style={style.dropDownText}>Report</Text>
