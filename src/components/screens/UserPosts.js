@@ -6,15 +6,18 @@ import {
   Image,
   TouchableOpacity,
   SafeAreaView,
+  Modal
 } from 'react-native';
 import LikeInactiveIcon from '../../icons/LikeInactiveIcon'
 import CommentIcon from '../../icons/CommentIcon'
+import ReportModal from './ReportModal';
 
 export default class UserPosts extends Component {
   constructor(props) {
     super(props);
     this.state = {
       shouldShow: false,
+      reportModalState: false,
     };
   }
   accountId = this.props.userAccount.id
@@ -39,9 +42,11 @@ export default class UserPosts extends Component {
       params: {post, userAccount},
     })
   }
-
+  reportModal(item) {
+    this.setState({reportModalState:item, shouldShow:false})
+  }
   render() {
-    const {shouldShow} = this.state;
+    const {shouldShow, reportModalState} = this.state;
 
     const {post, comments, reply, userAccount} = this.props;
     
@@ -52,6 +57,9 @@ export default class UserPosts extends Component {
     // console.log(this.props.navigation, 'props in post');
     return (
       <SafeAreaView style={style.container}>
+         <Modal transparent={true} visible={reportModalState} animationType="slide">
+          <ReportModal reportModal={this.reportModal.bind(this)}/>
+        </Modal>
         <View style={style.postNameContainer}>
         <TouchableOpacity
                     key={post.id}
@@ -104,9 +112,14 @@ export default class UserPosts extends Component {
                 <Text style={style.dropDownText}>Repost</Text>
                 <Text style={style.dropDownText}>Copy link</Text>
                 <Text style={style.dropDownText}>Turn on notifications</Text>
+                <TouchableOpacity
+                      key={post.id}
+                      onPress={() => this.reportModal(true)}
+                    >
                 <View style={style.dropDownTextReportContainer}>
                   <Text style={style.dropDownText}>Report</Text>
                 </View>
+                </TouchableOpacity>
               </View>
             ) : null}
           </View>
