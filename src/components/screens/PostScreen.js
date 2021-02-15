@@ -13,15 +13,18 @@ import {
 } from "react-native";
 import UserCommentList from "./UserCommentList";
 import ReportModal from './ReportModal';
+import ShareToModal from './ShareToModal'
 import LikeInactiveIcon from "../../icons/LikeInactiveIcon";
 import CommentIcon from "../../icons/CommentIcon";
+
 
 export default class PostScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      shouldShow: false,
+      shouldShow: true,
       reportModalState: false,
+      shareModalState: false,
     };
   }
   accountId = this.props.route.params.userAccount.id;
@@ -50,9 +53,12 @@ export default class PostScreen extends Component {
   reportModal(item) {
     this.setState({reportModalState:item, shouldShow:false})
   }
+  shareModal(item) {
+    this.setState({shareModalState:item, shouldShow:false})
+  }
 
   render() {
-    const { shouldShow, reportModalState } = this.state;
+    const { shouldShow, reportModalState, shareModalState } = this.state;
 
     const {
       post,
@@ -62,6 +68,9 @@ export default class PostScreen extends Component {
       <SafeAreaView style={style.container}>
         <Modal transparent={true} visible={reportModalState} animationType="slide">
           <ReportModal reportModal={this.reportModal.bind(this)}/>
+        </Modal>
+        <Modal transparent={true} visible={shareModalState} animationType="slide">
+          <ShareToModal shareModal={this.shareModal.bind(this)}/>
         </Modal>
         <ScrollView style={style.scrollContainer}>
           <View style={style.postNameContainer}>
@@ -117,8 +126,12 @@ export default class PostScreen extends Component {
                 {this.state.shouldShow ? (
                   <View style={style.dropdown}>
                     <Text style={style.dropDownText}>Repost</Text>
-
                     <Text style={style.dropDownText}>Copy link</Text>
+                    <TouchableOpacity
+                      onPress={() => this.shareModal(true)}
+                    >
+                    <Text style={style.dropDownText}>Share to...</Text>
+                    </TouchableOpacity>
                     <Text style={style.dropDownText}>
                       Turn on notifications
                     </Text>
@@ -292,7 +305,7 @@ const style = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     fontSize: 20,
-    marginBottom: 10,
+    marginBottom: 9,
   },
   dropdownEdit: {
     flex: 1,
@@ -312,7 +325,7 @@ const style = StyleSheet.create({
     justifyContent: "space-between",
     width: "100%",
     marginTop: 1,
-    marginBottom: -125,
+    marginBottom: -153,
     backgroundColor: "#2C3957",
     zIndex: 1,
     paddingVertical: 6,
