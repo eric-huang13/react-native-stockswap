@@ -11,6 +11,9 @@ import {
 import LikeInactiveIcon from '../../icons/LikeInactiveIcon'
 import CommentIcon from '../../icons/CommentIcon'
 import ReportModal from './ReportModal';
+import ShareToModal from './ShareToModal'
+
+
 
 export default class UserPosts extends Component {
   constructor(props) {
@@ -18,6 +21,8 @@ export default class UserPosts extends Component {
     this.state = {
       shouldShow: false,
       reportModalState: false,
+      shareModalState: false,
+
     };
   }
   accountId = this.props.userAccount.id
@@ -45,8 +50,11 @@ export default class UserPosts extends Component {
   reportModal(item) {
     this.setState({reportModalState:item, shouldShow:false})
   }
+  shareModal(item) {
+    this.setState({shareModalState:item, shouldShow:false})
+  }
   render() {
-    const {shouldShow, reportModalState} = this.state;
+    const {shouldShow, reportModalState, shareModalState} = this.state;
 
     const {post, comments, reply, userAccount} = this.props;
     
@@ -59,6 +67,9 @@ export default class UserPosts extends Component {
       <SafeAreaView style={style.container}>
          <Modal transparent={true} visible={reportModalState} animationType="slide">
           <ReportModal reportModal={this.reportModal.bind(this)}/>
+        </Modal>
+        <Modal transparent={true} visible={shareModalState} animationType="slide">
+          <ShareToModal shareModal={this.shareModal.bind(this)}/>
         </Modal>
         <View style={style.postNameContainer}>
         <TouchableOpacity
@@ -111,6 +122,11 @@ export default class UserPosts extends Component {
               <View style={style.dropdown}>
                 <Text style={style.dropDownText}>Repost</Text>
                 <Text style={style.dropDownText}>Copy link</Text>
+                <TouchableOpacity
+                      onPress={() => this.shareModal(true)}
+                    >
+                    <Text style={style.dropDownText}>Share to...</Text>
+                    </TouchableOpacity>
                 <Text style={style.dropDownText}>Turn on notifications</Text>
                 <TouchableOpacity
                       key={post.id}
@@ -336,7 +352,7 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
     marginTop: 1,
-    marginBottom: -125,
+    marginBottom: -135,
     backgroundColor: '#2C3957',
     zIndex: 1,
     paddingVertical: 6,

@@ -22,7 +22,7 @@ export default class PostScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      shouldShow: true,
+      shouldShow: false,
       reportModalState: false,
       shareModalState: false,
     };
