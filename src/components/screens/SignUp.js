@@ -1,203 +1,268 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import {
+  Button,
+  TextInput,
   Text,
   View,
-  TextInput,
   StyleSheet,
   TouchableOpacity,
   KeyboardAvoidingView,
   SafeAreaView,
   TouchableWithoutFeedback,
   Keyboard,
-  ScrollView
+  ScrollView,
 } from "react-native";
+import { Formik } from "formik";
+import * as yup from "yup";
 import { connect } from "react-redux";
 import { Register } from "../../actions/user";
-import CheckBox from '@react-native-community/checkbox';
-import LinearGradient from 'react-native-linear-gradient';
-import SmallStockSwap from '../../icons/SmallStockSwap'
-import GoogleIcon from '../../icons/GoogleIcon'
-import AppleIcon from '../../icons/AppleIcon'
-import FacebookIcon from '../../icons/FacebookIcon'
+import CheckBox from "@react-native-community/checkbox";
+import LinearGradient from "react-native-linear-gradient";
+import SmallStockSwap from "../../icons/SmallStockSwap";
+import GoogleIcon from "../../icons/GoogleIcon";
+import AppleIcon from "../../icons/AppleIcon";
+import FacebookIcon from "../../icons/FacebookIcon";
 
+const reviewSchema = yup.object({
+  email: yup
+    .string()
+    .required("Email required")
+    .email("A valid email address is required"),
 
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(8, ({ min }) => `Password must be at least ${min} characters`)
+    .matches(/\d/, "Password must have a number")
+    .matches(/\w*[a-z]\w*/, "Password must have a lowercase letter")
+    .matches(/\w*[A-Z]\w*/, "Password must have a capital letter")
+    .matches(
+      /[!@#$%^&*()\-_"=+{}; :,<.>]/,
+      "Password must have a special character"
+    ),
 
-class SignUp extends Component {
-  constructor(props) {
-    super(props);
+  passwordConfirmation: yup
+    .string()
+    .required("Password confimation is required")
+    .oneOf([yup.ref("password"), null], "Passwords must match"),
+  // toggleCheckBox: yup.boolean().oneOf([true], 'Please check the agreement')
+});
 
-    this.state = {
-      email: "",
-      password: "",
-      confirmPassword: "",
-      check: false,
-      error:"",
-    };
-  }
+const SignUp = ({ RegisterUser, navigation }) => {
+  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const [checkError, setCheckError] = useState(false);
+  const handleSubmit = (values) => {
+    toggleCheckBox === true
+      ? alert("YESS check Terms and Conditions")
+      : toggleCheckBox === false;
+    setCheckError(true);
+    alert("Please check Terms and Conditions");
+  };
 
-  handleInputChange = (inputName, inputValue) => {
-    this.setState(state => ({ 
-      ...state,
-      [inputName]: inputValue 
-    }))
-  }
-
-  checkBoxText() {
-    this.setState({
-        check:!this.state.check
-    });
-  ;} 
-
-  errorInput(text) {
-    this.setState({
-        error:text
-    })
-  
-  ;} 
-
-  render() {      
-    const { RegisterUser } = this.props;  
-
-    const credentials = {
-        email: this.state.email,
-        password: this.state.password,
-      }; 
-  
-    const handleSubmit = () => {
-        this.state.email === "" && this.state.password === ""
-        ? this.errorInput('all')
-        : this.state.email === ""
-        ? this.errorInput('email')
-        : this.state.password === "" || this.state.confirmPassword === ''
-        ? this.errorInput('passwords')
-        : this.state.password !== this.state.confirmPassword 
-        ? this.errorInput('passwords')        
-        : this.state.check === false 
-        ? this.errorInput('checkbox') 
-        : RegisterUser(credentials)
-    };
-
-    return (
-      <LinearGradient
-        start={{x: 0.1, y: 1}}
-        end={{x: 0.1, y: 0.1}}
-        colors={[
-          '#1D2842',
-          '#3d4b6e',          
-        ]}
-        style={{flex: 1}}>
+  return (
+    <LinearGradient
+      start={{ x: 0.1, y: 1 }}
+      end={{ x: 0.1, y: 0.1 }}
+      colors={["#1D2842", "#3d4b6e"]}
+      style={{ flex: 1 }}
+    >
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : null}
         style={{ flex: 1 }}
       >
         <SafeAreaView style={style.mainContainer}>
-            <ScrollView>
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={style.inner}>
-              <View style={style.stockHeader}>
-                <SmallStockSwap/>
-              </View>
-              <View style={style.container}>
+          <ScrollView>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+              <Formik
+                initialValues={{
+                  email: "",
+                  password: "",
+                  passwordConfirmation: "",
+                  // toggleCheckBox:false
+                }}
+                validationSchema={reviewSchema}
+                onSubmit={(values, actions) => {
+                  handleSubmit(values);
+                  // actions.resetForm()
+                  // RegisterUser(values);
+                }}
+              >
+                {(props) => (
+                  console.log(props.values, "formik"),
+                  (
+                    <View style={style.inner}>
+                      <View style={style.stockHeader}>
+                        <SmallStockSwap />
+                      </View>
+                      <View style={style.container}>
+                        <Text>Check: {"" + toggleCheckBox} </Text>
+                        <Text style={style.signUpHeader}>Sign Up</Text>
+                        <View>
+                          <Text style={style.inputHeader}>Email</Text>
+                          <TextInput
+                            style={
+                              props.touched.email && props.errors.email
+                                ? {
+                                    ...style.inputStyle,
+                                    backgroundColor: "#F66E6E",
+                                  }
+                                : { ...style.inputStyle }
+                            }
+                            placeholder="Enter your email"
+                            placeholderTextColor="#9ea6b5"
+                            onChangeText={props.handleChange("email")}
+                            onBlur={props.handleBlur("email")}
+                            value={props.values.email}
+                            keyboardType="email-address"
+                            autoCapitalize="none"
+                            returnKeyType="next"
+                            // onSubmitEditing={() => passwordInput.focus()}
+                          />
+                          <Text style={style.errorText}>
+                            {props.touched.email && props.errors.email}
+                          </Text>
+                        </View>
+                        <View>
+                          <Text style={style.inputHeader}>Password</Text>
 
-                <Text style={style.signUpHeader}>Sign Up</Text>
-
-                <View>
-                  <Text style={style.inputHeader}>Email</Text>
-
-                  <TextInput
-                    style={ this.state.error === 'email' ||  this.state.error === 'all' ? {...style.inputStyle, backgroundColor:'#F66E6E'} : {...style.inputStyle}}
-                    value={this.state.email}
-                    onChangeText={value => this.handleInputChange('email', value)}
-                    placeholder="Enter your email"
-                    placeholderTextColor="#9ea6b5"
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                    returnKeyType="next"
-                    onSubmitEditing={() => this.passwordInput.focus()}
-                  />
-                </View>
-                <View>
-                  <Text style={style.inputHeader}>Password</Text>
-                  <TextInput
-                    style={ this.state.error === 'passwords' ||  this.state.error === 'all' ? {...style.inputStyle, backgroundColor:'#F66E6E'} : {...style.inputStyle}}
-                    value={this.state.password}
-                    onChangeText={value => this.handleInputChange('password', value)}
-                    placeholder="Enter your password"
-                    placeholderTextColor="#9ea6b5"
-                    secureTextEntry
-                    returnKeyType="next"
-                    ref={(input) => (this.passwordInput = input)}
-                    onSubmitEditing={() => this.confirmPasswordInput.focus()}
-                  />
-                </View>
-                <View>
-                  <Text style={style.inputHeader}>Repeat password</Text>
-                  <TextInput
-                    style={ this.state.error === 'passwords' ||  this.state.error === 'all' ? {...style.inputStyleConfirm, backgroundColor:'#F66E6E'} : {...style.inputStyleConfirm}}
-                    value={this.state.confirmPassword}
-                    onChangeText={value => this.handleInputChange('confirmPassword', value)}
-                    placeholder="Enter your password"
-                    placeholderTextColor="#9ea6b5"
-                    secureTextEntry
-                    ref={(input) => (this.confirmPasswordInput = input)}
-                  />
-                </View>
-                <View style={style.termsOuterContainer}>
-                  <View style={style.termsInnerContainer}> 
-                <CheckBox style={style.checkbox}  value={this.state.check}
-                            onChange={()=>this.checkBoxText()}       tintColors={{ true: "#b8a0ff", false: 'lightgrey' }}
-                            
+                          <TextInput
+                            style={
+                              props.touched.password && props.errors.password
+                                ? {
+                                    ...style.inputStyle,
+                                    backgroundColor: "#F66E6E",
+                                  }
+                                : { ...style.inputStyle }
+                            }
+                            placeholder="Password"
+                            onChangeText={props.handleChange("password")}
+                            onBlur={props.handleBlur("password")}
+                            value={props.values.password}
+                            placeholder="Enter your password"
+                            placeholderTextColor="#9ea6b5"
+                            secureTextEntry
+                            returnKeyType="next"
+                            // ref={(input) => (passwordInput = input)}
+                            // onSubmitEditing={() => this.confirmPasswordInput.focus()}
+                          />
+                        </View>
+                        <Text style={style.errorText}>
+                          {props.touched.password && props.errors.password}
+                        </Text>
+                        <View>
+                          <Text style={style.inputHeader}>Repeat password</Text>
+                          <TextInput
+                            style={
+                              props.touched.passwordConfirmation &&
+                              props.errors.passwordConfirmation
+                                ? {
+                                    ...style.inputStyleConfirm,
+                                    backgroundColor: "#F66E6E",
+                                  }
+                                : { ...style.inputStyleConfirm }
+                            }
+                            textContentType="password"
+                            placeholder="Confirm password"
+                            onChangeText={props.handleChange(
+                              "passwordConfirmation"
+                            )}
+                            onBlur={props.handleBlur("passwordConfirmation")}
+                            value={props.values.passwordConfirmation}
+                            placeholder="Enter your password"
+                            placeholderTextColor="#9ea6b5"
+                            secureTextEntry
+                          />
+                          <Text style={style.errorText}>
+                            {props.touched.passwordConfirmation &&
+                              props.errors.passwordConfirmation}
+                          </Text>
+                        </View>
+                        <View style={style.termsOuterContainer}>
+                          <View style={style.termsInnerContainer}>
+                            <CheckBox
+                              style={style.checkbox}
+                              value={toggleCheckBox}
+                              onValueChange={(newValue) =>
+                                setToggleCheckBox(newValue)
+                              }
+                              // onValueChange={() => props.setFieldValue('toggleCheckBox', toggleCheckBox)}
+                              tintColors={{
+                                true: "#b8a0ff",
+                                false: "lightgrey",
+                              }}
                             />
                             <TouchableOpacity
-                onPress={() =>
-                  this.props.navigation.navigate('TermsAndConditions')
-                }>
-              <Text style={ this.state.error === 'checkbox' ? {...style.termsText, color:'#F66E6E'} : {...style.termsText}}>
-                  I agree with the Terms and Conditions
-                </Text>              
-              </TouchableOpacity>            
+                              onPress={() =>
+                                navigation.navigate("TermsAndConditions")
+                              }
+                            >
+                              <Text
+                                style={
+                                  checkError
+                                    ? { ...style.termsText, color: "#F66E6E" }
+                                    : { ...style.termsText }
+                                }
+                              >
+                                I agree with the Terms and Conditions
+                              </Text>
+                            </TouchableOpacity>
+                          </View>
+                          <TouchableOpacity
+                            onPress={() => navigation.navigate("Login")}
+                          >
+                            <Text style={style.termsText}>Login</Text>
+                          </TouchableOpacity>
+                        </View>
+                        <View>
+                          <Text style={style.errorText}>
+                            {props.touched.toggleCheckBox &&
+                              props.errors.toggleCheckBox}
+                          </Text>
+                        </View>
+                        <TouchableOpacity onPress={props.handleSubmit}>
+                          <Text style={style.button}>Sign Up</Text>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  )
+                )}
+              </Formik>
+            </TouchableWithoutFeedback>
+            <View style={style.bottomButtonsContainer}>
+              <Text style={style.orText}>--OR--</Text>
+              <View style={style.alternateSignUpContainer}>
+                <View style={style.alternateSignupInner}>
+                  <View style={style.signupIcon}>
+                    <GoogleIcon />
+                  </View>
+                  <Text style={style.alternateSignUpButton}>
+                    LOGIN WITH GOOGLE
+                  </Text>
                 </View>
-                <TouchableOpacity
-                onPress={() =>
-                  this.props.navigation.navigate('Login')
-                }>
-              <Text style={style.termsText}>Login</Text>              
-              </TouchableOpacity>
+                <View style={style.alternateSignupInner}>
+                  <View style={style.signupIcon}>
+                    <FacebookIcon />
+                  </View>
+                  <Text style={style.alternateSignUpButton}>
+                    LOGIN WITH FACEBOOK
+                  </Text>
                 </View>
-                <View>
-                  <TouchableOpacity onPress={handleSubmit}>
-                    <Text style={style.button}>Sign Up</Text>
-                  </TouchableOpacity>
+                <View style={style.alternateSignupInner}>
+                  <View style={style.signupIcon}>
+                    <AppleIcon />
+                  </View>
+                  <Text style={style.alternateSignUpButton}>
+                    LOGIN WITH APPLE
+                  </Text>
                 </View>
               </View>
             </View>
-          </TouchableWithoutFeedback>
-          <View style={style.bottomButtonsContainer}>
-        <Text style={style.orText}>--OR--</Text>
-        <View style={style.alternateSignUpContainer}>
-          <View style={style.alternateSignupInner}>
-            <View style={style.signupIcon}><GoogleIcon/></View>
-        <Text style={style.alternateSignUpButton}>LOGIN WITH GOOGLE</Text></View>
-        <View style={style.alternateSignupInner}>
-        <View style={style.signupIcon}><FacebookIcon/></View>
-        <Text style={style.alternateSignUpButton}>LOGIN WITH FACEBOOK</Text>
-        </View>
-        <View style={style.alternateSignupInner}>
-        <View style={style.signupIcon}><AppleIcon/></View>
-        <Text style={style.alternateSignUpButton}>LOGIN WITH APPLE</Text>
-        </View>
-        </View>
-        </View>
-
-
           </ScrollView>
         </SafeAreaView>
       </KeyboardAvoidingView>
-      </LinearGradient>
-    );
-  }
-}
-
+    </LinearGradient>
+  );
+};
 const mapStateToProps = (state) => {
   return {
     user: state.user,
@@ -226,8 +291,8 @@ const style = StyleSheet.create({
   stockHeader: {
     flexDirection: "row",
     justifyContent: "center",
-    marginTop:2,
-    marginBottom:6,
+    marginTop: 2,
+    marginBottom: 6,
   },
   stockText: {
     fontSize: 27,
@@ -258,38 +323,40 @@ const style = StyleSheet.create({
   signUpHeader: {
     color: "#FFFFFF",
     fontSize: 22,
-    fontFamily:'Montserrat-Bold',
+    fontFamily: "Montserrat-Bold",
     marginBottom: 18,
   },
   inputHeader: {
     fontSize: 14,
     color: "#babec8",
     marginBottom: 1,
-    fontFamily:'Montserrat-Regular',
+    fontFamily: "Montserrat-Regular",
   },
   inputStyle: {
     borderRadius: 8,
-    marginBottom: 14,
+    // marginBottom: 14,
     padding: 8,
     marginTop: 1,
-    fontSize:16,
-    fontFamily:'Montserrat-Italic',
+    fontSize: 16.5,
+    fontFamily: "Montserrat-Italic",
     backgroundColor: "#536183",
-    opacity:0.7,
-    color:'#9ea6b5'
+    opacity: 0.7,
+    // color: "#9ea6b5",
+    color: "#FFFFFF",
   },
   inputStyleConfirm: {
     borderRadius: 8,
-    marginBottom: 4,
+    // marginBottom: 4,
     padding: 8,
     marginTop: 1,
-    fontSize:16,
-    fontFamily:'Montserrat-Italic',
+    fontSize: 16.5,
+    fontFamily: "Montserrat-Italic",
     backgroundColor: "#536183",
-    opacity:0.7,
-    color:'#9ea6b5'
+    opacity: 0.7,
+    // color: "#9ea6b5",
+    color: "#FFFFFF",
   },
- 
+
   button: {
     alignSelf: "center",
     backgroundColor: "#8B64FF",
@@ -300,74 +367,77 @@ const style = StyleSheet.create({
     width: 162,
     borderRadius: 6,
     fontSize: 16,
-    fontFamily:'Montserrat-SemiBold',
+    fontFamily: "Montserrat-SemiBold",
   },
-  termsOuterContainer:{
-    marginBottom:28,
-    flexDirection:'row',
-    justifyContent:'space-between',
-    paddingHorizontal:2,
-    alignItems:'center',
+  termsOuterContainer: {
+    marginBottom: 18,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 2,
+    alignItems: "center",
   },
-  termsInnerContainer:{
-    flexDirection:'row',
-    alignItems:'center',
+  termsInnerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
   termsText: {
     color: "#b8a0ff",
     fontSize: 11,
-    fontFamily:'Montserrat-Medium',
-    
+    fontFamily: "Montserrat-Medium",
   },
-  checkbox:{
+  checkbox: {},
+  bottomButtonsContainer: {
+    alignItems: "center",
   },
-  bottomButtonsContainer:{
-      alignItems:'center',
+  orText: {
+    marginVertical: 16,
+    color: "#CBCDD7",
+    fontSize: 14,
+    fontFamily: "Montserrat-Regular",
   },
-  orText:{
-    marginVertical:16,
-    color:'#CBCDD7',
-    fontSize:14,
-    fontFamily:'Montserrat-Regular',
-  },
-  alternateSignUpContainer:{
-      flexDirection:'column',
-      justifyContent:'space-between',
-
+  alternateSignUpContainer: {
+    flexDirection: "column",
+    justifyContent: "space-between",
   },
   alternateSignUpButton: {
     alignSelf: "center",
-    justifyContent:'center',
+    justifyContent: "center",
     color: "#FFFFFF",
-    textAlign: "center",    
+    textAlign: "center",
     fontSize: 14,
-    fontFamily:'Montserrat-SemiBold',
+    fontFamily: "Montserrat-SemiBold",
     shadowOffset: {
       width: 0,
       height: 2,
     },
     shadowOpacity: 0.25,
-    shadowRadius: 3.84,    
+    shadowRadius: 3.84,
     elevation: 1,
   },
-  alternateSignupInner:{
+  alternateSignupInner: {
     alignSelf: "center",
     paddingVertical: 12,
     paddingHorizontal: 4,
     backgroundColor: "#2C3957",
     width: 350,
     borderRadius: 8,
-    marginBottom:10,
-    flexDirection:'row',
+    marginBottom: 10,
+    flexDirection: "row",
     // justifyContent:'flex-start'
   },
-  signupIcon:{ 
-    padding:7,
+  signupIcon: {
+    padding: 7,
     backgroundColor: "#3A4A6D",
-    borderRadius:7,
-    marginVertical:-8,
-    marginRight:63,
+    borderRadius: 7,
+    marginVertical: -8,
+    marginRight: 63,
     alignSelf: "center",
-    
+  },
+  errorText: {
+    color: "crimson",
+    fontWeight: "bold",
+    // marginBottom: 10,
+    // marginTop: 6,
+    textAlign: "center",
   },
 });
