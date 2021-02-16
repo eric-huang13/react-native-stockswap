@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
-  Button,
   TextInput,
   Text,
   View,
@@ -45,18 +44,24 @@ const reviewSchema = yup.object({
     .string()
     .required("Password confimation is required")
     .oneOf([yup.ref("password"), null], "Passwords must match"),
+
   // toggleCheckBox: yup.boolean().oneOf([true], 'Please check the agreement')
 });
 
 const SignUp = ({ RegisterUser, navigation }) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [checkError, setCheckError] = useState(false);
+
+  //Workng on getting toggleCheckBox value to be handled by Formik so we can use it in Yup reviewSchema errors, for now using what is below for checking that terms and conditions is checked
   const handleSubmit = (values) => {
-    toggleCheckBox === true
-      ? alert("YESS check Terms and Conditions")
-      : toggleCheckBox === false;
-    setCheckError(true);
-    alert("Please check Terms and Conditions");
+    if (toggleCheckBox !== true) {
+      setCheckError(true);
+      alert("Please check Terms and Conditions");
+  }
+  else{
+    setCheckError(false);
+    console.log(values,"Submit")
+}
   };
 
   return (
@@ -95,7 +100,6 @@ const SignUp = ({ RegisterUser, navigation }) => {
                         <SmallStockSwap />
                       </View>
                       <View style={style.container}>
-                        <Text>Check: {"" + toggleCheckBox} </Text>
                         <Text style={style.signUpHeader}>Sign Up</Text>
                         <View>
                           <Text style={style.inputHeader}>Email</Text>
