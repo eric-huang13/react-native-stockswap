@@ -27,7 +27,7 @@ import TermsAndConditions from './TermsAndConditions'
 const reviewSchema = yup.object({
   email: yup
     .string()
-    .required("Email required")
+    .required("Email is required")
     .email("A valid email address is required"),
 
   password: yup
@@ -466,10 +466,10 @@ const style = StyleSheet.create({
     alignSelf: "center",
   },
   errorText: {
-    color: "crimson",
+    color: "#F66E6E",
     fontWeight: "bold",
-    // marginBottom: 10,
-    // marginTop: 6,
+    marginBottom: 1,
+    marginTop: 1,
     textAlign: "center",
   },
 });

@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   ScrollView,
+  Image
 } from "react-native";
 import { ProfilePost } from "../../actions/user";
 import TriangleIcon from "../../icons/TriangleIcon";
@@ -102,11 +103,17 @@ class ProfileInfoForm extends Component {
                 }) => (
                   <View>
                     <Text style={style.header}>Fill Profile Info</Text>
+                    {values.image ? 
+                      <Image style={style.uploadPhotoContainer} source={{uri: values.image}} />
+                      :
                     <View style={style.uploadPhotoContainer}>
+                       
+                      
                       <Text style={style.uploadPhotoText}>
                         Tap to upload your photo
                       </Text>
                     </View>
+  }                 
 
                     <View style={style.topRow}>
                       <View style={style.rowInputContainer}>
@@ -307,6 +314,7 @@ const style = StyleSheet.create({
     fontSize: 14,
     fontFamily: "Montserrat-Regular",
   },
+
   header: {
     textAlign: "center",
     fontSize: 16,
@@ -330,7 +338,6 @@ const style = StyleSheet.create({
   },
   inputStyle: {
     borderRadius: 8,
-    marginBottom: 12,
     padding: 8,
     marginTop: 1,
     fontSize: 16,
@@ -342,7 +349,6 @@ const style = StyleSheet.create({
   inputStyleBio: {
     borderRadius: 8,
     backgroundColor: "#3e4d6c",
-    marginBottom: 12,
     padding: 8,
     marginTop: 1,
     fontSize: 16,
@@ -420,10 +426,10 @@ const style = StyleSheet.create({
     marginBottom: 10,
   },
   errorText: {
-    color: "crimson",
+    color: "#F66E6E",
     fontWeight: "bold",
-    // marginBottom: 10,
-    // marginTop: 6,
+    marginBottom: 1,
+    marginTop: 1,
     textAlign: "center",
   },
 });
