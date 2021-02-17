@@ -21,19 +21,18 @@ import LinearGradient from 'react-native-linear-gradient';
 const validationSchema = Yup.object().shape({
   name: Yup.string()
     .label('Name')
-    .required()
+    .required('Name is required')
     .min(2, 'Must have at least 2 characters'),
   username: Yup.string()
-    .label('usename')
-    .required('Please enter a username'),
+    .label('username')
+    .required('Username is required'),
   hashtag: Yup.string()
     .label('hashtag')
-    .required()
-    .min(4, 'Hashtag must have more than 4 characters '),
+    .matches(/^#\w+$/, "Must be a hashtag")
+    .min(2, 'Hashtag must have more than 2 characters '),
     bio: Yup.string()
     .label('bio')
-    .required()
-    .min(4, 'bio must have more than 4 characters '),
+    .min(2, 'bio must have more than 2 characters '),
 
 })
 
