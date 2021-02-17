@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TextInput,
   Text,
@@ -10,8 +10,9 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   ScrollView,
+  Modal
 } from "react-native";
-import { Formik } from "formik";
+import { Field, Formik } from "formik";
 import * as yup from "yup";
 import { connect } from "react-redux";
 import { Register } from "../../actions/user";
@@ -21,6 +22,7 @@ import SmallStockSwap from "../../icons/SmallStockSwap";
 import GoogleIcon from "../../icons/GoogleIcon";
 import AppleIcon from "../../icons/AppleIcon";
 import FacebookIcon from "../../icons/FacebookIcon";
+import TermsAndConditions from './TermsAndConditions'
 
 const reviewSchema = yup.object({
   email: yup
@@ -48,9 +50,16 @@ const reviewSchema = yup.object({
   // toggleCheckBox: yup.boolean().oneOf([true], 'Please check the agreement')
 });
 
-const SignUp = ({ RegisterUser, navigation }) => {
+const SignUp = ({ RegisterUser, navigation, userData }) => {
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+    checkVersion:"",
+    
+  });
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [checkError, setCheckError] = useState(false);
+  const [termsModal, setTermsModal] = useState(false);
 
   //Workng on getting toggleCheckBox value to be handled by Formik so we can use it in Yup reviewSchema errors, for now using what is below for checking that terms and conditions is checked
   const handleSubmit = (values) => {
@@ -60,10 +69,42 @@ const SignUp = ({ RegisterUser, navigation }) => {
   }
   else{
     setCheckError(false);
-    console.log(values,"Submit")
+    // console.log(form,"form")
+    RegisterUser(form)
+    // navigation.navigate({
+    //   name: "ProfileInfoForm",
+    //   params: { form },
+    // });
 }
   };
+  const handleTerms = (item) => {
+    setTermsModal(item);
+    handleCheck()
+  }
+  //will put the Terms and Conditions version in from backend?
+  const handleCheck = () => {
+    setToggleCheckBox(true)
+    setForm({
+      ...form,
+      checkVersion:'Version 1'
+    })
+  }
+ 
 
+
+//   useEffect(() => {
+// if (toggleCheckBox === true){
+//   props.setFieldValue('checkMark', true)
+// }else{
+//   props.setFieldValue('checkMark', false)
+
+// }
+
+    
+
+// }, [toggleCheckBox]);
+
+console.log(userData,"USERDATA IN SIGNUP")
   return (
     <LinearGradient
       start={{ x: 0.1, y: 1 }}
@@ -76,6 +117,7 @@ const SignUp = ({ RegisterUser, navigation }) => {
         style={{ flex: 1 }}
       >
         <SafeAreaView style={style.mainContainer}>
+     
           <ScrollView>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <Formik
@@ -83,23 +125,40 @@ const SignUp = ({ RegisterUser, navigation }) => {
                   email: "",
                   password: "",
                   passwordConfirmation: "",
-                  // toggleCheckBox:false
+                  version:"",
+                  checkMark:toggleCheckBox
                 }}
+                
+                
                 validationSchema={reviewSchema}
                 onSubmit={(values, actions) => {
-                  handleSubmit(values);
+                  // handleSubmit(values);
+                  // setForm({
+                  //   ...form,
+                  //   email:values.email,
+                  //   password:values.password,
+                  //   passwordConfirmation:values.passwordConfirmation                    
+                  //   });
+                  // handleSubmit();
+                  
+                  console.log(values, "VALUESSSSSSS")
+
                   // actions.resetForm()
                   // RegisterUser(values);
                 }}
               >
                 {(props) => (
-                  console.log(props.values, "formik"),
+                  // console.log(props.values, "formik"),
                   (
                     <View style={style.inner}>
+                         <Modal transparent={true} visible={termsModal} animationType="slide">
+          <TermsAndConditions handleTerms={handleTerms} props={props}handleCheck={handleCheck} />
+        </Modal>
                       <View style={style.stockHeader}>
                         <SmallStockSwap />
                       </View>
                       <View style={style.container}>
+                        <Text>h{'' + toggleCheckBox}</Text>
                         <Text style={style.signUpHeader}>Sign Up</Text>
                         <View>
                           <Text style={style.inputHeader}>Email</Text>
@@ -128,7 +187,7 @@ const SignUp = ({ RegisterUser, navigation }) => {
                         </View>
                         <View>
                           <Text style={style.inputHeader}>Password</Text>
-
+                      
                           <TextInput
                             style={
                               props.touched.password && props.errors.password
@@ -155,6 +214,7 @@ const SignUp = ({ RegisterUser, navigation }) => {
                         </Text>
                         <View>
                           <Text style={style.inputHeader}>Repeat password</Text>
+                          
                           <TextInput
                             style={
                               props.touched.passwordConfirmation &&
@@ -186,20 +246,20 @@ const SignUp = ({ RegisterUser, navigation }) => {
                             <CheckBox
                               style={style.checkbox}
                               value={toggleCheckBox}
-                              onValueChange={(newValue) =>
-                                setToggleCheckBox(newValue)
+                              onValueChange={(newValue) => setToggleCheckBox(newValue)
                               }
-                              // onValueChange={() => props.setFieldValue('toggleCheckBox', toggleCheckBox)}
+                              on
+                              onChange={() => console.log(toggleCheckBox)}
+                              // onChange={() => props.setFieldValue('checkMark', toggleCheckBox)}
                               tintColors={{
                                 true: "#b8a0ff",
                                 false: "lightgrey",
                               }}
                             />
                             <TouchableOpacity
-                              onPress={() =>
-                                navigation.navigate("TermsAndConditions")
-                              }
-                            >
+                              onPress={() => handleTerms(true)}
+                              >
+                            
                               <Text
                                 style={
                                   checkError
@@ -270,6 +330,7 @@ const SignUp = ({ RegisterUser, navigation }) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    userData: state.user.userData, 
     loading: state.user.loading,
     error: state.user.error,
   };

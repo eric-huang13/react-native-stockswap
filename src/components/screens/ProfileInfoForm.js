@@ -44,8 +44,10 @@ class ProfileInfoForm extends Component {
 
   
   render() {
+    console.log(this.props.route.params.form, 'props in Profile Info')
     const { AddProfile, userData } = this.props;
     const {shouldShow} = this.state; 
+    console.log(userData,"USERDATA")
 //for testing
       const credentials = {
             email: this.state.name,

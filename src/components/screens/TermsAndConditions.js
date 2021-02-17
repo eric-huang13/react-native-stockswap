@@ -2,15 +2,27 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 
 export default class TermsAndConditions extends Component {
+
     render() {
+      const {handleTerms, handleCheck} = this.props
+      console.log(this.props.props, 'props in terms')
+      const handleFormikTerms = (setFieldValue) => {
+        this.props.props.setFieldValue('version', "hey");
+      };
+      
         return (
             <View style={style.container}>
                 <Text style={style.header}> Terms and Conditions </Text>
 
                 <View>
-                  <TouchableOpacity onPress={() =>
-                  this.props.navigation.navigate('SignUp')
-                }>
+                <TouchableOpacity
+                   onPress={() => handleFormikTerms()}
+                   >
+                    <Text style={style.agreeButton}>Terms</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                   onPress={() => handleTerms(false)}
+                   >
                     <Text style={style.agreeButton}>I agree</Text>
                   </TouchableOpacity>
                 </View>
