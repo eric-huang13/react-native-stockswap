@@ -6,13 +6,13 @@ export default class TermsAndConditions extends Component {
     render() {
       const {handleTerms, handleCheck} = this.props
 
-      //setTermsVersion, close modal, toggleCheck true
+      //setTermsVersion to current version, close modal, toggleCheck true
       const handleFormikTermsAgree = () => {
         this.props.props.setFieldValue('termsVersion', "Version 1");
         handleTerms(false)
         handleCheck(true)
       };
-       //setTermsVersion, close modal, toggleCheck false
+       //setTermsVersion to """, close modal, toggleCheck false
       const handleFormikTermsCancel = () => {
         this.props.props.setFieldValue('termsVersion', "");
         handleTerms(false)
@@ -23,7 +23,7 @@ export default class TermsAndConditions extends Component {
             <View style={style.container}>
                 <Text style={style.header}> Terms and Conditions </Text>
 
-                <View>
+                <View style={style.buttonContainer}>
                 <TouchableOpacity
                    onPress={() => handleFormikTermsCancel()}
                    >
@@ -52,6 +52,11 @@ const style = StyleSheet.create({
       color:'white',
       fontSize:22,
       fontWeight:'bold',
+    },
+    buttonContainer:{
+      marginTop:100,
+      flexDirection:'row',
+      justifyContent:'space-evenly'
     },
     agreeButton:{
         backgroundColor: "#8B64FF",

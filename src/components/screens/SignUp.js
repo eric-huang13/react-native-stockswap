@@ -218,8 +218,7 @@ const SignUp = ({ RegisterUser, navigation, userData }) => {
                             />
                             <TouchableOpacity
                               onPress={() => handleTerms(true)}
-                              >
-                            
+                              >                            
                               <Text
                                 style={
                                   props.touched.termsVersion &&
@@ -236,13 +235,13 @@ const SignUp = ({ RegisterUser, navigation, userData }) => {
                           </Text>
                           </View>
                           <TouchableOpacity
-                            onPress={() => navigation.navigate("Login")}
+                            onPress={() => navigation.navigate("ProfileInfoForm")}
                           >
                             <Text style={style.termsText}>Login</Text>
                           </TouchableOpacity>
                         </View>
                         
-                        <View>
+                        <View style={style.termsError}>
                           <Text style={style.errorText}>
                             {props.touched.termsVersion &&
                               props.errors.termsVersion}
@@ -400,7 +399,7 @@ const style = StyleSheet.create({
     fontFamily: "Montserrat-SemiBold",
   },
   termsOuterContainer: {
-    marginBottom: 18,
+    marginBottom: 0,
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 2,
@@ -414,6 +413,9 @@ const style = StyleSheet.create({
     color: "#b8a0ff",
     fontSize: 11,
     fontFamily: "Montserrat-Medium",
+  },
+  termsError:{
+    marginBottom:18,
   },
   checkbox: {},
   bottomButtonsContainer: {

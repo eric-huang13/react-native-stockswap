@@ -12,9 +12,30 @@ import {
 } from "react-native";
 import { ProfilePost } from "../../actions/user";
 import TriangleIcon from '../../icons/TriangleIcon';
+import { Formik } from 'formik'
+import * as Yup from 'yup'
 
 
 import LinearGradient from 'react-native-linear-gradient';
+
+const validationSchema = Yup.object().shape({
+  name: Yup.string()
+    .label('Name')
+    .required()
+    .min(2, 'Must have at least 2 characters'),
+  username: Yup.string()
+    .label('usename')
+    .required('Please enter a username'),
+  hashtag: Yup.string()
+    .label('hashtag')
+    .required()
+    .min(4, 'Hashtag must have more than 4 characters '),
+    bio: Yup.string()
+    .label('bio')
+    .required()
+    .min(4, 'bio must have more than 4 characters '),
+
+})
 
 class ProfileInfoForm extends Component {
   constructor(props) {
@@ -53,7 +74,12 @@ class ProfileInfoForm extends Component {
             }; 
 
     const handleSubmit = (input) => {
-      AddProfile(input)
+      this.state.hashtag !== (/^#\w+$/gm)
+      ? alert('Not a hashtag')
+     :   
+      // AddProfile(input)
+      
+      console.log(input,"INPUT")
     };
 
     return (
@@ -72,7 +98,31 @@ class ProfileInfoForm extends Component {
       >
         <SafeAreaView style={style.mainContainer}>
           <ScrollView>
-            
+          <Formik
+          initialValues={{
+            name: '',
+            username: '',
+            image: '',
+            hashtag: '',
+            bio: '',
+            privacy:'',
+          }}
+          onSubmit={values => {
+            console.log(values, 'info')
+          }}
+          validationSchema={validationSchema}>
+          {({
+            handleChange,
+            values,
+            handleSubmit,
+            errors,
+            isValid,
+            touched,
+            handleBlur,
+            isSubmitting,
+            setFieldValue
+          }) => (
+            <View>
             <Text style={style.header}>Fill Profile Info</Text>
             <View style={style.uploadPhotoContainer}>
                 <Text style={style.uploadPhotoText}>Tap to upload your photo</Text>
@@ -83,68 +133,94 @@ class ProfileInfoForm extends Component {
                 <Text style={style.inputHeader}>Name</Text>
                 <TextInput
                   style={style.inputStyle}
-                  value={this.state.name}
-                  onChangeText={value => this.handleInputChange('name', value)}
+                  onBlur={handleBlur("name")}
+                  value={values.name}
+                  onChangeText={handleChange('name')}
                   placeholder="Enter your name"
                   placeholderTextColor="#9ea6b5"
                   returnKeyType="next"
                   onSubmitEditing={() => this.username.focus()}
                   ref={(input) => (this.name = input)}
                 />
+                <Text style={style.errorText}>
+                            {touched.name && errors.name}
+                          </Text>
               </View>
+              
+              
 
               <View style={style.rowInputContainer}>
                 <Text style={style.inputHeader}>User name</Text>
                 <TextInput
                   style={style.inputStyle}
-                  value={this.state.username}
-                  onChangeText={value => this.handleInputChange('username', value)}
+                  value={values.username}
+                  onBlur={handleBlur("username")}
+                  onChangeText={handleChange('username')}
                   placeholder="@example"
                   placeholderTextColor="#9ea6b5"
                   style={style.inputStyle}
                   ref={(input) => (this.username = input)}
                   onSubmitEditing={() => this.image.focus()}
                 />
+                <Text style={style.errorText}>
+                            {touched.username && errors.username}
+                          </Text>
               </View>
+              
+
             </View>
             <View style={style.bottomColumn}>
             <View style={style.imageContainer}>
             <Text style={style.inputHeader}>Image</Text>
                 <TextInput
-                  value={this.state.image}
-                  onChangeText={value => this.handleInputChange('image', value)}
+                  value={values.image}
+                  onBlur={handleBlur("image")}
+                  onChangeText={handleChange('image')}
                   placeholder="Image"
                   placeholderTextColor="#9ea6b5"
                   style={style.inputStyle}
                   ref={(input) => (this.image = input)}
-                  onSubmitEditing={() => this.hashtag.focus()}                />
+                  onSubmitEditing={() => this.hashtag.focus()} 
+                                 />
+                                 <Text style={style.errorText}>
+                            {touched.image && errors.image}
+                          </Text>
             </View>
+
               <View>
                 <Text style={style.inputHeader}>Hashtag (up to 3 tags)</Text>
 
                 <TextInput
                   style={style.inputStyle}
-                  value={this.state.hashtag}
-                  onChangeText={value => this.handleInputChange('hashtag', value)}
+                  value={values.hashtag}
+                  onBlur={handleBlur("hashtag")}
+                  onChangeText={handleChange('hashtag')}
                   placeholder="Add hashtags which describe you"
                   placeholderTextColor="#9ea6b5"
                   returnKeyType="next"
                   ref={(input) => (this.hashtag = input)}
                   onSubmitEditing={() => this.bio.focus()}
                 />
+                <Text style={style.errorText}>
+                            {touched.hashtag && errors.hashtag}
+                          </Text>
               </View>
               <View>
                 <Text style={style.inputHeader}>Bio</Text>
                 <TextInput
                   style={style.inputStyleBio}
-                  value={this.state.bio}
-                  onChangeText={value => this.handleInputChange('bio', value)}
+                  value={values.bio}
+                  onBlur={handleBlur("bio")}
+                  onChangeText={handleChange('bio')}
                   placeholder="Tell a bit about yourself"
                   placeholderTextColor="#9ea6b5"
                   multiline = {true}
                   numberOfLines = {4}
                   ref={(input) => (this.bio = input)}
                 />
+                <Text style={style.errorText}>
+                            {touched.bio && errors.bio}
+                          </Text>
               </View>
 
               <View>
@@ -182,12 +258,14 @@ class ProfileInfoForm extends Component {
             </View> 
             </View>
               <View style={style.buttonContainer}>
-                <TouchableOpacity onPress={() => handleSubmit(credentials)}>
+                <TouchableOpacity onPress={() => handleSubmit(this.state)}>
                   <Text style={style.button}>Next</Text>
                 </TouchableOpacity>
               </View>
             </View>
-
+</View>
+)}
+        </Formik>
           </ScrollView>
         </SafeAreaView>
       </KeyboardAvoidingView>
@@ -353,6 +431,12 @@ const style = StyleSheet.create({
   marginTop:42,
 
   }, 
- 
+  errorText: {
+    color: "crimson",
+    fontWeight: "bold",
+    // marginBottom: 10,
+    // marginTop: 6,
+    textAlign: "center",
+  },
   
   });
