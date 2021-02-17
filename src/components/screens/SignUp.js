@@ -12,7 +12,7 @@ import {
   ScrollView,
   Modal
 } from "react-native";
-import { Field, Formik } from "formik";
+import { Formik } from "formik";
 import * as yup from "yup";
 import { connect } from "react-redux";
 import { Register } from "../../actions/user";
@@ -47,51 +47,32 @@ const reviewSchema = yup.object({
     .required("Password confimation is required")
     .oneOf([yup.ref("password"), null], "Passwords must match"),
 
-  // toggleCheckBox: yup.boolean().oneOf([true], 'Please check the agreement')
+  termsVersion: yup
+    .string()
+    .required("Please agree with Terms and Conditions")
+    
 });
 
 
 const SignUp = ({ RegisterUser, navigation, userData }) => {
-  // const [form, setForm] = useState({
-  //   email: "",
-  //   password: "",
-  //   checkVersion:"",
-    
-  // });
+
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [checkError, setCheckError] = useState(false);
   const [termsModal, setTermsModal] = useState(false);
 
-  //Working on getting toggleCheckBox value to be handled by Formik so we can use it in Yup reviewSchema errors, for now using what is below for checking that terms and conditions is checked
-  const handleSubmit = (values) => {
-    if (toggleCheckBox !== true) {
-      setCheckError(true);
-      alert("Please check Terms and Conditions");
-  }
-  else{
-    setCheckError(false);
-    // console.log(form,"form")
-    RegisterUser(form)
-    // navigation.navigate({
-    //   name: "ProfileInfoForm",
-    //   params: { form },
-    // });
-}
-  };
 
   //modal
   const handleTerms = (item) => {
     setTermsModal(item);
   } 
 
-  //check toggle
+  //toggle check 
   const handleCheck = (item) => {
-    setToggleCheckBox(item)
-  
+    setToggleCheckBox(item)  
   }
 
  
-console.log(userData,"USERDATA IN SIGNUP")
+// console.log(userData,"USERDATA IN SIGNUP")
   return (
     <LinearGradient
       start={{ x: 0.1, y: 1 }}
@@ -112,25 +93,17 @@ console.log(userData,"USERDATA IN SIGNUP")
                   email: "",
                   password: "",
                   passwordConfirmation: "",
-                  termsVersion:"",
-                  // checkMark:toggleCheckBox
-                }}
-                
-                
+                  termsVersion:"",               
+                }}               
                 validationSchema={reviewSchema}
                 onSubmit={(values, actions) => {
-                  // handleSubmit(values);
-                  // setForm({
-                  //   ...form,
-                  //   email:values.email,
-                  //   password:values.password,
-                  //   passwordConfirmation:values.passwordConfirmation                    
-                  //   });
-                  handleSubmit();
-                  
-                  console.log(values, "VALUESSSSSSS")
-
+                              
+                  console.log(values, "Values")
                   // actions.resetForm()
+                  RegisterUser({
+                      email:values.email,
+                      password:values.password
+                  });
                   // RegisterUser(values);
                 }}
               >
@@ -145,7 +118,6 @@ console.log(userData,"USERDATA IN SIGNUP")
                         <SmallStockSwap />
                       </View>
                       <View style={style.container}>
-                        <Text>h{'' + toggleCheckBox}</Text>
                         <Text style={style.signUpHeader}>Sign Up</Text>
                         <View>
                           <Text style={style.inputHeader}>Email</Text>
@@ -232,6 +204,7 @@ console.log(userData,"USERDATA IN SIGNUP")
                           <View style={style.termsInnerContainer}>
                             <CheckBox
                               style={style.checkbox}
+                              disabled={true}
                               value={toggleCheckBox}
                               onValueChange={(newValue) => setToggleCheckBox(newValue)
                               }
@@ -249,7 +222,8 @@ console.log(userData,"USERDATA IN SIGNUP")
                             
                               <Text
                                 style={
-                                  checkError
+                                  props.touched.termsVersion &&
+                              props.errors.termsVersion
                                     ? { ...style.termsText, color: "#F66E6E" }
                                     : { ...style.termsText }
                                 }
@@ -257,6 +231,9 @@ console.log(userData,"USERDATA IN SIGNUP")
                                 I agree with the Terms and Conditions
                               </Text>
                             </TouchableOpacity>
+                            <Text style={style.errorText}>
+                            
+                          </Text>
                           </View>
                           <TouchableOpacity
                             onPress={() => navigation.navigate("Login")}
@@ -264,10 +241,11 @@ console.log(userData,"USERDATA IN SIGNUP")
                             <Text style={style.termsText}>Login</Text>
                           </TouchableOpacity>
                         </View>
+                        
                         <View>
                           <Text style={style.errorText}>
-                            {props.touched.toggleCheckBox &&
-                              props.errors.toggleCheckBox}
+                            {props.touched.termsVersion &&
+                              props.errors.termsVersion}
                           </Text>
                         </View>
                         <TouchableOpacity onPress={props.handleSubmit}>
