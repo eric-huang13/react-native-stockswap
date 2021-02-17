@@ -50,18 +50,19 @@ const reviewSchema = yup.object({
   // toggleCheckBox: yup.boolean().oneOf([true], 'Please check the agreement')
 });
 
+
 const SignUp = ({ RegisterUser, navigation, userData }) => {
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-    checkVersion:"",
+  // const [form, setForm] = useState({
+  //   email: "",
+  //   password: "",
+  //   checkVersion:"",
     
-  });
+  // });
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [checkError, setCheckError] = useState(false);
   const [termsModal, setTermsModal] = useState(false);
 
-  //Workng on getting toggleCheckBox value to be handled by Formik so we can use it in Yup reviewSchema errors, for now using what is below for checking that terms and conditions is checked
+  //Working on getting toggleCheckBox value to be handled by Formik so we can use it in Yup reviewSchema errors, for now using what is below for checking that terms and conditions is checked
   const handleSubmit = (values) => {
     if (toggleCheckBox !== true) {
       setCheckError(true);
@@ -77,33 +78,19 @@ const SignUp = ({ RegisterUser, navigation, userData }) => {
     // });
 }
   };
+
+  //modal
   const handleTerms = (item) => {
     setTermsModal(item);
-    handleCheck()
+  } 
+
+  //check toggle
+  const handleCheck = (item) => {
+    setToggleCheckBox(item)
+  
   }
-  //will put the Terms and Conditions version in from backend?
-  const handleCheck = () => {
-    setToggleCheckBox(true)
-    setForm({
-      ...form,
-      checkVersion:'Version 1'
-    })
-  }
+
  
-
-
-//   useEffect(() => {
-// if (toggleCheckBox === true){
-//   props.setFieldValue('checkMark', true)
-// }else{
-//   props.setFieldValue('checkMark', false)
-
-// }
-
-    
-
-// }, [toggleCheckBox]);
-
 console.log(userData,"USERDATA IN SIGNUP")
   return (
     <LinearGradient
@@ -125,8 +112,8 @@ console.log(userData,"USERDATA IN SIGNUP")
                   email: "",
                   password: "",
                   passwordConfirmation: "",
-                  version:"",
-                  checkMark:toggleCheckBox
+                  termsVersion:"",
+                  // checkMark:toggleCheckBox
                 }}
                 
                 
@@ -139,7 +126,7 @@ console.log(userData,"USERDATA IN SIGNUP")
                   //   password:values.password,
                   //   passwordConfirmation:values.passwordConfirmation                    
                   //   });
-                  // handleSubmit();
+                  handleSubmit();
                   
                   console.log(values, "VALUESSSSSSS")
 
@@ -152,7 +139,7 @@ console.log(userData,"USERDATA IN SIGNUP")
                   (
                     <View style={style.inner}>
                          <Modal transparent={true} visible={termsModal} animationType="slide">
-          <TermsAndConditions handleTerms={handleTerms} props={props}handleCheck={handleCheck} />
+          <TermsAndConditions handleTerms={handleTerms}  handleCheck={handleCheck} props={props}  />
         </Modal>
                       <View style={style.stockHeader}>
                         <SmallStockSwap />

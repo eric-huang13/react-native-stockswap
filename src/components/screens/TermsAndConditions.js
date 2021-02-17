@@ -5,9 +5,18 @@ export default class TermsAndConditions extends Component {
 
     render() {
       const {handleTerms, handleCheck} = this.props
-      console.log(this.props.props, 'props in terms')
-      const handleFormikTerms = (setFieldValue) => {
-        this.props.props.setFieldValue('version', "hey");
+
+      //setTermsVersion, close modal, toggleCheck true
+      const handleFormikTermsAgree = () => {
+        this.props.props.setFieldValue('termsVersion', "Version 1");
+        handleTerms(false)
+        handleCheck(true)
+      };
+       //setTermsVersion, close modal, toggleCheck false
+      const handleFormikTermsCancel = () => {
+        this.props.props.setFieldValue('termsVersion', "");
+        handleTerms(false)
+        handleCheck(false)
       };
       
         return (
@@ -16,12 +25,12 @@ export default class TermsAndConditions extends Component {
 
                 <View>
                 <TouchableOpacity
-                   onPress={() => handleFormikTerms()}
+                   onPress={() => handleFormikTermsCancel()}
                    >
-                    <Text style={style.agreeButton}>Terms</Text>
+                    <Text style={style.agreeButton}>Cancel</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                   onPress={() => handleTerms(false)}
+                   onPress={() => handleFormikTermsAgree()}
                    >
                     <Text style={style.agreeButton}>I agree</Text>
                   </TouchableOpacity>
