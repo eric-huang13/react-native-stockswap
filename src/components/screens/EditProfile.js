@@ -318,7 +318,6 @@ const style = StyleSheet.create({
   },
   inputStyle: {
     borderRadius: 8,
-    marginBottom: 12,
     padding: 8,
     marginTop: 1,
     fontSize: 14,
@@ -329,7 +328,6 @@ const style = StyleSheet.create({
   inputStyleBio: {
     borderRadius: 8,
     backgroundColor: '#3e4d6c',
-    marginBottom: 12,
     padding: 8,
     marginTop: 1,
     fontSize: 14,
@@ -339,7 +337,7 @@ const style = StyleSheet.create({
   },
 
   buttonsContainer: {
-    marginTop: 26,
+    marginTop: 6,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -367,5 +365,12 @@ const style = StyleSheet.create({
     borderRadius: 6,
     fontSize: 14,
     fontFamily: 'Montserrat-SemiBold',
+  },
+  errorText: {
+    color: "#F66E6E",
+    fontWeight: "bold",
+    marginBottom: 1,
+    marginTop: 1,
+    textAlign: "center",
   },
 });
