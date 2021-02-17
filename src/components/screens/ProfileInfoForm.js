@@ -15,7 +15,6 @@ import { ProfilePost } from "../../actions/user";
 import TriangleIcon from "../../icons/TriangleIcon";
 import { Formik } from "formik";
 import * as Yup from "yup";
-
 import LinearGradient from "react-native-linear-gradient";
 
 const validationSchema = Yup.object().shape({
@@ -23,14 +22,22 @@ const validationSchema = Yup.object().shape({
     .label("Name")
     .required("Name is required")
     .min(2, "Must have at least 2 characters"),
-  username: Yup.string().label("username").required("Username is required"),
+
+  username: Yup.string()
+    .label("username")
+    .required("Username is required"),
+
   hashtag: Yup.string()
     .label("hashtag")
-    .matches(/^#\w+$/, "Must be a hashtag")
+    .matches(/^#\w+$/, "Must be a hashtag")    
     .min(2, "Hashtag must have more than 2 characters "),
+
   bio: Yup.string()
     .label("bio")
     .min(2, "bio must have more than 2 characters "),
+    
+  image: Yup.string()
+ .url("Must be a url"),
 });
 
 class ProfileInfoForm extends Component {
@@ -47,15 +54,8 @@ class ProfileInfoForm extends Component {
     this.setState({ privacy: setting, shouldShow: false });
   }
 
-  // handleInputChange = (inputName, inputValue) => {
-  //   this.setState(state => ({
-  //     ...state,
-  //     [inputName]: inputValue
-  //   }))
-  // }
-
   render() {
-    const { AddProfile, userData, userAccount } = this.props;
+    const { AddProfile, userData, } = this.props;
     const { shouldShow } = this.state;
   console.log(userData)
     return (
@@ -64,7 +64,6 @@ class ProfileInfoForm extends Component {
         end={{ x: 0.1, y: 0.1 }}
         colors={[
           "#1D2842",
-          // '#485476',
           "#3d4b6e",
         ]}
         style={{ flex: 1 }}
@@ -103,19 +102,16 @@ class ProfileInfoForm extends Component {
                 }) => (
                   <View>
                     <Text style={style.header}>Fill Profile Info</Text>
-                    {values.image ? 
+                    {values.image && !errors.image ? 
                       <Image style={style.uploadPhotoContainer} source={{uri: values.image}} />
                       :
-                    <View style={style.uploadPhotoContainer}>
-                       
-                      
+                    <View style={style.uploadPhotoContainer}>                      
                       <Text style={style.uploadPhotoText}>
                         Tap to upload your photo
                       </Text>
                     </View>
-  }                 
-
-                    <View style={style.topRow}>
+                    }              
+                     <View style={style.topRow}>
                       <View style={style.rowInputContainer}>
                         <Text style={style.inputHeader}>Name</Text>
                         <TextInput
@@ -159,7 +155,7 @@ class ProfileInfoForm extends Component {
                           value={values.image}
                           onBlur={handleBlur("image")}
                           onChangeText={handleChange("image")}
-                          placeholder="Image"
+                          placeholder="Image url"
                           placeholderTextColor="#9ea6b5"
                           style={style.inputStyle}
                           ref={(input) => (this.image = input)}
@@ -257,7 +253,7 @@ class ProfileInfoForm extends Component {
                       </View>
                       <View style={style.buttonContainer}>
                         <TouchableOpacity
-                          onPress={() => handleSubmit(this.state)}
+                          onPress={() => handleSubmit()}
                         >
                           <Text style={style.button}>Next</Text>
                         </TouchableOpacity>
@@ -277,8 +273,6 @@ class ProfileInfoForm extends Component {
 const mapStateToProps = (state) => {
   return {
     userData: state.user.userData,
-    userAccount: state.user.userFakeData
-
   };
 };
 
