@@ -42,11 +42,6 @@ class ProfileInfoForm extends Component {
     super(props);
 
     this.state = {
-      name:"",
-      username:"",
-      image:"",
-      hashtag:"",     
-      bio:"",
       privacy:'Visible for all', 
       shouldShow:false,      
     };    
@@ -56,12 +51,12 @@ class ProfileInfoForm extends Component {
     this.setState({privacy:setting, shouldShow:false});
   }
   
-  handleInputChange = (inputName, inputValue) => {
-    this.setState(state => ({ 
-      ...state,
-      [inputName]: inputValue 
-    }))
-  }
+  // handleInputChange = (inputName, inputValue) => {
+  //   this.setState(state => ({ 
+  //     ...state,
+  //     [inputName]: inputValue 
+  //   }))
+  // }
 
   
   render() {
@@ -105,7 +100,7 @@ class ProfileInfoForm extends Component {
             image: '',
             hashtag: '',
             bio: '',
-            privacy:'',
+            privacy:'public',
           }}
           onSubmit={values => {
             console.log(values, 'info')
@@ -244,13 +239,16 @@ class ProfileInfoForm extends Component {
               {this.state.shouldShow ? (
                 <View style={style.dropdown}>
                   { this.state.privacy == 'Visible for all' ?
-                  <TouchableOpacity onPress={() => this.dropDownSelect('Private')}>
+                  <TouchableOpacity onPress={() => {this.dropDownSelect('Private'); setFieldValue('privacy', 'private');}}>
                   <Text style={style.dropDownText}>Private</Text>
               </TouchableOpacity>
               :
-              <TouchableOpacity onPress={() => this.dropDownSelect('Visible for all')}>
+              <TouchableOpacity onPress={() => {this.dropDownSelect('Visible for all'); setFieldValue('privacy', 'public');}
+    
+              } >
                   <Text style={style.dropDownText}>Visible for all</Text>
               </TouchableOpacity>
+              
               
                   }          
                 </View>
