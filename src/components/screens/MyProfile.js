@@ -43,7 +43,8 @@ class Profile extends Component {
             <Text style={style.gain}>${user.gain}</Text>
           </View>
           <View style={style.timeNumberContainer}>
-            <Text style={style.timeNumber}>Past hour</Text>
+          
+            <Text style={style.timeNumber}><Text style={style.percentGain}>$-10.75(-11%)</Text> Past hour</Text>
           </View>
         </View>
         <View style={style.graphContainer}>
@@ -199,7 +200,7 @@ class Profile extends Component {
     const {user, post, } = this.props;
     const id = this.props.user.id
     const selectedPosts = post.filter((user) => user.userId === id); 
- console.log(selectedPosts,"selPOSTS")
+//  console.log(selectedPosts,"selPOSTS")
     // const id = 1;
     // const selectedUser = users.filter((user) => user.id === id);
     return (
@@ -240,7 +241,12 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#2a334a',
-    paddingVertical: 10,
+    // paddingVertical: 10,
+  },
+  percentGain:{
+    fontFamily:'Montserrat-Medium',
+    color:'#F66E6E',
+    fontSize:12,
   },
   infoContainer: {
     borderColor: 'red',
@@ -282,6 +288,8 @@ const style = StyleSheet.create({
   },
   portfolioHeaderContainer: {
     flexDirection: 'column',
+    marginTop:8,
+    marginBottom:10,
   },
   portfolioHeader: {
     color: '#FFFFFF',
@@ -297,6 +305,7 @@ const style = StyleSheet.create({
   timeNumberContainer: {
     flexDirection: 'column',
     alignSelf: 'flex-end',
+    marginBottom:14,
   },
   timeNumber: {
     color: 'lightgrey',

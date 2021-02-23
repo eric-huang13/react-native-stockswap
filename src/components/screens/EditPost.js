@@ -34,7 +34,7 @@ class EditPost extends Component {
             }
 
             render() {
-                console.log(this.props.route.params.post.id, "props in edit")
+                // console.log(this.props.route.params.post.id, "props in edit")
                 //for testing
                 // const credentials = {
                 //       name: this.state.body,

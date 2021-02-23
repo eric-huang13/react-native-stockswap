@@ -116,7 +116,7 @@ export class CompanyInformation extends Component {
     const chartThreeQuarter = (chartHigh - numberDifference).toFixed(0);
     //Graph quarter number
     const chartOneQuarter = (chartLow + numberDifference).toFixed(0);
-console.log(weekData, 'WEEKDATA')
+// console.log(weekData, 'WEEKDATA')
     const {route} = this.props;
     const {graphData, percent, range} = this.state;
     return (

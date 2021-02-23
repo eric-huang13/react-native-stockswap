@@ -16,6 +16,8 @@ import TriangleIcon from "../../icons/TriangleIcon";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import LinearGradient from "react-native-linear-gradient";
+import {Login} from 'actions/user';
+
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -34,7 +36,7 @@ const validationSchema = Yup.object().shape({
 
   bio: Yup.string()
     .label("bio")
-    .min(2, "bio must have more than 2 characters "),
+    .min(2, "Bio must have more than 2 characters "),
     
   image: Yup.string()
  .url("Must be a url"),
@@ -55,9 +57,9 @@ class ProfileInfoForm extends Component {
   }
 
   render() {
-    const { AddProfile, userData, } = this.props;
+    const { AddProfile, userData, LoginUser } = this.props;
     const { shouldShow } = this.state;
-  console.log(userData)
+  // console.log(userData)
     return (
       <LinearGradient
         start={{ x: 0.1, y: 1 }}
@@ -86,6 +88,7 @@ class ProfileInfoForm extends Component {
                 }}
                 onSubmit={(values) => {
                   console.log(values, "info");
+                  LoginUser()
                 }}
                 validationSchema={validationSchema}
               >
@@ -279,6 +282,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     AddProfile: (input) => dispatch(ProfilePost(input)),
+    LoginUser: (input) => dispatch(Login(input)),
+
   };
 };
 
@@ -298,7 +303,7 @@ const style = StyleSheet.create({
     borderRadius: 100,
     width: 135,
     height: 135,
-    marginBottom: 30,
+    marginBottom: 25,
     paddingVertical: 40,
     paddingHorizontal: 10,
   },
@@ -416,7 +421,7 @@ const style = StyleSheet.create({
     fontFamily: "Montserrat-Regular",
   },
   buttonContainer: {
-    marginTop: 42,
+    marginTop: 20,
     marginBottom: 10,
   },
   errorText: {

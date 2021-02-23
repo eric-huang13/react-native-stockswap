@@ -56,7 +56,7 @@ class MyProfilePosts extends Component {
       (comment) => comment.postId === post.id,
     );
     const lastComment = filteredComments[filteredComments.length - 1];
-    console.log(post, 'props in post');
+    // console.log(post, 'props in post');
     return (
       <SafeAreaView style={style.container}>
         <ScrollView>

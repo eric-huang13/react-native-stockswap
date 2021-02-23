@@ -15,7 +15,7 @@ import {connect} from 'react-redux';
 import ManagePortfolioBox from './ManagePortfolioBox'
 
 
-class ManagaPortfolio extends Component {
+class ManagePortfolio extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,7 +33,7 @@ class ManagaPortfolio extends Component {
   }
   render() {
     const {gainers} = this.props;
-    console.log(this.props, 'propslist');
+    // console.log(this.props, 'propslist');
     const filteredStocks = gainers.filter(
       (item) =>
         item.title.toLowerCase().includes(this.state.input.toLowerCase()) ||
@@ -63,8 +63,8 @@ class ManagaPortfolio extends Component {
           <Text style={style.percent}>$3,201</Text>
         </View>
         <View style={style.gainDetailsContainer}>
-          <Text style={style.gain}>gain/loss</Text>
-          <Text style={style.gainTime}>time</Text>
+          <Text style={style.gain}>$-10.75(-11%)</Text>
+          <Text style={style.gainTime}>Past hour</Text>
         </View>
         </View>
         <View style={style.percentButtonContainer}>
@@ -131,7 +131,7 @@ const mapStateToProps = (state) => {
     gainers: state.company.gainers,
   };
 };
-export default connect(mapStateToProps)(ManagaPortfolio);
+export default connect(mapStateToProps)(ManagePortfolio);
 
 const style = StyleSheet.create({
   container: {

@@ -33,7 +33,7 @@ export default class CompanyStockGraph extends Component {
    }
  
   render() {
-    console.log(this.props.graphData,'Graph Data')
+    // console.log(this.props.graphData,'Graph Data')
     const fillGradient = (props) => {
       return (
         <LinearGradient x1="40%" y1="0%" x2="40%" y2="100%" {...props}>
