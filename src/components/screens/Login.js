@@ -16,37 +16,33 @@ import SmallStockSwap from '../../icons/SmallStockSwap'
 import GoogleIcon from '../../icons/GoogleIcon'
 import AppleIcon from '../../icons/AppleIcon'
 import FacebookIcon from '../../icons/FacebookIcon'
+import { Formik } from "formik";
+import * as yup from "yup";
 
+const reviewSchema = yup.object({
+  email: yup
+    .string()
+    .required("Email is required")
+    .email("A valid email address is required"),
 
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(8, ({ min }) => `Password must be at least ${min} characters`)
+    .matches(/\d/, "Password must have a number")
+    .matches(/\w*[a-z]\w*/, "Password must have a lowercase letter")
+    .matches(/\w*[A-Z]\w*/, "Password must have a capital letter")
+    .matches(
+      /[!@#$%^&*()\-_"=+{}; :,<.>]/,
+      "Password must have a special character"
+    ),    
+});
 
 class LoginScreen extends Component {
   constructor(props) {
-    super(props);
-
-    this.state = {
-      email: "",
-      password: "",
-      error:"",
-      
-    };
-   
+    super(props);  
   }
-  handleInputChange = (inputName, inputValue) => {
-    this.setState(state => ({ 
-      ...state,
-      [inputName]: inputValue 
-    }))
-  }
-
-   handleSubmit = (input) => {
-    LoginUser(input)
-  };
-
-  errorInput(text) {
-    this.setState({
-        error:text
-    });  
-  };
+ 
 
   testAPI = () => {
     axios.get('/')
@@ -56,25 +52,10 @@ class LoginScreen extends Component {
     })
     .catch(err => console.log(err))
   }
+  
 
   render() {
-    const {isLoggedIn, LoginUser} = this.props;
-    const credentials = {
-      email: this.state.email,
-      password: this.state.password,
-    };
-
-    const handleSubmit = () => {
-      this.state.email === "" && this.state.password === ""
-    ? this.errorInput('all')
-    : this.state.email === ""
-    ? this.errorInput('email')
-    : this.state.password === ""
-    ? this.errorInput('password')        
-    : LoginUser(credentials)
-};
-
-    
+    const {isLoggedIn, LoginUser} = this.props;   
 
     return (
       <LinearGradient
@@ -92,43 +73,78 @@ class LoginScreen extends Component {
       <SafeAreaView style={style.mainContainer}>
           <ScrollView>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <Formik
+                initialValues={{
+                  email: "",
+                  password: "",                               
+                }}               
+                validationSchema={reviewSchema}
+                onSubmit={(values, actions) => {
+                              
+                  console.log(values, "Values")
+                  
+                  LoginUser(values)
+                }}
+              >
+                {(props) => (
+                  (
           <View style={style.inner}>
             <View style={style.stockHeader}>
-              {/* <Text style={style.stockText}>Stock</Text>
-              <Text style={style.swapText}>Swap</Text> */}
               <SmallStockSwap/>
             </View>
             {/* <Text>Is User Logged in: {'' + isLoggedIn} </Text> */}
             <View style={style.container}>
               <Text style={style.welcomeHeader}>Welcome</Text>
               <Text style={style.loginHeader}>Login</Text>
-
               <View>
                 <Text style={style.inputHeader}>Email</Text>
 
                 <TextInput
-                  style={ this.state.error === 'email' ||  this.state.error === 'all' ? {...style.inputStyle, backgroundColor:'#F66E6E'} : {...style.inputStyle}}
-                  value={this.state.email}
-                  onChangeText={value => this.handleInputChange('email', value)} 
-                  placeholder="Enter your email"
-                  placeholderTextColor="#9ea6b5"
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                  returnKeyType="next"
-                  onSubmitEditing={() => this.passwordInput.focus()}
-                />
+                            style={
+                              props.touched.email && props.errors.email
+                                ? {
+                                    ...style.inputStyle,
+                                    backgroundColor: "#F66E6E",
+                                  }
+                                : { ...style.inputStyle }
+                            }
+                            placeholder="Enter your email"
+                            placeholderTextColor="#9ea6b5"
+                            onChangeText={props.handleChange("email")}
+                            onBlur={props.handleBlur("email")}
+                            value={props.values.email}
+                            keyboardType="email-address"
+                            autoCapitalize="none"
+                          />
+                          <Text style={style.errorText}>
+                            {props.touched.email && props.errors.email}
+                          </Text>
               </View>
               <View>
                 <Text style={style.inputHeader}>Password</Text>
                 <TextInput
-                  value={this.state.password}
-                  onChangeText={value => this.handleInputChange('password', value)} 
-                  placeholder="Enter your password"
-                  placeholderTextColor="#9ea6b5"
-                  secureTextEntry
-                  style={ this.state.error === 'password' ||  this.state.error === 'all' ? {...style.inputStyleConfirm, backgroundColor:'#F66E6E'} : {...style.inputStyleConfirm}}
-                  ref={(input) => (this.passwordInput = input)}
-                />
+                            style={
+                              props.touched.password && props.errors.password
+                                ? {
+                                    ...style.inputStyle,
+                                    backgroundColor: "#F66E6E",
+                                  }
+                                : { ...style.inputStyle }
+                            }
+                            placeholder="Password"
+                            onChangeText={props.handleChange("password")}
+                            onBlur={props.handleBlur("password")}
+                            value={props.values.password}
+                            placeholder="Enter your password"
+                            placeholderTextColor="#9ea6b5"
+                            secureTextEntry
+                            returnKeyType="next"
+                          />
+                        </View>
+                        <Text style={style.errorText}>
+                          {props.touched.password && props.errors.password}
+                        </Text>
+                        <View>
               </View>
             
               <View style={style.termsContainer}>
@@ -144,15 +160,23 @@ class LoginScreen extends Component {
               </TouchableOpacity>
               
               </View>
+              <TouchableOpacity
+                onPress={() =>
+                  this.props.navigation.navigate('SplashScreen')
+                }>
               <Text style={style.termsText}>Forgot password?</Text>
+              </TouchableOpacity>
               </View>
               <View>
-                <TouchableOpacity onPress={handleSubmit}>
+                <TouchableOpacity onPress={props.handleSubmit}>
                   <Text style={style.button}>Login</Text>
                 </TouchableOpacity>
               </View>
             </View>
           </View>
+          )
+          )}
+        </Formik>
         </TouchableWithoutFeedback>
         <View style={style.bottomButtonsContainer}>
         <Text style={style.orText}>--OR--</Text>
@@ -258,7 +282,7 @@ const style = StyleSheet.create({
   },
   inputStyle: {
     borderRadius: 8,       
-    marginBottom: 18,
+    // marginBottom: 18,
     padding: 8,
     marginTop: 1,
     fontSize:16,
@@ -358,5 +382,12 @@ const style = StyleSheet.create({
     marginRight:63,
     alignSelf: "center",
     
+  },
+  errorText: {
+    color: "#F66E6E",
+    fontWeight: "bold",
+    marginBottom: 1,
+    marginTop: 1,
+    textAlign: "center",
   },
 });
