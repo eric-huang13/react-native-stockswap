@@ -92,6 +92,8 @@ const SignUp = ({ RegisterUser, navigation, userData }) => {
                 initialValues={{
                   email: "",
                   password: "",
+                  // fullname:"test name",
+                  // username:"test username"
                   passwordConfirmation: "",
                   termsVersion:"",               
                 }}               
@@ -100,11 +102,14 @@ const SignUp = ({ RegisterUser, navigation, userData }) => {
                               
                   console.log(values, "Values")
                   // actions.resetForm()
-                  RegisterUser({
-                      email:values.email,
-                      password:values.password
-                  });
+                  // RegisterUser({
+                  //     email:values.email,
+                  //     password:values.password,
+                  //     fullname:values.fullname,
+                  //     username:values.username,
+                  // });
                   // RegisterUser(values);
+                  navigation.navigate("ProfileInfoForm")
                 }}
               >
                 {(props) => (
@@ -219,12 +224,18 @@ const SignUp = ({ RegisterUser, navigation, userData }) => {
                             <TouchableOpacity
                               onPress={() => handleTerms(true)}
                               >                            
-                              <Text
+                              {/* <Text
                                 style={
                                   props.touched.termsVersion &&
                               props.errors.termsVersion
                                     ? { ...style.termsText, color: "#F66E6E" }
                                     : { ...style.termsText }
+                                }
+                              >
+                                I agree with the Terms and Conditions
+                              </Text> */}
+                              <Text
+                                style={style.termsText
                                 }
                               >
                                 I agree with the Terms and Conditions
@@ -235,7 +246,7 @@ const SignUp = ({ RegisterUser, navigation, userData }) => {
                           </Text>
                           </View>
                           <TouchableOpacity
-                            onPress={() => navigation.navigate("ProfileInfoForm")}
+                            onPress={() => navigation.navigate("Login")}
                           >
                             <Text style={style.termsText}>Login</Text>
                           </TouchableOpacity>
@@ -263,16 +274,20 @@ const SignUp = ({ RegisterUser, navigation, userData }) => {
                   <View style={style.signupIcon}>
                     <GoogleIcon />
                   </View>
+                  <TouchableOpacity
+                            onPress={() => navigation.navigate("GoogleLogin")}
+                          >
                   <Text style={style.alternateSignUpButton}>
-                    LOGIN WITH GOOGLE
+                    SIGN UP WITH GOOGLE
                   </Text>
+                  </TouchableOpacity>
                 </View>
                 <View style={style.alternateSignupInner}>
                   <View style={style.signupIcon}>
                     <FacebookIcon />
                   </View>
                   <Text style={style.alternateSignUpButton}>
-                    LOGIN WITH FACEBOOK
+                    SIGN UP WITH FACEBOOK
                   </Text>
                 </View>
                 <View style={style.alternateSignupInner}>
@@ -280,7 +295,7 @@ const SignUp = ({ RegisterUser, navigation, userData }) => {
                     <AppleIcon />
                   </View>
                   <Text style={style.alternateSignUpButton}>
-                    LOGIN WITH APPLE
+                    SIGN UP WITH APPLE
                   </Text>
                 </View>
               </View>
