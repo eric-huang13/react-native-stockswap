@@ -32,6 +32,8 @@ import MyProfileStackNavigator from './NavigationStacks/MyProfileStackNavigator'
 import HomeStackNavigator from './NavigationStacks/HomeStackNavigator'
 import SearchStackNavigator from './NavigationStacks/SearchStackNavigator'
 
+import Toast from 'react-native-toast-message';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -42,6 +44,7 @@ class Navigation extends Component {
 
     return (
       <NavigationContainer ref={navigationRef}>
+
         {isLoggedIn ? (
           <Tab.Navigator
             tabBarOptions={{
@@ -88,6 +91,8 @@ class Navigation extends Component {
         ) : (
           <LoggedOutStackNavigator/>
         )}
+                              <Toast ref={(ref) => Toast.setRef(ref)} />
+
       </NavigationContainer>
     );
   }

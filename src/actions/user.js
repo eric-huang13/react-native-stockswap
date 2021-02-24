@@ -24,6 +24,23 @@ alert("Please try registering with a different email and password." )
   };
 };
 
+
+export const RegisterGoogle = (input) => {
+  return (dispatch) => {
+    dispatch({type: SIGNUP_START});
+    axios
+    .post('https://jiujitsux.herokuapp.com/api/users/register', input)
+  
+    .then(response =>{ dispatch({ type: SIGNUP_SUCCESS, payload: response.data }) 
+    navigate('ProfileInfoForm')
+})
+
+.catch(error => {dispatch({ type: SIGNUP_ERROR, payload: error.response })
+alert("Please try registering with a different email and password." )
+
+})
+  };
+};
 // export const Register = (form) => (dispatch) => {
 //   return dispatch({
 //     type:SIGNUP_SUCCESS, payload: form

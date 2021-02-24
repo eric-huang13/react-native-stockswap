@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
 import {GoogleSignin, GoogleSigninButton, statusCodes} from '@react-native-community/google-signin';
+import Toast, { BaseToast } from 'react-native-toast-message';
+
 const GoogleLogin = () => {
 const [user, setUser] = useState({})
 useEffect(() => {
     GoogleSignin.configure({
       webClientId: '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
       offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-      forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
+      forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`.
       iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
     });
     isSignedIn()
@@ -16,8 +18,10 @@ const signIn = async () => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      console.log(userInfo)
+      console.log(userInfo, 'info signin')
       setUser(userInfo)
+      //send to backend
+      // RegisterUser({token:userInfo.idToken, email:userInfo.user.email});
     } catch (error) {
       console.log('Message', error.message);
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -35,14 +39,24 @@ const isSignedIn = async () => {
     const isSignedIn = await GoogleSignin.isSignedIn();
     if (!!isSignedIn) {
       getCurrentUserInfo()
+      console.log(userBackend,"here")
     } else {
+      Toast.show({
+        type:'info',
+        topOffset: 30,
+        text1: 'Please Login to google',
+        
+      });
       console.log('Please Login')
     }
   };
+
 const getCurrentUserInfo = async () => {
     try {
       const userInfo = await GoogleSignin.signInSilently();
       setUser(userInfo);
+      console.log(user, 'google backend two')
+
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_REQUIRED) {
         alert('User has not signed in yet');
@@ -63,8 +77,25 @@ const signOut = async () => {
     }
   };
 // signOut()
+
+const toastConfig = {
+  success: ({ text1, ...rest }) => (
+    <BaseToast
+      {...rest}
+      style={{ borderLeftColor: 'pink' }}
+      contentContainerStyle={{ paddingHorizontal: 15 }}
+      text1Style={{
+        fontSize: 15,
+        fontWeight: 'semibold'
+      }}
+      text1={text1}
+      text2={null}
+    />
+  )
+};
 return (
     <View style={styles.main}>
+      <Text>hey</Text>
       {!user.idToken ? 
         <GoogleSigninButton 
           style={{ width: 192, height: 48 }}
