@@ -46,6 +46,7 @@ const isSignedIn = async () => {
         topOffset: 30,
         text1: 'Please Login to google',
         
+        
       });
       console.log('Please Login')
     }

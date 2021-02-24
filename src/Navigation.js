@@ -1,5 +1,7 @@
 // React Imports
 import React, {Component} from 'react';
+import {StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
+
 
 // Redux
 import {connect} from 'react-redux';
@@ -33,7 +35,77 @@ import HomeStackNavigator from './NavigationStacks/HomeStackNavigator'
 import SearchStackNavigator from './NavigationStacks/SearchStackNavigator'
 
 //toast
-import Toast from 'react-native-toast-message';
+import Toast, { BaseToast } from 'react-native-toast-message';
+
+const toastConfig = {
+  success: ({ text1, ...rest }) => (
+    <BaseToast
+      {...rest}
+      style={{ borderLeftColor: '#8B64FF', backgroundColor:'#FFFFFF' }}
+      contentContainerStyle={{ paddingHorizontal: 15 }}
+      text1Style={{
+        fontSize: 15,
+        fontWeight: 'bold',
+        color:'#8B64FF'
+      }}
+      
+      text1={text1}
+      text2={null}
+    />
+  ),
+  error: ({ text1, ...rest }) => (
+    <BaseToast
+      {...rest}
+      style={{ borderLeftColor: '#8B64FF', backgroundColor:'#FFFFFF' }}
+      contentContainerStyle={{ paddingHorizontal: 15 }}
+      text1Style={{
+        fontSize: 15,
+        fontWeight: 'bold',
+        color:'#8B64FF'
+      }}
+      
+      text1={text1}
+      text2={null}
+    />
+  ),
+  info: ({ text1, ...rest }) => (
+    <BaseToast
+      {...rest}
+      style={{ borderLeftColor: '#8B64FF', backgroundColor:'#FFFFFF' }}
+      contentContainerStyle={{ paddingHorizontal: 15 }}
+      text1Style={{
+        fontSize: 15,
+        fontWeight: 'bold',
+        color:'#8B64FF'
+      }}
+      
+      text1={text1}
+      text2={null}
+    />
+  )
+};
+
+// const toastConfig = {
+//   success: ({ text1, props, ...rest }) => (
+//     <View style={{borderLeftColor: '#8B64FF', height: 60, width: '100%', backgroundColor: '#FFFFFF', }}>
+//       <Text>{text1}</Text>
+//       <Text>{props.guid}</Text>
+//     </View>
+//   ),
+//   error:({ text1, props, ...rest }) => (
+//     <View style={{ borderLeftColor: '#8B64FF',height: 60, width: '100%', backgroundColor: '#FFFFFF', }}>
+//       <Text>{text1}</Text>
+//       <Text>{props.guid}</Text>
+//     </View>
+//   ),
+//   info:({ text1, props, ...rest }) => (
+//     <View style={{ borderLeftColor: '#8B64FF',height: 60, width: '100%', backgroundColor: '#FFFFFF', }}>
+//       <Text>{text1}</Text>
+//       <Text>{props.guid}</Text>
+//     </View>
+//   ),
+//   any_custom_type: () => {}
+// };
 
 
 const Tab = createBottomTabNavigator();
@@ -92,7 +164,9 @@ class Navigation extends Component {
         ) : (
           <LoggedOutStackNavigator/>
         )}
-          <Toast ref={(ref) => Toast.setRef(ref)} />
+              {/* <Toast ref={(ref) => Toast.setRef(ref)} /> */}
+
+      <Toast config={toastConfig} ref={(ref) => Toast.setRef(ref)} />
 
       </NavigationContainer>
     );
