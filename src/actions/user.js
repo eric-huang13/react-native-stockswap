@@ -17,10 +17,18 @@ export const Register = (input) => {
   
     .then(response =>{ dispatch({ type: SIGNUP_SUCCESS, payload: response.data }) 
     navigate('ProfileInfoForm')
+    Toast.show({
+      type:'success',
+      text1: 'Sign up successful',      
+    });
 })
 
 .catch(error => {dispatch({ type: SIGNUP_ERROR, payload: error.response })
-alert("Please try registering with a different email and password." )
+Toast.show({
+  type:'error',
+  text1: 'Please try registering with a different email.',  
+  
+});
 
 })
   };
@@ -35,6 +43,7 @@ export const RegisterGoogle = (input) => {
   
     .then(response =>{ dispatch({ type: SIGNUP_SUCCESS, payload: response.data }) 
     navigate('ProfileInfoForm')
+   
 })
 
 .catch(error => {dispatch({ type: SIGNUP_ERROR, payload: error.response })
@@ -85,18 +94,16 @@ export const Login = (input) => {
       // })
       .then((response) => {
         deviceStorage.saveItem("token", response.data.token),
-          dispatch({ type: LOGIN_SUCCESS, payload: response.data });
-         
-          Toast.show({
-            type:'success',
-            text1: 'You have been logged in',
+          dispatch({ type: LOGIN_SUCCESS, payload: response.data });                  
+          // Toast.show({
+          //   type:'success',
+          //   text1: 'You have been logged in',
             
-          });
+          // });
       })
 
       .catch((error) => {
         dispatch({ type: SIGNUP_ERROR, payload: error.response });
-        // alert("Incorrect email or password.");
         Toast.show({
           type:'error',
           topOffset: 30,
@@ -124,7 +131,7 @@ export const Logout = () => {
   return (dispatch) => {
     dispatch({type: LOGOUT});
     Toast.show({
-      type:'info',
+      type:'success',
       topOffset: 30,
       text1: 'You have been logged out',
       

@@ -24,6 +24,9 @@ import AppleIcon from "../../icons/AppleIcon";
 import FacebookIcon from "../../icons/FacebookIcon";
 import TermsAndConditions from './TermsAndConditions'
 
+import Toast from 'react-native-toast-message';
+
+
 const reviewSchema = yup.object({
   email: yup
     .string()
@@ -54,7 +57,8 @@ const reviewSchema = yup.object({
 });
 
 
-const SignUp = ({ RegisterUser, navigation, userData }) => {
+
+const SignUp = ({ RegisterUser, navigation, userData, loading }) => {
 
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [checkError, setCheckError] = useState(false);
@@ -70,7 +74,16 @@ const SignUp = ({ RegisterUser, navigation, userData }) => {
   const handleCheck = (item) => {
     setToggleCheckBox(item)  
   }
-
+  useEffect(() => {
+    loading === true ? 
+    Toast.show({
+      type:'info',
+      text1: 'Sending credentials',
+      
+    })
+    :
+    null
+  }, [loading])
  
 // console.log(userData,"USERDATA IN SIGNUP")
   return (
@@ -100,7 +113,7 @@ const SignUp = ({ RegisterUser, navigation, userData }) => {
                 validationSchema={reviewSchema}
                 onSubmit={(values, actions) => {
                               
-                  console.log(values, "Values")
+                  // console.log(values, "Values")
                   // actions.resetForm()
                   // RegisterUser({
                   //     email:values.email,
@@ -109,7 +122,12 @@ const SignUp = ({ RegisterUser, navigation, userData }) => {
                   //     username:values.username,
                   // });
                   // RegisterUser(values);
-                  navigation.navigate("ProfileInfoForm")
+                   RegisterUser({
+                      email:values.email,
+                      password:values.password,
+                  
+                  });
+                  // navigation.navigate("ProfileInfoForm")
                 }}
               >
                 {(props) => (

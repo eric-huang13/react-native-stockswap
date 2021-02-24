@@ -32,6 +32,7 @@ import MyProfileStackNavigator from './NavigationStacks/MyProfileStackNavigator'
 import HomeStackNavigator from './NavigationStacks/HomeStackNavigator'
 import SearchStackNavigator from './NavigationStacks/SearchStackNavigator'
 
+//toast
 import Toast from 'react-native-toast-message';
 
 
@@ -91,7 +92,7 @@ class Navigation extends Component {
         ) : (
           <LoggedOutStackNavigator/>
         )}
-                              <Toast ref={(ref) => Toast.setRef(ref)} />
+          <Toast ref={(ref) => Toast.setRef(ref)} />
 
       </NavigationContainer>
     );
