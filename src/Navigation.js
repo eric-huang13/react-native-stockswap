@@ -48,7 +48,7 @@ const toastConfig = {
       onTrailingIconPress={() => {
         Toast.hide();
      }} 
-    //  leadingIcon={successToast}
+     leadingIcon={successToast}
       contentContainerStyle={{ paddingHorizontal: 15, alignItems:'center'  }}
       text1Style={{
         fontSize: 18,
@@ -72,7 +72,7 @@ const toastConfig = {
       onTrailingIconPress={() => {
         Toast.hide();
      }} 
-    //  leadingIcon={errorToast}
+     leadingIcon={errorToast}
       contentContainerStyle={{ paddingHorizontal: 15, alignItems:'center'  }}
       text1Style={{
         fontSize: 18,
@@ -96,7 +96,7 @@ const toastConfig = {
       onTrailingIconPress={() => {
         Toast.hide();
      }} 
-    //  leadingIcon={infoToast}
+     leadingIcon={infoToast}
       contentContainerStyle={{ paddingHorizontal: 15, alignItems:'center' }}
       text1Style={{
         fontSize: 18,

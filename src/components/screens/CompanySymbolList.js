@@ -3,11 +3,9 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
-  ScrollView,
   SafeAreaView,
   Text,
   FlatList,
-  Dimensions,
 } from 'react-native';
 
 import {connect} from 'react-redux';

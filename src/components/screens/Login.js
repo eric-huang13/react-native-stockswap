@@ -291,7 +291,7 @@ const style = StyleSheet.create({
     fontFamily: 'Montserrat-Italic',
     backgroundColor: '#536183',
     opacity: 0.7,
-    color: '#9ea6b5',
+    color: '#FFFFFF',
   },
   inputStyleConfirm: {
     borderRadius: 8,

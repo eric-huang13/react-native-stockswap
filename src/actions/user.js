@@ -39,7 +39,7 @@ export const Register = (input) => {
         dispatch({type: SIGNUP_ERROR, payload: error.response});
         Toast.show({
           type: 'error',
-          text2: 'Email already taken.',
+          text2: 'Error signing up.',
         });
       });
   };
@@ -54,12 +54,18 @@ export const RegisterGoogle = (input) => {
 
     .then(response =>{ dispatch({ type: SIGNUP_SUCCESS, payload: response.data }); 
     navigate('ProfileInfoForm');
-
+    Toast.show({
+          type: 'success',
+          text2: 'Sign up successful!',
+        });      
 })
 
       .catch((error) => {
         dispatch({type: SIGNUP_ERROR, payload: error.response});
-        alert('Please try registering with a different email and password.');
+        Toast.show({
+          type: 'error',
+          text2: 'Error signing up.',
+        });
       });
   };
 };
@@ -105,7 +111,6 @@ export const Login = (input) => {
         // Toast.show({
         //   type:'success',
         //   text1: 'You have been logged in',
-
         // });
       })
 
@@ -142,6 +147,7 @@ export const Logout = () => {
       
     });
   }}
+  
   export const EditUser = (input) => {
     return (dispatch) => {
       dispatch({type: EDITUSER_START});
@@ -149,12 +155,19 @@ export const Logout = () => {
               .put(`https://jiujitsux.herokuapp.com/api/moves/takedown/${input.id}`, (input))
               .then((response) => {
                   console.log(response, 'TAKEDOWN edit response')
-                  // window.location.reload();
+                  Toast.show({
+                    type: 'success',
+                    text2: 'Profile updated successfully!',
+                  });               
               })
           // .then(response =>{ deviceStorage.saveItem('token', response.data.token), dispatch({ type: EDITUSER_SUCCESS, payload: response.data })     
                    
    .catch(error => {dispatch({ type: EDITUSER_ERROR, payload: error.response })
   console.log(error.response )
+  Toast.show({
+    type: 'error',
+    text2: 'Error updating profile.',
+  });
    
   })
     };

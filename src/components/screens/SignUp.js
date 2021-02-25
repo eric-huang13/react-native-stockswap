@@ -70,7 +70,7 @@ const SignUp = ({RegisterUser, navigation, userData, loading}) => {
     loading === true
       ? Toast.show({
           type: 'info',
-          text2: 'Sending credentials',
+          text2: 'Sending credentials...',
         })
       : null;
   }, [loading]);
@@ -378,7 +378,7 @@ const style = StyleSheet.create({
     borderRadius: 8,
     padding: 8,
     marginTop: 1,
-    fontSize: 16.5,
+    fontSize: 16,
     fontFamily: 'Montserrat-Italic',
     backgroundColor: '#536183',
     opacity: 0.7,
@@ -388,7 +388,7 @@ const style = StyleSheet.create({
     borderRadius: 8,
     padding: 8,
     marginTop: 1,
-    fontSize: 16.5,
+    fontSize: 16,
     fontFamily: 'Montserrat-Italic',
     backgroundColor: '#536183',
     opacity: 0.7,
