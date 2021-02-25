@@ -52,9 +52,9 @@ const toastConfig = {
     //  leadingIcon={successToast}
       contentContainerStyle={{ paddingHorizontal: 15, alignItems:'center'  }}
       text1Style={{
-        fontSize: 15,
+        fontSize: 18,
         color:'#FFFFFF',
-        fontFamily:'Montserrat-Medium'
+        fontFamily:'Montserrat-Bold'
       }}
       text2Style={{
         fontSize: 15,
@@ -74,7 +74,6 @@ const toastConfig = {
         Toast.hide();
      }} 
     //  leadingIcon={errorToast}
-
       contentContainerStyle={{ paddingHorizontal: 15, alignItems:'center'  }}
       text1Style={{
         fontSize: 18,
@@ -99,12 +98,11 @@ const toastConfig = {
         Toast.hide();
      }} 
     //  leadingIcon={infoToast}
-
       contentContainerStyle={{ paddingHorizontal: 15, alignItems:'center' }}
       text1Style={{
-        fontSize: 15,
+        fontSize: 18,
         color:'#FFFFFF',
-        fontFamily:'Montserrat-Medium'       
+        fontFamily:'Montserrat-Bold'       
 
       }}
       text2Style={{
