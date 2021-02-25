@@ -12,17 +12,16 @@ import Profile from '../components/screens/Profile';
 import UserCommentList from '../components/screens/UserCommentList';
 import PostScreen from '../components/screens/PostScreen';
 import UserPortfolioList from '../components/screens/UserPortfolioList';
-import MyProfile from '../components/screens/MyProfile'
-import MyProfilePosts from '../components/screens/MyProfilePosts'
-import CompanySymbolList from '../components/screens/CompanySymbolList'
-
+import MyProfile from '../components/screens/MyProfile';
+import MyProfilePosts from '../components/screens/MyProfilePosts';
+import CompanySymbolList from '../components/screens/CompanySymbolList';
 
 const SearchStack = createStackNavigator();
 
 export default class SearchStackNavigator extends Component {
   render() {
     return (
-        <SearchStack.Navigator>
+      <SearchStack.Navigator>
         <SearchStack.Screen
           name="SearchTab"
           component={SearchTab}
@@ -50,7 +49,7 @@ export default class SearchStackNavigator extends Component {
             //Need to figure out way to make header height shown when transparent or add Linearcolors directly
             // headerTransparent: true,
             headerShown: true,
-  
+
             headerStyle: {
               backgroundColor: '#394463',
             },
@@ -79,9 +78,9 @@ export default class SearchStackNavigator extends Component {
           component={PostScreen}
           options={({route}) => ({
             title: route.params.name,
-  
+
             headerShown: true,
-  
+
             headerStyle: {
               backgroundColor: '#394463',
             },
@@ -91,7 +90,7 @@ export default class SearchStackNavigator extends Component {
             },
           })}
         />
-  
+
         <SearchStack.Screen
           name="Comments"
           component={UserCommentList}
@@ -123,14 +122,14 @@ export default class SearchStackNavigator extends Component {
           name="MyProfile"
           component={MyProfile}
           options={{
-            title:'My Profile',
+            title: 'My Profile',
             headerStyle: {
               backgroundColor: '#394463',
             },
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',
-            },         
+            },
           }}
         />
         <SearchStack.Screen
@@ -138,12 +137,12 @@ export default class SearchStackNavigator extends Component {
           component={MyProfilePosts}
           options={{
             title: 'All my posts',
-                headerStyle: {
+            headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -156,12 +155,12 @@ export default class SearchStackNavigator extends Component {
           component={CompanySymbolList}
           options={{
             title: 'Companies',
-                headerStyle: {
+            headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -170,6 +169,6 @@ export default class SearchStackNavigator extends Component {
           }}
         />
       </SearchStack.Navigator>
-    )
+    );
   }
 }

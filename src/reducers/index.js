@@ -5,13 +5,13 @@ import {combineReducers} from 'redux';
 import userReducer from './user';
 import companyBoxReducer from './companyBoxReducer';
 import postsReducer from './postsReducer';
-import peopleReducer from './peopleReducer'
+import peopleReducer from './peopleReducer';
 
 const appReducer = combineReducers({
   user: userReducer,
   company: companyBoxReducer,
   posts: postsReducer,
-  people: peopleReducer
+  people: peopleReducer,
 });
 
 const rootReducer = (state, action) => {

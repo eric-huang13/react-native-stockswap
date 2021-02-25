@@ -10,7 +10,6 @@ import {
 import CompanyStockGraph from './CompanyStockGraph';
 import TriangleIcon from '../../icons/TriangleIcon';
 
-
 export class ManagePortfolioCompany extends Component {
   constructor(props) {
     super(props);
@@ -32,12 +31,12 @@ export class ManagePortfolioCompany extends Component {
       threeMonth: false,
       year: false,
       all: false,
-      shouldShow:false,
-      dropDown:'Visible for all',
+      shouldShow: false,
+      dropDown: 'Visible for all',
     };
   }
   dropDownSelect(pick) {
-    this.setState({dropDown:pick, shouldShow:false});
+    this.setState({dropDown: pick, shouldShow: false});
   }
 
   render() {
@@ -64,11 +63,15 @@ export class ManagePortfolioCompany extends Component {
     const currentPrice = yPrices[yPrices.length - 1];
     // Growth/Loss percentage
     const percentChange = (
-      ((currentPrice - yPrices[yPrices.length - 7]) / yPrices[yPrices.length - 7]) *100).toFixed(2);
+      ((currentPrice - yPrices[yPrices.length - 7]) /
+        yPrices[yPrices.length - 7]) *
+      100
+    ).toFixed(2);
 
     // Growth/Loss percentage
     const percentChangeMonth = (
-      ((currentPrice - yPrices[yPrices.length - 30]) / yPrices[yPrices.length - 30]) *
+      ((currentPrice - yPrices[yPrices.length - 30]) /
+        yPrices[yPrices.length - 30]) *
       100
     ).toFixed(2);
 
@@ -76,12 +79,9 @@ export class ManagePortfolioCompany extends Component {
     //Total range of stock prices
     const newrange = [Math.min(...yPrices), Math.max(...yPrices)];
 
-   const newweek = yPrices.slice(yPrices.length - 7)
+    const newweek = yPrices.slice(yPrices.length - 7);
     //Week range of stock prices
-    const weekRange = [
-      Math.min(...newweek),
-      Math.max(...newweek),
-         ];
+    const weekRange = [Math.min(...newweek), Math.max(...newweek)];
 
     //Numbers to display graph numbers, can also use use built in graph numbers instead
     //Graph high number
@@ -106,10 +106,9 @@ export class ManagePortfolioCompany extends Component {
                 <Text style={style.title}>{route.params.item.title}</Text>
               </View>
               <View style={style.titleView}>
-                  <View style={style.priceSharesContainer}>
-                <Text style={style.price}>{route.params.item.price}</Text>
-                <Text style={style.shares}>Shares</Text>
-
+                <View style={style.priceSharesContainer}>
+                  <Text style={style.price}>{route.params.item.price}</Text>
+                  <Text style={style.shares}>Shares</Text>
                 </View>
                 <Text style={style.percentage}>({percent}%)</Text>
               </View>
@@ -282,39 +281,40 @@ export class ManagePortfolioCompany extends Component {
             </TouchableOpacity>
           </View>
           <View style={style.accountPrivacyContainer}>
-              <Text style={style.detailsText}>Account privacy</Text>
+            <Text style={style.detailsText}>Account privacy</Text>
 
-              <View style={style.dotsDropdownContainer}>
+            <View style={style.dotsDropdownContainer}>
               <TouchableOpacity
                 onPress={() =>
                   this.setState({
                     shouldShow: !shouldShow,
                   })
                 }>
-                  <View style={style.visibleButtonContainer}>
-          <Text style={style.middleDetailsText}>{this.state.dropDown}</Text>
-        <TriangleIcon style={style.icon}/>        
-          </View>
+                <View style={style.visibleButtonContainer}>
+                  <Text style={style.middleDetailsText}>
+                    {this.state.dropDown}
+                  </Text>
+                  <TriangleIcon style={style.icon} />
+                </View>
               </TouchableOpacity>
               {this.state.shouldShow ? (
                 <View style={style.dropdown}>
-                  { this.state.dropDown == 'Visible for all' ?
-                  <TouchableOpacity onPress={() => this.dropDownSelect('Private')}>
-                  <Text style={style.dropDownText}>Private</Text>
-              </TouchableOpacity>
-              :
-              <TouchableOpacity onPress={() => this.dropDownSelect('Visible for all')}>
-                  <Text style={style.dropDownText}>Visible for all</Text>
-              </TouchableOpacity>
-              
-                  }          
+                  {this.state.dropDown == 'Visible for all' ? 
+                    <TouchableOpacity
+                      onPress={() => this.dropDownSelect('Private')}>
+                      <Text style={style.dropDownText}>Private</Text>
+                    </TouchableOpacity>
+                   : 
+                    <TouchableOpacity
+                      onPress={() => this.dropDownSelect('Visible for all')}>
+                      <Text style={style.dropDownText}>Visible for all</Text>
+                    </TouchableOpacity>
+
+                  }
                 </View>
               ) : null}
-            </View>         
-
-
-              
             </View>
+          </View>
 
           <Text style={style.vitalsHeader}>STATS</Text>
           <View style={style.vitalsContainer}>
@@ -378,30 +378,24 @@ export default ManagePortfolioCompany;
 const style = StyleSheet.create({
   mainContainer: {
     backgroundColor: '#2a334a',
-    paddingVertical:10,
+    paddingVertical: 10,
   },
   aboveGraphContainer: {
     paddingVertical: 14,
-    // backgroundColor: '#324165',
     marginBottom: 10,
-    // marginTop:50,
   },
   graphContainer: {
-    // borderWidth:1,
     flexDirection: 'row',
   },
   graphNumbers: {
-    // marginTop:170,
     flexDirection: 'column-reverse',
     justifyContent: 'space-around',
-    // alignItems:"flex-end",
     marginRight: 10,
     borderLeftWidth: 1,
     borderLeftColor: 'lightgrey',
   },
   graphNumberText: {
     color: 'lightgrey',
-    // fontWeight: 'bold',
     fontSize: 14.5,
   },
   symbolView: {
@@ -418,9 +412,9 @@ const style = StyleSheet.create({
     color: 'rgb(8, 177, 40)',
     alignItems: 'center',
   },
-  priceSharesContainer:{
-    flexDirection:'row',
-    alignItems:'center',
+  priceSharesContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   price: {
     fontSize: 24,
@@ -430,28 +424,26 @@ const style = StyleSheet.create({
   price: {
     color: '#FFFFFF',
     fontSize: 24,
-    fontFamily:'Montserrat-ExtraBold',
+    fontFamily: 'Montserrat-ExtraBold',
   },
   title: {
     color: 'lightgrey',
     fontSize: 16,
-    fontFamily:'Montserrat-Regular',
-
+    fontFamily: 'Montserrat-Regular',
   },
   shares: {
     color: 'lightgrey',
     fontSize: 12,
-    marginLeft:10,
-    fontFamily:'Montserrat-Regular',
-
+    marginLeft: 10,
+    fontFamily: 'Montserrat-Regular',
   },
   percentage: {
     color: 'rgb(8, 177, 40)',
     fontSize: 12,
-    fontFamily:'Montserrat-Medium',
+    fontFamily: 'Montserrat-Medium',
   },
   accountPrivacyContainer: {
-      paddingHorizontal:6,
+    paddingHorizontal: 6,
   },
   visibleButtonContainer: {
     paddingHorizontal: 10,
@@ -473,7 +465,7 @@ const style = StyleSheet.create({
     fontSize: 12,
     fontFamily: 'Montserrat-Regular',
     paddingLeft: 2,
-    marginTop:6,
+    marginTop: 6,
   },
   dropdown: {
     flexDirection: 'column',
@@ -483,31 +475,29 @@ const style = StyleSheet.create({
     backgroundColor: '#3E4D6C',
     zIndex: 1,
     paddingVertical: 4,
-    height:35,
-    position:'absolute',
-    borderBottomLeftRadius:6,
-    borderBottomRightRadius:6,
+    height: 35,
+    position: 'absolute',
+    borderBottomLeftRadius: 6,
+    borderBottomRightRadius: 6,
   },
   dropDownText: {
     color: 'white',
     fontSize: 16,
     marginHorizontal: 12,
-    fontFamily:'Montserrat-Medium',
-    marginBottom:6,  
+    fontFamily: 'Montserrat-Medium',
+    marginBottom: 6,
   },
   dropDownTextReportContainer: {
     borderTopWidth: 1,
     borderTopColor: 'lightgrey',
     paddingTop: 4,
-    backgroundColor:'#2C3957',
+    backgroundColor: '#2C3957',
   },
-  icon:{
-    marginRight:4,
+  icon: {
+    marginRight: 4,
   },
   vitalsContainer: {
     marginTop: 6,
-    // borderTopWidth: 1,
-    // borderBottomWidth: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 10,
@@ -516,7 +506,7 @@ const style = StyleSheet.create({
   vitalsHeader: {
     color: '#FFFFFF',
     fontSize: 22,
-    fontFamily:'Montserrat-Bold',
+    fontFamily: 'Montserrat-Bold',
     marginTop: 28,
     textAlign: 'left',
     paddingHorizontal: 10,
@@ -526,7 +516,6 @@ const style = StyleSheet.create({
     color: 'black',
     fontSize: 31,
     fontWeight: 'bold',
-    // justifyContent:'space-between'
   },
   vitalsRightColumn: {
     flexDirection: 'column',
@@ -541,13 +530,13 @@ const style = StyleSheet.create({
   vitalDetails: {
     color: 'lightgrey',
     fontSize: 14,
-    fontFamily:'Montserrat-Medium',
+    fontFamily: 'Montserrat-Medium',
     marginBottom: 10,
   },
   vitalDetailsData: {
     color: '#FFFFFF',
     fontSize: 14,
-    fontFamily:'Montserrat-Bold',
+    fontFamily: 'Montserrat-Bold',
     marginBottom: 10,
     marginLeft: 55,
   },
@@ -568,7 +557,7 @@ const style = StyleSheet.create({
   buyButtonContainer: {
     marginTop: 24,
     alignItems: 'center',
-    marginBottom:4,
+    marginBottom: 4,
   },
   buyButton: {
     backgroundColor: '#8b64ff',
@@ -577,8 +566,7 @@ const style = StyleSheet.create({
     fontSize: 14,
     paddingVertical: 10,
     paddingHorizontal: 40,
-    fontFamily:'Montserrat-SemiBold',
-
+    fontFamily: 'Montserrat-SemiBold',
   },
   aboutSection: {
     marginTop: 36,

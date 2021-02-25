@@ -9,9 +9,8 @@ import {
   SafeAreaView,
 } from 'react-native';
 
-import SearchInput from '../../icons/SearchInput'
+import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
-// import {style} from '../../styles/style';
 import CompanyBox from './CompanyBox';
 // import {fetchMarketGainers} from '../../actions/marketMovers'
 
@@ -39,8 +38,8 @@ export class CompanyBoxList extends Component {
       <SafeAreaView style={style.mainContainer}>
         <ScrollView contentContainerStyle={{paddingBottom: 180}}>
           <View style={style.searchInputContainer}>
-            
-            <View
+
+          <View
         style={{
           position: "absolute",
           zIndex: 1,
@@ -48,8 +47,8 @@ export class CompanyBoxList extends Component {
           top:10
         }}
       >
-        <SearchInput/>
-      </View>
+              <SearchInput />
+            </View>
             <TextInput
               style={style.searchInput}
               placeholder="Search"
@@ -226,8 +225,6 @@ export default connect(mapStateToProps)(CompanyBoxList);
 
 const style = StyleSheet.create({
   mainContainer: {
-    // width: '100%',
-
     alignSelf: 'center',
     paddingBottom: 40,
   },
@@ -235,16 +232,9 @@ const style = StyleSheet.create({
     marginBottom: 18,
     borderBottomColor: 'gray',
     paddingHorizontal: 2,
-
-    // paddingBottom: 40,
-    // width: '98%',
-    // alignSelf: 'center',
-    // alignItems:"flex-start"
   },
   boxContainer: {
     paddingLeft: 2,
-    // flexDirection: 'row',
-    // justifyContent: 'space-around',
   },
   headerContainer: {
     flexDirection: 'row',
@@ -253,28 +243,24 @@ const style = StyleSheet.create({
     marginBottom: 4,
   },
   header: {
-    // fontSize: 16,
     fontSize: 17,
     marginLeft: 5.5,
     color: 'lightgrey',
     fontFamily: 'Montserrat-Regular',
-    // marginBottom: 3.5,
   },
   seeAllHeader: {
     paddingTop: 3.5,
     paddingRight: 2,
-    // fontSize: 14,
     fontSize: 15,
     color: '#B8A0FF',
     fontFamily: 'Montserrat-SemiBold',
   },
   searchInputContainer: {
-    flexDirection:'row',
-    // marginTop: 1,
+    flexDirection: 'row',
     marginBottom: 15,
   },
   searchInput: {
-    flex:1,
+    flex: 1,
     paddingLeft: 40,
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
@@ -283,6 +269,5 @@ const style = StyleSheet.create({
     height: 36,
     paddingVertical: 0,
     fontFamily: 'Montserrat-Italic',
-    // lineHeight:18,
   },
 });

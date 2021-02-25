@@ -1,6 +1,5 @@
 // React Imports
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
 
 
 // Redux
@@ -174,7 +173,6 @@ class Navigation extends Component {
         ) : (
           <LoggedOutStackNavigator/>
         )}
-              {/* <Toast ref={(ref) => Toast.setRef(ref)} /> */}
 
       <Toast config={toastConfig} ref={(ref) => Toast.setRef(ref)} />
 

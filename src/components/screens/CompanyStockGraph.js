@@ -8,32 +8,26 @@ export default class CompanyStockGraph extends Component {
     super(props);
 
     this.state = {
-      graphData:[]
+      graphData: [],
     };
   }
-  
+
   componentDidMount() {
     const {graphData} = this.props;
-    
-        this.setState({
-          graphData:graphData,
-         
-        });
-    
-  
+
+    this.setState({
+      graphData: graphData,
+    });
   }
   componentDidUpdate(prevProps) {
-    
     if (this.props.graphData !== prevProps.graphData) {
       this.setState({
-        graphData:this.props.graphData,
-       
+        graphData: this.props.graphData,
       });
     }
-   }
- 
+  }
+
   render() {
-    // console.log(this.props.graphData,'Graph Data')
     const fillGradient = (props) => {
       return (
         <LinearGradient x1="40%" y1="0%" x2="40%" y2="100%" {...props}>
@@ -42,7 +36,6 @@ export default class CompanyStockGraph extends Component {
         </LinearGradient>
       );
     };
-// console.log(this.props.graphData, "DATA COMING IN")
     return (
       <SafeAreaView style={styles.container}>
         <SlideAreaChart

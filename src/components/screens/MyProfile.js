@@ -6,11 +6,11 @@ import {
   Image,
   TouchableOpacity,
   SafeAreaView,
-  FlatList
+  FlatList,
 } from 'react-native';
 import ProfileGraph from './ProfileGraph';
 import {connect} from 'react-redux';
-import MyProfilePostBox from './MyProfilePostBox'
+import MyProfilePostBox from './MyProfilePostBox';
 
 class Profile extends Component {
   constructor(props) {
@@ -37,189 +37,182 @@ class Profile extends Component {
       //View to set in Header
       return (
         <View key={user.id}>
-        <View style={style.aboveGraphContainer}>
-          <View style={style.portfolioHeaderContainer}>
-            <Text style={style.portfolioHeader}>Portfolio</Text>
-            <Text style={style.gain}>${user.gain}</Text>
-          </View>
-          <View style={style.timeNumberContainer}>
-          
-            <Text style={style.timeNumber}><Text style={style.percentGain}>$-10.75(-11%)</Text> Past hour</Text>
-          </View>
-        </View>
-        <View style={style.graphContainer}>
-          <ProfileGraph graphData={graphData} range={range} />
-        </View>
-        <View style={style.timeFilterButtonsContainer}>
-          <TouchableOpacity
-            onPress={() => this.timeFilterSelect('live')}>
-            <Text
-              style={
-                timeFilter === 'live'
-                  ? {...style.timeFilterButtons, color: '#8b64ff'}
-                  : {...style.timeFilterButtons}
-              }>
-              Live
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.timeFilterSelect('day')}>
-            <Text
-              style={
-                timeFilter === 'day'
-                  ? {...style.timeFilterButtons, color: '#8b64ff'}
-                  : {...style.timeFilterButtons}
-              }>
-              1D
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.timeFilterSelect('week')}>
-            <Text
-              style={
-                timeFilter === 'week'
-                  ? {...style.timeFilterButtons, color: '#8b64ff'}
-                  : {...style.timeFilterButtons}
-              }>
-              1W
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.timeFilterSelect('month')}>
-            <Text
-              style={
-                timeFilter === 'month'
-                  ? {...style.timeFilterButtons, color: '#8b64ff'}
-                  : {...style.timeFilterButtons}
-              }>
-              1M
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.timeFilterSelect('3M')}>
-            <Text
-              style={
-                timeFilter === '3M'
-                  ? {...style.timeFilterButtons, color: '#8b64ff'}
-                  : {...style.timeFilterButtons}
-              }>
-              3M
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.timeFilterSelect('year')}>
-            <Text
-              style={
-                timeFilter === 'year'
-                  ? {...style.timeFilterButtons, color: '#8b64ff'}
-                  : {...style.timeFilterButtons}
-              }>
-              1Y
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.timeFilterSelect('all')}>
-            <Text
-              style={
-                timeFilter === 'all'
-                  ? {...style.timeFilterButtons, color: '#8b64ff'}
-                  : {...style.timeFilterButtons}
-              }>
-              All
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={style.infoContainer}>
-          <View style={style.detailsRow}>
-            <Image style={style.image} source={{uri: user.img}} />
-            <View style={style.personalDetails}>
-              <Text style={style.name}>{user.name}</Text>
-              <Text style={style.username}>@{user.username}</Text>
-              <Text style={style.hashtag}>{user.hashtag}</Text>
+          <View style={style.aboveGraphContainer}>
+            <View style={style.portfolioHeaderContainer}>
+              <Text style={style.portfolioHeader}>Portfolio</Text>
+              <Text style={style.gain}>${user.gain}</Text>
+            </View>
+            <View style={style.timeNumberContainer}>
+              <Text style={style.timeNumber}>
+                <Text style={style.percentGain}>$-10.75(-11%)</Text> Past hour
+              </Text>
             </View>
           </View>
-          <View style={style.bioContainer}>
-            <Text style={style.bio}>{user.bio}</Text>
+          <View style={style.graphContainer}>
+            <ProfileGraph graphData={graphData} range={range} />
           </View>
-          <View style={style.numberRow}>
-          <TouchableOpacity
-            onPress={() =>
-              this.props.navigation.navigate({
-                name: 'MyFollowers',
-                params: {user},
-              })
-            }>
-            <View style={style.numberColumn}>
-              <Text style={style.numberData}>{user.followers}</Text>
-              <Text style={style.numberText}>Followers</Text>
-            </View>
+          <View style={style.timeFilterButtonsContainer}>
+            <TouchableOpacity onPress={() => this.timeFilterSelect('live')}>
+              <Text
+                style={
+                  timeFilter === 'live'
+                    ? {...style.timeFilterButtons, color: '#8b64ff'}
+                    : {...style.timeFilterButtons}
+                }>
+                Live
+              </Text>
             </TouchableOpacity>
-            <View style={style.numberColumn}>
-              <Text style={style.numberData}>{user.posts}</Text>
-              <Text style={style.numberText}>Posts</Text>
+            <TouchableOpacity onPress={() => this.timeFilterSelect('day')}>
+              <Text
+                style={
+                  timeFilter === 'day'
+                    ? {...style.timeFilterButtons, color: '#8b64ff'}
+                    : {...style.timeFilterButtons}
+                }>
+                1D
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.timeFilterSelect('week')}>
+              <Text
+                style={
+                  timeFilter === 'week'
+                    ? {...style.timeFilterButtons, color: '#8b64ff'}
+                    : {...style.timeFilterButtons}
+                }>
+                1W
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.timeFilterSelect('month')}>
+              <Text
+                style={
+                  timeFilter === 'month'
+                    ? {...style.timeFilterButtons, color: '#8b64ff'}
+                    : {...style.timeFilterButtons}
+                }>
+                1M
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.timeFilterSelect('3M')}>
+              <Text
+                style={
+                  timeFilter === '3M'
+                    ? {...style.timeFilterButtons, color: '#8b64ff'}
+                    : {...style.timeFilterButtons}
+                }>
+                3M
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.timeFilterSelect('year')}>
+              <Text
+                style={
+                  timeFilter === 'year'
+                    ? {...style.timeFilterButtons, color: '#8b64ff'}
+                    : {...style.timeFilterButtons}
+                }>
+                1Y
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.timeFilterSelect('all')}>
+              <Text
+                style={
+                  timeFilter === 'all'
+                    ? {...style.timeFilterButtons, color: '#8b64ff'}
+                    : {...style.timeFilterButtons}
+                }>
+                All
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={style.infoContainer}>
+            <View style={style.detailsRow}>
+              <Image style={style.image} source={{uri: user.img}} />
+              <View style={style.personalDetails}>
+                <Text style={style.name}>{user.name}</Text>
+                <Text style={style.username}>@{user.username}</Text>
+                <Text style={style.hashtag}>{user.hashtag}</Text>
+              </View>
             </View>
-            <View style={style.numberColumn}>
-              <Text style={style.numberData}>{user.trades}</Text>
-              <Text style={style.numberText}>Trades </Text>
+            <View style={style.bioContainer}>
+              <Text style={style.bio}>{user.bio}</Text>
             </View>
+            <View style={style.numberRow}>
+              <TouchableOpacity
+                onPress={() =>
+                  this.props.navigation.navigate({
+                    name: 'MyFollowers',
+                    params: {user},
+                  })
+                }>
+                <View style={style.numberColumn}>
+                  <Text style={style.numberData}>{user.followers}</Text>
+                  <Text style={style.numberText}>Followers</Text>
+                </View>
+              </TouchableOpacity>
+              <View style={style.numberColumn}>
+                <Text style={style.numberData}>{user.posts}</Text>
+                <Text style={style.numberText}>Posts</Text>
+              </View>
+              <View style={style.numberColumn}>
+                <Text style={style.numberData}>{user.trades}</Text>
+                <Text style={style.numberText}>Trades </Text>
+              </View>
+              <TouchableOpacity
+                onPress={() =>
+                  this.props.navigation.navigate({
+                    name: 'MyFollowing',
+                    params: {user},
+                  })
+                }>
+                <View style={style.numberColumn}>
+                  <Text style={style.numberData}>{user.following}</Text>
+                  <Text style={style.numberText}>Following</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={style.portfolioButtonContainer}>
             <TouchableOpacity
-            onPress={() =>
-              this.props.navigation.navigate({
-                name: 'MyFollowing',
-                params: {user},
-              })
-            }>
-            <View style={style.numberColumn}>
-              <Text style={style.numberData}>{user.following}</Text>
-              <Text style={style.numberText}>Following</Text>
-            </View>
+              onPress={() =>
+                this.props.navigation.navigate({
+                  name: 'ManagePortfolio',
+                })
+              }>
+              <Text style={style.portfolioButton}>Manage Portfolio</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                this.props.navigation.navigate({
+                  name: 'LikedPosts',
+                })
+              }>
+              <Text style={style.portfolioButton}>Liked Posts</Text>
             </TouchableOpacity>
           </View>
         </View>
-        <View style={style.portfolioButtonContainer}>
-          <TouchableOpacity
-            onPress={() =>
-              this.props.navigation.navigate({
-                name: 'ManagePortfolio',
-              })
-            }>
-            <Text style={style.portfolioButton}>Manage Portfolio</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() =>
-              this.props.navigation.navigate({
-                name: 'LikedPosts',
-              })
-            }>
-            <Text style={style.portfolioButton}>Liked Posts</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
       );
     };
     const {graphData, percent, range, timeFilter} = this.state;
-    const {user, post, } = this.props;
-    const id = this.props.user.id
-    const selectedPosts = post.filter((user) => user.userId === id); 
-//  console.log(selectedPosts,"selPOSTS")
-    // const id = 1;
-    // const selectedUser = users.filter((user) => user.id === id);
+    const {user, post} = this.props;
+    const id = this.props.user.id;
+    const selectedPosts = post.filter((user) => user.userId === id);
+
     return (
       <SafeAreaView style={style.container}>
-              <View>
-              <FlatList
-            keyExtractor = { (item, index) => index.toString() }
+        <View>
+          <FlatList
+            keyExtractor={(item, index) => index.toString()}
             ListHeaderComponent={ListHeader}
             data={selectedPosts}
             numColumns={3}
-            renderItem={({item, index}) => (  
-               <MyProfilePostBox
-               key={item.id}
-               item={item}
-               navigation={this.props.navigation}
-               />
+            renderItem={({item, index}) => (
+              <MyProfilePostBox
+                key={item.id}
+                item={item}
+                navigation={this.props.navigation}
+              />
             )}
           />
-            </View>
+        </View>
       </SafeAreaView>
     );
   }
@@ -231,7 +224,7 @@ const mapStateToProps = (state) => {
     comments: state.posts.comments,
     users: state.people.users,
     reply: state.posts.reply,
-    user: state.user.userFakeData
+    user: state.user.userFakeData,
   };
 };
 
@@ -241,12 +234,11 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#2a334a',
-    // paddingVertical: 10,
   },
-  percentGain:{
-    fontFamily:'Montserrat-Medium',
-    color:'#F66E6E',
-    fontSize:12,
+  percentGain: {
+    fontFamily: 'Montserrat-Medium',
+    color: '#F66E6E',
+    fontSize: 12,
   },
   infoContainer: {
     borderColor: 'red',
@@ -288,8 +280,8 @@ const style = StyleSheet.create({
   },
   portfolioHeaderContainer: {
     flexDirection: 'column',
-    marginTop:8,
-    marginBottom:10,
+    marginTop: 8,
+    marginBottom: 10,
   },
   portfolioHeader: {
     color: '#FFFFFF',
@@ -305,7 +297,7 @@ const style = StyleSheet.create({
   timeNumberContainer: {
     flexDirection: 'column',
     alignSelf: 'flex-end',
-    marginBottom:14,
+    marginBottom: 14,
   },
   timeNumber: {
     color: 'lightgrey',
@@ -359,8 +351,7 @@ const style = StyleSheet.create({
     padding: 10,
     borderRadius: 8,
     fontSize: 14,
-    // width: 210,
-    marginHorizontal:5,
+    marginHorizontal: 5,
     width: 160,
     height: 42,
     backgroundColor: '#8B64FF',

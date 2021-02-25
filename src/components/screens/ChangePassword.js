@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {
-  Button,
   SafeAreaView,
   Text,
   View,
@@ -11,55 +10,39 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
-  ScrollView,
 } from 'react-native';
-import {Login} from 'actions/user';
-import axios from 'axios';
+
 import LinearGradient from 'react-native-linear-gradient';
-import SmallStockSwap from '../../icons/SmallStockSwap';
-import GoogleIcon from '../../icons/GoogleIcon';
-import AppleIcon from '../../icons/AppleIcon';
-import FacebookIcon from '../../icons/FacebookIcon';
 
 class ChangePassword extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      newPassword:'',
-      confirmPassword:'',
-      currentEmail:'',
-      error:'',
+      newPassword: '',
+      confirmPassword: '',
+      currentEmail: '',
+      error: '',
     };
   }
-  // handlePasswordChange = (text) => {
-  //   this.setState({
-  //     newPassword: text,
-  //   });
-  // };
-  // handleConfirmPasswordChange = (text) => {
-  //   this.setState({
-  //     confirmPassword: text,
-  //   });
-  // };
   handleInputChange = (inputName, inputValue) => {
-    this.setState(state => ({ 
+    this.setState((state) => ({
       ...state,
-      [inputName]: inputValue 
-    }))
-  }
+      [inputName]: inputValue,
+    }));
+  };
   errorInput(text) {
     this.setState({
-        error:text
-    })  
-  ;} 
+      error: text,
+    });
+  }
 
   handleSubmit = () => {
-    this.state.newPassword === '' || this.state.confirmPassword === '' 
-    ? this.errorInput('passwords')
-    : this.state.newPassword !== this.state.confirmPassword
-    ? alert ('Passwords do not match')
-    : this.props.navigation.navigate('PasswordSuccess')
+    this.state.newPassword === '' || this.state.confirmPassword === ''
+      ? this.errorInput('passwords')
+      : this.state.newPassword !== this.state.confirmPassword
+      ? alert('Passwords do not match')
+      : this.props.navigation.navigate('PasswordSuccess');
   };
 
   componentDidMount() {
@@ -88,19 +71,18 @@ class ChangePassword extends Component {
             <SafeAreaView style={style.mainContainer}>
               <View style={style.container}>
                 <Text style={style.changeEmailHeader}>Change password</Text>
-
-                {/* <View style={style.currentEmailContainer}>
-                <Text style={style.inputHeader}>Current password</Text>
-                <Text style={style.currentEmail}>{this.state.currentEmail}</Text>
-              </View> */}
-
                 <View style={style.inputEmailContainer}>
                   <Text style={style.inputHeader}>New Password</Text>
-
                   <TextInput
-                    style={ this.state.error === 'passwords' ? {...style.inputStyle, backgroundColor:'#F66E6E'} : {...style.inputStyle}}
+                    style={
+                      this.state.error === 'passwords'
+                        ? {...style.inputStyle, backgroundColor: '#F66E6E'}
+                        : {...style.inputStyle}
+                    }
                     value={this.state.newPassword}
-                    onChangeText={value => this.handleInputChange('newPassword', value)}
+                    onChangeText={(value) =>
+                      this.handleInputChange('newPassword', value)
+                    }
                     placeholder="Enter new password"
                     placeholderTextColor="#9ea6b5"
                     keyboardType="email-address"
@@ -109,22 +91,24 @@ class ChangePassword extends Component {
                 </View>
                 <View style={style.inputEmailContainer}>
                   <Text style={style.inputHeader}>Repeat</Text>
-
                   <TextInput
-                    style={ this.state.error === 'passwords' ? {...style.inputStyle, backgroundColor:'#F66E6E'} : {...style.inputStyle}}
+                    style={
+                      this.state.error === 'passwords'
+                        ? {...style.inputStyle, backgroundColor: '#F66E6E'}
+                        : {...style.inputStyle}
+                    }
                     value={this.state.confirmPassword}
-                    onChangeText={value => this.handleInputChange('confirmPassword', value)}
+                    onChangeText={(value) =>
+                      this.handleInputChange('confirmPassword', value)
+                    }
                     placeholder="Repeat new password"
                     placeholderTextColor="#9ea6b5"
                     keyboardType="email-address"
                     autoCapitalize="none"
                   />
                 </View>
-
                 <View>
-                  <TouchableOpacity
-                    onPress={this.handleSubmit
-                    }>
+                  <TouchableOpacity onPress={this.handleSubmit}>
                     <Text
                       style={
                         this.state.newPassword === '' ||
@@ -202,7 +186,6 @@ const style = StyleSheet.create({
   },
   inputEmailContainer: {
     marginTop: 16,
-    // marginBottom:16,
   },
 
   inputHeader: {

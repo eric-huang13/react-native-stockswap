@@ -1,6 +1,5 @@
-import axios from 'axios'
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // axios.defaults.baseURL = 'http://10.0.2.2:9000'
 // axios.defaults.headers.common['Authorization'] = 'authToken'
@@ -24,20 +23,20 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 //     return Promise.reject(error);
 // });
 
-const apiInstance = axios.create()
- 
+const apiInstance = axios.create();
+
 apiInstance.interceptors.request.use(
-    async config => {
-        const token = await AsyncStorage.getItem('token')
-        console.log(token, "token in axios config")
-        if (token) {
-            config.headers.Authorization= token
-            console.log(config.headers.Authorization, "Auth headers")
-        }
-        return config
-    },
-    error => {
-        return Promise.reject(error)
+  async (config) => {
+    const token = await AsyncStorage.getItem('token');
+    console.log(token, 'token in axios config');
+    if (token) {
+      config.headers.Authorization = token;
+      console.log(config.headers.Authorization, 'Auth headers');
     }
-)
-export default apiInstance
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);
+export default apiInstance;

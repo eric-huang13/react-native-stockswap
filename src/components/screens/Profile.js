@@ -159,17 +159,17 @@ class Profile extends Component {
                     <Text style={style.bio}>{user.bio}</Text>
                   </View>
                   <View style={style.numberRow}>
-                  <TouchableOpacity
-                    onPress={() =>
-                      this.props.navigation.navigate('Followers',{
-                        name: `${user.name}'s followers`,
-                        params: {user},
-                      })
-                    }>
-                    <View style={style.numberColumn}>
-                      <Text style={style.numberData}>{user.followers}</Text>
-                      <Text style={style.numberText}>Followers</Text>
-                    </View>
+                    <TouchableOpacity
+                      onPress={() =>
+                        this.props.navigation.navigate('Followers', {
+                          name: `${user.name}'s followers`,
+                          params: {user},
+                        })
+                      }>
+                      <View style={style.numberColumn}>
+                        <Text style={style.numberData}>{user.followers}</Text>
+                        <Text style={style.numberText}>Followers</Text>
+                      </View>
                     </TouchableOpacity>
                     <View style={style.numberColumn}>
                       <Text style={style.numberData}>{user.posts}</Text>
@@ -180,16 +180,16 @@ class Profile extends Component {
                       <Text style={style.numberText}>Trades </Text>
                     </View>
                     <TouchableOpacity
-                    onPress={() =>
-                      this.props.navigation.navigate('Following',{
-                        name: `${user.name}'s following`,
-                        params: {user},
-                      })
-                    }>
-                    <View style={style.numberColumn}>
-                      <Text style={style.numberData}>{user.following}</Text>
-                      <Text style={style.numberText}>Following</Text>
-                    </View>
+                      onPress={() =>
+                        this.props.navigation.navigate('Following', {
+                          name: `${user.name}'s following`,
+                          params: {user},
+                        })
+                      }>
+                      <View style={style.numberColumn}>
+                        <Text style={style.numberData}>{user.following}</Text>
+                        <Text style={style.numberText}>Following</Text>
+                      </View>
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -239,7 +239,7 @@ const mapStateToProps = (state) => {
     comments: state.posts.comments,
     users: state.people.users,
     reply: state.posts.reply,
-    userAccount: state.user.userFakeData
+    userAccount: state.user.userFakeData,
   };
 };
 
@@ -251,7 +251,6 @@ const style = StyleSheet.create({
     backgroundColor: '#2a334a',
   },
   infoContainer: {
-    // borderWidth:1,
     borderColor: 'red',
     paddingHorizontal: 7,
   },
@@ -278,7 +277,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 12,
-    marginVertical:10,
+    marginVertical: 10,
   },
   numberColumn: {
     alignItems: 'center',
@@ -319,7 +318,6 @@ const style = StyleSheet.create({
     justifyContent: 'center',
   },
   followButton: {
-    // alignSelf:'center',
     borderWidth: 1.4,
     borderColor: '#9082cf',
     color: '#9082cf',
@@ -365,10 +363,8 @@ const style = StyleSheet.create({
     marginHorizontal: 120,
     borderRadius: 8,
     fontSize: 16,
-    //  width:'20%',
   },
   graphContainer: {
-    // borderWidth:1,
     flexDirection: 'row',
   },
 
@@ -391,20 +387,6 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 26,
     marginLeft: 6,
-    marginTop:30,
+    marginTop: 30,
   },
-  // postNameContainer:{
-  // flexDirection:'row',
-  // alignItems:'center',
-  // },
-  // postUserImage:{
-  //   height: 50,
-  //   width: 50,
-  //   borderRadius: 50,
-  // },
-  // postUserName:{
-  //   color:'white',
-  //   fontSize:14,
-  //   fontWeight:'bold',
-  // },
 });

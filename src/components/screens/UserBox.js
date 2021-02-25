@@ -60,16 +60,16 @@ const style = StyleSheet.create({
   name: {
     fontSize: 16,
     color: '#FFFFFF',
-    fontFamily:'Montserrat-Bold',
+    fontFamily: 'Montserrat-Bold',
   },
   posts: {
     color: 'lightgrey',
-    fontFamily:'Montserrat-Regular',
+    fontFamily: 'Montserrat-Regular',
     fontSize: 12,
   },
   followers: {
     color: 'lightgrey',
-    fontFamily:'Montserrat-Regular',
+    fontFamily: 'Montserrat-Regular',
     fontSize: 12,
   },
   percentageView: {
@@ -80,14 +80,11 @@ const style = StyleSheet.create({
     alignSelf: 'center',
     color: '#1AB968',
     fontSize: 16,
-    fontFamily:'Montserrat-Bold',
-
+    fontFamily: 'Montserrat-Bold',
   },
   detailsBold: {
-    fontFamily:'Montserrat-Medium',
+    fontFamily: 'Montserrat-Medium',
     color: '#FFFFFF',
     fontSize: 12,
-
-
   },
 });

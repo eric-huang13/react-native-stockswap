@@ -11,75 +11,36 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
-import {EditUser} from '../../actions/user'
+import {EditUser} from '../../actions/user';
 import LinearGradient from 'react-native-linear-gradient';
-import { Formik } from "formik";
-import * as Yup from "yup";
+import {Formik} from 'formik';
+import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
-    .label("Name")
-    .required("Name is required")
-    .min(2, "Must have at least 2 characters"),
+    .label('Name')
+    .required('Name is required')
+    .min(2, 'Must have at least 2 characters'),
 
-  username: Yup.string()
-    .label("username")
-    .required("Username is required"),
+  username: Yup.string().label('username').required('Username is required'),
 
   hashtag: Yup.string()
-    .label("hashtag")
-    .matches(/^#\w+$/, "Must be a hashtag")    
-    .min(2, "Hashtag must have more than 2 characters "),
+    .label('hashtag')
+    .matches(/^#\w+$/, 'Must be a hashtag')
+    .min(2, 'Hashtag must have more than 2 characters '),
 
   bio: Yup.string()
-    .label("bio")
-    .min(2, "bio must have more than 2 characters "),
-    
-  image: Yup.string()
- .url("Must be a url"),
+    .label('bio')
+    .min(2, 'bio must have more than 2 characters '),
+
+  image: Yup.string().url('Must be a url'),
 });
 
 class EditProfile extends Component {
   constructor(props) {
     super(props);
-
-    // this.state = {
-    //   id:'',
-    //   name: '',
-    //   username: '',
-    //   hashtag: '',
-    //   bio: '',
-    //   image: '',
-    // };
   }
- 
-  // handleInputChange = (inputName, inputValue) => {
-  //   this.setState(state => ({ 
-  //     ...state,
-  //     [inputName]: inputValue 
-  //   }))
-  // }
-  // componentDidMount() {
-  //   const {user, userAccount} = this.props;
-  //   const userid = 15;
-  //   // const selectedUser = users.filter((user) => user.id === userid);
-    
-  //     // selectedUser.map((user) => {
-  //       this.setState({
-  //         id:userAccount.id,
-  //         name: userAccount.name,
-  //         username: userAccount.username,
-  //         hashtag: userAccount.hashtag,
-  //         bio: userAccount.bio,
-  //         image: userAccount.img,
-  //       });
-  //     // });
-    
-  
-  // }
-  // handleSubmit = (input) => {
-  //   44(input)
-  // };
+
   render() {
     const {EditUserAccount, userAccount} = this.props;
     return (
@@ -88,7 +49,6 @@ class EditProfile extends Component {
         end={{x: 0.1, y: 0.1}}
         colors={[
           '#1D2842',
-          // '#485476',
           '#3d4b6e',
         ]}
         style={{flex: 1}}>
@@ -97,9 +57,9 @@ class EditProfile extends Component {
           style={{flex: 1}}>
           <SafeAreaView style={style.mainContainer}>
             <ScrollView>
-            <Formik
+              <Formik
                 initialValues={{
-                  id:userAccount.id,
+                  id: userAccount.id,
                   name: userAccount.name,
                   username: userAccount.username,
                   image: userAccount.img,
@@ -107,10 +67,9 @@ class EditProfile extends Component {
                   bio: userAccount.bio,
                 }}
                 onSubmit={(values) => {
-                  console.log(values, "infooooo");
+                  console.log(values, 'infooooo');
                 }}
-                validationSchema={validationSchema}
-              >
+                validationSchema={validationSchema}>
                 {({
                   handleChange,
                   values,
@@ -122,23 +81,23 @@ class EditProfile extends Component {
                   isSubmitting,
                   setFieldValue,
                 }) => (
-              <View>
-              <Text style={style.header}>Fill Profile Info</Text>
+                  <View>
+                    <Text style={style.header}>Fill Profile Info</Text>
 
-              {values.image === '' ? (
-                <View style={style.uploadPhotoContainer}></View>
-              ) : (
-                <Image style={style.image} source={{uri: values.image}} />
-              )}
+                    {values.image === '' ? (
+                      <View style={style.uploadPhotoContainer} />
+                    ) : (
+                      <Image style={style.image} source={{uri: values.image}} />
+                    )}
 
-                <View style={style.topRow}>
+                    <View style={style.topRow}>
                       <View style={style.rowInputContainer}>
                         <Text style={style.inputHeader}>Name</Text>
                         <TextInput
                           style={style.inputStyle}
-                          onBlur={handleBlur("name")}
+                          onBlur={handleBlur('name')}
                           value={values.name}
-                          onChangeText={handleChange("name")}
+                          onChangeText={handleChange('name')}
                           placeholder="Enter your name"
                           placeholderTextColor="#FFFFFF"
                           returnKeyType="next"
@@ -155,8 +114,8 @@ class EditProfile extends Component {
                         <TextInput
                           style={style.inputStyle}
                           value={values.username}
-                          onBlur={handleBlur("username")}
-                          onChangeText={handleChange("username")}
+                          onBlur={handleBlur('username')}
+                          onChangeText={handleChange('username')}
                           placeholder="@example"
                           placeholderTextColor="#9ea6b5"
                           style={style.inputStyle}
@@ -167,14 +126,14 @@ class EditProfile extends Component {
                           {touched.username && errors.username}
                         </Text>
                       </View>
-              </View>
-              <View style={style.bottomColumn}>
-              <View style={style.imageContainer}>
+                    </View>
+                    <View style={style.bottomColumn}>
+                      <View style={style.imageContainer}>
                         <Text style={style.inputHeader}>Image</Text>
                         <TextInput
                           value={values.image}
-                          onBlur={handleBlur("image")}
-                          onChangeText={handleChange("image")}
+                          onBlur={handleBlur('image')}
+                          onChangeText={handleChange('image')}
                           placeholder="Image url"
                           placeholderTextColor="#9ea6b5"
                           style={style.inputStyle}
@@ -193,8 +152,8 @@ class EditProfile extends Component {
                         <TextInput
                           style={style.inputStyle}
                           value={values.hashtag}
-                          onBlur={handleBlur("hashtag")}
-                          onChangeText={handleChange("hashtag")}
+                          onBlur={handleBlur('hashtag')}
+                          onChangeText={handleChange('hashtag')}
                           placeholder="Add hashtags which describe you"
                           placeholderTextColor="#9ea6b5"
                           returnKeyType="next"
@@ -205,13 +164,13 @@ class EditProfile extends Component {
                           {touched.hashtag && errors.hashtag}
                         </Text>
                       </View>
-                <View>
+                      <View>
                         <Text style={style.inputHeader}>Bio</Text>
                         <TextInput
                           style={style.inputStyleBio}
                           value={values.bio}
-                          onBlur={handleBlur("bio")}
-                          onChangeText={handleChange("bio")}
+                          onBlur={handleBlur('bio')}
+                          onChangeText={handleChange('bio')}
                           placeholder="Tell a bit about yourself"
                           placeholderTextColor="#9ea6b5"
                           multiline={true}
@@ -223,20 +182,18 @@ class EditProfile extends Component {
                         </Text>
                       </View>
 
-                <View style={style.buttonsContainer}>
-                  <TouchableOpacity
-                    onPress={() => this.props.navigation.goBack()}>
-                    <Text style={style.cancelButton}>Cancel</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => handleSubmit
-                    ()}>
-                    <Text style={style.saveButton}>Save</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-              </View>
-              )}
+                      <View style={style.buttonsContainer}>
+                        <TouchableOpacity
+                          onPress={() => this.props.navigation.goBack()}>
+                          <Text style={style.cancelButton}>Cancel</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => handleSubmit()}>
+                          <Text style={style.saveButton}>Save</Text>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  </View>
+                )}
               </Formik>
             </ScrollView>
           </SafeAreaView>
@@ -249,7 +206,7 @@ class EditProfile extends Component {
 const mapStateToProps = (state) => {
   return {
     users: state.people.users,
-    userAccount: state.user.userFakeData
+    userAccount: state.user.userFakeData,
   };
 };
 
@@ -270,7 +227,6 @@ const style = StyleSheet.create({
   uploadPhotoContainer: {
     alignSelf: 'center',
     backgroundColor: '#515581',
-    // backgroundColor: "#B8A0FF",
     borderRadius: 100,
     width: 135,
     height: 135,
@@ -285,12 +241,8 @@ const style = StyleSheet.create({
     fontFamily: 'Montserrat-Regular',
   },
   image: {
-    height: 80,
-    width: 80,
-    borderRadius: 50,
     alignSelf: 'center',
     backgroundColor: '#515581',
-    // backgroundColor: "#B8A0FF",
     borderRadius: 100,
     width: 135,
     height: 135,
@@ -367,10 +319,10 @@ const style = StyleSheet.create({
     fontFamily: 'Montserrat-SemiBold',
   },
   errorText: {
-    color: "#F66E6E",
-    fontWeight: "bold",
+    color: '#F66E6E',
+    fontWeight: 'bold',
     marginBottom: 1,
     marginTop: 1,
-    textAlign: "center",
+    textAlign: 'center',
   },
 });

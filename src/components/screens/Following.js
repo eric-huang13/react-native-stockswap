@@ -5,12 +5,11 @@ import {
   TouchableOpacity,
   StyleSheet,
   SafeAreaView,
-  FlatList
+  FlatList,
 } from 'react-native';
 import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
-import FollowingBox from './FollowingBox'
-
+import FollowingBox from './FollowingBox';
 
 export class Following extends Component {
   constructor(props) {
@@ -20,24 +19,23 @@ export class Following extends Component {
     };
   }
 
- 
   handleChange = (text) => {
     this.setState({input: text});
   };
-   accountId = this.props.userAccount.id
+  accountId = this.props.userAccount.id;
 
-   navigationByCondition = item => {
+  navigationByCondition = (item) => {
     const {navigation} = this.props;
     if (item.id === this.accountId) {
       navigation.navigate({
         name: 'MyProfile',
         params: {id: item.id},
-      })
+      });
     } else {
       navigation.navigate({
         name: 'Profile',
-        params: {id: item.id}
-      })
+        params: {id: item.id},
+      });
     }
   };
 
@@ -45,40 +43,37 @@ export class Following extends Component {
     const {input} = this.state;
     const {users, userAccount} = this.props;
 
-    const accountId = userAccount.id
+    const accountId = userAccount.id;
 
     //will get actual follower data when backend hooked up
     //just using all people for styling purposes
     const filteredUsers = users.filter((item) =>
       item.name.toLowerCase().includes(input.toLowerCase()),
     );
-   
+
     return (
       <SafeAreaView style={style.mainContainer}>
-     
-          <View style={style.searchInputContainer}>
-            <View
-              style={style.searchInputIconContainer}>
-              <SearchInput />
-            </View>
-            <TextInput
-              style={style.searchInput}
-              placeholder="Search"
-              placeholderTextColor="lightgrey"
-              onChangeText={(text) => this.handleChange(text)}
-            />
+        <View style={style.searchInputContainer}>
+          <View style={style.searchInputIconContainer}>
+            <SearchInput />
           </View>
-          <FlatList
-          keyExtractor = { (item, index) => index.toString() }
-            style={style.listContainer}
-            data={filteredUsers}
-            renderItem={({item, index}) => (
-                <TouchableOpacity
-                onPress={()=>this.navigationByCondition(item)}>
-                <FollowingBox item={item} index={index}/>
-              </TouchableOpacity>
-            )}
+          <TextInput
+            style={style.searchInput}
+            placeholder="Search"
+            placeholderTextColor="lightgrey"
+            onChangeText={(text) => this.handleChange(text)}
           />
+        </View>
+        <FlatList
+          keyExtractor={(item, index) => index.toString()}
+          style={style.listContainer}
+          data={filteredUsers}
+          renderItem={({item, index}) => (
+            <TouchableOpacity onPress={() => this.navigationByCondition(item)}>
+              <FollowingBox item={item} index={index} />
+            </TouchableOpacity>
+          )}
+        />
       </SafeAreaView>
     );
   }
@@ -94,13 +89,12 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(Following);
 
 const style = StyleSheet.create({
-  mainContainer: { 
+  mainContainer: {
     backgroundColor: '#2a334a',
-    flex:1,
+    flex: 1,
   },
   searchInputContainer: {
     marginBottom: 15,
-   
   },
   searchInput: {
     paddingLeft: 40,
@@ -112,13 +106,11 @@ const style = StyleSheet.create({
     fontFamily: 'Montserrat-Italic',
     paddingVertical: 0,
   },
-  searchInputIconContainer:{
+  searchInputIconContainer: {
     position: 'absolute',
     zIndex: 1,
     left: 14,
     top: 10,
   },
-listContainer:{
-
-},
+  listContainer: {},
 });

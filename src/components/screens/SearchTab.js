@@ -18,7 +18,6 @@ export class SearchTab extends Component {
       companies: true,
       users: false,
       news: false,
-      
     };
   }
 

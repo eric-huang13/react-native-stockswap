@@ -9,31 +9,30 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import UserCommentReply from './UserCommentReply';
-// import {  Swipeable } from 'react-native-gesture-handler'; 
-
-
-
+// import {  Swipeable } from 'react-native-gesture-handler';
 
 class UserCommentList extends Component {
+  accountId = this.props.userAccount.id;
 
-  accountId = this.props.userAccount.id 
-
-   navigationByCondition = item => {
+  navigationByCondition = (item) => {
     const {navigation} = this.props;
     if (item.userId === this.accountId) {
       navigation.navigate({
         name: 'MyProfile',
         params: {id: item.id},
-      })
+      });
     } else {
       navigation.navigate({
         name: 'Profile',
-        params: {id: item.userId}      })
+        params: {id: item.userId},
+      });
     }
   };
   render() {
     const {comments, reply, userAccount} = this.props;
-    const postId = this.props.postId ? this.props.postId : this.props.route.params.postId 
+    const postId = this.props.postId
+      ? this.props.postId
+      : this.props.route.params.postId;
     const filteredComments = comments.filter(
       (comment) => comment.postId === postId,
     );
@@ -47,7 +46,7 @@ class UserCommentList extends Component {
         {filteredComments.map((item) => (
           // <Swipeable
           // renderLeftActions={rightAction}
-          
+
           // >
           <View key={item.id} style={style.itemContainer}>
             <View style={style.detailsContainer}>
@@ -56,10 +55,9 @@ class UserCommentList extends Component {
                 source={{uri: item.profileImg}}
               />
               <View style={style.nameBodyContainer}>
-              <TouchableOpacity
-                    key={item.id}
-                    onPress={()=>this.navigationByCondition(item)             
-                    }>
+                <TouchableOpacity
+                  key={item.id}
+                  onPress={() => this.navigationByCondition(item)}>
                   <Text style={style.name}>{item.name} </Text>
                 </TouchableOpacity>
                 <Text style={style.body}>{item.body} </Text>
@@ -73,12 +71,12 @@ class UserCommentList extends Component {
               </View>
             </View>
             <View>
-            <UserCommentReply
-              navigation={this.props.navigation}
-              reply={reply}
-              id={item.id}
-              userAccount={userAccount}
-            />
+              <UserCommentReply
+                navigation={this.props.navigation}
+                reply={reply}
+                id={item.id}
+                userAccount={userAccount}
+              />
             </View>
           </View>
           // </Swipeable>
@@ -88,25 +86,22 @@ class UserCommentList extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  return {   
+  return {
     comments: state.posts.comments,
     reply: state.posts.reply,
-    userAccount: state.user.userFakeData  
-
+    userAccount: state.user.userFakeData,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserCommentList);
 
-
 const style = StyleSheet.create({
   mainContainer: {
-    flex:1,
+    flex: 1,
     flexDirection: 'column',
     backgroundColor: '#2a334a',
     paddingVertical: 10,
@@ -132,18 +127,18 @@ const style = StyleSheet.create({
     marginVertical: 8,
   },
 
-  name: {    
+  name: {
     fontSize: 15,
     marginLeft: 8,
     color: '#FFFFFF',
-    fontFamily:'Montserrat-Bold',
-    marginBottom:3,
+    fontFamily: 'Montserrat-Bold',
+    marginBottom: 3,
   },
   body: {
     color: 'lightgrey',
     fontSize: 13.5,
     marginLeft: 8,
-    fontFamily:'Montserrat-Medium',
+    fontFamily: 'Montserrat-Medium',
   },
   postUserImage: {
     height: 53,
@@ -161,20 +156,20 @@ const style = StyleSheet.create({
   time: {
     fontSize: 12.5,
     color: 'lightgrey',
-    fontFamily:'Montserrat-Italic',
+    fontFamily: 'Montserrat-Italic',
   },
   likesContainer: {
     flexDirection: 'row',
   },
   likes: {
     color: '#FFFFFF',
-    fontFamily:'Montserrat-SemiBold',
-    fontSize:13,
+    fontFamily: 'Montserrat-SemiBold',
+    fontSize: 13,
   },
   reply: {
     color: '#B8A0FF',
     marginLeft: 16,
-    fontFamily:'Montserrat-SemiBold',
-    fontSize:13,
+    fontFamily: 'Montserrat-SemiBold',
+    fontSize: 13,
   },
 });

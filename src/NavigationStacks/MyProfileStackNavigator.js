@@ -1,7 +1,6 @@
 //React
 import React, {Component} from 'react';
-import {StyleSheet, TouchableOpacity, Text} from 'react-native'
-
+import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 
 //Navigation
 import {createStackNavigator} from '@react-navigation/stack';
@@ -12,92 +11,93 @@ import Profile from '../components/screens/Profile';
 import UserCommentList from '../components/screens/UserCommentList';
 import PostScreen from '../components/screens/PostScreen';
 import UserPortfolioList from '../components/screens/UserPortfolioList';
-import TermsAndConditions from '../components/screens/TermsAndConditions'
-import MyProfile from '../components/screens/MyProfile'
-import MyProfileSettings from '../components/screens/MyProfileSettings'
-import EditProfile from '../components/screens/EditProfile'
-import ChangeEmail from '../components/screens/ChangeEmail'
-import ChangePassword from '../components/screens/ChangePassword'
-import MyProfilePosts from '../components/screens/MyProfilePosts'
-import PasswordSuccess from '../components/screens/PasswordSuccess'
-import EmailSuccess from '../components/screens/EmailSuccess'
-import PrivacyPolicy from '../components/screens/PrivacyPolicy'
-import ManagePortfolio from '../components/screens/ManagePortfolio'
-import ManagePortfolioBox from '../components/screens/ManagePortfolioBox'
-import ManagePortfolioCompany from '../components/screens/ManagePortfolioCompany'
-import EditPost from '../components/screens/EditPost'
-import CreatePostPreview from '../components/screens/CreatePostPreview'
-import MyFollowers from '../components/screens/MyFollowers'
-import MyFollowing from '../components/screens/MyFollowing'
-import LikedPosts from '../components/screens/LikedPosts'
+import TermsAndConditions from '../components/screens/TermsAndConditions';
+import MyProfile from '../components/screens/MyProfile';
+import MyProfileSettings from '../components/screens/MyProfileSettings';
+import EditProfile from '../components/screens/EditProfile';
+import ChangeEmail from '../components/screens/ChangeEmail';
+import ChangePassword from '../components/screens/ChangePassword';
+import MyProfilePosts from '../components/screens/MyProfilePosts';
+import PasswordSuccess from '../components/screens/PasswordSuccess';
+import EmailSuccess from '../components/screens/EmailSuccess';
+import PrivacyPolicy from '../components/screens/PrivacyPolicy';
+import ManagePortfolio from '../components/screens/ManagePortfolio';
+import ManagePortfolioBox from '../components/screens/ManagePortfolioBox';
+import ManagePortfolioCompany from '../components/screens/ManagePortfolioCompany';
+import EditPost from '../components/screens/EditPost';
+import CreatePostPreview from '../components/screens/CreatePostPreview';
+import MyFollowers from '../components/screens/MyFollowers';
+import MyFollowing from '../components/screens/MyFollowing';
+import LikedPosts from '../components/screens/LikedPosts';
 
 const MyProfileStack = createStackNavigator();
 
 export default class MyProfileStackNavigator extends Component {
   render() {
     return (
-        <MyProfileStack.Navigator>
+      <MyProfileStack.Navigator>
         <MyProfileStack.Screen
           name="MyProfile"
           component={MyProfile}
-          options={({ navigation}) => ({
-            title:'My Profile',
+          options={({navigation}) => ({
+            title: 'My Profile',
             headerShown: true,
             headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-  
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',
             },
             headerRight: () => (
-              <TouchableOpacity onPress={() =>navigation.navigate('MyProfileSettings')}>
-                    <Text style={style.button}>Settings</Text>
-                  </TouchableOpacity>
-            ),          
+              <TouchableOpacity
+                onPress={() => navigation.navigate('MyProfileSettings')}>
+                <Text style={style.button}>Settings</Text>
+              </TouchableOpacity>
+            ),
           })}
         />
-  
-         <MyProfileStack.Screen
+
+        <MyProfileStack.Screen
           name="MyProfileSettings"
           component={MyProfileSettings}
-          options={({ navigation}) => ({
+          options={({navigation}) => ({
             title: 'Settings',
             headerShown: true,
             headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',
             },
             headerRight: () => (
-              <TouchableOpacity onPress={() =>navigation.navigate('EditProfile')}>
-                    <Text style={style.button}>Edit Profile</Text>
-                  </TouchableOpacity>
-            ),          
+              <TouchableOpacity
+                onPress={() => navigation.navigate('EditProfile')}>
+                <Text style={style.button}>Edit Profile</Text>
+              </TouchableOpacity>
+            ),
           })}
         />
         <MyProfileStack.Screen
           name="EditProfile"
           component={EditProfile}
-          options={{   
-            title: 'Settings',       
+          options={{
+            title: 'Settings',
             headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -110,12 +110,12 @@ export default class MyProfileStackNavigator extends Component {
           component={ChangeEmail}
           options={{
             headerShown: false,
-                headerStyle: {
+            headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -128,12 +128,12 @@ export default class MyProfileStackNavigator extends Component {
           component={ChangePassword}
           options={{
             headerShown: false,
-                headerStyle: {
+            headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -141,17 +141,17 @@ export default class MyProfileStackNavigator extends Component {
             },
           }}
         />
-         <MyProfileStack.Screen
+        <MyProfileStack.Screen
           name="PasswordSuccess"
           component={PasswordSuccess}
           options={{
             headerShown: false,
-                headerStyle: {
+            headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -159,17 +159,17 @@ export default class MyProfileStackNavigator extends Component {
             },
           }}
         />
-         <MyProfileStack.Screen
+        <MyProfileStack.Screen
           name="EmailSuccess"
           component={EmailSuccess}
           options={{
             headerShown: false,
-                headerStyle: {
+            headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -177,7 +177,7 @@ export default class MyProfileStackNavigator extends Component {
             },
           }}
         />
-         <MyProfileStack.Screen
+        <MyProfileStack.Screen
           name="TermsAndConditions"
           component={TermsAndConditions}
           options={{
@@ -185,10 +185,9 @@ export default class MyProfileStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-  
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -204,10 +203,9 @@ export default class MyProfileStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-  
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -220,40 +218,35 @@ export default class MyProfileStackNavigator extends Component {
           component={MyProfilePosts}
           options={{
             title: 'All my posts',
-                headerStyle: {
+            headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-  
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-            },
+           
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',
             },
           }}
         />
-        
+
         <MyProfileStack.Screen
           name="PostScreen"
           component={PostScreen}
           options={({route}) => ({
             title: route.params.name,
-  
+
             headerShown: true,
-  
+
             headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-  
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -261,7 +254,7 @@ export default class MyProfileStackNavigator extends Component {
             },
           })}
         />
-  
+
         <MyProfileStack.Screen
           name="Comments"
           component={UserCommentList}
@@ -269,10 +262,9 @@ export default class MyProfileStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-  
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -288,10 +280,9 @@ export default class MyProfileStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-  
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -307,14 +298,13 @@ export default class MyProfileStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#313c58',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-  
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -330,10 +320,9 @@ export default class MyProfileStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-  
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -349,10 +338,9 @@ export default class MyProfileStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-  
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -368,10 +356,9 @@ export default class MyProfileStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-  
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -379,7 +366,7 @@ export default class MyProfileStackNavigator extends Component {
             },
           }}
         />
-            <MyProfileStack.Screen
+        <MyProfileStack.Screen
           name="ManagePortfolioCompany"
           component={ManagePortfolioCompany}
           options={{
@@ -387,10 +374,9 @@ export default class MyProfileStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-  
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -406,10 +392,9 @@ export default class MyProfileStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-  
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -425,10 +410,9 @@ export default class MyProfileStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-  
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -444,10 +428,9 @@ export default class MyProfileStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-  
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -463,18 +446,17 @@ export default class MyProfileStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-  
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',
             },
           }}
-        />  
-         <MyProfileStack.Screen
+        />
+        <MyProfileStack.Screen
           name="LikedPosts"
           component={LikedPosts}
           options={{
@@ -482,30 +464,26 @@ export default class MyProfileStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-  
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',
             },
           }}
-        />       
-             
-        
+        />
       </MyProfileStack.Navigator>
-    )
+    );
   }
 }
 
 const style = StyleSheet.create({
-    button:{
-      fontSize:14,
-      color:'#B8A0FF',
-      marginRight:12,
-      fontFamily:'Montserrat-SemiBold',
-  
-    },
-  })
+  button: {
+    fontSize: 14,
+    color: '#B8A0FF',
+    marginRight: 12,
+    fontFamily: 'Montserrat-SemiBold',
+  },
+});

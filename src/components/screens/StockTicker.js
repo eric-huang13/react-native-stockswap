@@ -54,25 +54,20 @@ export default connect(mapStateToProps)(StockTicker);
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     backgroundColor: '#2e3955',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 6,
   },
-  textstyle: {
-    
-  },
+  textstyle: {},
   marqueeSymbol: {
-    color:'#1AB968',
     color: '#91f2b1',
     fontSize: 14,
-    fontFamily:'Montserrat-Bold',
+    fontFamily: 'Montserrat-Bold',
   },
   marqueePercentage: {
-    color:'#1AB968',
     color: '#91f2b1',
     fontSize: 13,
-    fontFamily:'Montserrat-Medium',
+    fontFamily: 'Montserrat-Medium',
   },
 });

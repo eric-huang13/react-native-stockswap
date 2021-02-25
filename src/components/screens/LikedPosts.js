@@ -6,44 +6,37 @@ import {
   Image,
   TouchableOpacity,
   SafeAreaView,
-  FlatList
+  FlatList,
 } from 'react-native';
 import {connect} from 'react-redux';
-import MyProfilePostBox from './MyProfilePostBox'
+import MyProfilePostBox from './MyProfilePostBox';
 
 class LikedPosts extends Component {
-
   render() {
     const ListHeader = () => {
-      //View to set in Header
-      return (
-        <View key={user.id}>
-       
-      </View>
-      );
+      return <View key={user.id} />;
     };
-    const {user, post, } = this.props;
-    const id = this.props.user.id
+    const {user, post} = this.props;
+    const id = this.props.user.id;
 
     //Will instead get liked posts, current data just placeholder
-    const selectedPosts = post.filter((user) => user.userId !== id); 
+    const selectedPosts = post.filter((user) => user.userId !== id);
 
     return (
       <SafeAreaView style={style.container}>
-              
-              <FlatList
-            keyExtractor = { (item, index) => index.toString() }
-            ListHeaderComponent={ListHeader}
-            data={selectedPosts}
-            numColumns={3}
-            renderItem={({item, index}) => (  
-               <MyProfilePostBox
-               key={item.id}
-               item={item}
-               navigation={this.props.navigation}
-               />
-            )}
-          />
+        <FlatList
+          keyExtractor={(item, index) => index.toString()}
+          ListHeaderComponent={ListHeader}
+          data={selectedPosts}
+          numColumns={3}
+          renderItem={({item, index}) => (
+            <MyProfilePostBox
+              key={item.id}
+              item={item}
+              navigation={this.props.navigation}
+            />
+          )}
+        />
       </SafeAreaView>
     );
   }
@@ -55,7 +48,7 @@ const mapStateToProps = (state) => {
     comments: state.posts.comments,
     users: state.people.users,
     reply: state.posts.reply,
-    user: state.user.userFakeData
+    user: state.user.userFakeData,
   };
 };
 

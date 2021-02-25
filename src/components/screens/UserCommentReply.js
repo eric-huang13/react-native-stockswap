@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
   Text,
   View,
@@ -6,7 +6,7 @@ import {
   Image,
   SafeAreaView,
   TouchableOpacity,
-} from "react-native";
+} from 'react-native';
 
 export default class UserCommentReply extends Component {
   constructor(props) {
@@ -18,22 +18,22 @@ export default class UserCommentReply extends Component {
   accountId = this.props.userAccount.id;
 
   navigationByCondition = (item) => {
-    const { navigation } = this.props;
+    const {navigation} = this.props;
     if (item.userId === this.accountId) {
       navigation.navigate({
-        name: "MyProfile",
-        params: { id: item.id },
+        name: 'MyProfile',
+        params: {id: item.id},
       });
     } else {
       navigation.navigate({
-        name: "Profile",
-        params: { id: item.userId },
+        name: 'Profile',
+        params: {id: item.userId},
       });
     }
   };
   render() {
-    const { reply, id } = this.props;
-    const { shouldShow } = this.state;
+    const {reply, id} = this.props;
+    const {shouldShow} = this.state;
 
     const filteredReply = reply.filter((reply) => reply.commentId === id);
 
@@ -46,8 +46,7 @@ export default class UserCommentReply extends Component {
                 this.setState({
                   shouldShow: !shouldShow,
                 })
-              }
-            >
+              }>
               <Text style={style.replyButton}>Hide replies</Text>
             </TouchableOpacity>
             {filteredReply.map((item) => (
@@ -55,13 +54,12 @@ export default class UserCommentReply extends Component {
                 <View style={style.detailsContainer}>
                   <Image
                     style={style.postUserImage}
-                    source={{ uri: item.profileImg }}
+                    source={{uri: item.profileImg}}
                   />
                   <View style={style.nameBodyContainer}>
                     <TouchableOpacity
                       key={item.id}
-                      onPress={() => this.navigationByCondition(item)}
-                    >
+                      onPress={() => this.navigationByCondition(item)}>
                       <Text style={style.name}>{item.name} </Text>
                     </TouchableOpacity>
 
@@ -84,8 +82,7 @@ export default class UserCommentReply extends Component {
               this.setState({
                 shouldShow: !shouldShow,
               })
-            }
-          >
+            }>
             <Text style={style.replyButton}>
               View {filteredReply.length} reply
             </Text>
@@ -96,8 +93,7 @@ export default class UserCommentReply extends Component {
               this.setState({
                 shouldShow: !shouldShow,
               })
-            }
-          >
+            }>
             <Text style={style.replyButton}>
               View {filteredReply.length} replies
             </Text>
@@ -110,8 +106,8 @@ export default class UserCommentReply extends Component {
 
 const style = StyleSheet.create({
   mainContainer: {
-    flexDirection: "column",
-    backgroundColor: "#2a334a",
+    flexDirection: 'column',
+    backgroundColor: '#2a334a',
     paddingVertical: 4,
     paddingLeft: 60,
     marginTop: 10,
@@ -120,36 +116,34 @@ const style = StyleSheet.create({
     marginBottom: 16,
   },
   detailsContainer: {
-    flexDirection: "row",
-    // marginBottom: 2,
+    flexDirection: 'row',
     paddingRight: 4,
   },
   nameBodyContainer: {
     flex: 1,
-    flexDirection: "column",
+    flexDirection: 'column',
   },
 
   commentContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
     paddingHorizontal: 8,
-    flexWrap: "wrap",
+    flexWrap: 'wrap',
     marginHorizontal: 6,
     marginVertical: 8,
   },
 
   name: {
-    marginLeft: 8,
     fontSize: 15,
     marginLeft: 8,
-    color: "#FFFFFF",
-    fontFamily: "Montserrat-Bold",
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat-Bold',
     marginBottom: 3,
   },
   body: {
     marginLeft: 8,
-    color: "lightgrey",
+    color: 'lightgrey',
     fontSize: 13.5,
-    fontFamily: "Montserrat-Medium",
+    fontFamily: 'Montserrat-Medium',
   },
   postUserImage: {
     height: 28,
@@ -157,36 +151,36 @@ const style = StyleSheet.create({
     borderRadius: 50,
   },
   belowCommentContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     paddingLeft: 36.5,
     paddingRight: 6,
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 4,
   },
   time: {
     fontSize: 12.5,
-    color: "lightgrey",
-    fontFamily: "Montserrat-Italic",
+    color: 'lightgrey',
+    fontFamily: 'Montserrat-Italic',
   },
   likesContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   likes: {
-    color: "#FFFFFF",
-    fontFamily: "Montserrat-SemiBold",
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat-SemiBold',
     fontSize: 13,
   },
   reply: {
-    color: "#B8A0FF",
+    color: '#B8A0FF',
     marginLeft: 16,
-    fontFamily: "Montserrat-SemiBold",
+    fontFamily: 'Montserrat-SemiBold',
     fontSize: 13,
   },
   replyButton: {
-    color: "#B8A0FF",
+    color: '#B8A0FF',
     marginLeft: 16,
-    fontFamily: "Montserrat-SemiBold",
+    fontFamily: 'Montserrat-SemiBold',
     fontSize: 13,
     marginBottom: 10,
   },

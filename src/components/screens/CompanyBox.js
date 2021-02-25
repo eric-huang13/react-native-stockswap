@@ -35,24 +35,24 @@ export class CompanyBox extends Component {
         <LinearGradient
           start={{x: 0.1, y: 0.1}}
           end={{x: 1, y: 1}}
-          colors={['#2C3957',  '#572C3D']}
+          colors={['#2C3957', '#572C3D']}
           style={style.linearGradient}>
           <SafeAreaView style={style.listContainer}>
-          <View style={style.topDetails}>
-            <Text style={{...style.symbol, color: '#D13C3D'}}>
-              {item.symbol}
-            </Text>
-            <Text style={style.title}>
-              {item.title.length < 15
-                ? `${item.title}`
-                : `${item.title.substring(0, 14)}...`}
-            </Text>
+            <View style={style.topDetails}>
+              <Text style={{...style.symbol, color: '#D13C3D'}}>
+                {item.symbol}
+              </Text>
+              <Text style={style.title}>
+                {item.title.length < 15
+                  ? `${item.title}`
+                  : `${item.title.substring(0, 14)}...`}
+              </Text>
             </View>
             <View style={style.bottomDetails}>
-            <Text style={style.price}>${item.price}</Text>
-            <Text style={{...style.percentage, color: '#D13C3D'}}>
-              {item.percentage}
-            </Text>
+              <Text style={style.price}>${item.price}</Text>
+              <Text style={{...style.percentage, color: '#D13C3D'}}>
+                {item.percentage}
+              </Text>
             </View>
           </SafeAreaView>
         </LinearGradient>
@@ -63,21 +63,21 @@ export class CompanyBox extends Component {
           colors={['#2C3957', '#5B449B']}
           style={style.linearGradient}>
           <SafeAreaView style={style.listContainer}>
-          <View style={style.topDetails}>
-            <Text style={{...style.symbol, color: '#B8A0FF'}}>
-              {item.symbol}
-            </Text>
-            <Text style={style.title}>
-              {item.title.length < 15
-                ? `${item.title}`
-                : `${item.title.substring(0, 14)}...`}
-            </Text>
+            <View style={style.topDetails}>
+              <Text style={{...style.symbol, color: '#B8A0FF'}}>
+                {item.symbol}
+              </Text>
+              <Text style={style.title}>
+                {item.title.length < 15
+                  ? `${item.title}`
+                  : `${item.title.substring(0, 14)}...`}
+              </Text>
             </View>
             <View style={style.bottomDetails}>
-            <Text style={style.price}>${item.price}</Text>
-            <Text style={{...style.percentage, color: '#1AB968'}}>
-              {item.percentage}
-            </Text>
+              <Text style={style.price}>${item.price}</Text>
+              <Text style={{...style.percentage, color: '#1AB968'}}>
+                {item.percentage}
+              </Text>
             </View>
           </SafeAreaView>
         </LinearGradient>
@@ -94,8 +94,6 @@ const style = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 3,
     borderRadius: 12,
-    // height: 109,
-    // width: 117,
     height: 120,
     width: 127,
     flexDirection: 'column',
@@ -118,9 +116,8 @@ const style = StyleSheet.create({
   },
   bottomDetails: {},
   title: {
-    // fontSize: 12,
     fontSize: 13,
-    fontFamily:'Montserrat-Regular',
+    fontFamily: 'Montserrat-Regular',
     color: '#b3b3b3',
   },
   detailsContainer: {
@@ -129,21 +126,18 @@ const style = StyleSheet.create({
     marginLeft: 2,
   },
   symbol: {
-    // fontSize: 18,
     fontSize: 19,
     color: 'rgb(8, 11, 9)',
-    fontFamily:'Montserrat-Bold',
-
+    fontFamily: 'Montserrat-Bold',
   },
   percentage: {
     fontSize: 13,
     color: 'grey',
-    fontFamily:'Montserrat-SemiBold'
+    fontFamily: 'Montserrat-SemiBold',
   },
   price: {
-    // fontSize: 18,
     fontSize: 19,
     color: '#FFFFFF',
-    fontFamily:'Montserrat-Regular',
+    fontFamily: 'Montserrat-Regular',
   },
 });

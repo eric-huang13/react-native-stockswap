@@ -11,24 +11,19 @@ import Profile from '../components/screens/Profile';
 import UserCommentList from '../components/screens/UserCommentList';
 import PostScreen from '../components/screens/PostScreen';
 import UserPortfolioList from '../components/screens/UserPortfolioList';
-import MyProfile from '../components/screens/MyProfile'
-import MyProfilePosts from '../components/screens/MyProfilePosts'
-import Followers from '../components/screens/Followers'
-import Following from '../components/screens/Following'
-import EditPost from'../components/screens/EditPost'
-import CreatePostPreview from'../components/screens/CreatePostPreview'
-
-
-
-
-
+import MyProfile from '../components/screens/MyProfile';
+import MyProfilePosts from '../components/screens/MyProfilePosts';
+import Followers from '../components/screens/Followers';
+import Following from '../components/screens/Following';
+import EditPost from '../components/screens/EditPost';
+import CreatePostPreview from '../components/screens/CreatePostPreview';
 
 const HomeStack = createStackNavigator();
 
 export default class HomeStackNavigator extends Component {
   render() {
     return (
-        <HomeStack.Navigator>
+      <HomeStack.Navigator>
         <HomeStack.Screen
           name="HomeTab"
           component={HomeScreen}
@@ -48,10 +43,9 @@ export default class HomeStackNavigator extends Component {
           component={PostScreen}
           options={({route}) => ({
             title: route.params.name,
-            
-  
+
             headerShown: true,
-  
+
             headerStyle: {
               backgroundColor: '#394463',
             },
@@ -61,12 +55,12 @@ export default class HomeStackNavigator extends Component {
             },
           })}
         />
-  
+
         <HomeStack.Screen
           name="UserCommentList"
           component={UserCommentList}
           options={{
-            title:'Comments',
+            title: 'Comments',
             headerStyle: {
               backgroundColor: '#394463',
             },
@@ -122,14 +116,14 @@ export default class HomeStackNavigator extends Component {
           name="MyProfile"
           component={MyProfile}
           options={{
-            title:'My Profile',
+            title: 'My Profile',
             headerStyle: {
               backgroundColor: '#394463',
             },
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',
-            },         
+            },
           }}
         />
         <HomeStack.Screen
@@ -137,12 +131,12 @@ export default class HomeStackNavigator extends Component {
           component={MyProfilePosts}
           options={{
             title: 'All my posts',
-                headerStyle: {
+            headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -155,12 +149,12 @@ export default class HomeStackNavigator extends Component {
           component={Followers}
           options={({route}) => ({
             title: route.params.name,
-                headerStyle: {
+            headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -168,17 +162,17 @@ export default class HomeStackNavigator extends Component {
             },
           })}
         />
-      <HomeStack.Screen
+        <HomeStack.Screen
           name="Following"
           component={Following}
           options={({route}) => ({
             title: route.params.name,
-                headerStyle: {
+            headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -194,10 +188,9 @@ export default class HomeStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-  
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -213,10 +206,9 @@ export default class HomeStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
-            headerTitleStyle:{
-              fontFamily:'Montserrat-Bold',
-              fontSize:16
-  
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: 16,
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -224,8 +216,7 @@ export default class HomeStackNavigator extends Component {
             },
           }}
         />
-      
       </HomeStack.Navigator>
-    )
+    );
   }
 }

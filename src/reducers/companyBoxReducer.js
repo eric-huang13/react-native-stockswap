@@ -94,14 +94,16 @@ const defaultState = {
       sector: 'Retail Trade',
       category: 'gainers',
       price: '12.73',
-      priceHistory: [100,99, 93, 87, 46, 40, 38, 45],
-      dates: [1606348800,
+      priceHistory: [100, 99, 93, 87, 46, 40, 38, 45],
+      dates: [
+        1606348800,
         1606435200,
         1606521600,
         1606608000,
         1606694400,
         1606780800,
-        1606867200,],
+        1606867200,
+      ],
     },
     {
       id: '3',
@@ -811,7 +813,6 @@ const defaultState = {
         'https://images.unsplash.com/photo-1476711656344-4ffe053f6b2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
     },
   ],
-  
 };
 
 const companyBoxReducer = (state = defaultState, action) => {

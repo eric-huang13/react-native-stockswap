@@ -20,35 +20,34 @@ export class UserList extends Component {
     super(props);
     this.state = {
       input: '',
-   
     };
   }
 
-   handleChange = (text) => {
+  handleChange = (text) => {
     this.setState({input: text});
   };
 
-  accountId = this.props.userAccount.id
+  accountId = this.props.userAccount.id;
 
-   navigationByCondition = item => {
+  navigationByCondition = (item) => {
     const {navigation} = this.props;
     if (item.id === this.accountId) {
       navigation.navigate({
         name: 'MyProfile',
         params: {id: item.id},
-      })
+      });
     } else {
       navigation.navigate({
         name: 'Profile',
         params: {id: item.id},
-      })
+      });
     }
   };
   render() {
     const {input} = this.state;
     const {users, userAccount} = this.props;
 
-    const accountId = userAccount.id
+    const accountId = userAccount.id;
 
     const filteredUsers = users.filter((item) =>
       item.name.toLowerCase().includes(input.toLowerCase()),
@@ -91,9 +90,8 @@ export class UserList extends Component {
                 {filteredUsers.map((item) => {
                   return (
                     <TouchableOpacity
-                    key={item.id}
-                    onPress={()=>this.navigationByCondition(item)             
-                    }>
+                      key={item.id}
+                      onPress={() => this.navigationByCondition(item)}>
                       <UserBox item={item} />
                     </TouchableOpacity>
                   );
@@ -111,7 +109,6 @@ const mapStateToProps = (state) => {
   return {
     users: state.people.users,
     userAccount: state.user.userFakeData,
-
   };
 };
 

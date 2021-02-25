@@ -55,7 +55,7 @@ export class CompanyCategory extends Component {
           </View>
 
           <FlatList
-          keyExtractor = { (item, index) => index.toString() }
+            keyExtractor={(item, index) => index.toString()}
             style={style.listContainer}
             data={filteredCategory}
             renderItem={({item, index}) => (
@@ -99,6 +99,6 @@ const style = StyleSheet.create({
     fontSize: 16.5,
     height: 40,
     paddingVertical: 0,
-    fontFamily:'Montserrat-Regular',
+    fontFamily: 'Montserrat-Regular',
   },
 });

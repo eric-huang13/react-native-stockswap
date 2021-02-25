@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {
   SafeAreaView,
   Text,
@@ -9,37 +9,33 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   ScrollView,
-  Image
-} from "react-native";
-import { ProfilePost } from "../../actions/user";
-import TriangleIcon from "../../icons/TriangleIcon";
-import { Formik } from "formik";
-import * as Yup from "yup";
-import LinearGradient from "react-native-linear-gradient";
+  Image,
+} from 'react-native';
+import {ProfilePost} from '../../actions/user';
+import TriangleIcon from '../../icons/TriangleIcon';
+import {Formik} from 'formik';
+import * as Yup from 'yup';
+import LinearGradient from 'react-native-linear-gradient';
 import {Login} from 'actions/user';
-
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
-    .label("Name")
-    .required("Name is required")
-    .min(2, "Must have at least 2 characters"),
+    .label('Name')
+    .required('Name is required')
+    .min(2, 'Must have at least 2 characters'),
 
-  username: Yup.string()
-    .label("username")
-    .required("Username is required"),
+  username: Yup.string().label('username').required('Username is required'),
 
   hashtag: Yup.string()
-    .label("hashtag")
-    .matches(/^#\w+$/, "Must be a hashtag")    
-    .min(2, "Hashtag must have more than 2 characters "),
+    .label('hashtag')
+    .matches(/^#\w+$/, 'Must be a hashtag')
+    .min(2, 'Hashtag must have more than 2 characters '),
 
   bio: Yup.string()
-    .label("bio")
-    .min(2, "Bio must have more than 2 characters "),
-    
-  image: Yup.string()
- .url("Must be a url"),
+    .label('bio')
+    .min(2, 'Bio must have more than 2 characters '),
+
+  image: Yup.string().url('Must be a url'),
 });
 
 class ProfileInfoForm extends Component {
@@ -47,51 +43,44 @@ class ProfileInfoForm extends Component {
     super(props);
 
     this.state = {
-      privacy: "Visible for all",
+      privacy: 'Visible for all',
       shouldShow: false,
     };
   }
 
   dropDownSelect(setting) {
-    this.setState({ privacy: setting, shouldShow: false });
+    this.setState({privacy: setting, shouldShow: false});
   }
 
   render() {
-    const { AddProfile, userData, LoginUser } = this.props;
-    const { shouldShow } = this.state;
-  // console.log(userData)
+    const {AddProfile, userData, LoginUser} = this.props;
+    const {shouldShow} = this.state;
     return (
       <LinearGradient
-        start={{ x: 0.1, y: 1 }}
-        end={{ x: 0.1, y: 0.1 }}
-        colors={[
-          "#1D2842",
-          "#3d4b6e",
-        ]}
-        style={{ flex: 1 }}
-      >
+        start={{x: 0.1, y: 1}}
+        end={{x: 0.1, y: 0.1}}
+        colors={['#1D2842', '#3d4b6e']}
+        style={{flex: 1}}>
         <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : null}
-          style={{ flex: 1 }}
-        >
+          behavior={Platform.OS === 'ios' ? 'padding' : null}
+          style={{flex: 1}}>
           <SafeAreaView style={style.mainContainer}>
             <ScrollView>
               <Formik
                 initialValues={{
-                  id:userData.id,
-                  name: "",
-                  username: "",
-                  image: "",
-                  hashtag: "",
-                  bio: "",
-                  privacy: "public",
+                  id: userData.id,
+                  name: '',
+                  username: '',
+                  image: '',
+                  hashtag: '',
+                  bio: '',
+                  privacy: 'public',
                 }}
                 onSubmit={(values) => {
-                  console.log(values, "info");
-                  LoginUser()
+                  console.log(values, 'info');
+                  LoginUser();
                 }}
-                validationSchema={validationSchema}
-              >
+                validationSchema={validationSchema}>
                 {({
                   handleChange,
                   values,
@@ -105,23 +94,26 @@ class ProfileInfoForm extends Component {
                 }) => (
                   <View>
                     <Text style={style.header}>Fill Profile Info</Text>
-                    {values.image && !errors.image ? 
-                      <Image style={style.uploadPhotoContainer} source={{uri: values.image}} />
-                      :
-                    <View style={style.uploadPhotoContainer}>                      
-                      <Text style={style.uploadPhotoText}>
-                        Tap to upload your photo
-                      </Text>
-                    </View>
-                    }              
-                     <View style={style.topRow}>
+                    {values.image && !errors.image ?
+                      <Image
+                        style={style.uploadPhotoContainer}
+                        source={{uri: values.image}}
+                      />
+                     : 
+                      <View style={style.uploadPhotoContainer}>
+                        <Text style={style.uploadPhotoText}>
+                          Tap to upload your photo
+                        </Text>
+                      </View>
+                    }
+                    <View style={style.topRow}>
                       <View style={style.rowInputContainer}>
                         <Text style={style.inputHeader}>Name</Text>
                         <TextInput
                           style={style.inputStyle}
-                          onBlur={handleBlur("name")}
+                          onBlur={handleBlur('name')}
                           value={values.name}
-                          onChangeText={handleChange("name")}
+                          onChangeText={handleChange('name')}
                           placeholder="Enter your name"
                           placeholderTextColor="#9ea6b5"
                           returnKeyType="next"
@@ -138,8 +130,8 @@ class ProfileInfoForm extends Component {
                         <TextInput
                           style={style.inputStyle}
                           value={values.username}
-                          onBlur={handleBlur("username")}
-                          onChangeText={handleChange("username")}
+                          onBlur={handleBlur('username')}
+                          onChangeText={handleChange('username')}
                           placeholder="@example"
                           placeholderTextColor="#9ea6b5"
                           style={style.inputStyle}
@@ -156,8 +148,8 @@ class ProfileInfoForm extends Component {
                         <Text style={style.inputHeader}>Image</Text>
                         <TextInput
                           value={values.image}
-                          onBlur={handleBlur("image")}
-                          onChangeText={handleChange("image")}
+                          onBlur={handleBlur('image')}
+                          onChangeText={handleChange('image')}
                           placeholder="Image url"
                           placeholderTextColor="#9ea6b5"
                           style={style.inputStyle}
@@ -177,8 +169,8 @@ class ProfileInfoForm extends Component {
                         <TextInput
                           style={style.inputStyle}
                           value={values.hashtag}
-                          onBlur={handleBlur("hashtag")}
-                          onChangeText={handleChange("hashtag")}
+                          onBlur={handleBlur('hashtag')}
+                          onChangeText={handleChange('hashtag')}
                           placeholder="Add hashtags which describe you"
                           placeholderTextColor="#9ea6b5"
                           returnKeyType="next"
@@ -194,8 +186,8 @@ class ProfileInfoForm extends Component {
                         <TextInput
                           style={style.inputStyleBio}
                           value={values.bio}
-                          onBlur={handleBlur("bio")}
-                          onChangeText={handleChange("bio")}
+                          onBlur={handleBlur('bio')}
+                          onChangeText={handleChange('bio')}
                           placeholder="Tell a bit about yourself"
                           placeholderTextColor="#9ea6b5"
                           multiline={true}
@@ -216,8 +208,7 @@ class ProfileInfoForm extends Component {
                               this.setState({
                                 shouldShow: !shouldShow,
                               })
-                            }
-                          >
+                            }>
                             <View style={style.visibleButtonContainer}>
                               <Text style={style.middleDetailsText}>
                                 {this.state.privacy}
@@ -227,13 +218,12 @@ class ProfileInfoForm extends Component {
                           </TouchableOpacity>
                           {this.state.shouldShow ? (
                             <View style={style.dropdown}>
-                              {this.state.privacy == "Visible for all" ? (
+                              {this.state.privacy == 'Visible for all' ? (
                                 <TouchableOpacity
                                   onPress={() => {
-                                    this.dropDownSelect("Private");
-                                    setFieldValue("privacy", "private");
-                                  }}
-                                >
+                                    this.dropDownSelect('Private');
+                                    setFieldValue('privacy', 'private');
+                                  }}>
                                   <Text style={style.dropDownText}>
                                     Private
                                   </Text>
@@ -241,10 +231,9 @@ class ProfileInfoForm extends Component {
                               ) : (
                                 <TouchableOpacity
                                   onPress={() => {
-                                    this.dropDownSelect("Visible for all");
-                                    setFieldValue("privacy", "public");
-                                  }}
-                                >
+                                    this.dropDownSelect('Visible for all');
+                                    setFieldValue('privacy', 'public');
+                                  }}>
                                   <Text style={style.dropDownText}>
                                     Visible for all
                                   </Text>
@@ -255,9 +244,7 @@ class ProfileInfoForm extends Component {
                         </View>
                       </View>
                       <View style={style.buttonContainer}>
-                        <TouchableOpacity
-                          onPress={() => handleSubmit()}
-                        >
+                        <TouchableOpacity onPress={() => handleSubmit()}>
                           <Text style={style.button}>Next</Text>
                         </TouchableOpacity>
                       </View>
@@ -283,7 +270,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     AddProfile: (input) => dispatch(ProfilePost(input)),
     LoginUser: (input) => dispatch(Login(input)),
-
   };
 };
 
@@ -293,13 +279,11 @@ const style = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 8,
-    // backgroundColor: "#323e5b",
     paddingHorizontal: 24,
   },
   uploadPhotoContainer: {
-    alignSelf: "center",
-    backgroundColor: "#515581",
-    // backgroundColor: "#B8A0FF",
+    alignSelf: 'center',
+    backgroundColor: '#515581',
     borderRadius: 100,
     width: 135,
     height: 135,
@@ -308,22 +292,22 @@ const style = StyleSheet.create({
     paddingHorizontal: 10,
   },
   uploadPhotoText: {
-    color: "#FFFFFF",
-    textAlign: "center",
+    color: '#FFFFFF',
+    textAlign: 'center',
     fontSize: 14,
-    fontFamily: "Montserrat-Regular",
+    fontFamily: 'Montserrat-Regular',
   },
 
   header: {
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 16,
-    color: "#FFFFFF",
+    color: '#FFFFFF',
     marginBottom: 20,
-    fontFamily: "Montserrat-Bold",
+    fontFamily: 'Montserrat-Bold',
   },
   topRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   rowInputContainer: {
     width: 164,
@@ -331,104 +315,103 @@ const style = StyleSheet.create({
 
   inputHeader: {
     fontSize: 12,
-    color: "#babec8",
+    color: '#babec8',
     marginBottom: 1,
-    fontFamily: "Montserrat-Regular",
+    fontFamily: 'Montserrat-Regular',
   },
   inputStyle: {
     borderRadius: 8,
     padding: 8,
     marginTop: 1,
     fontSize: 16,
-    backgroundColor: "#536183",
+    backgroundColor: '#536183',
     opacity: 0.7,
-    fontFamily: "Montserrat-Italic",
-    color: "#9ea6b5",
+    fontFamily: 'Montserrat-Italic',
+    color: '#9ea6b5',
   },
   inputStyleBio: {
     borderRadius: 8,
-    backgroundColor: "#3e4d6c",
+    backgroundColor: '#3e4d6c',
     padding: 8,
     marginTop: 1,
     fontSize: 16,
-    textAlignVertical: "top",
-    backgroundColor: "#536183",
+    textAlignVertical: 'top',
+    backgroundColor: '#536183',
     opacity: 0.7,
-    fontFamily: "Montserrat-Italic",
-    color: "#9ea6b5",
+    fontFamily: 'Montserrat-Italic',
+    color: '#9ea6b5',
   },
   visibleButtonContainer: {
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderRadius: 6,
-    backgroundColor: "#3E4D6C",
-    // marginTop: 4,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    backgroundColor: '#3E4D6C',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   middleDetailsText: {
-    fontFamily: "Montserrat-Medium",
-    color: "#FFFFFF",
+    fontFamily: 'Montserrat-Medium',
+    color: '#FFFFFF',
     fontSize: 16,
   },
   dropdown: {
-    flexDirection: "column",
-    justifyContent: "space-between",
-    width: "100%",
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    width: '100%',
     marginTop: 41,
-    backgroundColor: "#3E4D6C",
+    backgroundColor: '#3E4D6C',
     zIndex: 1,
     paddingVertical: 4,
     height: 35,
-    position: "absolute",
+    position: 'absolute',
     borderBottomLeftRadius: 6,
     borderBottomRightRadius: 6,
   },
   dropDownText: {
-    color: "white",
+    color: 'white',
     fontSize: 16,
     marginHorizontal: 12,
-    fontFamily: "Montserrat-Medium",
+    fontFamily: 'Montserrat-Medium',
     marginBottom: 6,
   },
   dropDownTextReportContainer: {
     borderTopWidth: 1,
-    borderTopColor: "lightgrey",
+    borderTopColor: 'lightgrey',
     paddingTop: 4,
-    backgroundColor: "#2C3957",
+    backgroundColor: '#2C3957',
   },
   icon: {
     marginRight: 4,
   },
   button: {
-    alignSelf: "center",
-    backgroundColor: "#8b64ff",
-    color: "#FFFFFF",
-    textAlign: "center",
+    alignSelf: 'center',
+    backgroundColor: '#8b64ff',
+    color: '#FFFFFF',
+    textAlign: 'center',
     paddingVertical: 12,
     paddingHorizontal: 20,
     width: 150,
     borderRadius: 6,
     fontSize: 14,
-    fontFamily: "Montserrat-SemiBold",
+    fontFamily: 'Montserrat-SemiBold',
   },
   privacyText: {
-    color: "#babec8",
+    color: '#babec8',
     fontSize: 12,
     marginRight: 3,
     marginBottom: 3,
-    fontFamily: "Montserrat-Regular",
+    fontFamily: 'Montserrat-Regular',
   },
   buttonContainer: {
     marginTop: 20,
     marginBottom: 10,
   },
   errorText: {
-    color: "#F66E6E",
-    fontWeight: "bold",
+    color: '#F66E6E',
+    fontWeight: 'bold',
     marginBottom: 1,
     marginTop: 1,
-    textAlign: "center",
+    textAlign: 'center',
   },
 });

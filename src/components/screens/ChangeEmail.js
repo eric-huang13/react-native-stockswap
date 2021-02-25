@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {
-  Button,
   SafeAreaView,
   Text,
   View,
@@ -11,15 +10,10 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
-  ScrollView,
 } from 'react-native';
 import {Login} from 'actions/user';
-import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
-import SmallStockSwap from '../../icons/SmallStockSwap';
-import GoogleIcon from '../../icons/GoogleIcon';
-import AppleIcon from '../../icons/AppleIcon';
-import FacebookIcon from '../../icons/FacebookIcon';
+
 
 class ChangeEmail extends Component {
   constructor(props) {
@@ -28,7 +22,7 @@ class ChangeEmail extends Component {
     this.state = {
       newEmail: '',
       currentEmail: '',
-      errorInput:''
+      errorInput: '',
     };
   }
   handleEmailChange = (text) => {
@@ -38,32 +32,21 @@ class ChangeEmail extends Component {
   };
   errorInput(text) {
     this.setState({
-        error:text
-    })  
-  ;} 
+      error: text,
+    });
+  }
 
   handleSubmit = () => {
-    this.state.newEmail !== '' ?
-    this.props.navigation.navigate('EmailSuccess')
-    :
-    this.errorInput('email')
+    this.state.newEmail !== ''
+      ? this.props.navigation.navigate('EmailSuccess')
+      : this.errorInput('email');
   };
 
   componentDidMount() {
     const {users, userAccount} = this.props;
     this.setState({
       currentEmail: userAccount.email,
-    })
-
-    // const id = 1;
-    // const selectedUser = users.filter((user) => user.id === id);
-    // {
-    //   selectedUser.map((user) => {
-    //     this.setState({
-    //       currentEmail: user.email,
-    //     });
-    //   });
-    // }
+    });
   }
   render() {
     return (
@@ -81,19 +64,20 @@ class ChangeEmail extends Component {
                 <Text style={style.changeEmailHeader}>
                   Change email address
                 </Text>
-
                 <View style={style.currentEmailContainer}>
                   <Text style={style.inputHeader}>Current email</Text>
                   <Text style={style.currentEmail}>
                     {this.state.currentEmail}
                   </Text>
                 </View>
-
                 <View style={style.inputEmailContainer}>
                   <Text style={style.inputHeader}>New Email</Text>
-
                   <TextInput
-                    style={ this.state.error === 'email' ? {...style.inputStyle, backgroundColor:'#F66E6E'} : {...style.inputStyle}}
+                    style={
+                      this.state.error === 'email'
+                        ? {...style.inputStyle, backgroundColor: '#F66E6E'}
+                        : {...style.inputStyle}
+                    }
                     value={this.state.email}
                     onChangeText={(text) => this.handleEmailChange(text)}
                     placeholder="Enter new email address"
@@ -102,11 +86,8 @@ class ChangeEmail extends Component {
                     autoCapitalize="none"
                   />
                 </View>
-
                 <View>
-                  <TouchableOpacity
-                    onPress={this.handleSubmit
-                    }>
+                  <TouchableOpacity onPress={this.handleSubmit}>
                     <Text style={style.button}>Apply</Text>
                   </TouchableOpacity>
                 </View>

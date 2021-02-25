@@ -8,7 +8,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import CompanyStockGraph from './CompanyStockGraph';
-import CompanySymbolList from './CompanySymbolList'
+import CompanySymbolList from './CompanySymbolList';
 
 export class CompanyInformation extends Component {
   constructor(props) {
@@ -24,33 +24,30 @@ export class CompanyInformation extends Component {
       ],
       percent: '1.22',
       range: [10, 15],
-      timeFilter:'live',
-      xDates:[],
-      yPrices:[],
+      timeFilter: 'live',
+      xDates: [],
+      yPrices: [],
     };
   }
 
-
   //All logic needs to be handled before hand, either in backend or in action? Will change this when we actually have data coming in
-  
+
   componentDidMount() {
-    
+
         //X
-        const xDates = this.props.route.params.item.dates.map(
-          (item) => new Date(item * 1000),
-        );
-        //Y
-        const yPrices = this.props.route.params.item.priceHistory;
-        
-    
+    const xDates = this.props.route.params.item.dates.map(
+      (item) => new Date(item * 1000),
+    );
+    //Y
+    const yPrices = this.props.route.params.item.priceHistory;
+
+
         this.setState({
-          xDates:xDates,
-          yPrices:yPrices,
-          });
-    
-  
+      xDates: xDates,
+      yPrices: yPrices,
+    });
   }
-  
+
   componentDidUpdate(prevProps) {
     
     if (this.props.route.params.item.dates !== prevProps.route.params.item.dates) {
@@ -60,7 +57,7 @@ export class CompanyInformation extends Component {
         });
     }
    }
- 
+
 
   render() {
     //X and Y
@@ -86,11 +83,15 @@ export class CompanyInformation extends Component {
     const currentPrice = this.state.yPrices[yPrices.length - 1];
     // Growth/Loss percentage
     const percentChange = (
-      ((currentPrice - yPrices[yPrices.length - 7]) / yPrices[yPrices.length - 7]) *100).toFixed(2);
+      ((currentPrice - yPrices[yPrices.length - 7]) /
+        yPrices[yPrices.length - 7]) *
+      100
+    ).toFixed(2);
 
     // Growth/Loss percentage
     const percentChangeMonth = (
-      ((currentPrice - yPrices[yPrices.length - 30]) / yPrices[yPrices.length - 30]) *
+      ((currentPrice - yPrices[yPrices.length - 30]) /
+        yPrices[yPrices.length - 30]) *
       100
     ).toFixed(2);
 
@@ -98,12 +99,9 @@ export class CompanyInformation extends Component {
     //Total range of stock prices
     const newrange = [Math.min(...yPrices), Math.max(...yPrices)];
 
-   const newweek = yPrices.slice(yPrices.length - 7)
+    const newweek = yPrices.slice(yPrices.length - 7);
     //Week range of stock prices
-    const weekRange = [
-      Math.min(...newweek),
-      Math.max(...newweek),
-         ];
+    const weekRange = [Math.min(...newweek), Math.max(...newweek)];
 
     //Numbers to display graph numbers, can also use use built in graph numbers instead
     //Graph high number
@@ -116,14 +114,14 @@ export class CompanyInformation extends Component {
     const chartThreeQuarter = (chartHigh - numberDifference).toFixed(0);
     //Graph quarter number
     const chartOneQuarter = (chartLow + numberDifference).toFixed(0);
-// console.log(weekData, 'WEEKDATA')
+    // console.log(weekData, 'WEEKDATA')
     const {route} = this.props;
     const {graphData, percent, range} = this.state;
     return (
-      <SafeAreaView style={style.mainContainer}> 
+      <SafeAreaView style={style.mainContainer}>
        <CompanySymbolList navigation={this.props.navigation} symbol={route.params.item.symbol} itemId={route.params.item.id}/>
         <ScrollView>
-      
+
 
           {this.props.route.params ? (
             <View style={style.aboveGraphContainer}>
@@ -133,14 +131,20 @@ export class CompanyInformation extends Component {
               </View>
               <View style={style.titleView}>
                 <Text style={style.title}>{route.params.item.title}</Text>
-                <Text style={style.percentage}>({route.params.item.percentage})</Text>
+                <Text style={style.percentage}>
+                  ({route.params.item.percentage})
+                </Text>
               </View>
             </View>
           ) : (
             <Text>Company Information</Text>
           )}
           <View style={style.graphContainer}>
-            <CompanyStockGraph graphData={graphData} symbol={route.params.item.title} range={range} />
+            <CompanyStockGraph
+              graphData={graphData}
+              symbol={route.params.item.title}
+              range={range}
+            />
             <View style={style.graphNumbers}>
               <Text style={style.graphNumberText}>-{chartLow}</Text>
               <Text style={style.graphNumberText}>-{chartOneQuarter}</Text>
@@ -152,12 +156,12 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  timeFilter:'live'
+                  timeFilter: 'live',
                 })
               }>
               <Text
                 style={
-                  this.state.timeFilter ==='live'
+                  this.state.timeFilter === 'live'
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
@@ -166,8 +170,8 @@ export class CompanyInformation extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
-                this.setState({               
-                  timeFilter:'day'
+                this.setState({
+                  timeFilter: 'day',
                 })
               }>
               <Text
@@ -185,12 +189,12 @@ export class CompanyInformation extends Component {
                   graphData: weekData,
                   percent: percentChange,
                   range: weekRange,
-                  timeFilter:'week',
+                  timeFilter: 'week',
                 })
               }>
               <Text
                 style={
-                  this.state.timeFilter==='week'
+                  this.state.timeFilter === 'week'
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
@@ -203,12 +207,12 @@ export class CompanyInformation extends Component {
                   graphData: monthData,
                   percent: percentChangeMonth,
                   range: newrange,
-                  timeFilter:'month'
+                  timeFilter: 'month',
                 })
               }>
               <Text
                 style={
-                  this.state.timeFilter==='month'
+                  this.state.timeFilter === 'month'
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
@@ -218,12 +222,12 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  timeFilter:'3 months'
+                  timeFilter: '3 months',
                 })
               }>
               <Text
                 style={
-                  this.state.timeFilter==='3 months'
+                  this.state.timeFilter === '3 months'
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
@@ -233,12 +237,12 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  timeFilter:'year'
+                  timeFilter: 'year',
                 })
               }>
               <Text
                 style={
-                  this.state.timeFilter==='year'
+                  this.state.timeFilter === 'year'
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
@@ -248,12 +252,12 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  timeFilter:'all'
+                  timeFilter: 'all',
                 })
               }>
               <Text
                 style={
-                  this.state.timeFilter==='all'
+                  this.state.timeFilter === 'all'
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
@@ -332,34 +336,28 @@ export default CompanyInformation;
 const style = StyleSheet.create({
   mainContainer: {
     backgroundColor: '#2a334a',
-    flex:1,
+    flex: 1,
   },
   aboveGraphContainer: {
     paddingHorizontal: 4,
     paddingVertical: 14,
     backgroundColor: '#324165',
     marginBottom: 20,
-    // marginTop:50,
   },
   graphContainer: {
-    // borderWidth:1,
     flexDirection: 'row',
   },
   graphNumbers: {
-    // marginTop:170,
     flexDirection: 'column-reverse',
     justifyContent: 'space-around',
-    // alignItems:"flex-end",
     marginRight: 10,
     borderLeftWidth: 1,
     borderLeftColor: 'lightgrey',
   },
   graphNumberText: {
     color: 'lightgrey',
-    // fontWeight: 'bold',
     fontSize: 14.5,
     fontFamily: 'Montserrat-Medium',
-
   },
   symbolView: {
     paddingHorizontal: 15,
@@ -388,14 +386,12 @@ const style = StyleSheet.create({
   title: {
     color: 'lightgrey',
     fontFamily: 'Montserrat-Regular',
-    fontSize:12,
-
+    fontSize: 12,
   },
   percentage: {
     color: 'rgb(8, 177, 40)',
     fontSize: 12,
     fontFamily: 'Montserrat-Medium',
-
   },
   vitalsContainer: {
     marginTop: 6,
@@ -416,11 +412,9 @@ const style = StyleSheet.create({
   },
   vitalsLeftColumn: {
     flexDirection: 'column',
-    
   },
   vitalsRightColumn: {
     flexDirection: 'column',
-   
   },
   vitalsRow: {
     flexDirection: 'row',
@@ -485,7 +479,7 @@ const style = StyleSheet.create({
     fontSize: 16,
   },
   sectorData: {
-    color: '#FFFFFF', 
+    color: '#FFFFFF',
     fontFamily: 'Montserrat-SemiBold',
     fontSize: 16,
   },

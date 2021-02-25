@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
   Text,
   View,
@@ -9,14 +9,12 @@ import {
   ScrollView,
   TextInput,
   Modal,
-  
-} from "react-native";
-import UserCommentList from "./UserCommentList";
+} from 'react-native';
+import UserCommentList from './UserCommentList';
 import ReportModal from './ReportModal';
-import ShareToModal from './ShareToModal'
-import LikeInactiveIcon from "../../icons/LikeInactiveIcon";
-import CommentIcon from "../../icons/CommentIcon";
-
+import ShareToModal from './ShareToModal';
+import LikeInactiveIcon from '../../icons/LikeInactiveIcon';
+import CommentIcon from '../../icons/CommentIcon';
 
 export default class PostScreen extends Component {
   constructor(props) {
@@ -30,58 +28,60 @@ export default class PostScreen extends Component {
   accountId = this.props.route.params.userAccount.id;
 
   navigationByCondition = (post) => {
-    const { navigation } = this.props;
+    const {navigation} = this.props;
     if (post.userId === this.accountId) {
       navigation.navigate({
-        name: "MyProfile",
-        params: { id: post.id },
+        name: 'MyProfile',
+        params: {id: post.id},
       });
     } else {
       navigation.navigate({
-        name: "Profile",
-        params: { id: post.userId },
+        name: 'Profile',
+        params: {id: post.userId},
       });
     }
   };
   dropDownSelect(post, userAccount) {
-    this.setState({ shouldShow: false });
+    this.setState({shouldShow: false});
     this.props.navigation.navigate({
-      name: "EditPost",
-      params: { post, userAccount },
+      name: 'EditPost',
+      params: {post, userAccount},
     });
   }
   reportModal(item) {
-    this.setState({reportModalState:item, shouldShow:false})
+    this.setState({reportModalState: item, shouldShow: false});
   }
   shareModal(item) {
-    this.setState({shareModalState:item, shouldShow:false})
+    this.setState({shareModalState: item, shouldShow: false});
   }
 
   render() {
-    const { shouldShow, reportModalState, shareModalState } = this.state;
+    const {shouldShow, reportModalState, shareModalState} = this.state;
 
-    const {
-      post,
-      userAccount,
-    } = this.props.route.params;
+    const {post, userAccount} = this.props.route.params;
     return (
       <SafeAreaView style={style.container}>
-        <Modal transparent={true} visible={reportModalState} animationType="slide">
-          <ReportModal reportModal={this.reportModal.bind(this)}/>
+        <Modal
+          transparent={true}
+          visible={reportModalState}
+          animationType="slide">
+          <ReportModal reportModal={this.reportModal.bind(this)} />
         </Modal>
-        <Modal transparent={true} visible={shareModalState} animationType="slide">
-          <ShareToModal shareModal={this.shareModal.bind(this)}/>
+        <Modal
+          transparent={true}
+          visible={shareModalState}
+          animationType="slide">
+          <ShareToModal shareModal={this.shareModal.bind(this)} />
         </Modal>
         <ScrollView style={style.scrollContainer}>
           <View style={style.postNameContainer}>
             <TouchableOpacity
               key={post.id}
-              onPress={() => this.navigationByCondition(post)}
-            >
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
+              onPress={() => this.navigationByCondition(post)}>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <Image
                   style={style.postUserImage}
-                  source={{ uri: post.profileImg }}
+                  source={{uri: post.profileImg}}
                 />
                 <Text style={style.postUserName}>{post.name}</Text>
               </View>
@@ -94,16 +94,14 @@ export default class PostScreen extends Component {
                       this.setState({
                         shouldShow: !shouldShow,
                       })
-                    }
-                  >
+                    }>
                     <Text style={style.dotsButton}>...</Text>
                   </TouchableOpacity>
                 </View>
                 {this.state.shouldShow ? (
                   <View style={style.dropdownEdit}>
                     <TouchableOpacity
-                      onPress={() => this.dropDownSelect(post, userAccount)}
-                    >
+                      onPress={() => this.dropDownSelect(post, userAccount)}>
                       <Text style={style.dropDownText}>Edit post</Text>
                     </TouchableOpacity>
                     <View style={style.dropDownTextReportContainer}>
@@ -119,26 +117,22 @@ export default class PostScreen extends Component {
                     this.setState({
                       shouldShow: !shouldShow,
                     })
-                  }
-                >
+                  }>
                   <Text style={style.dotsButton}>...</Text>
                 </TouchableOpacity>
                 {this.state.shouldShow ? (
                   <View style={style.dropdown}>
                     <Text style={style.dropDownText}>Repost</Text>
                     <Text style={style.dropDownText}>Copy link</Text>
-                    <TouchableOpacity
-                      onPress={() => this.shareModal(true)}
-                    >
-                    <Text style={style.dropDownText}>Share to...</Text>
+                    <TouchableOpacity onPress={() => this.shareModal(true)}>
+                      <Text style={style.dropDownText}>Share to...</Text>
                     </TouchableOpacity>
                     <Text style={style.dropDownText}>
                       Turn on notifications
                     </Text>
                     <TouchableOpacity
                       key={post.id}
-                      onPress={() => this.reportModal(true)}
-                    >
+                      onPress={() => this.reportModal(true)}>
                       <View style={style.dropDownTextReportContainer}>
                         <Text style={style.dropDownText}>Report</Text>
                       </View>
@@ -148,7 +142,7 @@ export default class PostScreen extends Component {
               </View>
             )}
           </View>
-          <Image style={style.image} source={{ uri: post.img }} />
+          <Image style={style.image} source={{uri: post.img}} />
           <View style={style.detailsContainer}>
             <Text style={style.timestamp}>{post.timestamp}</Text>
 
@@ -185,21 +179,19 @@ export default class PostScreen extends Component {
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
-    // justifyContent: 'space-between',
+    flexDirection: 'column',
     paddingVertical: 21,
-    // paddingHorizontal: 10,
-    backgroundColor: "#2a334a",
+    backgroundColor: '#2a334a',
   },
 
   reportModalContainer: {
     flex: 1,
     marginTop: 310,
-    backgroundColor: "#3e4d6c",
+    backgroundColor: '#3e4d6c',
     borderRadius: 20,
     padding: 24,
-    alignItems: "center",
-    shadowColor: "#000",
+    alignItems: 'center',
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -208,17 +200,16 @@ const style = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  innerReportContainer:{
-    marginTop:10,
-    flexDirection:'column',
-    justifyContent:'space-between',
-    height:'50%',
-
+  innerReportContainer: {
+    marginTop: 10,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: '50%',
   },
   optionModalText: {
-    color: "#B8A0FF",
+    color: '#B8A0FF',
     marginLeft: 16,
-    fontFamily: "Montserrat-SemiBold",
+    fontFamily: 'Montserrat-SemiBold',
     fontSize: 13,
     marginBottom: 10,
   },
@@ -228,14 +219,14 @@ const style = StyleSheet.create({
   },
   image: {
     height: 184,
-    width: "100%",
+    width: '100%',
     borderRadius: 10,
   },
   postNameContainer: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 9,
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
   },
   postUserImage: {
     height: 38,
@@ -243,121 +234,118 @@ const style = StyleSheet.create({
     borderRadius: 50,
   },
   postUserName: {
-    color: "#FFFFFF",
+    color: '#FFFFFF',
     fontSize: 16,
     marginLeft: 8,
-    fontFamily: "Montserrat-Bold",
+    fontFamily: 'Montserrat-Bold',
   },
   detailsContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginTop: 8,
   },
   likesContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
   },
   timestamp: {
     fontSize: 12.5,
-    color: "lightgrey",
-    fontFamily: "Montserrat-Italic",
+    color: 'lightgrey',
+    fontFamily: 'Montserrat-Italic',
   },
   iconContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   likes: {
     fontSize: 16,
-    color: "lightgrey",
-    fontFamily: "Montserrat-Medium",
+    color: 'lightgrey',
+    fontFamily: 'Montserrat-Medium',
     marginLeft: 3,
     marginRight: 14,
   },
   comments: {
     fontSize: 16,
-    color: "lightgrey",
-    fontFamily: "Montserrat-Medium",
+    color: 'lightgrey',
+    fontFamily: 'Montserrat-Medium',
     marginRight: 1,
     marginLeft: 3,
   },
   body: {
     fontSize: 15,
-    color: "#FFFFFF",
+    color: '#FFFFFF',
     marginTop: 10,
     marginBottom: 2,
     borderBottomWidth: 0.7,
-    borderBottomColor: "rgba(158, 150, 150, .4)",
-    // borderBottomColor:'#CBCDD7',
+    borderBottomColor: 'rgba(158, 150, 150, .4)',
     paddingBottom: 18,
-    fontFamily: "Montserrat-Medium",
+    fontFamily: 'Montserrat-Medium',
   },
 
   dotsDropdownContainer: {
-    flexDirection: "column",
-    justifyContent: "space-evenly",
-    alignContent: "center",
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignContent: 'center',
   },
   dotsButton: {
-    alignSelf: "flex-end",
-    color: "white",
-    fontWeight: "bold",
+    alignSelf: 'flex-end',
+    color: 'white',
+    fontWeight: 'bold',
     fontSize: 20,
     marginBottom: 9,
   },
   dropdownEdit: {
     flex: 1,
-    flexDirection: "column",
-    justifyContent: "space-between",
-    width: "100%",
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    width: '100%',
     marginTop: 1,
     marginBottom: -77,
-    backgroundColor: "#2C3957",
+    backgroundColor: '#2C3957',
     zIndex: 1,
     paddingVertical: 6,
-    // paddingHorizontal:10,
   },
   dropdown: {
     flex: 1,
-    flexDirection: "column",
-    justifyContent: "space-between",
-    width: "100%",
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    width: '100%',
     marginTop: 1,
     marginBottom: -153,
-    backgroundColor: "#2C3957",
+    backgroundColor: '#2C3957',
     zIndex: 1,
     paddingVertical: 6,
-    // paddingHorizontal:10,
   },
   dropDownText: {
-    color: "white",
+    color: 'white',
     fontSize: 16,
     marginHorizontal: 12,
     paddingVertical: 2,
-    fontFamily: "Montserrat-Medium",
+    fontFamily: 'Montserrat-Medium',
   },
   dropDownTextReportContainer: {
     borderTopWidth: 1,
-    borderTopColor: "lightgrey",
+    borderTopColor: 'lightgrey',
     paddingTop: 6,
-    backgroundColor: "#2C3957",
+    backgroundColor: '#2C3957',
   },
   searchInputContainer: {
-    backgroundColor: "#2C3957",
+    backgroundColor: '#2C3957',
     marginBottom: -10,
     paddingHorizontal: 10,
   },
   searchInput: {
     marginTop: 10,
     paddingLeft: 20,
-    alignContent: "center",
-    backgroundColor: "#3e4d6c",
-    color: "lightgrey",
+    alignContent: 'center',
+    backgroundColor: '#3e4d6c',
+    color: 'lightgrey',
     fontSize: 15,
     height: 36,
-    fontFamily: "Montserrat-Italic",
+    fontFamily: 'Montserrat-Italic',
     paddingVertical: 10,
     borderRadius: 6,
   },

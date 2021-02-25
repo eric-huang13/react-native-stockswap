@@ -14,8 +14,7 @@ class HomeScreen extends Component {
     super(props);
 
     this.state = {
-      token: "",  
-      
+      token: "",        
     };
   }
   render() {
@@ -36,8 +35,7 @@ class HomeScreen extends Component {
     return (
       <SafeAreaView style={style.mainContainer}>
         <ScrollView>
-          <StockTicker />
-          
+          <StockTicker />         
 
           {posts.map((post) => (
             <UserPosts
@@ -53,7 +51,6 @@ class HomeScreen extends Component {
           <Button title="Logout Button" onPress={() => LogoutUser()} />
           <Text>{this.state.token}</Text>
           <Button title="Get Token" onPress={() => getData()} />
-
         </ScrollView>
       </SafeAreaView>
     );

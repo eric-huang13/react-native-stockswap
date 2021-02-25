@@ -5,7 +5,7 @@ import {LinearGradient, Stop} from 'react-native-svg';
 
 export default class PortfolioGraph extends Component {
   render() {
-    const lineColor = this.props.percent > 0 ? "#91f2b1" : "#F66E6E"
+    const lineColor = this.props.percent > 0 ? '#91f2b1' : '#F66E6E';
     const fillGradient = (props) => {
       return (
         <LinearGradient x1="40%" y1="0%" x2="40%" y2="100%" {...props}>
