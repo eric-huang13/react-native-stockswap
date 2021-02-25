@@ -78,7 +78,7 @@ const SignUp = ({ RegisterUser, navigation, userData, loading }) => {
     loading === true ? 
     Toast.show({
       type:'info',
-      text1: 'Sending credentials',
+      text2: 'Sending credentials',
       
     })
     :

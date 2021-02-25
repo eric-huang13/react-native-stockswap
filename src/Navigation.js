@@ -36,76 +36,88 @@ import SearchStackNavigator from './NavigationStacks/SearchStackNavigator'
 
 //toast
 import Toast, { BaseToast } from 'react-native-toast-message';
+import successToast from './icons/successToast.png'
+import errorToast from './icons/errorToast.png'
+import infoToast from './icons/infoToast.png'
+
 
 const toastConfig = {
-  success: ({ text1, ...rest }) => (
+  success: ({ text1, text2, ...rest }) => (
     <BaseToast
       {...rest}
-      style={{ borderLeftColor: '#8B64FF', backgroundColor:'#FFFFFF' }}
-      contentContainerStyle={{ paddingHorizontal: 15 }}
+      style={{  borderLeftColor: '#8B64FF', backgroundColor:'#8B64FF',  }}
+      onTrailingIconPress={() => {
+        Toast.hide();
+     }} 
+    //  leadingIcon={successToast}
+      contentContainerStyle={{ paddingHorizontal: 15, alignItems:'center'  }}
       text1Style={{
         fontSize: 15,
-        fontWeight: 'bold',
-        color:'#8B64FF'
+        color:'#FFFFFF',
+        fontFamily:'Montserrat-Medium'
+      }}
+      text2Style={{
+        fontSize: 15,
+        color:'#FFFFFF',
+        fontFamily:'Montserrat-Medium'
       }}
       
       text1={text1}
-      text2={null}
+      text2={text2}
     />
   ),
-  error: ({ text1, ...rest }) => (
+  error: ({ text1,text2, ...rest }) => (
     <BaseToast
       {...rest}
-      style={{ borderLeftColor: '#8B64FF', backgroundColor:'#FFFFFF' }}
-      contentContainerStyle={{ paddingHorizontal: 15 }}
+      style={{ borderLeftColor: '#8B64FF', backgroundColor:'#8B64FF',  }}
+      onTrailingIconPress={() => {
+        Toast.hide();
+     }} 
+    //  leadingIcon={errorToast}
+
+      contentContainerStyle={{ paddingHorizontal: 15, alignItems:'center'  }}
       text1Style={{
+        fontSize: 18,
+        color:'#FFFFFF',
+        fontFamily:'Montserrat-Bold'
+      }}
+      text2Style={{
         fontSize: 15,
-        fontWeight: 'bold',
-        color:'#8B64FF'
+        color:'#FFFFFF',
+        fontFamily:'Montserrat-Medium'
       }}
       
       text1={text1}
-      text2={null}
+      text2={text2}
     />
   ),
-  info: ({ text1, ...rest }) => (
+  info: ({ text1, text2, ...rest }) => (
     <BaseToast
       {...rest}
-      style={{ borderLeftColor: '#8B64FF', backgroundColor:'#FFFFFF' }}
-      contentContainerStyle={{ paddingHorizontal: 15 }}
+      style={{ borderLeftColor: '#8B64FF', backgroundColor:'#8B64FF', }}
+      onTrailingIconPress={() => {
+        Toast.hide();
+     }} 
+    //  leadingIcon={infoToast}
+
+      contentContainerStyle={{ paddingHorizontal: 15, alignItems:'center' }}
       text1Style={{
         fontSize: 15,
-        fontWeight: 'bold',
-        color:'#8B64FF'
+        color:'#FFFFFF',
+        fontFamily:'Montserrat-Medium'       
+
       }}
-      
+      text2Style={{
+        fontSize: 15,
+        color:'#FFFFFF',
+        fontFamily:'Montserrat-Medium'        
+
+      }}
       text1={text1}
-      text2={null}
+      text2={text2}
     />
   )
 };
-
-// const toastConfig = {
-//   success: ({ text1, props, ...rest }) => (
-//     <View style={{borderLeftColor: '#8B64FF', height: 60, width: '100%', backgroundColor: '#FFFFFF', }}>
-//       <Text>{text1}</Text>
-//       <Text>{props.guid}</Text>
-//     </View>
-//   ),
-//   error:({ text1, props, ...rest }) => (
-//     <View style={{ borderLeftColor: '#8B64FF',height: 60, width: '100%', backgroundColor: '#FFFFFF', }}>
-//       <Text>{text1}</Text>
-//       <Text>{props.guid}</Text>
-//     </View>
-//   ),
-//   info:({ text1, props, ...rest }) => (
-//     <View style={{ borderLeftColor: '#8B64FF',height: 60, width: '100%', backgroundColor: '#FFFFFF', }}>
-//       <Text>{text1}</Text>
-//       <Text>{props.guid}</Text>
-//     </View>
-//   ),
-//   any_custom_type: () => {}
-// };
 
 
 const Tab = createBottomTabNavigator();

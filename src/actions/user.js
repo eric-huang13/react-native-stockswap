@@ -19,14 +19,14 @@ export const Register = (input) => {
     navigate('ProfileInfoForm')
     Toast.show({
       type:'success',
-      text1: 'Sign up successful',      
+      text2: 'Sign up successful!',      
     });
 })
 
 .catch(error => {dispatch({ type: SIGNUP_ERROR, payload: error.response })
 Toast.show({
   type:'error',
-  text1: 'Please try registering with a different email.',  
+  text2: 'Email already taken.',  
   
 });
 
@@ -106,8 +106,8 @@ export const Login = (input) => {
         dispatch({ type: SIGNUP_ERROR, payload: error.response });
         Toast.show({
           type:'error',
-          topOffset: 30,
-          text1: 'Incorrect email or password',
+          text1:'Error',
+          text2: 'Incorrect email or password.',
           
         });
       });
@@ -133,7 +133,7 @@ export const Logout = () => {
     Toast.show({
       type:'success',
       topOffset: 30,
-      text1: 'You have been logged out',
+      text2: 'You have been successfully logged out.',
       
     });
   }}

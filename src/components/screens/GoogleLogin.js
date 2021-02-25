@@ -43,8 +43,9 @@ const isSignedIn = async () => {
     } else {
       Toast.show({
         type:'info',
-        topOffset: 30,
-        text1: 'Please Login to google',
+        // topOffset: 30,
+        // text1: 'Please Login to google',
+        text2:'Please Login to google'
         
         
       });
@@ -96,7 +97,6 @@ const toastConfig = {
 };
 return (
     <View style={styles.main}>
-      <Text>hey</Text>
       {!user.idToken ? 
         <GoogleSigninButton 
           style={{ width: 192, height: 48 }}
