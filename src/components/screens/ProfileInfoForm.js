@@ -43,17 +43,19 @@ class ProfileInfoForm extends Component {
     super(props);
 
     this.state = {
-      privacy: 'Visible for all',
+      isPrivate: false,
       shouldShow: false,
     };
   }
 
   dropDownSelect(setting) {
-    this.setState({privacy: setting, shouldShow: false});
+    this.setState({isPrivate: setting, shouldShow: false});
   }
 
   render() {
     const {AddProfile, userData, LoginUser} = this.props;
+    const {userInfo} = this.props.route.params;
+
     const {shouldShow} = this.state;
     return (
       <LinearGradient
@@ -68,13 +70,15 @@ class ProfileInfoForm extends Component {
             <ScrollView>
               <Formik
                 initialValues={{
-                  id: userData.id,
-                  name: '',
-                  username: '',
-                  image: '',
-                  hashtag: '',
-                  bio: '',
-                  privacy: 'public',
+                  email:userInfo.email,
+                  password:userInfo.password,
+                  termsVersion:userInfo.termsVersion,
+                  name:'',
+                  username:'',
+                  image:'',
+                  hashtag:'',
+                  bio:'',
+                  isPrivate:false,
                 }}
                 onSubmit={(values) => {
                   console.log(values, 'info');
@@ -211,18 +215,22 @@ class ProfileInfoForm extends Component {
                             }>
                             <View style={style.visibleButtonContainer}>
                               <Text style={style.middleDetailsText}>
-                                {this.state.privacy}
+                                {this.state.isPrivate == false ? 
+                                "Visible for all"
+                                :
+                                "Private"  
+                              }
                               </Text>
                               <TriangleIcon style={style.icon} />
                             </View>
                           </TouchableOpacity>
                           {this.state.shouldShow ? (
                             <View style={style.dropdown}>
-                              {this.state.privacy == 'Visible for all' ? (
+                              {this.state.isPrivate == false ? (
                                 <TouchableOpacity
                                   onPress={() => {
-                                    this.dropDownSelect('Private');
-                                    setFieldValue('privacy', 'private');
+                                    this.dropDownSelect(true);
+                                    setFieldValue('isPrivate', true);
                                   }}>
                                   <Text style={style.dropDownText}>
                                     Private
@@ -231,8 +239,8 @@ class ProfileInfoForm extends Component {
                               ) : (
                                 <TouchableOpacity
                                   onPress={() => {
-                                    this.dropDownSelect('Visible for all');
-                                    setFieldValue('privacy', 'public');
+                                    this.dropDownSelect(false);
+                                    setFieldValue('isPrivate', false);
                                   }}>
                                   <Text style={style.dropDownText}>
                                     Visible for all

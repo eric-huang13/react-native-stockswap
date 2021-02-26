@@ -69,11 +69,35 @@ export const RegisterGoogle = (input) => {
       });
   };
 };
-// export const Register = (form) => (dispatch) => {
-//   return dispatch({
-//     type:SIGNUP_SUCCESS, payload: form
-//   });
-// };
+
+
+export const Login = (input) => {
+  return (dispatch) => {
+    dispatch({type: LOGIN_START});
+    axios
+      .post('https://jiujitsux.herokuapp.com/api/users/login', input)
+      // .then((response) => {
+      //     console.log(response, 'response')
+      // })
+      .then((response) => {
+        deviceStorage.saveItem('token', response.data.token),
+          dispatch({type: LOGIN_SUCCESS, payload: response.data});
+        Toast.show({
+          type:'success',
+          text1: 'You have been logged in.',
+        });
+      })
+      .catch((error) => {
+        dispatch({type: SIGNUP_ERROR, payload: error.response});
+        Toast.show({
+          type: 'error',
+          text1: 'Error',
+          text2: 'Incorrect email or password.',
+        });
+      });
+  };
+};
+
 
 //Working POST with token sent on headers
 
@@ -97,33 +121,6 @@ export const RegisterGoogle = (input) => {
 
 //Ready for hookup Login
 
-export const Login = (input) => {
-  return (dispatch) => {
-    dispatch({type: LOGIN_START});
-    axios
-      .post('https://jiujitsux.herokuapp.com/api/users/login', input)
-      // .then((response) => {
-      //     console.log(response, 'response')
-      // })
-      .then((response) => {
-        deviceStorage.saveItem('token', response.data.token),
-          dispatch({type: LOGIN_SUCCESS, payload: response.data});
-        // Toast.show({
-        //   type:'success',
-        //   text1: 'You have been logged in',
-        // });
-      })
-
-      .catch((error) => {
-        dispatch({type: SIGNUP_ERROR, payload: error.response});
-        Toast.show({
-          type: 'error',
-          text1: 'Error',
-          text2: 'Incorrect email or password.',
-        });
-      });
-  };
-};
 
 // export const Login = () => (dispatch) => {
 //   return dispatch({
@@ -159,9 +156,7 @@ export const Logout = () => {
                     type: 'success',
                     text2: 'Profile updated successfully!',
                   });               
-              })
-          // .then(response =>{ deviceStorage.saveItem('token', response.data.token), dispatch({ type: EDITUSER_SUCCESS, payload: response.data })     
-                   
+              })                      
    .catch(error => {dispatch({ type: EDITUSER_ERROR, payload: error.response })
   console.log(error.response )
   Toast.show({
@@ -179,11 +174,9 @@ export const ProfilePost = (input) => {
     axios
       .post('https://jiujitsux.herokuapp.com/api/users/register', input)
 
-
     .then(response =>{ dispatch({ type: PROFILEPOST_SUCCESS, payload: response.data }); 
     // navigate('Login')
       })
-
       .catch((error) => {
         dispatch({type: PROFILEPOST_ERROR, payload: error.response});
         alert('Error creating profile');

@@ -99,7 +99,7 @@ const SignUp = ({RegisterUser, navigation, userData, loading}) => {
                 }}
                 validationSchema={reviewSchema}
                 onSubmit={(values, actions) => {
-                  // console.log(values, "Values")
+                  console.log(values, "Values")
                   // actions.resetForm()
                   // RegisterUser({
                   //     email:values.email,
@@ -108,11 +108,15 @@ const SignUp = ({RegisterUser, navigation, userData, loading}) => {
                   //     username:values.username,
                   // });
                   // RegisterUser(values);
-                  RegisterUser({
-                    email: values.email,
-                    password: values.password,
-                  });
+                  // RegisterUser({
+                  //   email: values.email,
+                  //   password: values.password,
+                  // });
                   // navigation.navigate("ProfileInfoForm")
+                  navigation.navigate({
+                    name: 'ProfileInfoForm',
+                    params: {userInfo:values},
+                  })
                 }}>
                 {(props) => (
                   // console.log(props.values, "formik"),
