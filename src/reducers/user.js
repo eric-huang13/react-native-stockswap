@@ -9,9 +9,6 @@ import {
   EDITUSER_START,
   EDITUSER_SUCCESS,
   EDITUSER_ERROR,
-  PROFILEPOST_START,
-  PROFILEPOST_SUCCESS,
-  PROFILEPOST_ERROR,
 } from 'constants';
 
 const defaultState = {
@@ -50,6 +47,7 @@ const userReducer = (state = defaultState, action) => {
       return {
         ...state,
         loading: false,
+        isLoggedIn: true,
         error: '',
         userData: action.payload,
       };
@@ -88,26 +86,6 @@ const userReducer = (state = defaultState, action) => {
         userData: action.payload,
       };
     case EDITUSER_ERROR:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      };
-    case PROFILEPOST_START:
-      return {
-        ...state,
-        loading: true,
-        error: '',
-      };
-    case PROFILEPOST_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        error: '',
-        userData: action.payload,
-        isLoggedIn: true,
-      };
-    case PROFILEPOST_ERROR:
       return {
         ...state,
         loading: false,

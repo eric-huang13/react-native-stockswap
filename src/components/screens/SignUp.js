@@ -75,7 +75,6 @@ const SignUp = ({RegisterUser, navigation, userData, loading}) => {
       : null;
   }, [loading]);
 
-  // console.log(userData,"USERDATA IN SIGNUP")
   return (
     <LinearGradient
       start={{x: 0.1, y: 1}}
@@ -92,34 +91,18 @@ const SignUp = ({RegisterUser, navigation, userData, loading}) => {
                 initialValues={{
                   email: '',
                   password: '',
-                  // fullname:"test name",
-                  // username:"test username"
                   passwordConfirmation: '',
                   termsVersion: '',
                 }}
                 validationSchema={reviewSchema}
                 onSubmit={(values, actions) => {
-                  console.log(values, "Values")
-                  // actions.resetForm()
-                  // RegisterUser({
-                  //     email:values.email,
-                  //     password:values.password,
-                  //     fullname:values.fullname,
-                  //     username:values.username,
-                  // });
-                  // RegisterUser(values);
-                  // RegisterUser({
-                  //   email: values.email,
-                  //   password: values.password,
-                  // });
-                  // navigation.navigate("ProfileInfoForm")
+                  console.log(values, "Values")                          
                   navigation.navigate({
                     name: 'ProfileInfoForm',
                     params: {userInfo:values},
                   })
                 }}>
                 {(props) => (
-                  // console.log(props.values, "formik"),
                   <View style={style.inner}>
                     <Modal
                       transparent={true}
@@ -222,27 +205,14 @@ const SignUp = ({RegisterUser, navigation, userData, loading}) => {
                             value={toggleCheckBox}
                             onValueChange={(newValue) =>
                               setToggleCheckBox(newValue)
-                            }
-                            on
-                            onChange={() => console.log(toggleCheckBox)}
-                            // onChange={() => props.setFieldValue('checkMark', toggleCheckBox)}
+                            }                        
                             tintColors={{
                               true: '#b8a0ff',
                               false: 'lightgrey',
                             }}
                           />
                           <TouchableOpacity onPress={() => handleTerms(true)}>
-                            {/* <Text
-                                style={
-                                  props.touched.termsVersion &&
-                              props.errors.termsVersion
-                                    ? { ...style.termsText, color: "#F66E6E" }
-                                    : { ...style.termsText }
-                                }
-                              >
-                                I agree with the Terms and Conditions
-                              </Text> */}
-                            <Text style={style.termsText}>
+                             <Text style={style.termsText}>
                               I agree with the Terms and Conditions
                             </Text>
                           </TouchableOpacity>
@@ -271,18 +241,6 @@ const SignUp = ({RegisterUser, navigation, userData, loading}) => {
             <View style={style.bottomButtonsContainer}>
               <Text style={style.orText}>--OR--</Text>
               <View style={style.alternateSignUpContainer}>
-                {/* <View style={style.alternateSignupInner}>
-                  <View style={style.signupIcon}>
-                    <GoogleIcon />
-                  </View>
-                  <TouchableOpacity
-                            onPress={() => navigation.navigate("GoogleLogin")}
-                          >
-                  <Text style={style.alternateSignUpButton}>
-                    SIGN UP WITH GOOGLE
-                  </Text>
-                  </TouchableOpacity>
-                </View> */}
                 <GoogleLogin />
                 <View style={style.alternateSignupInner}>
                   <View style={style.signupIcon}>

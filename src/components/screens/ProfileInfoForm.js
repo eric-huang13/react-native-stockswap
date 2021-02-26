@@ -11,12 +11,12 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
-import {ProfilePost} from '../../actions/user';
 import TriangleIcon from '../../icons/TriangleIcon';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import LinearGradient from 'react-native-linear-gradient';
-import {Login} from 'actions/user';
+import {Register} from '../../actions/user';
+
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -53,7 +53,7 @@ class ProfileInfoForm extends Component {
   }
 
   render() {
-    const {AddProfile, userData, LoginUser} = this.props;
+    const {RegisterUser, LoginUser} = this.props;
     const {userInfo} = this.props.route.params;
 
     const {shouldShow} = this.state;
@@ -82,7 +82,8 @@ class ProfileInfoForm extends Component {
                 }}
                 onSubmit={(values) => {
                   console.log(values, 'info');
-                  LoginUser();
+                  // RegisterUser(values);
+                  RegisterUser({email:values.email,password:values.password});
                 }}
                 validationSchema={validationSchema}>
                 {({
@@ -276,8 +277,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    AddProfile: (input) => dispatch(ProfilePost(input)),
-    LoginUser: (input) => dispatch(Login(input)),
+    RegisterUser: (input) => dispatch(Register(input)),
   };
 };
 
