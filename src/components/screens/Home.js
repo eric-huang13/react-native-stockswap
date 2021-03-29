@@ -19,18 +19,7 @@ class HomeScreen extends Component {
   }
   render() {
     const {isLoggedIn, LogoutUser, posts, comments, reply, userData, userAccount} = this.props;
-     const getData = async () => {
-    try {
-      const value = await AsyncStorage.getItem("token");
-      if (value !== null) {
-        this.setState({
-          token: value,
-        });
-      }
-    } catch (error) {
-      console.log('error')
-    }
-  };
+
     
     return (
       <SafeAreaView style={style.mainContainer}>
@@ -48,9 +37,7 @@ class HomeScreen extends Component {
             />
           ))}
           <Text>Is User Logged in: {'' + isLoggedIn} </Text>
-          <Button title="Logout Button" onPress={() => LogoutUser()} />
-          <Text>{this.state.token}</Text>
-          <Button title="Get Token" onPress={() => getData()} />
+          <Button title="Logout Button" onPress={() => LogoutUser()} />         
         </ScrollView>
       </SafeAreaView>
     );
