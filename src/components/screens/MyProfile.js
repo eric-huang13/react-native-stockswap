@@ -32,6 +32,28 @@ class Profile extends Component {
   timeFilterSelect(time) {
     this.setState({timeFilter: time});
   }
+  componentDidMount() {
+    const {user, post} = this.props;
+    const id = this.props.user.id;
+    const selectedPosts = post.filter((user) => user.userId === id);
+    
+        this.setState({
+          selectedPosts: selectedPosts,
+        });
+    
+  }
+
+  componentDidUpdate(prevProps) {
+    const {user, post} = this.props;
+    const id = this.props.user.id;
+    if (this.props.post !== prevProps.post) {
+      const selectedPosts = post.filter((user) => user.userId === id);
+    
+      this.setState({
+        selectedPosts: selectedPosts,
+      });
+    }
+  }
   render() {
     const ListHeader = () => {
       //View to set in Header
@@ -193,8 +215,7 @@ class Profile extends Component {
     };
     const {graphData, percent, range, timeFilter} = this.state;
     const {user, post} = this.props;
-    const id = this.props.user.id;
-    const selectedPosts = post.filter((user) => user.userId === id);
+    
 
     return (
       <SafeAreaView style={style.container}>
@@ -202,7 +223,7 @@ class Profile extends Component {
           <FlatList
             keyExtractor={(item, index) => index.toString()}
             ListHeaderComponent={ListHeader}
-            data={selectedPosts}
+            data={this.state.selectedPosts}
             numColumns={3}
             renderItem={({item, index}) => (
               <MyProfilePostBox
