@@ -14,41 +14,26 @@ import CommentIcon from '../../icons/CommentIcon';
 import {UserPost, EditPost} from '../../actions/posts';
 
 class CreatePostPreview extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      name: '',
-      profileImage: ' ',
-      enabled: '',
-      image: '',
-      body: '',
-    };
-  }
-  componentDidMount() {
+  render() {
+    const {UserPost, EditPost, userAccount} = this.props;
     const {data} = this.props.route.params;
-    const {userAccount} = this.props;
+    const id = this.props.route.params.edit;
+    
+    //for testing
+    const credentials = {
+      description: userAccount.name,
+      name: data.body,
+      image_url: userAccount.img,
+    };
 
-    this.setState({
+    const userObject = {
       id: userAccount.id,
       name: userAccount.name,
       profileImage: userAccount.img,
       enabled: data.enabled,
       image: data.image,
       body: data.body,
-    });
-  }
-
-  render() {
-    //for testing
-    const credentials = {
-      description: this.state.name,
-      name: this.state.body,
-      image_url: this.state.image,
-    };
-    const {UserPost, EditPost} = this.props;
-
-    const id = this.props.route.params.edit;
+    }
     return (
       <SafeAreaView style={style.container}>
         <ScrollView style={style.scrollContainer}>
@@ -56,13 +41,13 @@ class CreatePostPreview extends Component {
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Image
                 style={style.postUserImage}
-                source={{uri: this.state.profileImage}}
+                source={{uri: userObject.profileImage}}
               />
-              <Text style={style.postUserName}>{this.state.name}</Text>
+              <Text style={style.postUserName}>{userObject.name}</Text>
             </View>
           </View>
-          {this.state.image === '' ? null : (
-            <Image style={style.image} source={{uri: this.state.image}} />
+          {userObject.image === '' ? null : (
+            <Image style={style.image} source={{uri: userObject.image}} />
           )}
           <View style={style.detailsContainer}>
             <Text style={style.timestamp}>just now</Text>
@@ -78,7 +63,7 @@ class CreatePostPreview extends Component {
               </View>
             </View>
           </View>
-          <Text style={style.body}>{this.state.body}</Text>
+          <Text style={style.body}>{userObject.body}</Text>
           <View style={style.buttonsContainer}>
             <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
               <Text style={style.backButton}>Back</Text>
