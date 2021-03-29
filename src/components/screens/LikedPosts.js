@@ -12,10 +12,37 @@ import {connect} from 'react-redux';
 import MyProfilePostBox from './MyProfilePostBox';
 
 class LikedPosts extends Component {
-  render() {
-    const ListHeader = () => {
-      return <View key={user.id} />;
+  constructor(props) {
+    super(props);
+    this.state = {      
+      selectedPosts:[]
     };
+  }
+
+  componentDidMount() {
+    const {user, post} = this.props;
+    const id = this.props.user.id;
+
+    //Will instead get liked posts, current data just placeholder
+    const selectedPosts = post.filter((user) => user.userId !== id);
+        this.setState({
+          selectedPosts: selectedPosts,
+        });
+    
+  }
+
+  componentDidUpdate(prevProps) {
+    const {user, post} = this.props;
+    const id = this.props.user.id;
+    if (this.props.post !== prevProps.post) {
+      const selectedPosts = post.filter((user) => user.userId !== id);
+        this.setState({
+          selectedPosts: selectedPosts,
+        });
+    }
+  }
+  render() {
+    
     const {user, post} = this.props;
     const id = this.props.user.id;
 
@@ -26,7 +53,6 @@ class LikedPosts extends Component {
       <SafeAreaView style={style.container}>
         <FlatList
           keyExtractor={(item, index) => index.toString()}
-          ListHeaderComponent={ListHeader}
           data={selectedPosts}
           numColumns={3}
           renderItem={({item, index}) => (
