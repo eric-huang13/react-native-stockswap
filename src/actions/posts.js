@@ -7,7 +7,7 @@ import {
   EDITPOST_ERROR,
 } from 'constants';
 import axios from 'axios';
-import deviceStorage from '../components/screens/DeviceStorage';
+import deviceStorage from '../util/DeviceStorage';
 import apiInstance from '../util/axiosConfig';
 import {navigate} from '../../RootNavigation';
 
