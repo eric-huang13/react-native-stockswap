@@ -23,7 +23,7 @@ import GoogleIcon from '../../icons/GoogleIcon';
 import AppleIcon from '../../icons/AppleIcon';
 import FacebookIcon from '../../icons/FacebookIcon';
 import TermsAndConditions from './TermsAndConditions';
-import GoogleLogin from './GoogleLogin';
+import GoogleOauth from './GoogleOauth';
 
 import Toast from 'react-native-toast-message';
 
@@ -241,7 +241,7 @@ const SignUp = ({RegisterUser, navigation, userData, loading}) => {
             <View style={style.bottomButtonsContainer}>
               <Text style={style.orText}>--OR--</Text>
               <View style={style.alternateSignUpContainer}>
-                <GoogleLogin />
+                <GoogleOauth />
                 <View style={style.alternateSignupInner}>
                   <View style={style.signupIcon}>
                     <FacebookIcon />
