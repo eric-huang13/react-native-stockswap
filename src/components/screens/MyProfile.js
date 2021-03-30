@@ -27,37 +27,43 @@ class Profile extends Component {
       percent: '1.22',
       range: [10, 15],
       timeFilter: 'day',
-      selectedPosts:[]
+      selectedPosts:this.props.post.filter((user) => user.userId === this.props.user.id),
+      user:this.props.user
     };
   }
   timeFilterSelect(time) {
     this.setState({timeFilter: time});
   }
-  componentDidMount() {
-    const {post} = this.props;
-    const id = this.props.user.id;
-    const selectedPosts = post.filter((user) => user.userId === id);
+  
+  //  selectedPosts = this.props.post.filter((user) => user.userId === this.props.user.id)
+
+  // componentDidMount() {
+  //   const {post, user} = this.props;
+  //   const id = this.props.user.id;
+  //   const selectedPosts = post.filter((user) => user.userId === id);
     
-        this.setState({
-          selectedPosts: selectedPosts,
-        });
+  //       this.setState({
+  //         selectedPosts: selectedPosts,
+  //         user:user
+  //       });
     
-  }
+  // }
 
   componentDidUpdate(prevProps) {
-    const {post} = this.props;
+    const {post, user} = this.props;
     const id = this.props.user.id;
-    if (this.props.post !== prevProps.post) {
+    if (this.props.post !== prevProps.post || this.props.user !== prevProps.user) {
       const selectedPosts = post.filter((user) => user.userId === id);
     
       this.setState({
         selectedPosts: selectedPosts,
+        user:user
       });
     }
   }
   render() {   
     const {graphData, percent, range, timeFilter} = this.state;
-    const {user, post} = this.props;   
+    // const {user, post} = this.props;   
 
     return (
       <SafeAreaView style={style.container}>
@@ -65,11 +71,11 @@ class Profile extends Component {
           <FlatList
             keyExtractor={(item, index) => index.toString()}
             ListHeaderComponent={
-              <View key={user.id}>
+              <View key={this.state.user.id}>
               <View style={style.aboveGraphContainer}>
                 <View style={style.portfolioHeaderContainer}>
                   <Text style={style.portfolioHeader}>Portfolio</Text>
-                  <Text style={style.gain}>${user.gain}</Text>
+                  <Text style={style.gain}>${this.state.user.gain}</Text>
                 </View>
                 <View style={style.timeNumberContainer}>
                   <Text style={style.timeNumber}>
@@ -154,15 +160,15 @@ class Profile extends Component {
               </View>
               <View style={style.infoContainer}>
                 <View style={style.detailsRow}>
-                  <Image style={style.image} source={{uri: user.img}} />
+                  <Image style={style.image} source={{uri: this.state.user.img}} />
                   <View style={style.personalDetails}>
-                    <Text style={style.name}>{user.name}</Text>
-                    <Text style={style.username}>@{user.username}</Text>
-                    <Text style={style.hashtag}>{user.hashtag}</Text>
+                    <Text style={style.name}>{this.state.user.name}</Text>
+                    <Text style={style.username}>@{this.state.user.username}</Text>
+                    <Text style={style.hashtag}>{this.state.user.hashtag}</Text>
                   </View>
                 </View>
                 <View style={style.bioContainer}>
-                  <Text style={style.bio}>{user.bio}</Text>
+                  <Text style={style.bio}>{this.state.user.bio}</Text>
                 </View>
                 <View style={style.numberRow}>
                   <TouchableOpacity
@@ -173,16 +179,16 @@ class Profile extends Component {
                       })
                     }>
                     <View style={style.numberColumn}>
-                      <Text style={style.numberData}>{user.followers}</Text>
+                      <Text style={style.numberData}>{this.state.user.followers}</Text>
                       <Text style={style.numberText}>Followers</Text>
                     </View>
                   </TouchableOpacity>
                   <View style={style.numberColumn}>
-                    <Text style={style.numberData}>{user.posts}</Text>
+                    <Text style={style.numberData}>{this.state.user.posts}</Text>
                     <Text style={style.numberText}>Posts</Text>
                   </View>
                   <View style={style.numberColumn}>
-                    <Text style={style.numberData}>{user.trades}</Text>
+                    <Text style={style.numberData}>{this.state.user.trades}</Text>
                     <Text style={style.numberText}>Trades </Text>
                   </View>
                   <TouchableOpacity
@@ -193,7 +199,7 @@ class Profile extends Component {
                       })
                     }>
                     <View style={style.numberColumn}>
-                      <Text style={style.numberData}>{user.following}</Text>
+                      <Text style={style.numberData}>{this.state.user.following}</Text>
                       <Text style={style.numberText}>Following</Text>
                     </View>
                   </TouchableOpacity>
@@ -236,7 +242,9 @@ class Profile extends Component {
 }
 
 const mapStateToProps = (state) => {
+  
   return {
+
     post: state.posts.posts,
     comments: state.posts.comments,
     users: state.people.users,

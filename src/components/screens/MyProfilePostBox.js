@@ -10,24 +10,27 @@ import {connect} from 'react-redux';
 
 class MyProfilePosts extends Component {
   constructor(props) {
+    const filteredComments = props.comments.filter(
+          (comment) => comment.postId === props.item.id,
+        );
     super(props);
 
     this.state = {
-      filteredComments:[]
+      filteredComments:filteredComments
     };
   }
    
-  componentDidMount() {
-    const {comments, item} = this.props;
-    const filteredComments = comments.filter(
-      (comment) => comment.postId === item.id,
-    );
-    {
-        this.setState({
-          filteredComments: filteredComments,
-        });
-    }
-  }
+  // componentDidMount() {
+  //   const {comments, item} = this.props;
+  //   const filteredComments = comments.filter(
+  //     (comment) => comment.postId === item.id,
+  //   );
+  //   {
+  //       this.setState({
+  //         filteredComments: filteredComments,
+  //       });
+  //   }
+  // }
 
   componentDidUpdate(prevProps) {
     const {comments, item} = this.props;
