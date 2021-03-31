@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import {
-  Text,
-  View,
   StyleSheet,
-  Image,
-  TouchableOpacity,
   SafeAreaView,
   FlatList,
 } from 'react-native';
@@ -42,18 +38,12 @@ class LikedPosts extends Component {
     }
   }
   render() {
-    
-    const {user, post} = this.props;
-    const id = this.props.user.id;
-
-    //Will instead get liked posts, current data just placeholder
-    const selectedPosts = post.filter((user) => user.userId !== id);
 
     return (
       <SafeAreaView style={style.container}>
         <FlatList
           keyExtractor={(item, index) => index.toString()}
-          data={selectedPosts}
+          data={this.state.selectedPosts}
           numColumns={3}
           renderItem={({item, index}) => (
             <MyProfilePostBox
