@@ -27,32 +27,30 @@ class Profile extends Component {
       percent: '1.22',
       range: [10, 15],
       timeFilter: 'day',
-      selectedPosts:this.props.post.filter((user) => user.userId === this.props.user.id),
-      user:this.props.user
+      selectedPosts:[],
+      user:[]
     };
   }
   timeFilterSelect(time) {
     this.setState({timeFilter: time});
   }
-  
-  //  selectedPosts = this.props.post.filter((user) => user.userId === this.props.user.id)
-
-  // componentDidMount() {
-  //   const {post, user} = this.props;
-  //   const id = this.props.user.id;
-  //   const selectedPosts = post.filter((user) => user.userId === id);
+  componentDidMount() {
+    //fetch data()
+    const {post, user} = this.props;
+    const id = this.props.user.id;
+    const selectedPosts = post.filter((user) => user.userId === id);
     
-  //       this.setState({
-  //         selectedPosts: selectedPosts,
-  //         user:user
-  //       });
+        this.setState({
+          selectedPosts: selectedPosts,
+          user: user
+        });
     
-  // }
+  }
 
   componentDidUpdate(prevProps) {
     const {post, user} = this.props;
     const id = this.props.user.id;
-    if (this.props.post !== prevProps.post || this.props.user !== prevProps.user) {
+    if (this.props.post !== prevProps.post || this.props.user !== prevProps.user ) {
       const selectedPosts = post.filter((user) => user.userId === id);
     
       this.setState({
@@ -63,7 +61,7 @@ class Profile extends Component {
   }
   render() {   
     const {graphData, percent, range, timeFilter} = this.state;
-    // const {user, post} = this.props;   
+    const {user, post} = this.props;   
 
     return (
       <SafeAreaView style={style.container}>
@@ -242,9 +240,7 @@ class Profile extends Component {
 }
 
 const mapStateToProps = (state) => {
-  
   return {
-
     post: state.posts.posts,
     comments: state.posts.comments,
     users: state.people.users,
