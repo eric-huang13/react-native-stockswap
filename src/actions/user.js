@@ -105,30 +105,6 @@ export const Login = (input) => {
   };
 };
 
-// export const GoogleLogin = (input) => {
-//   return (dispatch) => {
-//     dispatch({type: LOGIN_START});
-//     axios
-//       .post('https://jiujitsux.herokuapp.com/api/users/login', input)
-//        .then((response) => {
-//         deviceStorage.saveItem('token', response.data.token),
-//           dispatch({type: LOGIN_SUCCESS, payload: response.data});
-//         Toast.show({
-//           type:'success',
-//           text2: 'You have been logged in.',
-//         });
-//       })
-//       .catch((error) => {
-//         dispatch({type: SIGNUP_ERROR, payload: error.response});
-//         Toast.show({
-//           type: 'error',
-//           text1: 'Error',
-//           text2: 'Incorrect email or password.',
-//         });
-//       });
-//   };
-// };
-
 export const GoogleLogin = () => { 
   return async dispatch => {
     dispatch({ type: GOOGLE_LOGIN_START });
@@ -204,19 +180,6 @@ export const GoogleLogout = () => {
 
 // })
 //   };
-// };
-
-
-// export const Login = () => (dispatch) => {
-//   return dispatch({
-//     type: LOGIN_SUCCESS,
-//   });
-// };
-
-// export const Logout = () => (dispatch) => {
-//   return dispatch({
-//     type: LOGOUT,
-//   });
 // };
 
 export const Logout = () => {

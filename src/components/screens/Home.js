@@ -3,20 +3,12 @@ import UserPosts from './UserPosts';
 import StockTicker from './StockTicker';
 import {connect} from 'react-redux';
 import {Button, SafeAreaView, Text, ScrollView, StyleSheet} from 'react-native';
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 import {Logout} from 'actions/user';
 
 class HomeScreen extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      token: "",        
-    };
-  }
   render() {
     const {isLoggedIn, LogoutUser, posts, comments, reply, userData, userAccount} = this.props;
 
