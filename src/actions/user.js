@@ -9,6 +9,12 @@ import {
   EDITUSER_START,
   EDITUSER_SUCCESS,
   EDITUSER_ERROR,
+  GOOGLE_LOGIN_START,
+  GOOGLE_LOGIN_SUCCESS,
+  GOOGLE_LOGIN_ERROR,
+  GOOGLE_LOGOUT_START,
+  GOOGLE_LOGOUT_SUCCESS,
+  GOOGLE_LOGOUT_ERROR,
 } from 'constants';
 import axios from 'axios';
 import deviceStorage from '../util/DeviceStorage';
@@ -16,6 +22,17 @@ import apiInstance from '../util/axiosConfig';
 import {navigate} from '../../RootNavigation';
 
 import Toast from 'react-native-toast-message';
+
+import {
+  GoogleSignin,
+  statusCodes,
+} from '@react-native-community/google-signin';
+GoogleSignin.configure({
+  webClientId:
+    '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
+  offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+  iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+});
 
 export const Register = (input) => {
   return (dispatch) => {
@@ -88,6 +105,86 @@ export const Login = (input) => {
   };
 };
 
+// export const GoogleLogin = (input) => {
+//   return (dispatch) => {
+//     dispatch({type: LOGIN_START});
+//     axios
+//       .post('https://jiujitsux.herokuapp.com/api/users/login', input)
+//        .then((response) => {
+//         deviceStorage.saveItem('token', response.data.token),
+//           dispatch({type: LOGIN_SUCCESS, payload: response.data});
+//         Toast.show({
+//           type:'success',
+//           text2: 'You have been logged in.',
+//         });
+//       })
+//       .catch((error) => {
+//         dispatch({type: SIGNUP_ERROR, payload: error.response});
+//         Toast.show({
+//           type: 'error',
+//           text1: 'Error',
+//           text2: 'Incorrect email or password.',
+//         });
+//       });
+//   };
+// };
+
+export const GoogleLogin = () => { 
+  return async dispatch => {
+    dispatch({ type: GOOGLE_LOGIN_START });
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
+    } catch (error) {
+      console.log('Message', error.message);
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        console.log('User Cancelled the Login Flow');
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        console.log('Signing In');
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        console.log('Play Services Not Available or Outdated');
+      } else {
+        console.log('Some Other Error Happened');
+      }
+    }    
+}
+}
+
+export const GoogleIsSignedIn = () => {
+  return async dispatch => {
+  const isSignedIn = await GoogleSignin.isSignedIn();
+    if (isSignedIn) {
+      try {
+        const userInfo = await GoogleSignin.signInSilently();
+        dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
+      } catch (error) {
+        if (error.code === statusCodes.SIGN_IN_REQUIRED) {
+          console.log('User has not signed in yet');
+        } else {
+          console.log("Something went wrong. Unable to get user's info");
+        }
+      }
+
+    } else {
+      dispatch({type: GOOGLE_LOGOUT_SUCCESS, payload: {}});      
+      console.log('Please Login');
+    }
+}
+}
+
+
+export const GoogleLogout = () => {
+    return async dispatch => {
+    try {
+      await GoogleSignin.revokeAccess();
+      await GoogleSignin.signOut();
+      dispatch({type: GOOGLE_LOGOUT_SUCCESS, payload: {}});
+    } catch (error) {
+      console.error(error);
+    }
+}
+}
 
 //Working POST with token sent on headers
 

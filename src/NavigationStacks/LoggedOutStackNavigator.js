@@ -9,7 +9,6 @@ import LoginScreen from '../components/screens/Login';
 import SignUp from '../components/screens/SignUp';
 import ProfileInfoForm from '../components/screens/ProfileInfoForm';
 import TermsAndConditions from '../components/screens/TermsAndConditions';
-import GoogleLogin from '../components/screens/GoogleLogin';
 import SplashScreen from '../components/screens/SplashScreen';
 
 const LoggedOutStack = createStackNavigator();
@@ -31,11 +30,6 @@ export default class LoggedOutStackNavigator extends Component {
         <LoggedOutStack.Screen
           name="ProfileInfoForm"
           component={ProfileInfoForm}
-          options={{headerShown: false}}
-        />
-        <LoggedOutStack.Screen
-          name="GoogleLogin"
-          component={GoogleLogin}
           options={{headerShown: false}}
         />
         <LoggedOutStack.Screen
