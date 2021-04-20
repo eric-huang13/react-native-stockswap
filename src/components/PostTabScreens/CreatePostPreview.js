@@ -15,7 +15,16 @@ import {UserPost, EditPost} from '../../actions/posts';
 import { moderateScale } from '../../util/responsiveFont';
 
 class CreatePostPreview extends Component {
-  
+  //Creating FormData for sending image to backend
+  createFormData = (values) => {
+    let formData = new FormData();
+      Object.keys(values).forEach(fieldName => {
+      console.log(fieldName, values[fieldName]);
+      formData.append(fieldName, values[fieldName]);
+      })
+    return formData;
+  };
+
   render() {
     const {UserPost, EditPost, userAccount} = this.props;
     const {data} = this.props.route.params;
@@ -33,9 +42,11 @@ class CreatePostPreview extends Component {
       name: userAccount.name,
       profileImage: userAccount.img,
       enabled: data.enabled,
-      image: data.image,
+      image: data.image.uri,
       body: data.body,
     }
+     const theData = this.createFormData(userObject);
+
     return (
       <SafeAreaView style={style.container}>
         <ScrollView style={style.scrollContainer}>
@@ -76,7 +87,7 @@ class CreatePostPreview extends Component {
                 <Text style={style.publishButton}>Confirm Edit</Text>
               </TouchableOpacity>
             ) : (
-              <TouchableOpacity onPress={() => UserPost(credentials)}>
+              <TouchableOpacity onPress={() => console.log(theData)}>
                 <Text style={style.publishButton}>Publish</Text>
               </TouchableOpacity>
             )}
