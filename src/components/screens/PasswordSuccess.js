@@ -9,6 +9,7 @@ import {
 
 import PasswordIcon from '../../icons/PasswordIcon';
 import LinearGradient from 'react-native-linear-gradient';
+import { moderateScale } from '../../util/responsiveFont';
 
 class PasswordSuccess extends Component {
   constructor(props) {
@@ -56,10 +57,10 @@ const style = StyleSheet.create({
   container: {
     width: '85%',
     height: '55%',
-    borderRadius: 8,
+    borderRadius: moderateScale(8),
     backgroundColor: '#2C3957',
-    paddingHorizontal: 35,
-    paddingVertical: 28,
+    paddingHorizontal: moderateScale(35),
+    paddingVertical: moderateScale(28),
     flexDirection: 'column',
     shadowColor: 'rgba(0,0,0,0.13)',
     alignSelf: 'center',
@@ -72,38 +73,38 @@ const style = StyleSheet.create({
     elevation: 1,
   },
   icon: {
-    marginTop: 30,
+    marginTop: moderateScale(30),
     alignSelf: 'center',
   },
   header: {
     color: '#FFFFFF',
-    fontSize: 20,
-    marginTop: 20,
-    marginBottom: 5,
+    fontSize: moderateScale(20),
+    marginTop: moderateScale(20),
+    marginBottom: moderateScale(5),
     fontFamily: 'Montserrat-Bold',
     textAlign: 'center',
   },
   belowHeader: {
     color: '#FFFFFF',
-    fontSize: 14,
-    marginBottom: 16,
+    fontSize: moderateScale(14),
+    marginBottom: moderateScale(16),
     fontFamily: 'Montserrat-Medium',
     textAlign: 'center',
   },
   buttonContainer: {
-    marginTop: 10,
+    marginTop: moderateScale(10),
   },
   button: {
     alignSelf: 'center',
     backgroundColor: '#8B64FF',
     color: '#FFFFFF',
     textAlign: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    width: 162,
-    borderRadius: 6,
-    fontSize: 16,
+    paddingVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(20),
+    width: moderateScale(162),
+    borderRadius: moderateScale(6),
+    fontSize: moderateScale(16),
     fontFamily: 'Montserrat-SemiBold',
-    marginTop: 10,
+    marginTop: moderateScale(10),
   },
 });
