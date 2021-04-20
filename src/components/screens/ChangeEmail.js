@@ -11,37 +11,26 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
-import {Login} from 'actions/user';
+import {EditUser} from 'actions/user';
 import LinearGradient from 'react-native-linear-gradient';
+import {Formik} from 'formik';
+import * as yup from 'yup';
+import { moderateScale } from '../../util/responsiveFont';
 
-
+const reviewSchema = yup.object({
+  email: yup
+    .string()
+    .required('Email is required')
+    .email('A valid email address is required'),
+});
 class ChangeEmail extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      newEmail: '',
       currentEmail: '',
-      errorInput: '',
     };
   }
-  handleEmailChange = (text) => {
-    this.setState({
-      newEmail: text,
-    });
-  };
-  errorInput(text) {
-    this.setState({
-      error: text,
-    });
-  }
-
-  handleSubmit = () => {
-    this.state.newEmail !== ''
-      ? this.props.navigation.navigate('EmailSuccess')
-      : this.errorInput('email');
-  };
-
   componentDidMount() {
     const {users, userAccount} = this.props;
     this.setState({
@@ -49,6 +38,8 @@ class ChangeEmail extends Component {
     });
   }
   render() {
+    const {EditUser} = this.props;
+
     return (
       <LinearGradient
         start={{x: 0.1, y: 1}}
@@ -60,6 +51,17 @@ class ChangeEmail extends Component {
           style={{flex: 1}}>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <SafeAreaView style={style.mainContainer}>
+            <Formik
+                  initialValues={{
+                    email: '',
+                  }}
+                  validationSchema={reviewSchema}
+                  onSubmit={(values, actions) => {
+                    console.log(values, 'Values');
+                    EditUser(values)
+                    this.props.navigation.navigate('EmailSuccess')
+                  }}>
+                  {(props) => (
               <View style={style.container}>
                 <Text style={style.changeEmailHeader}>
                   Change email address
@@ -73,25 +75,34 @@ class ChangeEmail extends Component {
                 <View style={style.inputEmailContainer}>
                   <Text style={style.inputHeader}>New Email</Text>
                   <TextInput
-                    style={
-                      this.state.error === 'email'
-                        ? {...style.inputStyle, backgroundColor: '#F66E6E'}
-                        : {...style.inputStyle}
-                    }
-                    value={this.state.email}
-                    onChangeText={(text) => this.handleEmailChange(text)}
-                    placeholder="Enter new email address"
-                    placeholderTextColor="#9ea6b5"
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                  />
+                            style={
+                              props.touched.email && props.errors.email
+                                ? {
+                                    ...style.inputStyle,
+                                    backgroundColor: '#F66E6E',
+                                  }
+                                : {...style.inputStyle}
+                            }
+                            placeholder="Enter your email"
+                            placeholderTextColor="#9ea6b5"
+                            onChangeText={props.handleChange('email')}
+                            onBlur={props.handleBlur('email')}
+                            value={props.values.email}
+                            keyboardType="email-address"
+                            autoCapitalize="none"
+                          />
+                          <Text style={style.errorText}>
+                            {props.touched.email && props.errors.email}
+                          </Text>
                 </View>
                 <View>
-                  <TouchableOpacity onPress={this.handleSubmit}>
+                  <TouchableOpacity onPress={props.handleSubmit}>
                     <Text style={style.button}>Apply</Text>
                   </TouchableOpacity>
                 </View>
               </View>
+              )}
+              </Formik>
             </SafeAreaView>
           </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
@@ -108,7 +119,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    EditUser: (input) => dispatch(EditUser(input)),
+
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChangeEmail);
@@ -116,18 +130,18 @@ export default connect(mapStateToProps, mapDispatchToProps)(ChangeEmail);
 const style = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    padding: 8,
+    padding: moderateScale(8),
     backgroundColor: '#323e5b',
-    paddingHorizontal: 2,
+    paddingHorizontal: moderateScale(2),
     justifyContent: 'center',
   },
 
   container: {
     width: '85%',
-    borderRadius: 8,
+    borderRadius: moderateScale(8),
     backgroundColor: '#2C3957',
-    paddingHorizontal: 35,
-    paddingVertical: 28,
+    paddingHorizontal: moderateScale(35),
+    paddingVertical: moderateScale(28),
     flexDirection: 'column',
     shadowColor: 'rgba(0,0,0,0.13)',
     alignSelf: 'center',
@@ -141,38 +155,38 @@ const style = StyleSheet.create({
   },
   changeEmailHeader: {
     color: '#FFFFFF',
-    fontSize: 20,
-    marginBottom: 16,
+    fontSize: moderateScale(20),
+    marginBottom: moderateScale(16),
     fontFamily: 'Montserrat-Bold',
     textAlign: 'center',
   },
   currentEmailContainer: {
-    marginTop: 16,
-    marginBottom: 16,
+    marginTop: moderateScale(16),
+    marginBottom: moderateScale(16),
   },
   currentEmail: {
     fontFamily: 'Montserrat-SemiBold',
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: moderateScale(16),
   },
   inputEmailContainer: {
-    marginTop: 16,
-    marginBottom: 16,
+    marginTop: moderateScale(16),
+    marginBottom: moderateScale(16),
   },
 
   inputHeader: {
-    fontSize: 12,
-    lineHeight: 15,
+    fontSize: moderateScale(12),
+    lineHeight: moderateScale(15),
     color: '#babec8',
-    marginBottom: 2,
+    marginBottom: moderateScale(2),
     fontFamily: 'Montserrat-Regular',
   },
   inputStyle: {
-    borderRadius: 8,
-    marginBottom: 18,
-    padding: 8,
-    marginTop: 1,
-    fontSize: 16,
+    borderRadius: moderateScale(8),
+    // marginBottom: moderateScale(18),
+    padding: moderateScale(8),
+    marginTop: moderateScale(1),
+    fontSize: moderateScale(16),
     fontFamily: 'Montserrat-Italic',
     backgroundColor: '#536183',
     opacity: 0.7,
@@ -183,17 +197,24 @@ const style = StyleSheet.create({
     backgroundColor: '#8B64FF',
     color: '#FFFFFF',
     textAlign: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    width: 162,
-    borderRadius: 6,
-    fontSize: 16,
+    paddingVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(20),
+    width: moderateScale(162),
+    borderRadius: moderateScale(6),
+    fontSize: moderateScale(16),
     fontFamily: 'Montserrat-SemiBold',
   },
   termsContainer: {
-    marginBottom: 28,
+    marginBottom: moderateScale(28),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 2,
+    paddingHorizontal: moderateScale(2),
+  },
+  errorText: {
+    color: '#F66E6E',
+    fontWeight: 'bold',
+    marginBottom: moderateScale(1),
+    marginTop: moderateScale(1),
+    textAlign: 'center',
   },
 });
