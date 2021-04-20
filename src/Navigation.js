@@ -186,10 +186,14 @@ class Navigation extends Component {
 
         {isLoggedIn ? (
           <Tab.Navigator
+          
+          initialRouteName={'Home'}
+          
             tabBarOptions={{
               activeTintColor: '#9082cf',
               inactiveTintColor: 'lightgray',
               showLabel:false,
+            
               style: {
                 backgroundColor: '#333e5c',
                 paddingBottom: 3,
@@ -198,8 +202,7 @@ class Navigation extends Component {
               },
             }}
             screenOptions={({ route }) => ({
-              tabBarIcon: ({ focused }) => {
-                
+              tabBarIcon: ({ focused }) => {                                
     
                 if (route.name === 'Search') {
                   return focused ? <SearchIconActive/> : <SearchIconInactive/>
@@ -220,16 +223,32 @@ class Navigation extends Component {
               },
             })}
             >
+              {/* {isLoggedIn ? ( */}
+
             <Tab.Screen name="Home" component={HomeStackNavigator} />
             <Tab.Screen name="Search" component={SearchStackNavigator}/>
             <Tab.Screen name="PostScreen" component={PostStackNavigator}  />
             <Tab.Screen name="UserList" component={TopUsersStackNavigator}  />
             <Tab.Screen name="MyProfile" component={MyProfileStackNavigator}  />
+            </Tab.Navigator>
+            ) : (
+            <Tab.Navigator
+              tabBarOptions={{
+              showLabel:false,              
+                style: {
+                  backgroundColor: '#333e5c',                  
+                  borderTopColor: 'transparent',
+                  height:0
+                },
+              }}              
+              >
+            <Tab.Screen name="LoggedOut" component={LoggedOutStackNavigator}  />
+            </Tab.Navigator>
+            )}       
 
-          </Tab.Navigator>
-        ) : (
+        {/* ) : (
           <LoggedOutStackNavigator/>
-        )}
+        )} */}
 
       <Toast config={toastConfig} ref={(ref) => Toast.setRef(ref)} />
 
