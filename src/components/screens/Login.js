@@ -12,6 +12,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   ScrollView,
+  Platform
 } from 'react-native';
 import {Login} from 'actions/user';
 import axios from 'axios';
@@ -22,6 +23,8 @@ import AppleIcon from '../../icons/AppleIcon';
 import FacebookIcon from '../../icons/FacebookIcon';
 import {Formik} from 'formik';
 import * as yup from 'yup';
+import {moderateScale} from '../../util/responsiveFont'
+
 
 const reviewSchema = yup.object({
   email: yup
@@ -35,14 +38,14 @@ const reviewSchema = yup.object({
     .min(8, ({min}) => `Password must be at least ${min} characters`)
     .matches(/\d/, 'Password must have a number')
     .matches(/\w*[a-z]\w*/, 'Password must have a lowercase letter')
-    .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter')
-    .matches(
-      /[!@#$%^&*()\-_"=+{}; :,<.>]/,
-      'Password must have a special character',
-    ),
+    .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter'),
+    // .matches(
+    //   /[!@#$%^&*()\-_"=+{}; :,<.>]/,
+    //   'Password must have a special character',
+    // ),
 });
 
-class LoginScreen extends Component {
+export class LoginScreen extends Component {
   constructor(props) {
     super(props);
   }
@@ -227,8 +230,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
 const style = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    padding: 8,
-    paddingHorizontal: 24,
+    padding: moderateScale(8),
+    paddingHorizontal: moderateScale(24),
   },
   inner: {
     justifyContent: 'flex-end',
@@ -236,24 +239,24 @@ const style = StyleSheet.create({
   stockHeader: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 20,
-    marginBottom: 20,
+    marginTop: moderateScale(20),
+    marginBottom: moderateScale(20),
   },
   stockText: {
-    fontSize: 27,
+    fontSize: moderateScale(27),
     fontWeight: 'bold',
     color: 'white',
   },
   swapText: {
-    fontSize: 27,
+    fontSize: moderateScale(27),
     fontWeight: 'bold',
     color: '#b8a0ff',
   },
   container: {
-    borderRadius: 16,
+    borderRadius: moderateScale(16),
     backgroundColor: '#303e5e',
-    paddingHorizontal: 20,
-    paddingVertical: 18,
+    paddingHorizontal: moderateScale(20),
+    paddingVertical: moderateScale(18),
     flexDirection: 'column',
     shadowColor: 'rgba(0,0,0,0.13)',
     shadowOffset: {
@@ -267,38 +270,38 @@ const style = StyleSheet.create({
   },
   welcomeHeader: {
     color: '#FFFFFF',
-    fontSize: 22,
-    marginBottom: 4,
+    fontSize: moderateScale(22),
+    marginBottom: moderateScale(4),
     fontFamily: 'Montserrat-Bold',
   },
   loginHeader: {
     color: '#9299a9',
-    marginBottom: 20,
-    fontSize: 16,
+    marginBottom: moderateScale(20),
+    fontSize: moderateScale(16),
     fontFamily: 'Montserrat-Medium',
   },
   inputHeader: {
-    fontSize: 14,
+    fontSize: moderateScale(14),
     color: '#babec8',
     marginBottom: 1,
     fontFamily: 'Montserrat-Regular',
   },
   inputStyle: {
-    borderRadius: 8,
-    padding: 8,
-    marginTop: 1,
-    fontSize: 16,
+    borderRadius: moderateScale(8),
+    padding: moderateScale(8),
+    marginTop: moderateScale(1),
+    fontSize: moderateScale(16),
     fontFamily: 'Montserrat-Italic',
     backgroundColor: '#536183',
     opacity: 0.7,
     color: '#FFFFFF',
   },
   inputStyleConfirm: {
-    borderRadius: 8,
-    marginBottom: 12,
-    padding: 8,
-    marginTop: 1,
-    fontSize: 16,
+    borderRadius: moderateScale(8),
+    marginBottom: moderateScale(12),
+    padding: moderateScale(8),
+    marginTop: moderateScale(1),
+    fontSize: moderateScale(16),
     fontFamily: 'Montserrat-Italic',
     backgroundColor: '#536183',
     opacity: 0.7,
@@ -309,40 +312,40 @@ const style = StyleSheet.create({
     backgroundColor: '#8B64FF',
     color: '#FFFFFF',
     textAlign: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    width: 162,
-    borderRadius: 6,
-    fontSize: 16,
+    paddingVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(20),
+    width: moderateScale(162),
+    borderRadius: moderateScale(6),
+    fontSize: moderateScale(16),
     fontFamily: 'Montserrat-SemiBold',
   },
   termsContainer: {
-    marginBottom: 28,
+    marginBottom: moderateScale(28),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 2,
+    paddingHorizontal: moderateScale(2),
   },
   leftTerms: {
     flexDirection: 'row',
   },
   newText: {
     color: '#FFFFFF',
-    fontSize: 12,
-    marginRight: 3,
+    fontSize: moderateScale(12),
+    marginRight: moderateScale(3),
     fontFamily: 'Montserrat-Medium',
   },
   termsText: {
     color: '#B8A0FF',
-    fontSize: 12,
+    fontSize: moderateScale(12),
     fontFamily: 'Montserrat-Medium',
   },
   bottomButtonsContainer: {
     alignItems: 'center',
   },
   orText: {
-    marginVertical: 16,
+    marginVertical: moderateScale(16),
     color: '#CBCDD7',
-    fontSize: 14,
+    fontSize: moderateScale(14),
     fontFamily: 'Montserrat-Regular',
   },
   alternateSignUpContainer: {
@@ -354,7 +357,7 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     color: '#FFFFFF',
     textAlign: 'center',
-    fontSize: 14,
+    fontSize: moderateScale(14),
     fontFamily: 'Montserrat-SemiBold',
     shadowOffset: {
       width: 0,
@@ -366,27 +369,27 @@ const style = StyleSheet.create({
   },
   alternateSignupInner: {
     alignSelf: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 4,
+    paddingVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(4),
     backgroundColor: '#2C3957',
-    width: 350,
-    borderRadius: 8,
-    marginBottom: 10,
+    width: moderateScale(350),
+    borderRadius: moderateScale(8),
+    marginBottom: moderateScale(10),
     flexDirection: 'row',
   },
   signupIcon: {
-    padding: 7,
+    padding: moderateScale(7),
     backgroundColor: '#3A4A6D',
-    borderRadius: 7,
-    marginVertical: -8,
-    marginRight: 63,
+    borderRadius: moderateScale(7),
+    marginVertical: moderateScale(-8),
+    marginRight: moderateScale(63),
     alignSelf: 'center',
   },
   errorText: {
     color: '#F66E6E',
     fontWeight: 'bold',
-    marginBottom: 1,
-    marginTop: 1,
+    marginBottom: moderateScale(1),
+    marginTop: moderateScale(1),
     textAlign: 'center',
   },
 });

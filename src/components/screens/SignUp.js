@@ -11,11 +11,14 @@ import {
   Keyboard,
   ScrollView,
   Modal,
+  Platform
 } from 'react-native';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import {connect} from 'react-redux';
 import {Register} from '../../actions/user';
+import {RegisterGoogle} from '../../actions/user';
+
 import CheckBox from '@react-native-community/checkbox';
 import LinearGradient from 'react-native-linear-gradient';
 import SmallStockSwap from '../../icons/SmallStockSwap';
@@ -24,6 +27,8 @@ import AppleIcon from '../../icons/AppleIcon';
 import FacebookIcon from '../../icons/FacebookIcon';
 import TermsAndConditions from './TermsAndConditions';
 import GoogleOauth from './GoogleOauth';
+
+import {moderateScale, verticalScale, scale} from '../../util/responsiveFont'
 
 import Toast from 'react-native-toast-message';
 
@@ -39,11 +44,11 @@ const reviewSchema = yup.object({
     .min(8, ({min}) => `Password must be at least ${min} characters`)
     .matches(/\d/, 'Password must have a number')
     .matches(/\w*[a-z]\w*/, 'Password must have a lowercase letter')
-    .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter')
-    .matches(
-      /[!@#$%^&*()\-_"=+{}; :,<.>]/,
-      'Password must have a special character',
-    ),
+    .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter'),
+    // .matches(
+    //   /[!@#$%^&*()\-_"=+{}; :,<.>]/,
+    //   'Password must have a special character',
+    // ),
 
   passwordConfirmation: yup
     .string()
@@ -53,7 +58,7 @@ const reviewSchema = yup.object({
   termsVersion: yup.string().required('Please agree with Terms and Conditions'),
 });
 
-const SignUp = ({RegisterUser, navigation, userData, loading}) => {
+export const SignUp = ({RegisterUser, navigation, userData, loading, RegisterUserGoogle}) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [termsModal, setTermsModal] = useState(false);
 
@@ -241,7 +246,7 @@ const SignUp = ({RegisterUser, navigation, userData, loading}) => {
             <View style={style.bottomButtonsContainer}>
               <Text style={style.orText}>--OR--</Text>
               <View style={style.alternateSignUpContainer}>
-                <GoogleOauth />
+                <GoogleOauth RegisterUserGoogle={RegisterUserGoogle} />
                 <View style={style.alternateSignupInner}>
                   <View style={style.signupIcon}>
                     <FacebookIcon />
@@ -278,6 +283,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     RegisterUser: (input) => dispatch(Register(input)),
+    RegisterUserGoogle: (input) => dispatch(RegisterGoogle(input)),
   };
 };
 
@@ -286,8 +292,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
 const style = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    padding: 8,
-    paddingHorizontal: 24,
+    padding: moderateScale(8),
+    paddingHorizontal: moderateScale(24),
   },
   inner: {
     justifyContent: 'flex-end',
@@ -295,24 +301,24 @@ const style = StyleSheet.create({
   stockHeader: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 2,
-    marginBottom: 6,
+    marginTop: moderateScale(2),
+    marginBottom: moderateScale(6),
   },
   stockText: {
-    fontSize: 27,
+    fontSize: moderateScale(27),
     fontWeight: 'bold',
     color: 'white',
   },
   swapText: {
-    fontSize: 27,
+    fontSize: moderateScale(27),
     fontWeight: 'bold',
     color: '#b8a0ff',
   },
   container: {
-    borderRadius: 8,
+    borderRadius: moderateScale(8),
     backgroundColor: '#303e5e',
-    paddingHorizontal: 20,
-    paddingVertical: 18,
+    paddingHorizontal: moderateScale(20),
+    paddingVertical: moderateScale(18),
     flexDirection: 'column',
     shadowColor: 'rgba(0,0,0,0.13)',
     shadowOffset: {
@@ -326,31 +332,31 @@ const style = StyleSheet.create({
   },
   signUpHeader: {
     color: '#FFFFFF',
-    fontSize: 22,
+    fontSize: moderateScale(22),
     fontFamily: 'Montserrat-Bold',
-    marginBottom: 18,
+    marginBottom: moderateScale(18),
   },
   inputHeader: {
-    fontSize: 14,
+    fontSize: moderateScale(14),
     color: '#babec8',
-    marginBottom: 1,
+    marginBottom: moderateScale(1),
     fontFamily: 'Montserrat-Regular',
   },
   inputStyle: {
-    borderRadius: 8,
-    padding: 8,
-    marginTop: 1,
-    fontSize: 16,
+    borderRadius: moderateScale(8),
+    padding: moderateScale(8),
+    marginTop: moderateScale(1),
+    fontSize: moderateScale(16),
     fontFamily: 'Montserrat-Italic',
     backgroundColor: '#536183',
     opacity: 0.7,
     color: '#FFFFFF',
   },
   inputStyleConfirm: {
-    borderRadius: 8,
-    padding: 8,
-    marginTop: 1,
-    fontSize: 16,
+    borderRadius: moderateScale(8),
+    padding: moderateScale(8),
+    marginTop: moderateScale(1),
+    fontSize: moderateScale(16),
     fontFamily: 'Montserrat-Italic',
     backgroundColor: '#536183',
     opacity: 0.7,
@@ -362,18 +368,18 @@ const style = StyleSheet.create({
     backgroundColor: '#8B64FF',
     color: 'white',
     textAlign: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    width: 162,
-    borderRadius: 6,
-    fontSize: 16,
+    paddingVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(20),
+    width: moderateScale(162),
+    borderRadius: moderateScale(6),
+    fontSize: moderateScale(16),
     fontFamily: 'Montserrat-SemiBold',
   },
   termsOuterContainer: {
-    marginBottom: 0,
+    marginBottom: moderateScale(0),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 2,
+    paddingHorizontal: moderateScale(2),
     alignItems: 'center',
   },
   termsInnerContainer: {
@@ -382,20 +388,20 @@ const style = StyleSheet.create({
   },
   termsText: {
     color: '#b8a0ff',
-    fontSize: 11,
+    fontSize: moderateScale(11),
     fontFamily: 'Montserrat-Medium',
   },
   termsError: {
-    marginBottom: 18,
+    marginBottom: moderateScale(18),
   },
   checkbox: {},
   bottomButtonsContainer: {
     alignItems: 'center',
   },
   orText: {
-    marginVertical: 16,
+    marginVertical: moderateScale(16),
     color: '#CBCDD7',
-    fontSize: 14,
+    fontSize: moderateScale(14),
     fontFamily: 'Montserrat-Regular',
   },
   alternateSignUpContainer: {
@@ -407,7 +413,7 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     color: '#FFFFFF',
     textAlign: 'center',
-    fontSize: 14,
+    fontSize: moderateScale(14),
     fontFamily: 'Montserrat-SemiBold',
     shadowOffset: {
       width: 0,
@@ -419,27 +425,27 @@ const style = StyleSheet.create({
   },
   alternateSignupInner: {
     alignSelf: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 4,
+    paddingVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(4),
     backgroundColor: '#2C3957',
-    width: 350,
-    borderRadius: 8,
-    marginBottom: 10,
+    width: moderateScale(350),
+    borderRadius: moderateScale(8),
+    marginBottom: moderateScale(10),
     flexDirection: 'row',
   },
   signupIcon: {
-    padding: 7,
+    padding: moderateScale(7),
     backgroundColor: '#3A4A6D',
-    borderRadius: 7,
-    marginVertical: -8,
-    marginRight: 63,
+    borderRadius: moderateScale(7),
+    marginVertical: moderateScale(-8),
+    marginRight: moderateScale(63),
     alignSelf: 'center',
   },
   errorText: {
     color: '#F66E6E',
     fontWeight: 'bold',
-    marginBottom: 1,
-    marginTop: 1,
+    marginBottom: moderateScale(1),
+    marginTop: moderateScale(1),
     textAlign: 'center',
   },
 });

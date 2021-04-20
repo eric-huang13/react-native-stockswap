@@ -10,53 +10,69 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Image,
+  Platform
 } from 'react-native';
 import TriangleIcon from '../../icons/TriangleIcon';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import LinearGradient from 'react-native-linear-gradient';
 import {Register} from '../../actions/user';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import { moderateScale } from '../../util/responsiveFont';
 
-
+ 
 const validationSchema = Yup.object().shape({
-  name: Yup.string()
+  fullName: Yup.string()
     .label('Name')
     .required('Name is required')
     .min(2, 'Must have at least 2 characters'),
-
+ 
   username: Yup.string().label('username').required('Username is required'),
-
+ 
   hashtag: Yup.string()
     .label('hashtag')
     .matches(/^#\w+$/, 'Must be a hashtag')
     .min(2, 'Hashtag must have more than 2 characters '),
-
+ 
   bio: Yup.string()
     .label('bio')
     .min(2, 'Bio must have more than 2 characters '),
-
-  image: Yup.string().url('Must be a url'),
+ 
+  // image: Yup.string().url('Must be a url'),
 });
-
-class ProfileInfoForm extends Component {
+ 
+export class ProfileInfoForm extends Component {
   constructor(props) {
     super(props);
-
+ 
     this.state = {
       isPrivate: false,
       shouldShow: false,
+      imageData: null,
     };
   }
-
+ 
   dropDownSelect(setting) {
     this.setState({isPrivate: setting, shouldShow: false});
   }
+ 
 
   render() {
     const {RegisterUser, LoginUser} = this.props;
     const {userInfo} = this.props.route.params;
-
+ 
     const {shouldShow} = this.state;
+ 
+    //Creating FormData for sending image to backend
+    const createFormData = (values) => {
+      let formData = new FormData();
+        Object.keys(values).forEach(fieldName => {
+        console.log(fieldName, values[fieldName]);
+        formData.append(fieldName, values[fieldName]);
+        })
+      return formData;
+    };
+
     return (
       <LinearGradient
         start={{x: 0.1, y: 1}}
@@ -73,17 +89,22 @@ class ProfileInfoForm extends Component {
                   email:userInfo.email,
                   password:userInfo.password,
                   termsVersion:userInfo.termsVersion,
-                  name:'',
+                  fullName:'',
                   username:'',
-                  image:'',
+                  image:{name:'', type:'', uri:''},
                   hashtag:'',
                   bio:'',
                   isPrivate:false,
                 }}
-                onSubmit={(values) => {
-                  console.log(values, 'info');
-                  // RegisterUser(values);
-                  RegisterUser({email:values.email,password:values.password});
+                onSubmit={(values) => {                
+                //Adding to FormData for image
+                const data = createFormData(values);
+                console.log(data,"form")           
+
+                  // RegisterUser(data);
+                  
+                  RegisterUser({email:values.email,password:values.password, username:values.username, fullName:values.fullName});
+          
                 }}
                 validationSchema={validationSchema}>
                 {({
@@ -99,37 +120,73 @@ class ProfileInfoForm extends Component {
                 }) => (
                   <View>
                     <Text style={style.header}>Fill Profile Info</Text>
-                    {values.image && !errors.image ?
+                    {this.state.imageData && !errors.image ?
+                    <TouchableOpacity onPress={() => {
+                      const options={
+                        mediaType:'photo',
+                        // includeBase64:true,                  
+                      }
+                      launchImageLibrary(options, response=> {
+                        console.log(response, "response image")
+                        if (response.uri)
+                        {
+                          setFieldValue('image', {name:response.fileName, type:response.type, uri:
+                            Platform.OS === 'android' ? response.uri : response.uri.replace('file://', ''),})
+                              this.setState({ imageData: response.uri });
+ 
+                        }
+                      });
+                  }}>
                       <Image
                         style={style.uploadPhotoContainer}
-                        source={{uri: values.image}}
+                        source={{uri: this.state.imageData}}
                       />
+                                              </TouchableOpacity>
+ 
                      : 
                       <View style={style.uploadPhotoContainer}>
+                        <TouchableOpacity onPress={() => {
+                            const options={
+                              mediaType:'photo',
+                              // includeBase64:true,
+                        
+                            }
+                            launchImageLibrary(options, response=> {
+                              console.log(response, "response image")
+                              if (response.uri)
+                              {
+                                setFieldValue('image', {name:response.fileName, type:response.type, uri:
+                                  Platform.OS === 'android' ? response.uri : response.uri.replace('file://', ''),})
+                                    this.setState({ imageData: response.uri });
+       
+                              }
+                            });
+                        }}>
                         <Text style={style.uploadPhotoText}>
                           Tap to upload your photo
                         </Text>
+                        </TouchableOpacity>
                       </View>
-                    }
+                     } 
                     <View style={style.topRow}>
                       <View style={style.rowInputContainer}>
                         <Text style={style.inputHeader}>Name</Text>
                         <TextInput
                           style={style.inputStyle}
-                          onBlur={handleBlur('name')}
-                          value={values.name}
-                          onChangeText={handleChange('name')}
+                          onBlur={handleBlur('fullName')}
+                          value={values.fullName}
+                          onChangeText={handleChange('fullName')}
                           placeholder="Enter your name"
                           placeholderTextColor="#9ea6b5"
                           returnKeyType="next"
                           onSubmitEditing={() => this.username.focus()}
-                          ref={(input) => (this.name = input)}
+                          ref={(input) => (this.fullName = input)}
                         />
                         <Text style={style.errorText}>
-                          {touched.name && errors.name}
+                          {touched.fullName && errors.fullName}
                         </Text>
                       </View>
-
+ 
                       <View style={style.rowInputContainer}>
                         <Text style={style.inputHeader}>User name</Text>
                         <TextInput
@@ -149,7 +206,7 @@ class ProfileInfoForm extends Component {
                       </View>
                     </View>
                     <View style={style.bottomColumn}>
-                      <View style={style.imageContainer}>
+                      {/* <View style={style.imageContainer}>
                         <Text style={style.inputHeader}>Image</Text>
                         <TextInput
                           value={values.image}
@@ -164,13 +221,13 @@ class ProfileInfoForm extends Component {
                         <Text style={style.errorText}>
                           {touched.image && errors.image}
                         </Text>
-                      </View>
-
+                      </View> */}
+ 
                       <View>
                         <Text style={style.inputHeader}>
                           Hashtag (up to 3 tags)
                         </Text>
-
+ 
                         <TextInput
                           style={style.inputStyle}
                           value={values.hashtag}
@@ -203,10 +260,10 @@ class ProfileInfoForm extends Component {
                           {touched.bio && errors.bio}
                         </Text>
                       </View>
-
+ 
                       <View>
                         <Text style={style.privacyText}>Account privacy</Text>
-
+ 
                         <View style={style.dotsDropdownContainer}>
                           <TouchableOpacity
                             onPress={() =>
@@ -268,49 +325,49 @@ class ProfileInfoForm extends Component {
     );
   }
 }
-
+ 
 const mapStateToProps = (state) => {
   return {
     userData: state.user.userData,
   };
 };
-
+ 
 const mapDispatchToProps = (dispatch) => {
   return {
     RegisterUser: (input) => dispatch(Register(input)),
   };
 };
-
+ 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileInfoForm);
-
+ 
 const style = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    padding: 8,
-    paddingHorizontal: 24,
+    padding: moderateScale(8),
+    paddingHorizontal: moderateScale(24),
   },
   uploadPhotoContainer: {
     alignSelf: 'center',
     backgroundColor: '#515581',
-    borderRadius: 100,
-    width: 135,
-    height: 135,
-    marginBottom: 25,
-    paddingVertical: 40,
-    paddingHorizontal: 10,
+    borderRadius: moderateScale(100),
+    width: moderateScale(135),
+    height: moderateScale(135),
+    marginBottom: moderateScale(25),
+    paddingVertical: moderateScale(40),
+    paddingHorizontal: moderateScale(10),
   },
   uploadPhotoText: {
     color: '#FFFFFF',
     textAlign: 'center',
-    fontSize: 14,
+    fontSize: moderateScale(14),
     fontFamily: 'Montserrat-Regular',
   },
-
+ 
   header: {
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: moderateScale(16),
     color: '#FFFFFF',
-    marginBottom: 20,
+    marginBottom:moderateScale (20),
     fontFamily: 'Montserrat-Bold',
   },
   topRow: {
@@ -318,31 +375,31 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
   },
   rowInputContainer: {
-    width: 164,
+    width: moderateScale(164),
   },
-
+ 
   inputHeader: {
-    fontSize: 12,
+    fontSize: moderateScale(12),
     color: '#babec8',
-    marginBottom: 1,
+    marginBottom: moderateScale(1),
     fontFamily: 'Montserrat-Regular',
   },
   inputStyle: {
-    borderRadius: 8,
-    padding: 8,
-    marginTop: 1,
-    fontSize: 16,
+    borderRadius: moderateScale(8),
+    padding: moderateScale(8),
+    marginTop: moderateScale(1),
+    fontSize: moderateScale(16),
     backgroundColor: '#536183',
     opacity: 0.7,
     fontFamily: 'Montserrat-Italic',
     color: '#9ea6b5',
   },
   inputStyleBio: {
-    borderRadius: 8,
+    borderRadius: moderateScale(8),
     backgroundColor: '#3e4d6c',
-    padding: 8,
-    marginTop: 1,
-    fontSize: 16,
+    padding: moderateScale(8),
+    marginTop: moderateScale(1),
+    fontSize: moderateScale(16),
     textAlignVertical: 'top',
     backgroundColor: '#536183',
     opacity: 0.7,
@@ -350,9 +407,9 @@ const style = StyleSheet.create({
     color: '#9ea6b5',
   },
   visibleButtonContainer: {
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-    borderRadius: 6,
+    paddingHorizontal: moderateScale(10),
+    paddingVertical: moderateScale(10),
+    borderRadius: moderateScale(6),
     backgroundColor: '#3E4D6C',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -361,65 +418,67 @@ const style = StyleSheet.create({
   middleDetailsText: {
     fontFamily: 'Montserrat-Medium',
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: moderateScale(16),
   },
   dropdown: {
     flexDirection: 'column',
     justifyContent: 'space-between',
     width: '100%',
-    marginTop: 41,
+    marginTop: moderateScale(41),
     backgroundColor: '#3E4D6C',
     zIndex: 1,
-    paddingVertical: 4,
-    height: 35,
+    paddingVertical: moderateScale(4),
+    height: moderateScale(35),
     position: 'absolute',
-    borderBottomLeftRadius: 6,
-    borderBottomRightRadius: 6,
+    borderBottomLeftRadius: moderateScale(6),
+    borderBottomRightRadius: moderateScale(6),
   },
   dropDownText: {
     color: 'white',
-    fontSize: 16,
-    marginHorizontal: 12,
+    fontSize: moderateScale(16),
+    marginHorizontal: moderateScale(12),
     fontFamily: 'Montserrat-Medium',
-    marginBottom: 6,
+    marginBottom: moderateScale(6),
   },
   dropDownTextReportContainer: {
-    borderTopWidth: 1,
+    borderTopWidth: moderateScale(1),
     borderTopColor: 'lightgrey',
-    paddingTop: 4,
+    paddingTop: moderateScale(4),
     backgroundColor: '#2C3957',
   },
   icon: {
-    marginRight: 4,
+    marginRight: moderateScale(4),
   },
   button: {
     alignSelf: 'center',
     backgroundColor: '#8b64ff',
     color: '#FFFFFF',
     textAlign: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    width: 150,
-    borderRadius: 6,
-    fontSize: 14,
+    paddingVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(20),
+    width: moderateScale(150),
+    borderRadius: moderateScale(6),
+    fontSize: moderateScale(14),
     fontFamily: 'Montserrat-SemiBold',
   },
   privacyText: {
     color: '#babec8',
-    fontSize: 12,
-    marginRight: 3,
-    marginBottom: 3,
+    fontSize: moderateScale(12),
+    marginRight: moderateScale(3),
+    marginBottom: moderateScale(3),
     fontFamily: 'Montserrat-Regular',
   },
   buttonContainer: {
-    marginTop: 20,
-    marginBottom: 10,
+    marginTop: moderateScale(20),
+    marginBottom: moderateScale(10),
   },
   errorText: {
     color: '#F66E6E',
     fontWeight: 'bold',
-    marginBottom: 1,
-    marginTop: 1,
+    marginBottom: moderateScale(1),
+    marginTop: moderateScale(1),
     textAlign: 'center',
   },
 });
+ 
+
