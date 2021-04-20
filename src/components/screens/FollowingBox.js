@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, Image, SafeAreaView} from 'react-native';
+import { moderateScale } from '../../util/responsiveFont';
 
 export default class MyFollowingBox extends Component {
   render() {
@@ -27,8 +28,8 @@ const style = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: 14,
-    paddingHorizontal: 10,
+    paddingVertical: moderateScale(14),
+    paddingHorizontal: moderateScale(10),
     backgroundColor: '#324165',
     alignItems: 'center',
   },
@@ -37,30 +38,30 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    height: 63,
-    width: 63,
-    borderRadius: 50,
+    height: moderateScale(63),
+    width: moderateScale(63),
+    borderRadius: moderateScale(50),
   },
   imgDetailContainer: {
     flexDirection: 'row',
-    marginLeft: -8,
+    marginLeft: moderateScale(-8),
   },
   detailsContainer: {
     flexDirection: 'column',
-    marginLeft: -150,
+    marginLeft: moderateScale(-150),
     justifyContent: 'space-between',
   },
   name: {
-    fontSize: 16,
+    fontSize: moderateScale(16),
     color: '#FFFFFF',
     fontFamily: 'Montserrat-Bold',
   },
   username: {
-    fontSize: 14,
+    fontSize: moderateScale(14),
     color: 'lightgrey',
     fontFamily: 'Montserrat-Regular',
   },
   nameContainer: {
-    marginLeft: 6,
+    marginLeft: moderateScale(6),
   },
 });

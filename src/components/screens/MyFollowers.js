@@ -10,6 +10,7 @@ import {
 import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
 import MyFollowersBox from './MyFollowersBox';
+import { moderateScale } from '../../util/responsiveFont';
 
 export class MyFollowers extends Component {
   constructor(props) {
@@ -96,23 +97,23 @@ const style = StyleSheet.create({
     flex: 1,
   },
   searchInputContainer: {
-    marginBottom: 15,
+    marginBottom: moderateScale(15),
   },
   searchInput: {
-    paddingLeft: 40,
+    paddingLeft: moderateScale(40),
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 15,
-    height: 36,
+    fontSize: moderateScale(15),
+    height: moderateScale(36),
     fontFamily: 'Montserrat-Italic',
     paddingVertical: 0,
   },
   searchInputIconContainer: {
     position: 'absolute',
     zIndex: 1,
-    left: 14,
-    top: 10,
+    left: moderateScale(14),
+    top: moderateScale(10),
   },
   listContainer: {},
 });
