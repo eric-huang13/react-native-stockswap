@@ -7,28 +7,47 @@ import {
   StyleSheet,
   Text,
   SafeAreaView,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import {connect} from 'react-redux';
 import UserBox from './UserBox';
+import SearchInput from '../../icons/SearchInput';
+import UserListImage from '../../icons/UserListImage';
 
 export class UserList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       input: '',
-      timeFilter: 'day',
     };
   }
 
-  timeFilterSelect(time) {
-    this.setState({timeFilter: time});
-  }
   handleChange = (text) => {
     this.setState({input: text});
   };
+
+  accountId = this.props.userAccount.id;
+
+  navigationByCondition = (item) => {
+    const {navigation} = this.props;
+    if (item.id === this.accountId) {
+      navigation.navigate({
+        name: 'MyProfile',
+        params: {id: item.id},
+      });
+    } else {
+      navigation.navigate({
+        name: 'Profile',
+        params: {id: item.id},
+      });
+    }
+  };
   render() {
-    const {timeFilter, input} = this.state;
-    const {users} = this.props;
+    const {input} = this.state;
+    const {users, userAccount} = this.props;
+
+    const accountId = userAccount.id;
 
     const filteredUsers = users.filter((item) =>
       item.name.toLowerCase().includes(input.toLowerCase()),
@@ -36,103 +55,51 @@ export class UserList extends Component {
 
     return (
       <SafeAreaView>
-        <ScrollView contentContainerStyle={{paddingBottom: 180}}>
-          <View style={style.searchInputContainer}>
-            <TextInput
-              style={style.searchInput}
-              placeholder="Search"
-              placeholderTextColor="lightgrey"
-              onChangeText={(text) => this.handleChange(text)}
-            />
+        <View style={style.searchInputContainer}>
+          <View
+            style={{
+              position: 'absolute',
+              zIndex: 1,
+              left: 14,
+              top: 10,
+            }}>
+            <SearchInput />
           </View>
-          <Text style={style.timeFilterHeader}>Time filter:</Text>
-          <View style={style.timeFilterContainer}>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('day')}>
-              <Text
-                style={
-                  timeFilter === 'day'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                1D
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('week')}>
-              <Text
-                style={
-                  timeFilter === 'week'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                1W
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('month')}>
-              <Text
-                style={
-                  timeFilter === 'month'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                1M
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('3M')}>
-              <Text
-                style={
-                  timeFilter === '3M'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                3M
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('6M')}>
-              <Text
-                style={
-                  timeFilter === '6M'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                6M
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('1Y')}>
-              <Text
-                style={
-                  timeFilter === '1Y'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                1Y
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.timeFilterSelect('ALL')}>
-              <Text
-                style={
-                  timeFilter === 'ALL'
-                    ? {...style.timeFilterButtons, color: '#8b64ff'}
-                    : {...style.timeFilterButtons}
-                }>
-                All
-              </Text>
-            </TouchableOpacity>
-          </View>
-          {filteredUsers.map((item) => {
-            return (
-              <TouchableOpacity
-                key={item.id}
-                onPress={() =>
-                  this.props.navigation.navigate({
-                    name: 'Profile',
-                    params: {item},
-                  })
-                }>
-                <UserBox item={item} />
-              </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
+          <TextInput
+            style={style.searchInput}
+            placeholder="Search by name"
+            placeholderTextColor="lightgrey"
+            onChangeText={(text) => this.handleChange(text)}
+          />
+        </View>
+        {this.state.input === '' ? (
+          <ScrollView>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+              <View style={style.backgroundImageContainer}>
+                <UserListImage />
+                <Text style={style.backgroundImageText}>
+                  Find any person on the platform
+                </Text>
+              </View>
+            </TouchableWithoutFeedback>
+          </ScrollView>
+        ) : (
+          <ScrollView contentContainerStyle={{paddingBottom: 180}}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+              <View>
+                {filteredUsers.map((item) => {
+                  return (
+                    <TouchableOpacity
+                      key={item.id}
+                      onPress={() => this.navigationByCondition(item)}>
+                      <UserBox item={item} />
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+            </TouchableWithoutFeedback>
+          </ScrollView>
+        )}
       </SafeAreaView>
     );
   }
@@ -140,7 +107,8 @@ export class UserList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.company.users,
+    users: state.people.users,
+    userAccount: state.user.userFakeData,
   };
 };
 
@@ -148,7 +116,6 @@ export default connect(mapStateToProps)(UserList);
 
 const style = StyleSheet.create({
   searchInputContainer: {
-    // marginTop: 1,
     marginBottom: 15,
   },
   searchInput: {
@@ -156,9 +123,9 @@ const style = StyleSheet.create({
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 18,
+    fontSize: 15,
     height: 36,
-    fontStyle: 'italic',
+    fontFamily: 'Montserrat-Italic',
     paddingVertical: 0,
   },
   timeFilterHeader: {
@@ -177,5 +144,18 @@ const style = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 18,
+  },
+  backgroundImageContainer: {
+    flex: 1,
+    marginTop: 120,
+    alignItems: 'center',
+  },
+  backgroundImageText: {
+    marginTop: 10,
+    fontFamily: 'Montserrat-SemiBold',
+    fontSize: 18,
+    color: '#9ea6b5',
+    width: 180,
+    textAlign: 'center',
   },
 });

@@ -10,11 +10,11 @@ export class CompanyBox extends Component {
         <LinearGradient
           start={{x: 0.1, y: 0.1}}
           end={{x: 1, y: 1}}
-          colors={['#4c669f', '#3b5998', '#1cab66']}
+          colors={['#2C3957', '#2C572E']}
           style={style.linearGradient}>
           <SafeAreaView style={style.listContainer}>
             <View style={style.topDetails}>
-              <Text style={{...style.symbol, color: '#1cab66'}}>
+              <Text style={{...style.symbol, color: '#1AB968'}}>
                 {item.symbol}
               </Text>
               <Text style={style.title}>
@@ -25,7 +25,7 @@ export class CompanyBox extends Component {
             </View>
             <View style={style.bottomDetails}>
               <Text style={style.price}>${item.price}</Text>
-              <Text style={{...style.percentage, color: '#1cab66'}}>
+              <Text style={{...style.percentage, color: '#1AB968'}}>
                 {item.percentage}
               </Text>
             </View>
@@ -35,42 +35,50 @@ export class CompanyBox extends Component {
         <LinearGradient
           start={{x: 0.1, y: 0.1}}
           end={{x: 1, y: 1}}
-          colors={['#4c669f', '#3b5998', '#ac3b42']}
+          colors={['#2C3957', '#572C3D']}
           style={style.linearGradient}>
           <SafeAreaView style={style.listContainer}>
-            <Text style={{...style.symbol, color: '#ac3b42'}}>
-              {item.symbol}
-            </Text>
-            <Text style={style.title}>
-              {item.title.length < 15
-                ? `${item.title}`
-                : `${item.title.substring(0, 14)}...`}
-            </Text>
-            <Text style={style.price}>${item.price}</Text>
-            <Text style={{...style.percentage, color: '#ac3b42'}}>
-              {item.percentage}
-            </Text>
+            <View style={style.topDetails}>
+              <Text style={{...style.symbol, color: '#D13C3D'}}>
+                {item.symbol}
+              </Text>
+              <Text style={style.title}>
+                {item.title.length < 15
+                  ? `${item.title}`
+                  : `${item.title.substring(0, 14)}...`}
+              </Text>
+            </View>
+            <View style={style.bottomDetails}>
+              <Text style={style.price}>${item.price}</Text>
+              <Text style={{...style.percentage, color: '#D13C3D'}}>
+                {item.percentage}
+              </Text>
+            </View>
           </SafeAreaView>
         </LinearGradient>
       ) : (
         <LinearGradient
           start={{x: 0.1, y: 0.1}}
           end={{x: 1, y: 1}}
-          colors={['#4c669f', 'purple', 'purple']}
+          colors={['#2C3957', '#5B449B']}
           style={style.linearGradient}>
           <SafeAreaView style={style.listContainer}>
-            <Text style={{...style.symbol, color: '#9082cf'}}>
-              {item.symbol}
-            </Text>
-            <Text style={style.title}>
-              {item.title.length < 15
-                ? `${item.title}`
-                : `${item.title.substring(0, 14)}...`}
-            </Text>
-            <Text style={style.price}>${item.price}</Text>
-            <Text style={{...style.percentage, color: '#9082cf'}}>
-              {item.percentage}
-            </Text>
+            <View style={style.topDetails}>
+              <Text style={{...style.symbol, color: '#B8A0FF'}}>
+                {item.symbol}
+              </Text>
+              <Text style={style.title}>
+                {item.title.length < 15
+                  ? `${item.title}`
+                  : `${item.title.substring(0, 14)}...`}
+              </Text>
+            </View>
+            <View style={style.bottomDetails}>
+              <Text style={style.price}>${item.price}</Text>
+              <Text style={{...style.percentage, color: '#1AB968'}}>
+                {item.percentage}
+              </Text>
+            </View>
           </SafeAreaView>
         </LinearGradient>
       );
@@ -85,9 +93,9 @@ const style = StyleSheet.create({
   linearGradient: {
     alignSelf: 'center',
     marginTop: 3,
-    borderRadius: 15,
-    height: 130,
-    width: 125,
+    borderRadius: 12,
+    height: 120,
+    width: 127,
     flexDirection: 'column',
     padding: 3,
     paddingTop: 0,
@@ -108,9 +116,9 @@ const style = StyleSheet.create({
   },
   bottomDetails: {},
   title: {
-    fontSize: 14,
-
-    color: 'grey',
+    fontSize: 13,
+    fontFamily: 'Montserrat-Regular',
+    color: '#b3b3b3',
   },
   detailsContainer: {
     position: 'absolute',
@@ -118,16 +126,18 @@ const style = StyleSheet.create({
     marginLeft: 2,
   },
   symbol: {
-    fontWeight: 'bold',
-    fontSize: 22,
+    fontSize: 19,
     color: 'rgb(8, 11, 9)',
+    fontFamily: 'Montserrat-Bold',
   },
   percentage: {
-    fontSize: 14,
+    fontSize: 13,
     color: 'grey',
+    fontFamily: 'Montserrat-SemiBold',
   },
   price: {
-    fontSize: 20,
-    color: 'lightgrey',
+    fontSize: 19,
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat-Regular',
   },
 });

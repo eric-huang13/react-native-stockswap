@@ -39,13 +39,15 @@ const style = StyleSheet.create({
     paddingHorizontal: 6,
   },
   source: {
-    color: 'grey',
+    color: '#9ea6b5',
     marginRight: 4,
-    fontSize: 16,
+    fontSize: 15,
+    fontFamily: 'Montserrat-Regular',
   },
   released: {
-    color: 'grey',
-    fontSize: 14,
+    color: '#9ea6b5',
+    fontSize: 13,
+    fontFamily: 'Montserrat-Regular',
   },
   headlineContainer: {
     flexDirection: 'column',
@@ -53,15 +55,16 @@ const style = StyleSheet.create({
     marginBottom: 6,
   },
   headline: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontSize: 15,
     marginTop: 8.5,
     marginBottom: 10,
+    fontFamily: 'Montserrat-Bold',
   },
   intro: {
-    color: 'white',
-    fontSize: 16,
+    color: '#FFFFFF',
+    fontSize: 15,
+    fontFamily: 'Montserrat-Medium',
   },
   imageContainer: {
     // paddingLeft: 3,

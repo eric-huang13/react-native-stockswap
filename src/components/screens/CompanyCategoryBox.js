@@ -3,12 +3,12 @@ import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
 
 export default class CompanyCategoryBox extends Component {
   render() {
-    const {item} = this.props;
+    const {item, index} = this.props;
 
     return (
       <SafeAreaView
         style={
-          item.id % 2 === 0
+          index % 2 !== 0
             ? {...style.container, backgroundColor: '#2a334a'}
             : {...style.container}
         }>
@@ -47,22 +47,29 @@ const style = StyleSheet.create({
     marginTop: 5,
   },
   symbol: {
-    color: 'white',
-    fontSize: 22,
-    fontWeight: 'bold',
+    fontFamily: 'Montserrat-Bold',
+    color: '#FFFFFF',
+    fontSize: 20.5,
   },
   title: {
     color: '#d0d3dc',
     marginTop: 3,
+    fontFamily: 'Montserrat-Regular',
+    fontSize: 14,
   },
   price: {
     color: 'white',
     fontSize: 22,
     fontWeight: 'bold',
+    fontFamily: 'Montserrat-Bold',
+    color: '#FFFFFF',
+    fontSize: 20.5,
   },
   percentage: {
     color: '#5fc48c',
     alignSelf: 'flex-end',
     marginTop: 3,
+    fontFamily: 'Montserrat-Medium',
+    fontSize: 14,
   },
 });

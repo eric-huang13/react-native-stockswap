@@ -6,20 +6,58 @@ import {
   Image,
   TouchableOpacity,
   SafeAreaView,
+  Modal
 } from 'react-native';
+import LikeInactiveIcon from '../../icons/LikeInactiveIcon'
+import CommentIcon from '../../icons/CommentIcon'
+import ReportModal from './ReportModal';
+import ShareToModal from './ShareToModal'
+
+
 
 export default class UserPosts extends Component {
   constructor(props) {
     super(props);
     this.state = {
       shouldShow: false,
+      reportModalState: false,
+      shareModalState: false,
+
     };
   }
+  accountId = this.props.userAccount.id
 
+  navigationByCondition = post => {
+    const {navigation} = this.props;
+    if (post.userId === this.accountId) {
+      navigation.navigate({
+        name: 'MyProfile',
+        params: {id: post.id},
+      })
+    } else {
+      navigation.navigate({
+        name: 'Profile',
+        params: {id: post.userId}      })
+    }
+  };
+  dropDownSelect(post, userAccount) {
+    this.setState({shouldShow:false})
+    this.props.navigation.navigate({
+      name: 'EditPost',
+      params: {post, userAccount},
+    })
+  }
+  reportModal(item) {
+    this.setState({reportModalState:item, shouldShow:false})
+  }
+  shareModal(item) {
+    this.setState({shareModalState:item, shouldShow:false})
+  }
   render() {
-    const {shouldShow} = this.state;
+    const {shouldShow, reportModalState, shareModalState} = this.state;
 
-    const {post, comments, reply} = this.props;
+    const {post, comments, reply, userAccount} = this.props;
+    
     const filteredComments = comments.filter(
       (comment) => comment.postId === post.id,
     );
@@ -27,7 +65,17 @@ export default class UserPosts extends Component {
     // console.log(this.props.navigation, 'props in post');
     return (
       <SafeAreaView style={style.container}>
+         <Modal transparent={true} visible={reportModalState} animationType="slide">
+          <ReportModal reportModal={this.reportModal.bind(this)}/>
+        </Modal>
+        <Modal transparent={true} visible={shareModalState} animationType="slide">
+          <ShareToModal shareModal={this.shareModal.bind(this)}/>
+        </Modal>
         <View style={style.postNameContainer}>
+        <TouchableOpacity
+                    key={post.id}
+                    onPress={()=>this.navigationByCondition(post)             
+                    }>
           <View style={style.profileImageContainer}>
             <Image
               style={style.postUserImage}
@@ -35,8 +83,9 @@ export default class UserPosts extends Component {
             />
             <Text style={style.postUserName}>{post.name}</Text>
           </View>
-
-          <View style={style.dotsDropdownConatiner}>
+          </TouchableOpacity>        
+            {userAccount.id === post.userId ? 
+            <View style={style.dotsDropdownContainer}>
             <TouchableOpacity
               onPress={() =>
                 this.setState({
@@ -46,22 +95,58 @@ export default class UserPosts extends Component {
               <Text style={style.dotsButton}>...</Text>
             </TouchableOpacity>
             {this.state.shouldShow ? (
+              <View style={style.dropdownEdit}>
+              <TouchableOpacity
+        onPress={() => this.dropDownSelect(post, userAccount)
+        }>
+          <Text style={style.dropDownText}>Edit post</Text>
+              </TouchableOpacity>                
+              <View style={style.dropDownTextReportContainer}>
+                <Text style={style.dropDownText}>Remove post</Text>
+              </View>
+            </View>
+            ) : null}
+          </View>
+            :
+            <View style={style.dotsDropdownContainer}>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  shouldShow: !shouldShow,
+                })
+              }>
+              <Text style={style.dotsButton}>...</Text>
+           
+            </TouchableOpacity>
+            {this.state.shouldShow ? (
               <View style={style.dropdown}>
                 <Text style={style.dropDownText}>Repost</Text>
                 <Text style={style.dropDownText}>Copy link</Text>
+                <TouchableOpacity
+                      onPress={() => this.shareModal(true)}
+                    >
+                    <Text style={style.dropDownText}>Share to...</Text>
+                    </TouchableOpacity>
                 <Text style={style.dropDownText}>Turn on notifications</Text>
+                <TouchableOpacity
+                      key={post.id}
+                      onPress={() => this.reportModal(true)}
+                    >
                 <View style={style.dropDownTextReportContainer}>
                   <Text style={style.dropDownText}>Report</Text>
                 </View>
+                </TouchableOpacity>
               </View>
             ) : null}
           </View>
+            }
+             
         </View>
         <TouchableOpacity
           onPress={() =>
             this.props.navigation.navigate({
               name: 'PostScreen',
-              params: {post, filteredComments, reply},
+              params: {post, filteredComments, reply, userAccount},
             })
           }>
           <Image style={style.image} source={{uri: post.img}} />
@@ -71,24 +156,33 @@ export default class UserPosts extends Component {
           <Text style={style.timestamp}>{post.timestamp}</Text>
 
           <View style={style.likesContainer}>
-            <Text style={style.likes}>{post.likes}</Text>
-            <Text style={style.comments}>{post.comments}</Text>
-          </View>
+              <View style={style.iconContainer}>
+                <LikeInactiveIcon/>
+              <Text style={style.likes}>{post.likes}</Text>
+              </View>
+              <View style={style.iconContainer}>
+                <CommentIcon/>
+              <Text style={style.comments}>{post.comments}</Text>
+              </View>
+            </View>
         </View>
         <TouchableOpacity
           onPress={() =>
             this.props.navigation.navigate({
               name: 'PostScreen',
-              params: {post, filteredComments, reply},
+              params: {post, filteredComments, reply, userAccount},
             })
           }>
-          <Text style={style.body}>
-            {' '}
-            {post.body.length < 91
-              ? `${post.body}`
-              : `${post.body.substring(0, 90)}...`}{' '}
+
+             {post.body.length < 80
+             ?
+          <Text style={style.body}>          
+            {post.body}
+               </Text>
+              : <Text style={style.body}> {post.body.substring(0, 80)}...
             <Text style={style.more}>{'       '}More</Text>
           </Text>
+  }
         </TouchableOpacity>
 
         <View style={style.commentContainer}>
@@ -96,21 +190,21 @@ export default class UserPosts extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.props.navigation.navigate({
-                  name: 'PostScreen',
-                  params: {post, filteredComments, reply},
+                  name: 'UserCommentList',
+                  params: {postId:post.id, userAccount},
                 })
               }>
-              <View style={style.headerContainer}>
+              {/* <View style={style.headerContainer}>
                 <Text style={style.allComments}>View all comments</Text>
-              </View>
+              </View> */}
 
               {lastComment ? (
                 <View style={style.lastCommentContainer}>
                   <Text style={style.lastCommentName}>{lastComment.name}:</Text>
                   <Text style={style.lastCommentBody}>
-                    {lastComment.body.length < 58
+                    {lastComment.body.length < 55
                       ? `${lastComment.body}`
-                      : `${lastComment.body.substring(0, 59)}...`}
+                      : `${lastComment.body.substring(0, 55)}...`}
                   </Text>
                 </View>
               ) : null}
@@ -127,7 +221,7 @@ const style = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     marginTop: 3,
-    paddingVertical: 14,
+    paddingVertical: 18,
     paddingHorizontal: 10,
     backgroundColor: '#2a334a',
   },
@@ -147,15 +241,15 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   postUserImage: {
-    height: 42,
-    width: 42,
+    height: 40,
+    width: 40,
     borderRadius: 50,
   },
   postUserName: {
-    color: 'white',
-    fontSize: 16.5,
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontSize: 16,
     marginLeft: 8,
+    fontFamily:'Montserrat-Bold',
   },
   detailsContainer: {
     flexDirection: 'row',
@@ -169,29 +263,43 @@ const style = StyleSheet.create({
     justifyContent: 'space-around',
   },
   timestamp: {
-    fontSize: 14,
+    fontSize: 12.5,
     color: 'lightgrey',
-    fontStyle: 'italic',
+    fontFamily:'Montserrat-Italic',
+  },
+  iconContainer:{
+    flexDirection:'row',
+     alignItems:'center',
+     justifyContent:'space-between',
   },
   likes: {
     fontSize: 16,
-    color: 'white',
+    color: 'lightgrey',
+    fontFamily:'Montserrat-Medium',
+    marginLeft:3,
+    marginRight:14,
+    
   },
   comments: {
     fontSize: 16,
-    color: 'white',
-    marginHorizontal: 10,
+    color: 'lightgrey',
+    fontFamily:'Montserrat-Medium',
+    marginRight: 1,
+    marginLeft:3,
   },
   body: {
-    fontSize: 16.5,
-    color: 'white',
+    fontSize: 15,
+    color: '#FFFFFF',
     marginTop: 10,
     marginBottom: 4,
+    fontFamily:'Montserrat-Medium',
   },
   more: {
-    fontSize: 14,
-    color: '#8b64ff',
-    fontStyle: 'italic',
+    fontSize: 13,
+    color: '#B8A0FF',
+    fontFamily:'Montserrat-SemiBoldItalic',
+  //   alignSelf:'flex-end',
+  //  textAlign:'right'
   },
   commentContainer: {
     marginTop: 4,
@@ -202,16 +310,19 @@ const style = StyleSheet.create({
     fontSize: 14,
   },
   lastCommentContainer: {
-    marginTop: 4,
+    // marginTop: 1,
   },
   lastCommentName: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: '#999999',
+    fontFamily:'Montserrat-Bold',
+    marginBottom:1,
   },
   lastCommentBody: {
-    color: 'white',
+    color: '#FFFFFF',
+    fontSize:13,
+    fontFamily:'Montserrat-Regular',
   },
-  dotsDropdownConatiner: {
+  dotsDropdownContainer: {
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     alignContent: 'center',
@@ -221,6 +332,19 @@ const style = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 20,
+    marginBottom:10, 
+  },
+  dropdownEdit: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginTop: 1,
+    marginBottom: -60,
+    backgroundColor: '#2C3957',
+    zIndex: 1,
+    paddingVertical: 6,
+    // paddingHorizontal:10,
   },
   dropdown: {
     flex: 1,
@@ -228,20 +352,22 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
     marginTop: 1,
-    marginBottom: -125,
-    backgroundColor: '#36415f',
+    marginBottom: -135,
+    backgroundColor: '#2C3957',
     zIndex: 1,
     paddingVertical: 6,
     // paddingHorizontal:10,
   },
   dropDownText: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 16,
     marginHorizontal: 12,
+    fontFamily:'Montserrat-Medium',
   },
   dropDownTextReportContainer: {
     borderTopWidth: 1,
-    borderTopColor: 'lightgrey',
+    borderTopColor: '#CBCDD7',
     paddingTop: 4,
+    backgroundColor:'#2C3957'
   },
 });

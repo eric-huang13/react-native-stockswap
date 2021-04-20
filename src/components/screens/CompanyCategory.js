@@ -55,9 +55,10 @@ export class CompanyCategory extends Component {
           </View>
 
           <FlatList
+            keyExtractor={(item, index) => index.toString()}
             style={style.listContainer}
             data={filteredCategory}
-            renderItem={({item}) => (
+            renderItem={({item, index}) => (
               <TouchableOpacity
                 key={item.id}
                 onPress={() =>
@@ -66,7 +67,7 @@ export class CompanyCategory extends Component {
                     params: {item},
                   })
                 }>
-                <CompanyCategoryBox item={item} />
+                <CompanyCategoryBox item={item} index={index} />
               </TouchableOpacity>
             )}
           />
@@ -88,16 +89,16 @@ const style = StyleSheet.create({
   },
   listContainer: {},
   searchInputContainer: {
-    marginBottom: 26,
+    marginBottom: 32,
   },
   searchInput: {
     paddingLeft: 40,
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 17,
+    fontSize: 16.5,
     height: 40,
-    fontStyle: 'italic',
     paddingVertical: 0,
+    fontFamily: 'Montserrat-Regular',
   },
 });

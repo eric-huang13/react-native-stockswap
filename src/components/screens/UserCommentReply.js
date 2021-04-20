@@ -9,43 +9,96 @@ import {
 } from 'react-native';
 
 export default class UserCommentReply extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      shouldShow: false,
+    };
+  }
+  accountId = this.props.userAccount.id;
+
+  navigationByCondition = (item) => {
+    const {navigation} = this.props;
+    if (item.userId === this.accountId) {
+      navigation.navigate({
+        name: 'MyProfile',
+        params: {id: item.id},
+      });
+    } else {
+      navigation.navigate({
+        name: 'Profile',
+        params: {id: item.userId},
+      });
+    }
+  };
   render() {
     const {reply, id} = this.props;
+    const {shouldShow} = this.state;
+
     const filteredReply = reply.filter((reply) => reply.commentId === id);
 
     return (
       <SafeAreaView style={style.mainContainer}>
-        {filteredReply.map((item) => (
-          <View key={item.id} style={style.itemContainer}>
-            <View style={style.detailsContainer}>
-              <Image
-                style={style.postUserImage}
-                source={{uri: item.profileImg}}
-              />
-              <View style={style.nameBodyContainer}>
-                <TouchableOpacity
-                  key={item.id}
-                  onPress={() =>
-                    this.props.navigation.navigate({
-                      name: 'Profile',
-                      params: {item},
-                    })
-                  }>
-                  <Text style={style.name}>{item.name} </Text>
-                </TouchableOpacity>
+        {this.state.shouldShow && filteredReply.length > 0 ? (
+          <View>
+            <TouchableOpacity
+              onPress={() =>
+                this.setState({
+                  shouldShow: !shouldShow,
+                })
+              }>
+              <Text style={style.replyButton}>Hide replies</Text>
+            </TouchableOpacity>
+            {filteredReply.map((item) => (
+              <View key={item.id} style={style.itemContainer}>
+                <View style={style.detailsContainer}>
+                  <Image
+                    style={style.postUserImage}
+                    source={{uri: item.profileImg}}
+                  />
+                  <View style={style.nameBodyContainer}>
+                    <TouchableOpacity
+                      key={item.id}
+                      onPress={() => this.navigationByCondition(item)}>
+                      <Text style={style.name}>{item.name} </Text>
+                    </TouchableOpacity>
 
-                <Text style={style.body}>{item.body} </Text>
+                    <Text style={style.body}>{item.body} </Text>
+                  </View>
+                </View>
+                <View style={style.belowCommentContainer}>
+                  <Text style={style.time}>{item.time}</Text>
+                  <View style={style.likesContainer}>
+                    <Text style={style.likes}>{item.likes} likes</Text>
+                    <Text style={style.reply}>Reply </Text>
+                  </View>
+                </View>
               </View>
-            </View>
-            <View style={style.belowCommentContainer}>
-              <Text style={style.time}>{item.time}</Text>
-              <View style={style.likesContainer}>
-                <Text style={style.likes}>{item.likes} likes</Text>
-                <Text style={style.reply}>Reply </Text>
-              </View>
-            </View>
+            ))}
           </View>
-        ))}
+        ) : !this.state.shouldShow && filteredReply.length === 1 ? (
+          <TouchableOpacity
+            onPress={() =>
+              this.setState({
+                shouldShow: !shouldShow,
+              })
+            }>
+            <Text style={style.replyButton}>
+              View {filteredReply.length} reply
+            </Text>
+          </TouchableOpacity>
+        ) : !this.state.shouldShow && filteredReply.length > 0 ? (
+          <TouchableOpacity
+            onPress={() =>
+              this.setState({
+                shouldShow: !shouldShow,
+              })
+            }>
+            <Text style={style.replyButton}>
+              View {filteredReply.length} replies
+            </Text>
+          </TouchableOpacity>
+        ) : null}
       </SafeAreaView>
     );
   }
@@ -53,7 +106,7 @@ export default class UserCommentReply extends Component {
 
 const style = StyleSheet.create({
   mainContainer: {
-    flexDirection: 'column-reverse',
+    flexDirection: 'column',
     backgroundColor: '#2a334a',
     paddingVertical: 4,
     paddingLeft: 60,
@@ -64,7 +117,6 @@ const style = StyleSheet.create({
   },
   detailsContainer: {
     flexDirection: 'row',
-    // marginBottom: 2,
     paddingRight: 4,
   },
   nameBodyContainer: {
@@ -81,15 +133,17 @@ const style = StyleSheet.create({
   },
 
   name: {
-    color: 'white',
-    fontSize: 17,
-    fontWeight: 'bold',
+    fontSize: 15,
     marginLeft: 8,
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat-Bold',
+    marginBottom: 3,
   },
   body: {
-    color: 'white',
-    fontSize: 13.8,
     marginLeft: 8,
+    color: 'lightgrey',
+    fontSize: 13.5,
+    fontFamily: 'Montserrat-Medium',
   },
   postUserImage: {
     height: 28,
@@ -105,19 +159,29 @@ const style = StyleSheet.create({
     marginTop: 4,
   },
   time: {
+    fontSize: 12.5,
     color: 'lightgrey',
-    fontStyle: 'italic',
+    fontFamily: 'Montserrat-Italic',
   },
   likesContainer: {
     flexDirection: 'row',
   },
   likes: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat-SemiBold',
+    fontSize: 13,
   },
   reply: {
-    color: '#9082cf',
+    color: '#B8A0FF',
     marginLeft: 16,
-    fontWeight: 'bold',
+    fontFamily: 'Montserrat-SemiBold',
+    fontSize: 13,
+  },
+  replyButton: {
+    color: '#B8A0FF',
+    marginLeft: 16,
+    fontFamily: 'Montserrat-SemiBold',
+    fontSize: 13,
+    marginBottom: 10,
   },
 });

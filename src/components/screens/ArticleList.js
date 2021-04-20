@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import Article from './Article';
+import SearchInput from '../../icons/SearchInput';
 
 export class ArticleList extends Component {
   constructor(props) {
@@ -28,9 +29,18 @@ export class ArticleList extends Component {
       <SafeAreaView>
         <ScrollView contentContainerStyle={{paddingBottom: 180}}>
           <View style={style.searchInputContainer}>
+            <View
+              style={{
+                position: 'absolute',
+                zIndex: 1,
+                left: 14,
+                top: 10,
+              }}>
+              <SearchInput />
+            </View>
             <TextInput
               style={style.searchInput}
-              placeholder="Search by name"
+              placeholder="Search"
               placeholderTextColor="lightgrey"
               onChangeText={(text) => this.handleChange(text)}
             />
@@ -54,7 +64,6 @@ export default connect(mapStateToProps)(ArticleList);
 
 const style = StyleSheet.create({
   searchInputContainer: {
-    // marginTop: 1,
     marginBottom: 20,
   },
   searchInput: {
@@ -64,7 +73,7 @@ const style = StyleSheet.create({
     color: 'lightgrey',
     fontSize: 16,
     height: 36,
-    fontStyle: 'italic',
     paddingVertical: 0,
+    fontFamily: 'Montserrat-Italic',
   },
 });

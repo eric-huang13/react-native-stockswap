@@ -8,7 +8,7 @@ import {
   ScrollView,
   SafeAreaView,
 } from 'react-native';
-import ProfileGraph from './ProfileGraphList';
+import ProfileGraph from './ProfileGraph';
 import UserPosts from './UserPosts';
 import {connect} from 'react-redux';
 
@@ -33,22 +33,26 @@ class Profile extends Component {
       threeMonth: false,
       year: false,
       all: false,
+      timeFilter: 'day',
     };
   }
+  timeFilterSelect(time) {
+    this.setState({timeFilter: time});
+  }
   render() {
-    const {item} = this.props.route.params;
-    const {graphData, percent, range} = this.state;
-    const {posts, comments, users, reply} = this.props;
+    const {id} = this.props.route.params;
+    const {graphData, percent, range, timeFilter} = this.state;
+    const {posts, comments, users, reply, userAccount} = this.props;
 
-    const selectedUser = users.filter((user) => user.id === item.id);
+    const selectedUser = users.filter((user) => user.id === id);
 
-    const filteredPosts = posts.filter((post) => post.userId === item.id);
+    const filteredPosts = posts.filter((post) => post.userId === id);
     return (
       <SafeAreaView style={style.container}>
         <ScrollView>
           {selectedUser.map((user) => {
             return (
-              <View>
+              <View key={user.id}>
                 <View style={style.aboveGraphContainer}>
                   <View style={style.portfolioHeaderContainer}>
                     <Text style={style.portfolioHeader}>Portfolio</Text>
@@ -63,20 +67,10 @@ class Profile extends Component {
                 </View>
                 <View style={style.timeFilterButtonsContainer}>
                   <TouchableOpacity
-                    onPress={() =>
-                      this.setState({
-                        live: true,
-                        day: false,
-                        week: false,
-                        month: false,
-                        threeMonth: false,
-                        year: false,
-                        all: false,
-                      })
-                    }>
+                    onPress={() => this.timeFilterSelect('live')}>
                     <Text
                       style={
-                        this.state.live
+                        timeFilter === 'live'
                           ? {...style.timeFilterButtons, color: '#8b64ff'}
                           : {...style.timeFilterButtons}
                       }>
@@ -84,20 +78,10 @@ class Profile extends Component {
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={() =>
-                      this.setState({
-                        live: false,
-                        day: true,
-                        week: false,
-                        month: false,
-                        threeMonth: false,
-                        year: false,
-                        all: false,
-                      })
-                    }>
+                    onPress={() => this.timeFilterSelect('day')}>
                     <Text
                       style={
-                        this.state.day
+                        timeFilter === 'day'
                           ? {...style.timeFilterButtons, color: '#8b64ff'}
                           : {...style.timeFilterButtons}
                       }>
@@ -105,20 +89,10 @@ class Profile extends Component {
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={() =>
-                      this.setState({
-                        live: false,
-                        day: false,
-                        week: true,
-                        month: false,
-                        threeMonth: false,
-                        year: false,
-                        all: false,
-                      })
-                    }>
+                    onPress={() => this.timeFilterSelect('week')}>
                     <Text
                       style={
-                        this.state.week
+                        timeFilter === 'week'
                           ? {...style.timeFilterButtons, color: '#8b64ff'}
                           : {...style.timeFilterButtons}
                       }>
@@ -126,41 +100,20 @@ class Profile extends Component {
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={() =>
-                      this.setState({
-                        live: false,
-                        day: false,
-                        week: false,
-                        month: true,
-                        threeMonth: false,
-                        year: false,
-                        all: false,
-                      })
-                    }>
+                    onPress={() => this.timeFilterSelect('month')}>
                     <Text
                       style={
-                        this.state.month
+                        timeFilter === 'month'
                           ? {...style.timeFilterButtons, color: '#8b64ff'}
                           : {...style.timeFilterButtons}
                       }>
                       1M
                     </Text>
                   </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() =>
-                      this.setState({
-                        live: false,
-                        day: false,
-                        week: false,
-                        month: false,
-                        threeMonth: true,
-                        year: false,
-                        all: false,
-                      })
-                    }>
+                  <TouchableOpacity onPress={() => this.timeFilterSelect('3M')}>
                     <Text
                       style={
-                        this.state.threeMonth
+                        timeFilter === '3M'
                           ? {...style.timeFilterButtons, color: '#8b64ff'}
                           : {...style.timeFilterButtons}
                       }>
@@ -168,20 +121,10 @@ class Profile extends Component {
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={() =>
-                      this.setState({
-                        live: false,
-                        day: false,
-                        week: false,
-                        month: false,
-                        threeMonth: false,
-                        year: true,
-                        all: false,
-                      })
-                    }>
+                    onPress={() => this.timeFilterSelect('year')}>
                     <Text
                       style={
-                        this.state.year
+                        timeFilter === 'year'
                           ? {...style.timeFilterButtons, color: '#8b64ff'}
                           : {...style.timeFilterButtons}
                       }>
@@ -189,20 +132,10 @@ class Profile extends Component {
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={() =>
-                      this.setState({
-                        live: false,
-                        day: false,
-                        week: false,
-                        month: false,
-                        threeMonth: false,
-                        year: false,
-                        all: true,
-                      })
-                    }>
+                    onPress={() => this.timeFilterSelect('all')}>
                     <Text
                       style={
-                        this.state.all
+                        timeFilter === 'all'
                           ? {...style.timeFilterButtons, color: '#8b64ff'}
                           : {...style.timeFilterButtons}
                       }>
@@ -216,7 +149,7 @@ class Profile extends Component {
                     <View style={style.personalDetails}>
                       <Text style={style.name}>{user.name}</Text>
                       <Text style={style.username}>@{user.username}</Text>
-                      <Text style={style.website}>{user.website}</Text>
+                      <Text style={style.hashtag}>{user.hashtag}</Text>
                     </View>
                     <View style={style.followButtonView}>
                       <Text style={style.followButton}>+Follow</Text>
@@ -226,10 +159,18 @@ class Profile extends Component {
                     <Text style={style.bio}>{user.bio}</Text>
                   </View>
                   <View style={style.numberRow}>
-                    <View style={style.numberColumn}>
-                      <Text style={style.numberData}>{user.followers}</Text>
-                      <Text style={style.numberText}>Followers</Text>
-                    </View>
+                    <TouchableOpacity
+                      onPress={() =>
+                        this.props.navigation.navigate('Followers', {
+                          name: `${user.name}'s followers`,
+                          params: {user},
+                        })
+                      }>
+                      <View style={style.numberColumn}>
+                        <Text style={style.numberData}>{user.followers}</Text>
+                        <Text style={style.numberText}>Followers</Text>
+                      </View>
+                    </TouchableOpacity>
                     <View style={style.numberColumn}>
                       <Text style={style.numberData}>{user.posts}</Text>
                       <Text style={style.numberText}>Posts</Text>
@@ -238,10 +179,18 @@ class Profile extends Component {
                       <Text style={style.numberData}>{user.trades}</Text>
                       <Text style={style.numberText}>Trades </Text>
                     </View>
-                    <View style={style.numberColumn}>
-                      <Text style={style.numberData}>{user.following}</Text>
-                      <Text style={style.numberText}>Following</Text>
-                    </View>
+                    <TouchableOpacity
+                      onPress={() =>
+                        this.props.navigation.navigate('Following', {
+                          name: `${user.name}'s following`,
+                          params: {user},
+                        })
+                      }>
+                      <View style={style.numberColumn}>
+                        <Text style={style.numberData}>{user.following}</Text>
+                        <Text style={style.numberText}>Following</Text>
+                      </View>
+                    </TouchableOpacity>
                   </View>
                 </View>
                 <View style={style.portfolioButtonContainer}>
@@ -252,7 +201,7 @@ class Profile extends Component {
                         // params: {user},
                       })
                     }>
-                    <Text style={style.portfolioButton}>Portfolio Button</Text>
+                    <Text style={style.portfolioButton}>Portfolio</Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -265,12 +214,13 @@ class Profile extends Component {
 
               <View>
                 {filteredPosts.map((post) => (
-                  <View>
+                  <View key={post.id}>
                     <UserPosts
                       post={post}
                       navigation={this.props.navigation}
                       comments={comments}
                       reply={reply}
+                      userAccount={userAccount}
                     />
                   </View>
                 ))}
@@ -287,8 +237,9 @@ const mapStateToProps = (state) => {
   return {
     posts: state.posts.posts,
     comments: state.posts.comments,
-    users: state.company.users,
+    users: state.people.users,
     reply: state.posts.reply,
+    userAccount: state.user.userFakeData,
   };
 };
 
@@ -300,7 +251,6 @@ const style = StyleSheet.create({
     backgroundColor: '#2a334a',
   },
   infoContainer: {
-    // borderWidth:1,
     borderColor: 'red',
     paddingHorizontal: 7,
   },
@@ -327,6 +277,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 12,
+    marginVertical: 10,
   },
   numberColumn: {
     alignItems: 'center',
@@ -367,7 +318,6 @@ const style = StyleSheet.create({
     justifyContent: 'center',
   },
   followButton: {
-    // alignSelf:'center',
     borderWidth: 1.4,
     borderColor: '#9082cf',
     color: '#9082cf',
@@ -385,7 +335,7 @@ const style = StyleSheet.create({
     color: 'white',
     fontSize: 15,
   },
-  website: {
+  hashtag: {
     color: '#9082cf',
     fontSize: 15,
   },
@@ -401,7 +351,7 @@ const style = StyleSheet.create({
   },
 
   portfolioButtonContainer: {
-    marginTop: 18,
+    marginTop: 8,
     // justifyContent:'center',
   },
   portfolioButton: {
@@ -413,10 +363,8 @@ const style = StyleSheet.create({
     marginHorizontal: 120,
     borderRadius: 8,
     fontSize: 16,
-    //  width:'20%',
   },
   graphContainer: {
-    // borderWidth:1,
     flexDirection: 'row',
   },
 
@@ -439,19 +387,6 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 26,
     marginLeft: 6,
+    marginTop: 30,
   },
-  // postNameContainer:{
-  // flexDirection:'row',
-  // alignItems:'center',
-  // },
-  // postUserImage:{
-  //   height: 50,
-  //   width: 50,
-  //   borderRadius: 50,
-  // },
-  // postUserName:{
-  //   color:'white',
-  //   fontSize:14,
-  //   fontWeight:'bold',
-  // },
 });

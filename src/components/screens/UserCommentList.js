@@ -7,16 +7,47 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
+import {connect} from 'react-redux';
 import UserCommentReply from './UserCommentReply';
+// import {  Swipeable } from 'react-native-gesture-handler';
 
-export default class UserCommentList extends Component {
+class UserCommentList extends Component {
+  accountId = this.props.userAccount.id;
+
+  navigationByCondition = (item) => {
+    const {navigation} = this.props;
+    if (item.userId === this.accountId) {
+      navigation.navigate({
+        name: 'MyProfile',
+        params: {id: item.id},
+      });
+    } else {
+      navigation.navigate({
+        name: 'Profile',
+        params: {id: item.userId},
+      });
+    }
+  };
   render() {
-    const {filteredComments, reply} = this.props;
-    console.log(filteredComments, 'filcom');
-
+    const {comments, reply, userAccount} = this.props;
+    const postId = this.props.postId
+      ? this.props.postId
+      : this.props.route.params.postId;
+    const filteredComments = comments.filter(
+      (comment) => comment.postId === postId,
+    );
+    // const rightAction = () => {
+    //   <View>
+    //     <Text>Delete</Text>
+    //   </View>
+    // }
     return (
       <SafeAreaView style={style.mainContainer}>
         {filteredComments.map((item) => (
+          // <Swipeable
+          // renderLeftActions={rightAction}
+
+          // >
           <View key={item.id} style={style.itemContainer}>
             <View style={style.detailsContainer}>
               <Image
@@ -26,15 +57,9 @@ export default class UserCommentList extends Component {
               <View style={style.nameBodyContainer}>
                 <TouchableOpacity
                   key={item.id}
-                  onPress={() =>
-                    this.props.navigation.navigate({
-                      name: 'Profile',
-                      params: {item},
-                    })
-                  }>
+                  onPress={() => this.navigationByCondition(item)}>
                   <Text style={style.name}>{item.name} </Text>
                 </TouchableOpacity>
-
                 <Text style={style.body}>{item.body} </Text>
               </View>
             </View>
@@ -45,32 +70,48 @@ export default class UserCommentList extends Component {
                 <Text style={style.reply}>Reply </Text>
               </View>
             </View>
-            <UserCommentReply
-              navigation={this.props.navigation}
-              reply={reply}
-              id={item.id}
-            />
+            <View>
+              <UserCommentReply
+                navigation={this.props.navigation}
+                reply={reply}
+                id={item.id}
+                userAccount={userAccount}
+              />
+            </View>
           </View>
+          // </Swipeable>
         ))}
       </SafeAreaView>
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    comments: state.posts.comments,
+    reply: state.posts.reply,
+    userAccount: state.user.userFakeData,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserCommentList);
 
 const style = StyleSheet.create({
   mainContainer: {
-    flexDirection: 'column-reverse',
+    flex: 1,
+    flexDirection: 'column',
     backgroundColor: '#2a334a',
-    paddingVertical: 4,
+    paddingVertical: 10,
     paddingLeft: 4,
-    marginTop: 10,
   },
   itemContainer: {
     marginBottom: 16,
   },
   detailsContainer: {
     flexDirection: 'row',
-    // marginBottom: 2,
     paddingRight: 4,
   },
   nameBodyContainer: {
@@ -87,15 +128,17 @@ const style = StyleSheet.create({
   },
 
   name: {
-    color: 'white',
-    fontSize: 17,
-    fontWeight: 'bold',
+    fontSize: 15,
     marginLeft: 8,
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat-Bold',
+    marginBottom: 3,
   },
   body: {
-    color: 'white',
-    fontSize: 14,
+    color: 'lightgrey',
+    fontSize: 13.5,
     marginLeft: 8,
+    fontFamily: 'Montserrat-Medium',
   },
   postUserImage: {
     height: 53,
@@ -111,19 +154,22 @@ const style = StyleSheet.create({
     marginTop: 4,
   },
   time: {
+    fontSize: 12.5,
     color: 'lightgrey',
-    fontStyle: 'italic',
+    fontFamily: 'Montserrat-Italic',
   },
   likesContainer: {
     flexDirection: 'row',
   },
   likes: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat-SemiBold',
+    fontSize: 13,
   },
   reply: {
-    color: '#9082cf',
+    color: '#B8A0FF',
     marginLeft: 16,
-    fontWeight: 'bold',
+    fontFamily: 'Montserrat-SemiBold',
+    fontSize: 13,
   },
 });

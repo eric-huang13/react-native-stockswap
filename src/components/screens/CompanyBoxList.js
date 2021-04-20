@@ -9,8 +9,8 @@ import {
   SafeAreaView,
 } from 'react-native';
 
+import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
-// import {style} from '../../styles/style';
 import CompanyBox from './CompanyBox';
 // import {fetchMarketGainers} from '../../actions/marketMovers'
 
@@ -38,6 +38,17 @@ export class CompanyBoxList extends Component {
       <SafeAreaView style={style.mainContainer}>
         <ScrollView contentContainerStyle={{paddingBottom: 180}}>
           <View style={style.searchInputContainer}>
+
+          <View
+        style={{
+          position: "absolute",
+          zIndex: 1,
+          left: 14,
+          top:10
+        }}
+      >
+              <SearchInput />
+            </View>
             <TextInput
               style={style.searchInput}
               placeholder="Search"
@@ -57,7 +68,7 @@ export class CompanyBoxList extends Component {
                     },
                   })
                 }>
-                <Text style={style.header}>Gainers</Text>
+                <Text style={style.header}>Daily Gainers</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() =>
@@ -105,7 +116,7 @@ export class CompanyBoxList extends Component {
                     },
                   })
                 }>
-                <Text style={style.header}>Losers</Text>
+                <Text style={style.header}>Daily Losers</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() =>
@@ -154,7 +165,7 @@ export class CompanyBoxList extends Component {
                     },
                   })
                 }>
-                <Text style={style.header}>Highest by Volume</Text>
+                <Text style={style.header}>Daily Highest by Volume</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() =>
@@ -214,22 +225,16 @@ export default connect(mapStateToProps)(CompanyBoxList);
 
 const style = StyleSheet.create({
   mainContainer: {
-    width: '98%',
     alignSelf: 'center',
     paddingBottom: 40,
   },
   container: {
     marginBottom: 18,
     borderBottomColor: 'gray',
-    // paddingBottom: 40,
-    // width: '98%',
-    // alignSelf: 'center',
-    // alignItems:"flex-start"
+    paddingHorizontal: 2,
   },
   boxContainer: {
-    // paddingLeft:1,
-    // flexDirection: 'row',
-    // justifyContent: 'space-around',
+    paddingLeft: 2,
   },
   headerContainer: {
     flexDirection: 'row',
@@ -238,30 +243,31 @@ const style = StyleSheet.create({
     marginBottom: 4,
   },
   header: {
-    fontSize: 20,
+    fontSize: 17,
     marginLeft: 5.5,
     color: 'lightgrey',
-    // marginBottom: 3.5,
+    fontFamily: 'Montserrat-Regular',
   },
   seeAllHeader: {
     paddingTop: 3.5,
     paddingRight: 2,
-    fontSize: 16.5,
-    color: '#9082cf',
-    fontWeight: 'bold',
+    fontSize: 15,
+    color: '#B8A0FF',
+    fontFamily: 'Montserrat-SemiBold',
   },
   searchInputContainer: {
-    // marginTop: 1,
+    flexDirection: 'row',
     marginBottom: 15,
   },
   searchInput: {
+    flex: 1,
     paddingLeft: 40,
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 18,
+    fontSize: 16,
     height: 36,
-    fontStyle: 'italic',
     paddingVertical: 0,
+    fontFamily: 'Montserrat-Italic',
   },
 });

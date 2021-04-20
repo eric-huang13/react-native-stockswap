@@ -160,7 +160,7 @@ const style = StyleSheet.create({
   searchInput: {
     borderWidth: 0.5,
     width: '90%',
-    fontSize: 15,
+    fontSize: 17,
     fontStyle: 'italic',
     textAlign: 'left',
     padding: 2.5,
@@ -169,8 +169,8 @@ const style = StyleSheet.create({
     paddingLeft: 5,
   },
   header: {
-    color: 'white',
-    fontSize: 20,
+    color: '#FFFFFF',
+    fontSize: 19,
     fontWeight: '700',
     marginVertical: 8,
     textAlign: 'center',
@@ -182,8 +182,8 @@ const style = StyleSheet.create({
     paddingBottom: 2,
   },
   tabHeader: {
-    color: 'white',
-    fontSize: 18,
+    color: '#FFFFFF',
+    fontSize: 17,
     fontWeight: 'bold',
   },
   activeTabHeaderView: {
@@ -192,11 +192,11 @@ const style = StyleSheet.create({
     paddingBottom: 1.8,
   },
   activeTabHeader: {
-    color: '#855cff',
-    textShadowColor: '#855cff',
+    color: '#8257FF',
+    textShadowColor: '#8257FF',
     textShadowOffset: {width: 1, height: 1},
     textShadowRadius: 50,
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: 'bold',
   },
 });

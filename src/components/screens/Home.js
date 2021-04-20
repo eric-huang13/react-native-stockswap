@@ -4,16 +4,19 @@ import StockTicker from './StockTicker';
 import {connect} from 'react-redux';
 import {Button, SafeAreaView, Text, ScrollView, StyleSheet} from 'react-native';
 
+
 import {Logout} from 'actions/user';
 
 class HomeScreen extends Component {
-  render() {
-    const {isLoggedIn, LogoutUser, posts, comments, reply} = this.props;
 
+  render() {
+    const {isLoggedIn, LogoutUser, posts, comments, reply, userData, userAccount} = this.props;
+
+    
     return (
       <SafeAreaView style={style.mainContainer}>
         <ScrollView>
-          <StockTicker />
+          <StockTicker />         
 
           {posts.map((post) => (
             <UserPosts
@@ -22,10 +25,11 @@ class HomeScreen extends Component {
               navigation={this.props.navigation}
               comments={comments}
               reply={reply}
+              userAccount={userAccount}
             />
           ))}
           <Text>Is User Logged in: {'' + isLoggedIn} </Text>
-          <Button title="Logout Button" onPress={() => LogoutUser()} />
+          <Button title="Logout Button" onPress={() => LogoutUser()} />         
         </ScrollView>
       </SafeAreaView>
     );
@@ -38,6 +42,9 @@ const mapStateToProps = (state) => {
     posts: state.posts.posts,
     comments: state.posts.comments,
     reply: state.posts.reply,
+    userData: state.user.userData,
+    userAccount: state.user.userFakeData
+
   };
 };
 
@@ -53,5 +60,6 @@ const style = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: '#2a334a',
+    
   },
 });

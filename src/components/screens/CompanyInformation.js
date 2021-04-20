@@ -8,6 +8,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import CompanyStockGraph from './CompanyStockGraph';
+import CompanySymbolList from './CompanySymbolList';
 
 export class CompanyInformation extends Component {
   constructor(props) {
@@ -23,26 +24,51 @@ export class CompanyInformation extends Component {
       ],
       percent: '1.22',
       range: [10, 15],
-      live: true,
-      day: false,
-      week: false,
-      month: false,
-      threeMonth: false,
-      year: false,
-      all: false,
+      timeFilter: 'live',
+      xDates: [],
+      yPrices: [],
     };
   }
 
-  render() {
-    //X and Y
-    //X
+  //All logic needs to be handled before hand, either in backend or in action? Will change this when we actually have data coming in
+
+  componentDidMount() {
+
+        //X
     const xDates = this.props.route.params.item.dates.map(
       (item) => new Date(item * 1000),
     );
     //Y
     const yPrices = this.props.route.params.item.priceHistory;
+
+
+        this.setState({
+      xDates: xDates,
+      yPrices: yPrices,
+    });
+  }
+
+  componentDidUpdate(prevProps) {
+    
+    if (this.props.route.params.item.dates !== prevProps.route.params.item.dates) {
+      this.setState({
+        xDates:this.props.route.params.item.dates,
+        yPrices:this.props.route.params.item.priceHistory,
+        });
+    }
+   }
+
+
+  render() {
+    //X and Y
+    //X
+    // const xDates = this.props.route.params.item.dates.map(
+    //   (item) => new Date(item * 1000),
+    // );
+    //Y
+    const yPrices = this.state.yPrices;
     //X and Y data
-    const xyData = xDates.map((stockDate, stockPrice) => {
+    const xyData = this.state.xDates.map((stockDate, stockPrice) => {
       return {x: stockDate, y: yPrices[stockPrice]};
     });
 
@@ -54,26 +80,28 @@ export class CompanyInformation extends Component {
 
     //Info to display
     //Current stock price
-    const currentPrice = yPrices[yPrices.length - 1];
+    const currentPrice = this.state.yPrices[yPrices.length - 1];
     // Growth/Loss percentage
     const percentChange = (
-      ((currentPrice - yPrices.length - 7) / yPrices.length - 7) *
+      ((currentPrice - yPrices[yPrices.length - 7]) /
+        yPrices[yPrices.length - 7]) *
       100
     ).toFixed(2);
+
     // Growth/Loss percentage
     const percentChangeMonth = (
-      ((currentPrice - yPrices.length - 30) / yPrices.length - 30) *
+      ((currentPrice - yPrices[yPrices.length - 30]) /
+        yPrices[yPrices.length - 30]) *
       100
     ).toFixed(2);
 
     //Range of highest and lowest numbers on graph, passed into graph component
     //Total range of stock prices
     const newrange = [Math.min(...yPrices), Math.max(...yPrices)];
+
+    const newweek = yPrices.slice(yPrices.length - 7);
     //Week range of stock prices
-    const weekRange = [
-      Math.min(...yPrices.slice(yPrices.length - 7)),
-      Math.max(...yPrices.slice(yPrices.length - 7)),
-    ];
+    const weekRange = [Math.min(...newweek), Math.max(...newweek)];
 
     //Numbers to display graph numbers, can also use use built in graph numbers instead
     //Graph high number
@@ -86,13 +114,15 @@ export class CompanyInformation extends Component {
     const chartThreeQuarter = (chartHigh - numberDifference).toFixed(0);
     //Graph quarter number
     const chartOneQuarter = (chartLow + numberDifference).toFixed(0);
-
+    // console.log(weekData, 'WEEKDATA')
     const {route} = this.props;
     const {graphData, percent, range} = this.state;
-    console.log(graphData, 'graph Data');
     return (
       <SafeAreaView style={style.mainContainer}>
+       <CompanySymbolList navigation={this.props.navigation} symbol={route.params.item.symbol} itemId={route.params.item.id}/>
         <ScrollView>
+
+
           {this.props.route.params ? (
             <View style={style.aboveGraphContainer}>
               <View style={style.symbolView}>
@@ -101,14 +131,20 @@ export class CompanyInformation extends Component {
               </View>
               <View style={style.titleView}>
                 <Text style={style.title}>{route.params.item.title}</Text>
-                <Text style={style.percentage}>({percent}%)</Text>
+                <Text style={style.percentage}>
+                  ({route.params.item.percentage})
+                </Text>
               </View>
             </View>
           ) : (
             <Text>Company Information</Text>
           )}
           <View style={style.graphContainer}>
-            <CompanyStockGraph graphData={graphData} range={range} />
+            <CompanyStockGraph
+              graphData={graphData}
+              symbol={route.params.item.title}
+              range={range}
+            />
             <View style={style.graphNumbers}>
               <Text style={style.graphNumberText}>-{chartLow}</Text>
               <Text style={style.graphNumberText}>-{chartOneQuarter}</Text>
@@ -120,18 +156,12 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  live: true,
-                  day: false,
-                  week: false,
-                  month: false,
-                  threeMonth: false,
-                  year: false,
-                  all: false,
+                  timeFilter: 'live',
                 })
               }>
               <Text
                 style={
-                  this.state.live
+                  this.state.timeFilter === 'live'
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
@@ -141,18 +171,12 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  live: false,
-                  day: true,
-                  week: false,
-                  month: false,
-                  threeMonth: false,
-                  year: false,
-                  all: false,
+                  timeFilter: 'day',
                 })
               }>
               <Text
                 style={
-                  this.state.day
+                  this.state.timeFilter === 'day'
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
@@ -165,18 +189,12 @@ export class CompanyInformation extends Component {
                   graphData: weekData,
                   percent: percentChange,
                   range: weekRange,
-                  live: false,
-                  day: false,
-                  week: true,
-                  month: false,
-                  threeMonth: false,
-                  year: false,
-                  all: false,
+                  timeFilter: 'week',
                 })
               }>
               <Text
                 style={
-                  this.state.week
+                  this.state.timeFilter === 'week'
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
@@ -189,18 +207,12 @@ export class CompanyInformation extends Component {
                   graphData: monthData,
                   percent: percentChangeMonth,
                   range: newrange,
-                  live: false,
-                  day: false,
-                  week: false,
-                  month: true,
-                  threeMonth: false,
-                  year: false,
-                  all: false,
+                  timeFilter: 'month',
                 })
               }>
               <Text
                 style={
-                  this.state.month
+                  this.state.timeFilter === 'month'
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
@@ -210,18 +222,12 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  live: false,
-                  day: false,
-                  week: false,
-                  month: false,
-                  threeMonth: true,
-                  year: false,
-                  all: false,
+                  timeFilter: '3 months',
                 })
               }>
               <Text
                 style={
-                  this.state.threeMonth
+                  this.state.timeFilter === '3 months'
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
@@ -231,18 +237,12 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  live: false,
-                  day: false,
-                  week: false,
-                  month: false,
-                  threeMonth: false,
-                  year: true,
-                  all: false,
+                  timeFilter: 'year',
                 })
               }>
               <Text
                 style={
-                  this.state.year
+                  this.state.timeFilter === 'year'
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
@@ -252,18 +252,12 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  live: false,
-                  day: false,
-                  week: false,
-                  month: false,
-                  threeMonth: false,
-                  year: false,
-                  all: true,
+                  timeFilter: 'all',
                 })
               }>
               <Text
                 style={
-                  this.state.all
+                  this.state.timeFilter === 'all'
                     ? {...style.stockButtons, color: '#8b64ff'}
                     : {...style.stockButtons}
                 }>
@@ -342,31 +336,28 @@ export default CompanyInformation;
 const style = StyleSheet.create({
   mainContainer: {
     backgroundColor: '#2a334a',
+    flex: 1,
   },
   aboveGraphContainer: {
     paddingHorizontal: 4,
     paddingVertical: 14,
     backgroundColor: '#324165',
     marginBottom: 20,
-    // marginTop:50,
   },
   graphContainer: {
-    // borderWidth:1,
     flexDirection: 'row',
   },
   graphNumbers: {
-    // marginTop:170,
     flexDirection: 'column-reverse',
     justifyContent: 'space-around',
-    // alignItems:"flex-end",
     marginRight: 10,
     borderLeftWidth: 1,
     borderLeftColor: 'lightgrey',
   },
   graphNumberText: {
     color: 'lightgrey',
-    // fontWeight: 'bold',
     fontSize: 14.5,
+    fontFamily: 'Montserrat-Medium',
   },
   symbolView: {
     paddingHorizontal: 15,
@@ -383,23 +374,24 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   symbol: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white',
+    fontSize: 20,
+    fontFamily: 'Montserrat-Bold',
+    color: '#FFFFFF',
   },
   price: {
-    color: 'white',
-    fontSize: 24,
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontSize: 20,
+    fontFamily: 'Montserrat-Bold',
   },
   title: {
     color: 'lightgrey',
-    fontSize: 14,
+    fontFamily: 'Montserrat-Regular',
+    fontSize: 12,
   },
   percentage: {
     color: 'rgb(8, 177, 40)',
-    fontSize: 14,
-    fontWeight: 'bold',
+    fontSize: 12,
+    fontFamily: 'Montserrat-Medium',
   },
   vitalsContainer: {
     marginTop: 6,
@@ -411,25 +403,18 @@ const style = StyleSheet.create({
     paddingTop: 4,
   },
   vitalsHeader: {
-    color: 'white',
-    fontSize: 26,
-    fontWeight: 'bold',
-    marginTop: 28,
+    fontFamily: 'Montserrat-Bold',
+    color: '#FFFFFF',
+    fontSize: 22,
+    marginTop: 14,
     textAlign: 'left',
     paddingHorizontal: 10,
   },
   vitalsLeftColumn: {
     flexDirection: 'column',
-    color: 'black',
-    fontSize: 31,
-    fontWeight: 'bold',
-    // justifyContent:'space-between'
   },
   vitalsRightColumn: {
     flexDirection: 'column',
-    color: 'black',
-    fontSize: 31,
-    fontWeight: 'bold',
   },
   vitalsRow: {
     flexDirection: 'row',
@@ -437,14 +422,14 @@ const style = StyleSheet.create({
   },
   vitalDetails: {
     color: 'lightgrey',
-    fontSize: 18,
-    // fontWeight: 'bold',
+    fontSize: 14,
+    fontFamily: 'Montserrat-Medium',
     marginBottom: 10,
   },
   vitalDetailsData: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontFamily: 'Montserrat-Bold',
     marginBottom: 10,
     marginLeft: 55,
   },
@@ -458,9 +443,9 @@ const style = StyleSheet.create({
     paddingBottom: 9,
   },
   stockButtons: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 16,
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat-Bold',
+    fontSize: 15,
   },
   buyButtonContainer: {
     marginTop: 24,
@@ -468,9 +453,10 @@ const style = StyleSheet.create({
   },
   buyButton: {
     backgroundColor: '#8b64ff',
-    color: 'white',
+    color: '#FFFFFF',
     borderRadius: 6,
-    fontSize: 18,
+    fontFamily: 'Montserrat-SemiBold',
+    fontSize: 14,
     paddingVertical: 10,
     paddingHorizontal: 40,
   },
@@ -482,22 +468,25 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
   },
   aboutHeader: {
-    color: 'white',
-    fontSize: 27,
-    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontSize: 22,
+    fontFamily: 'Montserrat-Bold',
     marginBottom: 4,
   },
   sectorText: {
     color: 'lightgrey',
-    fontSize: 19,
+    fontFamily: 'Montserrat-Regular',
+    fontSize: 16,
   },
   sectorData: {
-    color: 'white',
-    fontSize: 19,
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat-SemiBold',
+    fontSize: 16,
   },
   about: {
     marginTop: 10,
-    color: 'white',
-    fontSize: 17,
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat-Medium',
+    fontSize: 14,
   },
 });
