@@ -9,35 +9,45 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   TouchableOpacity,
+  ScrollView
 } from 'react-native';
 import TriangleIcon from '../../icons/TriangleIcon';
+import {Formik} from 'formik';
+import * as Yup from 'yup';
+import { moderateScale } from '../../util/responsiveFont';
+
+const validationSchema = Yup.object().shape({
+  // Validation will change when we have a better idea what data needs to be sent
+  name: Yup.string()
+    .label('name')
+    .required('Name is required')
+    .min(2, 'Name must have more than 2 characters '),
+
+  time: Yup.number()
+    .label('time')
+    .typeError('Please enter a number')
+    .required('Time is required')
+    .min(2, 'Time must have more than 2 characters '),
+
+  quantity: Yup.number()
+    .typeError('Please enter a number')
+    .label('quantity')
+    .required('Quantity is required')
+});
 
 export default class CreateTrade extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: '',
-      orderType: '',
-      time: '',
-      quantity: '',
-      privacy: 'Visible for all',
+      isPrivate:false,
       shouldShow: false,
     };
   }
 
   dropDownSelect(setting) {
-    this.setState({privacy: setting, shouldShow: false});
+    this.setState({isPrivate: setting, shouldShow: false});
   }
-  orderTypeSelect(type) {
-    this.setState({orderType: type});
-  }
-  handleInputChange = (inputName, inputValue) => {
-    this.setState((state) => ({
-      ...state,
-      [inputName]: inputValue,
-    }));
-  };
 
   render() {
     const {shouldShow} = this.state;
@@ -45,7 +55,33 @@ export default class CreateTrade extends Component {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <SafeAreaView style={style.mainContainer}>
+          <ScrollView>
           <KeyboardAvoidingView>
+          <Formik
+                initialValues={{
+                name: '',
+                orderType: 'buy',
+                time: '',
+                quantity: '',
+                isPrivate:false,                                 
+                }}
+                onSubmit={(values) => {
+                  console.log(values, 'values');
+                  // UserPost(values)
+                }}
+                validationSchema={validationSchema}>
+                {({
+                  handleChange,
+                  values,
+                  handleSubmit,
+                  errors,
+                  isValid,
+                  touched,
+                  handleBlur,
+                  isSubmitting,
+                  setFieldValue,
+                }) => (
+                  <View>
             <Text style={style.header}>Post a Trade</Text>
             <View style={style.uploadContainer}>
               <Text style={style.uploadText}>
@@ -55,93 +91,122 @@ export default class CreateTrade extends Component {
             <View style={style.nameInputContainer}>
               <Text style={style.inputHeader}>Stock name</Text>
               <TextInput
-                style={style.inputStyleBody}
-                value={this.state.name}
-                onChangeText={(value) => this.handleInputChange('name', value)}
+                onBlur={handleBlur('name')}
+                value={values.name}
+                onChangeText={handleChange('name')}              
+                style={style.inputStyleBody}                
                 placeholder="Start typing stock name"
-                placeholderTextColor="#9ea6b5"
-                multiline={true}
-                numberOfLines={4}
-                ref={(input) => (this.body = input)}
-              />
+                placeholderTextColor="#9ea6b5"                               
+              />            
+              <Text style={style.errorText}>
+                          {touched.name && errors.name}
+                        </Text>
             </View>
             <View>
               <Text style={style.inputHeader}>Order Type</Text>
               <View style={style.buttonsContainer}>
-                <TouchableOpacity onPress={() => this.orderTypeSelect('buy')}>
-                  <Text style={style.buyButton}>Buy</Text>
+                <TouchableOpacity onPress={() => {
+                                    setFieldValue('orderType', 'buy');
+                                  }}>
+                  <Text style={
+                  values.orderType === 'buy'
+                    ? {...style.buyButton, backgroundColor: '#8b64ff'}
+                    : {...style.buyButton}
+                }>Buy</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.orderTypeSelect('sell')}>
-                  <Text style={style.sellButton}>Sell</Text>
+                <TouchableOpacity onPress={() => setFieldValue('orderType', 'sell')}>
+                  <Text style={values.orderType === 'sell'
+                    ? {...style.buyButton, backgroundColor: '#8b64ff'}
+                    : {...style.buyButton}}>Sell</Text>
                 </TouchableOpacity>
               </View>
             </View>
             <View style={style.TimeContainer}>
               <Text style={style.inputHeader}>Time</Text>
               <TextInput
-                style={style.inputStyleBody}
-                value={this.state.time}
-                onChangeText={(value) => this.handleInputChange('time', value)}
+                onBlur={handleBlur('time')}
+                value={values.time}
+                onChangeText={handleChange('time')} 
+                style={style.inputStyleBody}                
                 placeholder="Time when you sell it"
                 placeholderTextColor="#9ea6b5"
-                multiline={true}
-                numberOfLines={4}
-                ref={(input) => (this.body = input)}
               />
+              <Text style={style.errorText}>
+                          {touched.time && errors.time}
+                        </Text>
             </View>
             <View style={style.quantityConatiner}>
               <Text style={style.inputHeader}>Quantity</Text>
               <TextInput
-                style={style.inputStyleBody}
-                value={this.state.orderType}
-                onChangeText={(value) =>
-                  this.handleInputChange('orderType', value)
-                }
+                onBlur={handleBlur('quantity')}
+                value={values.quantity}
+                onChangeText={handleChange('quantity')} 
+                style={style.inputStyleBody}               
                 placeholder="Number of shares"
-                placeholderTextColor="#9ea6b5"
-                multiline={true}
-                numberOfLines={4}
-                ref={(input) => (this.body = input)}
+                placeholderTextColor="#9ea6b5"                
               />
+              <Text style={style.errorText}>
+                          {touched.quantity && errors.quantity}
+                        </Text>
             </View>
             <View>
               <Text style={style.inputHeader}>Stock privacy</Text>
 
 
-                <View style={style.dotsDropdownContainer}>
-                <TouchableOpacity
-                  onPress={() =>
-                    this.setState({
-                      shouldShow: !shouldShow,
-                    })
-                  }>
-                  <View style={style.visibleButtonContainer}>
-                    <Text style={style.middleDetailsText}>
-                      {this.state.privacy}
-                    </Text>
-                    <TriangleIcon style={style.icon} />
-                  </View>
-                </TouchableOpacity>
-                {this.state.shouldShow ? (
-                  <View style={style.dropdown}>
-                    {this.state.privacy == 'Visible for all' ? 
-                      <TouchableOpacity
-                        onPress={() => this.dropDownSelect('Private')}>
-                        <Text style={style.dropDownText}>Private</Text>
-                      </TouchableOpacity>
-                   : 
-                      <TouchableOpacity
-                        onPress={() => this.dropDownSelect('Visible for all')}>
-                        <Text style={style.dropDownText}>Visible for all</Text>
-                      </TouchableOpacity>
-
-                  }
-                </View>
-                ) : null}
-              </View>
+              <View style={style.dotsDropdownContainer}>
+                          <TouchableOpacity
+                            onPress={() =>
+                              this.setState({
+                                shouldShow: !shouldShow,
+                              })
+                            }>
+                            <View style={style.visibleButtonContainer}>
+                              <Text style={style.middleDetailsText}>
+                                {this.state.isPrivate == false ? 
+                                "Visible for all"
+                                :
+                                "Private"  
+                              }
+                              </Text>
+                              <TriangleIcon style={style.icon} />
+                            </View>
+                          </TouchableOpacity>
+                          {this.state.shouldShow ? (
+                            <View style={style.dropdown}>
+                              {this.state.isPrivate == false ? (
+                                <TouchableOpacity
+                                  onPress={() => {
+                                    this.dropDownSelect(true);
+                                    setFieldValue('isPrivate', true);
+                                  }}>
+                                  <Text style={style.dropDownText}>
+                                    Private
+                                  </Text>
+                                </TouchableOpacity>
+                              ) : (
+                                <TouchableOpacity
+                                  onPress={() => {
+                                    this.dropDownSelect(false);
+                                    setFieldValue('isPrivate', false);
+                                  }}>
+                                  <Text style={style.dropDownText}>
+                                    Visible for all
+                                  </Text>
+                                </TouchableOpacity>
+                              )}
+                            </View>
+                          ) : null}
+                        </View>
             </View>
+            <TouchableOpacity onPress={handleSubmit}>
             <Text style={style.publishButton}>Publish</Text>
+            </TouchableOpacity>
+            </View>
+
+            )}
+            </Formik>
           </KeyboardAvoidingView>
+          </ScrollView>
         </SafeAreaView>
       </TouchableWithoutFeedback>
     );
@@ -152,21 +217,21 @@ const style = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: '#2a334a',
-    paddingVertical: 8,
-    paddingHorizontal: 36,
+    paddingVertical: moderateScale(8),
+    paddingHorizontal: moderateScale(36),
     flexDirection: 'column',
     justifyContent: 'space-around',
   },
   header: {
-    fontSize: 20,
+    fontSize: moderateScale(20),
     fontFamily: 'Montserrat-Bold',
     color: '#FFFFFF',
     textAlign: 'center',
-    marginBottom: 12,
+    marginBottom: moderateScale(12),
   },
   uploadContainer: {
     backgroundColor: '#46486e',
-    height: 48,
+    height: moderateScale(48),
     borderRadius: 2,
     alignItems: 'center',
     justifyContent: 'center',
@@ -175,64 +240,63 @@ const style = StyleSheet.create({
   uploadText: {
     color: '#FFFFFF',
     fontFamily: 'Montserrat-Regular',
-    fontSize: 14,
+    fontSize: moderateScale(14),
   },
   nameInputContainer: {
-    marginTop: 20,
+    marginTop: moderateScale(20),
   },
   inputHeader: {
-    fontSize: 12,
+    fontSize: moderateScale(12),
     color: '#babec8',
-    marginBottom: 1,
     fontFamily: 'Montserrat-Regular',
-    marginBottom: 3,
+    marginBottom: moderateScale(3),
   },
   inputStyleBody: {
     borderRadius: 6,
     backgroundColor: '#3e4d6c',
-    marginBottom: 12,
-    padding: 8,
-    marginTop: 1,
-    fontSize: 14,
+    padding: moderateScale(8),
+    marginTop: moderateScale(1),
+    fontSize: moderateScale(14),
     textAlignVertical: 'center',
     fontFamily: 'Montserrat-Italic',
     color: '#FFFFFF',
-    height: 42,
+    height: moderateScale(42),
 
       },
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 8,
+    marginBottom:moderateScale(18),
+    marginTop:moderateScale(2)
 
       },
   buyButton: {
     alignSelf: 'center',
     color: '#FFFFFF',
     textAlign: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    width: 141,
+    paddingVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(20),
+    width: moderateScale(141),
     borderRadius: 6,
-    fontSize: 14,
+    fontSize: moderateScale(14),
     fontFamily: 'Montserrat-SemiBold',
     backgroundColor: '#536183',
   },
   sellButton: {
     alignSelf: 'center',
-    backgroundColor: '#8b64ff',
+    backgroundColor: '#536183',
     color: '#FFFFFF',
     textAlign: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    width: 141,
+    paddingVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(20),
+    width: moderateScale(141),
     borderRadius: 6,
-    fontSize: 14,
+    fontSize: moderateScale(14),
     fontFamily: 'Montserrat-SemiBold',
   },
   visibleButtonContainer: {
-    paddingHorizontal: 10,
-    paddingVertical: 10,
+    paddingHorizontal: moderateScale(10),
+    paddingVertical: moderateScale(10),
     borderRadius: 6,
     backgroundColor: '#3E4D6C',
     flexDirection: 'row',
@@ -242,48 +306,55 @@ const style = StyleSheet.create({
   middleDetailsText: {
     fontFamily: 'Montserrat-Medium',
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: moderateScale(16),
   },
   dropdown: {
     flexDirection: 'column',
     justifyContent: 'space-between',
     width: '100%',
-    marginTop: 41,
+    marginTop: moderateScale(41),
     backgroundColor: '#3E4D6C',
     zIndex: 1,
-    paddingVertical: 4,
-    height: 35,
+    paddingVertical: moderateScale(4),
+    height: moderateScale(35),
     position: 'absolute',
     borderBottomLeftRadius: 6,
     borderBottomRightRadius: 6,
   },
   dropDownText: {
     color: 'white',
-    fontSize: 16,
-    marginHorizontal: 12,
+    fontSize: moderateScale(16),
+    marginHorizontal: moderateScale(12),
     fontFamily: 'Montserrat-Medium',
-    marginBottom: 6,
+    marginBottom: moderateScale(6),
   },
   dropDownTextReportContainer: {
     borderTopWidth: 1,
     borderTopColor: 'lightgrey',
-    paddingTop: 4,
+    paddingTop: moderateScale(4),
     backgroundColor: '#2C3957',
   },
   icon: {
-    marginRight: 4,
+    marginRight: moderateScale(4),
   },
   publishButton: {
     alignSelf: 'center',
     backgroundColor: '#8b64ff',
     color: '#FFFFFF',
     textAlign: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    width: 303,
+    paddingVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(20),
+    width: moderateScale(303),
     borderRadius: 6,
-    fontSize: 14,
-    marginTop: 30,
+    fontSize: moderateScale(14),
+    marginTop: moderateScale(36),
     fontFamily: 'Montserrat-SemiBold',
+    marginBottom: moderateScale(8),
+
+  },
+  errorText: {
+    color: '#F66E6E',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });

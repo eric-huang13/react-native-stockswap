@@ -12,8 +12,10 @@ import {
 import LikeInactiveIcon from '../../icons/LikeInactiveIcon';
 import CommentIcon from '../../icons/CommentIcon';
 import {UserPost, EditPost} from '../../actions/posts';
+import { moderateScale } from '../../util/responsiveFont';
 
 class CreatePostPreview extends Component {
+  
   render() {
     const {UserPost, EditPost, userAccount} = this.props;
     const {data} = this.props.route.params;
@@ -104,39 +106,39 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    paddingVertical: 21,
+    paddingVertical: moderateScale(21),
     backgroundColor: '#2a334a',
   },
   scrollContainer: {
-    paddingHorizontal: 10,
+    paddingHorizontal: moderateScale(10),
   },
   image: {
-    height: 182,
+    height: moderateScale(182),
     width: '100%',
-    borderRadius: 10,
+    borderRadius: moderateScale(10),
   },
   postNameContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 9,
+    marginBottom: moderateScale(9),
     justifyContent: 'space-between',
   },
   postUserImage: {
-    height: 34,
-    width: 34,
-    borderRadius: 50,
+    height: moderateScale(34),
+    width: moderateScale(34),
+    borderRadius: moderateScale(50),
   },
   postUserName: {
     color: '#FFFFFF',
-    fontSize: 14,
-    marginLeft: 8,
+    fontSize: moderateScale(14),
+    marginLeft: moderateScale(8),
     fontFamily: 'Montserrat-Bold',
   },
   detailsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 8,
+    marginTop: moderateScale(8),
   },
   likesContainer: {
     flexDirection: 'row',
@@ -144,7 +146,7 @@ const style = StyleSheet.create({
     justifyContent: 'space-around',
   },
   timestamp: {
-    fontSize: 12,
+    fontSize: moderateScale(12),
     color: 'lightgrey',
     fontFamily: 'Montserrat-Italic',
   },
@@ -154,44 +156,44 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
   },
   likes: {
-    fontSize: 14,
+    fontSize: moderateScale(14),
     color: 'lightgrey',
     fontFamily: 'Montserrat-Medium',
-    marginLeft: 3,
-    marginRight: 14,
+    marginLeft: moderateScale(3),
+    marginRight: moderateScale(14),
   },
   comments: {
-    fontSize: 14,
+    fontSize: moderateScale(14),
     color: 'lightgrey',
     fontFamily: 'Montserrat-Medium',
-    marginRight: 1,
-    marginLeft: 3,
+    marginRight: moderateScale(1),
+    marginLeft: moderateScale(3),
   },
   body: {
-    fontSize: 14,
+    fontSize: moderateScale(14),
     color: '#FFFFFF',
-    marginTop: 10,
-    marginBottom: 2,
-    paddingBottom: 18,
+    marginTop: moderateScale(10),
+    marginBottom: moderateScale(2),
+    paddingBottom: moderateScale(18),
     fontFamily: 'Montserrat-Medium',
   },
   buttonsContainer: {
-    marginTop: 40,
+    marginTop: moderateScale(40),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal: 15,
+    marginHorizontal: moderateScale(15),
   },
   backButton: {
     alignSelf: 'center',
     color: '#8b64ff',
     textAlign: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    width: 160,
-    borderRadius: 6,
-    fontSize: 14,
+    paddingVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(20),
+    width: moderateScale(160),
+    borderRadius: moderateScale(6),
+    fontSize: moderateScale(14),
     fontFamily: 'Montserrat-SemiBold',
-    borderWidth: 1,
+    borderWidth: moderateScale(1),
     borderColor: '#8b64ff',
   },
   publishButton: {
@@ -199,11 +201,11 @@ const style = StyleSheet.create({
     backgroundColor: '#8b64ff',
     color: '#FFFFFF',
     textAlign: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    width: 160,
-    borderRadius: 6,
-    fontSize: 14,
+    paddingVertical: moderateScale(12),
+    paddingHorizontal:moderateScale (20),
+    width: moderateScale(160),
+    borderRadius: moderateScale(6),
+    fontSize: moderateScale(14),
     fontFamily: 'Montserrat-SemiBold',
   },
 });

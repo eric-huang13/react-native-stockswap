@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import PostIcon from '../../icons/PostIcon';
 import TradeIcon from '../../icons/TradeIcon';
+import { moderateScale } from '../../util/responsiveFont';
 
 export default class PostType extends Component {
   render() {
@@ -43,12 +44,12 @@ const style = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: '#2a334a',
-    paddingVertical: 20,
-    paddingHorizontal: 26,
+    paddingVertical: moderateScale(20),
+    paddingHorizontal: moderateScale(26),
   },
   header: {
-    marginTop: 167,
-    fontSize: 20,
+    marginTop: moderateScale(167),
+    fontSize: moderateScale(20),
     fontFamily: 'Montserrat-Bold',
     color: '#FFFFFF',
     textAlign: 'center',
@@ -56,20 +57,20 @@ const style = StyleSheet.create({
   typeRow: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    marginTop: 24,
+    marginTop: moderateScale(24),
   },
   typeColumn: {
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: '#2C3957',
-    paddingVertical: 10,
-    width: 142,
-    height: 155,
+    paddingVertical: moderateScale(10),
+    width: moderateScale(142),
+    height: moderateScale(155),
   },
   typeText: {
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontFamily: 'Montserrat-Bold',
     color: '#FFFFFF',
-    marginTop: 20,
+    marginTop: moderateScale(20),
   },
 });
