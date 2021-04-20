@@ -12,22 +12,22 @@ import {
   Switch,
   TouchableOpacity,
   ScrollView,
-  Platform
+  Platform,
+  Image,
 } from 'react-native';
 import {UserPost} from '../../actions/posts';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import Toast from 'react-native-toast-message';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import { moderateScale } from '../../util/responsiveFont';
 
 const validationSchema = Yup.object().shape({
   
   body: Yup.string()
-  .required()
     .label('body')
     .min(2, 'body must have more than 2 characters '),
 
-  image: Yup.string().url('Must be a url'),
 });
 class CreatePost extends Component {
   constructor(props) {
@@ -40,6 +40,15 @@ class CreatePost extends Component {
 
   toggleSwitch = (value) => {
     this.setState({enabled: value});
+  };
+  //Creating FormData for sending image to backend
+  createFormData = (values) => {
+    let formData = new FormData();
+      Object.keys(values).forEach(fieldName => {
+      console.log(fieldName, values[fieldName]);
+      formData.append(fieldName, values[fieldName]);
+      })
+    return formData;
   };
 
   render() {
@@ -60,11 +69,13 @@ class CreatePost extends Component {
               <Formik
                 initialValues={{
                   enabled: false,
-                  image:'',
+                  image:{name:'', type:'', uri:''},
                   body:'',                  
                 }}
                 onSubmit={(values) => {
                   console.log(values, 'values');
+                  const data = this.createFormData(values);
+                  console.log(data,"form") 
                   // UserPost(values)
                 }}
                 validationSchema={validationSchema}>
@@ -81,7 +92,51 @@ class CreatePost extends Component {
                 }) => (
               <View>
             <Text style={style.header}> Post a Publication </Text>
-            <View style={style.uploadImageContainer}>
+            {values.image.uri && !errors.image ?
+                    <TouchableOpacity onPress={() => {
+                      const options={
+                        mediaType:'photo',
+                        // includeBase64:true,                  
+                      }
+                      launchImageLibrary(options, response=> {
+                        console.log(response, "response image")
+                        if (response.uri)
+                        {
+                          setFieldValue('image', {name:response.fileName, type:response.type, uri:
+                            Platform.OS === 'android' ? response.uri : response.uri.replace('file://', ''),}) 
+                        }
+                      });
+                  }}>
+                      <Image
+                        style={style.uploadImageContainer}
+                        source={{uri: values.image.uri}}
+                      />
+                    </TouchableOpacity>
+ 
+                     : 
+                      <View style={style.uploadImageContainer}>
+                        <TouchableOpacity onPress={() => {
+                            const options={
+                              mediaType:'photo',
+                              // includeBase64:true,                        
+                            }
+                            launchImageLibrary(options, response=> {
+                              console.log(response, "response image")
+                              if (response.uri)
+                              {
+                                setFieldValue('image', {name:response.fileName, type:response.type, uri:
+                                  Platform.OS === 'android' ? response.uri : response.uri.replace('file://', ''),})
+       
+                              }
+                            });
+                        }}>
+                        <Text style={style.uploadImageText}>
+                          Tap to upload your photo
+                        </Text>
+                        </TouchableOpacity>
+                      </View>
+                     } 
+            {/* <View style={style.uploadImageContainer}>
               <TextInput
                 onBlur={handleBlur('image')}
                 value={values.image}
@@ -93,7 +148,7 @@ class CreatePost extends Component {
               <Text style={style.errorText}>
                           {touched.image && errors.image}
                         </Text>
-            </View>
+            </View> */}
             <View style={style.postContainer}>
               <Text style={style.inputHeader}>Post</Text>
               <TextInput
