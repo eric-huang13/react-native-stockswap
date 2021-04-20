@@ -10,6 +10,9 @@ import PostType from '../components/screens/PostType';
 import CreatePostPreview from '../components/screens/CreatePostPreview';
 import CreateTrade from '../components/screens/CreateTrade';
 
+//responsive scale
+import { moderateScale } from '../util/responsiveFont';
+
 const PostStack = createStackNavigator();
 
 export default class PostStackNavigator extends Component {
@@ -26,7 +29,7 @@ export default class PostStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -44,7 +47,7 @@ export default class PostStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -63,7 +66,7 @@ export default class PostStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -81,7 +84,7 @@ export default class PostStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {

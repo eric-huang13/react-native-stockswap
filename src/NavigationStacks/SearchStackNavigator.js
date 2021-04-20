@@ -16,6 +16,9 @@ import MyProfile from '../components/screens/MyProfile';
 import MyProfilePosts from '../components/screens/MyProfilePosts';
 import CompanySymbolList from '../components/screens/CompanySymbolList';
 
+//responsive scale
+import { moderateScale } from '../util/responsiveFont';
+
 const SearchStack = createStackNavigator();
 
 export default class SearchStackNavigator extends Component {
@@ -35,6 +38,10 @@ export default class SearchStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',
@@ -53,6 +60,10 @@ export default class SearchStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',
@@ -66,6 +77,10 @@ export default class SearchStackNavigator extends Component {
             title: 'Profile',
             headerStyle: {
               backgroundColor: '#394463',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -84,6 +99,10 @@ export default class SearchStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',
@@ -97,6 +116,10 @@ export default class SearchStackNavigator extends Component {
           options={{
             headerStyle: {
               backgroundColor: '#394463',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -112,6 +135,10 @@ export default class SearchStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#313c58',
             },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',
@@ -125,6 +152,10 @@ export default class SearchStackNavigator extends Component {
             title: 'My Profile',
             headerStyle: {
               backgroundColor: '#394463',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -142,7 +173,7 @@ export default class SearchStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -160,7 +191,7 @@ export default class SearchStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
