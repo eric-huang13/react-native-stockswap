@@ -11,6 +11,8 @@ import {
 import TriangleIcon from '../../icons/TriangleIcon';
 import {connect} from 'react-redux';
 import {Logout} from 'actions/user';
+import { moderateScale } from '../../util/responsiveFont';
+
 
 class MyProfileSettings extends Component {
   constructor(props) {
@@ -189,36 +191,36 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#2a334a',
-    paddingTop: 10,
-    paddingBottom: 20,
+    paddingTop: moderateScale(10),
+    paddingBottom: moderateScale(20),
   },
   topDetailsContainer: {
-    paddingHorizontal: 12,
-    paddingVertical: 16,
-    borderBottomWidth: 1,
+    paddingHorizontal: moderateScale(12),
+    paddingVertical: moderateScale(16),
+    borderBottomWidth: moderateScale(1),
     borderBottomColor: 'rgba(158, 150, 150, .4)',
   },
   detailsRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: 16,
+    paddingVertical: moderateScale(16),
   },
   detailsColumn: {},
   detailsText: {
     color: 'lightgrey',
-    fontSize: 12,
+    fontSize: moderateScale(12),
     fontFamily: 'Montserrat-Regular',
-    paddingLeft: 2,
+    paddingLeft: moderateScale(2),
   },
   detailsData: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontFamily: 'Montserrat-SemiBold',
-    marginTop: 1,
+    marginTop: moderateScale(1),
   },
   detailsButton: {
     color: '#B8A0FF',
-    fontSize: 14,
+    fontSize: moderateScale(14),
     fontFamily: 'Montserrat-SemiBold',
     alignSelf: 'flex-end',
     marginRight: 6,
@@ -228,13 +230,13 @@ const style = StyleSheet.create({
   },
   detailsButtonChange: {
     color: '#B8A0FF',
-    fontSize: 14,
+    fontSize: moderateScale(14),
     fontFamily: 'Montserrat-SemiBold',
     alignSelf: 'flex-end',
     marginLeft: 24,
   },
   middleContainer: {
-    paddingHorizontal: 12,
+    paddingHorizontal: moderateScale(12),
     paddingVertical: 30,
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(158, 150, 150, .4)',
@@ -253,7 +255,7 @@ const style = StyleSheet.create({
   middleDetailsText: {
     fontFamily: 'Montserrat-Medium',
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: moderateScale(16),
   },
   dropdown: {
     flexDirection: 'column',
@@ -270,56 +272,56 @@ const style = StyleSheet.create({
   },
   dropDownText: {
     color: 'white',
-    fontSize: 16,
-    marginHorizontal: 12,
+    fontSize: moderateScale(16),
+    marginHorizontal: moderateScale(12),
     fontFamily: 'Montserrat-Medium',
-    marginBottom: 6,
+    marginBottom: moderateScale(6),
   },
   dropDownTextReportContainer: {
-    borderTopWidth: 1,
+    borderTopWidth: moderateScale(1),
     borderTopColor: 'lightgrey',
-    paddingTop: 4,
+    paddingTop: moderateScale(4),
     backgroundColor: '#2C3957',
   },
   icon: {
-    marginRight: 4,
+    marginRight: moderateScale(4),
   },
   notificationsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 36,
-    marginBottom: 10,
+    marginTop: moderateScale(36),
+    marginBottom: moderateScale(10),
   },
   bottomContainer: {
-    paddingVertical: 20,
-    paddingHorizontal: 10,
-    borderBottomWidth: 1,
+    paddingVertical: moderateScale(20),
+    paddingHorizontal: moderateScale(10),
+    borderBottomWidth: moderateScale(1),
     borderBottomColor: 'rgba(158, 150, 150, .4)',
   },
   bottomInnerContiner: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: 8,
-    marginBottom: 8,
+    paddingVertical: moderateScale(8),
+    marginBottom: moderateScale(8),
   },
   bottomText: {
     fontFamily: 'Montserrat-SemiBold',
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: moderateScale(16),
   },
 
   logoutButtonContainer: {
-    marginTop: 34,
-    marginHorizontal: 20,
-    paddingVertical: 10,
-    borderWidth: 1,
+    marginTop: moderateScale(34),
+    marginHorizontal: moderateScale(20),
+    paddingVertical: moderateScale(10),
+    borderWidth: moderateScale(1),
     borderColor: '#8B64FF',
-    borderRadius: 6,
+    borderRadius: moderateScale(6),
   },
   logoutButton: {
     textAlign: 'center',
     fontFamily: 'Montserrat-SemiBold',
     color: '#8B64FF',
-    fontSize: 14,
+    fontSize: moderateScale(14),
   },
 });

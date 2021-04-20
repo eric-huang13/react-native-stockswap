@@ -11,6 +11,7 @@ import {
 import ProfileGraph from './ProfileGraph';
 import {connect} from 'react-redux';
 import MyProfilePostBox from './MyProfilePostBox';
+import { moderateScale } from '../../util/responsiveFont';
 
 class Profile extends Component {
   constructor(props) {
@@ -259,15 +260,15 @@ const style = StyleSheet.create({
   percentGain: {
     fontFamily: 'Montserrat-Medium',
     color: '#F66E6E',
-    fontSize: 12,
+    fontSize: moderateScale(12),
   },
   infoContainer: {
     borderColor: 'red',
-    paddingHorizontal: 7,
+    paddingHorizontal: moderateScale(7),
   },
   personalDetails: {
     borderColor: 'yellow',
-    marginLeft: 8,
+    marginLeft: moderateScale(8),
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
@@ -276,18 +277,18 @@ const style = StyleSheet.create({
     flexDirection: 'row',
   },
   bioContainer: {
-    marginVertical: 12,
-    paddingHorizontal: 3,
+    marginVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(3),
   },
   bio: {
     color: '#FFFFFF',
-    fontSize: 14,
+    fontSize: moderateScale(14),
     fontFamily: 'Montserrat-Medium',
   },
   numberRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 12,
+    paddingHorizontal: moderateScale(12),
     marginTop: 8,
   },
   numberColumn: {
@@ -337,13 +338,13 @@ const style = StyleSheet.create({
   },
   username: {
     color: '#FFFFFF',
-    fontSize: 12,
+    fontSize: moderateScale(12),
     fontFamily: 'Montserrat-Regular',
   },
   hashtag: {
     color: '#9082cf',
     fontFamily: 'Montserrat-Medium',
-    fontSize: 12,
+    fontSize: moderateScale(12),
   },
 
   numberData: {
@@ -353,28 +354,28 @@ const style = StyleSheet.create({
   },
   numberText: {
     color: 'lightgrey',
-    fontSize: 12,
+    fontSize: moderateScale(12),
     fontFamily: 'Montserrat-Regular',
   },
 
   portfolioButtonContainer: {
     flexDirection: 'row',
-    paddingHorizontal: 20,
+    paddingHorizontal: moderateScale(20),
     justifyContent: 'center',
-    marginTop: 46,
-    marginBottom: 30,
+    marginTop: moderateScale(46),
+    marginBottom: moderateScale(30),
   },
   portfolioButton: {
     textAlign: 'center',
-    borderWidth: 1.4,
+    borderWidth: moderateScale(1.4),
     borderColor: '#9082cf',
     color: '#FFFFFF',
-    padding: 10,
-    borderRadius: 8,
-    fontSize: 14,
-    marginHorizontal: 5,
-    width: 160,
-    height: 42,
+    padding: moderateScale(10),
+    borderRadius: moderateScale(8),
+    fontSize: moderateScale(14),
+    marginHorizontal: moderateScale(5),
+    width: moderateScale(160),
+    height: moderateScale(42),
     backgroundColor: '#8B64FF',
     fontFamily: 'Montserrat-SemiBold',
   },
@@ -383,17 +384,17 @@ const style = StyleSheet.create({
   },
 
   timeFilterButtonsContainer: {
-    marginTop: 7,
+    marginTop: moderateScale(7),
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    marginBottom: 24,
-    borderBottomWidth: 1,
+    marginBottom: moderateScale(24),
+    borderBottomWidth: moderateScale(1),
     borderBottomColor: 'rgba(158, 150, 150, .4)',
-    paddingBottom: 9,
+    paddingBottom: moderateScale(9),
   },
   timeFilterButtons: {
     color: '#FFFFFF',
     fontFamily: 'Montserrat-Bold',
-    fontSize: 14,
+    fontSize: moderateScale(14),
   },
 });

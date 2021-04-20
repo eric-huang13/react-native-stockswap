@@ -11,6 +11,7 @@ import {
 import ProfileGraph from './ProfileGraph';
 import UserPosts from './UserPosts';
 import {connect} from 'react-redux';
+import { moderateScale } from '../../util/responsiveFont';
 
 class Profile extends Component {
   constructor(props) {
@@ -252,11 +253,11 @@ const style = StyleSheet.create({
   },
   infoContainer: {
     borderColor: 'red',
-    paddingHorizontal: 7,
+    paddingHorizontal: moderateScale(7),
   },
   personalDetails: {
     borderColor: 'yellow',
-    marginLeft: -90,
+    marginLeft: moderateScale(-90),
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
@@ -266,38 +267,38 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
   },
   bioContainer: {
-    marginVertical: 8,
-    paddingHorizontal: 3,
+    marginVertical: moderateScale(8),
+    paddingHorizontal: moderateScale(3),
   },
   bio: {
     color: 'white',
-    fontSize: 16,
+    fontSize: moderateScale(16),
   },
   numberRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 12,
-    marginVertical: 10,
+    paddingHorizontal: moderateScale(12),
+    marginVertical: moderateScale(10),
   },
   numberColumn: {
     alignItems: 'center',
   },
   aboveGraphContainer: {
     flexDirection: 'row',
-    marginTop: 8,
+    marginTop: moderateScale(8),
     justifyContent: 'space-between',
-    paddingHorizontal: 8,
+    paddingHorizontal: moderateScale(8),
   },
   portfolioHeaderContainer: {
     flexDirection: 'column',
   },
   portfolioHeader: {
     color: 'white',
-    fontSize: 18,
+    fontSize: moderateScale(18),
   },
   percentage: {
     color: 'white',
-    fontSize: 22,
+    fontSize: moderateScale(22),
     fontWeight: 'bold',
   },
   timeNumberContainer: {
@@ -306,87 +307,86 @@ const style = StyleSheet.create({
   },
   timeNumber: {
     color: 'lightgrey',
-    fontSize: 12,
+    fontSize: moderateScale(12),
   },
   image: {
-    height: 80,
-    width: 80,
-    borderRadius: 50,
+    height: moderateScale(80),
+    width: moderateScale(80),
+    borderRadius: moderateScale(50),
   },
   followButtonView: {
     flexDirection: 'column',
     justifyContent: 'center',
   },
   followButton: {
-    borderWidth: 1.4,
+    borderWidth: moderateScale(1.4),
     borderColor: '#9082cf',
     color: '#9082cf',
-    borderRadius: 3,
-    paddingVertical: 2,
-    paddingHorizontal: 12,
-    fontSize: 16,
+    borderRadius: moderateScale(3),
+    paddingVertical: moderateScale(2),
+    paddingHorizontal: moderateScale(12),
+    fontSize: moderateScale(16),
   },
   name: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 22,
+    fontSize: moderateScale(22),
   },
   username: {
     color: 'white',
-    fontSize: 15,
+    fontSize: moderateScale(15),
   },
   hashtag: {
     color: '#9082cf',
-    fontSize: 15,
+    fontSize: moderateScale(15),
   },
 
   numberData: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: moderateScale(18),
   },
   numberText: {
     color: 'lightgrey',
-    fontSize: 14,
+    fontSize: moderateScale(14),
   },
 
   portfolioButtonContainer: {
-    marginTop: 8,
-    // justifyContent:'center',
+    marginTop: moderateScale(8),
   },
   portfolioButton: {
     textAlign: 'center',
-    borderWidth: 1.4,
+    borderWidth: moderateScale(1.4),
     borderColor: '#9082cf',
     color: '#9082cf',
-    padding: 10,
-    marginHorizontal: 120,
-    borderRadius: 8,
-    fontSize: 16,
+    padding: moderateScale(10),
+    marginHorizontal: moderateScale(120),
+    borderRadius: moderateScale(8),
+    fontSize: moderateScale(16),
   },
   graphContainer: {
     flexDirection: 'row',
   },
 
   timeFilterButtonsContainer: {
-    marginTop: 7,
+    marginTop: moderateScale(7),
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    marginBottom: 24,
-    borderBottomWidth: 1,
+    marginBottom: moderateScale(24),
+    borderBottomWidth: moderateScale(1),
     borderBottomColor: 'rgba(158, 150, 150, .4)',
-    paddingBottom: 9,
+    paddingBottom: moderateScale(9),
   },
   timeFilterButtons: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: moderateScale(16),
   },
   postsHeader: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 26,
-    marginLeft: 6,
-    marginTop: 30,
+    fontSize: moderateScale(26),
+    marginLeft: moderateScale(6),
+    marginTop: moderateScale(30),
   },
 });

@@ -13,6 +13,8 @@ import LikeInactiveIcon from '../../icons/LikeInactiveIcon';
 import CommentIcon from '../../icons/CommentIcon';
 import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
+import { moderateScale } from '../../util/responsiveFont';
+
 
 class MyProfilePosts extends Component {
   constructor(props) {
@@ -45,8 +47,6 @@ class MyProfilePosts extends Component {
   render() {
     const {shouldShow} = this.state;
     const {
-      isLoggedIn,
-      LogoutUser,
       post,
       comments,
       reply,
@@ -67,7 +67,7 @@ class MyProfilePosts extends Component {
               style={{
                 position: 'absolute',
                 zIndex: 1,
-                left: 14,
+                left: moderateScale(14),
                 top: 10,
               }}>
               <SearchInput />
@@ -207,31 +207,31 @@ const style = StyleSheet.create({
     flex: 1,
   },
   searchInputContainer: {
-    marginBottom: 15,
+    marginBottom: moderateScale(15),
   },
   searchInput: {
-    paddingLeft: 40,
+    paddingLeft: moderateScale(40),
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 15,
-    height: 36,
+    fontSize: moderateScale(15),
+    height: moderateScale(36),
     fontFamily: 'Montserrat-Italic',
     paddingVertical: 0,
-    marginBottom: 10,
+    marginBottom: moderateScale(10),
   },
   postContainer: {
-    paddingHorizontal: 10,
+    paddingHorizontal: moderateScale(10),
   },
   image: {
-    height: 184,
+    height: moderateScale(184),
     width: '100%',
-    borderRadius: 10,
+    borderRadius: moderateScale(10),
   },
   postNameContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 8.5,
+    marginBottom: moderateScale(8.5),
     justifyContent: 'space-between',
   },
   profileImageContainer: {
@@ -239,21 +239,21 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   postUserImage: {
-    height: 40,
-    width: 40,
-    borderRadius: 50,
+    height: moderateScale(40),
+    width: moderateScale(40),
+    borderRadius: moderateScale(50),
   },
   postUserName: {
     color: '#FFFFFF',
-    fontSize: 16,
-    marginLeft: 8,
+    fontSize: moderateScale(16),
+    marginLeft: moderateScale(8),
     fontFamily: 'Montserrat-Bold',
   },
   detailsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 8,
+    marginTop: moderateScale(8),
   },
   likesContainer: {
     flexDirection: 'row',
@@ -261,7 +261,7 @@ const style = StyleSheet.create({
     justifyContent: 'space-around',
   },
   timestamp: {
-    fontSize: 12.5,
+    fontSize: moderateScale(12.5),
     color: 'lightgrey',
     fontFamily: 'Montserrat-Italic',
   },
@@ -271,50 +271,50 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
   },
   likes: {
-    fontSize: 16,
+    fontSize: moderateScale(16),
     color: 'lightgrey',
     fontFamily: 'Montserrat-Medium',
     marginLeft: 3,
-    marginRight: 14,
+    marginRight: moderateScale(14),
   },
   comments: {
-    fontSize: 16,
+    fontSize: moderateScale(16),
     color: 'lightgrey',
     fontFamily: 'Montserrat-Medium',
-    marginRight: 1,
-    marginLeft: 3,
+    marginRight: moderateScale(1),
+    marginLeft: moderateScale(3),
   },
   body: {
-    fontSize: 15,
+    fontSize: moderateScale(15),
     color: '#FFFFFF',
-    marginTop: 10,
-    marginBottom: 4,
+    marginTop: moderateScale(10),
+    marginBottom: moderateScale(4),
     fontFamily: 'Montserrat-Medium',
   },
   more: {
-    fontSize: 13,
+    fontSize: moderateScale(13),
     color: '#B8A0FF',
     fontFamily: 'Montserrat-SemiBoldItalic',
   },
   commentContainer: {
-    marginTop: 4,
-    paddingHorizontal: 10,
+    marginTop: moderateScale(4),
+    paddingHorizontal: moderateScale(10),
   },
   allComments: {
     color: '#8b64ff',
     fontStyle: 'italic',
-    fontSize: 14,
+    fontSize: moderateScale(14),
   },
   lastCommentContainer: {
   },
   lastCommentName: {
     color: '#999999',
     fontFamily: 'Montserrat-Bold',
-    marginBottom: 1,
+    marginBottom: moderateScale(1),
   },
   lastCommentBody: {
     color: '#FFFFFF',
-    fontSize: 13,
+    fontSize: moderateScale(13),
     fontFamily: 'Montserrat-Regular',
   },
   dotsDropdownContainer: {
@@ -326,32 +326,32 @@ const style = StyleSheet.create({
     alignSelf: 'flex-end',
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: moderateScale(20),
   },
   dropdown: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
     width: '100%',
-    marginTop: 1,
-    marginBottom: -55,
+    marginTop: moderateScale(1),
+    marginBottom: moderateScale(-55),
     backgroundColor: '#2C3957',
     zIndex: 1,
-    paddingVertical: 8,
+    paddingVertical: moderateScale(8),
   },
   dropDownText: {
     color: 'white',
-    fontSize: 16,
-    marginHorizontal: 12,
+    fontSize: moderateScale(16),
+    marginHorizontal: moderateScale(12),
     fontFamily: 'Montserrat-Medium',
-    paddingBottom: 6,
-    paddingTop: 6,
+    paddingBottom: moderateScale(6),
+    paddingTop: moderateScale(6),
   },
   dropDownTextReportContainer: {
-    borderTopWidth: 1,
+    borderTopWidth: moderateScale(1),
     borderTopColor: '#CBCDD7',
-    paddingTop: 6,
-    paddingBottom: 6,
+    paddingTop: moderateScale(6),
+    paddingBottom: moderateScale(6),
     backgroundColor: '#2C3957',
   },
 });
