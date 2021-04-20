@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {moderateScale, verticalScale, scale} from '../../util/responsiveFont'
 
 export default class TermsAndConditions extends Component {
   render() {
@@ -38,17 +39,17 @@ export default class TermsAndConditions extends Component {
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 8,
+    padding: moderateScale(8),
     backgroundColor: '#323e5b',
-    paddingHorizontal: 30,
+    paddingHorizontal: moderateScale(30),
   },
   header: {
     color: 'white',
-    fontSize: 22,
+    fontSize: moderateScale(22),
     fontWeight: 'bold',
   },
   buttonContainer: {
-    marginTop: 100,
+    marginTop: moderateScale(100),
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
@@ -57,11 +58,11 @@ const style = StyleSheet.create({
     color: 'white',
     alignSelf: 'center',
     textAlign: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    width: 150,
-    borderRadius: 6,
-    fontSize: 17,
+    paddingVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(20),
+    width: moderateScale(150),
+    borderRadius: moderateScale(6),
+    fontSize: moderateScale(17),
     fontWeight: 'bold',
   },
 });

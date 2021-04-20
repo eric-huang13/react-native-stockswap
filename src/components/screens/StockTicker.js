@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import {StyleSheet, Text, SafeAreaView} from 'react-native';
 import TextTicker from 'react-native-text-ticker';
 import {connect} from 'react-redux';
+import {moderateScale, verticalScale, scale} from '../../util/responsiveFont'
 
 export class StockTicker extends PureComponent {
   render() {
@@ -57,17 +58,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#2e3955',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 6,
+    marginBottom: moderateScale(6),
   },
   textstyle: {},
   marqueeSymbol: {
     color: '#91f2b1',
-    fontSize: 14,
+    fontSize: moderateScale(14),
     fontFamily: 'Montserrat-Bold',
   },
   marqueePercentage: {
     color: '#91f2b1',
-    fontSize: 13,
+    fontSize: moderateScale(13),
     fontFamily: 'Montserrat-Medium',
   },
 });

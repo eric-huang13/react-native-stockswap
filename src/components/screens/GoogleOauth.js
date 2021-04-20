@@ -4,7 +4,7 @@ import GoogleIcon from '../../icons/GoogleIcon';
 import {connect} from 'react-redux';
 
 import {GoogleLogin, GoogleLogout, GoogleIsSignedIn} from 'actions/user';
-
+import {moderateScale} from '../../util/responsiveFont'
 
  function GoogleOauth(props) {
 
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     color: '#FFFFFF',
     textAlign: 'center',
-    fontSize: 14,
+    fontSize: moderateScale(14),
     fontFamily: 'Montserrat-SemiBold',
     shadowOffset: {
       width: 0,
@@ -93,17 +93,17 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 4,
     backgroundColor: '#2C3957',
-    width: 350,
-    borderRadius: 8,
-    marginBottom: 10,
+    width: moderateScale(350),
+    borderRadius: moderateScale(8),
+    marginBottom: moderateScale(10),
     flexDirection: 'row',
   },
   signupIcon: {
-    padding: 7,
+    padding: moderateScale(7),
     backgroundColor: '#3A4A6D',
-    borderRadius: 7,
-    marginVertical: -8,
-    marginRight: 63,
+    borderRadius: moderateScale(7),
+    marginVertical: moderateScale(-8),
+    marginRight: moderateScale(63),
     alignSelf: 'center',
   },
 });

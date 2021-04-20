@@ -5,6 +5,7 @@ import {
   FlatList,
 } from 'react-native';
 import {connect} from 'react-redux';
+import { moderateScale } from '../../util/responsiveFont';
 import MyProfilePostBox from './MyProfilePostBox';
 
 class LikedPosts extends Component {
@@ -70,19 +71,20 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(LikedPosts);
 
+
 const style = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#2a334a',
-    paddingVertical: 10,
+    paddingVertical: moderateScale(10),
   },
   infoContainer: {
     borderColor: 'red',
-    paddingHorizontal: 7,
+    paddingHorizontal: moderateScale(7),
   },
   personalDetails: {
     borderColor: 'yellow',
-    marginLeft: 8,
+    marginLeft: moderateScale(8),
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
@@ -91,41 +93,41 @@ const style = StyleSheet.create({
     flexDirection: 'row',
   },
   bioContainer: {
-    marginVertical: 12,
-    paddingHorizontal: 3,
+    marginVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(3),
   },
   bio: {
     color: '#FFFFFF',
-    fontSize: 14,
+    fontSize: moderateScale(14),
     fontFamily: 'Montserrat-Medium',
   },
   numberRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 12,
-    marginTop: 8,
+    paddingHorizontal: moderateScale(12),
+    marginTop: moderateScale(8),
   },
   numberColumn: {
     alignItems: 'center',
   },
   aboveGraphContainer: {
     flexDirection: 'row',
-    marginTop: 8,
+    marginTop: moderateScale(8),
     justifyContent: 'space-between',
-    paddingHorizontal: 8,
+    paddingHorizontal: moderateScale(8),
   },
   portfolioHeaderContainer: {
     flexDirection: 'column',
   },
   portfolioHeader: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontFamily: 'Montserrat-Regular',
     marginBottom: 0,
   },
   gain: {
     color: 'white',
-    fontSize: 24,
+    fontSize: moderateScale(24),
     fontFamily: 'Montserrat-ExtraBold',
   },
   timeNumberContainer: {
@@ -134,58 +136,58 @@ const style = StyleSheet.create({
   },
   timeNumber: {
     color: 'lightgrey',
-    fontSize: 10,
+    fontSize: moderateScale(10),
   },
   image: {
-    height: 60,
-    width: 60,
-    borderRadius: 80,
+    height: moderateScale(60),
+    width: moderateScale(60),
+    borderRadius: moderateScale(80),
   },
 
   name: {
     color: '#FFFFFF',
-    fontSize: 18,
+    fontSize: moderateScale(18),
     fontFamily: 'Montserrat-Black',
   },
   username: {
     color: '#FFFFFF',
-    fontSize: 12,
+    fontSize: moderateScale(12),
     fontFamily: 'Montserrat-Regular',
   },
   hashtag: {
     color: '#9082cf',
     fontFamily: 'Montserrat-Medium',
-    fontSize: 12,
+    fontSize: moderateScale(12),
   },
 
   numberData: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontFamily: 'Montserrat-Bold',
   },
   numberText: {
     color: 'lightgrey',
-    fontSize: 12,
+    fontSize: moderateScale(12),
     fontFamily: 'Montserrat-Regular',
   },
 
   portfolioButtonContainer: {
     flexDirection: 'row',
-    paddingHorizontal: 20,
+    paddingHorizontal: moderateScale(20),
     justifyContent: 'center',
-    marginTop: 46,
-    marginBottom: 30,
+    marginTop: moderateScale(46),
+    marginBottom: moderateScale(30),
   },
   portfolioButton: {
     textAlign: 'center',
-    borderWidth: 1.4,
+    borderWidth: moderateScale(1.4),
     borderColor: '#9082cf',
     color: '#FFFFFF',
-    padding: 10,
-    borderRadius: 8,
-    fontSize: 14,
-    width: 210,
-    height: 42,
+    padding: moderateScale(10),
+    borderRadius: moderateScale(8),
+    fontSize: moderateScale(14),
+    width: moderateScale(210),
+    height: moderateScale(42),
     backgroundColor: '#8B64FF',
     fontFamily: 'Montserrat-SemiBold',
   },
@@ -194,17 +196,17 @@ const style = StyleSheet.create({
   },
 
   timeFilterButtonsContainer: {
-    marginTop: 7,
+    marginTop: moderateScale(7),
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    marginBottom: 24,
-    borderBottomWidth: 1,
+    marginBottom: moderateScale(24),
+    borderBottomWidth: moderateScale(1),
     borderBottomColor: 'rgba(158, 150, 150, .4)',
-    paddingBottom: 9,
+    paddingBottom: moderateScale(9),
   },
   timeFilterButtons: {
     color: '#FFFFFF',
     fontFamily: 'Montserrat-Bold',
-    fontSize: 14,
+    fontSize: moderateScale(14),
   },
 });
