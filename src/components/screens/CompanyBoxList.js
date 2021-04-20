@@ -8,6 +8,8 @@ import {
   ScrollView,
   SafeAreaView,
 } from 'react-native';
+import {moderateScale} from '../../util/responsiveFont'
+
 
 import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
@@ -36,7 +38,7 @@ export class CompanyBoxList extends Component {
 
     return (
       <SafeAreaView style={style.mainContainer}>
-        <ScrollView contentContainerStyle={{paddingBottom: 180}}>
+        <ScrollView contentContainerStyle={{paddingBottom: moderateScale(180)}}>
           <View style={style.searchInputContainer}>
 
           <View
@@ -225,49 +227,49 @@ export default connect(mapStateToProps)(CompanyBoxList);
 
 const style = StyleSheet.create({
   mainContainer: {
-    alignSelf: 'center',
-    paddingBottom: 40,
+    marginBottom: moderateScale(50),
   },
   container: {
-    marginBottom: 18,
-    borderBottomColor: 'gray',
-    paddingHorizontal: 2,
+    marginBottom: moderateScale(18),
+    paddingHorizontal: moderateScale(2),
   },
   boxContainer: {
-    paddingLeft: 2,
+    paddingLeft: moderateScale(2),
   },
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingRight: 8,
-    marginBottom: 4,
+    paddingRight: moderateScale(8),
+    marginBottom: moderateScale(4),
   },
   header: {
-    fontSize: 17,
-    marginLeft: 5.5,
+    fontSize: moderateScale(17),
+    fontSize: moderateScale(17),
+    marginLeft: moderateScale(5.5),
     color: 'lightgrey',
     fontFamily: 'Montserrat-Regular',
   },
   seeAllHeader: {
-    paddingTop: 3.5,
-    paddingRight: 2,
-    fontSize: 15,
+    paddingTop: moderateScale(3.5),
+    paddingRight: moderateScale(2),
+    fontSize:moderateScale(15),
+    fontSize: moderateScale(15),
     color: '#B8A0FF',
     fontFamily: 'Montserrat-SemiBold',
   },
   searchInputContainer: {
     flexDirection: 'row',
-    marginBottom: 15,
+    marginBottom: moderateScale(15),
   },
   searchInput: {
     flex: 1,
-    paddingLeft: 40,
+    paddingLeft: moderateScale(40),
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 16,
-    height: 36,
-    paddingVertical: 0,
+    fontSize: moderateScale(16),
+    height: moderateScale(36),
+    paddingVertical: moderateScale(0),
     fontFamily: 'Montserrat-Italic',
   },
 });

@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
+import {Text, View, StyleSheet, SafeAreaView, Dimensions, PixelRatio, Platform} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import {moderateScale, scale} from '../../util/responsiveFont'
+
 
 export class CompanyBox extends Component {
   render() {
     const {item} = this.props;
+    const { width, height } = Dimensions.get('window');
+
     const styledText =
       item.category === 'gainers' ? (
         <LinearGradient
@@ -92,51 +96,56 @@ export default CompanyBox;
 const style = StyleSheet.create({
   linearGradient: {
     alignSelf: 'center',
-    marginTop: 3,
-    borderRadius: 12,
-    height: 120,
-    width: 127,
+    marginTop: moderateScale(3),
+    borderRadius: moderateScale(12),
+     height: Dimensions.get('window').height / 3 -108,
+         width: Dimensions.get('window').width / 3 -10,
+    //      height: 120, 
+    //      width: 127,
+    height: scale(120), 
+    width: scale(127),
+
     flexDirection: 'column',
-    padding: 3,
+    padding: moderateScale(3),
     paddingTop: 0,
     justifyContent: 'space-around',
-    marginLeft: 4,
-    marginRight: 4,
+    marginLeft: moderateScale(4),
+    marginRight: moderateScale(4),
   },
   listContainer: {
-    borderRadius: 15,
+    borderRadius: moderateScale(15),
     flex: 1,
     flexDirection: 'column',
-    paddingHorizontal: 4,
+    paddingHorizontal: moderateScale(4),
     paddingTop: 0,
     justifyContent: 'space-evenly',
   },
   topDetails: {
-    marginTop: -4,
+    marginTop: moderateScale(-4),
   },
   bottomDetails: {},
   title: {
-    fontSize: 13,
+    fontSize: moderateScale(13),
     fontFamily: 'Montserrat-Regular',
     color: '#b3b3b3',
   },
   detailsContainer: {
     position: 'absolute',
     marginTop: '60%',
-    marginLeft: 2,
+    marginLeft: moderateScale(2),
   },
   symbol: {
-    fontSize: 19,
+    fontSize: moderateScale(19),
     color: 'rgb(8, 11, 9)',
     fontFamily: 'Montserrat-Bold',
   },
   percentage: {
-    fontSize: 13,
+    fontSize: moderateScale(13),
     color: 'grey',
     fontFamily: 'Montserrat-SemiBold',
   },
   price: {
-    fontSize: 19,
+    fontSize: moderateScale(19),
     color: '#FFFFFF',
     fontFamily: 'Montserrat-Regular',
   },

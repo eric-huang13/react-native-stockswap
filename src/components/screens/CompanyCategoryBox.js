@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
+import { moderateScale } from '../../util/responsiveFont';
 
 export default class CompanyCategoryBox extends Component {
   render() {
@@ -30,46 +31,46 @@ export default class CompanyCategoryBox extends Component {
 const style = StyleSheet.create({
   container: {
     backgroundColor: '#324165',
-    paddingVertical: 4,
+    paddingVertical: moderateScale(4),
   },
   companyRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 12,
+    paddingHorizontal: moderateScale(12),
     alignContent: 'space-between',
-    marginVertical: 6,
+    marginVertical: moderateScale(6),
   },
   nameContainer: {
     flexDirection: 'column',
     justifyContent: 'space-evenly',
   },
   detailsContainer: {
-    marginTop: 5,
+    marginTop: moderateScale(5),
   },
   symbol: {
     fontFamily: 'Montserrat-Bold',
     color: '#FFFFFF',
-    fontSize: 20.5,
+    fontSize: moderateScale(20.5),
   },
   title: {
     color: '#d0d3dc',
-    marginTop: 3,
+    marginTop: moderateScale(3),
     fontFamily: 'Montserrat-Regular',
-    fontSize: 14,
+    fontSize: moderateScale(14),
   },
   price: {
     color: 'white',
-    fontSize: 22,
+    fontSize: moderateScale(22),
     fontWeight: 'bold',
     fontFamily: 'Montserrat-Bold',
     color: '#FFFFFF',
-    fontSize: 20.5,
+    fontSize: moderateScale(20.5),
   },
   percentage: {
     color: '#5fc48c',
     alignSelf: 'flex-end',
-    marginTop: 3,
+    marginTop: moderateScale(3),
     fontFamily: 'Montserrat-Medium',
-    fontSize: 14,
+    fontSize: moderateScale(14),
   },
 });

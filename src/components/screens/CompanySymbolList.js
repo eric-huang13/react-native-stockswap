@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import {connect} from 'react-redux';
+import { moderateScale } from '../../util/responsiveFont';
 
 export class CompanySymbolList extends Component {
   constructor(props) {
@@ -20,8 +21,8 @@ export class CompanySymbolList extends Component {
 
   render() {
     const getItemLayout = (data, index) => ({
-      length: 89,
-      offset: 89 * index,
+      length: moderateScale(89),
+      offset: moderateScale(89) * index,
       index,
     });
 
@@ -76,13 +77,13 @@ export default connect(mapStateToProps)(CompanySymbolList);
 
 const style = StyleSheet.create({
   mainContainer: {
-    paddingVertical: 10,
-    height: 60,
+    paddingVertical: moderateScale(10),
+    height: moderateScale(60),
   },
   symbolBox: {
-    marginHorizontal: 12,
-    width: 63,
-    height: 23,
+    marginHorizontal: moderateScale(12),
+    width: moderateScale(63),
+    height: moderateScale(23),
     alignContent: 'center',
     justifyContent: 'center',
   },
@@ -91,6 +92,6 @@ const style = StyleSheet.create({
     backgroundColor: '#3e475b',
     fontFamily: 'Montserrat-Medium',
     color: '#FFFFFF',
-    paddingVertical: 4,
+    paddingVertical: moderateScale(4),
   },
 });

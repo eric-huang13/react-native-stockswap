@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
+import { moderateScale } from '../../util/responsiveFont';
 import CompanyCategoryBox from './CompanyCategoryBox';
 
 export class CompanyCategory extends Component {
@@ -84,20 +85,20 @@ const style = StyleSheet.create({
     flex: 1,
   },
   linearContainer: {
-    paddingBottom: 5,
+    paddingBottom: moderateScale(5),
     flex: 1,
   },
   listContainer: {},
   searchInputContainer: {
-    marginBottom: 32,
+    marginBottom: moderateScale(32),
   },
   searchInput: {
-    paddingLeft: 40,
+    paddingLeft: moderateScale(40),
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 16.5,
-    height: 40,
+    fontSize: moderateScale(16.5),
+    height: moderateScale(40),
     paddingVertical: 0,
     fontFamily: 'Montserrat-Regular',
   },
