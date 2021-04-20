@@ -13,6 +13,7 @@ import SearchInput from '../../icons/SearchInput';
 import TriangleIcon from '../../icons/TriangleIcon';
 import {connect} from 'react-redux';
 import ManagePortfolioBox from './ManagePortfolioBox';
+import { moderateScale } from '../../util/responsiveFont';
 
 class ManagePortfolio extends Component {
   constructor(props) {
@@ -148,26 +149,26 @@ const style = StyleSheet.create({
     flex: 1,
   },
   searchInputContainer: {
-    marginBottom: 22,
+    marginBottom: moderateScale(22),
   },
   searchInput: {
-    paddingLeft: 40,
+    paddingLeft: moderateScale(40),
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 15,
-    height: 36,
+    fontSize: moderateScale(15),
+    height: moderateScale(36),
     fontFamily: 'Montserrat-Italic',
     paddingVertical: 0,
   },
   searchInputInnerContainer: {
     position: 'absolute',
     zIndex: 1,
-    left: 14,
-    top: 10,
+    left: moderateScale(14),
+    top: moderateScale(10),
   },
   innerContainer: {
-    paddingHorizontal: 6,
+    paddingHorizontal: moderateScale(6),
   },
   topDetailsRow: {
     flexDirection: 'row',
@@ -176,95 +177,95 @@ const style = StyleSheet.create({
   gainDetailsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 4,
+    paddingHorizontal: moderateScale(4),
   },
   gain: {
     fontFamily: 'Montserrat-Medium',
     color: '#F66E6E',
-    fontSize: 12,
+    fontSize: moderateScale(12),
   },
   gainTime: {
     fontFamily: 'Montserrat-Medium',
     color: 'lightgrey',
-    fontSize: 10,
-    marginLeft: 8,
+    fontSize: moderateScale(10),
+    marginLeft: moderateScale(8),
   },
   boxContainer: {
-    marginTop: 6,
+    marginTop: moderateScale(6),
   },
   portfolioBoxContainer: {
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(158, 150, 150, .6)',
-    padding: 0.1,
-    marginTop: 8,
+    padding: moderateScale(0.1),
+    marginTop: moderateScale(8),
   },
   percentContainer: {
-    paddingHorizontal: 8,
+    paddingHorizontal: moderateScale(8),
   },
   portfolio: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontFamily: 'Montserrat-Regular',
   },
   percent: {
     color: '#FFFFFF',
-    fontSize: 24,
+    fontSize: moderateScale(24),
     fontFamily: 'Montserrat-ExtraBold',
   },
   percentButtonContainer: {
-    marginTop: 12,
+    marginTop: moderateScale(12),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 8,
+    paddingHorizontal: moderateScale(8),
   },
   stockHeader: {
     color: '#FFFFFF',
-    fontSize: 22,
+    fontSize: moderateScale(22),
     fontFamily: 'Montserrat-Bold',
   },
   percentChangeButton: {
     color: '#FFFFFF',
-    fontSize: 14,
+    fontSize: moderateScale(14),
     backgroundColor: '#3E4D6C',
-    borderRadius: 6,
+    borderRadius: moderateScale(6),
     fontFamily: 'Montserrat-Italic',
-    marginLeft: 6,
-    width: 190,
+    marginLeft: moderateScale(6),
+    width: moderateScale(190),
   },
   percentChangeContainer: {
-    borderRadius: 6,
+    borderRadius: moderateScale(6),
     backgroundColor: '#3E4D6C',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: 30,
+    height: moderateScale(30),
   },
 
   dropdown: {
     flexDirection: 'column',
     justifyContent: 'space-between',
     width: '100%',
-    marginTop: 29,
+    marginTop: moderateScale(29),
     backgroundColor: '#3E4D6C',
     zIndex: 1,
-    paddingVertical: 6,
-    height: 200,
+    paddingVertical: moderateScale(6),
+    height: moderateScale(200),
     position: 'absolute',
   },
   dropDownText: {
     color: 'white',
-    fontSize: 16,
-    marginHorizontal: 12,
+    fontSize: moderateScale(16),
+    marginHorizontal: moderateScale(12),
     fontFamily: 'Montserrat-Medium',
-    marginBottom: 6,
+    marginBottom: moderateScale(6),
   },
   dropDownTextReportContainer: {
-    borderTopWidth: 1,
+    borderTopWidth: moderateScale(1),
     borderTopColor: 'lightgrey',
-    paddingTop: 4,
+    paddingTop: moderateScale(4),
     backgroundColor: '#2C3957',
   },
   icon: {
-    marginRight: 4,
+    marginRight: moderateScale(4),
   },
 });

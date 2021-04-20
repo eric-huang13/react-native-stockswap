@@ -377,6 +377,7 @@ export default ManagePortfolioCompany;
 
 const style = StyleSheet.create({
   mainContainer: {
+    flex:1,
     backgroundColor: '#2a334a',
     paddingVertical: 10,
   },

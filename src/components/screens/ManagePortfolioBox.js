@@ -3,6 +3,7 @@ import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
 import PortfolioGraph from './PortfolioGraph';
 import BearIcon from '../../icons/BearIcon';
 import BullIcon from '../../icons/BullIcon';
+import { moderateScale } from '../../util/responsiveFont';
 
 export default class UserPortfolioBox extends Component {
   constructor(props) {
@@ -114,7 +115,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     flex: 1,
-    width: 99,
+    width: moderateScale(99),
   },
   icon: {
     alignSelf: 'flex-end',
@@ -122,26 +123,26 @@ const style = StyleSheet.create({
   symbolContainer: {
     flexDirection: 'column',
     justifyContent: 'space-evenly',
-    paddingVertical: 4,
-    paddingLeft: 8,
+    paddingVertical: moderateScale(4),
+    paddingLeft: moderateScale(8),
     width: '100%',
     textAlign: 'left',
   },
   symbolGain: {
     color: '#71F59C',
     fontFamily: 'Montserrat-Bold',
-    fontSize: 16,
+    fontSize: moderateScale(16),
     textAlign: 'left',
   },
   symbolLoss: {
     color: '#F66E6E',
     fontFamily: 'Montserrat-Bold',
-    fontSize: 16,
+    fontSize: moderateScale(16),
     textAlign: 'left',
   },
   title: {
     color: 'lightgrey',
-    fontSize: 10,
+    fontSize: moderateScale(10),
     textAlign: 'left',
     fontFamily: 'Montserrat-Regular',
   },
@@ -149,25 +150,25 @@ const style = StyleSheet.create({
     color: '#FFFFFF',
     textAlign: 'left',
     fontFamily: 'Montserrat-Regular',
-    fontSize: 12,
+    fontSize: moderateScale(12),
   },
   percentContainer: {
     flexDirection: 'column',
     justifyContent: 'space-evenly',
-    paddingVertical: 4,
-    paddingRight: 30,
+    paddingVertical: moderateScale(4),
+    paddingRight: moderateScale(30),
     alignItems: 'flex-end',
   },
   percentGain: {
     color: '#71F59C',
     fontFamily: 'Montserrat-Bold',
-    fontSize: 16,
+    fontSize: moderateScale(16),
     textAlign: 'left',
   },
   percentLoss: {
     color: '#F66E6E',
     fontFamily: 'Montserrat-Bold',
-    fontSize: 16,
+    fontSize: moderateScale(16),
     textAlign: 'left',
   },
 });
