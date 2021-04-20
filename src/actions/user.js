@@ -21,6 +21,7 @@ import deviceStorage from '../util/DeviceStorage';
 import apiInstance from '../util/axiosConfig';
 import {navigate} from '../../RootNavigation';
 
+
 import Toast from 'react-native-toast-message';
 import {
   GoogleSignin,
@@ -32,7 +33,6 @@ GoogleSignin.configure({
   offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
   iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
 });
-
 export const Register = (input) => {
   return (dispatch) => {
     dispatch({type: SIGNUP_START});
@@ -122,34 +122,34 @@ export const RegisterGoogle = (input) => {
 };
 
 
-export const Login = (input) => {
-  return (dispatch) => {
-    dispatch({type: LOGIN_START});
-    Toast.show({
-      type: 'info',
-      text2: 'Sending credentials...',
-    })
-    axios
-      .post('http://ec2-3-139-84-5.us-east-2.compute.amazonaws.com/v1/auth/login', input)
-       .then((response) => {
-        deviceStorage.saveItem('token', response.data.token),
-          dispatch({type: LOGIN_SUCCESS, payload: response.data});
-        Toast.show({
-          type:'success',
-          text2: response.data.message,
-        });
-      })
-      .catch((error) => {
-        console.log(error.response.data.message, "ERROR in LOGIN")
-        dispatch({type: SIGNUP_ERROR, payload: error.response});
-        Toast.show({
-          type: 'errorLogin',
-          text1: 'Error',
-          text2: error.response.data.message,
-        });
-      });
-  };
-};
+// export const Login = (input) => {
+//   return (dispatch) => {
+//     dispatch({type: LOGIN_START});
+//     Toast.show({
+//       type: 'info',
+//       text2: 'Sending credentials...',
+//     })
+//     axios
+//       .post('http://ec2-3-139-84-5.us-east-2.compute.amazonaws.com/v1/auth/login', input)
+//        .then((response) => {
+//         deviceStorage.saveItem('token', response.data.token),
+//           dispatch({type: LOGIN_SUCCESS, payload: response.data});
+//         Toast.show({
+//           type:'success',
+//           text2: response.data.message,
+//         });
+//       })
+//       .catch((error) => {
+//         console.log(error.response.data.message, "ERROR in LOGIN")
+//         dispatch({type: SIGNUP_ERROR, payload: error.response});
+//         Toast.show({
+//           type: 'errorLogin',
+//           text1: 'Error',
+//           text2: error.response.data.message,
+//         });
+//       });
+//   };
+// };
 
 export const GoogleLogin = () => { 
   return async dispatch => {
@@ -207,6 +207,8 @@ export const GoogleLogout = () => {
     }
 }
 }
+
+
 //Working POST with token sent on headers
 
 // export const Login = (input) => {
@@ -228,28 +230,52 @@ export const GoogleLogout = () => {
 // };
 
 
-// export const Login = () => (dispatch) => {
-//   return dispatch({
-//     type: LOGIN_SUCCESS,
-//   });
-// };
+export const Login = () => (dispatch) => {
+  Toast.show({
+    type: 'success',
+    text2: 'Sign up successful!',
+  });
 
-// export const Logout = () => (dispatch) => {
-//   return dispatch({
-//     type: LOGOUT,
-//   });
-// };
+  return dispatch({
+    type: LOGIN_SUCCESS,
+  });
+};
 
-export const Logout = () => {
-  return (dispatch) => {
-    dispatch({type: LOGOUT});
-    Toast.show({
-      type:'success',
-      topOffset: 30,
-      text2: 'You have been successfully logged out.',
-      
-    });
-  }}
+export const Logout = () => (dispatch) => {
+  Toast.show({
+    type:'success',
+    topOffset: 30,
+    text2: 'You have been successfully logged out.',
+    
+  });
+  return dispatch({
+    type: LOGOUT,
+    
+  });
+   
+};
+
+// export const Logout = () => {
+//   return (dispatch) => {
+    
+//   reset({
+//     index: 0,
+//     routes: [{ name: 'Home' }],
+// })
+// .then(() => {
+
+//   dispatch({type: LOGOUT});
+    
+//   Toast.show({
+//     type:'success',
+//     topOffset: 30,
+//     text2: 'You have been successfully logged out.',
+    
+//   });
+// })
+  
+    
+//   }}
   
   export const EditUser = (input) => {
     return (dispatch) => {

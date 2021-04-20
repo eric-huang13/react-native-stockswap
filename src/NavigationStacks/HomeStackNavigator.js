@@ -5,18 +5,18 @@ import React, {Component} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 // Components
-import HomeScreen from '../components/screens/Home';
-import CompanyInformation from '../components/screens/CompanyInformation';
-import Profile from '../components/screens/Profile';
-import UserCommentList from '../components/screens/UserCommentList';
-import PostScreen from '../components/screens/PostScreen';
-import UserPortfolioList from '../components/screens/UserPortfolioList';
-import MyProfile from '../components/screens/MyProfile';
-import MyProfilePosts from '../components/screens/MyProfilePosts';
-import Followers from '../components/screens/Followers';
-import Following from '../components/screens/Following';
-import EditPost from '../components/screens/EditPost';
-import CreatePostPreview from '../components/screens/CreatePostPreview';
+import HomeScreen from '../components/HomeTabScreens/Home';
+import CompanyInformation from '../components/SearchTabScreens/CompanyInformation';
+import Profile from '../components/HomeTabScreens/Profile';
+import UserCommentList from '../components/HomeTabScreens/UserCommentList';
+import PostScreen from '../components/HomeTabScreens/PostScreen';
+import UserPortfolioList from '../components/HomeTabScreens/UserPortfolioList';
+import MyProfile from '../components/MyProfileTabScreens/MyProfile';
+import MyProfilePosts from '../components/MyProfileTabScreens/MyProfilePosts';
+import Followers from '../components/HomeTabScreens/Followers';
+import Following from '../components/HomeTabScreens/Following';
+import EditPost from '../components/MyProfileTabScreens/EditPost';
+import CreatePostPreview from '../components/PostTabScreens/CreatePostPreview';
 
 //responsive scale
 import {moderateScale, verticalScale, scale} from '../util/responsiveFont'

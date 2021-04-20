@@ -5,13 +5,13 @@ import React, {Component} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 // Components
-import CompanyInformation from '../components/screens/CompanyInformation';
-import Profile from '../components/screens/Profile';
-import UserCommentList from '../components/screens/UserCommentList';
-import PostScreen from '../components/screens/PostScreen';
-import UserPortfolioList from '../components/screens/UserPortfolioList';
-import MyProfile from '../components/screens/MyProfile';
-import TopUsers from '../components/screens/TopUsers';
+import CompanyInformation from '../components/SearchTabScreens/CompanyInformation';
+import Profile from '../components/HomeTabScreens/Profile';
+import UserCommentList from '../components/HomeTabScreens/UserCommentList';
+import PostScreen from '../components/HomeTabScreens/PostScreen';
+import UserPortfolioList from '../components/HomeTabScreens/UserPortfolioList';
+import MyProfile from '../components/MyProfileTabScreens/MyProfile';
+import TopUsers from '../components/TopUsersTabScreens/TopUsers';
 
 //responsive scale
 import { moderateScale } from '../util/responsiveFont';
