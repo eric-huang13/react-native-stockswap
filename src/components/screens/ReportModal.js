@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
+import {moderateScale, verticalScale, scale} from '../../util/responsiveFont'
 
 export default class ReportModal extends Component {
   render() {
@@ -48,19 +49,19 @@ const style = StyleSheet.create({
   closeButton: {
     color: '#B8A0FF',
     fontFamily: 'Montserrat-Bold',
-    fontSize: 14,
+    fontSize: moderateScale(14),
     marginBottom: 18,
   },
   optionTextHeader: {
     color: 'white',
-    fontSize: 14,
+    fontSize: moderateScale(14),
     marginHorizontal: 12,
     paddingVertical: 2,
     fontFamily: 'Montserrat-Medium',
   },
   optionText: {
     color: 'white',
-    fontSize: 12,
+    fontSize: moderateScale(12),
     marginHorizontal: 12,
     paddingVertical: 2,
     fontFamily: 'Montserrat-Medium',

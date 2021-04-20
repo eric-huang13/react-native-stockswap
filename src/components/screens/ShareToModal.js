@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
+import {moderateScale, verticalScale, scale} from '../../util/responsiveFont'
 
 export default class ShareToModal extends Component {
   render() {
@@ -23,10 +24,10 @@ export default class ShareToModal extends Component {
 const style = StyleSheet.create({
   shareToContainer: {
     flex: 1,
-    marginTop: 400,
+    marginTop: moderateScale(400),
     backgroundColor: '#3e4d6c',
-    borderRadius: 20,
-    padding: 14,
+    borderRadius: moderateScale(20),
+    padding: moderateScale(14),
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -38,7 +39,7 @@ const style = StyleSheet.create({
     elevation: 5,
   },
   innerReportContainer: {
-    marginTop: 30,
+    marginTop: moderateScale(30),
     flexDirection: 'column',
     justifyContent: 'space-between',
     height: '50%',
@@ -46,21 +47,21 @@ const style = StyleSheet.create({
   closeButton: {
     color: '#B8A0FF',
     fontFamily: 'Montserrat-Bold',
-    fontSize: 14,
-    marginBottom: 18,
+    fontSize: moderateScale(14),
+    marginBottom: moderateScale(18),
   },
   optionTextHeader: {
     color: 'white',
-    fontSize: 14,
-    marginHorizontal: 12,
-    paddingVertical: 2,
+    fontSize: moderateScale(14),
+    marginHorizontal: moderateScale(12),
+    paddingVertical: moderateScale(2),
     fontFamily: 'Montserrat-Medium',
   },
   optionText: {
     color: 'white',
-    fontSize: 12,
-    marginHorizontal: 12,
-    paddingVertical: 2,
+    fontSize: moderateScale(12),
+    marginHorizontal: moderateScale(12),
+    paddingVertical: moderateScale(2),
     fontFamily: 'Montserrat-Medium',
   },
 });
