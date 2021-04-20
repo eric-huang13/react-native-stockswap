@@ -15,6 +15,7 @@ import {EditUser} from '../../actions/user';
 import LinearGradient from 'react-native-linear-gradient';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import { moderateScale } from '../../util/responsiveFont';
 
 const validationSchema = Yup.object().shape({
@@ -34,15 +35,25 @@ const validationSchema = Yup.object().shape({
     .label('bio')
     .min(2, 'bio must have more than 2 characters '),
 
-  image: Yup.string().url('Must be a url'),
+  // image: Yup.string().url('Must be a url'),
 });
 
 class EditProfile extends Component {
   constructor(props) {
     super(props);
   }
+  //Creating FormData for sending image to backend
+   createFormData = (values) => {
+    let formData = new FormData();
+      Object.keys(values).forEach(fieldName => {
+      console.log(fieldName, values[fieldName]);
+      formData.append(fieldName, values[fieldName]);
+      })
+    return formData;
+  };
 
   render() {
+     
     const {EditUserAccount, userAccount} = this.props;
     return (
       <LinearGradient
@@ -63,12 +74,14 @@ class EditProfile extends Component {
                   id: userAccount.id,
                   name: userAccount.name,
                   username: userAccount.username,
-                  image: userAccount.img,
+                  image:{name:'', type:'', uri:userAccount.img},
                   hashtag: userAccount.hashtag,
                   bio: userAccount.bio,
                 }}
                 onSubmit={(values) => {
-                  console.log(values, 'infooooo');
+                  console.log(values, 'infooooo')
+                  const data = this.createFormData(values);
+                console.log(data,"form") 
                 }}
                 validationSchema={validationSchema}>
                 {({
@@ -85,11 +98,56 @@ class EditProfile extends Component {
                   <View>
                     <Text style={style.header}>Fill Profile Info</Text>
 
-                    {values.image === '' ? (
+                    {values.image.uri && !errors.image ?
+                    <TouchableOpacity onPress={() => {
+                      const options={
+                        mediaType:'photo',
+                        // includeBase64:true,                  
+                      }
+                      launchImageLibrary(options, response=> {
+                        console.log(response, "response image")
+                        if (response.uri)
+                        {
+                          setFieldValue('image', {name:response.fileName, type:response.type, uri:
+                            Platform.OS === 'android' ? response.uri : response.uri.replace('file://', ''),}) 
+                        }
+                      });
+                  }}>
+                      <Image
+                        style={style.uploadPhotoContainer}
+                        source={{uri: values.image.uri}}
+                      />
+                    </TouchableOpacity>
+ 
+                     : 
+                      <View style={style.uploadPhotoContainer}>
+                        <TouchableOpacity onPress={() => {
+                            const options={
+                              mediaType:'photo',
+                              // includeBase64:true,                        
+                            }
+                            launchImageLibrary(options, response=> {
+                              console.log(response, "response image")
+                              if (response.uri)
+                              {
+                                setFieldValue('image', {name:response.fileName, type:response.type, uri:
+                                  Platform.OS === 'android' ? response.uri : response.uri.replace('file://', ''),})
+       
+                              }
+                            });
+                        }}>
+                        <Text style={style.uploadPhotoText}>
+                          Tap to upload your photo
+                        </Text>
+                        </TouchableOpacity>
+                      </View>
+                     } 
+
+                    {/* {values.image === '' ? (
                       <View style={style.uploadPhotoContainer} />
                     ) : (
                       <Image style={style.image} source={{uri: values.image}} />
-                    )}
+                    )} */}
 
                     <View style={style.topRow}>
                       <View style={style.rowInputContainer}>
@@ -129,7 +187,7 @@ class EditProfile extends Component {
                       </View>
                     </View>
                     <View style={style.bottomColumn}>
-                      <View style={style.imageContainer}>
+                      {/* <View style={style.imageContainer}>
                         <Text style={style.inputHeader}>Image</Text>
                         <TextInput
                           value={values.image}
@@ -144,7 +202,7 @@ class EditProfile extends Component {
                         <Text style={style.errorText}>
                           {touched.image && errors.image}
                         </Text>
-                      </View>
+                      </View> */}
                       <View>
                         <Text style={style.inputHeader}>
                           Hashtag (up to 3 tags)
@@ -231,7 +289,7 @@ const style = StyleSheet.create({
     borderRadius: moderateScale(100),
     width: moderateScale(135),
     height: moderateScale(135),
-    marginBottom: moderateScale(30),
+    marginBottom: moderateScale(20),
     paddingVertical: moderateScale(40),
     paddingHorizontal: moderateScale(10),
   },
@@ -253,7 +311,7 @@ const style = StyleSheet.create({
     textAlign: 'center',
     fontSize: moderateScale(16),
     color: '#FFFFFF',
-    marginBottom: moderateScale(20),
+    marginBottom: moderateScale(16),
     fontFamily: 'Montserrat-Bold',
   },
   topRow: {
