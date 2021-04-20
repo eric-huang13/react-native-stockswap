@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import {
   View,
-  TextInput,
   TouchableOpacity,
-  ScrollView,
   StyleSheet,
   Text,
   SafeAreaView,
@@ -12,6 +10,8 @@ import {connect} from 'react-redux';
 import TopUsersPeople from './TopUsersPeople';
 
 import LinearGradient from 'react-native-linear-gradient';
+import {moderateScale} from '../../util/responsiveFont'
+
 
 export class TopUsers extends Component {
   constructor(props) {
@@ -59,7 +59,6 @@ export class TopUsers extends Component {
         ]}
         style={{flex: 1}}>
         <SafeAreaView>
-          {/* <ScrollView> */}
           <LinearGradient
             start={{x: 0.1, y: 0.1}}
             end={{x: 1, y: 1}}
@@ -161,7 +160,6 @@ export class TopUsers extends Component {
               <Text>Search Screen</Text>
             </View>
           )}
-          {/* </ScrollView> */}
         </SafeAreaView>
       </LinearGradient>
     );
@@ -179,42 +177,42 @@ export default connect(mapStateToProps)(TopUsers);
 const style = StyleSheet.create({
   searchInputContainer: {
     alignItems: 'center',
-    padding: 4.8,
-    marginTop: 0,
+    padding: moderateScale(4.8),
+    marginTop: moderateScale(0),
   },
   searchInput: {
-    borderWidth: 0.5,
+    borderWidth: moderateScale(0.5),
     width: '90%',
-    fontSize: 17,
+    fontSize: moderateScale(17),
     fontStyle: 'italic',
     textAlign: 'left',
-    padding: 2.5,
+    padding: moderateScale(2.5),
     opacity: 0.8,
-    marginBottom: 20,
-    paddingLeft: 5,
+    marginBottom: moderateScale(20),
+    paddingLeft: moderateScale(5),
   },
   header: {
     color: '#FFFFFF',
-    fontSize: 19,
+    fontSize: moderateScale(19),
     fontWeight: '700',
-    marginVertical: 8,
+    marginVertical: moderateScale(8),
     textAlign: 'center',
   },
   tabSelectorContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginVertical: 15,
-    paddingBottom: 2,
+    marginVertical: moderateScale(15),
+    paddingBottom: moderateScale(2),
   },
   tabHeader: {
     color: '#FFFFFF',
-    fontSize: 14,
+    fontSize: moderateScale(14),
     fontFamily: 'Montserrat-Bold',
   },
   activeTabHeaderView: {
-    borderBottomWidth: 3,
+    borderBottomWidth: moderateScale(3),
     borderBottomColor: '#855cff',
-    paddingBottom: 1.8,
+    paddingBottom: moderateScale(1.8),
   },
   activeTabHeader: {
     fontFamily: 'Montserrat-Bold',
@@ -222,6 +220,6 @@ const style = StyleSheet.create({
     textShadowColor: '#8257FF',
     textShadowOffset: {width: 1, height: 1},
     textShadowRadius: 50,
-    fontSize: 14,
+    fontSize: moderateScale(14),
   },
 });

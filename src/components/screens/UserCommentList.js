@@ -9,7 +9,8 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import UserCommentReply from './UserCommentReply';
-// import {  Swipeable } from 'react-native-gesture-handler';
+import {moderateScale} from '../../util/responsiveFont'
+
 
 class UserCommentList extends Component {
   accountId = this.props.userAccount.id;
@@ -36,18 +37,11 @@ class UserCommentList extends Component {
     const filteredComments = comments.filter(
       (comment) => comment.postId === postId,
     );
-    // const rightAction = () => {
-    //   <View>
-    //     <Text>Delete</Text>
-    //   </View>
-    // }
+  
     return (
       <SafeAreaView style={style.mainContainer}>
         {filteredComments.map((item) => (
-          // <Swipeable
-          // renderLeftActions={rightAction}
-
-          // >
+       
           <View key={item.id} style={style.itemContainer}>
             <View style={style.detailsContainer}>
               <Image
@@ -79,7 +73,6 @@ class UserCommentList extends Component {
               />
             </View>
           </View>
-          // </Swipeable>
         ))}
       </SafeAreaView>
     );
@@ -104,15 +97,15 @@ const style = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: '#2a334a',
-    paddingVertical: 10,
-    paddingLeft: 4,
+    paddingVertical: moderateScale(10),
+    paddingLeft: moderateScale(4),
   },
   itemContainer: {
-    marginBottom: 16,
+    marginBottom: moderateScale(16),
   },
   detailsContainer: {
     flexDirection: 'row',
-    paddingRight: 4,
+    paddingRight: moderateScale(4),
   },
   nameBodyContainer: {
     flex: 1,
@@ -121,40 +114,40 @@ const style = StyleSheet.create({
 
   commentContainer: {
     flexDirection: 'row',
-    paddingHorizontal: 8,
+    paddingHorizontal: moderateScale(8),
     flexWrap: 'wrap',
-    marginHorizontal: 6,
-    marginVertical: 8,
+    marginHorizontal: moderateScale(6),
+    marginVertical: moderateScale(8),
   },
 
   name: {
-    fontSize: 15,
-    marginLeft: 8,
+    fontSize: moderateScale(15),
+    marginLeft: moderateScale(8),
     color: '#FFFFFF',
     fontFamily: 'Montserrat-Bold',
-    marginBottom: 3,
+    marginBottom: moderateScale(3),
   },
   body: {
     color: 'lightgrey',
-    fontSize: 13.5,
-    marginLeft: 8,
+    fontSize: moderateScale(13.5),
+    marginLeft: moderateScale(8),
     fontFamily: 'Montserrat-Medium',
   },
   postUserImage: {
-    height: 53,
-    width: 53,
-    borderRadius: 50,
+    height: moderateScale(53),
+    width: moderateScale(53),
+    borderRadius: moderateScale(50),
   },
   belowCommentContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingLeft: 61.5,
-    paddingRight: 6,
+    paddingLeft: moderateScale(61.5),
+    paddingRight: moderateScale(6),
     alignItems: 'center',
-    marginTop: 4,
+    marginTop: moderateScale(4),
   },
   time: {
-    fontSize: 12.5,
+    fontSize: moderateScale(12.5),
     color: 'lightgrey',
     fontFamily: 'Montserrat-Italic',
   },
@@ -164,12 +157,12 @@ const style = StyleSheet.create({
   likes: {
     color: '#FFFFFF',
     fontFamily: 'Montserrat-SemiBold',
-    fontSize: 13,
+    fontSize: moderateScale(13),
   },
   reply: {
     color: '#B8A0FF',
-    marginLeft: 16,
+    marginLeft: moderateScale(16),
     fontFamily: 'Montserrat-SemiBold',
-    fontSize: 13,
+    fontSize: moderateScale(13),
   },
 });

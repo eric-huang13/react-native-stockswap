@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, Image, SafeAreaView} from 'react-native';
+import {moderateScale} from '../../util/responsiveFont'
 
 export default class UserBox extends Component {
   render() {
@@ -39,38 +40,38 @@ const style = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: 14,
-    paddingHorizontal: 10,
+    paddingVertical: moderateScale(14),
+    paddingHorizontal: moderateScale(10),
     backgroundColor: '#324165',
   },
   image: {
-    height: 63,
-    width: 63,
-    borderRadius: 50,
+    height: moderateScale(63),
+    width: moderateScale(63),
+    borderRadius: moderateScale(50),
   },
   imgDetailContainer: {
     flexDirection: 'row',
-    marginLeft: -8,
+    marginLeft: moderateScale(-8),
   },
   detailsContainer: {
     flexDirection: 'column',
-    marginLeft: -150,
+    marginLeft: moderateScale(-150),
     justifyContent: 'space-between',
   },
   name: {
-    fontSize: 16,
+    fontSize: moderateScale(16),
     color: '#FFFFFF',
     fontFamily: 'Montserrat-Bold',
   },
   posts: {
     color: 'lightgrey',
     fontFamily: 'Montserrat-Regular',
-    fontSize: 12,
+    fontSize: moderateScale(12),
   },
   followers: {
     color: 'lightgrey',
     fontFamily: 'Montserrat-Regular',
-    fontSize: 12,
+    fontSize: moderateScale(12),
   },
   percentageView: {
     flexDirection: 'row',
@@ -79,12 +80,12 @@ const style = StyleSheet.create({
   percentage: {
     alignSelf: 'center',
     color: '#1AB968',
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontFamily: 'Montserrat-Bold',
   },
   detailsBold: {
     fontFamily: 'Montserrat-Medium',
     color: '#FFFFFF',
-    fontSize: 12,
+    fontSize: moderateScale(12),
   },
 });

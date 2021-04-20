@@ -7,6 +7,8 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
+import {moderateScale} from '../../util/responsiveFont'
+
 
 export default class UserCommentReply extends Component {
   constructor(props) {
@@ -108,16 +110,16 @@ const style = StyleSheet.create({
   mainContainer: {
     flexDirection: 'column',
     backgroundColor: '#2a334a',
-    paddingVertical: 4,
-    paddingLeft: 60,
-    marginTop: 10,
+    paddingVertical: moderateScale(4),
+    paddingLeft: moderateScale(60),
+    marginTop: moderateScale(10),
   },
   itemContainer: {
-    marginBottom: 16,
+    marginBottom: moderateScale(16),
   },
   detailsContainer: {
     flexDirection: 'row',
-    paddingRight: 4,
+    paddingRight: moderateScale(4),
   },
   nameBodyContainer: {
     flex: 1,
@@ -126,40 +128,40 @@ const style = StyleSheet.create({
 
   commentContainer: {
     flexDirection: 'row',
-    paddingHorizontal: 8,
+    paddingHorizontal: moderateScale(8),
     flexWrap: 'wrap',
-    marginHorizontal: 6,
-    marginVertical: 8,
+    marginHorizontal: moderateScale(6),
+    marginVertical: moderateScale(8),
   },
 
   name: {
     fontSize: 15,
-    marginLeft: 8,
+    marginLeft: moderateScale(8),
     color: '#FFFFFF',
     fontFamily: 'Montserrat-Bold',
-    marginBottom: 3,
+    marginBottom: moderateScale(3),
   },
   body: {
-    marginLeft: 8,
+    marginLeft: moderateScale(8),
     color: 'lightgrey',
-    fontSize: 13.5,
+    fontSize: moderateScale(13.5),
     fontFamily: 'Montserrat-Medium',
   },
   postUserImage: {
-    height: 28,
-    width: 28,
-    borderRadius: 50,
+    height: moderateScale(28),
+    width: moderateScale(28),
+    borderRadius: moderateScale(50),
   },
   belowCommentContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingLeft: 36.5,
-    paddingRight: 6,
+    paddingLeft: moderateScale(36.5),
+    paddingRight: moderateScale(6),
     alignItems: 'center',
-    marginTop: 4,
+    marginTop: moderateScale(4),
   },
   time: {
-    fontSize: 12.5,
+    fontSize: moderateScale(12.5),
     color: 'lightgrey',
     fontFamily: 'Montserrat-Italic',
   },
@@ -169,19 +171,19 @@ const style = StyleSheet.create({
   likes: {
     color: '#FFFFFF',
     fontFamily: 'Montserrat-SemiBold',
-    fontSize: 13,
+    fontSize: moderateScale(13),
   },
   reply: {
     color: '#B8A0FF',
-    marginLeft: 16,
+    marginLeft: moderateScale(16),
     fontFamily: 'Montserrat-SemiBold',
-    fontSize: 13,
+    fontSize: moderateScale(13),
   },
   replyButton: {
     color: '#B8A0FF',
-    marginLeft: 16,
+    marginLeft: moderateScale(16),
     fontFamily: 'Montserrat-SemiBold',
-    fontSize: 13,
-    marginBottom: 10,
+    fontSize: moderateScale(13),
+    marginBottom: moderateScale(10),
   },
 });

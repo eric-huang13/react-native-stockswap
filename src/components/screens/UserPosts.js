@@ -12,6 +12,8 @@ import LikeInactiveIcon from '../../icons/LikeInactiveIcon'
 import CommentIcon from '../../icons/CommentIcon'
 import ReportModal from './ReportModal';
 import ShareToModal from './ShareToModal'
+import {moderateScale, verticalScale, scale} from '../../util/responsiveFont'
+
 
 
 
@@ -194,10 +196,6 @@ export default class UserPosts extends Component {
                   params: {postId:post.id, userAccount},
                 })
               }>
-              {/* <View style={style.headerContainer}>
-                <Text style={style.allComments}>View all comments</Text>
-              </View> */}
-
               {lastComment ? (
                 <View style={style.lastCommentContainer}>
                   <Text style={style.lastCommentName}>{lastComment.name}:</Text>
@@ -220,20 +218,20 @@ const style = StyleSheet.create({
   container: {
     flexDirection: 'column',
     justifyContent: 'space-between',
-    marginTop: 3,
-    paddingVertical: 18,
-    paddingHorizontal: 10,
+    marginTop: moderateScale(3),
+    paddingVertical: moderateScale(18),
+    paddingHorizontal: moderateScale(10),
     backgroundColor: '#2a334a',
   },
   image: {
-    height: 184,
+    height: scale(184),
     width: '100%',
-    borderRadius: 10,
+    borderRadius: moderateScale(10),
   },
   postNameContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 8.5,
+    marginBottom: moderateScale(8.5),
     justifyContent: 'space-between',
   },
   profileImageContainer: {
@@ -241,21 +239,21 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   postUserImage: {
-    height: 40,
-    width: 40,
-    borderRadius: 50,
+    height: moderateScale(40),
+    width: moderateScale(40),
+    borderRadius: moderateScale(50),
   },
   postUserName: {
     color: '#FFFFFF',
-    fontSize: 16,
-    marginLeft: 8,
+    fontSize: moderateScale(16),
+    marginLeft: moderateScale(8),
     fontFamily:'Montserrat-Bold',
   },
   detailsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 8,
+    marginTop: moderateScale(8),
   },
   likesContainer: {
     flexDirection: 'row',
@@ -263,7 +261,7 @@ const style = StyleSheet.create({
     justifyContent: 'space-around',
   },
   timestamp: {
-    fontSize: 12.5,
+    fontSize: moderateScale(12.5),
     color: 'lightgrey',
     fontFamily:'Montserrat-Italic',
   },
@@ -273,53 +271,51 @@ const style = StyleSheet.create({
      justifyContent:'space-between',
   },
   likes: {
-    fontSize: 16,
+    fontSize: moderateScale(16),
     color: 'lightgrey',
     fontFamily:'Montserrat-Medium',
-    marginLeft:3,
-    marginRight:14,
+    marginLeft:moderateScale(3),
+    marginRight:moderateScale(14),
     
   },
   comments: {
-    fontSize: 16,
+    fontSize: moderateScale(16),
     color: 'lightgrey',
     fontFamily:'Montserrat-Medium',
-    marginRight: 1,
-    marginLeft:3,
+    marginRight: moderateScale(1),
+    marginLeft:moderateScale(3),
   },
   body: {
-    fontSize: 15,
+    fontSize: moderateScale(15),
     color: '#FFFFFF',
-    marginTop: 10,
-    marginBottom: 4,
+    marginTop: moderateScale(10),
+    marginBottom: moderateScale(4),
     fontFamily:'Montserrat-Medium',
   },
   more: {
-    fontSize: 13,
+    fontSize: moderateScale(13),
     color: '#B8A0FF',
     fontFamily:'Montserrat-SemiBoldItalic',
-  //   alignSelf:'flex-end',
-  //  textAlign:'right'
+  
   },
   commentContainer: {
-    marginTop: 4,
+    marginTop: moderateScale(4),
   },
   allComments: {
     color: '#8b64ff',
     fontStyle: 'italic',
-    fontSize: 14,
+    fontSize: moderateScale(14),
   },
   lastCommentContainer: {
-    // marginTop: 1,
   },
   lastCommentName: {
     color: '#999999',
     fontFamily:'Montserrat-Bold',
-    marginBottom:1,
+    marginBottom:moderateScale(1),
   },
   lastCommentBody: {
     color: '#FFFFFF',
-    fontSize:13,
+    fontSize:moderateScale(13),
     fontFamily:'Montserrat-Regular',
   },
   dotsDropdownContainer: {
@@ -331,43 +327,41 @@ const style = StyleSheet.create({
     alignSelf: 'flex-end',
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 20,
-    marginBottom:10, 
+    fontSize: moderateScale(20),
+    marginBottom:moderateScale(10), 
   },
   dropdownEdit: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
     width: '100%',
-    marginTop: 1,
-    marginBottom: -60,
+    marginTop: moderateScale(1),
+    marginBottom: moderateScale(-60),
     backgroundColor: '#2C3957',
     zIndex: 1,
-    paddingVertical: 6,
-    // paddingHorizontal:10,
+    paddingVertical: moderateScale(6),
   },
   dropdown: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
     width: '100%',
-    marginTop: 1,
-    marginBottom: -135,
+    marginTop: moderateScale(1),
+    marginBottom: moderateScale(-135),
     backgroundColor: '#2C3957',
     zIndex: 1,
-    paddingVertical: 6,
-    // paddingHorizontal:10,
+    paddingVertical: moderateScale(6),
   },
   dropDownText: {
     color: 'white',
-    fontSize: 16,
-    marginHorizontal: 12,
+    fontSize: moderateScale(16),
+    marginHorizontal: moderateScale(12),
     fontFamily:'Montserrat-Medium',
   },
   dropDownTextReportContainer: {
-    borderTopWidth: 1,
+    borderTopWidth: moderateScale(1),
     borderTopColor: '#CBCDD7',
-    paddingTop: 4,
+    paddingTop: moderateScale(4),
     backgroundColor:'#2C3957'
   },
 });

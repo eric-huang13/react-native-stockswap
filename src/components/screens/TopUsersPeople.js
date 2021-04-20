@@ -11,6 +11,8 @@ import {
 import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
 import UserBox from './UserBox';
+import {moderateScale} from '../../util/responsiveFont'
+
 
 export class TopUsersPeople extends Component {
   constructor(props) {
@@ -178,34 +180,34 @@ export default connect(mapStateToProps)(TopUsersPeople);
 const style = StyleSheet.create({
   mainContainer: {},
   searchInputContainer: {
-    marginBottom: 15,
+    marginBottom: moderateScale(15),
   },
   searchInput: {
-    paddingLeft: 40,
+    paddingLeft: moderateScale(40),
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 15,
-    height: 36,
+    fontSize: moderateScale(15),
+    height: moderateScale(36),
     fontFamily: 'Montserrat-Italic',
-    paddingVertical: 0,
+    paddingVertical: moderateScale(0),
   },
   timeFilterHeader: {
-    fontSize: 14,
-    paddingLeft: 18,
+    fontSize: moderateScale(14),
+    paddingLeft: moderateScale(18),
     color: 'lightgrey',
     fontFamily: 'Montserrat-Regular',
   },
   timeFilterContainer: {
-    marginTop: 4,
+    marginTop: moderateScale(4),
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginBottom: 12,
-    paddingBottom: 9,
+    marginBottom: moderateScale(12),
+    paddingBottom: moderateScale(9),
   },
   timeFilterButtons: {
     color: '#FFFFFF',
     fontFamily: 'Montserrat-Bold',
-    fontSize: 16,
+    fontSize: moderateScale(16),
   },
 });

@@ -14,6 +14,7 @@ import {connect} from 'react-redux';
 import UserBox from './UserBox';
 import SearchInput from '../../icons/SearchInput';
 import UserListImage from '../../icons/UserListImage';
+import {moderateScale} from '../../util/responsiveFont'
 
 export class UserList extends Component {
   constructor(props) {
@@ -60,8 +61,8 @@ export class UserList extends Component {
             style={{
               position: 'absolute',
               zIndex: 1,
-              left: 14,
-              top: 10,
+              left: moderateScale(14),
+              top: moderateScale(10),
             }}>
             <SearchInput />
           </View>
@@ -116,46 +117,46 @@ export default connect(mapStateToProps)(UserList);
 
 const style = StyleSheet.create({
   searchInputContainer: {
-    marginBottom: 15,
+    marginBottom: moderateScale(15),
   },
   searchInput: {
-    paddingLeft: 40,
+    paddingLeft: moderateScale(40),
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 15,
-    height: 36,
+    fontSize: moderateScale(15),
+    height: moderateScale(36),
     fontFamily: 'Montserrat-Italic',
-    paddingVertical: 0,
+    paddingVertical: moderateScale(0),
   },
   timeFilterHeader: {
-    fontSize: 16,
-    paddingLeft: 18,
+    fontSize: moderateScale(16),
+    paddingLeft: moderateScale(18),
     color: 'lightgrey',
   },
   timeFilterContainer: {
-    marginTop: 4,
+    marginTop: moderateScale(4),
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginBottom: 12,
-    paddingBottom: 9,
+    marginBottom: moderateScale(12),
+    paddingBottom: moderateScale(9),
   },
   timeFilterButtons: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: moderateScale(18),
   },
   backgroundImageContainer: {
     flex: 1,
-    marginTop: 120,
+    marginTop: moderateScale(120),
     alignItems: 'center',
   },
   backgroundImageText: {
-    marginTop: 10,
+    marginTop: moderateScale(10),
     fontFamily: 'Montserrat-SemiBold',
-    fontSize: 18,
+    fontSize: moderateScale(18),
     color: '#9ea6b5',
-    width: 180,
+    width: moderateScale(180),
     textAlign: 'center',
   },
 });
