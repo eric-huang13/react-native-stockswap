@@ -11,29 +11,35 @@ import {
   TouchableWithoutFeedback,
   Switch,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  Platform
 } from 'react-native';
 import {UserPost} from '../../actions/posts';
+import {Formik} from 'formik';
+import * as Yup from 'yup';
+import Toast from 'react-native-toast-message';
+import { moderateScale } from '../../util/responsiveFont';
 
+const validationSchema = Yup.object().shape({
+  
+  body: Yup.string()
+  .required()
+    .label('body')
+    .min(2, 'body must have more than 2 characters '),
+
+  image: Yup.string().url('Must be a url'),
+});
 class CreatePost extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       enabled: false,
-      image: '',
-      body: '',
     };
   }
 
   toggleSwitch = (value) => {
     this.setState({enabled: value});
-  };
-  handleInputChange = (inputName, inputValue) => {
-    this.setState((state) => ({
-      ...state,
-      [inputName]: inputValue,
-    }));
   };
 
   render() {
@@ -51,32 +57,58 @@ class CreatePost extends Component {
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : null}
             style={{flex: 1}}>
+              <Formik
+                initialValues={{
+                  enabled: false,
+                  image:'',
+                  body:'',                  
+                }}
+                onSubmit={(values) => {
+                  console.log(values, 'values');
+                  // UserPost(values)
+                }}
+                validationSchema={validationSchema}>
+                {({
+                  handleChange,
+                  values,
+                  handleSubmit,
+                  errors,
+                  isValid,
+                  touched,
+                  handleBlur,
+                  isSubmitting,
+                  setFieldValue,
+                }) => (
+              <View>
             <Text style={style.header}> Post a Publication </Text>
             <View style={style.uploadImageContainer}>
               <TextInput
-                value={this.state.image}
-                onChangeText={(value) => this.handleInputChange('image', value)}
-                placeholder="Time when you sell it"
+                onBlur={handleBlur('image')}
+                value={values.image}
+                onChangeText={handleChange('image')}
                 placeholder="Upload cover image"
                 placeholderTextColor="#FFFFFF"
                 style={style.inputStyleImage}
-                ref={(input) => (this.image = input)}
-                onSubmitEditing={() => this.hashtag.focus()}
               />
+              <Text style={style.errorText}>
+                          {touched.image && errors.image}
+                        </Text>
             </View>
             <View style={style.postContainer}>
               <Text style={style.inputHeader}>Post</Text>
               <TextInput
                 style={style.inputStyleBody}
-                value={this.state.body}
-                onChangeText={(value) => this.handleInputChange('body', value)}
-                placeholder="Time when you sell it"
+                onBlur={handleBlur('body')}
+                value={values.body}
+                onChangeText={handleChange('body')}
                 placeholder="Enter post text"
                 placeholderTextColor="#9ea6b5"
                 multiline={true}
                 numberOfLines={4}
-                ref={(input) => (this.body = input)}
               />
+              <Text style={style.errorText}>
+                          {errors.body}
+                        </Text>
             </View>
 
             <View style={style.notificationsContainer}>
@@ -85,25 +117,45 @@ class CreatePost extends Component {
                 trackColor={{false: '#1A2542', true: '#B8A0FF'}}
                 thumbColor={this.state.enabled ? '#f4f3f4' : '#f4f3f4'}
                 ios_backgroundColor="#f4f3f4"
-                onValueChange={this.toggleSwitch}
-                value={this.state.enabled}
-                style={{transform: [{scaleX: 1.5}, {scaleY: 1.5}]}}
+                onValueChange={value =>
+                  setFieldValue('enabled', value)
+                }
+                value={values.enabled}
+                style={{transform: [{scaleX: moderateScale(1.5)}, {scaleY: moderateScale(1.5)}]}}
               />
             </View>
             <View style={style.buttonsContainer}>
-              <TouchableOpacity onPress={() => UserPost(this.state)}>
+              <TouchableOpacity onPress={() => handleSubmit(
+
+              )}>
                 <Text style={style.publishButton}>Publish</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() =>
+                  values.body === "" && values.image === "" ?
+                  Toast.show({
+                    type: 'error',
+                    text2: 'Post must include body or image.',
+                  })
+                  :
+                  errors.body ||errors.image?
+                  Toast.show({
+                    type: 'error',
+                    text2: 'Please fix errors',
+                  })
+                  :
                   this.props.navigation.navigate({
                     name: 'CreatePostPreview',
-                    params: {data: this.state},
+                    params: {data:values},
                   })
+                 
                 }>
                 <Text style={style.previewButton}>Preview</Text>
               </TouchableOpacity>
             </View>
+            </View>
+            )}
+            </Formik>
           </KeyboardAvoidingView>
           </ScrollView>
         </SafeAreaView>
@@ -129,74 +181,75 @@ const style = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: '#2a334a',
-    paddingVertical: 20,
-    paddingHorizontal: 26,
+    paddingVertical: moderateScale(20),
+    paddingHorizontal: moderateScale(26),
+    
   },
   header: {
-    marginTop: 20,
-    fontSize: 20,
+    marginTop: moderateScale(20),
+    fontSize: moderateScale(20),
     fontFamily: 'Montserrat-Bold',
     color: '#FFFFFF',
     textAlign: 'center',
   },
   uploadImageContainer: {
-    marginTop: 20,
+    marginTop: moderateScale(20),
     backgroundColor: '#46486e',
     width: '100%',
     alignSelf: 'center',
-    height: 130,
+    height: moderateScale(130),
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 2,
+    borderRadius: moderateScale(2),
   },
   uploadImageText: {
-    fontSize: 14,
+    fontSize: moderateScale(14),
     color: '#FFFFFF',
     fontFamily: 'Montserrat-Regular',
   },
   inputStyleImage: {
     fontFamily: 'Montserrat-Regular',
     color: '#FFFFFF',
-    width: 200,
+    width: moderateScale(200),
     textAlign: 'center',
   },
   postContainer: {
     width: '100%',
     alignSelf: 'center',
-    marginTop: 20,
+    marginTop: moderateScale(20),
   },
   inputHeader: {
-    fontSize: 12,
+    fontSize: moderateScale(12),
     color: '#babec8',
-    marginBottom: 1,
+    marginBottom: moderateScale(1),
     fontFamily: 'Montserrat-Regular',
   },
   inputStyleBody: {
-    borderRadius: 6,
+    borderRadius: moderateScale(6),
     backgroundColor: '#3e4d6c',
-    marginBottom: 12,
-    padding: 8,
-    marginTop: 1,
-    fontSize: 14,
+    marginBottom: moderateScale(12),
+    padding: moderateScale(8),
+    marginTop: moderateScale(1),
+    fontSize: moderateScale(14),
     textAlignVertical: 'top',
     fontFamily: 'Montserrat-Italic',
     color: '#FFFFFF',
-    height: 200,
+    height: moderateScale(200),
   },
   notificationsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 10,
-    marginBottom: 10,
-    // marginHorizontal:30,
+    marginTop: moderateScale(10),
+    marginBottom: moderateScale(10),
+    paddingRight:moderateScale(16),
   },
   middleDetailsText: {
     fontFamily: 'Montserrat-SemiBold',
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: moderateScale(16),
   },
   buttonsContainer: {
-    marginTop: 40,
+    marginTop: moderateScale(40),
     flexDirection: 'row',
     justifyContent: 'space-between',
     // marginHorizontal:30,
@@ -205,13 +258,13 @@ const style = StyleSheet.create({
     alignSelf: 'center',
     color: '#8b64ff',
     textAlign: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    width: 160,
-    borderRadius: 6,
-    fontSize: 14,
+    paddingVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(20),
+    width: moderateScale(160),
+    borderRadius: moderateScale(6),
+    fontSize: moderateScale(14),
     fontFamily: 'Montserrat-SemiBold',
-    borderWidth: 1,
+    borderWidth: moderateScale(1),
     borderColor: '#8b64ff',
   },
   previewButton: {
@@ -219,11 +272,18 @@ const style = StyleSheet.create({
     backgroundColor: '#8b64ff',
     color: '#FFFFFF',
     textAlign: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    width: 160,
-    borderRadius: 6,
-    fontSize: 14,
+    paddingVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(20),
+    width: moderateScale(160),
+    borderRadius: moderateScale(6),
+    fontSize: moderateScale(14),
     fontFamily: 'Montserrat-SemiBold',
+  },
+  errorText: {
+    color: '#F66E6E',
+    fontWeight: 'bold',
+    marginBottom: moderateScale(1),
+    marginTop: moderateScale(1),
+    textAlign: 'center',
   },
 });
