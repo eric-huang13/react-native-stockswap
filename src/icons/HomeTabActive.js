@@ -3,13 +3,15 @@ import {
   View, StyleSheet,
 } from "react-native";
 import Svg, {Path} from 'react-native-svg'
+import {moderateScale, verticalScale, scale} from '../util/responsiveFont'
+
 
 const HomeTabActive = () => {
     return (
       <View style={style.outterContainer}>
         <Svg
-      width={27}
-      height={27}
+      width={moderateScale(27)}
+      height={moderateScale(27)}
       viewBox="0 0 22 20"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -31,7 +33,7 @@ const style = StyleSheet.create({
     borderBottomWidth:3.5, 
     borderBottomColor: '#855cff',
     paddingBottom: 1.8,
-    width:40,
+    width:moderateScale(40),
     paddingBottom:4,
     alignItems:'center',
     marginBottom:-8,

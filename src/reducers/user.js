@@ -12,8 +12,6 @@ import {
   GOOGLE_LOGIN_START,
   GOOGLE_LOGIN_SUCCESS,  
   GOOGLE_LOGOUT_SUCCESS,
-  
-  
 } from 'constants';
 
 const defaultState = {
@@ -104,27 +102,26 @@ const userReducer = (state = defaultState, action) => {
         error: action.payload,
       };
       case GOOGLE_LOGIN_START:
-      return {
-        ...state,
-        loading: true,
-        error: '',
-      };
-    case GOOGLE_LOGIN_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        error: '',
-        googleUser: action.payload,
-      };
-     
-    case GOOGLE_LOGOUT_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        error: '',
-        googleUser: action.payload,
-      };
-
+        return {
+          ...state,
+          loading: true,
+          error: '',
+        };
+      case GOOGLE_LOGIN_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          error: '',
+          googleUser: action.payload,
+        };
+       
+      case GOOGLE_LOGOUT_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          error: '',
+          googleUser: action.payload,
+        };
     case LOGOUT:
       return defaultState;
     default:

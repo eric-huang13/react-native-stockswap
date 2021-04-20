@@ -1,11 +1,12 @@
 import React from 'react'
 import Svg, {Path} from 'react-native-svg'
+import {moderateScale, verticalScale, scale} from '../util/responsiveFont'
 
 const HomeTabInactive = () => {
     return (
         <Svg
-      width={27}
-      height={27}
+      width={moderateScale(27)}
+      height={moderateScale(27)}
       viewBox="0 0 22 20"
       xmlns="http://www.w3.org/2000/svg"
       

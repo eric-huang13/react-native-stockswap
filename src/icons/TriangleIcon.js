@@ -1,12 +1,13 @@
 import * as React from "react"
 import Svg, { Path } from "react-native-svg"
+import { moderateScale } from "../util/responsiveFont"
 /* SVGR has dropped some elements not supported by react-native-svg: title */
 
 function TriangleIcon (props) {
   return (
     <Svg
-      width={12}
-      height={9}
+      width={moderateScale(12)}
+      height={moderateScale(9)}
       viewBox="0 0 12 9"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
