@@ -9,6 +9,7 @@ import {
 import {connect} from 'react-redux';
 import Article from './Article';
 import SearchInput from '../../icons/SearchInput';
+import { moderateScale } from '../../util/responsiveFont';
 
 export class ArticleList extends Component {
   constructor(props) {
@@ -33,8 +34,8 @@ export class ArticleList extends Component {
               style={{
                 position: 'absolute',
                 zIndex: 1,
-                left: 14,
-                top: 10,
+                left: moderateScale(14),
+                top: moderateScale(10),
               }}>
               <SearchInput />
             </View>
@@ -64,15 +65,15 @@ export default connect(mapStateToProps)(ArticleList);
 
 const style = StyleSheet.create({
   searchInputContainer: {
-    marginBottom: 20,
+    marginBottom: moderateScale(20),
   },
   searchInput: {
-    paddingLeft: 40,
+    paddingLeft: moderateScale(40),
     alignContent: 'center',
     backgroundColor: '#3e4d6c',
     color: 'lightgrey',
-    fontSize: 16,
-    height: 36,
+    fontSize: moderateScale(16),
+    height: moderateScale(36),
     paddingVertical: 0,
     fontFamily: 'Montserrat-Italic',
   },

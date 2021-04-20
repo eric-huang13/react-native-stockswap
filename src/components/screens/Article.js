@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Text, SafeAreaView, View, Image, StyleSheet} from 'react-native';
+import { moderateScale } from '../../util/responsiveFont';
 
 export class Article extends Component {
   render() {
@@ -27,43 +28,43 @@ export default Article;
 
 const style = StyleSheet.create({
   container: {
-    marginTop: 4,
-    margin: 8,
-    paddingBottom: 8,
+    marginTop: moderateScale(4),
+    margin: moderateScale(8),
+    paddingBottom: moderateScale(8),
     backgroundColor: '#324165',
-    borderRadius: 4,
+    borderRadius: moderateScale(4),
   },
   sourceContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 6,
+    paddingHorizontal: moderateScale(6),
   },
   source: {
     color: '#9ea6b5',
-    marginRight: 4,
-    fontSize: 15,
+    marginRight: moderateScale(4),
+    fontSize: moderateScale(15),
     fontFamily: 'Montserrat-Regular',
   },
   released: {
     color: '#9ea6b5',
-    fontSize: 13,
+    fontSize: moderateScale(13),
     fontFamily: 'Montserrat-Regular',
   },
   headlineContainer: {
     flexDirection: 'column',
-    paddingHorizontal: 6,
-    marginBottom: 6,
+    paddingHorizontal: moderateScale(6),
+    marginBottom: moderateScale(6),
   },
   headline: {
     color: '#FFFFFF',
-    fontSize: 15,
-    marginTop: 8.5,
-    marginBottom: 10,
+    fontSize: moderateScale(15),
+    marginTop: moderateScale(8.5),
+    marginBottom: moderateScale(10),
     fontFamily: 'Montserrat-Bold',
   },
   intro: {
     color: '#FFFFFF',
-    fontSize: 15,
+    fontSize: moderateScale(15),
     fontFamily: 'Montserrat-Medium',
   },
   imageContainer: {
@@ -71,11 +72,11 @@ const style = StyleSheet.create({
     // paddingRight: 3,
   },
   image: {
-    borderTopLeftRadius: 4,
-    borderTopRightRadius: 4,
-    height: 140,
-    marginLeft: 0.05,
-    marginRight: 0.05,
+    borderTopLeftRadius: moderateScale(4),
+    borderTopRightRadius: moderateScale(4),
+    height: moderateScale(140),
+    marginLeft: moderateScale(0.05),
+    marginRight: moderateScale(0.05),
     width: '100%',
   },
 });
