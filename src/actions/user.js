@@ -22,7 +22,6 @@ import apiInstance from '../util/axiosConfig';
 import {navigate} from '../../RootNavigation';
 
 import Toast from 'react-native-toast-message';
-
 import {
   GoogleSignin,
   statusCodes,
@@ -38,25 +37,67 @@ export const Register = (input) => {
   return (dispatch) => {
     dispatch({type: SIGNUP_START});
     axios
-      .post('https://jiujitsux.herokuapp.com/api/users/register', input)
+      .post('http://ec2-3-139-84-5.us-east-2.compute.amazonaws.com/v1/auth/signup', input)
 
-    .then(response =>{ dispatch({ type: SIGNUP_SUCCESS, payload: response.data }); 
+    .then(response =>{ 
+      console.log(response, "RESPONSE in Signup")
+
+      dispatch({ type: SIGNUP_SUCCESS, payload: response.data }); 
         Toast.show({
           type: 'success',
           text2: 'Sign up successful!',
         });
       })
       .catch((error) => {
+        console.log(error, "ERROR in Signup")
         dispatch({type: SIGNUP_ERROR, payload: error.response});
+        navigate('SignUp');
         Toast.show({
-          type: 'error',
-          text2: 'Error signing up.',
+          type: 'errorSignUp',
+          text1: 'Error',
+          text2: error.response.data.message,
+
+        });
+      });
+  };
+};
+
+// For signup with image
+export const RegisterwithImage = (input) => {
+  console.log(input,"inputapi")
+  const config = {     
+    headers: { Accept: "application/json",'content-type': 'multipart/form-data' }
+}
+  return (dispatch) => {
+    dispatch({type: SIGNUP_START});
+    axios
+      .post('http://192.168.0.103:3000/api/upload', input, config)
+
+    .then(response =>{ 
+      console.log(response, "RESPONSE in Signup")
+
+      dispatch({ type: SIGNUP_SUCCESS, payload: response.data }); 
+        Toast.show({
+          type: 'success',
+          text2: 'Sign up successful!',
+        });
+      })
+      .catch((error) => {
+        console.log(error, "ERROR in Signup")
+        dispatch({type: SIGNUP_ERROR, payload: error.response});
+        navigate('SignUp');
+        Toast.show({
+          type: 'errorSignUp',
+          text1: 'Error',
+          text2: error.response.data.message,
+
         });
       });
   };
 };
 
 export const RegisterGoogle = (input) => {
+  console.log(input,"input in google action")
   return (dispatch) => {
     dispatch({type: SIGNUP_START});
     axios
@@ -84,22 +125,27 @@ export const RegisterGoogle = (input) => {
 export const Login = (input) => {
   return (dispatch) => {
     dispatch({type: LOGIN_START});
+    Toast.show({
+      type: 'info',
+      text2: 'Sending credentials...',
+    })
     axios
-      .post('https://jiujitsux.herokuapp.com/api/users/login', input)
+      .post('http://ec2-3-139-84-5.us-east-2.compute.amazonaws.com/v1/auth/login', input)
        .then((response) => {
         deviceStorage.saveItem('token', response.data.token),
           dispatch({type: LOGIN_SUCCESS, payload: response.data});
         Toast.show({
           type:'success',
-          text2: 'You have been logged in.',
+          text2: response.data.message,
         });
       })
       .catch((error) => {
+        console.log(error.response.data.message, "ERROR in LOGIN")
         dispatch({type: SIGNUP_ERROR, payload: error.response});
         Toast.show({
-          type: 'error',
+          type: 'errorLogin',
           text1: 'Error',
-          text2: 'Incorrect email or password.',
+          text2: error.response.data.message,
         });
       });
   };
@@ -161,7 +207,6 @@ export const GoogleLogout = () => {
     }
 }
 }
-
 //Working POST with token sent on headers
 
 // export const Login = (input) => {
@@ -180,6 +225,19 @@ export const GoogleLogout = () => {
 
 // })
 //   };
+// };
+
+
+// export const Login = () => (dispatch) => {
+//   return dispatch({
+//     type: LOGIN_SUCCESS,
+//   });
+// };
+
+// export const Logout = () => (dispatch) => {
+//   return dispatch({
+//     type: LOGOUT,
+//   });
 // };
 
 export const Logout = () => {

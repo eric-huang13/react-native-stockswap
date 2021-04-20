@@ -41,7 +41,7 @@ import infoToast from './icons/infoToast.png'
 
 
 const toastConfig = {
-  success: ({ text1, text2, ...rest }) => (
+  success: ({ text1, text2, props, ...rest }) => (
     <BaseToast
       {...rest}
       style={{  borderLeftColor: '#8B64FF', backgroundColor:'#8B64FF',  }}
@@ -89,7 +89,59 @@ const toastConfig = {
       text2={text2}
     />
   ),
-  info: ({ text1, text2, ...rest }) => (
+  errorSignUp: ({ text1,text2, props, ...rest }) => (
+    <BaseToast
+      {...rest}
+      style={{ borderLeftColor: '#8B64FF', backgroundColor:'#8B64FF', height:130, alignItems:'center' }}
+      onTrailingIconPress={() => {
+        Toast.hide();
+     }} 
+     
+     leadingIcon={errorToast}
+      contentContainerStyle={{ paddingHorizontal: 10, alignItems:'center', height:130  }}
+      text1Style={{
+        fontSize: 18,
+        color:'#FFFFFF',
+        fontFamily:'Montserrat-Bold'
+      }}
+      text2Style={{
+        fontSize: 14,
+        color:'#FFFFFF',
+        fontFamily:'Montserrat-Medium',
+      }}
+      text2NumberOfLines={5}
+
+      text1={text1}
+      text2={text2}
+    />
+  ),
+  errorLogin: ({ text1,text2, props, ...rest }) => (
+    <BaseToast
+      {...rest}
+      style={{ borderLeftColor: '#8B64FF', backgroundColor:'#8B64FF', height:80, alignItems:'center' }}
+      onTrailingIconPress={() => {
+        Toast.hide();
+     }} 
+     
+     leadingIcon={errorToast}
+      contentContainerStyle={{ paddingHorizontal: 10, alignItems:'center', height:80  }}
+      text1Style={{
+        fontSize: 18,
+        color:'#FFFFFF',
+        fontFamily:'Montserrat-Bold'
+      }}
+      text2Style={{
+        fontSize: 14,
+        color:'#FFFFFF',
+        fontFamily:'Montserrat-Medium',
+      }}
+      text2NumberOfLines={5}
+
+      text1={text1}
+      text2={text2}
+    />
+  ),
+  info: ({ text1, text2, props, ...rest }) => (
     <BaseToast
       {...rest}
       style={{ borderLeftColor: '#8B64FF', backgroundColor:'#8B64FF', }}
@@ -97,6 +149,7 @@ const toastConfig = {
         Toast.hide();
      }} 
      leadingIcon={infoToast}
+     
       contentContainerStyle={{ paddingHorizontal: 15, alignItems:'center' }}
       text1Style={{
         fontSize: 18,
@@ -104,12 +157,16 @@ const toastConfig = {
         fontFamily:'Montserrat-Bold'       
 
       }}
+      
       text2Style={{
         fontSize: 15,
         color:'#FFFFFF',
-        fontFamily:'Montserrat-Medium'        
+        fontFamily:'Montserrat-Medium',
+              
 
       }}
+      
+      
       text1={text1}
       text2={text2}
     />
