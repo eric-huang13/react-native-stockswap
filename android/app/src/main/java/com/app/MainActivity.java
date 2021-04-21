@@ -1,6 +1,7 @@
 package com.app;
-
+import android.os.Bundle; // <- add this necessary import
 import com.facebook.react.ReactActivity;
+import com.zoontek.rnbootsplash.RNBootSplash; // <- add this necessary import
  import com.facebook.react.ReactActivityDelegate;
  import com.facebook.react.ReactRootView;
  import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
@@ -23,5 +24,10 @@ protected ReactActivityDelegate createReactActivityDelegate() {
        return new RNGestureHandlerEnabledRootView(MainActivity.this);
       }
     };
+  }
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    RNBootSplash.init(R.drawable.bootsplash, MainActivity.this); // <- display the generated bootsplash.xml drawable over our MainActivity
   }
 }

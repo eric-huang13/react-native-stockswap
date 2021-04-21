@@ -39,6 +39,9 @@ import successToast from './icons/successToast.png'
 import errorToast from './icons/errorToast.png'
 import infoToast from './icons/infoToast.png'
 
+//splashscreen
+import RNBootSplash from "react-native-bootsplash";
+
 
 const toastConfig = {
   success: ({ text1, text2, props, ...rest }) => (
@@ -182,7 +185,7 @@ class Navigation extends Component {
     const {isLoggedIn} = this.props;
 
     return (
-      <NavigationContainer ref={navigationRef}>
+      <NavigationContainer ref={navigationRef} onReady={() => RNBootSplash.hide()}>
 
         {isLoggedIn ? (
           <Tab.Navigator

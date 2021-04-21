@@ -27,6 +27,7 @@
     "npm-run-all": "^4.1.5",
     "react": "16.13.1",
     "react-native": "0.63.3",
+    "react-native-bootsplash": "^3.2.1",
     "react-native-gesture-handler": "^1.10.2",
     "react-native-image-picker": "^3.3.2",
     "react-native-linear-gradient": "^2.5.6",
