@@ -139,8 +139,9 @@ export default class TermsAndConditions extends Component {
           </Text>
           </View>
           </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
-            3. Reservation of Rights. You acknowledge and agree that the
+            3. <Text style={style.underline}>Reservation of Rights.</Text> You acknowledge and agree that the
             Application is provided under license, and not sold, to you. You do
             not acquire any ownership interest in the Application under this
             Agreement, or any other rights thereto other than to use the
@@ -152,8 +153,11 @@ export default class TermsAndConditions extends Component {
             intellectual property rights therein or relating thereto, except as
             expressly granted to you in this Agreement.
           </Text>
+          </View>
+
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
-            4. Collection and Use of Your Information. You acknowledge that when
+            4. <Text style={style.underline}>Collection and Use of Your Information.</Text> You acknowledge that when
             you download, install, or use the Application, Company may use
             automatic means (including, for example, cookies and web beacons) to
             collect information about your Mobile Device and about your use of
@@ -163,21 +167,23 @@ export default class TermsAndConditions extends Component {
             functionality, and the Application may provide you with
             opportunities to share information about yourself with others. All
             information we collect through or in connection with this
-            Application is subject to our Privacy Policy [INSERT AS LINK TO
-            MOBILE APP PRIVACY POLICY]. By downloading, installing, using, and
+            Application is subject to our Privacy Policy <Text style={style.link}>[INSERT AS LINK TO
+            MOBILE APP PRIVACY POLICY].</Text> By downloading, installing, using, and
             providing information to or through this Application, you consent to
             all actions taken by us with respect to your information in
             compliance with the Privacy Policy.
           </Text>
+          </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
-            5. Content and Services. The Application may provide you with access
-            to Company's website located at stockswap.us (the “Website”) and
+            5. <Text style={style.underline}>Content and Services.</Text> The Application may provide you with access
+            to Company's website located at stockswap.us (the “<Text style={style.boldText}>Website</Text>”) and
             products and services accessible thereon, and certain features,
             functionality, and content accessible on or through the Application
             may be hosted on the Application and/or Website (collectively,
-            “Content and Services”). Your access to and use of such Content and
+            “<Text style={style.boldText}>Content and Services</Text>”). Your access to and use of such Content and
             Services are governed the Terms of Use and Privacy Policies located
-            at [TERMS OF USE LINK] and [PRIVACY POLICY LINKS], which are
+            at <Text style={style.link}>[TERMS OF USE LINK]</Text> and <Text style={style.link}>[PRIVACY POLICY LINKS]</Text>, which are
             incorporated herein by this reference. Your access to and use of
             such Content and Services may require you to acknowledge your
             acceptance of such Terms of Use and Privacy Policy and/or to
@@ -186,8 +192,10 @@ export default class TermsAndConditions extends Component {
             and functionality. Any violation of such Terms of Use will also be
             deemed a violation of this Agreement.
           </Text>
+          </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
-            6. Geographic Restrictions. The Content and Services are based in
+            6. <Text style={style.underline}>Geographic Restrictions.</Text> The Content and Services are based in
             the state of Missouri in the United States and provided for access
             and use only by persons located in the United States. You
             acknowledge that you may not be able to access all or some of the
@@ -196,25 +204,34 @@ export default class TermsAndConditions extends Component {
             If you access the Content and Services from outside the United
             States, you are responsible for compliance with local laws.
           </Text>
+          </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
-            7. Updates. Company may from time to time in its sole discretion
+            7. <Text style={style.underline}>Updates.</Text> Company may from time to time in its sole discretion
             develop and provide Application updates, which may include upgrades,
             bug fixes, patches, other error corrections, and/or new features
-            (collectively, including related documentation, “Updates”). Updates
+            (collectively, including related documentation, “<Text style={style.boldText}>Updates</Text>”). Updates
             may also modify or delete in their entirety certain features and
             functionality. You agree that Company has no obligation to provide
             any Updates or to continue to provide or enable any particular
             features or functionality. Based on your Mobile Device settings,
             when your Mobile Device is connected to the internet either:
           </Text>
+          </View>
+          <View style={style.indentSection}>
+            <View style={style.paragraph}>
           <Text style={style.mainText}>
             (a) the Application will automatically download and install all
             available Updates; or
           </Text>
+          </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
             (b) you may receive notice of or be prompted to download and install
             available Updates.
           </Text>
+          </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
             You shall promptly download and install all Updates and acknowledge
             and agree that the Application or portions thereof may not properly
@@ -222,12 +239,15 @@ export default class TermsAndConditions extends Component {
             will be deemed part of the Application and be subject to all terms
             and conditions of this Agreement.
           </Text>
+          </View>
+          </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
-            8. Third-Party Materials. The Application may display, include, or
+            8. <Text style={style.underline}>Third-Party Materials.</Text> The Application may display, include, or
             make available third-party content (including data, information,
             applications, and other products, services, and/or materials) or
             provide links to third-party websites or services, including through
-            third-party advertising (“Third-Party Materials”). You acknowledge
+            third-party advertising (“<Text style={style.boldText}>Third-Party Materials</Text>”). You acknowledge
             and agree that Company is not responsible for Third-Party Materials,
             including their accuracy, completeness, timeliness, validity,
             copyright compliance, legality, decency, quality, or any other
@@ -238,18 +258,26 @@ export default class TermsAndConditions extends Component {
             them entirely at your own risk and subject to such third parties'
             terms and conditions.
           </Text>
-          <Text style={style.mainText}>9. Term and Termination.</Text>
-          <Text style={style.mainText}>
-            
+          </View>
+          <View style={style.paragraph}>
+          <Text style={style.mainText}>9. <Text style={style.underline}>Term and Termination.</Text></Text>
+          </View>
+          <View style={style.indentSection}>
+           <View style={style.paragraph}>
+          <Text style={style.mainText}>            
             (a) The term of Agreement commences when you download the
             Application and will continue in effect until terminated by you or
-            Company as set forth in this Section 9.
+            Company as set forth in this <Text style={style.highlight}>Section 9.</Text>
           </Text>
+          </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
             
             (b) You may terminate this Agreement by deleting the Application and
             all copies thereof from your Mobile Device.
           </Text>
+          </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
             
             (c) Company may terminate this Agreement at any time without notice.
@@ -257,24 +285,39 @@ export default class TermsAndConditions extends Component {
             automatically without any notice if you violate any of the terms and
             conditions of this Agreement.
           </Text>
+          </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}> (d) Upon termination:</Text>
+          </View>
+          <View style={style.paragraph}>
+            <View style={style.indentTwice}>
           <Text style={style.mainText}>
             
-            (i) all rights granted to you under this Agreement will also
+          (i) all rights granted to you under this Agreement will also
             terminate; and
           </Text>
+          
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
             
             (ii) you must cease all use of the Application and delete all copies
             of the Application from your Mobile Device and account.
           </Text>
+          </View>
+          
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
             
             (e) Termination will not limit any of Company's rights or remedies
             at law or in equity.
           </Text>
+          </View>
+          </View>
+          </View>
+          </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
-            10. Disclaimer of Warranties. THE APPLICATION IS PROVIDED TO END
+            10. <Text style={style.underline}>Disclaimer of Warranties.</Text> THE APPLICATION IS PROVIDED TO END
             USER “AS IS” AND WITH ALL FAULTS AND DEFECTS WITHOUT WARRANTY OF ANY
             KIND. TO THE MAXIMUM EXTENT PERMITTED UNDER APPLICABLE LAW, COMPANY,
             ON ITS OWN BEHALF AND ON BEHALF OF ITS AFFILIATES AND ITS AND THEIR
@@ -292,32 +335,43 @@ export default class TermsAndConditions extends Component {
             MEET ANY PERFORMANCE OR RELIABILITY STANDARDS, OR BE ERROR-FREE, OR
             THAT ANY ERRORS OR DEFECTS CAN OR WILL BE CORRECTED.
           </Text>
+          </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
             SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF OR LIMITATIONS ON
             IMPLIED WARRANTIES OR THE LIMITATIONS ON THE APPLICABLE STATUTORY
             RIGHTS OF A CONSUMER, SO SOME OR ALL OF THE ABOVE EXCLUSIONS AND
             LIMITATIONS MAY NOT APPLY TO YOU.
           </Text>
+          </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
-            11. Limitation of Liability. TO THE FULLEST EXTENT PERMITTED BY
+            11. <Text style={style.underline}>Limitation of Liability.</Text> TO THE FULLEST EXTENT PERMITTED BY
             APPLICABLE LAW, IN NO EVENT WILL COMPANY OR ITS AFFILIATES, OR ANY
             OF ITS OR THEIR RESPECTIVE LICENSORS OR SERVICE PROVIDERS, HAVE ANY
             LIABILITY ARISING FROM OR RELATED TO YOUR USE OF OR INABILITY TO USE
             THE APPLICATION OR THE CONTENT AND SERVICES FOR:
           </Text>
-          <Text style={style.mainText}>
+          </View>
+          <View style={style.indentSection}>
+          <View style={style.paragraph}>
             
+          <Text style={style.mainText}>            
             (a) PERSONAL INJURY, PROPERTY DAMAGE, LOST PROFITS, COST OF
             SUBSTITUTE GOODS OR SERVICES, LOSS OF DATA, LOSS OF GOODWILL,
             BUSINESS INTERRUPTION, COMPUTER FAILURE OR MALFUNCTION, OR ANY OTHER
             CONSEQUENTIAL, INCIDENTAL, INDIRECT, EXEMPLARY, SPECIAL, OR PUNITIVE
             DAMAGES.
           </Text>
+          </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
             
             (b) DIRECT DAMAGES IN AMOUNTS THAT IN THE AGGREGATE EXCEED THE
             AMOUNT ACTUALLY PAID BY YOU FOR THE APPLICATION.
           </Text>
+          </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
             
             THE FOREGOING LIMITATIONS WILL APPLY WHETHER SUCH DAMAGES ARISE OUT
@@ -327,8 +381,12 @@ export default class TermsAndConditions extends Component {
             NOT ALLOW CERTAIN LIMITATIONS OF LIABILITY SO SOME OR ALL OF THE
             ABOVE LIMITATIONS OF LIABILITY MAY NOT APPLY TO YOU.
           </Text>
+          </View>
+          </View>
+          
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
-            12. Indemnification. You agree to indemnify, defend, and hold
+            12. <Text style={style.underline}>Indemnification.</Text> You agree to indemnify, defend, and hold
             harmless Company and its officers, directors, employees, agents,
             affiliates, successors, and assigns from and against any and all
             losses, damages, liabilities, deficiencies, claims, actions,
@@ -338,8 +396,10 @@ export default class TermsAndConditions extends Component {
             your breach of this Agreement, including but not limited to the
             content you submit or make available through this Application.
           </Text>
+          </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
-            13. Export Regulation. The Application may be subject to US export
+            13. <Text style={style.underline}>Export Regulation.</Text> The Application may be subject to US export
             control laws, including the Export Control Reform Act and its
             associated regulations. You shall not, directly or indirectly,
             export, re-export, or release the Application to, or make the
@@ -351,15 +411,19 @@ export default class TermsAndConditions extends Component {
             governmental approval), prior to exporting, re-exporting, releasing,
             or otherwise making the Application available outside the US.
           </Text>
+          </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
-            14. Severability. If any provision of this Agreement is illegal or
+            14. <Text style={style.underline}>Severability.</Text> If any provision of this Agreement is illegal or
             unenforceable under applicable law, the remainder of the provision
             will be amended to achieve as closely as possible the effect of the
             original term and all other provisions of this Agreement will
             continue in full force and effect.
           </Text>
+          </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
-            15. Governing Law. This Agreement is governed by and construed in
+            15. <Text style={style.underline}>Governing Law.</Text> This Agreement is governed by and construed in
             accordance with the internal laws of the State of Missouri without
             giving effect to any choice or conflict of law provision or rule.
             Any legal suit, action, or proceeding arising out of or related to
@@ -369,22 +433,28 @@ export default class TermsAndConditions extends Component {
             waive any and all objections to the exercise of jurisdiction over
             you by such courts and to venue in such courts.
           </Text>
+          </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
-            16. Limitation of Time to File Claims. ANY CAUSE OF ACTION OR CLAIM
+            16. <Text style={style.underline}>Limitation of Time to File Claims.</Text> ANY CAUSE OF ACTION OR CLAIM
             YOU MAY HAVE ARISING OUT OF OR RELATING TO THIS AGREEMENT OR THE
             APPLICATION MUST BE COMMENCED WITHIN ONE (1) YEAR AFTER THE CAUSE OF
             ACTION ACCRUES OTHERWISE SUCH CAUSE OF ACTION OR CLAIM IS
             PERMANENTLY BARRED.
           </Text>
+          </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
-            17. Entire Agreement. This Agreement, our Terms, and our Privacy
+            17. <Text style={style.underline}>Entire Agreement.</Text> This Agreement, our Terms, and our Privacy
             Policies constitute the entire agreement between you and Company
             with respect to the Application and supersede all prior or
             contemporaneous understandings and agreements, whether written or
             oral, with respect to the Application.
           </Text>
+          </View>
+          <View style={style.paragraph}>
           <Text style={style.mainText}>
-            18. Waiver. No failure to exercise, and no delay in exercising, on
+            18. <Text style={style.underline}>Waiver.</Text> No failure to exercise, and no delay in exercising, on
             the part of either party, any right or any power hereunder shall
             operate as a waiver thereof, nor shall any single or partial
             exercise of any right or power hereunder preclude further exercise
@@ -392,6 +462,7 @@ export default class TermsAndConditions extends Component {
             between this Agreement and any applicable purchase or other terms,
             the terms of this Agreement shall govern.
           </Text>
+          </View>
 
           <View style={style.buttonContainer}>
             <TouchableOpacity onPress={() => handleFormikTermsCancel()}>
@@ -401,7 +472,7 @@ export default class TermsAndConditions extends Component {
               <Text style={style.agreeButton}>I agree</Text>
             </TouchableOpacity>
           </View>
-        </View>
+          </View>
       </ScrollView>
     );
   }
@@ -413,6 +484,7 @@ const style = StyleSheet.create({
     padding: moderateScale(8),
     backgroundColor: "#323e5b",
     paddingHorizontal: moderateScale(30),
+    marginVertical: moderateScale(8),
   },
   header: {
     color: "white",
@@ -425,10 +497,13 @@ const style = StyleSheet.create({
     fontFamily: "Montserrat-Medium",
   },
   paragraph: {
-    marginVertical: 6,
+    marginVertical: moderateScale(6),
   },
   indentSection: {
-    marginLeft: 18,
+    marginLeft: moderateScale(18),
+  },
+  indentTwice:{
+    marginLeft: moderateScale(28),
   },
   boldText: {
     color: "white",
@@ -440,6 +515,9 @@ const style = StyleSheet.create({
   },
   highlight:{
     backgroundColor:'lightgrey'
+  },
+  link:{
+    backgroundColor:'yellow'
   },
   buttonContainer: {
     marginTop: moderateScale(10),
