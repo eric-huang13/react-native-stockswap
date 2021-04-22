@@ -117,6 +117,7 @@ export const SignUp = ({RegisterUser, navigation, userData, loading, RegisterUse
                         handleTerms={handleTerms}
                         handleCheck={handleCheck}
                         props={props}
+                        navigation={navigation}
                       />
                     </Modal>
                     <View style={style.stockHeader}>

@@ -159,7 +159,7 @@ export class LoginScreen extends Component {
                           </View>
                           <TouchableOpacity
                             onPress={() =>
-                              this.props.navigation.navigate('ForgotPassword')
+                              this.props.navigation.navigate('PrivacyPolicy')
                             }>
                             <Text style={style.termsText}>
                               Forgot password?

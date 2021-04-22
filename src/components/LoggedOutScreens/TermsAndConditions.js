@@ -6,10 +6,13 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import { moderateScale, verticalScale, scale } from "../../util/responsiveFont";
+import { moderateScale} from "../../util/responsiveFont";
+
+
 
 export default class TermsAndConditions extends Component {
   render() {
+    console.log(this.props.navigation, 'terms')
     const { handleTerms, handleCheck } = this.props;
 
     //setTermsVersion to current version, close modal, toggleCheck true
@@ -167,8 +170,13 @@ export default class TermsAndConditions extends Component {
             functionality, and the Application may provide you with
             opportunities to share information about yourself with others. All
             information we collect through or in connection with this
-            Application is subject to our Privacy Policy <Text style={style.link}>[INSERT AS LINK TO
-            MOBILE APP PRIVACY POLICY].</Text> By downloading, installing, using, and
+            Application is subject to our Privacy Policy
+          <TouchableOpacity
+            onPress={() =>this.props.navigation.navigate('PrivacyPolicy')}>
+          <Text style={style.link}>[INSERT AS LINK TO MOBILE APP PRIVACY POLICY].
+          </Text>
+          </TouchableOpacity>
+            By downloading, installing, using, and
             providing information to or through this Application, you consent to
             all actions taken by us with respect to your information in
             compliance with the Privacy Policy.

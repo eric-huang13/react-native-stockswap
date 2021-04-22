@@ -11,6 +11,7 @@ import ProfileInfoForm from '../components/LoggedOutScreens/ProfileInfoForm';
 import TermsAndConditions from '../components/LoggedOutScreens/TermsAndConditions';
 import SplashScreen from '../components/LoggedOutScreens/SplashScreen';
 import ForgotPassword from '../components/LoggedOutScreens/ForgotPassword'
+import PrivacyPolicy from '../components/MyProfileTabScreens/PrivacyPolicy'
 
 const LoggedOutStack = createStackNavigator();
 
@@ -53,10 +54,14 @@ export default class LoggedOutStackNavigator extends Component {
           }}
         />
         <LoggedOutStack.Screen
+          name="PrivacyPolicy"
+          component={PrivacyPolicy}
+          options={{headerShown: false}}
+        />
+        <LoggedOutStack.Screen
           name="ForgotPassword"
           component={ForgotPassword}
           options={{headerShown: false}}
-
         />
       </LoggedOutStack.Navigator>
     );
