@@ -14,7 +14,7 @@ export default class PrivacyPolicy extends Component {
       <ScrollView style={style.scrollContainer}>
       <View style={style.container}>
         <Text style={style.header}>            
-            Mobile Application End User License Agreement
+        Mobile App Privacy Policy 
           </Text>
           <View style={style.paragraph}>
             <Text style={style.mainText}>
@@ -459,7 +459,9 @@ export default class PrivacyPolicy extends Component {
           </View>
           <View style={style.paragraph}>
             <Text style={style.mainText}>
-            If you delete your User Contributions from the App, copies of your User Contributions may remain viewable in cached and archived pages, or might have been copied or stored by other App users. Proper access and use of information provided on the App, including User Contributions, is governed by our terms of use <Text style={style.link}>[LINK TO TERMS OF USE].</Text>
+            If you delete your User Contributions from the App, copies of your User Contributions may remain viewable in cached and archived pages, or might have been copied or stored by other App users. Proper access and use of information provided on the App, including User Contributions, is governed by our terms of use<TouchableOpacity onPress={() => this.props.screenSelect('agreement')}>
+              <Text style={style.link}>[LINK TO TERMS OF USE].</Text>
+            </TouchableOpacity> 
             </Text>
           </View>
           <View style={style.paragraph}>
@@ -506,9 +508,12 @@ export default class PrivacyPolicy extends Component {
             <Text style={style.mainText}>
             To ask questions or comment about this privacy policy and our privacy practices, contact us at: privacy@stockswap.us.    
             </Text>
-          </View>
-          
-
+          </View>          
+          <View style={style.buttonContainer}>
+            <TouchableOpacity onPress={() => this.props.screenSelect('agreement')}>
+              <Text style={style.agreeButton}>Back to User Agreement</Text>
+            </TouchableOpacity>
+            </View>
 
       </View>
       </ScrollView>
@@ -576,6 +581,7 @@ const style = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: moderateScale(10),
+    marginBottom: moderateScale(10),
     flexDirection: "row",
     justifyContent: "space-evenly",
   },
@@ -586,7 +592,7 @@ const style = StyleSheet.create({
     textAlign: "center",
     paddingVertical: moderateScale(12),
     paddingHorizontal: moderateScale(20),
-    width: moderateScale(150),
+    width: moderateScale(240),
     borderRadius: moderateScale(6),
     fontSize: moderateScale(17),
     fontWeight: "bold",
