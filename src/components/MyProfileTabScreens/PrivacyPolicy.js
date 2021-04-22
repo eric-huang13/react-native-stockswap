@@ -66,7 +66,7 @@ export default class PrivacyPolicy extends Component {
           <View style={style.paragraph}>            
             <Text style={style.mainText}>
             {'\u2B24  '}
-            You provide to or is collected by any third party (see <Text style={style.underline}>Third-Party Information Collection</Text>).   
+            You provide to or is collected by any third party (see <Text style={style.highlight}>Third-Party Information Collection</Text>).   
             </Text>
           </View>
           </View>
@@ -77,7 +77,7 @@ export default class PrivacyPolicy extends Component {
           </View>
           <View style={style.paragraph}>
             <Text style={style.mainText}>
-            Please read this policy carefully to understand our policies and practices regarding your information and how we will treat it. If you do not agree with our policies and practices, do not download, register with, or use this App. By downloading, registering with, or using this App, you agree to this privacy policy. This policy may change from time to time (see <Text style={style.underline}>Changes to Our Privacy Policy</Text>). Your continued use of this App after we revise this policy means you accept those changes, so please check the policy periodically for updates.  
+            Please read this policy carefully to understand our policies and practices regarding your information and how we will treat it. If you do not agree with our policies and practices, do not download, register with, or use this App. By downloading, registering with, or using this App, you agree to this privacy policy. This policy may change from time to time (see <Text style={style.highlight}>Changes to Our Privacy Policy</Text>). Your continued use of this App after we revise this policy means you accept those changes, so please check the policy periodically for updates.  
             </Text>
           </View>
           <View style={style.paragraph}>
@@ -115,7 +115,7 @@ export default class PrivacyPolicy extends Component {
           </View>
           </View>
           <View style={style.paragraph}>
-            <Text style={style.boldTextUnderline}>
+            <Text style={style.boldTextItalic}>
             Information You Provide to Us 
             </Text>
           </View>
@@ -175,7 +175,7 @@ export default class PrivacyPolicy extends Component {
             </Text>
           </View>
           <View style={style.paragraph}>
-            <Text style={style.boldTextUnderline}>
+            <Text style={style.boldTextItalic}>
             Automatic Information Collection and Tracking  
             </Text>
           </View>
@@ -211,8 +211,302 @@ export default class PrivacyPolicy extends Component {
             </Text>
           </View>
           </View>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            If you do not want us to collect this information do not download the App or delete it from your device. For more information, see Choices about How We Use and Disclose Your Information. 
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.boldTextItalic}>
+            Information Collection and Tracking Technologies  
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            The technologies we use for automatic information collection may include: 
+            </Text>
+          </View>
+          <View style={style.indentSection}>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            <Text style={style.boldText}>Cookies (or mobile cookies).</Text> A cookie is a small file placed on your smartphone. It may be possible to refuse to accept mobile cookies by activating the appropriate setting on your smartphone. However, if you select this setting you may be unable to access certain parts of our App.     
+            </Text>
+          </View>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.boldTextItalic}>
+            Third-Party Information Collection  
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            When you use the App or its content, certain third parties may use automatic information collection technologies to collect information about you or your device. These third parties may include:
+            </Text>
+          </View>
+          <View style={style.indentSection}>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            Analytics companies.      
+            </Text>
+          </View>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            Your mobile device manufacturer.       
+            </Text>
+          </View>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            Your mobile service provider.       
+            </Text>
+          </View>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            They may use this information to provide you with interest-based (behavioral) advertising or other targeted content.  
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            We do not control these third parties’ tracking technologies or how they may be used. If you have any questions about an advertisement or other targeted content, you should contact the responsible provider directly.
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.boldTextUnderline}>
+            How We Use Your Information 
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            We use information that we collect about you or that you provide to us, including any personal information, to            </Text>
+          </View>
           
-         
+          <View style={style.indentSection}>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            Provide you with the App and its contents, and any other information, products or services that you request from us.  
+            </Text>
+          </View>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            Fulfill any other purpose for which you provide it.       
+            </Text>
+          </View>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            Carry out our obligations and enforce our rights arising from any contracts entered into between you and us, including for billing and collection.        
+            </Text>
+          </View>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            Notify you when App updates are available, and of changes to any products or services we offer or provide though it.        
+            </Text>
+          </View>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            The usage information we collect helps us to improve our App and to deliver a better and more personalized experience by enabling us to: 
+            </Text>
+          </View>
+          <View style={style.indentSection}>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            Estimate our audience size and usage patterns.        
+            </Text>
+          </View>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            Store information about your preferences, allowing us to customize our App according to your individual interests.         
+            </Text>
+          </View>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            Speed up your searches.          
+            </Text>
+          </View>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            Recognize you when you use the App.         
+            </Text>
+          </View>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            We may also use your information to contact you about our own goods and services that may be of interest to you. If you do not want us to use your information in this way, please check the relevant box located on the form on which we collect your data. For more information, see <Text style={style.highlight}>Your Choices About Our Collection, Use, and Disclosure of Your Information.</Text> 
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.boldTextUnderline}>
+            Disclosure of Your Information 
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            We may disclose aggregated information about our users, and information that does not identify any individual or device, without restriction. 
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            In addition, we may disclose personal information that we collect or you provide:  
+            </Text>
+          </View>
+          <View style={style.indentSection}>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            To our subsidiaries and affiliates.       
+            </Text>
+          </View>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            To contractors, service providers, and other third parties we use to support our business.        
+            </Text>
+          </View>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            To a buyer or other successor in the event of a merger, divestiture, restructuring, reorganization, dissolution, or other sale or transfer of some or all of StockSwap LLC’s assets, whether as a going concern or as part of bankruptcy, liquidation, or similar proceeding, in which personal information held by StockSwap LLC’s about our App users is among the assets transferred.         
+            </Text>
+          </View>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            To fulfill the purpose for which you provide it.         
+            </Text>
+          </View>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            For any other purpose disclosed by us when you provide the information.          
+            </Text>
+          </View>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            With your consent.         
+            </Text>
+          </View>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            To comply with any court order, law, or legal process, including to respond to any government or regulatory request.         
+            </Text>
+          </View>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            To enforce our rights arising from any contracts entered into between you and us, including the App EULA and our Terms.          
+            </Text>
+          </View>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            If we believe disclosure is necessary or appropriate to protect the rights, property, or safety of StockSwap LLC, our customers or others.         
+            </Text>
+          </View>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.boldTextUnderline}>
+            Your Choices About Our Collection, Use, and Disclosure of Your Information  
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            We strive to provide you with choices regarding the personal information you provide to us. This section describes mechanisms we provide for you to control certain uses and disclosures of over your information.   
+            </Text>
+          </View>
+          <View style={style.indentSection}>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            <Text style={style.boldText}>Tracking Technologies.</Text> You can set your browser to refuse all or some browser cookies, or to alert you when cookies are being sent. If you disable or refuse cookies or block the use of other tracking technologies, some parts of the App may then be inaccessible or not function properly.           
+            </Text>
+          </View>
+          <View style={style.paragraph}>            
+            <Text style={style.mainText}>
+            {'\u2B24  '}
+            <Text style={style.boldText}>Promotion by the Company. </Text>
+            If you do not want us to use your contact information to promote our own products and/or services, you can opt-out by sending us an email stating your request to privacy@stockswap.us.          
+            </Text>
+          </View>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            We do not control third parties’ collection or use of your information to serve interest-based advertising. However these third parties may provide you with ways to choose not to have your information collected or used in this way. You can opt out of receiving targeted ads from members of the Network Advertising Initiative (“<Text style={style.boldText}>NAI</Text>”) on the NAI’s website. 
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.boldTextUnderline}>
+            Accessing and Correcting Your Personal Information  
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            You can review and change your personal information by logging into the App and visiting your account profile page.  
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            If you delete your User Contributions from the App, copies of your User Contributions may remain viewable in cached and archived pages, or might have been copied or stored by other App users. Proper access and use of information provided on the App, including User Contributions, is governed by our terms of use <Text style={style.link}>[LINK TO TERMS OF USE].</Text>
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.boldTextUnderline}>
+            Data Security  
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            We have implemented measures designed to secure your personal information from accidental loss and from unauthorized access, use, alteration, and disclosure. All information you provide to us is stored on our secure servers behind firewalls.   
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            The safety and security of your information also depends on you. Where we have given you (or where you have chosen) a password for access to certain parts of our App, you are responsible for keeping this password confidential. We ask you not to share your password with anyone. We urge you to be careful about giving out information in public areas of the App like message boards. The information you share in public areas may be viewed by any user of the App. 
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            Unfortunately, the transmission of information via the internet and mobile platforms is not completely secure. Although we do our best to protect your personal information, we cannot guarantee the security of your personal information transmitted through our App. Any transmission of personal information is at your own risk. We are not responsible for circumvention of any privacy settings or security measures we provide.  
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.boldTextUnderline}>
+            Changes to Our Privacy Policy  
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            We may update our privacy policy from time to time. If we make material changes to how we treat our users’ personal information, we will post the new privacy policy on this page with a notice that the privacy policy has been updated and/or an in-App alert the first time you use the App after we make the change.  
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            The date the privacy policy was last revised is identified at the top of the page. You are responsible for ensuring we have an up-to-date active and deliverable email address for you and for periodically visiting this privacy policy to check for any changes.   
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.boldTextUnderline}>
+            Contact Information 
+            </Text>
+          </View>
+          <View style={style.paragraph}>
+            <Text style={style.mainText}>
+            To ask questions or comment about this privacy policy and our privacy practices, contact us at: privacy@stockswap.us.    
+            </Text>
+          </View>
           
 
 
@@ -257,6 +551,12 @@ const style = StyleSheet.create({
     color: "white",
     fontSize: moderateScale(14),
     fontFamily: "Montserrat-Bold",
+  },
+  boldTextItalic: {
+    color: "white",
+    fontSize: moderateScale(14),
+    fontFamily: "Montserrat-Bold",
+    fontStyle:'italic',
   },
   boldTextUnderline: {
     color: "white",

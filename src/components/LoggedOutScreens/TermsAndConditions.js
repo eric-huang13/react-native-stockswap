@@ -172,7 +172,7 @@ export default class TermsAndConditions extends Component {
             information we collect through or in connection with this
             Application is subject to our Privacy Policy
           <TouchableOpacity
-            onPress={() =>this.props.navigation.navigate('PrivacyPolicy')}>
+            onPress={() =>this.props.navigation.navigate('Login')}>
           <Text style={style.link}>[INSERT AS LINK TO MOBILE APP PRIVACY POLICY].
           </Text>
           </TouchableOpacity>
