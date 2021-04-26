@@ -273,27 +273,6 @@ export const Logout = () => (dispatch) => {
    
 };
 
-// export const Logout = () => {
-//   return (dispatch) => {
-    
-//   reset({
-//     index: 0,
-//     routes: [{ name: 'Home' }],
-// })
-// .then(() => {
-
-//   dispatch({type: LOGOUT});
-    
-//   Toast.show({
-//     type:'success',
-//     topOffset: 30,
-//     text2: 'You have been successfully logged out.',
-    
-//   });
-// })
-  
-    
-//   }}
   
   export const EditUser = (input) => {
     return (dispatch) => {
