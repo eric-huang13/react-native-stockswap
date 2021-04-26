@@ -122,34 +122,34 @@ export const RegisterGoogle = (input) => {
 };
 
 
-// export const Login = (input) => {
-//   return (dispatch) => {
-//     dispatch({type: LOGIN_START});
-//     Toast.show({
-//       type: 'info',
-//       text2: 'Sending credentials...',
-//     })
-//     axios
-//       .post('http://ec2-3-139-84-5.us-east-2.compute.amazonaws.com/v1/auth/login', input)
-//        .then((response) => {
-//         deviceStorage.saveItem('token', response.data.token),
-//           dispatch({type: LOGIN_SUCCESS, payload: response.data});
-//         Toast.show({
-//           type:'success',
-//           text2: response.data.message,
-//         });
-//       })
-//       .catch((error) => {
-//         console.log(error.response.data.message, "ERROR in LOGIN")
-//         dispatch({type: SIGNUP_ERROR, payload: error.response});
-//         Toast.show({
-//           type: 'errorLogin',
-//           text1: 'Error',
-//           text2: error.response.data.message,
-//         });
-//       });
-//   };
-// };
+export const Login = (input) => {
+  return (dispatch) => {
+    dispatch({type: LOGIN_START});
+    Toast.show({
+      type: 'info',
+      text2: 'Sending credentials...',
+    })
+    axios
+      .post('https://jiujitsux.herokuapp.com/api/users/login', input)
+       .then((response) => {
+        deviceStorage.saveItem('token', response.data.token),
+          dispatch({type: LOGIN_SUCCESS, payload: response.data});
+        Toast.show({
+          type:'success',
+          text2: response.data.message,
+        });
+      })
+      .catch((error) => {
+        console.log(error.response.data.message, "ERROR in LOGIN")
+        dispatch({type: SIGNUP_ERROR, payload: error.response});
+        Toast.show({
+          type: 'errorLogin',
+          text1: 'Error',
+          text2: error.response.data.message,
+        });
+      });
+  };
+};
 
 export const GoogleLogin = () => { 
   return async dispatch => {
@@ -157,7 +157,13 @@ export const GoogleLogin = () => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
+      //send token to backend
+      //  dispatch (RegisterGoogle({idToken:userInfo.idToken}))
+      //test to make sure sending googl userinfo correctly 
+     dispatch (Login({email:userInfo.user.email, password:'Password1!!'}))
+
       dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
+     
     } catch (error) {
       console.log('Message', error.message);
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -167,7 +173,7 @@ export const GoogleLogin = () => {
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         console.log('Play Services Not Available or Outdated');
       } else {
-        console.log('Some Other Error Happened');
+        console.log(error);
       }
     }    
 }
@@ -179,6 +185,10 @@ export const GoogleIsSignedIn = () => {
     if (isSignedIn) {
       try {
         const userInfo = await GoogleSignin.signInSilently();
+        //send token to backend
+      //  dispatch (RegisterGoogle({idToken:userInfo.idToken}))
+         //test to make sure sending googl userinfo correctly 
+     dispatch (Login({email:userInfo.user.email, password:'Password1!!'}))
         dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
       } catch (error) {
         if (error.code === statusCodes.SIGN_IN_REQUIRED) {
@@ -208,6 +218,15 @@ export const GoogleLogout = () => {
 }
 }
 
+export const GoogleLogoutCheck = () => {
+  return async dispatch => {
+  const isSignedIn = await GoogleSignin.isSignedIn();
+    if (isSignedIn) {
+      dispatch (GoogleLogout())
+    } 
+}
+}
+
 
 //Working POST with token sent on headers
 
@@ -230,27 +249,26 @@ export const GoogleLogout = () => {
 // };
 
 
-export const Login = () => (dispatch) => {
-  Toast.show({
-    type: 'success',
-    text2: 'Sign up successful!',
-  });
+// export const Login = () => (dispatch) => {
+//   Toast.show({
+//     type: 'success',
+//     text2: 'Sign up successful!',
+//   });
 
-  return dispatch({
-    type: LOGIN_SUCCESS,
-  });
-};
+//   return dispatch({
+//     type: LOGIN_SUCCESS,
+//   });
+// };
 
 export const Logout = () => (dispatch) => {
   Toast.show({
     type:'success',
     topOffset: 30,
-    text2: 'You have been successfully logged out.',
-    
-  });
+    text2: 'You have been successfully logged out.',    
+  });  
+  dispatch (GoogleLogoutCheck())
   return dispatch({
-    type: LOGOUT,
-    
+    type: LOGOUT,    
   });
    
 };

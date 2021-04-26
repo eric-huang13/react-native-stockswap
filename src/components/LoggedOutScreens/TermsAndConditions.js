@@ -16,15 +16,13 @@ export default class TermsAndConditions extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      screen:'agreement'
-     
+      screen:'agreement'     
     };
   }
   screenSelect = (name) =>{
     this.setState({screen: name});
   }
   render() {
-    console.log(this.props.navigation, 'terms')
     const { handleTerms, handleCheck } = this.props;
 
     //setTermsVersion to current version, close modal, toggleCheck true
