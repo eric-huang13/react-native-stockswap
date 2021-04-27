@@ -1,13 +1,20 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, SafeAreaView, Dimensions, PixelRatio, Platform} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  SafeAreaView,
+  Dimensions,
+  PixelRatio,
+  Platform,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {moderateScale, verticalScale, scale} from '../../util/responsiveFont'
-
+import {moderateScale, scale} from '../../util/responsiveFont';
 
 export class CompanyBox extends Component {
   render() {
     const {item} = this.props;
-    const { width, height } = Dimensions.get('window');
+    const {width, height} = Dimensions.get('window');
 
     const styledText =
       item.category === 'gainers' ? (
@@ -98,11 +105,11 @@ const style = StyleSheet.create({
     alignSelf: 'center',
     marginTop: moderateScale(3),
     borderRadius: moderateScale(12),
-     height: Dimensions.get('window').height / 3 -108,
-         width: Dimensions.get('window').width / 3 -10,
-    //      height: 120, 
+    height: Dimensions.get('window').height / 3 - 108,
+    width: Dimensions.get('window').width / 3 - 10,
+    //      height: 120,
     //      width: 127,
-    height: scale(120), 
+    height: scale(120),
     width: scale(127),
 
     flexDirection: 'column',

@@ -10,7 +10,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Image,
-  Platform
+  Platform,
 } from 'react-native';
 import TriangleIcon from '../../icons/TriangleIcon';
 import {Formik} from 'formik';
@@ -18,58 +18,57 @@ import * as Yup from 'yup';
 import LinearGradient from 'react-native-linear-gradient';
 import {Register} from '../../actions/user';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 
- 
 const validationSchema = Yup.object().shape({
   fullName: Yup.string()
     .label('Name')
     .required('Name is required')
     .min(2, 'Must have at least 2 characters'),
- 
+
   username: Yup.string().label('username').required('Username is required'),
- 
+
   hashtag: Yup.string()
     .label('hashtag')
     .matches(/^#\w+$/, 'Must be a hashtag')
     .min(2, 'Hashtag must have more than 2 characters '),
- 
+
   bio: Yup.string()
     .label('bio')
     .min(2, 'Bio must have more than 2 characters '),
- 
+
   // image: Yup.string().url('Must be a url'),
 });
- 
+
 export class ProfileInfoForm extends Component {
   constructor(props) {
     super(props);
- 
+
     this.state = {
       isPrivate: false,
       shouldShow: false,
       imageData: null,
     };
   }
- 
+
   dropDownSelect(setting) {
     this.setState({isPrivate: setting, shouldShow: false});
   }
- 
+
 
   render() {
     const {RegisterUser, LoginUser} = this.props;
     const {userInfo} = this.props.route.params;
- 
+
     const {shouldShow} = this.state;
- 
+
     //Creating FormData for sending image to backend
     const createFormData = (values) => {
       let formData = new FormData();
-        Object.keys(values).forEach(fieldName => {
+      Object.keys(values).forEach((fieldName) => {
         console.log(fieldName, values[fieldName]);
         formData.append(fieldName, values[fieldName]);
-        })
+      });
       return formData;
     };
 
@@ -86,25 +85,29 @@ export class ProfileInfoForm extends Component {
             <ScrollView>
               <Formik
                 initialValues={{
-                  email:userInfo.email,
-                  password:userInfo.password,
-                  termsVersion:userInfo.termsVersion,
-                  fullName:'',
-                  username:'',
-                  image:{name:'', type:'', uri:''},
-                  hashtag:'',
-                  bio:'',
-                  isPrivate:false,
+                  email: userInfo.email,
+                  password: userInfo.password,
+                  termsVersion: userInfo.termsVersion,
+                  fullName: '',
+                  username: '',
+                  image: {name: '', type: '', uri: ''},
+                  hashtag: '',
+                  bio: '',
+                  isPrivate: false,
                 }}
-                onSubmit={(values) => {                
+                onSubmit={(values) => {
                 //Adding to FormData for image
-                const data = createFormData(values);
-                console.log(data,"form")           
+                  const data = createFormData(values);
+                  console.log(data, 'form');
 
                   // RegisterUser(data);
-                  
-                  RegisterUser({email:values.email,password:values.password, username:values.username, fullName:values.fullName});
-          
+
+
+                    ({email: values.email,
+                    password: values.password,
+                    username: values.username,
+                    fullName: values.fullName,})
+
                 }}
                 validationSchema={validationSchema}>
                 {({
@@ -120,54 +123,65 @@ export class ProfileInfoForm extends Component {
                 }) => (
                   <View>
                     <Text style={style.header}>Fill Profile Info</Text>
-                    {values.image.uri && !errors.image ?
-                    <TouchableOpacity onPress={() => {
-                      const options={
-                        mediaType:'photo',
-                        // includeBase64:true,                  
-                      }
-                      launchImageLibrary(options, response=> {
-                        console.log(response, "response image")
-                        if (response.uri)
-                        {
-                          setFieldValue('image', {name:response.fileName, type:response.type, uri:
-                            Platform.OS === 'android' ? response.uri : response.uri.replace('file://', ''),})
+                    {values.image.uri && !errors.image ? (
+                      <TouchableOpacity
+                        onPress={() => {
+                          const options = {
+                            mediaType: 'photo',
+                            // includeBase64:true,
+                          };
+                          launchImageLibrary(options, (response) => {
+                            console.log(response, 'response image');
+                            if (response.uri) {
+                              setFieldValue('image', {
+                                name: response.fileName,
+                                type: response.type,
+                                uri:
+                                  Platform.OS === 'android'
+                                    ? response.uri
+                                    : response.uri.replace('file://', ''),
+                              });
                               // this.setState({ imageData: response.uri });
- 
+
                         }
-                      });
-                  }}>
-                      <Image
-                        style={style.uploadPhotoContainer}
-                        source={{uri: values.image.uri}}
-                      />
-                                              </TouchableOpacity>
- 
-                     : 
+                          });
+                        }}>
+                        <Image
+                          style={style.uploadPhotoContainer}
+                          source={{uri: values.image.uri}}
+                        />
+                      </TouchableOpacity>
+                    ) : (
                       <View style={style.uploadPhotoContainer}>
-                        <TouchableOpacity onPress={() => {
-                            const options={
-                              mediaType:'photo',
+                        <TouchableOpacity
+                          onPress={() => {
+                            const options = {
+                              mediaType: 'photo',
                               // includeBase64:true,
-                        
-                            }
-                            launchImageLibrary(options, response=> {
-                              console.log(response, "response image")
-                              if (response.uri)
-                              {
-                                setFieldValue('image', {name:response.fileName, type:response.type, uri:
-                                  Platform.OS === 'android' ? response.uri : response.uri.replace('file://', ''),})
-                                    // this.setState({ imageData: response.uri });
-       
+
+                            };
+                            launchImageLibrary(options, (response) => {
+                              console.log(response, 'response image');
+                              if (response.uri) {
+                                setFieldValue('image', {
+                                  name: response.fileName,
+                                  type: response.type,
+                                  uri:
+                                    Platform.OS === 'android'
+                                      ? response.uri
+                                      : response.uri.replace('file://', ''),
+                                });
+                                // this.setState({ imageData: response.uri });
+
                               }
                             });
-                        }}>
-                        <Text style={style.uploadPhotoText}>
-                          Tap to upload your photo
-                        </Text>
+                          }}>
+                          <Text style={style.uploadPhotoText}>
+                            Tap to upload your photo
+                          </Text>
                         </TouchableOpacity>
                       </View>
-                     } 
+                    )}
                     <View style={style.topRow}>
                       <View style={style.rowInputContainer}>
                         <Text style={style.inputHeader}>Name</Text>
@@ -186,7 +200,7 @@ export class ProfileInfoForm extends Component {
                           {touched.fullName && errors.fullName}
                         </Text>
                       </View>
- 
+
                       <View style={style.rowInputContainer}>
                         <Text style={style.inputHeader}>User name</Text>
                         <TextInput
@@ -222,12 +236,12 @@ export class ProfileInfoForm extends Component {
                           {touched.image && errors.image}
                         </Text>
                       </View> */}
- 
+
                       <View>
                         <Text style={style.inputHeader}>
                           Hashtag (up to 3 tags)
                         </Text>
- 
+
                         <TextInput
                           style={style.inputStyle}
                           value={values.hashtag}
@@ -260,10 +274,10 @@ export class ProfileInfoForm extends Component {
                           {touched.bio && errors.bio}
                         </Text>
                       </View>
- 
+
                       <View>
                         <Text style={style.privacyText}>Account privacy</Text>
- 
+
                         <View style={style.dotsDropdownContainer}>
                           <TouchableOpacity
                             onPress={() =>
@@ -273,11 +287,9 @@ export class ProfileInfoForm extends Component {
                             }>
                             <View style={style.visibleButtonContainer}>
                               <Text style={style.middleDetailsText}>
-                                {this.state.isPrivate == false ? 
-                                "Visible for all"
-                                :
-                                "Private"  
-                              }
+                                {this.state.isPrivate == false
+                                  ? 'Visible for all'
+                                  : 'Private'}
                               </Text>
                               <TriangleIcon style={style.icon} />
                             </View>
@@ -325,21 +337,21 @@ export class ProfileInfoForm extends Component {
     );
   }
 }
- 
+
 const mapStateToProps = (state) => {
   return {
     userData: state.user.userData,
   };
 };
- 
+
 const mapDispatchToProps = (dispatch) => {
   return {
     RegisterUser: (input) => dispatch(Register(input)),
   };
 };
- 
+
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileInfoForm);
- 
+
 const style = StyleSheet.create({
   mainContainer: {
     flex: 1,
@@ -362,12 +374,12 @@ const style = StyleSheet.create({
     fontSize: moderateScale(14),
     fontFamily: 'Montserrat-Regular',
   },
- 
+
   header: {
     textAlign: 'center',
     fontSize: moderateScale(16),
     color: '#FFFFFF',
-    marginBottom:moderateScale (20),
+    marginBottom: moderateScale(20),
     fontFamily: 'Montserrat-Bold',
   },
   topRow: {
@@ -377,7 +389,7 @@ const style = StyleSheet.create({
   rowInputContainer: {
     width: moderateScale(164),
   },
- 
+
   inputHeader: {
     fontSize: moderateScale(12),
     color: '#babec8',
@@ -480,5 +492,3 @@ const style = StyleSheet.create({
     textAlign: 'center',
   },
 });
- 
-

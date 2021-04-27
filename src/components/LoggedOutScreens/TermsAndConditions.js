@@ -1,92 +1,84 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
   Text,
   View,
   StyleSheet,
   TouchableOpacity,
   ScrollView,
-} from "react-native";
-import { moderateScale} from "../../util/responsiveFont";
-import UserAgreement from './UserAgreement'
-import PrivacyPolicy from '../MyProfileTabScreens/PrivacyPolicy'
-
-
+} from 'react-native';
+import {moderateScale} from '../../util/responsiveFont';
+import UserAgreement from './UserAgreement';
+import PrivacyPolicy from '../MyProfileTabScreens/PrivacyPolicy';
 
 export default class TermsAndConditions extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      screen:'agreement'     
+      screen: 'agreement',
     };
   }
-  screenSelect = (name) =>{
+  screenSelect = (name) => {
     this.setState({screen: name});
-  }
+  };
   render() {
-    const { handleTerms, handleCheck } = this.props;
+    const {handleTerms, handleCheck} = this.props;
 
     //setTermsVersion to current version, close modal, toggleCheck true
     const handleFormikTermsAgree = () => {
-      this.props.props.setFieldValue("termsVersion", "Version 1");
+      this.props.props.setFieldValue('termsVersion', 'Version 1');
       handleTerms(false);
       handleCheck(true);
     };
 
     //setTermsVersion to "", close modal, toggleCheck false
     const handleFormikTermsCancel = () => {
-      this.props.props.setFieldValue("termsVersion", "");
+      this.props.props.setFieldValue('termsVersion', '');
       handleTerms(false);
       handleCheck(false);
     };
 
     return (
       <View style={style.scrollContainer}>
-      
-          {this.state.screen=== 'agreement' ?  
+        {this.state.screen === 'agreement' ? (
           <ScrollView>
-          <UserAgreement screenSelect={this.screenSelect}/>
-          <View style={style.buttonContainer}>
-            <TouchableOpacity onPress={() => handleFormikTermsCancel()}>
-              <Text style={style.agreeButton}>Cancel</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleFormikTermsAgree()}>
-              <Text style={style.agreeButton}>I agree</Text>
-            </TouchableOpacity>
-          </View>          
-          </ScrollView> 
-          :
-           <PrivacyPolicy screenSelect={this.screenSelect}/>
-           }
-         
-        
-        
-
-          
+            <UserAgreement screenSelect={this.screenSelect} />
+            <View style={style.buttonContainer}>
+              <TouchableOpacity onPress={() => handleFormikTermsCancel()}>
+                <Text style={style.agreeButton}>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => handleFormikTermsAgree()}>
+                <Text style={style.agreeButton}>I agree</Text>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
+        ) : (
+          <PrivacyPolicy screenSelect={this.screenSelect} />
+        )}
       </View>
     );
   }
 }
 
 const style = StyleSheet.create({
-  scrollContainer:{
-    backgroundColor: "#323e5b",
+  scrollContainer: {
+    backgroundColor: '#323e5b',
   },
   container: {
     flex: 1,
     padding: moderateScale(8),
-    backgroundColor: "#323e5b",
+    backgroundColor: '#323e5b',
     paddingHorizontal: moderateScale(30),
     marginVertical: moderateScale(8),
   },
   header: {
-    color: "white",
+    color: 'white',
     fontSize: moderateScale(20),
-    fontFamily: "Montserrat-Bold",
+    fontFamily: 'Montserrat-Bold',
   },
   mainText: {
-    color: "white",
+    color: 'white',
     fontSize: moderateScale(14),
-    fontFamily: "Montserrat-Medium",
+    fontFamily: 'Montserrat-Medium',
   },
   paragraph: {
     marginVertical: moderateScale(6),
@@ -94,39 +86,39 @@ const style = StyleSheet.create({
   indentSection: {
     marginLeft: moderateScale(18),
   },
-  indentTwice:{
+  indentTwice: {
     marginLeft: moderateScale(28),
   },
   boldText: {
-    color: "white",
+    color: 'white',
     fontSize: moderateScale(14),
-    fontFamily: "Montserrat-Bold",
+    fontFamily: 'Montserrat-Bold',
   },
   underline: {
-    textDecorationLine: "underline",
+    textDecorationLine: 'underline',
   },
-  highlight:{
-    backgroundColor:'lightgrey'
+  highlight: {
+    backgroundColor: 'lightgrey',
   },
-  link:{
-    backgroundColor:'yellow'
+  link: {
+    backgroundColor: 'yellow',
   },
   buttonContainer: {
     marginTop: moderateScale(10),
     marginBottom: moderateScale(10),
-    flexDirection: "row",
-    justifyContent: "space-evenly",
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
   },
   agreeButton: {
-    backgroundColor: "#8B64FF",
-    color: "white",
-    alignSelf: "center",
-    textAlign: "center",
+    backgroundColor: '#8B64FF',
+    color: 'white',
+    alignSelf: 'center',
+    textAlign: 'center',
     paddingVertical: moderateScale(12),
     paddingHorizontal: moderateScale(20),
     width: moderateScale(150),
     borderRadius: moderateScale(6),
     fontSize: moderateScale(17),
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 });

@@ -31,7 +31,7 @@ import MyFollowing from '../components/MyProfileTabScreens/MyFollowing';
 import LikedPosts from '../components/MyProfileTabScreens/LikedPosts';
 
 //responsive scale
-import { moderateScale } from '../util/responsiveFont';
+import {moderateScale} from '../util/responsiveFont';
 
 const MyProfileStack = createStackNavigator();
 
@@ -228,7 +228,7 @@ export default class MyProfileStackNavigator extends Component {
               fontFamily: 'Montserrat-Bold',
               fontSize: moderateScale(16),
             },
-           
+
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',
@@ -305,10 +305,7 @@ export default class MyProfileStackNavigator extends Component {
               fontFamily: 'Montserrat-Bold',
               fontSize: moderateScale(16),
             },
-            headerTitleStyle: {
-              fontFamily: 'Montserrat-Bold',
-              fontSize: moderateScale(16),
-            },
+            
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',

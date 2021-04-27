@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from 'react-native';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 import CompanyStockGraph from '../SearchTabComponents/CompanyStockGraph';
 import CompanySymbolList from '../SearchTabComponents/CompanySymbolList';
 
@@ -34,31 +34,29 @@ export class CompanyInformation extends Component {
   //All logic needs to be handled before hand, either in backend or in action? Will change this when we actually have data coming in
 
   componentDidMount() {
-
-        //X
+    //X
     const xDates = this.props.route.params.item.dates.map(
       (item) => new Date(item * 1000),
     );
     //Y
     const yPrices = this.props.route.params.item.priceHistory;
 
-
-        this.setState({
+    this.setState({
       xDates: xDates,
       yPrices: yPrices,
     });
   }
 
   componentDidUpdate(prevProps) {
-    
-    if (this.props.route.params.item.dates !== prevProps.route.params.item.dates) {
+    if (
+      this.props.route.params.item.dates !== prevProps.route.params.item.dates
+    ) {
       this.setState({
-        xDates:this.props.route.params.item.dates,
-        yPrices:this.props.route.params.item.priceHistory,
-        });
+        xDates: this.props.route.params.item.dates,
+        yPrices: this.props.route.params.item.priceHistory,
+      });
     }
-   }
-
+  }
 
   render() {
     //X and Y
@@ -120,10 +118,12 @@ export class CompanyInformation extends Component {
     const {graphData, percent, range} = this.state;
     return (
       <SafeAreaView style={style.mainContainer}>
-       <CompanySymbolList navigation={this.props.navigation} symbol={route.params.item.symbol} itemId={route.params.item.id}/>
+        <CompanySymbolList
+          navigation={this.props.navigation}
+          symbol={route.params.item.symbol}
+          itemId={route.params.item.id}
+        />
         <ScrollView>
-
-
           {this.props.route.params ? (
             <View style={style.aboveGraphContainer}>
               <View style={style.symbolView}>

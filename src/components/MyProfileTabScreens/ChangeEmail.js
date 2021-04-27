@@ -9,13 +9,14 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
-  Keyboard,
+  Keyboard, 
+  Platform,
 } from 'react-native';
 import {EditUser} from '../../actions/user';
 import LinearGradient from 'react-native-linear-gradient';
 import {Formik} from 'formik';
 import * as yup from 'yup';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 
 const reviewSchema = yup.object({
   email: yup
@@ -51,57 +52,57 @@ class ChangeEmail extends Component {
           style={{flex: 1}}>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <SafeAreaView style={style.mainContainer}>
-            <Formik
-                  initialValues={{
-                    email: '',
-                  }}
-                  validationSchema={reviewSchema}
-                  onSubmit={(values, actions) => {
-                    console.log(values, 'Values');
-                    EditUser(values)
-                    this.props.navigation.navigate('EmailSuccess')
-                  }}>
-                  {(props) => (
-              <View style={style.container}>
-                <Text style={style.changeEmailHeader}>
-                  Change email address
-                </Text>
-                <View style={style.currentEmailContainer}>
-                  <Text style={style.inputHeader}>Current email</Text>
-                  <Text style={style.currentEmail}>
-                    {this.state.currentEmail}
-                  </Text>
-                </View>
-                <View style={style.inputEmailContainer}>
-                  <Text style={style.inputHeader}>New Email</Text>
-                  <TextInput
-                            style={
-                              props.touched.email && props.errors.email
-                                ? {
-                                    ...style.inputStyle,
-                                    backgroundColor: '#F66E6E',
-                                  }
-                                : {...style.inputStyle}
-                            }
-                            placeholder="Enter your email"
-                            placeholderTextColor="#9ea6b5"
-                            onChangeText={props.handleChange('email')}
-                            onBlur={props.handleBlur('email')}
-                            value={props.values.email}
-                            keyboardType="email-address"
-                            autoCapitalize="none"
-                          />
-                          <Text style={style.errorText}>
-                            {props.touched.email && props.errors.email}
-                          </Text>
-                </View>
-                <View>
-                  <TouchableOpacity onPress={props.handleSubmit}>
-                    <Text style={style.button}>Apply</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-              )}
+              <Formik
+                initialValues={{
+                  email: '',
+                }}
+                validationSchema={reviewSchema}
+                onSubmit={(values, actions) => {
+                  console.log(values, 'Values');
+                  EditUser(values);
+                  this.props.navigation.navigate('EmailSuccess');
+                }}>
+                {(props) => (
+                  <View style={style.container}>
+                    <Text style={style.changeEmailHeader}>
+                      Change email address
+                    </Text>
+                    <View style={style.currentEmailContainer}>
+                      <Text style={style.inputHeader}>Current email</Text>
+                      <Text style={style.currentEmail}>
+                        {this.state.currentEmail}
+                      </Text>
+                    </View>
+                    <View style={style.inputEmailContainer}>
+                      <Text style={style.inputHeader}>New Email</Text>
+                      <TextInput
+                        style={
+                          props.touched.email && props.errors.email
+                            ? {
+                                ...style.inputStyle,
+                                backgroundColor: '#F66E6E',
+                              }
+                            : {...style.inputStyle}
+                        }
+                        placeholder="Enter your email"
+                        placeholderTextColor="#9ea6b5"
+                        onChangeText={props.handleChange('email')}
+                        onBlur={props.handleBlur('email')}
+                        value={props.values.email}
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                      />
+                      <Text style={style.errorText}>
+                        {props.touched.email && props.errors.email}
+                      </Text>
+                    </View>
+                    <View>
+                      <TouchableOpacity onPress={props.handleSubmit}>
+                        <Text style={style.button}>Apply</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                )}
               </Formik>
             </SafeAreaView>
           </TouchableWithoutFeedback>
@@ -121,7 +122,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     EditUser: (input) => dispatch(EditUser(input)),
-
   };
 };
 

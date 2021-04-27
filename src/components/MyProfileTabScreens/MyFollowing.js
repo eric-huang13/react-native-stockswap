@@ -10,8 +10,7 @@ import {
 import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
 import MyFollowingBox from '../MyProfileTabComponents/MyFollowingBox';
-import { moderateScale } from '../../util/responsiveFont';
-
+import {moderateScale} from '../../util/responsiveFont';
 
 export class MyFollowing extends Component {
   constructor(props) {

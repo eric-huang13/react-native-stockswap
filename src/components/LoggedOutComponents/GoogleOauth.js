@@ -1,61 +1,55 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
 import {connect} from 'react-redux';
 import GoogleIcon from '../../icons/GoogleIcon';
-import {moderateScale} from '../../util/responsiveFont'
+import {moderateScale} from '../../util/responsiveFont';
 import {GoogleLogin, GoogleLogout, GoogleIsSignedIn} from '../../actions/user';
 
-
-
 function GoogleOauth(props) {
-
-  useEffect(() => {    
-    props.GoogleIsSignedIn()
+  useEffect(() => {
+    props.GoogleIsSignedIn();
   }, []);
 
   const signIn = () => {
-    props.GoogleLogin()
-  }
+    props.GoogleLogin();
+  };
 
   const signOut = () => {
-    props.GoogleLogout()
-  }
-    return (
-      <View style={styles.main}>
-      {
-        !props.googleUser.idToken ? (        
-          <View style={styles.alternateSignupInner}>
-            <View style={styles.signupIcon}>
-              <GoogleIcon />
-            </View>
-            <TouchableOpacity onPress={signIn}>
-              <Text style={styles.alternateSignUpButton}>
-                SIGN UP WITH GOOGLE
-              </Text>
-            </TouchableOpacity>
+    props.GoogleLogout();
+  };
+  return (
+    <View>
+      {!props.googleUser.idToken ? (
+        <View style={styles.alternateSignupInner}>
+          <View style={styles.signupIcon}>
+            <GoogleIcon />
           </View>
-        ) : (
-          <View style={styles.alternateSignupInner}>
-            <View style={styles.signupIcon}>
-              <Image
-                style={{width: 23, height: 23}}
-                source={{uri: props.googleUser.user.photo}}
-              />
-            </View>
-            <TouchableOpacity onPress={signOut}>
-              <Text style={styles.alternateSignUpButton}>LOGOUT OF GOOGLE</Text>
-            </TouchableOpacity>
+          <TouchableOpacity onPress={signIn}>
+            <Text style={styles.alternateSignUpButton}>
+              SIGN UP WITH GOOGLE
+            </Text>
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <View style={styles.alternateSignupInner}>
+          <View style={styles.signupIcon}>
+            <Image
+              style={{width: 23, height: 23}}
+              source={{uri: props.googleUser.user.photo}}
+            />
           </View>
-        )
-  
-      }
-    </View>           
-    )
+          <TouchableOpacity onPress={signOut}>
+            <Text style={styles.alternateSignUpButton}>LOGOUT OF GOOGLE</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+    </View>
+  );
 }
 const mapStateToProps = (state) => {
   return {
     googleUser: state.user.googleUser,
-    };
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -69,11 +63,6 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(GoogleOauth);
 
 const styles = StyleSheet.create({
-  maidn: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   alternateSignUpButton: {
     alignSelf: 'center',
     justifyContent: 'center',
@@ -91,8 +80,8 @@ const styles = StyleSheet.create({
   },
   alternateSignupInner: {
     alignSelf: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 4,
+    paddingVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(4),
     backgroundColor: '#2C3957',
     width: moderateScale(350),
     borderRadius: moderateScale(8),

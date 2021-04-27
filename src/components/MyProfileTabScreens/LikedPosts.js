@@ -1,49 +1,43 @@
 import React, {Component} from 'react';
 import {
-  Text,
-  View,
   StyleSheet,
-  Image,
-  TouchableOpacity,
   SafeAreaView,
   FlatList,
 } from 'react-native';
 import {connect} from 'react-redux';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 import MyProfilePostBox from '../MyProfileTabComponents/MyProfilePostBox';
 
 class LikedPosts extends Component {
   constructor(props) {
     super(props);
-    this.state = {      
-      selectedPosts:[]
+    this.state = {
+      selectedPosts: [],
     };
   }
 
   componentDidMount() {
-    const {user, post} = this.props;
+    const {post} = this.props;
     const id = this.props.user.id;
 
     //Will instead get liked posts, current data just placeholder
     const selectedPosts = post.filter((user) => user.userId !== id);
-        this.setState({
-          selectedPosts: selectedPosts,
-        });
-    
+    this.setState({
+      selectedPosts: selectedPosts,
+    });
   }
 
   componentDidUpdate(prevProps) {
-    const {user, post} = this.props;
+    const {post} = this.props;
     const id = this.props.user.id;
     if (this.props.post !== prevProps.post) {
       const selectedPosts = post.filter((user) => user.userId !== id);
-        this.setState({
-          selectedPosts: selectedPosts,
-        });
+      this.setState({
+        selectedPosts: selectedPosts,
+      });
     }
   }
   render() {
-
     return (
       <SafeAreaView style={style.container}>
         <FlatList
@@ -74,7 +68,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(LikedPosts);
-
 
 const style = StyleSheet.create({
   container: {

@@ -17,7 +17,7 @@ import MyProfilePosts from '../components/MyProfileTabScreens/MyProfilePosts';
 import CompanySymbolList from '../components/SearchTabComponents/CompanySymbolList';
 
 //responsive scale
-import { moderateScale } from '../util/responsiveFont';
+import {moderateScale} from '../util/responsiveFont';
 
 const SearchStack = createStackNavigator();
 

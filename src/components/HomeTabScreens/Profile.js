@@ -11,7 +11,7 @@ import {
 import ProfileGraph from '../HomeTabComponents/ProfileGraph';
 import UserPosts from './UserPosts';
 import {connect} from 'react-redux';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 
 class Profile extends Component {
   constructor(props) {

@@ -10,8 +10,7 @@ import CompanyBoxList from './CompanyBoxList';
 import UserList from './UserList.js';
 import ArticleList from './ArticleList';
 import LinearGradient from 'react-native-linear-gradient';
-import {moderateScale} from '../../util/responsiveFont'
-
+import {moderateScale} from '../../util/responsiveFont';
 
 export class SearchTab extends Component {
   constructor(props) {

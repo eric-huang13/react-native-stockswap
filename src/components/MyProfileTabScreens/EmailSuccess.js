@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {
-  Button,
   SafeAreaView,
   Text,
   View,
@@ -11,7 +10,7 @@ import {
 
 import EmailIcon from '../../icons/EmailIcon';
 import LinearGradient from 'react-native-linear-gradient';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 
 class EmailSuccess extends Component {
   constructor(props) {

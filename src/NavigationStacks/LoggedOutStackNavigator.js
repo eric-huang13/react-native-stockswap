@@ -10,8 +10,8 @@ import SignUp from '../components/LoggedOutScreens/SignUp';
 import ProfileInfoForm from '../components/LoggedOutScreens/ProfileInfoForm';
 import TermsAndConditions from '../components/LoggedOutScreens/TermsAndConditions';
 import SplashScreen from '../components/LoggedOutScreens/SplashScreen';
-import ForgotPassword from '../components/LoggedOutScreens/ForgotPassword'
-import PrivacyPolicy from '../components/MyProfileTabScreens/PrivacyPolicy'
+import ForgotPassword from '../components/LoggedOutScreens/ForgotPassword';
+import PrivacyPolicy from '../components/MyProfileTabScreens/PrivacyPolicy';
 
 const LoggedOutStack = createStackNavigator();
 

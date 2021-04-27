@@ -12,8 +12,7 @@ import UserPortfolioBox from '../HomeTabComponents/UserPortfolioBox';
 import SearchInput from '../../icons/SearchInput';
 import TriangleIcon from '../../icons/TriangleIcon';
 import {connect} from 'react-redux';
-import {moderateScale} from '../../util/responsiveFont'
-
+import {moderateScale} from '../../util/responsiveFont';
 
 class UserPortfolioList extends Component {
   constructor(props) {

@@ -12,16 +12,16 @@ import {
 import LikeInactiveIcon from '../../icons/LikeInactiveIcon';
 import CommentIcon from '../../icons/CommentIcon';
 import {UserPost, EditPost} from '../../actions/posts';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 
 class CreatePostPreview extends Component {
   //Creating FormData for sending image to backend
   createFormData = (values) => {
     let formData = new FormData();
-      Object.keys(values).forEach(fieldName => {
+    Object.keys(values).forEach((fieldName) => {
       console.log(fieldName, values[fieldName]);
       formData.append(fieldName, values[fieldName]);
-      })
+    });
     return formData;
   };
 
@@ -29,7 +29,7 @@ class CreatePostPreview extends Component {
     const {UserPost, EditPost, userAccount} = this.props;
     const {data} = this.props.route.params;
     const id = this.props.route.params.edit;
-    
+
     //for testing
     const credentials = {
       description: userAccount.name,
@@ -44,8 +44,8 @@ class CreatePostPreview extends Component {
       enabled: data.enabled,
       image: data.image.uri,
       body: data.body,
-    }
-     const theData = this.createFormData(userObject);
+    };
+    const theData = this.createFormData(userObject);
 
     return (
       <SafeAreaView style={style.container}>
@@ -213,7 +213,7 @@ const style = StyleSheet.create({
     color: '#FFFFFF',
     textAlign: 'center',
     paddingVertical: moderateScale(12),
-    paddingHorizontal:moderateScale (20),
+    paddingHorizontal: moderateScale(20),
     width: moderateScale(160),
     borderRadius: moderateScale(6),
     fontSize: moderateScale(14),

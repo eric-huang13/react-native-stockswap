@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
 import PortfolioGraph from './PortfolioGraph';
 import BearIcon from '../../icons/BearIcon';
 import BullIcon from '../../icons/BullIcon';
-import {moderateScale} from '../../util/responsiveFont'
+import {moderateScale} from '../../util/responsiveFont';
 
 export default class UserPortfolioBox extends Component {
   constructor(props) {
@@ -48,7 +48,7 @@ export default class UserPortfolioBox extends Component {
 
     //Info to display
     //Current stock price
-    const currentPrice = yPrices[yPrices.length - 1];  
+    const currentPrice = yPrices[yPrices.length - 1];
 
     // Growth/Loss percentage
     const percentChange = (
@@ -85,11 +85,14 @@ export default class UserPortfolioBox extends Component {
           />
         </View>
         <View style={style.percentContainer}>
-           { percent > 0 ? <BullIcon style={style.icon}/>
-           :
-           <BearIcon style={style.icon}/>           
-          }
-          <Text style={percent > 0 ? style.percentGain : style.percentLoss}>{percent}%</Text>
+          {percent > 0 ? (
+            <BullIcon style={style.icon} />
+          ) : (
+            <BearIcon style={style.icon} />
+          )}
+          <Text style={percent > 0 ? style.percentGain : style.percentLoss}>
+            {percent}%
+          </Text>
           <Text style={style.price}>Portfolio:</Text>
         </View>
       </SafeAreaView>

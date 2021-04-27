@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Text, SafeAreaView, View, Image, StyleSheet} from 'react-native';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 
 export class Article extends Component {
   render() {

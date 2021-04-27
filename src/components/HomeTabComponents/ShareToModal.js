@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
-import {moderateScale, verticalScale, scale} from '../../util/responsiveFont'
+import {moderateScale} from '../../util/responsiveFont';
 
 export default class ShareToModal extends Component {
   render() {

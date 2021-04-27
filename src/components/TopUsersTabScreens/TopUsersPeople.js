@@ -11,8 +11,7 @@ import {
 import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
 import UserBox from '../SearchTabComponents/UserBox';
-import {moderateScale} from '../../util/responsiveFont'
-
+import {moderateScale} from '../../util/responsiveFont';
 
 export class TopUsersPeople extends Component {
   constructor(props) {

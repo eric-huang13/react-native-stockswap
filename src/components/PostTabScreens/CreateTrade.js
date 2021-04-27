@@ -8,13 +8,13 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   TouchableWithoutFeedback,
-  TouchableOpacity,
-  ScrollView
+  TouchableOpacity,  
+  ScrollView,
 } from 'react-native';
 import TriangleIcon from '../../icons/TriangleIcon';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 
 const validationSchema = Yup.object().shape({
   // Validation will change when we have a better idea what data needs to be sent
@@ -32,7 +32,7 @@ const validationSchema = Yup.object().shape({
   quantity: Yup.number()
     .typeError('Please enter a number')
     .label('quantity')
-    .required('Quantity is required')
+    .required('Quantity is required'),
 });
 
 export default class CreateTrade extends Component {
@@ -40,11 +40,11 @@ export default class CreateTrade extends Component {
     super(props);
 
     this.state = {
-      isPrivate:false,
+      isPrivate: false,
       shouldShow: false,
     };
   }
-  
+
   dropDownSelect(setting) {
     this.setState({isPrivate: setting, shouldShow: false});
   }
@@ -56,14 +56,14 @@ export default class CreateTrade extends Component {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <SafeAreaView style={style.mainContainer}>
           <ScrollView>
-          <KeyboardAvoidingView>
-          <Formik
+            <KeyboardAvoidingView>
+              <Formik
                 initialValues={{
-                name: '',
-                orderType: 'buy',
-                time: '',
-                quantity: '',
-                isPrivate:false,                                 
+                  name: '',
+                  orderType: 'buy',
+                  time: '',
+                  quantity: '',
+                  isPrivate: false,
                 }}
                 onSubmit={(values) => {
                   console.log(values, 'values');
@@ -82,130 +82,140 @@ export default class CreateTrade extends Component {
                   setFieldValue,
                 }) => (
                   <View>
-            <Text style={style.header}>Post a Trade</Text>
-            <View style={style.uploadContainer}>
-              <Text style={style.uploadText}>
-                Upload trade screenshot for autofill
-              </Text>
-            </View>
-            <View style={style.nameInputContainer}>
-              <Text style={style.inputHeader}>Stock name</Text>
-              <TextInput
-                onBlur={handleBlur('name')}
-                value={values.name}
-                onChangeText={handleChange('name')}              
-                style={style.inputStyleBody}                
-                placeholder="Start typing stock name"
-                placeholderTextColor="#9ea6b5"                               
-              />            
-              <Text style={style.errorText}>
-                          {touched.name && errors.name}
-                        </Text>
-            </View>
-            <View>
-              <Text style={style.inputHeader}>Order Type</Text>
-              <View style={style.buttonsContainer}>
-                <TouchableOpacity onPress={() => {
-                                    setFieldValue('orderType', 'buy');
-                                  }}>
-                  <Text style={
-                  values.orderType === 'buy'
-                    ? {...style.buyButton, backgroundColor: '#8b64ff'}
-                    : {...style.buyButton}
-                }>Buy</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => setFieldValue('orderType', 'sell')}>
-                  <Text style={values.orderType === 'sell'
-                    ? {...style.buyButton, backgroundColor: '#8b64ff'}
-                    : {...style.buyButton}}>Sell</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-            <View style={style.TimeContainer}>
-              <Text style={style.inputHeader}>Time</Text>
-              <TextInput
-                onBlur={handleBlur('time')}
-                value={values.time}
-                onChangeText={handleChange('time')} 
-                style={style.inputStyleBody}                
-                placeholder="Time when you sell it"
-                placeholderTextColor="#9ea6b5"
-              />
-              <Text style={style.errorText}>
-                          {touched.time && errors.time}
-                        </Text>
-            </View>
-            <View style={style.quantityConatiner}>
-              <Text style={style.inputHeader}>Quantity</Text>
-              <TextInput
-                onBlur={handleBlur('quantity')}
-                value={values.quantity}
-                onChangeText={handleChange('quantity')} 
-                style={style.inputStyleBody}               
-                placeholder="Number of shares"
-                placeholderTextColor="#9ea6b5"                
-              />
-              <Text style={style.errorText}>
-                          {touched.quantity && errors.quantity}
-                        </Text>
-            </View>
-            <View>
-              <Text style={style.inputHeader}>Stock privacy</Text>
-
-
-              <View style={style.dotsDropdownContainer}>
-                          <TouchableOpacity
-                            onPress={() =>
-                              this.setState({
-                                shouldShow: !shouldShow,
-                              })
+                    <Text style={style.header}>Post a Trade</Text>
+                    <View style={style.uploadContainer}>
+                      <Text style={style.uploadText}>
+                        Upload trade screenshot for autofill
+                      </Text>
+                    </View>
+                    <View style={style.nameInputContainer}>
+                      <Text style={style.inputHeader}>Stock name</Text>
+                      <TextInput
+                        onBlur={handleBlur('name')}
+                        value={values.name}
+                        onChangeText={handleChange('name')}
+                        style={style.inputStyleBody}
+                        placeholder="Start typing stock name"
+                        placeholderTextColor="#9ea6b5"
+                      />
+                      <Text style={style.errorText}>
+                        {touched.name && errors.name}
+                      </Text>
+                    </View>
+                    <View>
+                      <Text style={style.inputHeader}>Order Type</Text>
+                      <View style={style.buttonsContainer}>
+                        <TouchableOpacity
+                          onPress={() => {
+                            setFieldValue('orderType', 'buy');
+                          }}>
+                          <Text
+                            style={
+                              values.orderType === 'buy'
+                                ? {
+                                    ...style.buyButton,
+                                    backgroundColor: '#8b64ff',
+                                  }
+                                : {...style.buyButton}
                             }>
-                            <View style={style.visibleButtonContainer}>
-                              <Text style={style.middleDetailsText}>
-                                {this.state.isPrivate == false ? 
-                                "Visible for all"
-                                :
-                                "Private"  
-                              }
-                              </Text>
-                              <TriangleIcon style={style.icon} />
-                            </View>
-                          </TouchableOpacity>
-                          {this.state.shouldShow ? (
-                            <View style={style.dropdown}>
-                              {this.state.isPrivate == false ? (
-                                <TouchableOpacity
-                                  onPress={() => {
-                                    this.dropDownSelect(true);
-                                    setFieldValue('isPrivate', true);
-                                  }}>
-                                  <Text style={style.dropDownText}>
-                                    Private
-                                  </Text>
-                                </TouchableOpacity>
-                              ) : (
-                                <TouchableOpacity
-                                  onPress={() => {
-                                    this.dropDownSelect(false);
-                                    setFieldValue('isPrivate', false);
-                                  }}>
-                                  <Text style={style.dropDownText}>
-                                    Visible for all
-                                  </Text>
-                                </TouchableOpacity>
-                              )}
-                            </View>
-                          ) : null}
-                        </View>
-            </View>
-            <TouchableOpacity onPress={handleSubmit}>
-            <Text style={style.publishButton}>Publish</Text>
-            </TouchableOpacity>
-            </View>
+                            Buy
+                          </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          onPress={() => setFieldValue('orderType', 'sell')}>
+                          <Text
+                            style={
+                              values.orderType === 'sell'
+                                ? {
+                                    ...style.buyButton,
+                                    backgroundColor: '#8b64ff',
+                                  }
+                                : {...style.buyButton}
+                            }>
+                            Sell
+                          </Text>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                    <View style={style.TimeContainer}>
+                      <Text style={style.inputHeader}>Time</Text>
+                      <TextInput
+                        onBlur={handleBlur('time')}
+                        value={values.time}
+                        onChangeText={handleChange('time')}
+                        style={style.inputStyleBody}
+                        placeholder="Time when you sell it"
+                        placeholderTextColor="#9ea6b5"
+                      />
+                      <Text style={style.errorText}>
+                        {touched.time && errors.time}
+                      </Text>
+                    </View>
+                    <View style={style.quantityConatiner}>
+                      <Text style={style.inputHeader}>Quantity</Text>
+                      <TextInput
+                        onBlur={handleBlur('quantity')}
+                        value={values.quantity}
+                        onChangeText={handleChange('quantity')}
+                        style={style.inputStyleBody}
+                        placeholder="Number of shares"
+                        placeholderTextColor="#9ea6b5"
+                      />
+                      <Text style={style.errorText}>
+                        {touched.quantity && errors.quantity}
+                      </Text>
+                    </View>
+                    <View>
+                      <Text style={style.inputHeader}>Stock privacy</Text>
 
-            )}
-            </Formik>
-          </KeyboardAvoidingView>
+                      <View style={style.dotsDropdownContainer}>
+                        <TouchableOpacity
+                          onPress={() =>
+                            this.setState({
+                              shouldShow: !shouldShow,
+                            })
+                          }>
+                          <View style={style.visibleButtonContainer}>
+                            <Text style={style.middleDetailsText}>
+                              {this.state.isPrivate == false ?
+                                'Visible for all'
+                                : 'Private'}
+                            </Text>
+                            <TriangleIcon style={style.icon} />
+                          </View>
+                        </TouchableOpacity>
+                        {this.state.shouldShow ? (
+                          <View style={style.dropdown}>
+                            {this.state.isPrivate == false ? (
+                              <TouchableOpacity
+                                onPress={() => {
+                                  this.dropDownSelect(true);
+                                  setFieldValue('isPrivate', true);
+                                }}>
+                                <Text style={style.dropDownText}>Private</Text>
+                              </TouchableOpacity>
+                            ) : (
+                              <TouchableOpacity
+                                onPress={() => {
+                                  this.dropDownSelect(false);
+                                  setFieldValue('isPrivate', false);
+                                }}>
+                                <Text style={style.dropDownText}>
+                                  Visible for all
+                                </Text>
+                              </TouchableOpacity>
+                            )}
+                          </View>
+                        ) : null}
+                      </View>
+                    </View>
+                    <TouchableOpacity onPress={handleSubmit}>
+                      <Text style={style.publishButton}>Publish</Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+              </Formik>
+            </KeyboardAvoidingView>
           </ScrollView>
         </SafeAreaView>
       </TouchableWithoutFeedback>
@@ -261,15 +271,13 @@ const style = StyleSheet.create({
     fontFamily: 'Montserrat-Italic',
     color: '#FFFFFF',
     height: moderateScale(42),
-
-      },
+  },
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom:moderateScale(18),
-    marginTop:moderateScale(2)
-
-      },
+    marginBottom: moderateScale(18),
+    marginTop: moderateScale(2),
+  },
   buyButton: {
     alignSelf: 'center',
     color: '#FFFFFF',
@@ -340,6 +348,17 @@ const style = StyleSheet.create({
   publishButton: {
     alignSelf: 'center',
     backgroundColor: '#8b64ff',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    paddingVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(20),
+    width: moderateScale(303),
+    borderRadius: 6,
+    fontSize: moderateScale(14),
+    marginTop: moderateScale(36),
+    fontFamily: 'Montserrat-SemiBold',
+    marginBottom: moderateScale(8),
+    // color: '#8b64ff',
     color: '#FFFFFF',
     textAlign: 'center',
     paddingVertical: moderateScale(12),

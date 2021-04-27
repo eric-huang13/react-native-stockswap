@@ -11,7 +11,7 @@ import {
   Keyboard,
   ScrollView,
   Modal,
-  Platform
+  Platform,
 } from 'react-native';
 import {Formik} from 'formik';
 import * as yup from 'yup';
@@ -22,13 +22,12 @@ import {RegisterGoogle} from '../../actions/user';
 import CheckBox from '@react-native-community/checkbox';
 import LinearGradient from 'react-native-linear-gradient';
 import SmallStockSwap from '../../icons/SmallStockSwap';
-import GoogleIcon from '../../icons/GoogleIcon';
 import AppleIcon from '../../icons/AppleIcon';
 import FacebookIcon from '../../icons/FacebookIcon';
 import TermsAndConditions from './TermsAndConditions';
 import GoogleOauth from '../LoggedOutComponents/GoogleOauth';
 
-import {moderateScale, verticalScale, scale} from '../../util/responsiveFont'
+import {moderateScale} from '../../util/responsiveFont';
 
 import Toast from 'react-native-toast-message';
 
@@ -45,10 +44,10 @@ const reviewSchema = yup.object({
     .matches(/\d/, 'Password must have a number')
     .matches(/\w*[a-z]\w*/, 'Password must have a lowercase letter')
     .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter'),
-    // .matches(
-    //   /[!@#$%^&*()\-_"=+{}; :,<.>]/,
-    //   'Password must have a special character',
-    // ),
+  // .matches(
+  //   /[!@#$%^&*()\-_"=+{}; :,<.>]/,
+  //   'Password must have a special character',
+  // ),
 
   passwordConfirmation: yup
     .string()
@@ -58,7 +57,13 @@ const reviewSchema = yup.object({
   termsVersion: yup.string().required('Please agree with Terms and Conditions'),
 });
 
-export const SignUp = ({RegisterUser, navigation, userData, loading, RegisterUserGoogle}) => {
+export const SignUp = ({
+  RegisterUser,
+  navigation,
+  userData,
+  loading,
+  RegisterUserGoogle,
+}) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [termsModal, setTermsModal] = useState(false);
 
@@ -101,11 +106,11 @@ export const SignUp = ({RegisterUser, navigation, userData, loading, RegisterUse
                 }}
                 validationSchema={reviewSchema}
                 onSubmit={(values, actions) => {
-                  console.log(values, "Values")                          
+                  console.log(values, 'Values');
                   navigation.navigate({
                     name: 'ProfileInfoForm',
-                    params: {userInfo:values},
-                  })
+                    params: {userInfo: values},
+                  });
                 }}>
                 {(props) => (
                   <View style={style.inner}>
@@ -211,14 +216,14 @@ export const SignUp = ({RegisterUser, navigation, userData, loading, RegisterUse
                             value={toggleCheckBox}
                             onValueChange={(newValue) =>
                               setToggleCheckBox(newValue)
-                            }                        
+                            }
                             tintColors={{
                               true: '#b8a0ff',
                               false: 'lightgrey',
                             }}
                           />
                           <TouchableOpacity onPress={() => handleTerms(true)}>
-                             <Text style={style.termsText}>
+                            <Text style={style.termsText}>
                               I agree with the Terms and Conditions
                             </Text>
                           </TouchableOpacity>

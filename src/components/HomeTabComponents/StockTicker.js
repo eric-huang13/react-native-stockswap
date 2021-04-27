@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import {StyleSheet, Text, SafeAreaView} from 'react-native';
 import TextTicker from 'react-native-text-ticker';
 import {connect} from 'react-redux';
-import {moderateScale, verticalScale, scale} from '../../util/responsiveFont'
+import {moderateScale} from '../../util/responsiveFont';
 
 export class StockTicker extends PureComponent {
   render() {

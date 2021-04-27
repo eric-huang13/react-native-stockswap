@@ -19,7 +19,7 @@ import EditPost from '../components/MyProfileTabScreens/EditPost';
 import CreatePostPreview from '../components/PostTabScreens/CreatePostPreview';
 
 //responsive scale
-import {moderateScale, verticalScale, scale} from '../util/responsiveFont'
+import {moderateScale} from '../util/responsiveFont';
 
 const HomeStack = createStackNavigator();
 

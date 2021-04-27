@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import {connect} from 'react-redux';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 
 export class CompanySymbolList extends Component {
   constructor(props) {

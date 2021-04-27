@@ -10,7 +10,7 @@ import {
 import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
 import FollowersBox from '../HomeTabComponents/FollowersBox';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 
 export class Followers extends Component {
   constructor(props) {

@@ -14,7 +14,7 @@ import MyProfile from '../components/MyProfileTabScreens/MyProfile';
 import TopUsers from '../components/TopUsersTabScreens/TopUsers';
 
 //responsive scale
-import { moderateScale } from '../util/responsiveFont';
+import {moderateScale} from '../util/responsiveFont';
 
 const TopUsersStack = createStackNavigator();
 

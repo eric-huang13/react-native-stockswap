@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
 import PortfolioGraph from '../HomeTabComponents/PortfolioGraph';
 import BearIcon from '../../icons/BearIcon';
 import BullIcon from '../../icons/BullIcon';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 
 export default class UserPortfolioBox extends Component {
   constructor(props) {

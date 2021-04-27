@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, Image, SafeAreaView} from 'react-native';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 
 export default class FollowersBox extends Component {
   render() {
@@ -18,8 +18,7 @@ export default class FollowersBox extends Component {
             <Text style={style.name}>{item.name}</Text>
             <Text style={style.username}>{item.username}</Text>
           </View>
-          </View>
-
+        </View>
       </SafeAreaView>
     );
   }
@@ -65,5 +64,4 @@ const style = StyleSheet.create({
   nameContainer: {
     marginLeft: moderateScale(6),
   },
-
-    });
+});

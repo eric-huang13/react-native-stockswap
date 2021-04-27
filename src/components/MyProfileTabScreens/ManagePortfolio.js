@@ -13,7 +13,7 @@ import SearchInput from '../../icons/SearchInput';
 import TriangleIcon from '../../icons/TriangleIcon';
 import {connect} from 'react-redux';
 import ManagePortfolioBox from '../MyProfileTabComponents/ManagePortfolioBox';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 
 class ManagePortfolio extends Component {
   constructor(props) {

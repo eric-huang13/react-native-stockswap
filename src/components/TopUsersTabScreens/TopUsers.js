@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import {
   View,
-  TextInput,
   TouchableOpacity,
-  ScrollView,
   StyleSheet,
   Text,
   SafeAreaView,
@@ -12,8 +10,7 @@ import {connect} from 'react-redux';
 import TopUsersPeople from './TopUsersPeople';
 
 import LinearGradient from 'react-native-linear-gradient';
-import {moderateScale} from '../../util/responsiveFont'
-
+import {moderateScale} from '../../util/responsiveFont';
 
 export class TopUsers extends Component {
   constructor(props) {

@@ -9,7 +9,7 @@ import {
 
 import PasswordIcon from '../../icons/PasswordIcon';
 import LinearGradient from 'react-native-linear-gradient';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 
 class PasswordSuccess extends Component {
   constructor(props) {

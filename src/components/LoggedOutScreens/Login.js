@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {
-  Button,
   SafeAreaView,
   Text,
   View,
@@ -12,21 +11,19 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   ScrollView,
-  Platform
+  Platform,
 } from 'react-native';
 import {Login} from '../../actions/user';
 import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
 import SmallStockSwap from '../../icons/SmallStockSwap';
-import GoogleIcon from '../../icons/GoogleIcon';
 import AppleIcon from '../../icons/AppleIcon';
 import FacebookIcon from '../../icons/FacebookIcon';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import {RegisterGoogle} from '../../actions/user';
 import GoogleOauth from '../LoggedOutComponents/GoogleOauth';
-import {moderateScale} from '../../util/responsiveFont'
-
+import {moderateScale} from '../../util/responsiveFont';
 
 const reviewSchema = yup.object({
   email: yup
@@ -41,10 +38,10 @@ const reviewSchema = yup.object({
     .matches(/\d/, 'Password must have a number')
     .matches(/\w*[a-z]\w*/, 'Password must have a lowercase letter')
     .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter'),
-    // .matches(
-    //   /[!@#$%^&*()\-_"=+{}; :,<.>]/,
-    //   'Password must have a special character',
-    // ),
+  // .matches(
+  //   /[!@#$%^&*()\-_"=+{}; :,<.>]/,
+  //   'Password must have a special character',
+  // ),
 });
 
 export class LoginScreen extends Component {
@@ -63,7 +60,7 @@ export class LoginScreen extends Component {
   };
 
   render() {
-    const {isLoggedIn, LoginUser, RegisterUserGoogle} = this.props;
+    const {LoginUser, RegisterUserGoogle} = this.props;
 
     return (
       <LinearGradient
@@ -179,7 +176,7 @@ export class LoginScreen extends Component {
               <View style={style.bottomButtonsContainer}>
                 <Text style={style.orText}>--OR--</Text>
                 <View style={style.alternateSignUpContainer}>
-                <GoogleOauth RegisterUserGoogle={RegisterUserGoogle} />                  
+                  <GoogleOauth RegisterUserGoogle={RegisterUserGoogle} />
                   <View style={style.alternateSignupInner}>
                     <View style={style.signupIcon}>
                       <FacebookIcon />
@@ -218,7 +215,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     LoginUser: (input) => dispatch(Login(input)),
     RegisterUserGoogle: (input) => dispatch(RegisterGoogle(input)),
-
   };
 };
 

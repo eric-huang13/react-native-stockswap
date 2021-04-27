@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {
-  Button,
+  
   SafeAreaView,
   Text,
   View,
@@ -12,19 +12,14 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   ScrollView,
-  Platform
+  Platform,
 } from 'react-native';
 import {Login} from '../../actions/user';
-import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
 import SmallStockSwap from '../../icons/SmallStockSwap';
-import GoogleIcon from '../../icons/GoogleIcon';
-import AppleIcon from '../../icons/AppleIcon';
-import FacebookIcon from '../../icons/FacebookIcon';
 import {Formik} from 'formik';
 import * as yup from 'yup';
-import {moderateScale} from '../../util/responsiveFont'
-
+import {moderateScale} from '../../util/responsiveFont';
 
 const reviewSchema = yup.object({
   email: yup
@@ -32,17 +27,17 @@ const reviewSchema = yup.object({
     .required('Email is required')
     .email('A valid email address is required'),
 
-//   password: yup
-//     .string()
-//     .required('Password is required')
-//     .min(8, ({min}) => `Password must be at least ${min} characters`)
-//     .matches(/\d/, 'Password must have a number')
-//     .matches(/\w*[a-z]\w*/, 'Password must have a lowercase letter')
-//     .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter'),
-    // .matches(
-    //   /[!@#$%^&*()\-_"=+{}; :,<.>]/,
-    //   'Password must have a special character',
-    // ),
+  //   password: yup
+  //     .string()
+  //     .required('Password is required')
+  //     .min(8, ({min}) => `Password must be at least ${min} characters`)
+  //     .matches(/\d/, 'Password must have a number')
+  //     .matches(/\w*[a-z]\w*/, 'Password must have a lowercase letter')
+  //     .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter'),
+  // .matches(
+  //   /[!@#$%^&*()\-_"=+{}; :,<.>]/,
+  //   'Password must have a special character',
+  // ),
 });
 
 export class ForgotPassword extends Component {
@@ -50,10 +45,8 @@ export class ForgotPassword extends Component {
     super(props);
   }
 
-  
-
   render() {
-    const {isLoggedIn, LoginUser} = this.props;
+    const {LoginUser} = this.props;
 
     return (
       <LinearGradient
@@ -84,8 +77,13 @@ export class ForgotPassword extends Component {
                         <SmallStockSwap />
                       </View>
                       <View style={style.container}>
-                        <Text style={style.welcomeHeader}>Forgot your password?</Text>
-                        <Text style={style.loginHeader}>Enter your email to receive a link to reset your password.</Text>
+                        <Text style={style.welcomeHeader}>
+                          Forgot your password?
+                        </Text>
+                        <Text style={style.loginHeader}>
+                          Enter your email to receive a link to reset your
+                          password.
+                        </Text>
                         <View>
                           <Text style={style.inputHeader}>Email</Text>
 
@@ -110,31 +108,7 @@ export class ForgotPassword extends Component {
                             {props.touched.email && props.errors.email}
                           </Text>
                         </View>
-                        {/* <View>
-                          <Text style={style.inputHeader}>Password</Text>
-                          <TextInput
-                            style={
-                              props.touched.password && props.errors.password
-                                ? {
-                                    ...style.inputStyle,
-                                    backgroundColor: '#F66E6E',
-                                  }
-                                : {...style.inputStyle}
-                            }
-                            placeholder="Password"
-                            onChangeText={props.handleChange('password')}
-                            onBlur={props.handleBlur('password')}
-                            value={props.values.password}
-                            placeholder="Enter your password"
-                            placeholderTextColor="#9ea6b5"
-                            secureTextEntry
-                            returnKeyType="next"
-                          />
-                        </View>
-                        <Text style={style.errorText}>
-                          {props.touched.password && props.errors.password}
-                        </Text>
-                        <View /> */}
+                        
 
                         <View style={style.termsContainer}>
                           <View style={style.leftTerms}>
@@ -150,9 +124,7 @@ export class ForgotPassword extends Component {
                             onPress={() =>
                               this.props.navigation.navigate('Login')
                             }>
-                            <Text style={style.termsText}>
-                              Back to Login
-                            </Text>
+                            <Text style={style.termsText}>Back to Login</Text>
                           </TouchableOpacity>
                         </View>
                         <View>
@@ -164,7 +136,7 @@ export class ForgotPassword extends Component {
                     </View>
                   )}
                 </Formik>
-              </TouchableWithoutFeedback>           
+              </TouchableWithoutFeedback>
             </ScrollView>
           </SafeAreaView>
         </KeyboardAvoidingView>

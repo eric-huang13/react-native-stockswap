@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 
 export default class CompanyCategoryBox extends Component {
   render() {

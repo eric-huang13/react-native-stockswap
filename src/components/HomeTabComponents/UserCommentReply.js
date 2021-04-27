@@ -7,8 +7,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
-import {moderateScale} from '../../util/responsiveFont'
-
+import {moderateScale} from '../../util/responsiveFont';
 
 export default class UserCommentReply extends Component {
   constructor(props) {

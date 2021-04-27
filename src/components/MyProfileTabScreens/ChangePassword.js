@@ -16,7 +16,7 @@ import {EditUser} from '../../actions/user';
 import LinearGradient from 'react-native-linear-gradient';
 import {Formik} from 'formik';
 import * as yup from 'yup';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 
 const reviewSchema = yup.object({
   password: yup
@@ -26,12 +26,12 @@ const reviewSchema = yup.object({
     .matches(/\d/, 'Password must have a number')
     .matches(/\w*[a-z]\w*/, 'Password must have a lowercase letter')
     .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter'),
-    // .matches(
-    //   /[!@#$%^&*()\-_"=+{}; :,<.>]/,
-    //   'Password must have a special character',
-    // ),
+  // .matches(
+  //   /[!@#$%^&*()\-_"=+{}; :,<.>]/,
+  //   'Password must have a special character',
+  // ),
 
-    passwordConfirmation: yup
+  passwordConfirmation: yup
     .string()
     .required('Password confimation is required')
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
@@ -63,89 +63,88 @@ class ChangePassword extends Component {
           style={{flex: 1}}>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <SafeAreaView style={style.mainContainer}>
-            <Formik
-                  initialValues={{
-                    password: '',
-                    passwordConfirmation: '',
-                  }}
-                  validationSchema={reviewSchema}
-                  onSubmit={(values, actions) => {
-                    console.log(values, 'Values');
+              <Formik
+                initialValues={{
+                  password: '',
+                  passwordConfirmation: '',
+                }}
+                validationSchema={reviewSchema}
+                onSubmit={(values, actions) => {
+                  console.log(values, 'Values');
 
-                    // EditUser(values);
-                    this.props.navigation.navigate('PasswordSuccess')
-
-                  }}>
-                  {(props) => (
-              <View style={style.container}>
-                <Text style={style.changeEmailHeader}>Change password</Text>
-                <View style={style.inputEmailContainer}>
-                  <Text style={style.inputHeader}>New Password</Text>
-                  <TextInput
-                          style={
-                            props.touched.password && props.errors.password
-                              ? {
-                                  ...style.inputStyle,
-                                  backgroundColor: '#F66E6E',
-                                }
-                              : {...style.inputStyle}
-                          }
-                          placeholder="Password"
-                          onChangeText={props.handleChange('password')}
-                          onBlur={props.handleBlur('password')}
-                          value={props.values.password}
-                          placeholder="Enter your password"
-                          placeholderTextColor="#9ea6b5"
-                          secureTextEntry
-                          returnKeyType="next"
-                        />
-                      </View>
-                      <Text style={style.errorText}>
-                        {props.touched.password && props.errors.password}
-                      </Text>
-                <View style={style.inputEmailContainer}>
-                  <Text style={style.inputHeader}>Repeat</Text>
-                  <TextInput
-                          style={
-                            props.touched.passwordConfirmation &&
-                            props.errors.passwordConfirmation
-                              ? {
-                                  ...style.inputStyleConfirm,
-                                  backgroundColor: '#F66E6E',
-                                }
-                              : {...style.inputStyleConfirm}
-                          }
-                          textContentType="password"
-                          placeholder="Confirm password"
-                          onChangeText={props.handleChange(
-                            'passwordConfirmation',
-                          )}
-                          onBlur={props.handleBlur('passwordConfirmation')}
-                          value={props.values.passwordConfirmation}
-                          placeholder="Enter your password"
-                          placeholderTextColor="#9ea6b5"
-                          secureTextEntry
-                        />
-                        <Text style={style.errorText}>
-                          {props.touched.passwordConfirmation &&
-                            props.errors.passwordConfirmation}
-                        </Text>
-                </View>
-                <View>
-                  <TouchableOpacity onPress={props.handleSubmit}>
-                    <Text
-                      style={
-                        props.errors.passwordConfirmation||
-                        props.errors.passwordConfirmation
-                          ? {...style.button, backgroundColor: '#9F9CA7'}
-                          : {...style.button}
-                      }>
-                      Apply
+                  // EditUser(values);
+                  this.props.navigation.navigate('PasswordSuccess');
+                }}>
+                {(props) => (
+                  <View style={style.container}>
+                    <Text style={style.changeEmailHeader}>Change password</Text>
+                    <View style={style.inputEmailContainer}>
+                      <Text style={style.inputHeader}>New Password</Text>
+                      <TextInput
+                        style={
+                          props.touched.password && props.errors.password
+                            ? {
+                                ...style.inputStyle,
+                                backgroundColor: '#F66E6E',
+                              }
+                            : {...style.inputStyle}
+                        }
+                        placeholder="Password"
+                        onChangeText={props.handleChange('password')}
+                        onBlur={props.handleBlur('password')}
+                        value={props.values.password}
+                        placeholder="Enter your password"
+                        placeholderTextColor="#9ea6b5"
+                        secureTextEntry
+                        returnKeyType="next"
+                      />
+                    </View>
+                    <Text style={style.errorText}>
+                      {props.touched.password && props.errors.password}
                     </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-              )}
+                    <View style={style.inputEmailContainer}>
+                      <Text style={style.inputHeader}>Repeat</Text>
+                      <TextInput
+                        style={
+                          props.touched.passwordConfirmation &&
+                          props.errors.passwordConfirmation
+                            ? {
+                                ...style.inputStyleConfirm,
+                                backgroundColor: '#F66E6E',
+                              }
+                            : {...style.inputStyleConfirm}
+                        }
+                        textContentType="password"
+                        placeholder="Confirm password"
+                        onChangeText={props.handleChange(
+                          'passwordConfirmation',
+                        )}
+                        onBlur={props.handleBlur('passwordConfirmation')}
+                        value={props.values.passwordConfirmation}
+                        placeholder="Enter your password"
+                        placeholderTextColor="#9ea6b5"
+                        secureTextEntry
+                      />
+                      <Text style={style.errorText}>
+                        {props.touched.passwordConfirmation &&
+                          props.errors.passwordConfirmation}
+                      </Text>
+                    </View>
+                    <View>
+                      <TouchableOpacity onPress={props.handleSubmit}>
+                        <Text
+                          style={
+                            props.errors.passwordConfirmation ||
+                            props.errors.passwordConfirmation
+                              ? {...style.button, backgroundColor: '#9F9CA7'}
+                              : {...style.button}
+                          }>
+                          Apply
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                )}
               </Formik>
             </SafeAreaView>
           </TouchableWithoutFeedback>

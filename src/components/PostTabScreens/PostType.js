@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import PostIcon from '../../icons/PostIcon';
 import TradeIcon from '../../icons/TradeIcon';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 
 export default class PostType extends Component {
   render() {

@@ -6,13 +6,12 @@ import {
   Image,
   SafeAreaView,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 import {connect} from 'react-redux';
 import UserCommentReply from '../HomeTabComponents/UserCommentReply';
 // import {  Swipeable } from 'react-native-gesture-handler';
-import {moderateScale} from '../../util/responsiveFont'
-
+import {moderateScale} from '../../util/responsiveFont';
 
 class UserCommentList extends Component {
   accountId = this.props.userAccount.id;
@@ -47,44 +46,44 @@ class UserCommentList extends Component {
     return (
       <SafeAreaView style={style.mainContainer}>
         <ScrollView>
-        {filteredComments.map((item) => (
-          // <Swipeable
-          // renderLeftActions={rightAction}
+          {filteredComments.map((item) => (
+            // <Swipeable
+            // renderLeftActions={rightAction}
 
-          // >
-          <View key={item.id} style={style.itemContainer}>
-            <View style={style.detailsContainer}>
-              <Image
-                style={style.postUserImage}
-                source={{uri: item.profileImg}}
-              />
-              <View style={style.nameBodyContainer}>
-                <TouchableOpacity
-                  key={item.id}
-                  onPress={() => this.navigationByCondition(item)}>
-                  <Text style={style.name}>{item.name} </Text>
-                </TouchableOpacity>
-                <Text style={style.body}>{item.body} </Text>
+            // >
+            <View key={item.id} style={style.itemContainer}>
+              <View style={style.detailsContainer}>
+                <Image
+                  style={style.postUserImage}
+                  source={{uri: item.profileImg}}
+                />
+                <View style={style.nameBodyContainer}>
+                  <TouchableOpacity
+                    key={item.id}
+                    onPress={() => this.navigationByCondition(item)}>
+                    <Text style={style.name}>{item.name} </Text>
+                  </TouchableOpacity>
+                  <Text style={style.body}>{item.body} </Text>
+                </View>
+              </View>
+              <View style={style.belowCommentContainer}>
+                <Text style={style.time}>{item.time}</Text>
+                <View style={style.likesContainer}>
+                  <Text style={style.likes}>{item.likes} likes</Text>
+                  <Text style={style.reply}>Reply </Text>
+                </View>
+              </View>
+              <View>
+                <UserCommentReply
+                  navigation={this.props.navigation}
+                  reply={reply}
+                  id={item.id}
+                  userAccount={userAccount}
+                />
               </View>
             </View>
-            <View style={style.belowCommentContainer}>
-              <Text style={style.time}>{item.time}</Text>
-              <View style={style.likesContainer}>
-                <Text style={style.likes}>{item.likes} likes</Text>
-                <Text style={style.reply}>Reply </Text>
-              </View>
-            </View>
-            <View>
-              <UserCommentReply
-                navigation={this.props.navigation}
-                reply={reply}
-                id={item.id}
-                userAccount={userAccount}
-              />
-            </View>
-          </View>
-          // </Swipeable>
-        ))}
+            // </Swipeable>
+          ))}
         </ScrollView>
       </SafeAreaView>
     );

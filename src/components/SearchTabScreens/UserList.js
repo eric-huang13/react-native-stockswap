@@ -14,7 +14,7 @@ import {connect} from 'react-redux';
 import UserBox from '../SearchTabComponents/UserBox';
 import SearchInput from '../../icons/SearchInput';
 import UserListImage from '../../icons/UserListImage';
-import {moderateScale} from '../../util/responsiveFont'
+import {moderateScale} from '../../util/responsiveFont';
 
 export class UserList extends Component {
   constructor(props) {

@@ -9,7 +9,7 @@ import {
 import {connect} from 'react-redux';
 import Article from '../SearchTabComponents/Article';
 import SearchInput from '../../icons/SearchInput';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 
 export class ArticleList extends Component {
   constructor(props) {

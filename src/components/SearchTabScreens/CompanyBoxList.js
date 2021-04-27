@@ -8,8 +8,7 @@ import {
   ScrollView,
   SafeAreaView,
 } from 'react-native';
-import {moderateScale} from '../../util/responsiveFont'
-
+import {moderateScale} from '../../util/responsiveFont';
 
 import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
@@ -40,15 +39,13 @@ export class CompanyBoxList extends Component {
       <SafeAreaView style={style.mainContainer}>
         <ScrollView contentContainerStyle={{paddingBottom: moderateScale(180)}}>
           <View style={style.searchInputContainer}>
-
-          <View
-        style={{
-          position: "absolute",
-          zIndex: 1,
-          left: 14,
-          top:10
-        }}
-      >
+            <View
+              style={{
+                position: 'absolute',
+                zIndex: 1,
+                left: 14,
+                top: 10,
+              }}>
               <SearchInput />
             </View>
             <TextInput
@@ -244,7 +241,6 @@ const style = StyleSheet.create({
   },
   header: {
     fontSize: moderateScale(17),
-    fontSize: moderateScale(17),
     marginLeft: moderateScale(5.5),
     color: 'lightgrey',
     fontFamily: 'Montserrat-Regular',
@@ -252,7 +248,7 @@ const style = StyleSheet.create({
   seeAllHeader: {
     paddingTop: moderateScale(3.5),
     paddingRight: moderateScale(2),
-    fontSize:moderateScale(15),
+    fontSize: moderateScale(15),
     fontSize: moderateScale(15),
     color: '#B8A0FF',
     fontFamily: 'Montserrat-SemiBold',

@@ -13,8 +13,7 @@ import LikeInactiveIcon from '../../icons/LikeInactiveIcon';
 import CommentIcon from '../../icons/CommentIcon';
 import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
-import { moderateScale } from '../../util/responsiveFont';
-
+import {moderateScale} from '../../util/responsiveFont';
 
 class MyProfilePosts extends Component {
   constructor(props) {
@@ -47,8 +46,7 @@ class MyProfilePosts extends Component {
   render() {
     const {shouldShow} = this.state;
     const {
-      isLoggedIn,
-      LogoutUser,
+      
       post,
       comments,
       reply,
@@ -196,7 +194,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    LogoutUser: (userCredentials) => dispatch(Logout(userCredentials)),
   };
 };
 
@@ -307,8 +304,7 @@ const style = StyleSheet.create({
     fontStyle: 'italic',
     fontSize: moderateScale(14),
   },
-  lastCommentContainer: {
-  },
+  lastCommentContainer: {},
   lastCommentName: {
     color: '#999999',
     fontFamily: 'Montserrat-Bold',

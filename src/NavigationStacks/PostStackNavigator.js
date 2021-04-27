@@ -11,7 +11,7 @@ import CreatePostPreview from '../components/PostTabScreens/CreatePostPreview';
 import CreateTrade from '../components/PostTabScreens/CreateTrade';
 
 //responsive scale
-import { moderateScale } from '../util/responsiveFont';
+import {moderateScale} from '../util/responsiveFont';
 
 const PostStack = createStackNavigator();
 

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, Image, SafeAreaView} from 'react-native';
-import {moderateScale} from '../../util/responsiveFont'
+import {moderateScale} from '../../util/responsiveFont';
 
 export default class UserBox extends Component {
   render() {
@@ -25,7 +25,8 @@ export default class UserBox extends Component {
             Followers: <Text style={style.detailsBold}>{item.followers}</Text>
           </Text>
           <Text style={style.followers}>
-            Trading since: <Text style={style.detailsBold}>{item.followers}</Text>
+            Trading since:{' '}
+            <Text style={style.detailsBold}>{item.followers}</Text>
           </Text>
         </View>
         <View style={style.percentageView}>

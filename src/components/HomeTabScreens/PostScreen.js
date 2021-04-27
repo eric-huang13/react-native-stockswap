@@ -15,7 +15,7 @@ import ReportModal from '../HomeTabComponents/ReportModal';
 import ShareToModal from '../HomeTabComponents/ShareToModal';
 import LikeInactiveIcon from '../../icons/LikeInactiveIcon';
 import CommentIcon from '../../icons/CommentIcon';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 
 export default class PostScreen extends Component {
   constructor(props) {
