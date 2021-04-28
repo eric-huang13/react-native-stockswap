@@ -20,28 +20,28 @@ function GoogleOauth(props) {
   return (
     <View>
       {!props.googleUser.idToken ? (
+      <TouchableOpacity onPress={signIn}>
         <View style={styles.alternateSignupInner}>
           <View style={styles.signupIcon}>
             <GoogleIcon />
-          </View>
-          <TouchableOpacity onPress={signIn}>
+          </View>          
             <Text style={styles.alternateSignUpButton}>
               SIGN UP WITH GOOGLE
-            </Text>
-          </TouchableOpacity>
+            </Text>          
         </View>
+        </TouchableOpacity>
       ) : (
+      <TouchableOpacity onPress={signOut}>
         <View style={styles.alternateSignupInner}>
           <View style={styles.signupIcon}>
             <Image
               style={{width: 23, height: 23}}
               source={{uri: props.googleUser.user.photo}}
             />
-          </View>
-          <TouchableOpacity onPress={signOut}>
-            <Text style={styles.alternateSignUpButton}>LOGOUT OF GOOGLE</Text>
-          </TouchableOpacity>
+          </View>          
+            <Text style={styles.alternateSignUpButton}>LOGOUT OF GOOGLE</Text>          
         </View>
+        </TouchableOpacity>
       )}
     </View>
   );

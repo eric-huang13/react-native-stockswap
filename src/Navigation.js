@@ -239,8 +239,6 @@ class Navigation extends Component {
                 }
               },
             })}>
-            {/* {isLoggedIn ? ( */}
-
             <Tab.Screen name="Home" component={HomeStackNavigator} />
             <Tab.Screen name="Search" component={SearchStackNavigator} />
             <Tab.Screen name="PostScreen" component={PostStackNavigator} />
@@ -260,11 +258,6 @@ class Navigation extends Component {
             <Tab.Screen name="LoggedOut" component={LoggedOutStackNavigator} />
           </Tab.Navigator>
         )}
-
-        {/* ) : (
-          <LoggedOutStackNavigator/>
-        )} */}
-
         <Toast config={toastConfig} ref={(ref) => Toast.setRef(ref)} />
       </NavigationContainer>
     );

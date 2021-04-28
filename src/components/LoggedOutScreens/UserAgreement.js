@@ -167,7 +167,7 @@ export default class UserAgreement extends Component {
               <TouchableOpacity
                 onPress={() => this.props.screenSelect('privacy')}>
                 <Text style={style.link}>
-                  [INSERT AS LINK TO MOBILE APP PRIVACY POLICY].
+                  Mobile App Privacy Policy.{' '}
                 </Text>
               </TouchableOpacity>
               By downloading, installing, using, and providing information to or
@@ -524,10 +524,13 @@ const style = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   highlight: {
-    backgroundColor: 'lightgrey',
+    backgroundColor: '#DEDEDE',
+    color:'black',
   },
   link: {
-    backgroundColor: 'yellow',
+    color: 'yellow',
+    fontSize: moderateScale(14),
+    fontFamily: 'Montserrat-Medium',
   },
   buttonContainer: {
     marginTop: moderateScale(10),

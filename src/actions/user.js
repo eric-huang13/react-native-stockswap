@@ -34,13 +34,10 @@ export const Register = (input) => {
     dispatch({type: SIGNUP_START});
     axios
       .post(
-        'http://ec2-3-139-84-5.us-east-2.compute.amazonaws.com/v1/auth/signup',
-        input,
-      )
-
+        'http://ec2-3-139-84-5.us-east-2.compute.amazonaws.com/v1/auth/signup', input,)
       .then((response) => {
         console.log(response, 'RESPONSE in Signup');
-
+        
         dispatch({type: SIGNUP_SUCCESS, payload: response.data});
         Toast.show({
           type: 'success',
@@ -101,6 +98,9 @@ export const RegisterGoogle = (input) => {
   return (dispatch) => {
     dispatch({type: SIGNUP_START});
     axios
+      // .post('http://ec2-3-139-84-5.us-east-2.compute.amazonaws.com/auth/login', input)
+
+      //Using endpoint for testing
       .post('https://jiujitsux.herokuapp.com/api/users/register', input)
 
       .then((response) => {
@@ -159,7 +159,7 @@ export const GoogleLogin = () => {
       const userInfo = await GoogleSignin.signIn();
       //send token to backend
       //  dispatch (RegisterGoogle({idToken:userInfo.idToken}))
-      //test to make sure sending googl userinfo correctly
+      //test to make sure sending google userinfo correctly
       dispatch(Login({email: userInfo.user.email, password: 'Password1!!'}));
 
       dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
@@ -186,7 +186,7 @@ export const GoogleIsSignedIn = () => {
         const userInfo = await GoogleSignin.signInSilently();
         //send token to backend
         //  dispatch (RegisterGoogle({idToken:userInfo.idToken}))
-        //test to make sure sending googl userinfo correctly
+        //test to make sure sending google userinfo correctly
         dispatch(Login({email: userInfo.user.email, password: 'Password1!!'}));
         dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
       } catch (error) {

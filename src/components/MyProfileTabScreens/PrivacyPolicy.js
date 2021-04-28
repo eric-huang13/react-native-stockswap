@@ -725,10 +725,13 @@ const style = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   highlight: {
-    backgroundColor: 'lightgrey',
+    backgroundColor: '#DEDEDE',
+    color:'black',
   },
   link: {
-    backgroundColor: 'yellow',
+    color: 'yellow',
+    fontSize: moderateScale(14),
+    fontFamily: 'Montserrat-Medium',
   },
   buttonContainer: {
     marginTop: moderateScale(10),
