@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Dimensions, SafeAreaView} from 'react-native';
-import {SlideAreaChart} from 'react-native-slide-charts';
+import {SlideAreaChart} from '@connectedcars/react-native-slide-charts';
 import {LinearGradient, Stop} from 'react-native-svg';
 
 export default class ProfileGraph extends Component {

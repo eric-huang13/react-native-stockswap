@@ -181,13 +181,18 @@ const toastConfig = {
 const Tab = createBottomTabNavigator();
 
 class Navigation extends Component {
+  componentDidMount() {
+    setTimeout(() => {
+      RNBootSplash.hide();
+    }, 1000)
+  }
   render() {
     const {isLoggedIn} = this.props;
 
     return (
       <NavigationContainer
         ref={navigationRef}
-        onReady={() => RNBootSplash.hide()}>
+        >
         {isLoggedIn ? (
           <Tab.Navigator
             initialRouteName={'Home'}
