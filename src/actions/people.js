@@ -1,4 +1,4 @@
-import {EDITUSER_START, EDITUSER_SUCCESS, EDITUSER_ERROR} from 'constants';
+import {EDITUSER_START, EDITUSER_SUCCESS, EDITUSER_ERROR, USERS_FETCHING, USERS_SUCCESS, USERS_ERROR} from 'constants';
 import axios from 'axios';
 import deviceStorage from '../util/DeviceStorage';
 import apiInstance from '../util/axiosConfig';
@@ -23,3 +23,20 @@ import {navigate} from '../../RootNavigation';
 // })
 //   };
 // };
+export const fetchFake = (page, offset) => {
+    return (dispatch) => {
+      dispatch({type: USERS_FETCHING});  
+      axios
+        .get(`https://api.openbrewerydb.org/breweries?page=${page}&per_page=${offset}`)
+        // .then(response => console.log (response.data, "From USERS API"))
+        .then((response) =>
+          dispatch({type: USERS_SUCCESS, payload: response.data}),
+        )
+        
+    
+        .catch((error) =>
+          dispatch({type: USERS_FAILURE, payload: error.response}),
+        );
+    };
+  };
+  
