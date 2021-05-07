@@ -13,6 +13,8 @@ export class Article extends Component {
         </View>
         <View style={style.headlineContainer}>
           <Text style={style.headline}>{item.headline}</Text>
+          <Text style={style.headline}>{item.name}</Text>
+
           <Text style={style.intro}>{item.intro}</Text>
         </View>
         <View style={style.sourceContainer}>
