@@ -29,7 +29,7 @@ export class TopUsersPeople extends Component {
 
  //fetches more data, increases page number by 1
   fetchMoreData = () => {
-  if (!this.props.loading){
+  if (!this.props.loading && this.props.loadMore){
   this.props.fetchFake(this.props.page, this.props.offset);
   console.log(this.props.page,'ran')
   }
@@ -60,6 +60,7 @@ export class TopUsersPeople extends Component {
  
 
   render() {
+    console.log(this.props.loadMore,'ran')
 
     const {timeFilter, input} = this.state;
     const {users, userAccount} = this.props;
@@ -167,12 +168,12 @@ export class TopUsersPeople extends Component {
           </View>
           </View>
           }
-          keyExtractor={(index) => index.toString()}
+          keyExtractor={(item, index) => String(index)}
           contentContainerStyle={{ paddingBottom: 20 }}
-          data={this.props.users}
+          data={filteredUsers}
            renderItem={({item, index}) => (
             <TouchableOpacity
-            key={item.id}
+            // key={item.id}
             onPress={() => this.navigationByCondition(item)}>
             <UserBox item={item} index={index} />
           </TouchableOpacity>
@@ -202,6 +203,7 @@ const mapStateToProps = (state) => {
     userAccount: state.user.userFakeData,
     loading:state.people.loading,
     page:state.people.page,
+    loadMore:state.people.loadMore,
   };
 };
 

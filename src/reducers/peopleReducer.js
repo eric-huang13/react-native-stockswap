@@ -2,6 +2,8 @@ import {
   USERS_FETCHING,
   USERS_SUCCESS,
   USERS_ERROR,
+  USERS_STOP,
+  
 } from '../constants';
 
 const defaultState = {
@@ -78,6 +80,7 @@ users: [
 loading:false,
 page:1,
 offset:10,
+loadMore:true,
 };
 
 const peopleReducer = (state = defaultState, action) => {
@@ -101,6 +104,13 @@ switch (action.type) {
       ...state,
       loading: false,
       error: action.payload,
+    };
+    case USERS_STOP:
+    return {
+      ...state,
+      loading: false,
+      error: '',
+      loadMore:action.payload
     };
   default:
     return state;
