@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View>
+  <ForwardRef
+    onPress={[Function]}
+  >
+    <View
+      style={
+        Object {
+          "alignSelf": "center",
+          "backgroundColor": "#2C3957",
+          "borderRadius": 11.299270072992702,
+          "flexDirection": "row",
+          "marginBottom": 14.124087591240876,
+          "paddingHorizontal": 5.649635036496351,
+          "paddingVertical": 16.94890510948905,
+          "width": 494.3430656934307,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignSelf": "center",
+            "backgroundColor": "#3A4A6D",
+            "borderRadius": 9.886861313868614,
+            "marginRight": 88.98175182481751,
+            "marginVertical": -11.299270072992702,
+            "padding": 9.886861313868614,
+          }
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": "test",
+            }
+          }
+          style={
+            Object {
+              "height": 23,
+              "width": 23,
+            }
+          }
+        />
+      </View>
+      <Text
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#FFFFFF",
+            "elevation": 1,
+            "fontFamily": "Montserrat-SemiBold",
+            "fontSize": 19.77372262773723,
+            "justifyContent": "center",
+            "shadowOffset": Object {
+              "height": 2,
+              "width": 0,
+            },
+            "shadowOpacity": 0.25,
+            "shadowRadius": 3.84,
+            "textAlign": "center",
+          }
+        }
+      >
+        LOGOUT OF GOOGLE
+      </Text>
+    </View>
+  </ForwardRef>
+</View>
+`;

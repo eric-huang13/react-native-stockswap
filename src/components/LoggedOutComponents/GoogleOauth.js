@@ -5,7 +5,7 @@ import GoogleIcon from '../../icons/GoogleIcon';
 import {moderateScale} from '../../util/responsiveFont';
 import {GoogleLogin, GoogleLogout, GoogleIsSignedIn} from '../../actions/user';
 
-function GoogleOauth(props) {
+export function GoogleOauth(props) {
   useEffect(() => {
     props.GoogleIsSignedIn();
   }, []);
