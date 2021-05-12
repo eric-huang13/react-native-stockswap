@@ -23,12 +23,12 @@ import {navigate} from '../../RootNavigation';
 
 import Toast from 'react-native-toast-message';
 import {GoogleSignin, statusCodes} from '@react-native-community/google-signin';
-GoogleSignin.configure({
-  webClientId:
-    '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
-  offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-  iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
-});
+// GoogleSignin.configure({
+//   webClientId:
+//     '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
+//   offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+//   iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+// });
 export const Register = (input) => {
   return (dispatch) => {
     dispatch({type: SIGNUP_START});
@@ -94,6 +94,12 @@ export const RegisterwithImage = (input) => {
 };
 
 export const RegisterGoogle = (input) => {
+  GoogleSignin.configure({
+    webClientId:
+      '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
+    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+  });
   console.log(input, 'input in google action');
   return (dispatch) => {
     dispatch({type: SIGNUP_START});
@@ -152,6 +158,12 @@ export const Login = (input) => {
 };
 
 export const GoogleLogin = () => {
+  GoogleSignin.configure({
+    webClientId:
+      '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
+    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+  });
   return async (dispatch) => {
     dispatch({type: GOOGLE_LOGIN_START});
     try {
@@ -179,6 +191,12 @@ export const GoogleLogin = () => {
 };
 
 export const GoogleIsSignedIn = () => {
+  GoogleSignin.configure({
+    webClientId:
+      '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
+    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+  });
   return async (dispatch) => {
     const isSignedIn = await GoogleSignin.isSignedIn();
     if (isSignedIn) {
@@ -204,6 +222,12 @@ export const GoogleIsSignedIn = () => {
 };
 
 export const GoogleLogout = () => {
+  GoogleSignin.configure({
+    webClientId:
+      '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
+    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+  });
   return async (dispatch) => {
     try {
       await GoogleSignin.revokeAccess();

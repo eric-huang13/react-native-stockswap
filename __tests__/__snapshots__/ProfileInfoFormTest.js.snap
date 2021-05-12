@@ -1,0 +1,485 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<BVLinearGradient
+  colors={
+    Array [
+      4280100930,
+      4282207086,
+    ]
+  }
+  endPoint={
+    Object {
+      "x": 0.1,
+      "y": 0.1,
+    }
+  }
+  locations={null}
+  startPoint={
+    Object {
+      "x": 0.1,
+      "y": 1,
+    }
+  }
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    onLayout={[Function]}
+    style={
+      Array [
+        Object {
+          "flex": 1,
+        },
+        Object {
+          "paddingBottom": 0,
+        },
+      ]
+    }
+  >
+    <RCTSafeAreaView
+      emulateUnlessSupported={true}
+      style={
+        Object {
+          "flex": 1,
+          "padding": 11.299270072992702,
+          "paddingHorizontal": 33.8978102189781,
+        }
+      }
+    >
+      <RCTScrollView>
+        <View>
+          <View>
+            <Text
+              style={
+                Object {
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-Bold",
+                  "fontSize": 22.598540145985403,
+                  "marginBottom": 28.248175182481752,
+                  "textAlign": "center",
+                }
+              }
+            >
+              Fill Profile Info
+            </Text>
+            <View
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "backgroundColor": "#515581",
+                  "borderRadius": 141.24087591240874,
+                  "height": 190.67518248175182,
+                  "marginBottom": 35.310218978102185,
+                  "paddingHorizontal": 14.124087591240876,
+                  "paddingVertical": 56.496350364963504,
+                  "width": 190.67518248175182,
+                }
+              }
+            >
+              <View
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "color": "#FFFFFF",
+                      "fontFamily": "Montserrat-Regular",
+                      "fontSize": 19.77372262773723,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  Tap to upload your photo
+                </Text>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "width": 231.63503649635035,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "color": "#babec8",
+                      "fontFamily": "Montserrat-Regular",
+                      "fontSize": 16.94890510948905,
+                      "marginBottom": 1.4124087591240877,
+                    }
+                  }
+                >
+                  Name
+                </Text>
+                <TextInput
+                  allowFontScaling={true}
+                  onBlur={[Function]}
+                  onChangeText={[Function]}
+                  onSubmitEditing={[Function]}
+                  placeholder="Enter your name"
+                  placeholderTextColor="#9ea6b5"
+                  rejectResponderTermination={true}
+                  returnKeyType="next"
+                  style={
+                    Object {
+                      "backgroundColor": "#536183",
+                      "borderRadius": 11.299270072992702,
+                      "color": "#9ea6b5",
+                      "fontFamily": "Montserrat-Italic",
+                      "fontSize": 22.598540145985403,
+                      "marginTop": 1.4124087591240877,
+                      "opacity": 0.7,
+                      "padding": 11.299270072992702,
+                    }
+                  }
+                  underlineColorAndroid="transparent"
+                  value=""
+                />
+                <Text
+                  style={
+                    Object {
+                      "color": "#F66E6E",
+                      "fontWeight": "bold",
+                      "marginBottom": 1.4124087591240877,
+                      "marginTop": 1.4124087591240877,
+                      "textAlign": "center",
+                    }
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Object {
+                    "width": 231.63503649635035,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "color": "#babec8",
+                      "fontFamily": "Montserrat-Regular",
+                      "fontSize": 16.94890510948905,
+                      "marginBottom": 1.4124087591240877,
+                    }
+                  }
+                >
+                  User name
+                </Text>
+                <TextInput
+                  allowFontScaling={true}
+                  onBlur={[Function]}
+                  onChangeText={[Function]}
+                  onSubmitEditing={[Function]}
+                  placeholder="@example"
+                  placeholderTextColor="#9ea6b5"
+                  rejectResponderTermination={true}
+                  style={
+                    Object {
+                      "backgroundColor": "#536183",
+                      "borderRadius": 11.299270072992702,
+                      "color": "#9ea6b5",
+                      "fontFamily": "Montserrat-Italic",
+                      "fontSize": 22.598540145985403,
+                      "marginTop": 1.4124087591240877,
+                      "opacity": 0.7,
+                      "padding": 11.299270072992702,
+                    }
+                  }
+                  underlineColorAndroid="transparent"
+                  value=""
+                />
+                <Text
+                  style={
+                    Object {
+                      "color": "#F66E6E",
+                      "fontWeight": "bold",
+                      "marginBottom": 1.4124087591240877,
+                      "marginTop": 1.4124087591240877,
+                      "textAlign": "center",
+                    }
+                  }
+                />
+              </View>
+            </View>
+            <View>
+              <View>
+                <Text
+                  style={
+                    Object {
+                      "color": "#babec8",
+                      "fontFamily": "Montserrat-Regular",
+                      "fontSize": 16.94890510948905,
+                      "marginBottom": 1.4124087591240877,
+                    }
+                  }
+                >
+                  Hashtag (up to 3 tags)
+                </Text>
+                <TextInput
+                  allowFontScaling={true}
+                  onBlur={[Function]}
+                  onChangeText={[Function]}
+                  onSubmitEditing={[Function]}
+                  placeholder="Add hashtags which describe you"
+                  placeholderTextColor="#9ea6b5"
+                  rejectResponderTermination={true}
+                  returnKeyType="next"
+                  style={
+                    Object {
+                      "backgroundColor": "#536183",
+                      "borderRadius": 11.299270072992702,
+                      "color": "#9ea6b5",
+                      "fontFamily": "Montserrat-Italic",
+                      "fontSize": 22.598540145985403,
+                      "marginTop": 1.4124087591240877,
+                      "opacity": 0.7,
+                      "padding": 11.299270072992702,
+                    }
+                  }
+                  underlineColorAndroid="transparent"
+                  value=""
+                />
+                <Text
+                  style={
+                    Object {
+                      "color": "#F66E6E",
+                      "fontWeight": "bold",
+                      "marginBottom": 1.4124087591240877,
+                      "marginTop": 1.4124087591240877,
+                      "textAlign": "center",
+                    }
+                  }
+                />
+              </View>
+              <View>
+                <Text
+                  style={
+                    Object {
+                      "color": "#babec8",
+                      "fontFamily": "Montserrat-Regular",
+                      "fontSize": 16.94890510948905,
+                      "marginBottom": 1.4124087591240877,
+                    }
+                  }
+                >
+                  Bio
+                </Text>
+                <TextInput
+                  allowFontScaling={true}
+                  multiline={true}
+                  numberOfLines={4}
+                  onBlur={[Function]}
+                  onChangeText={[Function]}
+                  placeholder="Tell a bit about yourself"
+                  placeholderTextColor="#9ea6b5"
+                  rejectResponderTermination={true}
+                  style={
+                    Object {
+                      "backgroundColor": "#536183",
+                      "borderRadius": 11.299270072992702,
+                      "color": "#9ea6b5",
+                      "fontFamily": "Montserrat-Italic",
+                      "fontSize": 22.598540145985403,
+                      "marginTop": 1.4124087591240877,
+                      "opacity": 0.7,
+                      "padding": 11.299270072992702,
+                      "textAlignVertical": "top",
+                    }
+                  }
+                  underlineColorAndroid="transparent"
+                  value=""
+                />
+                <Text
+                  style={
+                    Object {
+                      "color": "#F66E6E",
+                      "fontWeight": "bold",
+                      "marginBottom": 1.4124087591240877,
+                      "marginTop": 1.4124087591240877,
+                      "textAlign": "center",
+                    }
+                  }
+                />
+              </View>
+              <View>
+                <Text
+                  style={
+                    Object {
+                      "color": "#babec8",
+                      "fontFamily": "Montserrat-Regular",
+                      "fontSize": 16.94890510948905,
+                      "marginBottom": 4.237226277372263,
+                      "marginRight": 4.237226277372263,
+                    }
+                  }
+                >
+                  Account privacy
+                </Text>
+                <View>
+                  <View
+                    accessible={true}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "opacity": 1,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "backgroundColor": "#3E4D6C",
+                          "borderRadius": 8.474452554744525,
+                          "flexDirection": "row",
+                          "justifyContent": "space-between",
+                          "paddingHorizontal": 14.124087591240876,
+                          "paddingVertical": 14.124087591240876,
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Object {
+                            "color": "#FFFFFF",
+                            "fontFamily": "Montserrat-Medium",
+                            "fontSize": 22.598540145985403,
+                          }
+                        }
+                      >
+                        Visible for all
+                      </Text>
+                      <RNSVGSvgView
+                        align="xMidYMid"
+                        bbHeight={12.711678832116789}
+                        bbWidth={16.94890510948905}
+                        focusable={false}
+                        height={12.711678832116789}
+                        meetOrSlice={0}
+                        minX={0}
+                        minY={0}
+                        style={
+                          Array [
+                            Object {
+                              "backgroundColor": "transparent",
+                              "borderWidth": 0,
+                            },
+                            Object {
+                              "marginRight": 5.649635036496351,
+                            },
+                            Object {
+                              "flex": 0,
+                              "height": 12,
+                              "width": 16,
+                            },
+                          ]
+                        }
+                        vbHeight={9}
+                        vbWidth={12}
+                        width={16.94890510948905}
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <RNSVGGroup>
+                          <RNSVGPath
+                            d="M6.79 7.985l4.955-6.371A1 1 0 0010.955 0h-9.91a1 1 0 00-.79 1.614l4.956 6.371a1 1 0 001.578 0z"
+                            fill={4290289919}
+                            fillRule={0}
+                            propList={
+                              Array [
+                                "fill",
+                                "fillRule",
+                              ]
+                            }
+                          />
+                        </RNSVGGroup>
+                      </RNSVGSvgView>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "marginBottom": 14.124087591240876,
+                    "marginTop": 28.248175182481752,
+                  }
+                }
+              >
+                <View
+                  accessible={true}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "opacity": 1,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "backgroundColor": "#8b64ff",
+                        "borderRadius": 8.474452554744525,
+                        "color": "#FFFFFF",
+                        "fontFamily": "Montserrat-SemiBold",
+                        "fontSize": 19.77372262773723,
+                        "paddingHorizontal": 28.248175182481752,
+                        "paddingVertical": 16.94890510948905,
+                        "textAlign": "center",
+                        "width": 211.86131386861314,
+                      }
+                    }
+                  >
+                    Next
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </RCTSafeAreaView>
+  </View>
+</BVLinearGradient>
+`;
