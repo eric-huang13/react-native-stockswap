@@ -4,15 +4,13 @@ import TermsAndConditions from '../src/components/LoggedOutScreens/TermsAndCondi
 import renderer from 'react-test-renderer';
 
 
-jest.mock("@react-native-async-storage/async-storage", () =>
-  require("@react-native-async-storage/async-storage/jest/async-storage-mock"),
-);
+// jest.mock("@react-native-async-storage/async-storage", () =>
+//   require("@react-native-async-storage/async-storage/jest/async-storage-mock"),
+// );
 
 
 test('renders correctly', () => {
-//   const renderer = new ShallowRenderer();
-//   renderer.render(<TermsAndConditions/>);
-//   const tree = renderer.getRenderOutput();
+
 // state={screen:"privacy"}
     const tree = renderer.create(<TermsAndConditions/>).toJSON();
   expect(tree).toMatchSnapshot();

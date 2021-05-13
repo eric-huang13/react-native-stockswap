@@ -1,5 +1,4 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import {SignUp} from '../src/components/LoggedOutScreens/SignUp'
 import ShallowRenderer from 'react-test-renderer/shallow'; // ES6
 
@@ -13,6 +12,5 @@ test('renders correctly', () => {
   const renderer = new ShallowRenderer();
   renderer.render(<SignUp/>);
   const tree = renderer.getRenderOutput();
-  // const tree = renderer.create(<SignUp/>).toJSON();
   expect(tree).toMatchSnapshot();
 });
