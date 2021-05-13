@@ -14,6 +14,6 @@ test('renders correctly', () => {
 //   renderer.render(<TermsAndConditions/>);
 //   const tree = renderer.getRenderOutput();
 // state={screen:"privacy"}
-    const tree = renderer.create(<TermsAndConditions screen={'privacy'} />).toJSON();
+    const tree = renderer.create(<TermsAndConditions/>).toJSON();
   expect(tree).toMatchSnapshot();
 });
