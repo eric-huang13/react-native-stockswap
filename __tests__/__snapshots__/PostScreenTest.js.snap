@@ -1,0 +1,259 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)
+  style={
+    Object {
+      "backgroundColor": "#2a334a",
+      "flex": 1,
+      "flexDirection": "column",
+      "paddingVertical": 29.66058394160584,
+    }
+  }
+>
+  <Component
+    animationType="slide"
+    hardwareAccelerated={false}
+    transparent={true}
+    visible={false}
+  >
+    <ReportModal
+      reportModal={[Function]}
+    />
+  </Component>
+  <Component
+    animationType="slide"
+    hardwareAccelerated={false}
+    transparent={true}
+    visible={false}
+  >
+    <ShareToModal
+      shareModal={[Function]}
+    />
+  </Component>
+  <ScrollView
+    style={
+      Object {
+        "paddingHorizontal": 14.124087591240876,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginBottom": 12.711678832116789,
+        }
+      }
+    >
+      <ForwardRef
+        onPress={[Function]}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": undefined,
+              }
+            }
+            style={
+              Object {
+                "borderRadius": 70.62043795620437,
+                "height": 53.67153284671533,
+                "width": 53.67153284671533,
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 22.598540145985403,
+                "marginLeft": 11.299270072992702,
+              }
+            }
+          />
+        </View>
+      </ForwardRef>
+      <View
+        style={
+          Object {
+            "alignContent": "center",
+            "flexDirection": "column",
+            "justifyContent": "space-evenly",
+          }
+        }
+      >
+        <ForwardRef
+          onPress={[Function]}
+        >
+          <Text
+            style={
+              Object {
+                "alignSelf": "flex-end",
+                "color": "white",
+                "fontSize": 28.248175182481752,
+                "fontWeight": "bold",
+                "marginBottom": 12.711678832116789,
+              }
+            }
+          >
+            ...
+          </Text>
+        </ForwardRef>
+      </View>
+    </View>
+    <Image
+      source={
+        Object {
+          "uri": undefined,
+        }
+      }
+      style={
+        Object {
+          "borderRadius": 14.124087591240876,
+          "height": 259.88321167883214,
+          "width": "100%",
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginTop": 11.299270072992702,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "lightgrey",
+            "fontFamily": "Montserrat-Italic",
+            "fontSize": 17.655109489051092,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-around",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <LikeInactiveIcon />
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 22.598540145985403,
+                "marginLeft": 3,
+                "marginRight": 14,
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <CommentIcon />
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 22.598540145985403,
+                "marginLeft": 4.237226277372263,
+                "marginRight": 1.4124087591240877,
+              }
+            }
+          />
+        </View>
+      </View>
+    </View>
+    <Text
+      style={
+        Object {
+          "borderBottomColor": "rgba(158, 150, 150, .4)",
+          "borderBottomWidth": 0.9886861313868612,
+          "color": "#FFFFFF",
+          "fontFamily": "Montserrat-Medium",
+          "fontSize": 21.186131386861312,
+          "marginBottom": 2.8248175182481754,
+          "marginTop": 14.124087591240876,
+          "paddingBottom": 25.423357664233578,
+        }
+      }
+    />
+    <UserCommentList
+      postId="test"
+      userAccount={
+        Object {
+          "id": "test",
+        }
+      }
+    />
+  </ScrollView>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#2C3957",
+        "marginBottom": -14.124087591240876,
+        "paddingHorizontal": 14.124087591240876,
+      }
+    }
+  >
+    <Component
+      allowFontScaling={true}
+      placeholder="Enter your comment"
+      placeholderTextColor="lightgrey"
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "alignContent": "center",
+          "backgroundColor": "#3e4d6c",
+          "borderRadius": 8.474452554744525,
+          "color": "lightgrey",
+          "fontFamily": "Montserrat-Italic",
+          "fontSize": 21.186131386861312,
+          "height": 50.846715328467155,
+          "marginTop": 14.124087591240876,
+          "paddingLeft": 28.248175182481752,
+          "paddingVertical": 14.124087591240876,
+        }
+      }
+      underlineColorAndroid="transparent"
+    />
+  </View>
+</ForwardRef(SafeAreaView)>
+`;
