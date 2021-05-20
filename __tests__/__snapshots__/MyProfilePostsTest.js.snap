@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)
+  style={
+    Object {
+      "backgroundColor": "#2a334a",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <ScrollView>
+    <View
+      style={
+        Object {
+          "marginBottom": 21.186131386861312,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "left": 19.77372262773723,
+            "position": "absolute",
+            "top": 10,
+            "zIndex": 1,
+          }
+        }
+      >
+        <SearchInput />
+      </View>
+      <Component
+        allowFontScaling={true}
+        onChangeText={[Function]}
+        placeholder="Search by name"
+        placeholderTextColor="lightgrey"
+        rejectResponderTermination={true}
+        style={
+          Object {
+            "alignContent": "center",
+            "backgroundColor": "#3e4d6c",
+            "color": "lightgrey",
+            "fontFamily": "Montserrat-Italic",
+            "fontSize": 21.186131386861312,
+            "height": 50.846715328467155,
+            "marginBottom": 14.124087591240876,
+            "paddingLeft": 56.496350364963504,
+            "paddingVertical": 0,
+          }
+        }
+        underlineColorAndroid="transparent"
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "marginTop": 5.649635036496351,
+          "paddingHorizontal": 14.124087591240876,
+        }
+      }
+    />
+  </ScrollView>
+</ForwardRef(SafeAreaView)>
+`;
