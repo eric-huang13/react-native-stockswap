@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Image,
+  Platform
 } from 'react-native';
 import {EditUser} from '../../actions/user';
 import {UserPost} from '../../actions/posts';
