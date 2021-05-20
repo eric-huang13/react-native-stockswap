@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)
+  style={
+    Object {
+      "height": 84.74452554744525,
+      "paddingVertical": 14.124087591240876,
+    }
+  }
+>
+  <FlatList
+    alignItems="center"
+    disableVirtualization={false}
+    getItemLayout={[Function]}
+    horizontal={true}
+    initialNumToRender={10}
+    initialScrollIndex={NaN}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onEndReachedThreshold={2}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    showsHorizontalScrollIndicator={false}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  />
+</ForwardRef(SafeAreaView)>
+`;
