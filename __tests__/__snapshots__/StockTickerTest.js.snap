@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#2e3955",
+      "justifyContent": "center",
+      "marginBottom": 8.474452554744525,
+    }
+  }
+>
+  <TextMarquee
+    animationType="scroll"
+    bounce={true}
+    bounceDelay={0}
+    bounceSpeed={50}
+    disabled={false}
+    easing={[Function]}
+    isInteraction={true}
+    loop={true}
+    marqueeDelay={0}
+    marqueeOnMount={true}
+    repeatSpacer={0}
+    scroll={true}
+    scrollSpeed={5000}
+    shouldAnimateTreshold={0}
+    style={
+      Object {
+        "fontSize": 24,
+      }
+    }
+    useNativeDriver={true}
+  />
+</ForwardRef(SafeAreaView)>
+`;
