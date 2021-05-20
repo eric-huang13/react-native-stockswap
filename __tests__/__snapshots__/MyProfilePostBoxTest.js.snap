@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)
+  style={
+    Object {
+      "margin": 1,
+      "width": 248,
+    }
+  }
+>
+  <ForwardRef
+    onPress={[Function]}
+  >
+    <Image
+      source={
+        Object {
+          "uri": "test",
+        }
+      }
+      style={
+        Object {
+          "height": 248,
+          "width": "100%",
+        }
+      }
+    />
+  </ForwardRef>
+</ForwardRef(SafeAreaView)>
+`;
