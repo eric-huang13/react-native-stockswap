@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)
+  style={
+    Object {
+      "backgroundColor": "#2a334a",
+      "flexDirection": "column",
+      "marginTop": 14.124087591240876,
+      "paddingLeft": 84.74452554744525,
+      "paddingVertical": 5.649635036496351,
+    }
+  }
+/>
+`;
