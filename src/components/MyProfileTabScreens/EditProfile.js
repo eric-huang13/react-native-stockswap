@@ -10,6 +10,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Image,
+  Platform
 } from 'react-native';
 import {EditUser} from '../../actions/user';
 import LinearGradient from 'react-native-linear-gradient';
