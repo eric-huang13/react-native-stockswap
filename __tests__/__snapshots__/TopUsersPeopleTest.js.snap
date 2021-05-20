@@ -1,0 +1,212 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)
+  style={Object {}}
+>
+  <FlatList
+    ListFooterComponent={
+      <View
+        style={
+          Object {
+            "height": 0,
+            "marginBottom": 200,
+          }
+        }
+      />
+    }
+    ListHeaderComponent={
+      <View>
+        <View
+          style={
+            Object {
+              "marginBottom": 21.186131386861312,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "left": 14,
+                "position": "absolute",
+                "top": 10,
+                "zIndex": 1,
+              }
+            }
+          >
+            <SearchInput />
+          </View>
+          <Component
+            allowFontScaling={true}
+            onChangeText={[Function]}
+            placeholder="Search"
+            placeholderTextColor="lightgrey"
+            rejectResponderTermination={true}
+            style={
+              Object {
+                "alignContent": "center",
+                "backgroundColor": "#3e4d6c",
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Italic",
+                "fontSize": 21.186131386861312,
+                "height": 50.846715328467155,
+                "paddingLeft": 56.496350364963504,
+                "paddingVertical": 0,
+              }
+            }
+            underlineColorAndroid="transparent"
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "lightgrey",
+              "fontFamily": "Montserrat-Regular",
+              "fontSize": 19.77372262773723,
+              "paddingLeft": 25.423357664233578,
+            }
+          }
+        >
+          Time filter:
+        </Text>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-around",
+              "marginBottom": 16.94890510948905,
+              "marginTop": 5.649635036496351,
+              "paddingBottom": 12.711678832116789,
+            }
+          }
+        >
+          <ForwardRef
+            onPress={[Function]}
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#8257FF",
+                  "fontFamily": "Montserrat-Bold",
+                  "fontSize": 22.598540145985403,
+                }
+              }
+            >
+              1D
+            </Text>
+          </ForwardRef>
+          <ForwardRef
+            onPress={[Function]}
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-Bold",
+                  "fontSize": 22.598540145985403,
+                }
+              }
+            >
+              1W
+            </Text>
+          </ForwardRef>
+          <ForwardRef
+            onPress={[Function]}
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-Bold",
+                  "fontSize": 22.598540145985403,
+                }
+              }
+            >
+              1M
+            </Text>
+          </ForwardRef>
+          <ForwardRef
+            onPress={[Function]}
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-Bold",
+                  "fontSize": 22.598540145985403,
+                }
+              }
+            >
+              3M
+            </Text>
+          </ForwardRef>
+          <ForwardRef
+            onPress={[Function]}
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-Bold",
+                  "fontSize": 22.598540145985403,
+                }
+              }
+            >
+              6M
+            </Text>
+          </ForwardRef>
+          <ForwardRef
+            onPress={[Function]}
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-Bold",
+                  "fontSize": 22.598540145985403,
+                }
+              }
+            >
+              1Y
+            </Text>
+          </ForwardRef>
+          <ForwardRef
+            onPress={[Function]}
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-Bold",
+                  "fontSize": 22.598540145985403,
+                }
+              }
+            >
+              All
+            </Text>
+          </ForwardRef>
+        </View>
+      </View>
+    }
+    contentContainerStyle={
+      Object {
+        "paddingBottom": 20,
+      }
+    }
+    data={Array []}
+    disableVirtualization={false}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onEndReached={[Function]}
+    onEndReachedThreshold={0.1}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  />
+</ForwardRef(SafeAreaView)>
+`;
