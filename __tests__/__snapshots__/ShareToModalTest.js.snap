@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#3e4d6c",
+      "borderRadius": 28.248175182481752,
+      "elevation": 5,
+      "flex": 1,
+      "marginTop": 564.963503649635,
+      "padding": 19.77372262773723,
+      "shadowColor": "#000",
+      "shadowOffset": Object {
+        "height": 2,
+        "width": 0,
+      },
+      "shadowOpacity": 0.25,
+      "shadowRadius": 4,
+    }
+  }
+>
+  <ForwardRef
+    onPress={[Function]}
+  >
+    <Text
+      style={
+        Object {
+          "color": "#B8A0FF",
+          "fontFamily": "Montserrat-Bold",
+          "fontSize": 19.77372262773723,
+          "marginBottom": 25.423357664233578,
+        }
+      }
+    >
+      Close
+    </Text>
+  </ForwardRef>
+  <Text
+    style={
+      Object {
+        "color": "white",
+        "fontFamily": "Montserrat-Medium",
+        "fontSize": 19.77372262773723,
+        "marginHorizontal": 16.94890510948905,
+        "paddingVertical": 2.8248175182481754,
+      }
+    }
+  >
+    Share to...
+  </Text>
+  <View
+    style={
+      Object {
+        "flexDirection": "column",
+        "height": "50%",
+        "justifyContent": "space-between",
+        "marginTop": 42.372262773722625,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "white",
+          "fontFamily": "Montserrat-Medium",
+          "fontSize": 16.94890510948905,
+          "marginHorizontal": 16.94890510948905,
+          "paddingVertical": 2.8248175182481754,
+        }
+      }
+    >
+      Option 1
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "white",
+          "fontFamily": "Montserrat-Medium",
+          "fontSize": 16.94890510948905,
+          "marginHorizontal": 16.94890510948905,
+          "paddingVertical": 2.8248175182481754,
+        }
+      }
+    >
+      Option 2
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "white",
+          "fontFamily": "Montserrat-Medium",
+          "fontSize": 16.94890510948905,
+          "marginHorizontal": 16.94890510948905,
+          "paddingVertical": 2.8248175182481754,
+        }
+      }
+    >
+      Option 3
+    </Text>
+  </View>
+</View>
+`;
