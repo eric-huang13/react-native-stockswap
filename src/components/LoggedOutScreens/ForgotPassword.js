@@ -26,18 +26,6 @@ const reviewSchema = yup.object({
     .string()
     .required('Email is required')
     .email('A valid email address is required'),
-
-  //   password: yup
-  //     .string()
-  //     .required('Password is required')
-  //     .min(8, ({min}) => `Password must be at least ${min} characters`)
-  //     .matches(/\d/, 'Password must have a number')
-  //     .matches(/\w*[a-z]\w*/, 'Password must have a lowercase letter')
-  //     .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter'),
-  // .matches(
-  //   /[!@#$%^&*()\-_"=+{}; :,<.>]/,
-  //   'Password must have a special character',
-  // ),
 });
 
 export class ForgotPassword extends Component {

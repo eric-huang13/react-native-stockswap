@@ -25,14 +25,14 @@ export default class TermsAndConditions extends Component {
 
     //setTermsVersion to current version, close modal, toggleCheck true
     const handleFormikTermsAgree = () => {
-      this.props.props.setFieldValue('termsVersion', 'Version 1');
+      this.props.formik.setFieldValue('termsVersion', 'Version 1');
       handleTerms(false);
       handleCheck(true);
     };
 
     //setTermsVersion to "", close modal, toggleCheck false
     const handleFormikTermsCancel = () => {
-      this.props.props.setFieldValue('termsVersion', '');
+      this.props.formik.setFieldValue('termsVersion', '');
       handleTerms(false);
       handleCheck(false);
     };

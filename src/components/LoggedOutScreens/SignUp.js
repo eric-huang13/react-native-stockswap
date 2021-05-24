@@ -121,7 +121,7 @@ export const SignUp = ({
                       <TermsAndConditions
                         handleTerms={handleTerms}
                         handleCheck={handleCheck}
-                        props={props}
+                        formik={props}
                         navigation={navigation}
                       />
                     </Modal>
