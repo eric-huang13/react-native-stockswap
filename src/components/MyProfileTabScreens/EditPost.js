@@ -93,10 +93,7 @@ class EditPost extends Component {
                   isSubmitting,
                   setFieldValue,
                 }) => (
-              <View>
-            {/* <Text style={style.header}>Edit Post</Text> */}
-            {values.image.uri && !errors.image ?
-            
+              <View>            
                     <TouchableOpacity onPress={() => {
                       const options={
                         mediaType:'photo',
@@ -111,51 +108,26 @@ class EditPost extends Component {
                         }
                       });
                   }}>
+                                 {values.image.uri && !errors.image ?
+                                 <>
                     <Text style={style.uploadImageText}>
                           Tap to upload a new photo
                         </Text>
+           
                       <Image
                         style={style.uploadImageContainer}
                         source={{uri: values.image.uri}}
                       />
-                    </TouchableOpacity>
- 
-                     : 
-                      <View style={style.uploadImageContainer}>
-                        <TouchableOpacity onPress={() => {
-                            const options={
-                              mediaType:'photo',
-                              // includeBase64:true,                        
-                            }
-                            launchImageLibrary(options, response=> {
-                              console.log(response, "response image")
-                              if (response.uri)
-                              {
-                                setFieldValue('image', {name:response.fileName, type:response.type, uri:
-                                  Platform.OS === 'android' ? response.uri : response.uri.replace('file://', ''),})
-       
-                              }
-                            });
-                        }}>
-                        <Text style={style.uploadImageText}>
-                          Tap to upload new photo
+                      </>
+                      :
+                     <View style={style.uploadImageContainer}>
+                       <Text style={style.uploadImageText}>
+                          Tap to upload a new photo
                         </Text>
-                        </TouchableOpacity>
-                      </View>
-                     } 
-            {/* <View style={style.uploadImageContainer}>
-              <TextInput
-                onBlur={handleBlur('image')}
-                value={values.image}
-                onChangeText={handleChange('image')}
-                placeholder="Upload cover image"
-                placeholderTextColor="#FFFFFF"
-                style={style.inputStyleImage}
-              />
-              <Text style={style.errorText}>
-                          {touched.image && errors.image}
-                        </Text>
-            </View> */}
+                     </View>
+                        }
+                    </TouchableOpacity>               
+                
             <View style={style.postContainer}>
               <Text style={style.inputHeader}>Post</Text>
               <TextInput
