@@ -61,6 +61,7 @@ class EditPost extends Component {
     const {UserPost} = this.props;
     const {post, userAccount} = this.props.route.params;
     const postId = this.props.route.params.post.id;
+    
 
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -118,6 +119,11 @@ class EditPost extends Component {
                         style={style.uploadImageContainer}
                         source={{uri: values.image.uri}}
                       />
+                      <TouchableOpacity onPress={() => {
+                            setFieldValue('image', '');
+                          }}>
+                <Text style={style.uploadImageText}>Remove Photo</Text>
+              </TouchableOpacity>
                       </>
                       :
                      <View style={style.uploadImageContainer}>
@@ -239,6 +245,7 @@ const style = StyleSheet.create({
     marginBottom: moderateScale(1),
     fontFamily: 'Montserrat-Regular',
     marginTop:moderateScale(12),
+    textAlign:'center',
   },
   inputStyleImage: {
     fontFamily: 'Montserrat-Regular',
