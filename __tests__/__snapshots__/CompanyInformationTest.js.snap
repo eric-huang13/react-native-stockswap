@@ -1,0 +1,783 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)
+  style={
+    Object {
+      "backgroundColor": "#2a334a",
+      "flex": 1,
+    }
+  }
+>
+  <CompanySymbolList
+    symbol="test"
+  />
+  <ScrollView>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#324165",
+          "marginBottom": 28.248175182481752,
+          "paddingHorizontal": 5.649635036496351,
+          "paddingVertical": 19.77372262773723,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "color": "rgb(8, 177, 40)",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingHorizontal": 21.186131386861312,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Montserrat-Bold",
+              "fontSize": 28.248175182481752,
+            }
+          }
+        >
+          test
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Montserrat-Bold",
+              "fontSize": 28.248175182481752,
+            }
+          }
+        >
+          $
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "color": "rgb(8, 177, 40)",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingHorizontal": 25.423357664233578,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "lightgrey",
+              "fontFamily": "Montserrat-Regular",
+              "fontSize": 16.94890510948905,
+            }
+          }
+        />
+        <Text
+          style={
+            Object {
+              "color": "rgb(8, 177, 40)",
+              "fontFamily": "Montserrat-Medium",
+              "fontSize": 16.94890510948905,
+            }
+          }
+        >
+          (
+          )
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+        }
+      }
+    >
+      <CompanyStockGraph
+        graphData={
+          Array [
+            Object {
+              "x": 2,
+              "y": 10,
+            },
+            Object {
+              "x": 3,
+              "y": 11,
+            },
+            Object {
+              "x": 4,
+              "y": 12,
+            },
+            Object {
+              "x": 5,
+              "y": 14,
+            },
+            Object {
+              "x": 6,
+              "y": 14,
+            },
+            Object {
+              "x": 7,
+              "y": 15,
+            },
+          ]
+        }
+        range={
+          Array [
+            10,
+            15,
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "borderLeftColor": "lightgrey",
+            "borderLeftWidth": 1.4124087591240877,
+            "flexDirection": "column-reverse",
+            "justifyContent": "space-around",
+            "marginRight": 14.124087591240876,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "lightgrey",
+              "fontFamily": "Montserrat-Medium",
+              "fontSize": 20.47992700729927,
+            }
+          }
+        >
+          -
+          10
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "lightgrey",
+              "fontFamily": "Montserrat-Medium",
+              "fontSize": 20.47992700729927,
+            }
+          }
+        >
+          -
+          12
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "lightgrey",
+              "fontFamily": "Montserrat-Medium",
+              "fontSize": 20.47992700729927,
+            }
+          }
+        >
+          -
+          13
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "lightgrey",
+              "fontFamily": "Montserrat-Medium",
+              "fontSize": 20.47992700729927,
+            }
+          }
+        >
+          -
+          15
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "borderBottomColor": "lightgrey",
+          "borderBottomWidth": 0.7062043795620438,
+          "flexDirection": "row",
+          "justifyContent": "space-evenly",
+          "marginBottom": 14.124087591240876,
+          "marginTop": 9.886861313868614,
+          "paddingBottom": 12.711678832116789,
+        }
+      }
+    >
+      <ForwardRef
+        onPress={[Function]}
+      >
+        <Text
+          style={
+            Object {
+              "color": "#8b64ff",
+              "fontFamily": "Montserrat-Bold",
+              "fontSize": 21.186131386861312,
+            }
+          }
+        >
+          Live
+        </Text>
+      </ForwardRef>
+      <ForwardRef
+        onPress={[Function]}
+      >
+        <Text
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Montserrat-Bold",
+              "fontSize": 21.186131386861312,
+            }
+          }
+        >
+          1D
+        </Text>
+      </ForwardRef>
+      <ForwardRef
+        onPress={[Function]}
+      >
+        <Text
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Montserrat-Bold",
+              "fontSize": 21.186131386861312,
+            }
+          }
+        >
+          1W
+        </Text>
+      </ForwardRef>
+      <ForwardRef
+        onPress={[Function]}
+      >
+        <Text
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Montserrat-Bold",
+              "fontSize": 21.186131386861312,
+            }
+          }
+        >
+          1M
+        </Text>
+      </ForwardRef>
+      <ForwardRef
+        onPress={[Function]}
+      >
+        <Text
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Montserrat-Bold",
+              "fontSize": 21.186131386861312,
+            }
+          }
+        >
+          3M
+        </Text>
+      </ForwardRef>
+      <ForwardRef
+        onPress={[Function]}
+      >
+        <Text
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Montserrat-Bold",
+              "fontSize": 21.186131386861312,
+            }
+          }
+        >
+          1Y
+        </Text>
+      </ForwardRef>
+      <ForwardRef
+        onPress={[Function]}
+      >
+        <Text
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Montserrat-Bold",
+              "fontSize": 21.186131386861312,
+            }
+          }
+        >
+          All
+        </Text>
+      </ForwardRef>
+    </View>
+    <Text
+      style={
+        Object {
+          "color": "#FFFFFF",
+          "fontFamily": "Montserrat-Bold",
+          "fontSize": 31.072992700729927,
+          "marginTop": 19.77372262773723,
+          "paddingHorizontal": 14.124087591240876,
+          "textAlign": "left",
+        }
+      }
+    >
+      STATS
+    </Text>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginTop": 8.474452554744525,
+          "paddingHorizontal": 14.124087591240876,
+          "paddingTop": 5.649635036496351,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 19.77372262773723,
+                "marginBottom": 14.124087591240876,
+              }
+            }
+          >
+            Open:
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 19.77372262773723,
+                "marginBottom": 14.124087591240876,
+                "marginLeft": 77.68248175182481,
+              }
+            }
+          >
+            $
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 19.77372262773723,
+                "marginBottom": 14.124087591240876,
+              }
+            }
+          >
+            High:
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 19.77372262773723,
+                "marginBottom": 14.124087591240876,
+                "marginLeft": 77.68248175182481,
+              }
+            }
+          >
+            $
+            -Infinity
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 19.77372262773723,
+                "marginBottom": 14.124087591240876,
+              }
+            }
+          >
+            Low:
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 19.77372262773723,
+                "marginBottom": 14.124087591240876,
+                "marginLeft": 77.68248175182481,
+              }
+            }
+          >
+            $
+            Infinity
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 19.77372262773723,
+                "marginBottom": 14.124087591240876,
+              }
+            }
+          >
+            Volume:
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 19.77372262773723,
+                "marginBottom": 14.124087591240876,
+                "marginLeft": 77.68248175182481,
+              }
+            }
+          >
+            $
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 19.77372262773723,
+                "marginBottom": 14.124087591240876,
+              }
+            }
+          >
+            Avg Vol:
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 19.77372262773723,
+                "marginBottom": 14.124087591240876,
+                "marginLeft": 77.68248175182481,
+              }
+            }
+          >
+            $
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 19.77372262773723,
+                "marginBottom": 14.124087591240876,
+              }
+            }
+          >
+            P/E:
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 19.77372262773723,
+                "marginBottom": 14.124087591240876,
+                "marginLeft": 77.68248175182481,
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 19.77372262773723,
+                "marginBottom": 14.124087591240876,
+              }
+            }
+          >
+            MKT Cap:
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 19.77372262773723,
+                "marginBottom": 14.124087591240876,
+                "marginLeft": 77.68248175182481,
+              }
+            }
+          >
+            $
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 19.77372262773723,
+                "marginBottom": 14.124087591240876,
+              }
+            }
+          >
+            52w High:
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 19.77372262773723,
+                "marginBottom": 14.124087591240876,
+                "marginLeft": 77.68248175182481,
+              }
+            }
+          >
+            $
+            -Infinity
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 19.77372262773723,
+                "marginBottom": 14.124087591240876,
+              }
+            }
+          >
+            52w Low:
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 19.77372262773723,
+                "marginBottom": 14.124087591240876,
+                "marginLeft": 77.68248175182481,
+              }
+            }
+          >
+            $
+            Infinity
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 19.77372262773723,
+                "marginBottom": 14.124087591240876,
+              }
+            }
+          >
+            Div/Yield:
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 19.77372262773723,
+                "marginBottom": 14.124087591240876,
+                "marginLeft": 77.68248175182481,
+              }
+            }
+          >
+            %
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "marginTop": 33.8978102189781,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "backgroundColor": "#8b64ff",
+            "borderRadius": 8.474452554744525,
+            "color": "#FFFFFF",
+            "fontFamily": "Montserrat-SemiBold",
+            "fontSize": 19.77372262773723,
+            "paddingHorizontal": 56.496350364963504,
+            "paddingVertical": 14.124087591240876,
+          }
+        }
+      >
+        Buy 
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "column",
+          "justifyContent": "space-between",
+          "marginBottom": 31.072992700729927,
+          "marginTop": 50.846715328467155,
+          "paddingLeft": 11.299270072992702,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontFamily": "Montserrat-Bold",
+            "fontSize": 31.072992700729927,
+            "marginBottom": 5.649635036496351,
+          }
+        }
+      >
+        ABOUT
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontFamily": "Montserrat-SemiBold",
+            "fontSize": 22.598540145985403,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "lightgrey",
+              "fontFamily": "Montserrat-Regular",
+              "fontSize": 22.598540145985403,
+            }
+          }
+        >
+          Sector:
+        </Text>
+         
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontFamily": "Montserrat-Medium",
+            "fontSize": 19.77372262773723,
+            "marginTop": 14.124087591240876,
+          }
+        }
+      />
+    </View>
+  </ScrollView>
+</ForwardRef(SafeAreaView)>
+`;
