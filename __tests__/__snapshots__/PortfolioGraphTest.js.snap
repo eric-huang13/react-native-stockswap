@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <SlideAreaChart
+    alwaysShowIndicator={false}
+    animated={true}
+    axisHeight={5}
+    axisWidth={5}
+    chartLineColor="#F66E6E"
+    chartLineWidth={3}
+    chartPaddingTop={16}
+    cursorProps={
+      Object {
+        "displayCursor": false,
+      }
+    }
+    curveType={[Function]}
+    data={Array []}
+    height={70}
+    paddingBottom={10}
+    paddingLeft={3}
+    paddingRight={8}
+    paddingTop={8}
+    renderFillGradient={[Function]}
+    shouldCancelWhenOutside={true}
+    style={
+      Object {
+        "backgroundColor": "#2a334a",
+      }
+    }
+    throttleAndroid={true}
+    width={570}
+    xScale="linear"
+    yAxisProps={
+      Object {
+        "axisLabelAlignment": "top",
+        "horizontalLineWidth": 0,
+        "labelTopPadding": 0,
+        "numberOfTicks": 0,
+        "rotateAxisLabel": true,
+        "showBaseLine": false,
+        "verticalLineWidth": 0,
+      }
+    }
+  />
+</ForwardRef(SafeAreaView)>
+`;
