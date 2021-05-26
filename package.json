@@ -58,6 +58,9 @@
   },
   "jest": {
     "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-(native|universal|navigation)-(.*)|@react-native-community/(.*)|@react-navigation/(.*)|@connectedcars/react-native-slide-charts|(@[a-zA-Z]+/)?(bs|reason|rescript)-(.*)+)"
+    ],
     "setupFiles": [
       "./node_modules/react-native-gesture-handler/jestSetup.js"
     ]
