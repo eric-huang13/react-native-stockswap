@@ -1,12 +1,13 @@
 import * as React from "react"
 import Svg, { Path } from "react-native-svg"
 /* SVGR has dropped some elements not supported by react-native-svg: title */
+import {moderateScale, verticalScale, scale} from '../util/responsiveFont'
 
 function CommentIcon(props) {
   return (
     <Svg
-      width={17}
-      height={16}
+      width={moderateScale(17)}
+      height={moderateScale(16)}
       viewBox="0 0 17 16"
       xmlns="http://www.w3.org/2000/svg"
       {...props}

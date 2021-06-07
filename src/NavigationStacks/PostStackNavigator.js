@@ -5,10 +5,13 @@ import React, {Component} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 //Components
-import CreatePost from '../components/screens/CreatePost';
-import PostType from '../components/screens/PostType';
-import CreatePostPreview from '../components/screens/CreatePostPreview';
-import CreateTrade from '../components/screens/CreateTrade';
+import CreatePost from '../components/PostTabScreens/CreatePost';
+import PostType from '../components/PostTabScreens/PostType';
+import CreatePostPreview from '../components/PostTabScreens/CreatePostPreview';
+import CreateTrade from '../components/PostTabScreens/CreateTrade';
+
+//responsive scale
+import {moderateScale} from '../util/responsiveFont';
 
 const PostStack = createStackNavigator();
 
@@ -26,7 +29,7 @@ export default class PostStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -44,7 +47,7 @@ export default class PostStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -63,7 +66,7 @@ export default class PostStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -81,7 +84,7 @@ export default class PostStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {

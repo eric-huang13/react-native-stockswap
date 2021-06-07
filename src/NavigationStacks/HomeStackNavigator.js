@@ -5,18 +5,21 @@ import React, {Component} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 // Components
-import HomeScreen from '../components/screens/Home';
-import CompanyInformation from '../components/screens/CompanyInformation';
-import Profile from '../components/screens/Profile';
-import UserCommentList from '../components/screens/UserCommentList';
-import PostScreen from '../components/screens/PostScreen';
-import UserPortfolioList from '../components/screens/UserPortfolioList';
-import MyProfile from '../components/screens/MyProfile';
-import MyProfilePosts from '../components/screens/MyProfilePosts';
-import Followers from '../components/screens/Followers';
-import Following from '../components/screens/Following';
-import EditPost from '../components/screens/EditPost';
-import CreatePostPreview from '../components/screens/CreatePostPreview';
+import HomeScreen from '../components/HomeTabScreens/Home';
+import CompanyInformation from '../components/SearchTabScreens/CompanyInformation';
+import Profile from '../components/HomeTabScreens/Profile';
+import UserCommentList from '../components/HomeTabScreens/UserCommentList';
+import PostScreen from '../components/HomeTabScreens/PostScreen';
+import UserPortfolioList from '../components/HomeTabScreens/UserPortfolioList';
+import MyProfile from '../components/MyProfileTabScreens/MyProfile';
+import MyProfilePosts from '../components/MyProfileTabScreens/MyProfilePosts';
+import Followers from '../components/HomeTabScreens/Followers';
+import Following from '../components/HomeTabScreens/Following';
+import EditPost from '../components/MyProfileTabScreens/EditPost';
+import CreatePostPreview from '../components/PostTabScreens/CreatePostPreview';
+
+//responsive scale
+import {moderateScale} from '../util/responsiveFont';
 
 const HomeStack = createStackNavigator();
 
@@ -31,6 +34,10 @@ export default class HomeStackNavigator extends Component {
             title: 'StockSwap',
             headerStyle: {
               backgroundColor: '#313c58',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -49,6 +56,10 @@ export default class HomeStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',
@@ -64,6 +75,10 @@ export default class HomeStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',
@@ -77,6 +92,10 @@ export default class HomeStackNavigator extends Component {
             title: 'Profile',
             headerStyle: {
               backgroundColor: '#394463',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -92,6 +111,10 @@ export default class HomeStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#313c58',
             },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',
@@ -106,6 +129,10 @@ export default class HomeStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',
@@ -119,6 +146,10 @@ export default class HomeStackNavigator extends Component {
             title: 'My Profile',
             headerStyle: {
               backgroundColor: '#394463',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -136,7 +167,7 @@ export default class HomeStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -154,7 +185,7 @@ export default class HomeStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -172,7 +203,7 @@ export default class HomeStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -190,7 +221,7 @@ export default class HomeStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -208,7 +239,7 @@ export default class HomeStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {

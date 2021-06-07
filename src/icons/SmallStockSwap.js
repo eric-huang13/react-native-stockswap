@@ -1,11 +1,12 @@
 import React from "react"
 import Svg, { Defs, Path, G, Use } from "react-native-svg"
+import { moderateScale } from "../util/responsiveFont"
 
 function SmallStockSwap() {
   return (
     <Svg
-      width={94}
-      height={70}
+      width={moderateScale(94)}
+      height={moderateScale(70)}
       viewBox="0 0 74 50"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"

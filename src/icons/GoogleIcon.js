@@ -1,11 +1,12 @@
 import React from "react"
 import Svg, { G, Path } from "react-native-svg"
+import { moderateScale } from "../util/responsiveFont"
 
 function GoogleIcon() {
   return (
     <Svg
-      width={18}
-      height={18}
+      width={moderateScale(18)}
+      height={moderateScale(18)}
       viewBox="0 0 18 18"
       xmlns="http://www.w3.org/2000/svg"
       

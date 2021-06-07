@@ -1,12 +1,13 @@
 import * as React from "react"
 import Svg, { Defs, LinearGradient, Stop, Path } from "react-native-svg"
+import { moderateScale } from "../util/responsiveFont"
 /* SVGR has dropped some elements not supported by react-native-svg: title */
 
 function TradeIcon(props) {
   return (
     <Svg
-      width={136}
-      height={77}
+      width={moderateScale(136)}
+      height={moderateScale(77)}
       viewBox="0 0 136 77"
       xmlns="http://www.w3.org/2000/svg"
       {...props}

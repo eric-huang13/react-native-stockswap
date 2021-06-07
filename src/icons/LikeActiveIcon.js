@@ -1,12 +1,13 @@
 import * as React from "react"
 import Svg, { Path } from "react-native-svg"
+import { moderateScale } from "../util/responsiveFont"
 /* SVGR has dropped some elements not supported by react-native-svg: title */
 
 function LikeActiveIcon(props) {
   return (
     <Svg
-      width={19}
-      height={16}
+      width={moderateScale(19)}
+      height={moderateScale(16)}
       viewBox="0 0 19 16"
       xmlns="http://www.w3.org/2000/svg"
       {...props}

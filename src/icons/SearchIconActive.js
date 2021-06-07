@@ -3,14 +3,16 @@ import {
   View, StyleSheet,
 } from "react-native";
 import Svg, {Path,} from 'react-native-svg'
+import {moderateScale, verticalScale, scale} from '../util/responsiveFont'
+
 
 
 const SearchIconActive = () => {
     return (
       <View style={style.outterContainer}>
       <Svg
-      width={24}
-      height={24}
+      width={moderateScale(24)}
+      height={moderateScale(24)}
       viewBox="0 1 20 15"
       xmlns="http://www.w3.org/2000/svg"
      

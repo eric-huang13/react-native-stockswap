@@ -5,11 +5,13 @@ import React, {Component} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 //Components
-import LoginScreen from '../components/screens/Login';
-import SignUp from '../components/screens/SignUp';
-import ProfileInfoForm from '../components/screens/ProfileInfoForm';
-import TermsAndConditions from '../components/screens/TermsAndConditions';
-import SplashScreen from '../components/screens/SplashScreen';
+import LoginScreen from '../components/LoggedOutScreens/Login';
+import SignUp from '../components/LoggedOutScreens/SignUp';
+import ProfileInfoForm from '../components/LoggedOutScreens/ProfileInfoForm';
+import TermsAndConditions from '../components/LoggedOutScreens/TermsAndConditions';
+import SplashScreen from '../components/LoggedOutScreens/SplashScreen';
+import ForgotPassword from '../components/LoggedOutScreens/ForgotPassword';
+import PrivacyPolicy from '../components/MyProfileTabScreens/PrivacyPolicy';
 
 const LoggedOutStack = createStackNavigator();
 
@@ -20,7 +22,7 @@ export default class LoggedOutStackNavigator extends Component {
         <LoggedOutStack.Screen
           name="Login"
           component={LoginScreen}
-          options={{headerShown: false}}
+          options={{headerShown: false, animationEnabled: false}}
         />
         <LoggedOutStack.Screen
           name="SignUp"
@@ -50,6 +52,16 @@ export default class LoggedOutStackNavigator extends Component {
               textAlign: 'center',
             },
           }}
+        />
+        <LoggedOutStack.Screen
+          name="PrivacyPolicy"
+          component={PrivacyPolicy}
+          options={{headerShown: false}}
+        />
+        <LoggedOutStack.Screen
+          name="ForgotPassword"
+          component={ForgotPassword}
+          options={{headerShown: false}}
         />
       </LoggedOutStack.Navigator>
     );

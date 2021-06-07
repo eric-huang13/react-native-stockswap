@@ -1,11 +1,12 @@
 import React from "react"
 import Svg, { Path } from "react-native-svg"
+import {moderateScale, verticalScale, scale} from '../util/responsiveFont'
 
 function ProfileInactive() {
   return (
     <Svg
-      width={24}
-      height={24}
+      width={moderateScale(24)}
+      height={moderateScale(24)}
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"
     >

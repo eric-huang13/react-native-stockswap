@@ -5,13 +5,16 @@ import React, {Component} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 // Components
-import CompanyInformation from '../components/screens/CompanyInformation';
-import Profile from '../components/screens/Profile';
-import UserCommentList from '../components/screens/UserCommentList';
-import PostScreen from '../components/screens/PostScreen';
-import UserPortfolioList from '../components/screens/UserPortfolioList';
-import MyProfile from '../components/screens/MyProfile';
-import TopUsers from '../components/screens/TopUsers';
+import CompanyInformation from '../components/SearchTabScreens/CompanyInformation';
+import Profile from '../components/HomeTabScreens/Profile';
+import UserCommentList from '../components/HomeTabScreens/UserCommentList';
+import PostScreen from '../components/HomeTabScreens/PostScreen';
+import UserPortfolioList from '../components/HomeTabScreens/UserPortfolioList';
+import MyProfile from '../components/MyProfileTabScreens/MyProfile';
+import TopUsers from '../components/TopUsersTabScreens/TopUsers';
+
+//responsive scale
+import {moderateScale} from '../util/responsiveFont';
 
 const TopUsersStack = createStackNavigator();
 
@@ -29,7 +32,7 @@ export default class TopUsersStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -49,6 +52,10 @@ export default class TopUsersStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',
@@ -63,6 +70,10 @@ export default class TopUsersStackNavigator extends Component {
             headerStyle: {
               backgroundColor: '#394463',
             },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',
@@ -76,6 +87,10 @@ export default class TopUsersStackNavigator extends Component {
             title: 'Profile',
             headerStyle: {
               backgroundColor: '#394463',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -93,7 +108,7 @@ export default class TopUsersStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -108,6 +123,10 @@ export default class TopUsersStackNavigator extends Component {
             title: 'Stock details',
             headerStyle: {
               backgroundColor: '#394463',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -126,7 +145,7 @@ export default class TopUsersStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {

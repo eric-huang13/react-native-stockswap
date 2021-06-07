@@ -1,12 +1,13 @@
 import * as React from "react"
 import Svg, { G, Path } from "react-native-svg"
 /* SVGR has dropped some elements not supported by react-native-svg: title */
+import {moderateScale, verticalScale, scale} from '../util/responsiveFont'
 
 function BearIcon(props) {
   return (
     <Svg
-      width={22}
-      height={22}
+      width={moderateScale(22)}
+      height={moderateScale(22)}
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       {...props}

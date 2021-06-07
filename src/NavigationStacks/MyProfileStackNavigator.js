@@ -6,29 +6,32 @@ import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 // Components
-import CompanyInformation from '../components/screens/CompanyInformation';
-import Profile from '../components/screens/Profile';
-import UserCommentList from '../components/screens/UserCommentList';
-import PostScreen from '../components/screens/PostScreen';
-import UserPortfolioList from '../components/screens/UserPortfolioList';
-import TermsAndConditions from '../components/screens/TermsAndConditions';
-import MyProfile from '../components/screens/MyProfile';
-import MyProfileSettings from '../components/screens/MyProfileSettings';
-import EditProfile from '../components/screens/EditProfile';
-import ChangeEmail from '../components/screens/ChangeEmail';
-import ChangePassword from '../components/screens/ChangePassword';
-import MyProfilePosts from '../components/screens/MyProfilePosts';
-import PasswordSuccess from '../components/screens/PasswordSuccess';
-import EmailSuccess from '../components/screens/EmailSuccess';
-import PrivacyPolicy from '../components/screens/PrivacyPolicy';
-import ManagePortfolio from '../components/screens/ManagePortfolio';
-import ManagePortfolioBox from '../components/screens/ManagePortfolioBox';
-import ManagePortfolioCompany from '../components/screens/ManagePortfolioCompany';
-import EditPost from '../components/screens/EditPost';
-import CreatePostPreview from '../components/screens/CreatePostPreview';
-import MyFollowers from '../components/screens/MyFollowers';
-import MyFollowing from '../components/screens/MyFollowing';
-import LikedPosts from '../components/screens/LikedPosts';
+import CompanyInformation from '../components/SearchTabScreens/CompanyInformation';
+import Profile from '../components/HomeTabScreens/Profile';
+import UserCommentList from '../components/HomeTabScreens/UserCommentList';
+import PostScreen from '../components/HomeTabScreens/PostScreen';
+import UserPortfolioList from '../components/HomeTabScreens/UserPortfolioList';
+import TermsAndConditions from '../components/LoggedOutScreens/TermsAndConditions';
+import MyProfile from '../components/MyProfileTabScreens/MyProfile';
+import MyProfileSettings from '../components/MyProfileTabScreens/MyProfileSettings';
+import EditProfile from '../components/MyProfileTabScreens/EditProfile';
+import ChangeEmail from '../components/MyProfileTabScreens/ChangeEmail';
+import ChangePassword from '../components/MyProfileTabScreens/ChangePassword';
+import MyProfilePosts from '../components/MyProfileTabScreens/MyProfilePosts';
+import PasswordSuccess from '../components/MyProfileTabScreens/PasswordSuccess';
+import EmailSuccess from '../components/MyProfileTabScreens/EmailSuccess';
+import PrivacyPolicy from '../components/MyProfileTabScreens/PrivacyPolicy';
+import ManagePortfolio from '../components/MyProfileTabScreens/ManagePortfolio';
+import ManagePortfolioBox from '../components/MyProfileTabComponents/ManagePortfolioBox';
+import ManagePortfolioCompany from '../components/MyProfileTabScreens/ManagePortfolioCompany';
+import EditPost from '../components/MyProfileTabScreens/EditPost';
+import CreatePostPreview from '../components/PostTabScreens/CreatePostPreview';
+import MyFollowers from '../components/MyProfileTabScreens/MyFollowers';
+import MyFollowing from '../components/MyProfileTabScreens/MyFollowing';
+import LikedPosts from '../components/MyProfileTabScreens/LikedPosts';
+
+//responsive scale
+import {moderateScale} from '../util/responsiveFont';
 
 const MyProfileStack = createStackNavigator();
 
@@ -47,7 +50,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -73,7 +76,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -97,7 +100,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -115,7 +118,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -133,7 +136,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -151,7 +154,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -169,7 +172,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -187,7 +190,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -205,7 +208,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -223,9 +226,9 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
-           
+
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',
@@ -246,7 +249,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -264,7 +267,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -282,7 +285,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -300,12 +303,9 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
-            headerTitleStyle: {
-              fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
-            },
+            
             headerTintColor: 'white',
             headerTitleAlign: {
               textAlign: 'center',
@@ -322,7 +322,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -340,7 +340,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -358,7 +358,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -376,7 +376,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -394,7 +394,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -412,7 +412,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -430,7 +430,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -448,7 +448,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {
@@ -466,7 +466,7 @@ export default class MyProfileStackNavigator extends Component {
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
-              fontSize: 16,
+              fontSize: moderateScale(16),
             },
             headerTintColor: 'white',
             headerTitleAlign: {

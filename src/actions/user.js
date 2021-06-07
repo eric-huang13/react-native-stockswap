@@ -22,54 +22,96 @@ import apiInstance from '../util/axiosConfig';
 import {navigate} from '../../RootNavigation';
 
 import Toast from 'react-native-toast-message';
-
-import {
-  GoogleSignin,
-  statusCodes,
-} from '@react-native-community/google-signin';
+import {GoogleSignin, statusCodes} from '@react-native-community/google-signin';
 GoogleSignin.configure({
   webClientId:
     '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
   offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
   iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
 });
-
 export const Register = (input) => {
   return (dispatch) => {
     dispatch({type: SIGNUP_START});
     axios
-      .post('https://jiujitsux.herokuapp.com/api/users/register', input)
-
-    .then(response =>{ dispatch({ type: SIGNUP_SUCCESS, payload: response.data }); 
+      .post(
+        'http://ec2-3-139-84-5.us-east-2.compute.amazonaws.com/v1/auth/signup', input,)
+      .then((response) => {
+        console.log(response, 'RESPONSE in Signup');
+        
+        dispatch({type: SIGNUP_SUCCESS, payload: response.data});
         Toast.show({
           type: 'success',
           text2: 'Sign up successful!',
         });
       })
       .catch((error) => {
+        console.log(error, 'ERROR in Signup');
         dispatch({type: SIGNUP_ERROR, payload: error.response});
+        navigate('SignUp');
         Toast.show({
-          type: 'error',
-          text2: 'Error signing up.',
+          type: 'errorSignUp',
+          text1: 'Error',
+          text2: error.response.data.message,
+        });
+      });
+  };
+};
+
+// For signup with image
+export const RegisterwithImage = (input) => {
+  console.log(input, 'inputapi');
+  const config = {
+    headers: {
+      Accept: 'application/json',
+      'content-type': 'multipart/form-data',
+    },
+  };
+  return (dispatch) => {
+    dispatch({type: SIGNUP_START});
+    axios
+      .post('http://192.168.0.103:3000/api/upload', input, config)
+
+      .then((response) => {
+        console.log(response, 'RESPONSE in Signup');
+
+        dispatch({type: SIGNUP_SUCCESS, payload: response.data});
+        Toast.show({
+          type: 'success',
+          text2: 'Sign up successful!',
+        });
+      })
+      .catch((error) => {
+        console.log(error, 'ERROR in Signup');
+        dispatch({type: SIGNUP_ERROR, payload: error.response});
+        navigate('SignUp');
+        Toast.show({
+          type: 'errorSignUp',
+          text1: 'Error',
+          text2: error.response.data.message,
         });
       });
   };
 };
 
 export const RegisterGoogle = (input) => {
+  console.log(input, 'input in google action');
   return (dispatch) => {
     dispatch({type: SIGNUP_START});
     axios
+      // .post('http://ec2-3-139-84-5.us-east-2.compute.amazonaws.com/auth/login', input)
+
+      //Using endpoint for testing
       .post('https://jiujitsux.herokuapp.com/api/users/register', input)
 
-    .then(response =>{ dispatch({ type: SIGNUP_SUCCESS, payload: response.data }); 
-    deviceStorage.saveItem('token', response.data.token),
-    navigate('ProfileInfoForm');
-    Toast.show({
+      .then((response) => {
+        dispatch({type: SIGNUP_SUCCESS, payload: response.data});
+        deviceStorage.saveItem('token', response.data.token),
+          navigate('ProfileInfoForm');
+        Toast.show({
           type: 'success',
           text2: 'Sign up successful!',
-        });      
-})
+        });
+      })
       .catch((error) => {
         dispatch({type: SIGNUP_ERROR, payload: error.response});
         Toast.show({
@@ -80,37 +122,46 @@ export const RegisterGoogle = (input) => {
   };
 };
 
-
 export const Login = (input) => {
   return (dispatch) => {
     dispatch({type: LOGIN_START});
+    Toast.show({
+      type: 'info',
+      text2: 'Sending credentials...',
+    });
     axios
       .post('https://jiujitsux.herokuapp.com/api/users/login', input)
-       .then((response) => {
+      .then((response) => {
         deviceStorage.saveItem('token', response.data.token),
           dispatch({type: LOGIN_SUCCESS, payload: response.data});
         Toast.show({
-          type:'success',
-          text2: 'You have been logged in.',
+          type: 'success',
+          text2: response.data.message,
         });
       })
       .catch((error) => {
+        console.log(error.response.data.message, 'ERROR in LOGIN');
         dispatch({type: SIGNUP_ERROR, payload: error.response});
         Toast.show({
-          type: 'error',
+          type: 'errorLogin',
           text1: 'Error',
-          text2: 'Incorrect email or password.',
+          text2: error.response.data.message,
         });
       });
   };
 };
 
-export const GoogleLogin = () => { 
-  return async dispatch => {
-    dispatch({ type: GOOGLE_LOGIN_START });
+export const GoogleLogin = () => {
+  return async (dispatch) => {
+    dispatch({type: GOOGLE_LOGIN_START});
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
+      //send token to backend
+      //  dispatch (RegisterGoogle({idToken:userInfo.idToken}))
+      //test to make sure sending google userinfo correctly
+      dispatch(Login({email: userInfo.user.email, password: 'Password1!!'}));
+
       dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
     } catch (error) {
       console.log('Message', error.message);
@@ -121,18 +172,22 @@ export const GoogleLogin = () => {
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         console.log('Play Services Not Available or Outdated');
       } else {
-        console.log('Some Other Error Happened');
+        console.log(error);
       }
-    }    
-}
-}
+    }
+  };
+};
 
 export const GoogleIsSignedIn = () => {
-  return async dispatch => {
-  const isSignedIn = await GoogleSignin.isSignedIn();
+  return async (dispatch) => {
+    const isSignedIn = await GoogleSignin.isSignedIn();
     if (isSignedIn) {
       try {
         const userInfo = await GoogleSignin.signInSilently();
+        //send token to backend
+        //  dispatch (RegisterGoogle({idToken:userInfo.idToken}))
+        //test to make sure sending google userinfo correctly
+        dispatch(Login({email: userInfo.user.email, password: 'Password1!!'}));
         dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
       } catch (error) {
         if (error.code === statusCodes.SIGN_IN_REQUIRED) {
@@ -141,17 +196,15 @@ export const GoogleIsSignedIn = () => {
           console.log("Something went wrong. Unable to get user's info");
         }
       }
-
     } else {
-      dispatch({type: GOOGLE_LOGOUT_SUCCESS, payload: {}});      
+      dispatch({type: GOOGLE_LOGOUT_SUCCESS, payload: {}});
       console.log('Please Login');
     }
-}
-}
-
+  };
+};
 
 export const GoogleLogout = () => {
-    return async dispatch => {
+  return async (dispatch) => {
     try {
       await GoogleSignin.revokeAccess();
       await GoogleSignin.signOut();
@@ -159,8 +212,17 @@ export const GoogleLogout = () => {
     } catch (error) {
       console.error(error);
     }
-}
-}
+  };
+};
+
+export const GoogleLogoutCheck = () => {
+  return async (dispatch) => {
+    const isSignedIn = await GoogleSignin.isSignedIn();
+    if (isSignedIn) {
+      dispatch(GoogleLogout());
+    }
+  };
+};
 
 //Working POST with token sent on headers
 
@@ -182,36 +244,51 @@ export const GoogleLogout = () => {
 //   };
 // };
 
-export const Logout = () => {
-  return (dispatch) => {
-    dispatch({type: LOGOUT});
-    Toast.show({
-      type:'success',
-      topOffset: 30,
-      text2: 'You have been successfully logged out.',
-      
-    });
-  }}
-  
-  export const EditUser = (input) => {
-    return (dispatch) => {
-      dispatch({type: EDITUSER_START});
-      apiInstance        
-              .put(`https://jiujitsux.herokuapp.com/api/moves/takedown/${input.id}`, (input))
-              .then((response) => {
-                  console.log(response, 'TAKEDOWN edit response')
-                  Toast.show({
-                    type: 'success',
-                    text2: 'Profile updated successfully!',
-                  });               
-              })                      
-   .catch(error => {dispatch({ type: EDITUSER_ERROR, payload: error.response })
-  console.log(error.response )
+// export const Login = () => (dispatch) => {
+//   Toast.show({
+//     type: 'success',
+//     text2: 'Sign up successful!',
+//   });
+
+//   return dispatch({
+//     type: LOGIN_SUCCESS,
+//   });
+// };
+
+export const Logout = () => (dispatch) => {
   Toast.show({
-    type: 'error',
-    text2: 'Error updating profile.',
+    type: 'success',
+    topOffset: 30,
+    text2: 'You have been successfully logged out.',
   });
-   
-  })
-    };
+  dispatch(GoogleLogoutCheck());
+  return dispatch({
+    type: LOGOUT,
+  });
+};
+
+export const EditUser = (input) => {
+  return (dispatch) => {
+    dispatch({type: EDITUSER_START});
+    apiInstance
+      .put(
+        `https://jiujitsux.herokuapp.com/api/moves/takedown/${input.id}`,
+        input,
+      )
+      .then((response) => {
+        console.log(response, 'TAKEDOWN edit response');
+        Toast.show({
+          type: 'success',
+          text2: 'Profile updated successfully!',
+        });
+      })
+      .catch((error) => {
+        dispatch({type: EDITUSER_ERROR, payload: error.response});
+        console.log(error.response);
+        Toast.show({
+          type: 'error',
+          text2: 'Error updating profile.',
+        });
+      });
   };
+};

@@ -1,12 +1,13 @@
 import * as React from "react"
 import Svg, { Defs, LinearGradient, Stop, G, Rect } from "react-native-svg"
+import { moderateScale } from "../util/responsiveFont"
 /* SVGR has dropped some elements not supported by react-native-svg: title */
 
 function PostIcon(props) {
   return (
     <Svg
-      width={118}
-      height={81}
+      width={moderateScale(118)}
+      height={moderateScale(81)}
       viewBox="0 0 118 81"
       xmlns="http://www.w3.org/2000/svg"
       {...props}

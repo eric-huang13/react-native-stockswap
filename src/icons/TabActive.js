@@ -1,11 +1,12 @@
 import React from "react"
 import Svg, { Defs, G, Rect } from "react-native-svg"
+import { moderateScale } from "../util/responsiveFont"
 
 function TabActive() {
   return (
     <Svg
-      width={146}
-      height={68}
+      width={moderateScale(146)}
+      height={moderateScale(68)}
       viewBox="0 0 146 68"
       xmlns="http://www.w3.org/2000/svg"
  

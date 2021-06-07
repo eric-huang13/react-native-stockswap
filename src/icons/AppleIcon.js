@@ -1,11 +1,12 @@
 import React from "react"
 import Svg, { Defs, G, Path } from "react-native-svg"
+import {moderateScale, verticalScale, scale} from '../util/responsiveFont'
 
 function AppleIcon() {
   return (
     <Svg
-      width={15}
-      height={18}
+      width={moderateScale(15)}
+      height={moderateScale(18)}
       viewBox="0 0 15 18"
       xmlns="http://www.w3.org/2000/svg"
       

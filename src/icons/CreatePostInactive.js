@@ -1,11 +1,12 @@
 import React from "react"
 import Svg, { Defs, G, Path, Rect } from "react-native-svg"
+import {moderateScale, verticalScale, scale} from '../util/responsiveFont'
 
 function CreatePostInactive() {
   return (
     <Svg
-      width={30}
-      height={30}
+      width={moderateScale(30)}
+      height={moderateScale(30)}
       viewBox="0 0 30 30"
       xmlns="http://www.w3.org/2000/svg"
       

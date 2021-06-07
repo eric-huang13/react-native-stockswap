@@ -1,11 +1,12 @@
 import React from "react"
 import Svg, { G, Path } from "react-native-svg"
+import { moderateScale } from "../util/responsiveFont"
 
 function UserListImage() {
   return (
     <Svg
-      width={131}
-      height={80}
+      width={moderateScale(131)}
+      height={moderateScale(80)}
       viewBox="0 0 131 80"
       xmlns="http://www.w3.org/2000/svg"
     >
