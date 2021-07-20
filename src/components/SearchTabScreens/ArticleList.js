@@ -7,7 +7,9 @@ import {
   StyleSheet,
   FlatList,
   Text,
-  RefreshControl
+  RefreshControl,
+  TouchableOpacity,
+  Linking
 } from 'react-native';
 import {connect} from 'react-redux';
 import Article from '../SearchTabComponents/Article';
@@ -68,8 +70,14 @@ export class ArticleList extends Component {
           keyExtractor={(item, index) => String(index)}
           contentContainerStyle={{ paddingBottom: 20 }}
           data={this.props.articles}
-           renderItem={({item, index}) => (
+           renderItem={({item, index}) => ( 
+            <TouchableOpacity
+                key={item.id}
+                onPress={() => {
+                  Linking.openURL(item.news_url);
+                }}>
             <Article key={item.id} item={item} />
+              </TouchableOpacity>
            )}  
            refreshControl={
             <RefreshControl
