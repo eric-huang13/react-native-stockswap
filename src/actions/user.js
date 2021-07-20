@@ -136,15 +136,17 @@ export const Login = (input) => {
       text2: 'Sending credentials...',
     });
     axios
-      .post('https://jiujitsux.herokuapp.com/api/users/login', input)
+      .post('http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/login', input)
       .then((response) => {
-        deviceStorage.saveItem('token', response.data.token),
+        // console.log('response loginnnnn', response.data)
+        deviceStorage.saveItem('token', response.data.accessToken),
           dispatch({type: LOGIN_SUCCESS, payload: response.data});
         Toast.show({
           type: 'success',
           text2: response.data.message,
         });
       })
+      
       .catch((error) => {
         console.log(error.response.data.message, 'ERROR in LOGIN');
         dispatch({type: SIGNUP_ERROR, payload: error.response});

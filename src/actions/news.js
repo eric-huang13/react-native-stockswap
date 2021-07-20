@@ -5,23 +5,46 @@ import {
     NEWS_STOP,
   } from 'constants';
   import axios from 'axios';
- 
+  import apiInstance from '../util/axiosConfig';
+
+
   export const fetchNews = (page, offset) => {
     return (dispatch) => {
       dispatch({type: NEWS_FETCHING});  
-      axios
-        .get(`https://api.openbrewerydb.org/breweries?page=${page}&per_page=${offset}&by_state=ohio`)
+      apiInstance
+        .get(`http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/news`)
         // .then(response => console.log (response.data, "From NEWS API"))
         .then((response) =>
-        response.data.length > 0 ?
-          dispatch({type: NEWS_SUCCESS, payload: response.data}) :
-          dispatch({type: NEWS_STOP, payload: false})
+        // response.data.length > 0 ?
+          dispatch({type: NEWS_SUCCESS, payload: response.data.data}) 
+          // dispatch({type: NEWS_STOP, payload: false})
         )
         
     
         .catch((error) =>
-          dispatch({type: NEWS_ERROR, payload: error.response}),
+        console.log(error,'error news')
+          // dispatch({type: NEWS_ERROR, payload: error.response}),
         );
     };
   };
+  
+ 
+  // export const fetchNews = (page, offset) => {
+  //   return (dispatch) => {
+  //     dispatch({type: NEWS_FETCHING});  
+  //     axios
+  //       .get(`https://api.openbrewerydb.org/breweries?page=${page}&per_page=${offset}&by_state=ohio`)
+  //       // .then(response => console.log (response.data, "From NEWS API"))
+  //       .then((response) =>
+  //       response.data.length > 0 ?
+  //         dispatch({type: NEWS_SUCCESS, payload: response.data}) :
+  //         dispatch({type: NEWS_STOP, payload: false})
+  //       )
+        
+    
+  //       .catch((error) =>
+  //         dispatch({type: NEWS_ERROR, payload: error.response}),
+  //       );
+  //   };
+  // };
   

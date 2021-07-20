@@ -30,7 +30,7 @@ apiInstance.interceptors.request.use(
     const token = await AsyncStorage.getItem('token');
     console.log(token, 'token in axios config');
     if (token) {
-      config.headers.Authorization = token;
+      config.headers.Authorization = `'JWT' ${token}`
       console.log(config.headers.Authorization, 'Auth headers');
     }
     return config;

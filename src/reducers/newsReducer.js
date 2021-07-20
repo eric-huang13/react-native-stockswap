@@ -48,7 +48,8 @@ import {
           ...state,
           loading: false,
           error: "",
-          articles: [...state.articles, ...action.payload],
+          articles: action.payload,
+          // articles: [...state.articles, ...action.payload],
           page:(state.page+1)
         };
       case NEWS_ERROR:

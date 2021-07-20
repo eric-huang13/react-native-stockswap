@@ -29,12 +29,15 @@ export class ArticleList extends Component {
    //fetches more data, increases page number by 1
    fetchMoreData = () => {
     if (!this.props.loading && this.props.loadMore){
-    this.props.fetchNews(this.props.page, this.props.offset);
+    // this.props.fetchNews(this.props.page, this.props.offset);
+    this.props.fetchNews();
+
     console.log(this.props.page,'ran')
     }
   };
   render() {
     const {articles} = this.props;
+    // console.log(articles,"NEWS")
     // const filteredArticles = articles.filter((item) =>
     //   item.headline.toLowerCase().includes(this.state.input.toLowerCase()),
     // );
