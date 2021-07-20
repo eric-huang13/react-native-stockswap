@@ -6,7 +6,8 @@ import {
   ScrollView,
   StyleSheet,
   FlatList,
-  Text
+  Text,
+  RefreshControl
 } from 'react-native';
 import {connect} from 'react-redux';
 import Article from '../SearchTabComponents/Article';
@@ -70,8 +71,16 @@ export class ArticleList extends Component {
            renderItem={({item, index}) => (
             <Article key={item.id} item={item} />
            )}  
-           onEndReachedThreshold={0.1} 
-           onEndReached={this.fetchMoreData}
+           refreshControl={
+            <RefreshControl
+              //refresh control used for the Pull to Refresh
+              refreshing={this.props.loading}
+              onRefresh={this.fetchMoreData}
+            />
+          }
+          //Will uncomment if pagination is set up
+          //  onEndReachedThreshold={0.1} 
+          //  onEndReached={this.fetchMoreData}
         ListFooterComponent={
           <View style={style.footer}>
             {this.props.loading ? <Text style={style.loadingText}>LOADING...</Text> : null}
