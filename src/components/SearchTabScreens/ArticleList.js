@@ -19,6 +19,10 @@ import {fetchNews} from '../../actions/news'
 
 
 export class ArticleList extends Component {
+
+  componentDidMount() {
+    this.props.fetchNews();
+  }
   constructor(props) {
     super(props);
     this.state = {
