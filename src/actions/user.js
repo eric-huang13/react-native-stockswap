@@ -34,7 +34,7 @@ export const Register = (input) => {
     dispatch({type: SIGNUP_START});
     axios
       .post(
-        'http://ec2-3-139-84-5.us-east-2.compute.amazonaws.com/v1/auth/signup', input,)
+        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/signup', input,)
       .then((response) => {
         console.log(response, 'RESPONSE in Signup');
         

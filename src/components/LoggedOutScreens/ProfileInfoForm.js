@@ -23,10 +23,11 @@ import {moderateScale} from '../../util/responsiveFont';
 const validationSchema = Yup.object().shape({
   fullName: Yup.string()
     .label('Name')
-    .required('Name is required')
+    // .required('Name is required')
     .min(2, 'Must have at least 2 characters'),
 
-  username: Yup.string().label('username').required('Username is required'),
+  username: Yup.string().label('username'),
+  // .required('Username is required'),
 
   hashtag: Yup.string()
     .label('hashtag')
@@ -103,10 +104,11 @@ export class ProfileInfoForm extends Component {
                   // RegisterUser(data);
 
 
-                    ({email: values.email,
+                  RegisterUser ({email: values.email,
                     password: values.password,
-                    username: values.username,
-                    fullName: values.fullName,})
+                    // username: values.username,
+                    // fullName: values.fullName,
+                  })
 
                 }}
                 validationSchema={validationSchema}>
