@@ -252,7 +252,7 @@ export const SignUp = ({
             <View style={style.bottomButtonsContainer}>
               <Text style={style.orText}>--OR--</Text>
               <View style={style.alternateSignUpContainer}>
-                <GoogleOauth RegisterUserGoogle={RegisterUserGoogle} />
+                <GoogleOauth signup={'signup'} RegisterUserGoogle={RegisterUserGoogle} />
                 <View style={style.alternateSignupInner}>
                   <View style={style.signupIcon}>
                     <FacebookIcon />

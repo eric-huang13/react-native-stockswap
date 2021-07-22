@@ -176,7 +176,7 @@ export class LoginScreen extends Component {
               <View style={style.bottomButtonsContainer}>
                 <Text style={style.orText}>--OR--</Text>
                 <View style={style.alternateSignUpContainer}>
-                  <GoogleOauth RegisterUserGoogle={RegisterUserGoogle} />
+                  <GoogleOauth login={'login'} RegisterUserGoogle={RegisterUserGoogle} />
                   <View style={style.alternateSignupInner}>
                     <View style={style.signupIcon}>
                       <FacebookIcon />

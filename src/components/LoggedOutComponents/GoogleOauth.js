@@ -3,15 +3,19 @@ import {StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
 import {connect} from 'react-redux';
 import GoogleIcon from '../../icons/GoogleIcon';
 import {moderateScale} from '../../util/responsiveFont';
-import {GoogleLogin, GoogleLogout, GoogleIsSignedIn} from '../../actions/user';
+import {GoogleLogin, GoogleLogout, GoogleIsSignedIn, GoogleSignUp} from '../../actions/user';
 
 export function GoogleOauth(props) {
+  console.log(props,'props google')
   useEffect(() => {
     props.GoogleIsSignedIn();
   }, []);
 
   const signIn = () => {
-    props.GoogleLogin();
+    props.signup ? 
+    props.GoogleSignUp() :
+    props.GoogleLogin()
+   
   };
 
   const signOut = () => {
@@ -54,6 +58,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    GoogleSignUp: () => dispatch(GoogleSignUp()),
     GoogleLogin: () => dispatch(GoogleLogin()),
     GoogleLogout: () => dispatch(GoogleLogout()),
     GoogleIsSignedIn: () => dispatch(GoogleIsSignedIn()),

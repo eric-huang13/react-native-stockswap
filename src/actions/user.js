@@ -94,6 +94,40 @@ export const RegisterwithImage = (input) => {
   };
 };
 
+export const RegisterGoogleSignIn = (input) => {
+  GoogleSignin.configure({
+    webClientId:
+      '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
+    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+  });
+  console.log(input, 'input in google action');
+  return (dispatch) => {
+    dispatch({type: SIGNUP_START});
+    axios
+      .post('http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/oauth/signup', input)
+
+
+      .then((response) => {
+        dispatch({type: SIGNUP_SUCCESS, payload: response.data});
+        deviceStorage.saveItem('token', response.data.accessToken),
+
+        Toast.show({
+          type: 'success',
+          text2: 'Sign up with Google successful!',
+        });
+      })
+      .catch((error) => {
+        dispatch({type: SIGNUP_ERROR, payload: error.response});
+        Toast.show({
+          type: 'error',
+          text2: 'Error signing up.',
+        });
+      });
+  };
+};
+
+//original
 export const RegisterGoogle = (input) => {
   GoogleSignin.configure({
     webClientId:
@@ -118,7 +152,7 @@ export const RegisterGoogle = (input) => {
           // navigate('ProfileInfoForm');
         Toast.show({
           type: 'success',
-          text2: 'Sign up successful!',
+          text2: 'Login successful!',
         });
       })
       .catch((error) => {
@@ -161,7 +195,40 @@ export const Login = (input) => {
       });
   };
 };
+export const GoogleSignUp = () => {
+  GoogleSignin.configure({
+    webClientId:
+      '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
+    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+  });
+  return async (dispatch) => {
+    dispatch({type: GOOGLE_LOGIN_START});
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      //send token to backend
+       dispatch (RegisterGoogleSignIn({token:userInfo.idToken, platform:'android'}))
+      //test to make sure sending google userinfo correctly
+      // dispatch(Login({email: userInfo.user.email, password: 'Password1!!'}));
+      // console.log('google',userInfo)
+      dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
+    } catch (error) {
+      console.log('Message', error.message);
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        console.log('User Cancelled the Login Flow');
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        console.log('Signing In');
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        console.log('Play Services Not Available or Outdated');
+      } else {
+        console.log(error);
+      }
+    }
+  };
+};
 
+//original
 export const GoogleLogin = () => {
   GoogleSignin.configure({
     webClientId:
