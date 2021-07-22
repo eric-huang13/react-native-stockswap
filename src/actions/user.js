@@ -37,7 +37,8 @@ export const Register = (input) => {
         'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/signup', input,)
       .then((response) => {
         console.log(response, 'RESPONSE in Signup');
-        
+
+        deviceStorage.saveItem('token', response.data.accessToken),
         dispatch({type: SIGNUP_SUCCESS, payload: response.data});
         Toast.show({
           type: 'success',
@@ -104,15 +105,17 @@ export const RegisterGoogle = (input) => {
   return (dispatch) => {
     dispatch({type: SIGNUP_START});
     axios
-      // .post('http://ec2-3-139-84-5.us-east-2.compute.amazonaws.com/auth/login', input)
+      .post('http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/oauth/login', input)
 
       //Using endpoint for testing
-      .post('https://jiujitsux.herokuapp.com/api/users/register', input)
+      // .post('https://jiujitsux.herokuapp.com/api/users/register', input)
 
       .then((response) => {
         dispatch({type: SIGNUP_SUCCESS, payload: response.data});
-        deviceStorage.saveItem('token', response.data.token),
-          navigate('ProfileInfoForm');
+        deviceStorage.saveItem('token', response.data.accessToken),
+              // dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
+
+          // navigate('ProfileInfoForm');
         Toast.show({
           type: 'success',
           text2: 'Sign up successful!',
@@ -172,10 +175,10 @@ export const GoogleLogin = () => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       //send token to backend
-      //  dispatch (RegisterGoogle({idToken:userInfo.idToken}))
+       dispatch (RegisterGoogle({token:userInfo.idToken, platform:'android'}))
       //test to make sure sending google userinfo correctly
-      dispatch(Login({email: userInfo.user.email, password: 'Password1!!'}));
-
+      // dispatch(Login({email: userInfo.user.email, password: 'Password1!!'}));
+      // console.log('google',userInfo)
       dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
     } catch (error) {
       console.log('Message', error.message);
