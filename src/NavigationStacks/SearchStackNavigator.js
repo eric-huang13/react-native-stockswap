@@ -15,6 +15,7 @@ import UserPortfolioList from '../components/HomeTabScreens/UserPortfolioList';
 import MyProfile from '../components/MyProfileTabScreens/MyProfile';
 import MyProfilePosts from '../components/MyProfileTabScreens/MyProfilePosts';
 import CompanySymbolList from '../components/SearchTabComponents/CompanySymbolList';
+import LoggingOut from '../components/LoggedOutScreens/LoggingOutScreen';
 
 //responsive scale
 import {moderateScale} from '../util/responsiveFont';
@@ -28,6 +29,11 @@ export default class SearchStackNavigator extends Component {
         <SearchStack.Screen
           name="SearchTab"
           component={SearchTab}
+          options={{headerShown: false}}
+        />
+        <SearchStack.Screen
+          name="LoggingOut"
+          component={LoggingOut}
           options={{headerShown: false}}
         />
         <SearchStack.Screen

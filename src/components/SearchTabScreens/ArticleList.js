@@ -39,7 +39,7 @@ export class ArticleList extends Component {
     // this.props.fetchNews(this.props.page, this.props.offset);
     this.props.fetchNews();
 
-    console.log(this.props.page,'ran')
+    // console.log(this.props.page,'ran')
     }
   };
   render() {

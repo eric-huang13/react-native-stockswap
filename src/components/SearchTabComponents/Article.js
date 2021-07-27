@@ -5,7 +5,7 @@ import {moderateScale} from '../../util/responsiveFont';
 export class Article extends Component {
   render() {
     const {item} = this.props;
-    console.log(this.props, 'props in news')
+    // console.log(this.props, 'props in news')
 
     return (
       <SafeAreaView style={style.container}>

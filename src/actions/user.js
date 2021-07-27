@@ -34,12 +34,16 @@ export const Register = (input) => {
     dispatch({type: SIGNUP_START});
     axios
       .post(
-        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/signup', input,)
+        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/signup',
+        input,
+      )
       .then((response) => {
         console.log(response, 'RESPONSE in Signup');
 
         deviceStorage.saveItem('token', response.data.accessToken),
-        dispatch({type: SIGNUP_SUCCESS, payload: response.data});
+        deviceStorage.saveItem('refreshToken', response.data.refreshToken),
+
+          dispatch({type: SIGNUP_SUCCESS, payload: response.data});
         Toast.show({
           type: 'success',
           text2: 'Sign up successful!',
@@ -105,17 +109,20 @@ export const RegisterGoogleSignIn = (input) => {
   return (dispatch) => {
     dispatch({type: SIGNUP_START});
     axios
-      .post('http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/oauth/signup', input)
-
+      .post(
+        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/oauth/signup',
+        input,
+      )
 
       .then((response) => {
         dispatch({type: SIGNUP_SUCCESS, payload: response.data});
         deviceStorage.saveItem('token', response.data.accessToken),
+        deviceStorage.saveItem('refreshToken', response.data.refreshToken),
 
-        Toast.show({
-          type: 'success',
-          text2: 'Sign up with Google successful!',
-        });
+          Toast.show({
+            type: 'success',
+            text2: 'Sign up with Google successful!',
+          });
       })
       .catch((error) => {
         dispatch({type: SIGNUP_ERROR, payload: error.response});
@@ -139,7 +146,10 @@ export const RegisterGoogle = (input) => {
   return (dispatch) => {
     dispatch({type: SIGNUP_START});
     axios
-      .post('http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/oauth/login', input)
+      .post(
+        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/oauth/login',
+        input,
+      )
 
       //Using endpoint for testing
       // .post('https://jiujitsux.herokuapp.com/api/users/register', input)
@@ -147,13 +157,15 @@ export const RegisterGoogle = (input) => {
       .then((response) => {
         dispatch({type: SIGNUP_SUCCESS, payload: response.data});
         deviceStorage.saveItem('token', response.data.accessToken),
-              // dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
+        deviceStorage.saveItem('refreshToken', response.data.refreshToken),
+
+          // dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
 
           // navigate('ProfileInfoForm');
-        Toast.show({
-          type: 'success',
-          text2: 'Login successful!',
-        });
+          Toast.show({
+            type: 'success',
+            text2: 'Login successful!',
+          });
       })
       .catch((error) => {
         dispatch({type: SIGNUP_ERROR, payload: error.response});
@@ -173,17 +185,22 @@ export const Login = (input) => {
       text2: 'Sending credentials...',
     });
     axios
-      .post('http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/login', input)
+      .post(
+        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/login',
+        input,
+      )
       .then((response) => {
-        // console.log('response loginnnnn', response.data)
+        console.log('FIRST', response.data.refreshToken)
         deviceStorage.saveItem('token', response.data.accessToken),
+        deviceStorage.saveItem('refreshToken', response.data.refreshToken),
+
           dispatch({type: LOGIN_SUCCESS, payload: response.data});
         Toast.show({
           type: 'success',
           text2: response.data.message,
         });
       })
-      
+
       .catch((error) => {
         console.log(error.response.data.message, 'ERROR in LOGIN');
         dispatch({type: SIGNUP_ERROR, payload: error.response});
@@ -208,7 +225,9 @@ export const GoogleSignUp = () => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       //send token to backend
-       dispatch (RegisterGoogleSignIn({token:userInfo.idToken, platform:'android'}))
+      dispatch(
+        RegisterGoogleSignIn({token: userInfo.idToken, platform: 'android'}),
+      );
       //test to make sure sending google userinfo correctly
       // dispatch(Login({email: userInfo.user.email, password: 'Password1!!'}));
       // console.log('google',userInfo)
@@ -242,7 +261,7 @@ export const GoogleLogin = () => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       //send token to backend
-       dispatch (RegisterGoogle({token:userInfo.idToken, platform:'android'}))
+      dispatch(RegisterGoogle({token: userInfo.idToken, platform: 'android'}));
       //test to make sure sending google userinfo correctly
       // dispatch(Login({email: userInfo.user.email, password: 'Password1!!'}));
       // console.log('google',userInfo)
