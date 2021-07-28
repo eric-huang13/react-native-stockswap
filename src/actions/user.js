@@ -169,9 +169,13 @@ export const RegisterGoogle = (input) => {
       })
       .catch((error) => {
         dispatch({type: SIGNUP_ERROR, payload: error.response});
+        //if response is email not registered then should dispatch oauth signup
+        dispatch(GoogleLogoutCheck());
+        navigate('SignUp');
+
         Toast.show({
           type: 'error',
-          text2: 'Error signing up.',
+          text2: 'Error Logging in. Please create account. ',
         });
       });
   };
@@ -260,6 +264,8 @@ export const GoogleLogin = () => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
+      deviceStorage.saveItem('email', userInfo.user.email),
+
       //send token to backend
       dispatch(RegisterGoogle({token: userInfo.idToken, platform: 'android'}));
       //test to make sure sending google userinfo correctly
@@ -294,10 +300,10 @@ export const GoogleIsSignedIn = () => {
       try {
         const userInfo = await GoogleSignin.signInSilently();
         //send token to backend
-        //  dispatch (RegisterGoogle({idToken:userInfo.idToken}))
+        dispatch(RegisterGoogle({token: userInfo.idToken, platform: 'android'}));
         //test to make sure sending google userinfo correctly
-        dispatch(Login({email: userInfo.user.email, password: 'Password1!!'}));
-        dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
+        // dispatch(Login({email: userInfo.user.email, password: 'Password1!!'}));
+        // dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
       } catch (error) {
         if (error.code === statusCodes.SIGN_IN_REQUIRED) {
           console.log('User has not signed in yet');

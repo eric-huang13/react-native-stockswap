@@ -33,6 +33,14 @@ const apiInstance = axios.create();
 apiInstance.interceptors.request.use(
   async (config) => {
     const token = await AsyncStorage.getItem('token');
+        console.log(token, 'token in axios config');
+        const refreshToken = await AsyncStorage.getItem('refreshToken');
+        console.log(refreshToken, 'refresh token in axios config');
+        const email = await AsyncStorage.getItem('email');
+        console.log(email, 'email in axios config');
+
+
+
     console.log(token, 'token in axios config');
     if (token) {
       config.headers.Authorization = `'JWT' ${token}`
@@ -54,7 +62,6 @@ apiInstance.interceptors.response.use(
     console.log(error.response.data,"ERROR MSG")
     const originalRequest = error.config
     console.log(originalRequest, "ORIGINAL")
-
     
   //send refresh token
     if (error.response.status === 401 && !originalRequest._retry) {
@@ -66,7 +73,7 @@ apiInstance.interceptors.response.use(
            return axios.post('http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/refresh',
           {
               "refreshToken": refreshToken,
-              "email":"th325109@ohio.edu"
+              "email":email
           })
           .then( async res => {
             //save new tokens

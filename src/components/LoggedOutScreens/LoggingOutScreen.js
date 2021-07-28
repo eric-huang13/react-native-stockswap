@@ -24,8 +24,8 @@ class LoggingOut extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => { this.props.LogoutUser()}, 5000);
-
+    // setTimeout(() => { this.props.LogoutUser()}, 1000);
+    this.props.LogoutUser()
   }
   render() {
    
