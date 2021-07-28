@@ -28,10 +28,16 @@ export function GoogleOauth(props) {
         <View style={styles.alternateSignupInner}>
           <View style={styles.signupIcon}>
             <GoogleIcon />
-          </View>          
-            <Text style={styles.alternateSignUpButton}>
+          </View>
+          {props.signup ? 
+          <Text style={styles.alternateSignUpButton}>
               SIGN UP WITH GOOGLE
-            </Text>          
+            </Text>  :
+            <Text style={styles.alternateSignUpButton}>
+              LOGIN WITH GOOGLE
+            </Text> 
+}          
+                     
         </View>
         </TouchableOpacity>
       ) : (

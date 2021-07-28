@@ -195,8 +195,12 @@ export const Login = (input) => {
       )
       .then((response) => {
         console.log('FIRST', response.data.refreshToken)
+        console.log('INPUT', input.email)
+
         deviceStorage.saveItem('token', response.data.accessToken),
         deviceStorage.saveItem('refreshToken', response.data.refreshToken),
+        deviceStorage.saveItem('email', input.email),
+
 
           dispatch({type: LOGIN_SUCCESS, payload: response.data});
         Toast.show({
