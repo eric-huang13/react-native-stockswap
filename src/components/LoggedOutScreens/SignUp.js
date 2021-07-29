@@ -107,10 +107,13 @@ export const SignUp = ({
                 validationSchema={reviewSchema}
                 onSubmit={(values, actions) => {
                   console.log(values, 'Values');
-                  navigation.navigate({
-                    name: 'ProfileInfoForm',
-                    params: {userInfo: values},
-                  });
+                  // navigation.navigate({
+                  //   name: 'ProfileInfoForm',
+                  //   params: {userInfo: values},
+                  // });
+                  RegisterUser ({email: values.email,
+                    password: values.password,                    
+                  })
                 }}>
                 {(props) => (
                   <View style={style.inner}>

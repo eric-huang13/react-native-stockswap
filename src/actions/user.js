@@ -6,9 +6,6 @@ import {
   SIGNUP_START,
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
-  EDITUSER_START,
-  EDITUSER_SUCCESS,
-  EDITUSER_ERROR,
   GOOGLE_LOGIN_START,
   GOOGLE_LOGIN_SUCCESS,
   GOOGLE_LOGIN_ERROR,
@@ -30,6 +27,41 @@ import {GoogleSignin, statusCodes} from '@react-native-community/google-signin';
 //   offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
 //   iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
 // });
+// export const Register = (input) => {
+//   return (dispatch) => {
+//     dispatch({type: SIGNUP_START});
+//     axios
+//       .post(
+//         'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/signup',
+//         input,
+//       )
+//       .then((response) => {
+//         console.log(response, 'RESPONSE in Signup');
+
+//         deviceStorage.saveItem('token', response.data.accessToken),
+//         deviceStorage.saveItem('refreshToken', response.data.refreshToken),
+//         deviceStorage.saveItem('email', input.email),
+
+//         //route to profileinfo
+//           dispatch({type: SIGNUP_SUCCESS, payload: response.data});
+//         Toast.show({
+//           type: 'success',
+//           text2: 'Sign up successful!',
+//         });
+//       })
+//       .catch((error) => {
+//         console.log(error, 'ERROR in Signup');
+//         dispatch({type: SIGNUP_ERROR, payload: error.response});
+//         navigate('SignUp');
+//         Toast.show({
+//           type: 'errorSignUp',
+//           text1: 'Error',
+//           text2: error.response.data.message,
+//         });
+//       });
+//   };
+// };
+
 export const Register = (input) => {
   return (dispatch) => {
     dispatch({type: SIGNUP_START});
@@ -45,8 +77,10 @@ export const Register = (input) => {
         deviceStorage.saveItem('refreshToken', response.data.refreshToken),
         deviceStorage.saveItem('email', input.email),
 
-
+        //route to profileinfo
           dispatch({type: SIGNUP_SUCCESS, payload: response.data});
+          navigate('ProfileInfoForm');
+
         Toast.show({
           type: 'success',
           text2: 'Sign up successful!',
@@ -64,7 +98,6 @@ export const Register = (input) => {
       });
   };
 };
-
 // For signup with image
 // export const RegisterwithImage = (input) => {
 //   console.log(input, 'inputapi');
@@ -108,7 +141,6 @@ export const RegisterGoogleSignIn = (input) => {
     offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
     iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
-  console.log(input, 'input in google action');
   return (dispatch) => {
     dispatch({type: SIGNUP_START});
     axios
@@ -118,9 +150,11 @@ export const RegisterGoogleSignIn = (input) => {
       )
 
       .then((response) => {
+        //here route to profile info
         dispatch({type: SIGNUP_SUCCESS, payload: response.data});
         deviceStorage.saveItem('token', response.data.accessToken),
         deviceStorage.saveItem('refreshToken', response.data.refreshToken),
+        navigate('ProfileInfoForm');
 
           Toast.show({
             type: 'success',
@@ -386,28 +420,6 @@ export const Logout = () => (dispatch) => {
   
 };
 
-export const EditUser = (input) => {
-  return (dispatch) => {
-    dispatch({type: EDITUSER_START});
-    apiInstance
-      .put(
-        `https://jiujitsux.herokuapp.com/api/moves/takedown/${input.id}`,
-        input,
-      )
-      .then((response) => {
-        console.log(response, 'TAKEDOWN edit response');
-        Toast.show({
-          type: 'success',
-          text2: 'Profile updated successfully!',
-        });
-      })
-      .catch((error) => {
-        dispatch({type: EDITUSER_ERROR, payload: error.response});
-        console.log(error.response);
-        Toast.show({
-          type: 'error',
-          text2: 'Error updating profile.',
-        });
-      });
-  };
-};
+
+
+

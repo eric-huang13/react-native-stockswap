@@ -6,9 +6,9 @@ import {
   SIGNUP_START,
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
-  EDITUSER_START,
-  EDITUSER_SUCCESS,
-  EDITUSER_ERROR,
+  CREATEPROFILE_START,
+  CREATEPROFILE_SUCCESS,
+  CREATEPROFILE_ERROR,
   GOOGLE_LOGIN_START,
   GOOGLE_LOGIN_SUCCESS,
   GOOGLE_LOGOUT_SUCCESS,
@@ -17,6 +17,7 @@ import {
 const defaultState = {
   isLoggedIn: false,
   userData: [],
+  userProfile:[],
   googleUser: [],
   userFakeData: {
     id: 4,
@@ -51,7 +52,7 @@ const userReducer = (state = defaultState, action) => {
       return {
         ...state,
         loading: false,
-        isLoggedIn: true,
+        // isLoggedIn: true,
         error: '',
         userData: action.payload,
       };
@@ -76,20 +77,21 @@ const userReducer = (state = defaultState, action) => {
         error: '',
         userData: action.payload,
       };
-    case EDITUSER_START:
+    case CREATEPROFILE_START:
       return {
         ...state,
         loading: true,
         error: '',
       };
-    case EDITUSER_SUCCESS:
+    case CREATEPROFILE_SUCCESS:
       return {
         ...state,
         loading: false,
+        isLoggedIn: true,
         error: '',
-        userData: action.payload,
+        userProfile: action.payload,
       };
-    case EDITUSER_ERROR:
+    case CREATEPROFILE_ERROR:
       return {
         ...state,
         loading: false,
