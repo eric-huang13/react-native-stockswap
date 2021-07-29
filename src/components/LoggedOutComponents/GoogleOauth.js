@@ -23,8 +23,20 @@ export function GoogleOauth(props) {
   };
   return (
     <View>
-      {!props.googleUser.idToken ? (
-      <TouchableOpacity onPress={signIn}>
+      {props.googleUser.idToken && props.userData.accessToken ? (
+       <TouchableOpacity onPress={signOut}>
+       <View style={styles.alternateSignupInner}>
+         <View style={styles.signupIcon}>
+           <Image
+             style={{width: 23, height: 23}}
+             source={{uri: props.googleUser.user.photo}}
+           />
+         </View>          
+           <Text style={styles.alternateSignUpButton}>LOGOUT OF GOOGLE</Text>          
+       </View>
+       </TouchableOpacity>
+      ) : (
+        <TouchableOpacity onPress={signIn}>
         <View style={styles.alternateSignupInner}>
           <View style={styles.signupIcon}>
             <GoogleIcon />
@@ -40,18 +52,7 @@ export function GoogleOauth(props) {
                      
         </View>
         </TouchableOpacity>
-      ) : (
-      <TouchableOpacity onPress={signOut}>
-        <View style={styles.alternateSignupInner}>
-          <View style={styles.signupIcon}>
-            <Image
-              style={{width: 23, height: 23}}
-              source={{uri: props.googleUser.user.photo}}
-            />
-          </View>          
-            <Text style={styles.alternateSignUpButton}>LOGOUT OF GOOGLE</Text>          
-        </View>
-        </TouchableOpacity>
+     
       )}
     </View>
   );
@@ -59,6 +60,8 @@ export function GoogleOauth(props) {
 const mapStateToProps = (state) => {
   return {
     googleUser: state.user.googleUser,
+    userData: state.user.userData,
+
   };
 };
 

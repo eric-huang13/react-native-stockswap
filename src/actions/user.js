@@ -151,15 +151,10 @@ export const RegisterGoogle = (input) => {
         input,
       )
 
-      //Using endpoint for testing
-      // .post('https://jiujitsux.herokuapp.com/api/users/register', input)
-
       .then((response) => {
-        dispatch({type: SIGNUP_SUCCESS, payload: response.data});
+        dispatch({type: LOGIN_SUCCESS, payload: response.data});
         deviceStorage.saveItem('token', response.data.accessToken),
         deviceStorage.saveItem('refreshToken', response.data.refreshToken),
-
-          // dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
 
           // navigate('ProfileInfoForm');
           Toast.show({
@@ -236,9 +231,7 @@ export const GoogleSignUp = () => {
       dispatch(
         RegisterGoogleSignIn({token: userInfo.idToken, platform: 'android'}),
       );
-      //test to make sure sending google userinfo correctly
-      // dispatch(Login({email: userInfo.user.email, password: 'Password1!!'}));
-      // console.log('google',userInfo)
+     
       dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
     } catch (error) {
       console.log('Message', error.message);
@@ -271,10 +264,8 @@ export const GoogleLogin = () => {
       deviceStorage.saveItem('email', userInfo.user.email),
 
       //send token to backend
-      dispatch(RegisterGoogle({token: userInfo.idToken, platform: 'android'}));
-      //test to make sure sending google userinfo correctly
-      // dispatch(Login({email: userInfo.user.email, password: 'Password1!!'}));
-      // console.log('google',userInfo)
+       dispatch(RegisterGoogle({token: userInfo.idToken, platform: 'android'}));
+  
       dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
     } catch (error) {
       console.log('Message', error.message);
@@ -305,9 +296,7 @@ export const GoogleIsSignedIn = () => {
         const userInfo = await GoogleSignin.signInSilently();
         //send token to backend
         dispatch(RegisterGoogle({token: userInfo.idToken, platform: 'android'}));
-        //test to make sure sending google userinfo correctly
-        // dispatch(Login({email: userInfo.user.email, password: 'Password1!!'}));
-        // dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
+        
       } catch (error) {
         if (error.code === statusCodes.SIGN_IN_REQUIRED) {
           console.log('User has not signed in yet');
@@ -381,6 +370,7 @@ export const GoogleLogoutCheck = () => {
 // };
 
 export const Logout = () => (dispatch) => {
+  
   Toast.show({
     type: 'success',
     topOffset: 30,
@@ -390,6 +380,7 @@ export const Logout = () => (dispatch) => {
   return dispatch({
     type: LOGOUT,
   });
+  
 };
 
 export const EditUser = (input) => {
