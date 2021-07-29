@@ -18,6 +18,7 @@ import {
 } from 'constants';
 import axios from 'axios';
 import deviceStorage from '../util/DeviceStorage';
+import clearAppData from '../util/ClearStorage';
 import apiInstance from '../util/axiosConfig';
 import {navigate} from '../../RootNavigation';
 
@@ -42,6 +43,8 @@ export const Register = (input) => {
 
         deviceStorage.saveItem('token', response.data.accessToken),
         deviceStorage.saveItem('refreshToken', response.data.refreshToken),
+        deviceStorage.saveItem('email', input.email),
+
 
           dispatch({type: SIGNUP_SUCCESS, payload: response.data});
         Toast.show({
@@ -63,40 +66,40 @@ export const Register = (input) => {
 };
 
 // For signup with image
-export const RegisterwithImage = (input) => {
-  console.log(input, 'inputapi');
-  const config = {
-    headers: {
-      Accept: 'application/json',
-      'content-type': 'multipart/form-data',
-    },
-  };
-  return (dispatch) => {
-    dispatch({type: SIGNUP_START});
-    axios
-      .post('http://192.168.0.103:3000/api/upload', input, config)
+// export const RegisterwithImage = (input) => {
+//   console.log(input, 'inputapi');
+//   const config = {
+//     headers: {
+//       Accept: 'application/json',
+//       'content-type': 'multipart/form-data',
+//     },
+//   };
+//   return (dispatch) => {
+//     dispatch({type: SIGNUP_START});
+//     axios
+//       .post('http://192.168.0.103:3000/api/upload', input, config)
 
-      .then((response) => {
-        console.log(response, 'RESPONSE in Signup');
+//       .then((response) => {
+//         console.log(response, 'RESPONSE in Signup');
 
-        dispatch({type: SIGNUP_SUCCESS, payload: response.data});
-        Toast.show({
-          type: 'success',
-          text2: 'Sign up successful!',
-        });
-      })
-      .catch((error) => {
-        console.log(error, 'ERROR in Signup');
-        dispatch({type: SIGNUP_ERROR, payload: error.response});
-        navigate('SignUp');
-        Toast.show({
-          type: 'errorSignUp',
-          text1: 'Error',
-          text2: error.response.data.message,
-        });
-      });
-  };
-};
+//         dispatch({type: SIGNUP_SUCCESS, payload: response.data});
+//         Toast.show({
+//           type: 'success',
+//           text2: 'Sign up successful!',
+//         });
+//       })
+//       .catch((error) => {
+//         console.log(error, 'ERROR in Signup');
+//         dispatch({type: SIGNUP_ERROR, payload: error.response});
+//         navigate('SignUp');
+//         Toast.show({
+//           type: 'errorSignUp',
+//           text1: 'Error',
+//           text2: error.response.data.message,
+//         });
+//       });
+//   };
+// };
 
 export const RegisterGoogleSignIn = (input) => {
   GoogleSignin.configure({
@@ -370,7 +373,7 @@ export const GoogleLogoutCheck = () => {
 // };
 
 export const Logout = () => (dispatch) => {
-  
+  clearAppData()
   Toast.show({
     type: 'success',
     topOffset: 30,
