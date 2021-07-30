@@ -18,6 +18,7 @@ import deviceStorage from '../util/DeviceStorage';
 import clearAppData from '../util/ClearStorage';
 import apiInstance from '../util/axiosConfig';
 import {navigate} from '../../RootNavigation';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Toast from 'react-native-toast-message';
 import {GoogleSignin, statusCodes} from '@react-native-community/google-signin';
@@ -406,20 +407,57 @@ export const GoogleLogoutCheck = () => {
 //   });
 // };
 
-export const Logout = () => (dispatch) => {
-  clearAppData()
+// export const Logout = () => (dispatch) => {
+//   clearAppData()
+//   Toast.show({
+//     type: 'success',
+//     topOffset: 30,
+//     text2: 'You have been successfully logged out.',
+//   });
+//   dispatch(GoogleLogoutCheck());
+//   return dispatch({
+//     type: LOGOUT,
+//   });
+  
+// };
+
+
+export const Logout = () => { 
+  return async (dispatch) => {
+    const refreshToken = await AsyncStorage.getItem("refreshToken");
+    const email = await AsyncStorage.getItem("email");      
+    return axios
+        .post(
+          "http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/logout",
+          {
+            refreshToken: refreshToken,
+            email: email,
+          }
+        )
+        .then( (res) => {
+          clearAppData()
   Toast.show({
     type: 'success',
     topOffset: 30,
     text2: 'You have been successfully logged out.',
   });
   dispatch(GoogleLogoutCheck());
-  return dispatch({
+  console.log(res, "Logging out")
+   dispatch({
     type: LOGOUT,
   });
-  
+        })
+        .catch((error) => {
+          console.log(error, "Error logging out");
+
+          Toast.show({
+            type: "errorSignUp",
+            text1: "Session Has Expired",
+            text2: "Error logging out",
+          });
+        });
+    
+  };
 };
-
-
 
 
