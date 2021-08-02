@@ -12,6 +12,7 @@ import ProfileGraph from '../HomeTabComponents/ProfileGraph';
 import {connect} from 'react-redux';
 import MyProfilePostBox from '../MyProfileTabComponents/MyProfilePostBox';
 import {moderateScale} from '../../util/responsiveFont';
+import {GetProfile} from '../../actions/profile'
 
 class Profile extends Component {
   constructor(props) {
@@ -37,10 +38,11 @@ class Profile extends Component {
   }
   componentDidMount() {
     //fetch data()
-    const {post, user} = this.props;
+    this.props.GetProfile();
+
+    const {post, user, userProfile} = this.props;
     const id = this.props.user.id;
     const selectedPosts = post.filter((user) => user.userId === id);
-
     this.setState({
       selectedPosts: selectedPosts,
       user: user,
@@ -65,6 +67,7 @@ class Profile extends Component {
   render() {
     const {graphData, percent, range, timeFilter} = this.state;
     const {user, post} = this.props;
+    console.log(this.props.userProfile,"PROFILE DATA")
 
     return (
       <SafeAreaView style={style.container}>
@@ -271,10 +274,18 @@ const mapStateToProps = (state) => {
     users: state.people.users,
     reply: state.posts.reply,
     user: state.user.userFakeData,
+    userProfile: state.user.userProfile,
+
   };
 };
 
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    GetProfile: () => dispatch(GetProfile()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
 
 const style = StyleSheet.create({
   container: {

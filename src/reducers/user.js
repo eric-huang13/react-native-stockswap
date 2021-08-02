@@ -12,6 +12,9 @@ import {
   GOOGLE_LOGIN_START,
   GOOGLE_LOGIN_SUCCESS,
   GOOGLE_LOGOUT_SUCCESS,
+  GETPROFILE_START,
+  GETPROFILE_SUCCESS,
+  GETPROFILE_ERROR,
 } from 'constants';
 
 const defaultState = {
@@ -92,6 +95,26 @@ const userReducer = (state = defaultState, action) => {
         userProfile: action.payload,
       };
     case CREATEPROFILE_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+      case GETPROFILE_START:
+      return {
+        ...state,
+        loading: true,
+        error: '',
+      };
+    case GETPROFILE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isLoggedIn: true,
+        error: '',
+        userProfile: action.payload,
+      };
+    case GETPROFILE_ERROR:
       return {
         ...state,
         loading: false,

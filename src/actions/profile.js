@@ -4,7 +4,10 @@ import {
     EDITPROFILE_ERROR, 
     CREATEPROFILE_START,
     CREATEPROFILE_SUCCESS,
-    CREATEPROFILE_ERROR, 
+    CREATEPROFILE_ERROR,
+    GETPROFILE_START,
+    GETPROFILE_SUCCESS,
+    GETPROFILE_ERROR, 
   } from 'constants';
   import axios from 'axios';
   import deviceStorage from '../util/DeviceStorage';
@@ -38,6 +41,38 @@ import {
         });
     };
   };
+  ///
+
+
+
+
+  export const GetProfile = (input) => {
+    return (dispatch) => {
+      dispatch({type: GETPROFILE_START});
+      apiInstance
+        .get(
+          `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/profile`,
+          input,
+        )
+        .then((response) => {
+          console.log(response, 'profile get response');
+          dispatch({type: GETPROFILE_SUCCESS, payload: response.data});
+
+          Toast.show({
+            type: 'success',
+            text2: 'Profile get successful!',
+          });
+        })
+        .catch((error) => {
+          console.log(error.response);
+          Toast.show({
+            type: 'error',
+            text2: 'Error getting profile.',
+          });
+        });
+    };
+  };
+
   ///
   export const Register = (input) => {
     return (dispatch) => {
