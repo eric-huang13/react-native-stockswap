@@ -25,7 +25,7 @@ const validationSchema = Yup.object().shape({
     .required('Name is required')
     .min(2, 'Must have at least 2 characters'),
 
-  userName: Yup.string().label('userName').required('userName is required'),
+  username: Yup.string().label('username').required('username is required'),
 
   tags: Yup.string()
     .label('tags')
@@ -70,7 +70,7 @@ class EditProfile extends Component {
                 initialValues={{
                   // id: userAccount.id,
                   name: userProfile.name,
-                  userName: userAccount.username,
+                  username: userAccount.username,
                   image: {name: '', type: '', uri: userAccount.img},
                   tags: userAccount.hashtag,
                   bio: userProfile.bio,
@@ -80,7 +80,7 @@ class EditProfile extends Component {
                   const data = this.createFormData(values);
                   console.log(data, 'form');
                   EditUserProfile ({name: values.name,
-                    userName: values.userName,
+                    username: values.username,
                     bio: values.bio,
                     tags: values.tags,
                   })
@@ -172,7 +172,7 @@ class EditProfile extends Component {
                           placeholder="Enter your name"
                           placeholderTextColor="#FFFFFF"
                           returnKeyType="next"
-                          onSubmitEditing={() => this.userName.focus()}
+                          onSubmitEditing={() => this.username.focus()}
                           ref={(input) => (this.name = input)}
                         />
                         <Text style={style.errorText}>
@@ -184,17 +184,17 @@ class EditProfile extends Component {
                         <Text style={style.inputHeader}>User name</Text>
                         <TextInput
                           style={style.inputStyle}
-                          value={values.userName}
-                          onBlur={handleBlur('userName')}
-                          onChangeText={handleChange('userName')}
+                          value={values.username}
+                          onBlur={handleBlur('username')}
+                          onChangeText={handleChange('username')}
                           placeholder="@example"
                           placeholderTextColor="#9ea6b5"
                           style={style.inputStyle}
-                          ref={(input) => (this.userName = input)}
+                          ref={(input) => (this.username = input)}
                           onSubmitEditing={() => this.image.focus()}
                         />
                         <Text style={style.errorText}>
-                          {touched.userName && errors.userName}
+                          {touched.username && errors.username}
                         </Text>
                       </View>
                     </View>

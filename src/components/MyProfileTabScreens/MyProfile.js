@@ -183,7 +183,7 @@ class Profile extends Component {
                     <View style={style.personalDetails}>
                       <Text style={style.name}>{userProfile.name}</Text>
                       <Text style={style.username}>
-                        @{this.state.user.username}
+                        @{userProfile.username}
                       </Text>
                       <Text style={style.hashtag}>
                         {this.state.user.hashtag}
