@@ -13,6 +13,8 @@ import {connect} from 'react-redux';
 import MyProfilePostBox from '../MyProfileTabComponents/MyProfilePostBox';
 import {moderateScale} from '../../util/responsiveFont';
 import {GetProfile} from '../../actions/profile'
+import {GetProfileImage} from '../../actions/profile'
+
 
 class Profile extends Component {
   constructor(props) {
@@ -39,6 +41,7 @@ class Profile extends Component {
   componentDidMount() {
     //fetch data()
     this.props.GetProfile();
+    this.props.GetProfileImage();
 
     const {post, user, userProfile} = this.props;
     const id = this.props.user.id;
@@ -66,8 +69,10 @@ class Profile extends Component {
   }
   render() {
     const {graphData, percent, range, timeFilter} = this.state;
-    const {user, post} = this.props;
+    const {user, post, userProfile} = this.props;
     console.log(this.props.userProfile,"PROFILE DATA")
+    console.log(this.props.userImage,"PROFILE IMAGE")
+
 
     return (
       <SafeAreaView style={style.container}>
@@ -173,10 +178,10 @@ class Profile extends Component {
                   <View style={style.detailsRow}>
                     <Image
                       style={style.image}
-                      source={{uri: this.state.user.img}}
+                      source={{uri: 'file:///data/user/0/com.app/cache/rn_image_picker_lib_temp_4353dbbd-ee72-4d53-be25-0b1c8870dfeb.jpg'}}
                     />
                     <View style={style.personalDetails}>
-                      <Text style={style.name}>{this.state.user.name}</Text>
+                      <Text style={style.name}>{userProfile.name}</Text>
                       <Text style={style.username}>
                         @{this.state.user.username}
                       </Text>
@@ -186,7 +191,7 @@ class Profile extends Component {
                     </View>
                   </View>
                   <View style={style.bioContainer}>
-                    <Text style={style.bio}>{this.state.user.bio}</Text>
+                    <Text style={style.bio}>{userProfile.bio}</Text>
                   </View>
                   <View style={style.numberRow}>
                     <TouchableOpacity
@@ -275,6 +280,7 @@ const mapStateToProps = (state) => {
     reply: state.posts.reply,
     user: state.user.userFakeData,
     userProfile: state.user.userProfile,
+    userImage: state.user.userImage,
 
   };
 };
@@ -282,6 +288,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     GetProfile: () => dispatch(GetProfile()),
+    GetProfileImage: () => dispatch(GetProfileImage()),
+
   };
 };
 

@@ -16,7 +16,7 @@ apiInstance.interceptors.request.use(
     const refreshToken = await AsyncStorage.getItem("refreshToken");
     console.log(refreshToken, "refresh token in axios config");
     if (token) {
-      config.headers.Authorization = `'JWT' ${token}`;
+      config.headers.Authorization = `Bearer ${token}`;
       console.log(config.headers.Authorization, "Auth headers");
     }
     return config;
@@ -31,6 +31,8 @@ apiInstance.interceptors.request.use(
 apiInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
+    console.log(error,"ORIGINAL")
+
     const originalRequest = error.config;
     //send refresh token
     if (error.response.status === 401 && !originalRequest._retry) {
@@ -50,7 +52,7 @@ apiInstance.interceptors.response.use(
           //save new tokens
           deviceStorage.saveItem("token", res.data.accessToken);
           deviceStorage.saveItem("refreshToken", res.data.refreshToken);
-          originalRequest.headers.Authorization = `'JWT' ${res.data.accessToken}`;
+          originalRequest.headers.Authorization = `Bearer ${res.data.accessToken}`;
           return apiInstance(originalRequest);
         })
         .catch((error) => {

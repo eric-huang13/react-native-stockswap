@@ -15,6 +15,9 @@ import {
   GETPROFILE_START,
   GETPROFILE_SUCCESS,
   GETPROFILE_ERROR,
+  GETPROFILEIMAGE_START,
+  GETPROFILEIMAGE_SUCCESS,
+  GETPROFILEIMAGE_ERROR,
 } from 'constants';
 
 const defaultState = {
@@ -22,6 +25,7 @@ const defaultState = {
   userData: [],
   userProfile:[],
   googleUser: [],
+  userImage: [],
   userFakeData: {
     id: 4,
     name: 'Bob Fields',
@@ -115,6 +119,26 @@ const userReducer = (state = defaultState, action) => {
         userProfile: action.payload,
       };
     case GETPROFILE_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+      case GETPROFILEIMAGE_START:
+      return {
+        ...state,
+        loading: true,
+        error: '',
+      };
+    case GETPROFILEIMAGE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isLoggedIn: true,
+        error: '',
+        userImage: action.payload,
+      };
+    case GETPROFILEIMAGE_ERROR:
       return {
         ...state,
         loading: false,
