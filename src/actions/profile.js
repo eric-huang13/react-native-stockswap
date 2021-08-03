@@ -111,9 +111,10 @@ export const EditUserProfile = (input) => {
             .post('http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/profile', (input))
             .then((response) => {
                 console.log(response, 'Edit profile response')
-                // window.location.reload();
+                dispatch({type: EDITPROFILE_SUCCESS, payload: response.data});
+                    navigate('MyProfile')               
+
             })
-        // .then(response =>{ deviceStorage.saveItem('token', response.data.token), dispatch({ type: EDITPROFILE_SUCCESS, payload: response.data })
 
  .catch(error => {dispatch({ type: EDITPROFILE_ERROR, payload: error.response })
 console.log(error.response )
