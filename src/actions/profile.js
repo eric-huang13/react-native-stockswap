@@ -102,38 +102,22 @@ import {
     };
   };
 
+
   ///
-  export const Register = (input) => {
-    return (dispatch) => {
-      dispatch({type: SIGNUP_START});
-      axios
-        .post(
-          'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/signup',
-          input,
-        )
-        .then((response) => {
-          console.log(response, 'RESPONSE in Signup');
-  
-          deviceStorage.saveItem('token', response.data.accessToken),
-          deviceStorage.saveItem('refreshToken', response.data.refreshToken),
-          deviceStorage.saveItem('email', input.email),
-  
-          //route to profileinfo
-            dispatch({type: SIGNUP_SUCCESS, payload: response.data});
-          Toast.show({
-            type: 'success',
-            text2: 'Sign up successful!',
-          });
-        })
-        .catch((error) => {
-          console.log(error, 'ERROR in Signup');
-          dispatch({type: SIGNUP_ERROR, payload: error.response});
-          navigate('SignUp');
-          Toast.show({
-            type: 'errorSignUp',
-            text1: 'Error',
-            text2: error.response.data.message,
-          });
-        });
-    };
+export const EditUserProfile = (input) => {
+  return (dispatch) => {
+    dispatch({type: EDITPROFILE_START});
+    apiInstance
+            .post('http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/profile', (input))
+            .then((response) => {
+                console.log(response, 'Edit profile response')
+                // window.location.reload();
+            })
+        // .then(response =>{ deviceStorage.saveItem('token', response.data.token), dispatch({ type: EDITPROFILE_SUCCESS, payload: response.data })
+
+ .catch(error => {dispatch({ type: EDITPROFILE_ERROR, payload: error.response })
+console.log(error.response )
+
+})
   };
+};

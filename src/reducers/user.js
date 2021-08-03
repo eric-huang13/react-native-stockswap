@@ -9,6 +9,9 @@ import {
   CREATEPROFILE_START,
   CREATEPROFILE_SUCCESS,
   CREATEPROFILE_ERROR,
+  EDITPROFILE_START,
+  EDITPROFILE_SUCCESS,
+  EDITPROFILE_ERROR,
   GOOGLE_LOGIN_START,
   GOOGLE_LOGIN_SUCCESS,
   GOOGLE_LOGOUT_SUCCESS,
@@ -99,6 +102,26 @@ const userReducer = (state = defaultState, action) => {
         userProfile: action.payload,
       };
     case CREATEPROFILE_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+      case EDITPROFILE_START:
+      return {
+        ...state,
+        loading: true,
+        error: '',
+      };
+    case EDITPROFILE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isLoggedIn: true,
+        error: '',
+        userProfile: action.payload,
+      };
+    case EDITPROFILE_ERROR:
       return {
         ...state,
         loading: false,

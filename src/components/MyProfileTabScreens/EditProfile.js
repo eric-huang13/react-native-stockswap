@@ -12,7 +12,7 @@ import {
   Image,
   Platform
 } from 'react-native';
-import {EditUser} from '../../actions/user';
+import { EditUserProfile } from '../../actions/profile';
 import LinearGradient from 'react-native-linear-gradient';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
@@ -25,12 +25,12 @@ const validationSchema = Yup.object().shape({
     .required('Name is required')
     .min(2, 'Must have at least 2 characters'),
 
-  username: Yup.string().label('username').required('Username is required'),
+  userName: Yup.string().label('userName').required('userName is required'),
 
-  hashtag: Yup.string()
-    .label('hashtag')
-    .matches(/^#\w+$/, 'Must be a hashtag')
-    .min(2, 'Hashtag must have more than 2 characters '),
+  tags: Yup.string()
+    .label('tags')
+    .matches(/^#\w+$/, 'Must be a tags')
+    .min(2, 'tags must have more than 2 characters '),
 
   bio: Yup.string()
     .label('bio')
@@ -54,7 +54,7 @@ class EditProfile extends Component {
   };
 
   render() {
-    const {EditUserAccount, userAccount} = this.props;
+    const {userAccount, userProfile, EditUserProfile} = this.props;
     return (
       <LinearGradient
         start={{x: 0.1, y: 1}}
@@ -68,17 +68,22 @@ class EditProfile extends Component {
             <ScrollView>
               <Formik
                 initialValues={{
-                  id: userAccount.id,
-                  name: userAccount.name,
-                  username: userAccount.username,
+                  // id: userAccount.id,
+                  name: userProfile.name,
+                  userName: userAccount.username,
                   image: {name: '', type: '', uri: userAccount.img},
-                  hashtag: userAccount.hashtag,
-                  bio: userAccount.bio,
+                  tags: userAccount.hashtag,
+                  bio: userProfile.bio,
                 }}
                 onSubmit={(values) => {
                   console.log(values, 'infooooo');
                   const data = this.createFormData(values);
                   console.log(data, 'form');
+                  EditUserProfile ({name: values.name,
+                    userName: values.userName,
+                    bio: values.bio,
+                    tags: values.tags,
+                  })
                 }}
                 validationSchema={validationSchema}>
                 {({
@@ -167,7 +172,7 @@ class EditProfile extends Component {
                           placeholder="Enter your name"
                           placeholderTextColor="#FFFFFF"
                           returnKeyType="next"
-                          onSubmitEditing={() => this.username.focus()}
+                          onSubmitEditing={() => this.userName.focus()}
                           ref={(input) => (this.name = input)}
                         />
                         <Text style={style.errorText}>
@@ -179,17 +184,17 @@ class EditProfile extends Component {
                         <Text style={style.inputHeader}>User name</Text>
                         <TextInput
                           style={style.inputStyle}
-                          value={values.username}
-                          onBlur={handleBlur('username')}
-                          onChangeText={handleChange('username')}
+                          value={values.userName}
+                          onBlur={handleBlur('userName')}
+                          onChangeText={handleChange('userName')}
                           placeholder="@example"
                           placeholderTextColor="#9ea6b5"
                           style={style.inputStyle}
-                          ref={(input) => (this.username = input)}
+                          ref={(input) => (this.userName = input)}
                           onSubmitEditing={() => this.image.focus()}
                         />
                         <Text style={style.errorText}>
-                          {touched.username && errors.username}
+                          {touched.userName && errors.userName}
                         </Text>
                       </View>
                     </View>
@@ -204,7 +209,7 @@ class EditProfile extends Component {
                           placeholderTextColor="#9ea6b5"
                           style={style.inputStyle}
                           ref={(input) => (this.image = input)}
-                          onSubmitEditing={() => this.hashtag.focus()}
+                          onSubmitEditing={() => this.tags.focus()}
                         />
                         <Text style={style.errorText}>
                           {touched.image && errors.image}
@@ -212,22 +217,22 @@ class EditProfile extends Component {
                       </View> */}
                       <View>
                         <Text style={style.inputHeader}>
-                          Hashtag (up to 3 tags)
+                          tags (up to 3 tags)
                         </Text>
 
                         <TextInput
                           style={style.inputStyle}
-                          value={values.hashtag}
-                          onBlur={handleBlur('hashtag')}
-                          onChangeText={handleChange('hashtag')}
-                          placeholder="Add hashtags which describe you"
+                          value={values.tags}
+                          onBlur={handleBlur('tags')}
+                          onChangeText={handleChange('tags')}
+                          placeholder="Add tagss which describe you"
                           placeholderTextColor="#9ea6b5"
                           returnKeyType="next"
-                          ref={(input) => (this.hashtag = input)}
+                          ref={(input) => (this.tags = input)}
                           onSubmitEditing={() => this.bio.focus()}
                         />
                         <Text style={style.errorText}>
-                          {touched.hashtag && errors.hashtag}
+                          {touched.tags && errors.tags}
                         </Text>
                       </View>
                       <View>
@@ -273,12 +278,14 @@ const mapStateToProps = (state) => {
   return {
     users: state.people.users,
     userAccount: state.user.userFakeData,
+    userProfile: state.user.userProfile,
+
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    EditUserAccount: (input) => dispatch(EditUser(input)),
+    EditUserProfile: (input) => dispatch(EditUserProfile(input)),
   };
 };
 
