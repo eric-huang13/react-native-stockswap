@@ -35,7 +35,7 @@ apiInstance.interceptors.response.use(
 
     const originalRequest = error.config;
     //send refresh token
-    if (error.response.status === 401 && !originalRequest._retry) {
+    if (error.response.status === 401 || error.response.status === 400 && !originalRequest._retry) {
       originalRequest._retry = true;
       const refreshToken = await AsyncStorage.getItem("refreshToken");
       const email = await AsyncStorage.getItem("email");

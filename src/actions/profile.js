@@ -112,7 +112,12 @@ export const EditUserProfile = (input) => {
             .then((response) => {
                 console.log(response, 'Edit profile response')
                 dispatch({type: EDITPROFILE_SUCCESS, payload: response.data});
-                    navigate('MyProfile')               
+                    navigate('MyProfile')     
+                    Toast.show({
+            type: 'success',
+            text2: 'Profile updated successfully!',
+          });
+         
 
             })
 

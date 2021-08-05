@@ -70,7 +70,7 @@ class EditProfile extends Component {
                 initialValues={{
                   // id: userAccount.id,
                   name: userProfile.name,
-                  username: userAccount.username,
+                  username: userProfile.username,
                   image: {name: '', type: '', uri: userAccount.img},
                   tags: userAccount.hashtag,
                   bio: userProfile.bio,

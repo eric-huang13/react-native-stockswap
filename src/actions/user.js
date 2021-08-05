@@ -238,7 +238,8 @@ export const Login = (input) => {
           dispatch({type: LOGIN_SUCCESS, payload: response.data});
         Toast.show({
           type: 'success',
-          text2: response.data.message,
+          // text2: response.data.message,
+          text2: "Login successful",
         });
       })
 

@@ -29,6 +29,7 @@ import CreatePostPreview from '../components/PostTabScreens/CreatePostPreview';
 import MyFollowers from '../components/MyProfileTabScreens/MyFollowers';
 import MyFollowing from '../components/MyProfileTabScreens/MyFollowing';
 import LikedPosts from '../components/MyProfileTabScreens/LikedPosts';
+import LoggingOutScreen from '../components/LoggedOutScreens/LoggingOutScreen'
 
 //responsive scale
 import {moderateScale} from '../util/responsiveFont';
@@ -63,6 +64,11 @@ export default class MyProfileStackNavigator extends Component {
               </TouchableOpacity>
             ),
           })}
+        />
+        <MyProfileStack.Screen
+          name="LoggingOut"
+          component={LoggingOutScreen}
+          options={{headerShown: false}}
         />
 
         <MyProfileStack.Screen

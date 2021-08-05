@@ -41,7 +41,7 @@ class Profile extends Component {
   componentDidMount() {
     //fetch data()
     this.props.GetProfile();
-    this.props.GetProfileImage();
+    // this.props.GetProfileImage();
 
     const {post, user, userProfile} = this.props;
     const id = this.props.user.id;
@@ -70,6 +70,8 @@ class Profile extends Component {
   render() {
     const {graphData, percent, range, timeFilter} = this.state;
     const {user, post, userProfile} = this.props;
+    // console.log(this.props.user,"PROFILE USER")
+
     console.log(this.props.userProfile,"PROFILE DATA")
     console.log(this.props.userImage,"PROFILE IMAGE")
 
@@ -94,7 +96,14 @@ class Profile extends Component {
                   </View>
                 </View>
                 <View style={style.graphContainer}>
-                  <ProfileGraph graphData={graphData} range={range} />
+                  <ProfileGraph graphData={ [
+        {x: 2, y: 10},
+        {x: 3, y: 11},
+        {x: 4, y: 12},
+        {x: 5, y: 14},
+        {x: 6, y: 14},
+        {x: 7, y: 15},
+      ]} range={[10, 15]} />
                 </View>
                 <View style={style.timeFilterButtonsContainer}>
                   <TouchableOpacity
@@ -178,7 +187,7 @@ class Profile extends Component {
                   <View style={style.detailsRow}>
                     <Image
                       style={style.image}
-                      source={{uri: 'file:///data/user/0/com.app/cache/rn_image_picker_lib_temp_4353dbbd-ee72-4d53-be25-0b1c8870dfeb.jpg'}}
+                      source={{uri: this.state.user.img}}
                     />
                     <View style={style.personalDetails}>
                       <Text style={style.name}>{userProfile.name}</Text>
