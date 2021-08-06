@@ -12,6 +12,9 @@ import {
   GOOGLE_LOGOUT_START,
   GOOGLE_LOGOUT_SUCCESS,
   GOOGLE_LOGOUT_ERROR,
+  TOKEN_START,
+  TOKEN_SUCCESS,
+  TOKEN_ERROR,
 } from 'constants';
 import axios from 'axios';
 import deviceStorage from '../util/DeviceStorage';
@@ -75,6 +78,7 @@ export const Register = (input) => {
       )
       .then((response) => {
         console.log(response, 'RESPONSE in Signup');
+        const decoded = jwt_decode(response.data.accessToken);
 
         deviceStorage.saveItem('token', response.data.accessToken),
         deviceStorage.saveItem('refreshToken', response.data.refreshToken),
@@ -82,6 +86,7 @@ export const Register = (input) => {
 
         //route to profileinfo
           dispatch({type: SIGNUP_SUCCESS, payload: response.data});
+          dispatch({type: TOKEN_SUCCESS, payload: decoded.sub});
           navigate('ProfileInfoForm');
 
         Toast.show({
@@ -154,6 +159,7 @@ export const RegisterGoogleSignIn = (input) => {
 
       .then((response) => {
         //here route to profile info
+
         dispatch({type: SIGNUP_SUCCESS, payload: response.data});
         deviceStorage.saveItem('token', response.data.accessToken),
         deviceStorage.saveItem('refreshToken', response.data.refreshToken),
@@ -241,6 +247,8 @@ export const Login = (input) => {
 
 
           dispatch({type: LOGIN_SUCCESS, payload: response.data});
+          dispatch({type: TOKEN_SUCCESS, payload: decoded.sub});
+
         Toast.show({
           type: 'success',
           // text2: response.data.message,
@@ -455,6 +463,10 @@ export const Logout = () => {
         })
         .catch((error) => {
           console.log(error, "Error logging out");
+          clearAppData()
+          dispatch({
+            type: LOGOUT,
+          });
 
           Toast.show({
             type: "errorSignUp",

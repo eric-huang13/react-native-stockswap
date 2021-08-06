@@ -18,6 +18,7 @@ import * as Yup from 'yup';
 import LinearGradient from 'react-native-linear-gradient';
 import {Register} from '../../actions/user';
 import { CreateProfile } from '../../actions/profile';
+import { CreateProfileImage } from '../../actions/profile';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {moderateScale} from '../../util/responsiveFont';
 
@@ -59,7 +60,10 @@ export class ProfileInfoForm extends Component {
 
 
   render() {
-    const {RegisterUser, CreateProfile} = this.props;
+    const {RegisterUser, CreateProfile, CreateProfileImage} = this.props;
+    console.log(this.props.userId, "ID")
+    console.log(this.props.userData, "userInfo")
+
     // const {userInfo} = this.props.route.params;
 
     const {shouldShow} = this.state;
@@ -99,8 +103,12 @@ export class ProfileInfoForm extends Component {
                 }}
                 onSubmit={(values) => {
                 //Adding to FormData for image
-                  const data = createFormData(values);
+                  const data = createFormData(values.image);
                   console.log(data, 'form');
+                  const id = this.props.userId
+                  const token = this.props.userData.accessToken
+
+                  CreateProfileImage(id, token, data)
 
                   // RegisterUser(data);
 
@@ -344,6 +352,8 @@ export class ProfileInfoForm extends Component {
 const mapStateToProps = (state) => {
   return {
     userData: state.user.userData,
+    userId: state.user.userId,
+
   };
 };
 
@@ -351,6 +361,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     RegisterUser: (input) => dispatch(Register(input)),
     CreateProfile: (input) => dispatch(CreateProfile(input)),
+    CreateProfileImage: (id, token, input) => dispatch(CreateProfileImage(id, token, input)),
+
   };
 };
 

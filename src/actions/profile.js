@@ -11,6 +11,9 @@ import {
     GETPROFILEIMAGE_START,
     GETPROFILEIMAGE_SUCCESS,
     GETPROFILEIMAGE_ERROR,
+    CREATEPROFILEIMAGE_START,
+    CREATEPROFILEIMAGE_SUCCESS,
+    CREATEPROFILEIMAGE_ERROR,
   } from 'constants';
   import axios from 'axios';
   import deviceStorage from '../util/DeviceStorage';
@@ -75,16 +78,16 @@ import {
         });
     };
   };
-  export const GetProfileImage = () => {
+  export const GetProfileImage = (id) => {
     return (dispatch) => {
       dispatch({type: GETPROFILEIMAGE_START});
       apiInstance
         .get(
-          `https://d13h17hkw4i0vn.cloudfront.net/61084eedcd30f2001e6ed347/profile.jpg`
+          `https://d13h17hkw4i0vn.cloudfront.net/${id}/profile.jpg`
         
         )
         .then((response) => {
-          console.log(response, 'IMAGEEEEEEEEEEE get response');
+          console.log(response, 'IMAGE get response');
           dispatch({type: GETPROFILEIMAGE_SUCCESS, payload: response.data});
 
           Toast.show({
@@ -101,6 +104,81 @@ import {
         });
     };
   };
+
+  // Create Profile image
+export const CreateProfileImage = (id, token, input) => {
+  console.log(input, 'inputapiiiiiiiiiiiiiiii');
+  console.log(id, 'iddddddddddddddddddddddd');
+
+  // const config = {
+  //   headers: {
+  //     Accept: 'application/json',
+  //     'content-type': 'multipart/form-data',
+  //     // 'Authorization': Bearer 
+  //   },
+  // };
+  return (dispatch) => {
+    dispatch({type: CREATEPROFILEIMAGE_START});
+    console.log(id,"ID in post")
+    axios
+      // .put(`https://d13h17hkw4i0vn.cloudfront.net/${id}/profile.jpg`, input, config)
+      .put(`https://d13h17hkw4i0vn.cloudfront.net/${id}/profile.jpg`, input, {
+        headers: {
+          // Accept: 'application/json',
+          // 'content-type': 'multipart/form-data',
+          'content-type': 'image/jpg',
+          'Authorization': `Bearer ${token}` 
+        },
+      })
+
+
+      .then((response) => {
+        console.log(response, 'RESPONSE in imagepost');
+
+        dispatch({type: CREATEPROFILEIMAGE_SUCCESS, payload: response.data});
+        Toast.show({
+          type: 'success',
+          text2: 'Image upload successful!',
+        });
+      })
+      .catch((error) => {
+        console.log(error, 'ERROR in Image upload');
+        dispatch({type: CREATEPROFILEIMAGE_ERROR, payload: error.response});
+        Toast.show({
+          type: 'errorSignUp',
+          text1: 'Error',
+          text2: error.response,
+        });
+      });
+  };
+};
+  ///
+  // export const CreateProfileImage = () => {
+  //   return (dispatch) => {
+  //     dispatch({type: CREATEPROFILEIMAGE_START});
+  //     apiInstance
+  //       .get(
+  //         `https://d13h17hkw4i0vn.cloudfront.net/61084eedcd30f2001e6ed347/profile.jpg`
+        
+  //       )
+  //       .then((response) => {
+  //         console.log(response, 'IMAGE get response');
+  //         dispatch({type: CREATEPROFILEIMAGE_SUCCESS, payload: response.data});
+
+  //         Toast.show({
+  //           type: 'success',
+  //           text2: 'IMAGE get successful!',
+  //         });
+  //       })
+  //       .catch((error) => {
+  //         console.log(error.response, "IMAGE ERROR");
+  //         Toast.show({
+  //           type: 'error',
+  //           text2: 'Error getting IMAGE.',
+  //         });
+  //       });
+  //   };
+  // };
 
 
   ///

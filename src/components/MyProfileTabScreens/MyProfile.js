@@ -41,7 +41,7 @@ class Profile extends Component {
   componentDidMount() {
     //fetch data()
     this.props.GetProfile();
-    // this.props.GetProfileImage();
+    this.props.GetProfileImage(this.props.userId);
 
     const {post, user, userProfile} = this.props;
     const id = this.props.user.id;
@@ -74,6 +74,8 @@ class Profile extends Component {
 
     console.log(this.props.userProfile,"PROFILE DATA")
     console.log(this.props.userImage,"PROFILE IMAGE")
+    console.log(this.props.userId,"USERID")
+
 
 
     return (
@@ -290,6 +292,10 @@ const mapStateToProps = (state) => {
     user: state.user.userFakeData,
     userProfile: state.user.userProfile,
     userImage: state.user.userImage,
+    userId: state.user.userId,
+    
+
+    
 
   };
 };
@@ -297,7 +303,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     GetProfile: () => dispatch(GetProfile()),
-    GetProfileImage: () => dispatch(GetProfileImage()),
+    GetProfileImage: (id) => dispatch(GetProfileImage(id)),
 
   };
 };
