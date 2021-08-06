@@ -19,6 +19,8 @@ import clearAppData from '../util/ClearStorage';
 import apiInstance from '../util/axiosConfig';
 import {navigate} from '../../RootNavigation';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import jwt_decode from "jwt-decode";
+
 
 import Toast from 'react-native-toast-message';
 import {GoogleSignin, statusCodes} from '@react-native-community/google-signin';
@@ -229,10 +231,13 @@ export const Login = (input) => {
       .then((response) => {
         console.log('FIRST', response.data.refreshToken)
         console.log('INPUT', input.email)
+        const decoded = jwt_decode(response.data.accessToken);
+        console.log(decoded.sub);
 
         deviceStorage.saveItem('token', response.data.accessToken),
         deviceStorage.saveItem('refreshToken', response.data.refreshToken),
         deviceStorage.saveItem('email', input.email),
+
 
 
           dispatch({type: LOGIN_SUCCESS, payload: response.data});
