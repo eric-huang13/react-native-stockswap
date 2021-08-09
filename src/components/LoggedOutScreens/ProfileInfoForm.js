@@ -21,6 +21,7 @@ import { CreateProfile } from '../../actions/profile';
 import { CreateProfileImage } from '../../actions/profile';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {moderateScale} from '../../util/responsiveFont';
+import {Buffer} from "buffer";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -96,19 +97,25 @@ export class ProfileInfoForm extends Component {
                   // termsVersion: userInfo.termsVersion,
                   name: '',
                   username: '',
-                  image: {name: '', type: '', uri: ''},
+                  image: {data: '', name: '', type: '', uri: ''},
                   tags: '',
                   bio: '',
                   isPrivate: false,
                 }}
                 onSubmit={(values) => {
                 //Adding to FormData for image
-                  const data = createFormData(values.image);
-                  console.log(data, 'form');
+                  // const data = createFormData(values.image);
+                  // console.log(data, 'form');
+                  console.log(values.image.data)
                   const id = this.props.userId
                   const token = this.props.userData.accessToken
+                  var Buffer = require('buffer/').Buffer  
 
-                  CreateProfileImage(id, token, data)
+                  const buffer = Buffer.from(values.image.data, 'base64')
+                  // console.log(buffer,"BUFFER")
+
+                  // CreateProfileImage(id, token, data)
+                  CreateProfileImage(id, token, buffer)
 
                   // RegisterUser(data);
 
@@ -139,12 +146,13 @@ export class ProfileInfoForm extends Component {
                         onPress={() => {
                           const options = {
                             mediaType: 'photo',
-                            // includeBase64:true,
+                            includeBase64:true,
                           };
                           launchImageLibrary(options, (response) => {
                             console.log(response, 'response image');
                             if (response.uri) {
                               setFieldValue('image', {
+                                data: response.base64,
                                 name: response.fileName,
                                 type: response.type,
                                 uri:
@@ -168,13 +176,14 @@ export class ProfileInfoForm extends Component {
                           onPress={() => {
                             const options = {
                               mediaType: 'photo',
-                              // includeBase64:true,
+                              includeBase64:true,
 
                             };
                             launchImageLibrary(options, (response) => {
                               console.log(response, 'response image');
                               if (response.uri) {
                                 setFieldValue('image', {
+                                  data: response.base64,
                                   name: response.fileName,
                                   type: response.type,
                                   uri:

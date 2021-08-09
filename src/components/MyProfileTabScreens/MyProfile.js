@@ -69,7 +69,7 @@ class Profile extends Component {
   }
   render() {
     const {graphData, percent, range, timeFilter} = this.state;
-    const {user, post, userProfile} = this.props;
+    const {user, post, userProfile, userImage, userData} = this.props;
     // console.log(this.props.user,"PROFILE USER")
 
     console.log(this.props.userProfile,"PROFILE DATA")
@@ -187,10 +187,24 @@ class Profile extends Component {
                 </View>
                 <View style={style.infoContainer}>
                   <View style={style.detailsRow}>
-                    <Image
+
+                      {userImage !== '' ?
+                  <Image
                       style={style.image}
-                      source={{uri: this.state.user.img}}
+                      source={{uri:this.props.userImage, headers:{Authorization: `Bearer ${this.props.userData.accessToken}`}}}
                     />
+                    :
+                    null}
+                  
+
+
+
+                    {/* ///WORKING Add response url */}
+                    {/* <Image
+                      style={style.image}
+                      source={{uri:`https://d13h17hkw4i0vn.cloudfront.net/${this.props.userId}/profile.jpg`, headers:{Authorization: `Bearer ${this.props.userData.accessToken}`}}}
+                    /> */}
+
                     <View style={style.personalDetails}>
                       <Text style={style.name}>{userProfile.name}</Text>
                       <Text style={style.username}>
@@ -293,6 +307,8 @@ const mapStateToProps = (state) => {
     userProfile: state.user.userProfile,
     userImage: state.user.userImage,
     userId: state.user.userId,
+    userData: state.user.userData,
+
     
 
     

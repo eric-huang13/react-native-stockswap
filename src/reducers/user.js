@@ -32,7 +32,7 @@ const defaultState = {
   userData: [],
   userProfile:[],
   googleUser: [],
-  userImage: [],
+  userImage: '',
   userId: [],
   userFakeData: {
     id: 4,

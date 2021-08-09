@@ -87,8 +87,10 @@ import {
         
         )
         .then((response) => {
-          console.log(response, 'IMAGE get response');
-          dispatch({type: GETPROFILEIMAGE_SUCCESS, payload: response.data});
+          console.log(response.request.responseURL, 'IMAGE get response');
+        // const data = `data:${response.headers['content-type']};base64,${Buffer.from(response.data).toString('base64')}`;
+          // console.log(data,"DATA IMAGE")
+          dispatch({type: GETPROFILEIMAGE_SUCCESS, payload: response.request.responseURL});
 
           Toast.show({
             type: 'success',
@@ -104,7 +106,51 @@ import {
         });
     };
   };
+  // export const GetProfileImage = (id, token) => {
+  //   return (dispatch) => {
+  //     dispatch({type: GETPROFILEIMAGE_START});
+  //     axios
+  //       .get(
+  //         `https://d13h17hkw4i0vn.cloudfront.net/${id}/profile.jpg`,{
+  //           headers: {
+  //             // Accept: 'application/json',
+  //             // 'content-type': 'multipart/form-data',
+  //             'Authorization': `Bearer ${token}` 
+  //           },
+  //           responseType: "arraybuffer",              
 
+  //         }
+        
+  //       )
+  //       .then((response) => {
+  //         console.log(response, 'IMAGE get response');
+  //         let data = `data:${
+  //           response.headers["content-type"]
+  //         };base64,${Buffer.from(response.data, "binary").toString("base64")}`;
+  //         // const data = `data:${response.headers['content-type']};base64,${ Buffer.from(response.data).toString('base64')}`;
+  //         // let imagedata = "data:" + response.headers["content-type"] + ";base64," +  Buffer.from(body).toString('base64');
+
+  //         console.log(data,"DATA IMAGE")
+  //         // let data = `data:${
+  //         //   response.headers["content-type"]
+  //         // };base64,${new Buffer(response.data, "binary").toString("base64")}`;
+
+  //         dispatch({type: GETPROFILEIMAGE_SUCCESS, payload: response.data});
+
+  //         Toast.show({
+  //           type: 'success',
+  //           text2: 'IMAGE get successful!',
+  //         });
+  //       })
+  //       .catch((error) => {
+  //         console.log(error.response, "IMAGE ERROR");
+  //         Toast.show({
+  //           type: 'error',
+  //           text2: 'Error getting IMAGE.',
+  //         });
+  //       });
+  //   };
+  // };
   // Create Profile image
 export const CreateProfileImage = (id, token, input) => {
   console.log(input, 'inputapiiiiiiiiiiiiiiii');
