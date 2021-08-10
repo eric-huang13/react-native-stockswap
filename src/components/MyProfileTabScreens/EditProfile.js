@@ -54,7 +54,7 @@ class EditProfile extends Component {
   };
 
   render() {
-    const {userAccount, userProfile, EditUserProfile} = this.props;
+    const {userAccount, userProfile, EditUserProfile, userImage} = this.props;
     return (
       <LinearGradient
         start={{x: 0.1, y: 1}}
@@ -71,7 +71,7 @@ class EditProfile extends Component {
                   // id: userAccount.id,
                   name: userProfile.name,
                   username: userProfile.username,
-                  image: {name: '', type: '', uri: userAccount.img},
+                  image: {name: '', type: '', uri: userImage},
                   tags: userAccount.hashtag,
                   bio: userProfile.bio,
                 }}
@@ -123,7 +123,7 @@ class EditProfile extends Component {
                         }}>
                         <Image
                           style={style.uploadPhotoContainer}
-                          source={{uri: values.image.uri}}
+                          source={{uri: values.image.uri, headers:{Authorization: `Bearer ${this.props.userData.accessToken}`}}}
                         />
                       </TouchableOpacity>
                     ) : (
@@ -279,6 +279,9 @@ const mapStateToProps = (state) => {
     users: state.people.users,
     userAccount: state.user.userFakeData,
     userProfile: state.user.userProfile,
+    userImage: state.user.userImage,
+    userData: state.user.userData,
+
 
   };
 };

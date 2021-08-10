@@ -26,11 +26,11 @@ import {Buffer} from "buffer";
 const validationSchema = Yup.object().shape({
   name: Yup.string()
     .label('Name')
-    // .required('Name is required')
+    .required('Name is required')
     .min(2, 'Must have at least 2 characters'),
 
-  username: Yup.string().label('username'),
-  // .required('username is required'),
+  username: Yup.string().label('username')
+  .required('username is required'),
 
   tags: Yup.string()
     .label('tags')
@@ -59,7 +59,6 @@ export class ProfileInfoForm extends Component {
     this.setState({isPrivate: setting, shouldShow: false});
   }
 
-
   render() {
     const {RegisterUser, CreateProfile, CreateProfileImage} = this.props;
     console.log(this.props.userId, "ID")
@@ -70,14 +69,14 @@ export class ProfileInfoForm extends Component {
     const {shouldShow} = this.state;
 
     //Creating FormData for sending image to backend
-    const createFormData = (values) => {
-      let formData = new FormData();
-      Object.keys(values).forEach((fieldName) => {
-        console.log(fieldName, values[fieldName]);
-        formData.append(fieldName, values[fieldName]);
-      });
-      return formData;
-    };
+    // const createFormData = (values) => {
+    //   let formData = new FormData();
+    //   Object.keys(values).forEach((fieldName) => {
+    //     console.log(fieldName, values[fieldName]);
+    //     formData.append(fieldName, values[fieldName]);
+    //   });
+    //   return formData;
+    // };
 
     return (
       <LinearGradient
@@ -106,20 +105,14 @@ export class ProfileInfoForm extends Component {
                 //Adding to FormData for image
                   // const data = createFormData(values.image);
                   // console.log(data, 'form');
-                  console.log(values.image.data)
                   const id = this.props.userId
                   const token = this.props.userData.accessToken
-                  var Buffer = require('buffer/').Buffer  
-
                   const buffer = Buffer.from(values.image.data, 'base64')
-                  // console.log(buffer,"BUFFER")
 
-                  // CreateProfileImage(id, token, data)
                   CreateProfileImage(id, token, buffer)
 
                   // RegisterUser(data);
-
-
+                  
                   CreateProfile ({name: values.name,
                     username: values.username,
                     bio: values.bio,
@@ -149,7 +142,7 @@ export class ProfileInfoForm extends Component {
                             includeBase64:true,
                           };
                           launchImageLibrary(options, (response) => {
-                            console.log(response, 'response image');
+                            // console.log(response, 'response image');
                             if (response.uri) {
                               setFieldValue('image', {
                                 data: response.base64,
@@ -180,7 +173,7 @@ export class ProfileInfoForm extends Component {
 
                             };
                             launchImageLibrary(options, (response) => {
-                              console.log(response, 'response image');
+                              // console.log(response, 'response image');
                               if (response.uri) {
                                 setFieldValue('image', {
                                   data: response.base64,
@@ -240,22 +233,7 @@ export class ProfileInfoForm extends Component {
                       </View>
                     </View>
                     <View style={style.bottomColumn}>
-                      {/* <View style={style.imageContainer}>
-                        <Text style={style.inputHeader}>Image</Text>
-                        <TextInput
-                          value={values.image}
-                          onBlur={handleBlur('image')}
-                          onChangeText={handleChange('image')}
-                          placeholder="Image url"
-                          placeholderTextColor="#9ea6b5"
-                          style={style.inputStyle}
-                          ref={(input) => (this.image = input)}
-                          onSubmitEditing={() => this.tags.focus()}
-                        />
-                        <Text style={style.errorText}>
-                          {touched.image && errors.image}
-                        </Text>
-                      </View> */}
+                  
 
                       <View>
                         <Text style={style.inputHeader}>

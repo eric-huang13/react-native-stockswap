@@ -70,7 +70,6 @@ class Profile extends Component {
   render() {
     const {graphData, percent, range, timeFilter} = this.state;
     const {user, post, userProfile, userImage, userData} = this.props;
-    // console.log(this.props.user,"PROFILE USER")
 
     console.log(this.props.userProfile,"PROFILE DATA")
     console.log(this.props.userImage,"PROFILE IMAGE")
@@ -194,17 +193,14 @@ class Profile extends Component {
                       source={{uri:this.props.userImage, headers:{Authorization: `Bearer ${this.props.userData.accessToken}`}}}
                     />
                     :
-                    null}
-                  
+                    null}  
 
-
-
-                    {/* ///WORKING Add response url */}
+                 {/* ///WORKING Add response url */}
                     {/* <Image
                       style={style.image}
                       source={{uri:`https://d13h17hkw4i0vn.cloudfront.net/${this.props.userId}/profile.jpg`, headers:{Authorization: `Bearer ${this.props.userData.accessToken}`}}}
                     /> */}
-
+                    
                     <View style={style.personalDetails}>
                       <Text style={style.name}>{userProfile.name}</Text>
                       <Text style={style.username}>

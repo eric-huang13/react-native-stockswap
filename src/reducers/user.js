@@ -170,7 +170,6 @@ const userReducer = (state = defaultState, action) => {
       return {
         ...state,
         loading: false,
-        isLoggedIn: true,
         error: '',
         userImage: action.payload,
       };
