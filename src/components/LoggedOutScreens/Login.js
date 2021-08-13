@@ -37,11 +37,11 @@ const reviewSchema = yup.object({
     .min(8, ({min}) => `Password must be at least ${min} characters`)
     .matches(/\d/, 'Password must have a number')
     .matches(/\w*[a-z]\w*/, 'Password must have a lowercase letter')
-    .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter'),
-  // .matches(
-  //   /[!@#$%^&*()\-_"=+{}; :,<.>]/,
-  //   'Password must have a special character',
-  // ),
+    .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter')
+    .matches(
+      /[!@#$%^&*()\-_"=+{}; :,<.>]/,
+      'Password must have a special character',
+    ),
 });
 
 export class LoginScreen extends Component {
@@ -49,15 +49,15 @@ export class LoginScreen extends Component {
     super(props);
   }
 
-  testAPI = () => {
-    axios
-      .get('/')
-      .then((response) => response.data)
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => console.log(err));
-  };
+  // testAPI = () => {
+  //   axios
+  //     .get('/')
+  //     .then((response) => response.data)
+  //     .then((data) => {
+  //       console.log(data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   render() {
     const {LoginUser, RegisterUserGoogle} = this.props;

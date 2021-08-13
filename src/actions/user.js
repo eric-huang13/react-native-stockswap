@@ -159,8 +159,12 @@ export const RegisterGoogleSignIn = (input) => {
 
       .then((response) => {
         //here route to profile info
+        const decoded = jwt_decode(response.data.accessToken);
+
 
         dispatch({type: SIGNUP_SUCCESS, payload: response.data});
+        dispatch({type: TOKEN_SUCCESS, payload: decoded.sub});
+
         deviceStorage.saveItem('token', response.data.accessToken),
         deviceStorage.saveItem('refreshToken', response.data.refreshToken),
         navigate('ProfileInfoForm');
@@ -198,7 +202,11 @@ export const RegisterGoogle = (input) => {
       )
 
       .then((response) => {
+        const decoded = jwt_decode(response.data.accessToken);
+
         dispatch({type: LOGIN_SUCCESS, payload: response.data});
+        dispatch({type: TOKEN_SUCCESS, payload: decoded.sub});
+
         deviceStorage.saveItem('token', response.data.accessToken),
         deviceStorage.saveItem('refreshToken', response.data.refreshToken),
 
@@ -279,6 +287,8 @@ export const GoogleSignUp = () => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
+      deviceStorage.saveItem('email', userInfo.user.email),
+      console.log(userInfo,"USERINFO GOOGLE SIGNUP")
       //send token to backend
       dispatch(
         RegisterGoogleSignIn({token: userInfo.idToken, platform: 'android'}),
@@ -314,6 +324,7 @@ export const GoogleLogin = () => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       deviceStorage.saveItem('email', userInfo.user.email),
+      console.log(userInfo,"USERINFO GOOGLE LOGIN")
 
       //send token to backend
        dispatch(RegisterGoogle({token: userInfo.idToken, platform: 'android'}));
