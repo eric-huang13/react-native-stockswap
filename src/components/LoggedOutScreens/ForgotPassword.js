@@ -70,7 +70,7 @@ export class ForgotPassword extends Component {
                     //send email to backend
                     console.log(values, 'Values');
                     this.props.navigation.navigate({
-                    name: 'ConfirmCode',
+                    name: 'ConfirmCodeScreen',
                     params: {email: values.email},
                   });
                     // LoginUser(values);

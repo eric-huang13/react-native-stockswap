@@ -12,7 +12,8 @@ import TermsAndConditions from '../components/LoggedOutScreens/TermsAndCondition
 import SplashScreen from '../components/LoggedOutScreens/SplashScreen';
 import ForgotPassword from '../components/LoggedOutScreens/ForgotPassword';
 import PrivacyPolicy from '../components/MyProfileTabScreens/PrivacyPolicy';
-import ConfirmCode from '../components/LoggedOutScreens/ConfirmCode';
+import ConfirmCodeScreen from '../components/LoggedOutScreens/ConfirmCodeScreen';
+import NewPassword from '../components/LoggedOutScreens/NewPassword';
 
 const LoggedOutStack = createStackNavigator();
 
@@ -65,8 +66,13 @@ export default class LoggedOutStackNavigator extends Component {
           options={{headerShown: false}}
         />
          <LoggedOutStack.Screen
-          name="ConfirmCode"
-          component={ConfirmCode}
+          name="ConfirmCodeScreen"
+          component={ConfirmCodeScreen}
+          options={{headerShown: false, animationEnabled: false}}
+        />
+        <LoggedOutStack.Screen
+          name="NewPassword"
+          component={NewPassword}
           options={{headerShown: false, animationEnabled: false}}
         />
       </LoggedOutStack.Navigator>

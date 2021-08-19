@@ -32,13 +32,14 @@ const styles = StyleSheet.create({
 
 const CELL_COUNT = 6;
 
-const ConfirmCode = () => {
-  const [value, setValue] = useState('');
+const ConfirmCodeForm = ({navigation, email, value, setValue}) => {
+  // const [value, setValue] = useState('');
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
   });
+  console.log(email,"PROPSs")
 
   return (
     <LinearGradient
@@ -88,13 +89,17 @@ const ConfirmCode = () => {
                           </View>
                           <TouchableOpacity
                             onPress={() =>
-                              this.props.navigation.navigate('Login')
+                             navigation.navigate('Login')
                             }>
                             <Text style={style.termsText}>Back to Login</Text>
                           </TouchableOpacity>
                         </View>
 <View  style={style.buttonView}>
-      <TouchableOpacity onPress={props.handleSubmit}>
+
+      <TouchableOpacity onPress={() => navigation.navigate({
+                                name: 'NewPassword',
+                                params: {codeInput: value, email:email},
+                              }) }>
                             <Text style={style.button}>Send Reset Link</Text>
                           </TouchableOpacity>
                           
@@ -109,7 +114,7 @@ const ConfirmCode = () => {
   );
 };
 
-export default ConfirmCode;
+export default ConfirmCodeForm;
 
 const style = StyleSheet.create({
     mainContainer: {
