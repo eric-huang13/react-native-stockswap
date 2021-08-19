@@ -69,18 +69,26 @@ import {
     };
   };
 
-  export const GetProfileImage = (id) => {
+  export const GetProfileImage = (token, id) => {
     return (dispatch) => {
       dispatch({type: GETPROFILEIMAGE_START});
-      apiInstance
-        .get(
-          `https://d13h17hkw4i0vn.cloudfront.net/${id}/profile.jpg`
+      // apiInstance
+      //   .get(
+      //     `https://d13h17hkw4i0vn.cloudfront.net/${id}/profile.jpg`
         
-        )
+      //   )
+      axios
+      .get(`https://d13h17hkw4i0vn.cloudfront.net/${id}/profile.jpg`, {
+        headers: {
+          // 'content-type': 'multipart/form-data',
+          // 'content-type': 'image/jpg',
+          'Authorization': `Bearer ${token}` 
+        },
+      })
         .then((response) => {
           // console.log(response.request.responseURL, 'IMAGE get response');
         // const data = `data:${response.headers['content-type']};base64,${Buffer.from(response.data).toString('base64')}`;
-          // console.log(data,"DATA IMAGE")
+          console.log(response,"DATA IMAGE")
           dispatch({type: GETPROFILEIMAGE_SUCCESS, payload: response.request.responseURL});          
         })
         .catch((error) => {

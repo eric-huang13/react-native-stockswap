@@ -14,6 +14,8 @@ import MyProfilePostBox from '../MyProfileTabComponents/MyProfilePostBox';
 import {moderateScale} from '../../util/responsiveFont';
 import {GetProfile} from '../../actions/profile'
 import {GetProfileImage} from '../../actions/profile'
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 
 class Profile extends Component {
@@ -40,9 +42,17 @@ class Profile extends Component {
   }
   componentDidMount() {
     //fetch data()
+   
     this.props.GetProfile();
-    this.props.GetProfileImage(this.props.userId);
+   
 
+    // this.props.GetProfileImage(this.props.userData.accessToken, this.props.userId);
+    AsyncStorage.getItem('token').then((token) => {
+      if(token){
+        this.props.GetProfileImage(token, this.props.userId);
+
+      }
+  });
     const {post, user, userProfile} = this.props;
     const id = this.props.user.id;
     const selectedPosts = post.filter((user) => user.userId === id);
@@ -304,6 +314,8 @@ const mapStateToProps = (state) => {
     userImage: state.user.userImage,
     userId: state.user.userId,
     userData: state.user.userData,
+    tokens: state.user.token,
+
 
     
 
@@ -315,7 +327,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     GetProfile: () => dispatch(GetProfile()),
-    GetProfileImage: (id) => dispatch(GetProfileImage(id)),
+    GetProfileImage: (token, id) => dispatch(GetProfileImage(token, id)),
 
   };
 };

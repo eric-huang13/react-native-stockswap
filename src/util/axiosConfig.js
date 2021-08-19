@@ -4,10 +4,20 @@ import deviceStorage from "./DeviceStorage";
 import Toast from "react-native-toast-message";
 import { navigate } from "../../RootNavigation";
 
+import {
+  
+  REFRESH_TOKEN,
+} from 'constants';
+ 
+ 
+// import { refreshTokeng } from "../actions/user";
+import reduxStore from 'store/index';
 // axios.defaults.baseURL = 'http://10.0.2.2:9000'
 // axios.defaults.headers.common['Authorization'] = 'authToken'
 // axios.defaults.headers.post['Content-Type'] = 'application/json'
 
+const {store} = reduxStore();
+ 
 const apiInstance = axios.create();
 
 apiInstance.interceptors.request.use(
@@ -16,23 +26,28 @@ apiInstance.interceptors.request.use(
     const refreshToken = await AsyncStorage.getItem("refreshToken");
     console.log(refreshToken, "refresh token in axios config");
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-      console.log(config.headers.Authorization, "Auth headers");
+      config.headers.Authorization = `JWT ${token}`
+      console.log(config.headers.Authorization, "Auth headers")
     }
+    // store.dispatch({
+    //   type: REFRESH_TOKEN,
+    //   payload: refreshToken });
+    // console.log(store.getState(),"THESTOREEEEEEEEEEEEEEE")
+
     return config;
   },
   (error) => {
     return Promise.reject(error);
   }
 );
-
+ 
 //Add a response interceptor
-
+ 
 apiInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
     console.log(error,"ORIGINAL")
-
+ 
     const originalRequest = error.config;
     //send refresh token
     if (error.response.status === 401 || error.response.status === 400 && !originalRequest._retry) {
@@ -52,13 +67,16 @@ apiInstance.interceptors.response.use(
           //save new tokens
           deviceStorage.saveItem("token", res.data.accessToken);
           deviceStorage.saveItem("refreshToken", res.data.refreshToken);
-          originalRequest.headers.Authorization = `Bearer ${res.data.accessToken}`;
+          originalRequest.headers.Authorization = `JWT ${res.data.accessToken}`;
+          // store.dispatch({
+          //   type: REFRESH_TOKEN,
+          //   payload: res.data.accessToken });
           return apiInstance(originalRequest);
         })
         .catch((error) => {
           console.log(error, "Refresh token must be invalid");
           navigate("LoggingOut");
-
+ 
           Toast.show({
             type: "errorSignUp",
             text1: "Session Has Expired",
@@ -69,5 +87,7 @@ apiInstance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
+ 
 export default apiInstance;
+ 
+

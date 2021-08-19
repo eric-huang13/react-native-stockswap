@@ -62,3 +62,5 @@ export const NEWS_FETCHING = 'NEWS_FETCHING';
 export const NEWS_SUCCESS = 'NEWS_SUCCESS';
 export const NEWS_ERROR = 'NEWS_ERROR';
 export const NEWS_STOP = 'NEWS_STOP';
+
+export const REFRESH_TOKEN = 'REFRESH_TOKEN';

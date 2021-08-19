@@ -25,6 +25,7 @@ import {
   CREATEPROFILEIMAGE_SUCCESS,
   CREATEPROFILEIMAGE_ERROR,
   TOKEN_SUCCESS,
+  REFRESH_TOKEN,
 } from 'constants';
 
 const defaultState = {
@@ -34,6 +35,7 @@ const defaultState = {
   googleUser: [],
   userImage: '',
   userId: [],
+  token:'',
   userFakeData: {
     id: 4,
     name: 'Bob Fields',
@@ -57,6 +59,14 @@ const defaultState = {
 
 const userReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case REFRESH_TOKEN:
+      return {
+        ...state,
+        loading: false,
+        // isLoggedIn: true,
+        error: '',
+        token: action.payload,
+      };
     case SIGNUP_START:
       return {
         ...state,
