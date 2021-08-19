@@ -15,6 +15,9 @@ import {
   TOKEN_START,
   TOKEN_SUCCESS,
   TOKEN_ERROR,
+  RESETPASSWORD_START,
+  RESETPASSWORD_SUCCESS,
+  RESETPASSWORD_ERROR,
 } from 'constants';
 import axios from 'axios';
 import deviceStorage from '../util/DeviceStorage';
@@ -447,6 +450,7 @@ export const GoogleLogoutCheck = () => {
 // };
 
 
+
 export const Logout = () => { 
   return async (dispatch) => {
     const refreshToken = await AsyncStorage.getItem("refreshToken");
@@ -486,6 +490,41 @@ export const Logout = () => {
           });
         });
     
+  };
+};
+
+export const ResetPassword = (input) => {
+  return (dispatch) => {
+    dispatch({type: RESETPASSWORD_START});
+    Toast.show({
+      type: 'info',
+      text2: 'Sending credentials...',
+    });
+    axios
+      .post(
+        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/passwordreset',
+        input,
+      )
+      .then((response) => {
+        dispatch({type: RESETPASSWORD_SUCCESS, payload: response.data});
+        navigate('Login');
+
+        Toast.show({
+          type: 'success',
+          // text2: response.data.message,
+          text2: 'Password Changed Successfully',
+        });
+      })
+
+      .catch((error) => {
+        console.log(error.response.data.message, 'ERROR in LOGIN');
+        dispatch({type: RESETPASSWORD_ERROR, payload: error.response});
+        Toast.show({
+          type: 'errorLogin',
+          text1: 'Error resetting password',
+          text2: error.response.data.message,
+        });
+      });
   };
 };
 

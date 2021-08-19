@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {
   TextInput,
   Text,
@@ -10,32 +10,22 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   ScrollView,
-  Modal,
   Platform,
 } from 'react-native';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import {connect} from 'react-redux';
-import {Register} from '../../actions/user';
-import {RegisterGoogle} from '../../actions/user';
-
-import CheckBox from '@react-native-community/checkbox';
+import {ResetPassword} from '../../actions/user';
 import LinearGradient from 'react-native-linear-gradient';
 import SmallStockSwap from '../../icons/SmallStockSwap';
-import AppleIcon from '../../icons/AppleIcon';
-import FacebookIcon from '../../icons/FacebookIcon';
-import TermsAndConditions from './TermsAndConditions';
-import GoogleOauth from '../LoggedOutComponents/GoogleOauth';
-
 import {moderateScale} from '../../util/responsiveFont';
-
 import Toast from 'react-native-toast-message';
 
 const reviewSchema = yup.object({
-//   email: yup
-//     .string()
-//     .required('Email is required')
-//     .email('A valid email address is required'),
+  //   email: yup
+  //     .string()
+  //     .required('Email is required')
+  //     .email('A valid email address is required'),
 
   password: yup
     .string()
@@ -54,18 +44,16 @@ const reviewSchema = yup.object({
     .required('Password confimation is required')
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
 
-//   termsVersion: yup.string().required('Please agree with Terms and Conditions'),
+  //   termsVersion: yup.string().required('Please agree with Terms and Conditions'),
 });
 
 export const NewPassword = ({
-  RegisterUser,
   navigation,
   userData,
   loading,
-  RegisterUserGoogle,
+  ResetPassword,
   route,
 }) => {
-  
   useEffect(() => {
     loading === true
       ? Toast.show({
@@ -74,7 +62,7 @@ export const NewPassword = ({
         })
       : null;
   }, [loading]);
-console.log(route.params.codeInput,"CODEINUPUT")
+  console.log(route.params.codeInput, 'CODEINUPUT');
   return (
     <LinearGradient
       start={{x: 0.1, y: 1}}
@@ -92,7 +80,7 @@ console.log(route.params.codeInput,"CODEINUPUT")
                   email: route.params.email,
                   password: '',
                   passwordConfirmation: '',
-                  codeInput: route.params.codeInput,
+                  code: route.params.codeInput,
                 }}
                 validationSchema={reviewSchema}
                 onSubmit={(values, actions) => {
@@ -101,19 +89,22 @@ console.log(route.params.codeInput,"CODEINUPUT")
                   //   name: 'Login',
                   //   params: {userInfo: values},
                   // });
-                //   RegisterUser ({email: values.email,
-                //     password: values.password,                    
-                //   })
+                  ResetPassword({
+                    email: values.email,
+                    password: values.password,
+                    code: values.code,
+                  });
                 }}>
                 {(props) => (
                   <View style={style.inner}>
-                 
                     <View style={style.stockHeader}>
                       <SmallStockSwap />
                     </View>
                     <View style={style.container}>
-                      <Text style={style.signUpHeader}>Create new password</Text>
-             
+                      <Text style={style.signUpHeader}>
+                        Reset your password
+                      </Text>
+
                       <View>
                         <Text style={style.inputHeader}>Password</Text>
 
@@ -169,7 +160,6 @@ console.log(route.params.codeInput,"CODEINUPUT")
                         </Text>
                       </View>
                       <View style={style.termsOuterContainer}>
-                        
                         <TouchableOpacity
                           onPress={() => navigation.navigate('Login')}>
                           <Text style={style.termsText}>Login</Text>
@@ -177,14 +167,13 @@ console.log(route.params.codeInput,"CODEINUPUT")
                       </View>
 
                       <TouchableOpacity onPress={props.handleSubmit}>
-                        <Text style={style.button}>Create new password</Text>
+                        <Text style={style.button}>Reset Password</Text>
                       </TouchableOpacity>
                     </View>
                   </View>
                 )}
               </Formik>
             </TouchableWithoutFeedback>
-      
           </ScrollView>
         </SafeAreaView>
       </KeyboardAvoidingView>
@@ -193,8 +182,6 @@ console.log(route.params.codeInput,"CODEINUPUT")
 };
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
-    userData: state.user.userData,
     loading: state.user.loading,
     error: state.user.error,
   };
@@ -202,8 +189,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    RegisterUser: (input) => dispatch(Register(input)),
-    RegisterUserGoogle: (input) => dispatch(RegisterGoogle(input)),
+    ResetPassword: (input) => dispatch(ResetPassword(input)),
   };
 };
 
@@ -221,8 +207,8 @@ const style = StyleSheet.create({
   stockHeader: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: moderateScale(2),
-    marginBottom: moderateScale(6),
+    marginTop: moderateScale(32),
+    marginBottom: moderateScale(31),
   },
   stockText: {
     fontSize: moderateScale(27),
@@ -255,6 +241,7 @@ const style = StyleSheet.create({
     fontSize: moderateScale(22),
     fontFamily: 'Montserrat-Bold',
     marginBottom: moderateScale(18),
+    textAlign: 'center',
   },
   inputHeader: {
     fontSize: moderateScale(14),
@@ -290,7 +277,7 @@ const style = StyleSheet.create({
     textAlign: 'center',
     paddingVertical: moderateScale(12),
     paddingHorizontal: moderateScale(20),
-    width: moderateScale(162),
+    width: moderateScale(184),
     borderRadius: moderateScale(6),
     fontSize: moderateScale(16),
     fontFamily: 'Montserrat-SemiBold',

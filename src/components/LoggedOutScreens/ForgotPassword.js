@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {
-  
   SafeAreaView,
   Text,
   View,
@@ -63,16 +62,15 @@ export class ForgotPassword extends Component {
                 <Formik
                   initialValues={{
                     email: '',
-                    // password: '',
                   }}
                   validationSchema={reviewSchema}
                   onSubmit={(values, actions) => {
                     //send email to backend
                     console.log(values, 'Values');
                     this.props.navigation.navigate({
-                    name: 'ConfirmCodeScreen',
-                    params: {email: values.email},
-                  });
+                      name: 'ConfirmCodeScreen',
+                      params: {email: values.email},
+                    });
                     // LoginUser(values);
                   }}>
                   {(props) => (
@@ -112,7 +110,6 @@ export class ForgotPassword extends Component {
                             {props.touched.email && props.errors.email}
                           </Text>
                         </View>
-                        
 
                         <View style={style.termsContainer}>
                           <View style={style.leftTerms}>
