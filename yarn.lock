@@ -6906,6 +6906,11 @@ react-native-bootsplash@^3.2.1:
     fs-extra "^9.1.0"
     jimp "^0.16.1"
 
+react-native-confirmation-code-field@6:
+  version "6.7.0"
+  resolved "https://registry.yarnpkg.com/react-native-confirmation-code-field/-/react-native-confirmation-code-field-6.7.0.tgz#81f5e646898addb3243cf89d41d884b0762ae962"
+  integrity sha512-dzw1Wh0Lz4myVUSyj7E4u/s5y5Sz5jS4B5w+oRlaeDVnUHer+HQSIzr11ckNBGr+WVCdGIYwxrYcpZ+Dr8ELfA==
+
 react-native-gesture-handler@^1.10.2:
   version "1.10.2"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.10.2.tgz#3e42329797e8d22bdb2a4d7bf84a41da7e19498b"

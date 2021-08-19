@@ -67,9 +67,13 @@ export class ForgotPassword extends Component {
                   }}
                   validationSchema={reviewSchema}
                   onSubmit={(values, actions) => {
+                    //send email to backend
                     console.log(values, 'Values');
-
-                    LoginUser(values);
+                    this.props.navigation.navigate({
+                    name: 'ConfirmCode',
+                    params: {email: values.email},
+                  });
+                    // LoginUser(values);
                   }}>
                   {(props) => (
                     <View style={style.inner}>
