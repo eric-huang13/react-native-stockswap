@@ -18,35 +18,16 @@ import {
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
 
-const styles = StyleSheet.create({
-  root: {flex: 1, padding: 20},
-  title: {textAlign: 'center', fontSize: 30},
-  codeFieldRoot: {marginTop: 20},
-  cell: {
-    width: 42,
-    height: 42,
-    lineHeight: 38,
-    fontSize: 24,
-    borderWidth: 2.1,
-    borderColor: '#FFFFFF',
-    textAlign: 'center',
-    backgroundColor: '#FFFFFF',
-  },
-  focusCell: {
-    borderColor: '#B8A0FF',
-  },
-});
-
 const CELL_COUNT = 6;
 
 const ConfirmCodeForm = ({navigation, email, value, setValue}) => {
-  // const [value, setValue] = useState('');
+  const [inputError, setInputError] = useState('');
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
   });
-  console.log(email, 'PROPSs');
+  console.log(navigation, 'PROPSs');
 
   return (
     <LinearGradient
@@ -57,7 +38,7 @@ const ConfirmCodeForm = ({navigation, email, value, setValue}) => {
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : null}
         style={{flex: 1}}>
-        <SafeAreaView style={styles.root}>
+        <SafeAreaView style={style.root}>
           <View style={style.inner}>
             <View style={style.stockHeader}>
               <SmallStockSwap />
@@ -71,18 +52,22 @@ const ConfirmCodeForm = ({navigation, email, value, setValue}) => {
                 value={value}
                 onChangeText={setValue}
                 cellCount={CELL_COUNT}
-                rootStyle={styles.codeFieldRoot}
+                rootStyle={style.codeFieldRoot}
                 keyboardType="number-pad"
                 textContentType="oneTimeCode"
                 renderCell={({index, symbol, isFocused}) => (
                   <Text
                     key={index}
-                    style={[styles.cell, isFocused && styles.focusCell]}
+                    style={[style.cell, isFocused && style.focusCell]}
                     onLayout={getCellOnLayoutHandler(index)}>
                     {symbol || (isFocused ? <Cursor /> : null)}
                   </Text>
                 )}
               />
+              {inputError ? (
+                <Text style={style.errorText}>Please enter 6 digit code</Text>
+              ) : null}
+
               <View style={style.termsContainer}>
                 <View style={style.leftTerms}>
                   <Text style={style.newText}>Need a new code?</Text>
@@ -95,17 +80,22 @@ const ConfirmCodeForm = ({navigation, email, value, setValue}) => {
                   <Text style={style.termsText}>Back to Login</Text>
                 </TouchableOpacity>
               </View>
+
               <View style={style.buttonView}>
                 <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate({
-                      name: 'NewPassword',
-                      params: {codeInput: value, email: email},
-                    })
-                  }>
+                  onPress={() => {
+                    value.length === CELL_COUNT
+                      ? (navigation.navigate({
+                          name: 'NewPassword',
+                          params: {codeInput: value, email: email},
+                        }),
+                        setInputError(false))
+                      : setInputError(true);
+                  }}>
                   <Text style={style.button}>Continue</Text>
                 </TouchableOpacity>
               </View>
+              <View style={style.errorView}></View>
             </View>
           </View>
         </SafeAreaView>
@@ -117,6 +107,32 @@ const ConfirmCodeForm = ({navigation, email, value, setValue}) => {
 export default ConfirmCodeForm;
 
 const style = StyleSheet.create({
+  root: {flex: 1, padding: 20},
+  title: {textAlign: 'center', fontSize: 30},
+  codeFieldRoot: {marginTop: 20},
+  cell: {
+    width: 42,
+    height: 42,
+    lineHeight: 38,
+    fontSize: 24,
+    borderWidth: 2.1,
+    borderColor: '#FFFFFF',
+    textAlign: 'center',
+    backgroundColor: '#FFFFFF',
+  },
+  cellError: {
+    width: 42,
+    height: 42,
+    lineHeight: 38,
+    fontSize: 24,
+    borderWidth: 2.1,
+    borderColor: '#F66E6E',
+    textAlign: 'center',
+    backgroundColor: '#F66E6E',
+  },
+  focusCell: {
+    borderColor: '#B8A0FF',
+  },
   mainContainer: {
     flex: 1,
     padding: moderateScale(8),
@@ -124,6 +140,9 @@ const style = StyleSheet.create({
   },
   inner: {
     justifyContent: 'flex-end',
+  },
+  errorView: {
+    marginBottom7: 10,
   },
   stockHeader: {
     flexDirection: 'row',
@@ -140,6 +159,9 @@ const style = StyleSheet.create({
     fontSize: moderateScale(27),
     fontWeight: 'bold',
     color: '#b8a0ff',
+  },
+  errorView: {
+    marginBottom: -30,
   },
   container: {
     borderRadius: moderateScale(16),
@@ -210,11 +232,12 @@ const style = StyleSheet.create({
     color: '#FFFFFF',
     textAlign: 'center',
     paddingVertical: moderateScale(12),
-    paddingHorizontal: moderateScale(8),
+    paddingHorizontal: moderateScale(10),
     width: moderateScale(162),
     borderRadius: moderateScale(6),
     fontSize: moderateScale(16),
     fontFamily: 'Montserrat-SemiBold',
+    marginBottom: moderateScale(12),
   },
   termsContainer: {
     marginTop: moderateScale(28),
@@ -285,7 +308,7 @@ const style = StyleSheet.create({
   errorText: {
     color: '#F66E6E',
     fontWeight: 'bold',
-    marginBottom: moderateScale(10),
+    marginBottom: moderateScale(-20),
     marginTop: moderateScale(1),
     textAlign: 'center',
   },
