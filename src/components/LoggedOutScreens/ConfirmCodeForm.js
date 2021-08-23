@@ -27,7 +27,6 @@ const ConfirmCodeForm = ({navigation, email, value, setValue}) => {
     value,
     setValue,
   });
-  console.log(navigation, 'PROPSs');
 
   return (
     <LinearGradient

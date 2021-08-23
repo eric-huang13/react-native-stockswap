@@ -24,12 +24,16 @@ import deviceStorage from '../util/DeviceStorage';
 import clearAppData from '../util/ClearStorage';
 import apiInstance from '../util/axiosConfig';
 import {navigate} from '../../RootNavigation';
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import jwt_decode from "jwt-decode";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import jwt_decode from 'jwt-decode';
 
 import Toast from 'react-native-toast-message';
 import {GoogleSignin, statusCodes} from '@react-native-community/google-signin';
+import {
+  FORGOTPASSWORD_ERROR,
+  FORGOTPASSWORD_START,
+  FORGOTPASSWORD_SUCCESS,
+} from '../constants';
 // GoogleSignin.configure({
 //   webClientId:
 //     '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
@@ -84,13 +88,12 @@ export const Register = (input) => {
         const decoded = jwt_decode(response.data.accessToken);
 
         deviceStorage.saveItem('token', response.data.accessToken),
-        deviceStorage.saveItem('refreshToken', response.data.refreshToken),
-        deviceStorage.saveItem('email', input.email),
-
-        //route to profileinfo
+          deviceStorage.saveItem('refreshToken', response.data.refreshToken),
+          deviceStorage.saveItem('email', input.email),
+          //route to profileinfo
           dispatch({type: SIGNUP_SUCCESS, payload: response.data});
-          dispatch({type: TOKEN_SUCCESS, payload: decoded.sub});
-          navigate('ProfileInfoForm');
+        dispatch({type: TOKEN_SUCCESS, payload: decoded.sub});
+        navigate('ProfileInfoForm');
 
         Toast.show({
           type: 'success',
@@ -164,18 +167,17 @@ export const RegisterGoogleSignIn = (input) => {
         //here route to profile info
         const decoded = jwt_decode(response.data.accessToken);
 
-
         dispatch({type: SIGNUP_SUCCESS, payload: response.data});
         dispatch({type: TOKEN_SUCCESS, payload: decoded.sub});
 
         deviceStorage.saveItem('token', response.data.accessToken),
-        deviceStorage.saveItem('refreshToken', response.data.refreshToken),
-        navigate('ProfileInfoForm');
+          deviceStorage.saveItem('refreshToken', response.data.refreshToken),
+          navigate('ProfileInfoForm');
 
-          Toast.show({
-            type: 'success',
-            text2: 'Sign up with Google successful!',
-          });
+        Toast.show({
+          type: 'success',
+          text2: 'Sign up with Google successful!',
+        });
       })
       .catch((error) => {
         dispatch({type: SIGNUP_ERROR, payload: error.response});
@@ -211,8 +213,7 @@ export const RegisterGoogle = (input) => {
         dispatch({type: TOKEN_SUCCESS, payload: decoded.sub});
 
         deviceStorage.saveItem('token', response.data.accessToken),
-        deviceStorage.saveItem('refreshToken', response.data.refreshToken),
-
+          deviceStorage.saveItem('refreshToken', response.data.refreshToken),
           // navigate('ProfileInfoForm');
           Toast.show({
             type: 'success',
@@ -246,24 +247,21 @@ export const Login = (input) => {
         input,
       )
       .then((response) => {
-        console.log('FIRST', response.data.refreshToken)
-        console.log('INPUT', input.email)
+        console.log('FIRST', response.data.refreshToken);
+        console.log('INPUT', input.email);
         const decoded = jwt_decode(response.data.accessToken);
         console.log(decoded.sub);
 
         deviceStorage.saveItem('token', response.data.accessToken),
-        deviceStorage.saveItem('refreshToken', response.data.refreshToken),
-        deviceStorage.saveItem('email', input.email),
-
-
-
+          deviceStorage.saveItem('refreshToken', response.data.refreshToken),
+          deviceStorage.saveItem('email', input.email),
           dispatch({type: LOGIN_SUCCESS, payload: response.data});
-          dispatch({type: TOKEN_SUCCESS, payload: decoded.sub});
+        dispatch({type: TOKEN_SUCCESS, payload: decoded.sub});
 
         Toast.show({
           type: 'success',
           // text2: response.data.message,
-          text2: "Login successful",
+          text2: 'Login successful',
         });
       })
 
@@ -291,12 +289,12 @@ export const GoogleSignUp = () => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       deviceStorage.saveItem('email', userInfo.user.email),
-      console.log(userInfo,"USERINFO GOOGLE SIGNUP")
+        console.log(userInfo, 'USERINFO GOOGLE SIGNUP');
       //send token to backend
       dispatch(
         RegisterGoogleSignIn({token: userInfo.idToken, platform: 'android'}),
       );
-     
+
       dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
     } catch (error) {
       console.log('Message', error.message);
@@ -327,11 +325,11 @@ export const GoogleLogin = () => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       deviceStorage.saveItem('email', userInfo.user.email),
-      console.log(userInfo,"USERINFO GOOGLE LOGIN")
+        console.log(userInfo, 'USERINFO GOOGLE LOGIN');
 
       //send token to backend
-       dispatch(RegisterGoogle({token: userInfo.idToken, platform: 'android'}));
-  
+      dispatch(RegisterGoogle({token: userInfo.idToken, platform: 'android'}));
+
       dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
     } catch (error) {
       console.log('Message', error.message);
@@ -361,8 +359,9 @@ export const GoogleIsSignedIn = () => {
       try {
         const userInfo = await GoogleSignin.signInSilently();
         //send token to backend
-        dispatch(RegisterGoogle({token: userInfo.idToken, platform: 'android'}));
-        
+        dispatch(
+          RegisterGoogle({token: userInfo.idToken, platform: 'android'}),
+        );
       } catch (error) {
         if (error.code === statusCodes.SIGN_IN_REQUIRED) {
           console.log('User has not signed in yet');
@@ -446,50 +445,79 @@ export const GoogleLogoutCheck = () => {
 //   return dispatch({
 //     type: LOGOUT,
 //   });
-  
+
 // };
 
-
-
-export const Logout = () => { 
+export const Logout = () => {
   return async (dispatch) => {
-    const refreshToken = await AsyncStorage.getItem("refreshToken");
-    const email = await AsyncStorage.getItem("email");      
+    const refreshToken = await AsyncStorage.getItem('refreshToken');
+    const email = await AsyncStorage.getItem('email');
     return axios
-        .post(
-          "http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/logout",
-          {
-            refreshToken: refreshToken,
-            email: email,
-          }
-        )
-        .then( (res) => {
-          clearAppData()
-  Toast.show({
-    type: 'success',
-    topOffset: 30,
-    text2: 'You have been successfully logged out.',
-  });
-  dispatch(GoogleLogoutCheck());
-  console.log(res, "Logging out")
-   dispatch({
-    type: LOGOUT,
-  });
-        })
-        .catch((error) => {
-          console.log(error, "Error logging out");
-          clearAppData()
-          dispatch({
-            type: LOGOUT,
-          });
-
-          Toast.show({
-            type: "errorSignUp",
-            text1: "Session Has Expired",
-            text2: "Error logging out",
-          });
+      .post(
+        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/logout',
+        {
+          refreshToken: refreshToken,
+          email: email,
+        },
+      )
+      .then((res) => {
+        clearAppData();
+        Toast.show({
+          type: 'success',
+          topOffset: 30,
+          text2: 'You have been successfully logged out.',
         });
-    
+        dispatch(GoogleLogoutCheck());
+        console.log(res, 'Logging out');
+        dispatch({
+          type: LOGOUT,
+        });
+      })
+      .catch((error) => {
+        console.log(error, 'Error logging out');
+        clearAppData();
+        dispatch({
+          type: LOGOUT,
+        });
+
+        Toast.show({
+          type: 'errorSignUp',
+          text1: 'Session Has Expired',
+          text2: 'Error logging out',
+        });
+      });
+  };
+};
+
+export const ForgotPasswordEmail = (input) => {
+  return (dispatch) => {
+    dispatch({type: FORGOTPASSWORD_START});
+    axios
+      .post(
+        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/forgotpassword',
+        input,
+      )
+      .then((response) => {
+        dispatch({type: FORGOTPASSWORD_SUCCESS, payload: response});
+        navigate({
+          name: 'ConfirmCodeScreen',
+          params: {email: input.email},
+        });
+        Toast.show({
+          type: 'success',
+          text2: 'Password reset code sent',
+        });
+      })
+      .catch((error) => {
+        console.log(error, 'ERROR in Signup');
+        dispatch({type: FORGOTPASSWORD_ERROR, payload: error.response});
+        // navigate('Login');
+        Toast.show({
+          type: 'errorSignUp',
+          text1: 'Error',
+          text2: 'Error sending password reset',
+        });
+      });
   };
 };
 
@@ -515,7 +543,6 @@ export const ResetPassword = (input) => {
           text2: 'Password Changed Successfully',
         });
       })
-
       .catch((error) => {
         console.log(error.response.data.message, 'ERROR in LOGIN');
         dispatch({type: RESETPASSWORD_ERROR, payload: error.response});
@@ -527,5 +554,3 @@ export const ResetPassword = (input) => {
       });
   };
 };
-
-

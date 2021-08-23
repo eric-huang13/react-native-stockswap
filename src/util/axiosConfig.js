@@ -4,19 +4,19 @@ import deviceStorage from "./DeviceStorage";
 import Toast from "react-native-toast-message";
 import { navigate } from "../../RootNavigation";
 
-import {
+// import {
   
-  REFRESH_TOKEN,
-} from 'constants';
+//   REFRESH_TOKEN,
+// } from 'constants';
  
  
 // import { refreshTokeng } from "../actions/user";
-import reduxStore from 'store/index';
+// import reduxStore from 'store/index';
 // axios.defaults.baseURL = 'http://10.0.2.2:9000'
 // axios.defaults.headers.common['Authorization'] = 'authToken'
 // axios.defaults.headers.post['Content-Type'] = 'application/json'
 
-const {store} = reduxStore();
+// const {store} = reduxStore();
  
 const apiInstance = axios.create();
 
