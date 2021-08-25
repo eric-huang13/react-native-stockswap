@@ -12,11 +12,11 @@ import ProfileGraph from '../HomeTabComponents/ProfileGraph';
 import {connect} from 'react-redux';
 import MyProfilePostBox from '../MyProfileTabComponents/MyProfilePostBox';
 import {moderateScale} from '../../util/responsiveFont';
-import {GetProfile} from '../../actions/profile'
-import {GetProfileImage} from '../../actions/profile'
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import {GetProfile} from '../../actions/profile';
+import {GetProfileImage} from '../../actions/profile';
+import {RefreshToken} from '../../actions/user';
 
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class Profile extends Component {
   constructor(props) {
@@ -34,25 +34,21 @@ class Profile extends Component {
       range: [10, 15],
       timeFilter: 'day',
       selectedPosts: [],
-      user: [],
+      user: [],     
     };
   }
   timeFilterSelect(time) {
     this.setState({timeFilter: time});
   }
   componentDidMount() {
-    //fetch data()
-   
     this.props.GetProfile();
-   
-
     // this.props.GetProfileImage(this.props.userData.accessToken, this.props.userId);
     AsyncStorage.getItem('token').then((token) => {
-      if(token){
+      if (token) {
+        this.props.RefreshToken(token);
         this.props.GetProfileImage(token, this.props.userId);
-
       }
-  });
+    });
     const {post, user, userProfile} = this.props;
     const id = this.props.user.id;
     const selectedPosts = post.filter((user) => user.userId === id);
@@ -81,12 +77,6 @@ class Profile extends Component {
     const {graphData, percent, range, timeFilter} = this.state;
     const {user, post, userProfile, userImage, userData} = this.props;
 
-    console.log(this.props.userProfile,"PROFILE DATA")
-    console.log(this.props.userImage,"PROFILE IMAGE")
-    console.log(this.props.userId,"USERID")
-
-
-
     return (
       <SafeAreaView style={style.container}>
         <View>
@@ -107,14 +97,17 @@ class Profile extends Component {
                   </View>
                 </View>
                 <View style={style.graphContainer}>
-                  <ProfileGraph graphData={ [
-        {x: 2, y: 10},
-        {x: 3, y: 11},
-        {x: 4, y: 12},
-        {x: 5, y: 14},
-        {x: 6, y: 14},
-        {x: 7, y: 15},
-      ]} range={[10, 15]} />
+                  <ProfileGraph
+                    graphData={[
+                      {x: 2, y: 10},
+                      {x: 3, y: 11},
+                      {x: 4, y: 12},
+                      {x: 5, y: 14},
+                      {x: 6, y: 14},
+                      {x: 7, y: 15},
+                    ]}
+                    range={[10, 15]}
+                  />
                 </View>
                 <View style={style.timeFilterButtonsContainer}>
                   <TouchableOpacity
@@ -196,21 +189,24 @@ class Profile extends Component {
                 </View>
                 <View style={style.infoContainer}>
                   <View style={style.detailsRow}>
+                    {userImage !== '' ? (
+                      <Image
+                        style={style.image}
+                        source={{
+                          uri: this.props.userImage,
+                          headers: {
+                            Authorization: `Bearer ${this.props.reduxToken}`,
+                          },
+                        }}
+                      />
+                    ) : null}
 
-                      {userImage !== '' ?
-                  <Image
-                      style={style.image}
-                      source={{uri:this.props.userImage, headers:{Authorization: `Bearer ${this.props.userData.accessToken}`}}}
-                    />
-                    :
-                    null}  
-
-                 {/* ///WORKING Add response url */}
+                    {/* ///WORKING Add response url */}
                     {/* <Image
                       style={style.image}
                       source={{uri:`https://d13h17hkw4i0vn.cloudfront.net/${this.props.userId}/profile.jpg`, headers:{Authorization: `Bearer ${this.props.userData.accessToken}`}}}
                     /> */}
-                    
+
                     <View style={style.personalDetails}>
                       <Text style={style.name}>{userProfile.name}</Text>
                       <Text style={style.username}>
@@ -314,13 +310,7 @@ const mapStateToProps = (state) => {
     userImage: state.user.userImage,
     userId: state.user.userId,
     userData: state.user.userData,
-    tokens: state.user.token,
-
-
-    
-
-    
-
+    reduxToken: state.user.token,
   };
 };
 
@@ -328,7 +318,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     GetProfile: () => dispatch(GetProfile()),
     GetProfileImage: (token, id) => dispatch(GetProfileImage(token, id)),
-
+    RefreshToken: (token) => dispatch(RefreshToken(token)),
   };
 };
 

@@ -18,11 +18,13 @@ import {
   RESETPASSWORD_START,
   RESETPASSWORD_SUCCESS,
   RESETPASSWORD_ERROR,
+  REFRESH_TOKEN,
 } from 'constants';
 import axios from 'axios';
 import deviceStorage from '../util/DeviceStorage';
+// import {deviceStorage} from '../Navigation';
+
 import clearAppData from '../util/ClearStorage';
-import apiInstance from '../util/axiosConfig';
 import {navigate} from '../../RootNavigation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import jwt_decode from 'jwt-decode';
@@ -74,6 +76,11 @@ import {
 //       });
 //   };
 // };
+export const RefreshToken = (token) => {
+  return (dispatch) => {
+    dispatch({type: REFRESH_TOKEN, payload: token});
+  };
+};
 
 export const Register = (input) => {
   return (dispatch) => {
@@ -93,6 +100,8 @@ export const Register = (input) => {
           //route to profileinfo
           dispatch({type: SIGNUP_SUCCESS, payload: response.data});
         dispatch({type: TOKEN_SUCCESS, payload: decoded.sub});
+            dispatch({type: REFRESH_TOKEN, payload: response.data.accessToken});
+
         navigate('ProfileInfoForm');
 
         Toast.show({
@@ -169,6 +178,8 @@ export const RegisterGoogleSignIn = (input) => {
 
         dispatch({type: SIGNUP_SUCCESS, payload: response.data});
         dispatch({type: TOKEN_SUCCESS, payload: decoded.sub});
+            dispatch({type: REFRESH_TOKEN, payload: response.data.accessToken});
+
 
         deviceStorage.saveItem('token', response.data.accessToken),
           deviceStorage.saveItem('refreshToken', response.data.refreshToken),
@@ -211,6 +222,8 @@ export const RegisterGoogle = (input) => {
 
         dispatch({type: LOGIN_SUCCESS, payload: response.data});
         dispatch({type: TOKEN_SUCCESS, payload: decoded.sub});
+            dispatch({type: REFRESH_TOKEN, payload: response.data.accessToken});
+
 
         deviceStorage.saveItem('token', response.data.accessToken),
           deviceStorage.saveItem('refreshToken', response.data.refreshToken),
@@ -257,6 +270,8 @@ export const Login = (input) => {
           deviceStorage.saveItem('email', input.email),
           dispatch({type: LOGIN_SUCCESS, payload: response.data});
         dispatch({type: TOKEN_SUCCESS, payload: decoded.sub});
+            dispatch({type: REFRESH_TOKEN, payload: response.data.accessToken});
+
 
         Toast.show({
           type: 'success',
