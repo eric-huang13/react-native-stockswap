@@ -1,30 +1,29 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {PlaidLink, LinkSuccess, LinkExit} from 'react-native-plaid-link-sdk';
 import {connect} from 'react-redux';
+import { moderateScale } from '../../util/responsiveFont';
 import {PlaidToken} from '../../actions/profile';
 
 const PlaidComponent = (props) => {
-  const [token, setToken] = useState('');
 
   useEffect(() => {
-    //redux get token
-    // props.PlaidToken();
-    // setToken(linkToken);
+    props.PlaidToken();
   }, []);
+  console.log(props.linkToken, 'LINKTOKEN');
 
   return (
     <PlaidLink
       tokenConfig={{
-        token: token,
+        token: props.linkToken.linkToken,
       }}
-      onSuccess={() => {
-        console.log(success);
+      onSuccess={(success: LinkSuccess) => {
+        console.log(success, 'HERE');
       }}
-      onExit={() => {
-        console.log(exit);
+      onExit={(exit: LinkExit) => {
+        console.log(exit,"Exit");
       }}>
-      <Text>Add Account</Text>
+      <Text style={style.detailsButton}>Add Account</Text>
     </PlaidLink>
   );
 };
@@ -40,8 +39,19 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    PlaidToken: (input) => dispatch(PlaidToken(input)),
+    PlaidToken: () => dispatch(PlaidToken()),
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlaidComponent);
+
+const style = StyleSheet.create({
+    detailsButton: {
+        color: '#B8A0FF',
+        fontSize: moderateScale(14),
+        fontFamily: 'Montserrat-SemiBold',
+        alignSelf: 'flex-end',
+        marginRight: 6,
+      },
+  });
+  

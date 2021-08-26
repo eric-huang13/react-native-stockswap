@@ -14,6 +14,7 @@ import {Logout} from '../../actions/user';
 import { moderateScale } from '../../util/responsiveFont';
 
 import { CommonActions } from '@react-navigation/native';
+import PlaidComponent from './PlaidComponent'
 
 class MyProfileSettings extends Component {
   constructor(props) {
@@ -160,14 +161,15 @@ class MyProfileSettings extends Component {
               </TouchableOpacity>
               </View>
             <View style={style.bottomInnerContiner}>
-              <Text style={style.bottomText}>Plaid</Text>
+              <Text style={style.bottomText}>Link Bank Account</Text>
            
-              <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('PlaidComponent')}>
-                <Text style={style.detailsButton}>Link Account</Text>
-              </TouchableOpacity>
+              <PlaidComponent/>
+
             </View>
-          </View>
+          
+           
+              
+                      </View>
           <View style={style.logoutButtonContainer}>
             <Text style={style.logoutButton} onPress={() => LogoutUser()}>
               Log Out

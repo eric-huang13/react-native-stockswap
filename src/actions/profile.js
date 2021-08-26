@@ -24,11 +24,11 @@ import apiInstance from '../util/axiosConfig';
 import {navigate} from '../../RootNavigation';
 import Toast from 'react-native-toast-message';
 
-export const PlaidToken = (input) => {
+export const PlaidToken = () => {
   return (dispatch) => {
     dispatch({type: PLAIDTOKEN_START});
     apiInstance
-      .post(`http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/`, input)
+      .post(`http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio/initiate`)
       .then((response) => {
         console.log(response, 'Success in Plaidtoken');
         dispatch({type: PLAIDTOKEN_SUCCESS, payload: response.data});
