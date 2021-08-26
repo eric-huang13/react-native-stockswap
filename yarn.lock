@@ -6943,6 +6943,13 @@ react-native-linear-gradient@^2.5.6:
   dependencies:
     prop-types "^15.6.0"
 
+react-native-plaid-link-sdk@^7.0.7:
+  version "7.0.7"
+  resolved "https://registry.yarnpkg.com/react-native-plaid-link-sdk/-/react-native-plaid-link-sdk-7.0.7.tgz#3304a20e7e5b7b440caf9dcf1e3246aee35aa3dd"
+  integrity sha512-jXmifw8sw3ngsqndl5dUG3pRgcNF7o+rWvSuWd0EX6vWhzfhSGhPtMIVhnCA0k1wUSEpFcrIsJweaCmRg3DPHg==
+  dependencies:
+    tsc "^1.20150623.0"
+
 react-native-reanimated@^1.13.1:
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.13.1.tgz#c370c32cc4d447ae896cb029bb9c6a2f7608c5b4"
@@ -8147,6 +8154,11 @@ tr46@^1.0.1:
   integrity sha1-qLE/1r/SSJUZZ0zN5VujaTtwbQk=
   dependencies:
     punycode "^2.1.0"
+
+tsc@^1.20150623.0:
+  version "1.20150623.0"
+  resolved "https://registry.yarnpkg.com/tsc/-/tsc-1.20150623.0.tgz#4ebc3c774e169148cbc768a7342533f082c7a6e5"
+  integrity sha1-Trw8d04WkUjLx2inNCUz8ILHpuU=
 
 tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.14.1"

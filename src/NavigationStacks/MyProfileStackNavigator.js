@@ -29,7 +29,10 @@ import CreatePostPreview from '../components/PostTabScreens/CreatePostPreview';
 import MyFollowers from '../components/MyProfileTabScreens/MyFollowers';
 import MyFollowing from '../components/MyProfileTabScreens/MyFollowing';
 import LikedPosts from '../components/MyProfileTabScreens/LikedPosts';
-import LoggingOutScreen from '../components/LoggedOutScreens/LoggingOutScreen'
+import LoggingOutScreen from '../components/LoggedOutScreens/LoggingOutScreen';
+import PlaidComponent from '../components/MyProfileTabScreens/PlaidComponent'
+
+
 
 //responsive scale
 import {moderateScale} from '../util/responsiveFont';
@@ -467,6 +470,24 @@ export default class MyProfileStackNavigator extends Component {
           component={LikedPosts}
           options={{
             title: 'Liked Posts',
+            headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+        <MyProfileStack.Screen
+          name="PlaidComponent"
+          component={PlaidComponent}
+          options={{
+            title: 'Plaid',
             headerStyle: {
               backgroundColor: '#394463',
             },

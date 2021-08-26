@@ -158,6 +158,14 @@ class MyProfileSettings extends Component {
                 }>
                 <Text style={style.detailsButton}>Show</Text>
               </TouchableOpacity>
+              </View>
+            <View style={style.bottomInnerContiner}>
+              <Text style={style.bottomText}>Plaid</Text>
+           
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('PlaidComponent')}>
+                <Text style={style.detailsButton}>Link Account</Text>
+              </TouchableOpacity>
             </View>
           </View>
           <View style={style.logoutButtonContainer}>

@@ -26,6 +26,9 @@ import {
   CREATEPROFILEIMAGE_ERROR,
   TOKEN_SUCCESS,
   REFRESH_TOKEN,
+  PLAIDTOKEN_START,
+  PLAIDTOKEN_SUCCESS,
+  PLAIDTOKEN_ERROR
 } from 'constants';
 
 const defaultState = {
@@ -36,6 +39,7 @@ const defaultState = {
   userImage: '',
   userId: [],
   token:'',
+  linkToken: [],
   userFakeData: {
     id: 4,
     name: 'Bob Fields',
@@ -59,6 +63,26 @@ const defaultState = {
 
 const userReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case PLAIDTOKEN_START:
+      return {
+        ...state,
+        loading: true,
+        error: '',
+      };
+    case PLAIDTOKEN_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        linkToken: action.payload,
+      };
+    case PLAIDTOKEN_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
     case REFRESH_TOKEN:
       return {
         ...state,
