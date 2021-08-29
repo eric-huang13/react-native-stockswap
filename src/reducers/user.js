@@ -144,7 +144,7 @@ const userReducer = (state = defaultState, action) => {
       return {
         ...state,
         loading: false,
-        isLoggedIn: true,
+        // isLoggedIn: true,
         error: '',
         userProfile: action.payload,
       };

@@ -1,0 +1,229 @@
+import React from 'react';
+import {View, Text, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView} from 'react-native';
+import {connect} from 'react-redux';
+import {moderateScale} from '../../util/responsiveFont';
+import LinearGradient from 'react-native-linear-gradient';
+import SmallStockSwap from '../../icons/SmallStockSwap';
+import PlaidComponent from '../MyProfileTabScreens/PlaidComponent';
+
+const ConnectAccount = (props) => {
+  return (
+    <LinearGradient
+      start={{x: 0.1, y: 1}}
+      end={{x: 0.1, y: 0.1}}
+      colors={['#1D2842', '#3d4b6e']}
+      style={{flex: 1}}>
+      <SafeAreaView style={style.mainContainer}>
+        <ScrollView>
+        <View style={style.stockHeader}>
+                      <SmallStockSwap />
+                    </View>
+          <View>
+            <View>
+              <Text style={style.header}>Secure</Text>
+              <Text style={style.detailsText}>
+                Bank level security with full encryption for your financial
+                data.
+              </Text>
+            </View>
+            <View>
+              <Text style={style.header}>Private</Text>
+              <Text style={style.detailsText}>
+                Choose between making your portfolio private or public, with no
+                dollar amounts ever shown.
+              </Text>
+            </View>
+            <View>
+              <Text style={style.header}>Insights</Text>
+              <Text style={style.detailsText}>
+                Learn insights about your portfolio like trading accuracy and
+                profit breakdowns along with qualifying for the interactive
+                leaderboards.
+              </Text>
+            </View>
+            <View style={style.buttonContainer}>
+              {/* <TouchableOpacity onPress={() => handleSubmit()}>
+          <Text style={style.button}>Connect</Text>
+        </TouchableOpacity> */}
+              <PlaidComponent />
+            </View>
+            <View style={style.buttonContainer}>
+              <TouchableOpacity onPress={() => handleSubmit()}>
+                <Text style={style.button}>Add later</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </LinearGradient>
+  );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+    loading: state.user.loading,
+    error: state.user.error,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ConnectAccount);
+
+const style = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    padding: moderateScale(8),
+    paddingHorizontal: moderateScale(24),
+  },
+  stockHeader: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: moderateScale(22),
+    marginBottom: moderateScale(56),
+  },
+  uploadPhotoContainer: {
+    alignSelf: 'center',
+    backgroundColor: '#515581',
+    borderRadius: moderateScale(100),
+    width: moderateScale(135),
+    height: moderateScale(135),
+    marginBottom: moderateScale(25),
+    paddingVertical: moderateScale(40),
+    paddingHorizontal: moderateScale(10),
+  },
+  uploadPhotoText: {
+    color: '#FFFFFF',
+    textAlign: 'center',
+    fontSize: moderateScale(14),
+    fontFamily: 'Montserrat-Regular',
+  },
+
+  header: {
+    // textAlign: 'center',
+    fontSize: moderateScale(16),
+    color: '#FFFFFF',
+    // marginBottom: moderateScale(20),
+    fontFamily: 'Montserrat-Bold',
+  },
+  detailsText: {
+    // textAlign: 'center',
+    fontSize: moderateScale(14),
+    color: '#FFFFFF',
+    marginBottom: moderateScale(34),
+    fontFamily: 'Montserrat-Regular',
+  },
+
+  topRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  rowInputContainer: {
+    width: moderateScale(164),
+  },
+
+  inputHeader: {
+    fontSize: moderateScale(12),
+    color: '#babec8',
+    marginBottom: moderateScale(1),
+    fontFamily: 'Montserrat-Regular',
+  },
+  inputStyle: {
+    borderRadius: moderateScale(8),
+    padding: moderateScale(8),
+    marginTop: moderateScale(1),
+    fontSize: moderateScale(16),
+    backgroundColor: '#536183',
+    opacity: 0.7,
+    fontFamily: 'Montserrat-Italic',
+    color: '#9ea6b5',
+  },
+  inputStyleBio: {
+    borderRadius: moderateScale(8),
+    backgroundColor: '#3e4d6c',
+    padding: moderateScale(8),
+    marginTop: moderateScale(1),
+    fontSize: moderateScale(16),
+    textAlignVertical: 'top',
+    backgroundColor: '#536183',
+    opacity: 0.7,
+    fontFamily: 'Montserrat-Italic',
+    color: '#9ea6b5',
+  },
+  visibleButtonContainer: {
+    paddingHorizontal: moderateScale(10),
+    paddingVertical: moderateScale(10),
+    borderRadius: moderateScale(6),
+    backgroundColor: '#3E4D6C',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  middleDetailsText: {
+    fontFamily: 'Montserrat-Medium',
+    color: '#FFFFFF',
+    fontSize: moderateScale(16),
+  },
+  dropdown: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginTop: moderateScale(41),
+    backgroundColor: '#3E4D6C',
+    zIndex: 1,
+    paddingVertical: moderateScale(4),
+    height: moderateScale(35),
+    position: 'absolute',
+    borderBottomLeftRadius: moderateScale(6),
+    borderBottomRightRadius: moderateScale(6),
+  },
+  dropDownText: {
+    color: 'white',
+    fontSize: moderateScale(16),
+    marginHorizontal: moderateScale(12),
+    fontFamily: 'Montserrat-Medium',
+    marginBottom: moderateScale(6),
+  },
+  dropDownTextReportContainer: {
+    borderTopWidth: moderateScale(1),
+    borderTopColor: 'lightgrey',
+    paddingTop: moderateScale(4),
+    backgroundColor: '#2C3957',
+  },
+  icon: {
+    marginRight: moderateScale(4),
+  },
+  button: {
+    alignSelf: 'center',
+    backgroundColor: '#8b64ff',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    paddingVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(20),
+    width: moderateScale(150),
+    borderRadius: moderateScale(6),
+    fontSize: moderateScale(14),
+    fontFamily: 'Montserrat-SemiBold',
+  },
+  privacyText: {
+    color: '#babec8',
+    fontSize: moderateScale(12),
+    marginRight: moderateScale(3),
+    marginBottom: moderateScale(3),
+    fontFamily: 'Montserrat-Regular',
+  },
+  buttonContainer: {
+    marginTop: moderateScale(20),
+    marginBottom: moderateScale(10),
+  },
+  errorText: {
+    color: '#F66E6E',
+    fontWeight: 'bold',
+    marginBottom: moderateScale(1),
+    marginTop: moderateScale(1),
+    textAlign: 'center',
+  },
+});

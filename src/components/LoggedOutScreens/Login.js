@@ -156,7 +156,7 @@ export class LoginScreen extends Component {
                           </View>
                           <TouchableOpacity
                             onPress={() =>
-                              this.props.navigation.navigate('ForgotPassword')
+                              this.props.navigation.navigate('ConnectAccount')
                             }>
                             <Text style={style.termsText}>
                               Forgot password?

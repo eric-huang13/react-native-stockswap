@@ -51,6 +51,8 @@ export const CreateProfile = (input) => {
       .then((response) => {
         console.log(response, 'profile created');
         dispatch({type: CREATEPROFILE_SUCCESS, payload: response.data});
+        navigate('ConnectAccount');
+
 
         Toast.show({
           type: 'success',

@@ -14,6 +14,9 @@ import ForgotPassword from '../components/LoggedOutScreens/ForgotPassword';
 import PrivacyPolicy from '../components/MyProfileTabScreens/PrivacyPolicy';
 import ConfirmCodeScreen from '../components/LoggedOutScreens/ConfirmCodeScreen';
 import NewPassword from '../components/LoggedOutScreens/NewPassword';
+import ConnectAccount from '../components/LoggedOutScreens/ConnectAccount';
+import PlaidComponent from '../components/MyProfileTabScreens/PlaidComponent'
+
 
 const LoggedOutStack = createStackNavigator();
 
@@ -75,6 +78,26 @@ export default class LoggedOutStackNavigator extends Component {
           component={NewPassword}
           options={{headerShown: false, animationEnabled: false}}
         />
+            <LoggedOutStack.Screen
+          name="ConnectAccount"
+          component={ConnectAccount}
+          options={{
+            title: 'Connect your portfolio',
+            headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+         <LoggedOutStack.Screen
+          name="PlaidComponent"
+          component={PlaidComponent}
+          options={{headerShown: false, animationEnabled: false}}
+        />
+        
       </LoggedOutStack.Navigator>
     );
   }
