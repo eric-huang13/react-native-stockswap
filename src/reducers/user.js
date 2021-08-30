@@ -28,7 +28,8 @@ import {
   REFRESH_TOKEN,
   PLAIDTOKEN_START,
   PLAIDTOKEN_SUCCESS,
-  PLAIDTOKEN_ERROR
+  PLAIDTOKEN_ERROR,
+  ADD_LATER
 } from 'constants';
 
 const defaultState = {
@@ -90,6 +91,13 @@ const userReducer = (state = defaultState, action) => {
         // isLoggedIn: true,
         error: '',
         token: action.payload,
+      };
+      case ADD_LATER:
+      return {
+        ...state,
+        loading: false,
+        isLoggedIn: true,
+        error: '',
       };
     case SIGNUP_START:
       return {

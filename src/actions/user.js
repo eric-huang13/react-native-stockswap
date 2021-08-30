@@ -19,6 +19,7 @@ import {
   RESETPASSWORD_SUCCESS,
   RESETPASSWORD_ERROR,
   REFRESH_TOKEN,
+  ADD_LATER
 } from 'constants';
 import axios from 'axios';
 import deviceStorage from '../util/DeviceStorage';
@@ -80,6 +81,12 @@ export const RefreshToken = (token) => {
   return (dispatch) => {
     dispatch({type: REFRESH_TOKEN, payload: token});
   };
+};
+export const AddLater = () => {
+  return (dispatch) => {
+    dispatch({type: ADD_LATER})
+  }
+  
 };
 
 export const Register = (input) => {

@@ -5,8 +5,17 @@ import {moderateScale} from '../../util/responsiveFont';
 import LinearGradient from 'react-native-linear-gradient';
 import SmallStockSwap from '../../icons/SmallStockSwap';
 import PlaidComponent from '../MyProfileTabScreens/PlaidComponent';
+import {AddLater} from '../../actions/user';
+
 
 const ConnectAccount = (props) => {
+  const handleAddLater = () => {
+    props.user.token !== '' ? 
+    props.AddLater()
+    :
+null
+  };
+  console.log(props.user)
   return (
     <LinearGradient
       start={{x: 0.1, y: 1}}
@@ -42,15 +51,14 @@ const ConnectAccount = (props) => {
               </Text>
             </View>
             <View style={style.buttonContainer}>
-              {/* <TouchableOpacity onPress={() => handleSubmit()}>
-          <Text style={style.button}>Connect</Text>
-        </TouchableOpacity> */}
+            
               <PlaidComponent />
-            </View>
+           
             <View style={style.buttonContainer}>
-              <TouchableOpacity onPress={() => handleSubmit()}>
+              <TouchableOpacity onPress={() => handleAddLater()}>
                 <Text style={style.button}>Add later</Text>
               </TouchableOpacity>
+              </View>
             </View>
           </View>
         </ScrollView>
@@ -68,7 +76,11 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    AddLater: () => dispatch(AddLater()),
+
+
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConnectAccount);
@@ -218,6 +230,10 @@ const style = StyleSheet.create({
   buttonContainer: {
     marginTop: moderateScale(20),
     marginBottom: moderateScale(10),
+    flexDirection:'row',
+    justifyContent: 'space-around',
+    alignItems:'center'
+
   },
   errorText: {
     color: '#F66E6E',
