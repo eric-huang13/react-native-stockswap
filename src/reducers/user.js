@@ -29,7 +29,10 @@ import {
   PLAIDTOKEN_START,
   PLAIDTOKEN_SUCCESS,
   PLAIDTOKEN_ERROR,
-  ADD_LATER
+  ADD_LATER,
+  PLAIDBANK_START,
+  PLAIDBANK_SUCCESS,
+  PLAIDBANK_ERROR,
 } from 'constants';
 
 const defaultState = {
@@ -41,6 +44,7 @@ const defaultState = {
   userId: [],
   token:'',
   linkToken: [],
+  plaidBank:[],
   userFakeData: {
     id: 4,
     name: 'Bob Fields',
@@ -64,6 +68,25 @@ const defaultState = {
 
 const userReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case PLAIDBANK_START:
+      return {
+        ...state,
+        loading: true,
+        error: '',
+      };
+    case PLAIDBANK_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        plaidBank: action.payload,
+      };
+    case PLAIDTOKEN_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     case PLAIDTOKEN_START:
       return {
         ...state,

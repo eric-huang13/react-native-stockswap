@@ -17,12 +17,32 @@ import {
   PLAIDTOKEN_START,
   PLAIDTOKEN_SUCCESS,
   PLAIDTOKEN_ERROR,
+  PLAIDBANK_START,
+  PLAIDBANK_SUCCESS,
+  PLAIDBANK_ERROR,
 } from 'constants';
 import axios from 'axios';
 import deviceStorage from '../util/DeviceStorage';
 import apiInstance from '../util/axiosConfig';
 import {navigate} from '../../RootNavigation';
 import Toast from 'react-native-toast-message';
+
+export const PlaidBank = (input) => {
+  return (dispatch) => {
+    dispatch({type: PLAIDTOKEN_START});
+    apiInstance
+    //add endpoint
+      .post(`http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio/link`, input,)
+      .then((response) => {
+        console.log(response, 'Success in PLAIDBANK');
+        dispatch({type: PLAIDTOKEN_SUCCESS, payload: response.data});
+      })
+      .catch((error) => {
+        dispatch({type: PLAIDTOKEN_ERROR, payload: error.response});
+        console.log(error.response, 'Error in PLAIDBANK');
+      });
+  };
+};
 
 export const PlaidToken = () => {
   return (dispatch) => {
@@ -34,7 +54,7 @@ export const PlaidToken = () => {
         dispatch({type: PLAIDTOKEN_SUCCESS, payload: response.data});
       })
       .catch((error) => {
-        dispatch({type: PLAIDTOKEN_SUCCESS, payload: error.response});
+        dispatch({type: PLAIDTOKEN_ERROR, payload: error.response});
         console.log(error.response, 'Error in PlaidToken');
       });
   };

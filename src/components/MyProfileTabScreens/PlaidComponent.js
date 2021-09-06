@@ -4,6 +4,8 @@ import {PlaidLink, LinkSuccess, LinkExit} from 'react-native-plaid-link-sdk';
 import {connect} from 'react-redux';
 import {moderateScale} from '../../util/responsiveFont';
 import {PlaidToken} from '../../actions/profile';
+import {PlaidBank} from '../../actions/profile';
+
  
 const PlaidComponent = (props) => {
   useEffect(() => {
@@ -19,10 +21,13 @@ const PlaidComponent = (props) => {
             token: props.linkToken.linkToken,
           }}
           onSuccess={(success: LinkSuccess) => {
-            console.log(success, 'HERE');
+            console.log(success.publicToken, 'HERE');
+            //sending publicToken
+            props.PlaidBank({publicToken:success.publicToken})
           }}
           onExit={(exit: LinkExit) => {
             console.log(exit, 'Exit');
+            props.PlaidBank(exit)
           }}>
           <Text style={style.button}>Add Account</Text>
         </PlaidLink>
@@ -45,6 +50,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     PlaidToken: () => dispatch(PlaidToken()),
+    PlaidBank: (input) => dispatch(PlaidBank(input)),
+
   };
 };
  
