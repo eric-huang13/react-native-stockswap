@@ -2,8 +2,28 @@ import {
   MARKETGAINERS_FETCHING,
   MARKETGAINERS_SUCCESS,
   MARKETGAINERS_FAILURE,
+  FETCHTICKERS_START,
+  FETCHTICKERS_SUCCESS,
+  FETCHTICKERS_ERROR,  
 } from 'constants';
 import axios from 'axios';
+
+export const fetchTickers = () => {
+  return (dispatch) => {
+    dispatch({type: FETCHTICKERS_START});
+    axios
+      .get(`http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/tickers/all`)
+
+      // .then(response => console.log (response.data.result.tickers, "From TICKERS"))
+      .then((response) =>
+        dispatch({type: FETCHTICKERS_SUCCESS, payload: response.data.result.tickers}),
+      )
+
+      .catch((error) =>
+        dispatch({type: FETCHTICKERS_ERROR, payload: error.response}),
+      );
+  };
+};
 
 export const fetchMarketGainers = () => {
   return (dispatch) => {

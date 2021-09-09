@@ -2,6 +2,9 @@ import {
   MARKETGAINERS_FETCHING,
   MARKETGAINERS_SUCCESS,
   MARKETGAINERS_FAILURE,
+  FETCHTICKERS_START,
+  FETCHTICKERS_SUCCESS,
+  FETCHTICKERS_ERROR
 } from '../constants';
 
 const defaultState = {
@@ -801,6 +804,7 @@ const defaultState = {
     },
   ],
   marketGainers: [],
+  tickers:[],
   articles: [
     {
       id: '1',
@@ -832,6 +836,25 @@ const companyBoxReducer = (state = defaultState, action) => {
         marketGainers: action.payload,
       };
     case MARKETGAINERS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+      case FETCHTICKERS_START:
+      return {
+        ...state,
+        loading: true,
+        error: "",
+      };
+    case FETCHTICKERS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: "",
+        tickers: action.payload,
+      };
+    case FETCHTICKERS_ERROR:
       return {
         ...state,
         loading: false,

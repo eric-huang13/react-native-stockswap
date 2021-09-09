@@ -3,10 +3,16 @@ import {StyleSheet, Text, SafeAreaView} from 'react-native';
 import TextTicker from 'react-native-text-ticker';
 import {connect} from 'react-redux';
 import {moderateScale} from '../../util/responsiveFont';
+import {fetchTickers} from '../../actions/marketMovers'
+
 
 export class StockTicker extends PureComponent {
+  componentDidMount() {
+    // const {companies, fetchGainers} = this.props;
+    this.props.fetchTickers();
+}
   render() {
-    const {gainers} = this.props;
+    const {gainers, tickers} = this.props;
 
     return (
       <SafeAreaView style={styles.container}>
@@ -48,10 +54,16 @@ export class StockTicker extends PureComponent {
 const mapStateToProps = (state) => {
   return {
     gainers: state.company.gainers,
+    tickers: state.company.tickers
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchTickers: () => dispatch(fetchTickers()),
   };
 };
 
-export default connect(mapStateToProps)(StockTicker);
+export default connect(mapStateToProps, mapDispatchToProps)(StockTicker);
 
 const styles = StyleSheet.create({
   container: {
