@@ -15,9 +15,12 @@ export const fetchTickers = () => {
       .get(`http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/tickers/all`)
 
       // .then(response => console.log (response.data.result.tickers, "From TICKERS"))
-      .then((response) =>
-        dispatch({type: FETCHTICKERS_SUCCESS, payload: response.data.result.tickers}),
-      )
+      .then((response) => {
+        const entries = Object.keys(response.data.result.tickers);
+        const slicedTickers = entries.slice(0, 50)
+
+        dispatch({type: FETCHTICKERS_SUCCESS, payload: slicedTickers})
+      })
 
       .catch((error) =>
         dispatch({type: FETCHTICKERS_ERROR, payload: error.response}),
