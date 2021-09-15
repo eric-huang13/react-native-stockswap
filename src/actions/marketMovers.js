@@ -2,6 +2,9 @@ import {
   MARKETGAINERS_FETCHING,
   MARKETGAINERS_SUCCESS,
   MARKETGAINERS_FAILURE,
+  MARKETLOSERS_FETCHING,
+  MARKETLOSERS_SUCCESS,
+  MARKETLOSERS_FAILURE,
   FETCHTICKERS_START,
   FETCHTICKERS_SUCCESS,
   FETCHTICKERS_ERROR, 
@@ -44,6 +47,23 @@ export const fetchMarketGainers = () => {
 
       .catch((error) =>
         dispatch({type: MARKETGAINERS_FAILURE, payload: error.response}),
+      );
+  };
+};
+
+export const fetchMarketLosers = () => {
+  return (dispatch) => {
+    dispatch({type: MARKETLOSERS_FETCHING});
+    axios
+      .get(`http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/daily/losers`)
+
+      // .then(response => console.log (response.data.result.statType, "From MARKETLOSERS API"))
+      .then((response) =>
+        dispatch({type: MARKETLOSERS_SUCCESS, payload: response.data.result.statType}),
+      )
+
+      .catch((error) =>
+        dispatch({type: MARKETLOSERS_FAILURE, payload: error.response}),
       );
   };
 };

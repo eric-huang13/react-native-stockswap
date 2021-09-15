@@ -13,13 +13,17 @@ import {moderateScale} from '../../util/responsiveFont';
 import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
 import CompanyBox from '../SearchTabComponents/CompanyBox';
-import {fetchMarketGainers} from '../../actions/marketMovers'
+import {fetchMarketGainers} from '../../actions/marketMovers';
+import {fetchMarketLosers} from '../../actions/marketMovers'
+
+
 
 export class CompanyBoxList extends Component {
   //Ready for redux action hookup
     componentDidMount() {
       // const {companies, fetchGainers} = this.props;
       this.props.fetchGainers();
+      this.props.fetchLosers();
   }
   constructor(props) {
     super(props);
@@ -33,7 +37,7 @@ export class CompanyBoxList extends Component {
   };
 
   render() {
-    const {gainers, losers, highestByVolume, marketGainers} = this.props;
+    const {gainers, losers, highestByVolume, marketGainers, marketLosers} = this.props;
 console.log(marketGainers,"MARKET GAINERS API")
     return (
       <SafeAreaView style={style.mainContainer}>
@@ -135,10 +139,10 @@ console.log(marketGainers,"MARKET GAINERS API")
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 justifyContent="space-between">
-                {losers.map((item) => {
+                {marketLosers.map((item) => {
                   return (
                     <TouchableOpacity
-                      key={item.id}
+                      key={item.ticker}
                       onPress={() =>
                         this.props.navigation.navigate({
                           name: 'CompanyInformation',
@@ -212,6 +216,8 @@ const mapStateToProps = (state) => {
     losers: state.company.losers,
     highestByVolume: state.company.highestByVolume,
     marketGainers: state.company.marketGainers,
+    marketLosers: state.company.marketLosers,
+
 
   };
 };
@@ -220,6 +226,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchGainers: () => dispatch(fetchMarketGainers()),
+    fetchLosers: () => dispatch(fetchMarketLosers()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(CompanyBoxList);

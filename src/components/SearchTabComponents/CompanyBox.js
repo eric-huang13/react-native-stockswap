@@ -33,7 +33,7 @@ export class CompanyBox extends Component {
               <Text style={{...style.symbol, color: '#1AB968'}}>
                 {item.ticker}
               </Text>
-              { stockObject.name ?
+              { stockObject ?
            <Text style={style.title}>
                 {stockObject.name.length < 15
                   ? `${stockObject.name}`
@@ -60,18 +60,22 @@ export class CompanyBox extends Component {
           <SafeAreaView style={style.listContainer}>
             <View style={style.topDetails}>
               <Text style={{...style.symbol, color: '#D13C3D'}}>
-                {item.symbol}
+                {item.ticker}
               </Text>
-              <Text style={style.title}>
-                {item.title.length < 15
-                  ? `${item.title}`
-                  : `${item.title.substring(0, 14)}...`}
+              { stockObject ?
+           <Text style={style.title}>
+                {stockObject.name.length < 15
+                  ? `${stockObject.name}`
+                  : `${stockObject.name.substring(0, 14)}...`}
               </Text>
+              :
+              null
+                }  
             </View>
             <View style={style.bottomDetails}>
-              <Text style={style.price}>${item.price}</Text>
+              <Text style={style.price}>${item.quote.volumeWeightedAveragePrice}</Text>
               <Text style={{...style.percentage, color: '#D13C3D'}}>
-                {item.percentage}
+                {item.change}
               </Text>
             </View>
           </SafeAreaView>
@@ -118,7 +122,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompanyBox);
-// export default CompanyBox;
 
 const style = StyleSheet.create({
   linearGradient: {
