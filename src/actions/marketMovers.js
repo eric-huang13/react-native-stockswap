@@ -4,7 +4,8 @@ import {
   MARKETGAINERS_FAILURE,
   FETCHTICKERS_START,
   FETCHTICKERS_SUCCESS,
-  FETCHTICKERS_ERROR,  
+  FETCHTICKERS_ERROR, 
+  FETCHTICKERSALL_SUCCESS, 
 } from 'constants';
 import axios from 'axios';
 
@@ -20,6 +21,8 @@ export const fetchTickers = () => {
         const slicedTickers = entries.slice(0, 50)
 
         dispatch({type: FETCHTICKERS_SUCCESS, payload: slicedTickers})
+        dispatch({type: FETCHTICKERSALL_SUCCESS, payload: response.data.result.tickers})
+
       })
 
       .catch((error) =>

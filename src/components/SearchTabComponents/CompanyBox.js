@@ -9,13 +9,18 @@ import {
   Platform,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import {connect} from 'react-redux';
 import {moderateScale, scale} from '../../util/responsiveFont';
 
 export class CompanyBox extends Component {
+
+
+  
   render() {
     const {item, category} = this.props;
     const {width, height} = Dimensions.get('window');
-
+    const symbol = item.ticker   
+    const stockObject =this.props.tickersAll[symbol]
     const styledText =
       category === 'gainers' ? (
         <LinearGradient
@@ -28,11 +33,15 @@ export class CompanyBox extends Component {
               <Text style={{...style.symbol, color: '#1AB968'}}>
                 {item.ticker}
               </Text>
-              {/* <Text style={style.title}>
-                {item.title.length < 15
-                  ? `${item.title}`
-                  : `${item.title.substring(0, 14)}...`}
-              </Text> */}
+              { stockObject.name ?
+           <Text style={style.title}>
+                {stockObject.name.length < 15
+                  ? `${stockObject.name}`
+                  : `${stockObject.name.substring(0, 14)}...`}
+              </Text>
+              :
+              null
+  }
             </View>
             <View style={style.bottomDetails}>
               <Text style={style.price}>${item.quote.volumeWeightedAveragePrice}</Text>
@@ -98,7 +107,18 @@ export class CompanyBox extends Component {
   }
 }
 
-export default CompanyBox;
+const mapStateToProps = (state) => {
+  return {
+    tickersAll: state.company.tickersAll
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CompanyBox);
+// export default CompanyBox;
 
 const style = StyleSheet.create({
   linearGradient: {

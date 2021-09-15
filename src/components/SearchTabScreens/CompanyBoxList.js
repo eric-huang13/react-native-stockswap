@@ -89,7 +89,7 @@ console.log(marketGainers,"MARKET GAINERS API")
                 {marketGainers.map((item) => {
                   return (
                     <TouchableOpacity
-                      key={item.id}
+                      key={item.ticker}
                       onPress={() =>
                         this.props.navigation.navigate({
                           name: 'CompanyInformation',
