@@ -10,6 +10,9 @@ import {
 import {moderateScale} from '../../util/responsiveFont';
 import CompanyStockGraph from '../SearchTabComponents/CompanyStockGraph';
 import CompanySymbolList from '../SearchTabComponents/CompanySymbolList';
+import {connect} from 'react-redux';
+import {fetchStockMonth} from '../../actions/marketMovers'
+
 
 export class CompanyInformation extends Component {
   constructor(props) {
@@ -34,31 +37,47 @@ export class CompanyInformation extends Component {
   //All logic needs to be handled before hand, either in backend or in action? Will change this when we actually have data coming in
 
   componentDidMount() {
+    this.props.fetchStockMonth(this.props.route.params.item.ticker)
     //X
-    const xDates = this.props.route.params.item.dates.map(
-      (item) => new Date(item * 1000),
-    );
-    //Y
-    const yPrices = this.props.route.params.item.priceHistory;
+    // const xDates = this.props.route.params.item.dates.map(
+    //   (item) => new Date(item * 1000),
+    // );
+    // //Y
+    // const yPrices = this.props.route.params.item.priceHistory;
 
+    // this.setState({
+    //   xDates: xDates,
+    //   yPrices: yPrices,
+    // });
     this.setState({
-      xDates: xDates,
-      yPrices: yPrices,
+      xDates: [1604188800,
+        1604275200,
+        1604361600,
+        1604448000,
+        1604534400,],
+      yPrices: [ 61,
+        49,
+        19,
+        85,
+        18,],
     });
   }
 
-  componentDidUpdate(prevProps) {
-    if (
-      this.props.route.params.item.dates !== prevProps.route.params.item.dates
-    ) {
-      this.setState({
-        xDates: this.props.route.params.item.dates,
-        yPrices: this.props.route.params.item.priceHistory,
-      });
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (
+  //     this.props.route.params.item.dates !== prevProps.route.params.item.dates
+  //   ) {
+  //     this.setState({
+  //       xDates: this.props.route.params.item.dates,
+  //       yPrices: this.props.route.params.item.priceHistory,
+  //     });
+  //   }
+  // }
 
   render() {
+    console.log(this.props.stockMonth, "STOCK MONTH IN COMPANY INFO")
+    console.log(this.props.route.params, "PARAMS IN COMPANY INFO")
+
     //X and Y
     //X
     // const xDates = this.props.route.params.item.dates.map(
@@ -79,7 +98,9 @@ export class CompanyInformation extends Component {
 
     //Info to display
     //Current stock price
-    const currentPrice = this.state.yPrices[yPrices.length - 1];
+    // const currentPrice = this.state.yPrices[yPrices.length - 1];
+    const currentPrice = this.props.route.params.item.quote.volumeWeightedAveragePrice
+
     // Growth/Loss percentage
     const percentChange = (
       ((currentPrice - yPrices[yPrices.length - 7]) /
@@ -120,15 +141,15 @@ export class CompanyInformation extends Component {
       <SafeAreaView style={style.mainContainer}>
         <CompanySymbolList
           navigation={this.props.navigation}
-          symbol={route.params.item.symbol}
+          symbol={route.params.item.ticker}
           itemId={route.params.item.id}
         />
         <ScrollView>
           {this.props.route.params ? (
             <View style={style.aboveGraphContainer}>
               <View style={style.symbolView}>
-                <Text style={style.symbol}>{route.params.item.symbol}</Text>
-                <Text style={style.price}>${currentPrice}</Text>
+                <Text style={style.symbol}>{route.params.item.ticker}</Text>
+                <Text style={style.price}>${route.params.item.quote.volumeWeightedAveragePrice}</Text>
               </View>
               <View style={style.titleView}>
                 <Text style={style.title}>{route.params.item.title}</Text>
@@ -143,7 +164,7 @@ export class CompanyInformation extends Component {
           <View style={style.graphContainer}>
             <CompanyStockGraph
               graphData={graphData}
-              symbol={route.params.item.title}
+              symbol={route.params.item.ticker}
               range={range}
             />
             <View style={style.graphNumbers}>
@@ -276,15 +297,15 @@ export class CompanyInformation extends Component {
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>High:</Text>
-                <Text style={style.vitalDetailsData}>${newrange[1]}</Text>
+                <Text style={style.vitalDetailsData}>${this.props.route.params.item.quote.high}</Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Low:</Text>
-                <Text style={style.vitalDetailsData}>${newrange[0]}</Text>
+                <Text style={style.vitalDetailsData}>${this.props.route.params.item.quote.low}</Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Volume:</Text>
-                <Text style={style.vitalDetailsData}>${currentPrice}</Text>
+                <Text style={style.vitalDetailsData}>${this.props.route.params.item.quote.volume}</Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Avg Vol:</Text>
@@ -331,8 +352,21 @@ export class CompanyInformation extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    
+    stockMonth: state.company.stockMonth
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchStockMonth: (ticker) => dispatch(fetchStockMonth(ticker)),
+  };
+};
 
-export default CompanyInformation;
+export default connect(mapStateToProps, mapDispatchToProps)(CompanyInformation);
+
+// export default CompanyInformation;
 
 const style = StyleSheet.create({
   mainContainer: {

@@ -7,10 +7,35 @@ import {
   MARKETLOSERS_FAILURE,
   FETCHTICKERS_START,
   FETCHTICKERS_SUCCESS,
-  FETCHTICKERS_ERROR, 
-  FETCHTICKERSALL_SUCCESS, 
+  FETCHTICKERS_ERROR,
+  FETCHTICKERSALL_SUCCESS,
+  FETCHSTOCKMONTH_START,
+  FETCHSTOCKMONTH_SUCCESS,
+  FETCHSTOCKMONTH_ERROR,
 } from 'constants';
 import axios from 'axios';
+
+export const fetchStockMonth = (ticker) => {
+  return (dispatch) => {
+    dispatch({type: FETCHSTOCKMONTH_START});
+    axios
+      .get(
+        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=month`,
+      )
+
+      // .then(response => console.log (response.data.result, "Month Stock DATA"))
+      .then((response) => {
+        dispatch({
+          type: FETCHSTOCKMONTH_SUCCESS,
+          payload: response.data.result,
+        });
+      })
+
+      .catch((error) =>
+        dispatch({type: FETCHSTOCKMONTH_ERROR, payload: error.response}),
+      );
+  };
+};
 
 export const fetchTickers = () => {
   return (dispatch) => {
@@ -21,11 +46,13 @@ export const fetchTickers = () => {
       // .then(response => console.log (response.data.result.tickers, "From TICKERS"))
       .then((response) => {
         const entries = Object.keys(response.data.result.tickers);
-        const slicedTickers = entries.slice(0, 50)
+        const slicedTickers = entries.slice(0, 50);
 
-        dispatch({type: FETCHTICKERS_SUCCESS, payload: slicedTickers})
-        dispatch({type: FETCHTICKERSALL_SUCCESS, payload: response.data.result.tickers})
-
+        dispatch({type: FETCHTICKERS_SUCCESS, payload: slicedTickers});
+        dispatch({
+          type: FETCHTICKERSALL_SUCCESS,
+          payload: response.data.result.tickers,
+        });
       })
 
       .catch((error) =>
@@ -38,11 +65,16 @@ export const fetchMarketGainers = () => {
   return (dispatch) => {
     dispatch({type: MARKETGAINERS_FETCHING});
     axios
-      .get(`http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/daily/gainers`)
+      .get(
+        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/daily/gainers`,
+      )
 
       // .then(response => console.log (response.data.result.statType, "From MARKETGAINERS API"))
       .then((response) =>
-        dispatch({type: MARKETGAINERS_SUCCESS, payload: response.data.result.statType}),
+        dispatch({
+          type: MARKETGAINERS_SUCCESS,
+          payload: response.data.result.statType,
+        }),
       )
 
       .catch((error) =>
@@ -55,11 +87,16 @@ export const fetchMarketLosers = () => {
   return (dispatch) => {
     dispatch({type: MARKETLOSERS_FETCHING});
     axios
-      .get(`http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/daily/losers`)
+      .get(
+        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/daily/losers`,
+      )
 
       // .then(response => console.log (response.data.result.statType, "From MARKETLOSERS API"))
       .then((response) =>
-        dispatch({type: MARKETLOSERS_SUCCESS, payload: response.data.result.statType}),
+        dispatch({
+          type: MARKETLOSERS_SUCCESS,
+          payload: response.data.result.statType,
+        }),
       )
 
       .catch((error) =>
