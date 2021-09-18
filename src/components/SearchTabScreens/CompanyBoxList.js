@@ -37,7 +37,7 @@ export class CompanyBoxList extends Component {
   };
 
   render() {
-    const {gainers, losers, highestByVolume, marketGainers, marketLosers} = this.props;
+    const {gainers, losers, highestByVolume, marketGainers, marketLosers, marketGainersTest} = this.props;
 console.log(marketGainers,"MARKET GAINERS API")
     return (
       <SafeAreaView style={style.mainContainer}>
@@ -90,7 +90,7 @@ console.log(marketGainers,"MARKET GAINERS API")
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 justifyContent="space-between">
-                {marketGainers.map((item) => {
+                {marketGainersTest.map((item) => {
                   return (
                     <TouchableOpacity
                       key={item.ticker}
@@ -217,6 +217,9 @@ const mapStateToProps = (state) => {
     highestByVolume: state.company.highestByVolume,
     marketGainers: state.company.marketGainers,
     marketLosers: state.company.marketLosers,
+
+    marketGainersTest: state.company.marketGainersTest,
+
 
 
   };

@@ -11,8 +11,7 @@ import {moderateScale} from '../../util/responsiveFont';
 import CompanyStockGraph from '../SearchTabComponents/CompanyStockGraph';
 import CompanySymbolList from '../SearchTabComponents/CompanySymbolList';
 import {connect} from 'react-redux';
-import {fetchStockMonth} from '../../actions/marketMovers'
-
+import {fetchStockMonth} from '../../actions/marketMovers';
 
 export class CompanyInformation extends Component {
   constructor(props) {
@@ -37,7 +36,7 @@ export class CompanyInformation extends Component {
   //All logic needs to be handled before hand, either in backend or in action? Will change this when we actually have data coming in
 
   componentDidMount() {
-    this.props.fetchStockMonth(this.props.route.params.item.ticker)
+    this.props.fetchStockMonth(this.props.route.params.item.ticker);
     //X
     // const xDates = this.props.route.params.item.dates.map(
     //   (item) => new Date(item * 1000),
@@ -50,16 +49,8 @@ export class CompanyInformation extends Component {
     //   yPrices: yPrices,
     // });
     this.setState({
-      xDates: [1604188800,
-        1604275200,
-        1604361600,
-        1604448000,
-        1604534400,],
-      yPrices: [ 61,
-        49,
-        19,
-        85,
-        18,],
+      xDates: [1604188800, 1604275200, 1604361600, 1604448000, 1604534400],
+      yPrices: [61, 49, 19, 85, 18],
     });
   }
 
@@ -75,14 +66,26 @@ export class CompanyInformation extends Component {
   // }
 
   render() {
-    console.log(this.props.stockMonth, "STOCK MONTH IN COMPANY INFO")
-    console.log(this.props.route.params, "PARAMS IN COMPANY INFO")
+    // console.log(this.props.stockMonth, "STOCK MONTH IN COMPANY INFO")
+    // console.log(this.props.route.params, "PARAMS IN COMPANY INFO")
+    let monthPrices = this.props.stockMonth.map((a) => a.close);
+    const monthPriceRange = [
+      Math.floor(Math.min(...monthPrices)),
+      Math.ceil(Math.max(...monthPrices)),
+    ];
 
+    console.log(monthPriceRange, 'MONTHPRICERANGE');
+    const stockMonthData = this.props.stockMonth.reverse().map((i) => {
+      return {x: Date.parse(i.window.startTime), y: i.close};
+    });
+    console.log(stockMonthData, 'STOCKDATA');
+    // [Math.min(...yPrices), Math.max(...yPrices)]
     //X and Y
     //X
     // const xDates = this.props.route.params.item.dates.map(
     //   (item) => new Date(item * 1000),
     // );
+
     //Y
     const yPrices = this.state.yPrices;
     //X and Y data
@@ -95,11 +98,13 @@ export class CompanyInformation extends Component {
     const weekData = xyData.slice(xyData.length - 7);
     //Data for month
     const monthData = xyData.slice(xyData.length - 31);
+    // console.log(monthData,"MONTHDATA")
 
     //Info to display
     //Current stock price
     // const currentPrice = this.state.yPrices[yPrices.length - 1];
-    const currentPrice = this.props.route.params.item.quote.volumeWeightedAveragePrice
+    const currentPrice = this.props.route.params.item.quote
+      .volumeWeightedAveragePrice;
 
     // Growth/Loss percentage
     const percentChange = (
@@ -149,7 +154,9 @@ export class CompanyInformation extends Component {
             <View style={style.aboveGraphContainer}>
               <View style={style.symbolView}>
                 <Text style={style.symbol}>{route.params.item.ticker}</Text>
-                <Text style={style.price}>${route.params.item.quote.volumeWeightedAveragePrice}</Text>
+                <Text style={style.price}>
+                  ${route.params.item.quote.volumeWeightedAveragePrice}
+                </Text>
               </View>
               <View style={style.titleView}>
                 <Text style={style.title}>{route.params.item.title}</Text>
@@ -226,9 +233,10 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  graphData: monthData,
+                  graphData: stockMonthData,
                   percent: percentChangeMonth,
-                  range: newrange,
+                  // range: [Math.floor(stockMonthData[0].y), Math.ceil(stockMonthData[stockMonthData.length-1].y)+1],
+                  range: monthPriceRange,
                   timeFilter: 'month',
                 })
               }>
@@ -297,15 +305,21 @@ export class CompanyInformation extends Component {
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>High:</Text>
-                <Text style={style.vitalDetailsData}>${this.props.route.params.item.quote.high}</Text>
+                <Text style={style.vitalDetailsData}>
+                  ${this.props.route.params.item.quote.high}
+                </Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Low:</Text>
-                <Text style={style.vitalDetailsData}>${this.props.route.params.item.quote.low}</Text>
+                <Text style={style.vitalDetailsData}>
+                  ${this.props.route.params.item.quote.low}
+                </Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Volume:</Text>
-                <Text style={style.vitalDetailsData}>${this.props.route.params.item.quote.volume}</Text>
+                <Text style={style.vitalDetailsData}>
+                  ${this.props.route.params.item.quote.volume}
+                </Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Avg Vol:</Text>
@@ -354,8 +368,7 @@ export class CompanyInformation extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    
-    stockMonth: state.company.stockMonth
+    stockMonth: state.company.stockMonth,
   };
 };
 const mapDispatchToProps = (dispatch) => {

@@ -811,6 +811,39 @@ const defaultState = {
     },
   ],
   marketGainers: [],
+  marketGainersTest:[
+    {
+      "ticker": "HLBZ",
+      "quote": {
+        "open": 23.1999,
+        "close": 22.9999,
+        "high": 23.1999,
+        "low": 22.7,
+        "volume": 85402,
+        "volumeWeightedAveragePrice": 22.9316,
+        "window": {
+          "startTime": "Invalid date"
+        }
+      },
+      "change": 13.891,
+      "changePercent": 154.348
+    },
+    {
+      "ticker": "HLBZW",
+      "quote": {
+        "open": 1.35,
+        "close": 1.3399,
+        "high": 1.35,
+        "low": 1.33,
+        "volume": 2830,
+        "volumeWeightedAveragePrice": 1.3351,
+        "window": {
+          "startTime": "Invalid date"
+        }
+      },
+      "change": 0.59,
+      "changePercent": 79.73
+    },],
   marketLosers: [],
   tickers:[],
   tickersAll:[],

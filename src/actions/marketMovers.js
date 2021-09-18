@@ -27,7 +27,7 @@ export const fetchStockMonth = (ticker) => {
       .then((response) => {
         dispatch({
           type: FETCHSTOCKMONTH_SUCCESS,
-          payload: response.data.result,
+          payload: response.data.result.quotes,
         });
       })
 
