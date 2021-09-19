@@ -12,6 +12,15 @@ import {
   FETCHSTOCKMONTH_START,
   FETCHSTOCKMONTH_SUCCESS,
   FETCHSTOCKMONTH_ERROR,
+  FETCHSTOCKWEEK_START,
+  FETCHSTOCKWEEK_SUCCESS,
+  FETCHSTOCKWEEK_ERROR,
+  FETCHSTOCKTHREEMONTH_START,
+  FETCHSTOCKTHREEMONTH_SUCCESS,
+  FETCHSTOCKTHREEMONTH_ERROR,
+  FETCHSTOCKYEAR_START,
+  FETCHSTOCKYEAR_SUCCESS,
+  FETCHSTOCKYEAR_ERROR,
 } from '../constants';
 
 const defaultState = {
@@ -847,7 +856,10 @@ const defaultState = {
   marketLosers: [],
   tickers:[],
   tickersAll:[],
+  stockWeek:[],
   stockMonth:[],
+  stockThreeMonth:[],
+  stockYear:[],
   articles: [
     {
       id: '1',
@@ -929,6 +941,25 @@ const companyBoxReducer = (state = defaultState, action) => {
         error: "",
         tickersAll: action.payload,
       };
+      case FETCHSTOCKWEEK_START:
+        return {
+          ...state,
+          loading: true,
+          error: "",
+        };
+      case FETCHSTOCKWEEK_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          error: "",
+          stockWeek: action.payload,
+        };
+      case FETCHSTOCKWEEK_ERROR:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
       case FETCHSTOCKMONTH_START:
       return {
         ...state,
@@ -948,6 +979,44 @@ const companyBoxReducer = (state = defaultState, action) => {
         loading: false,
         error: action.payload,
       };
+      case FETCHSTOCKTHREEMONTH_START:
+        return {
+          ...state,
+          loading: true,
+          error: "",
+        };
+      case FETCHSTOCKTHREEMONTH_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          error: "",
+          stockThreeMonth: action.payload,
+        };
+      case FETCHSTOCKTHREEMONTH_ERROR:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+        case FETCHSTOCKYEAR_START:
+          return {
+            ...state,
+            loading: true,
+            error: "",
+          };
+        case FETCHSTOCKYEAR_SUCCESS:
+          return {
+            ...state,
+            loading: false,
+            error: "",
+            stockYear: action.payload,
+          };
+        case FETCHSTOCKYEAR_ERROR:
+          return {
+            ...state,
+            loading: false,
+            error: action.payload,
+          };
     default:
       return state;
   }

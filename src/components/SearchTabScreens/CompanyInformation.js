@@ -11,7 +11,12 @@ import {moderateScale} from '../../util/responsiveFont';
 import CompanyStockGraph from '../SearchTabComponents/CompanyStockGraph';
 import CompanySymbolList from '../SearchTabComponents/CompanySymbolList';
 import {connect} from 'react-redux';
-import {fetchStockMonth} from '../../actions/marketMovers';
+import {
+  fetchStockMonth,
+  fetchStockWeek,
+  fetchStockThreeMonth,
+  fetchStockYear,
+} from '../../actions/marketMovers';
 
 export class CompanyInformation extends Component {
   constructor(props) {
@@ -36,7 +41,11 @@ export class CompanyInformation extends Component {
   //All logic needs to be handled before hand, either in backend or in action? Will change this when we actually have data coming in
 
   componentDidMount() {
+    this.props.fetchStockWeek(this.props.route.params.item.ticker);
     this.props.fetchStockMonth(this.props.route.params.item.ticker);
+    this.props.fetchStockThreeMonth(this.props.route.params.item.ticker);
+    this.props.fetchStockYear(this.props.route.params.item.ticker);
+
     //X
     // const xDates = this.props.route.params.item.dates.map(
     //   (item) => new Date(item * 1000),
@@ -68,23 +77,58 @@ export class CompanyInformation extends Component {
   render() {
     // console.log(this.props.stockMonth, "STOCK MONTH IN COMPANY INFO")
     // console.log(this.props.route.params, "PARAMS IN COMPANY INFO")
+
+    //WEEK DATA
+    let weekPrices = this.props.stockWeek.map((a) => a.close);
+    const weekPriceRange = [
+      Math.floor(Math.min(...weekPrices)),
+      Math.ceil(Math.max(...weekPrices)),
+    ];
+    console.log(weekPriceRange, 'weekPRICERANGE');
+    const stockWeekDataOriginal = this.props.stockWeek.map((i) => {
+      return {x: Date.parse(i.window.startTime), y: i.close};
+    });
+    const stockWeekData = stockWeekDataOriginal.reverse();
+    // console.log(stockWeekData, 'WEEKDATA');
+
+    //MONTH DATA
     let monthPrices = this.props.stockMonth.map((a) => a.close);
     const monthPriceRange = [
       Math.floor(Math.min(...monthPrices)),
       Math.ceil(Math.max(...monthPrices)),
     ];
-
-    console.log(monthPriceRange, 'MONTHPRICERANGE');
-    const stockMonthData = this.props.stockMonth.reverse().map((i) => {
+    // console.log(monthPriceRange, 'MONTHPRICERANGE');
+    const stockMonthDataOriginal = this.props.stockMonth.map((i) => {
       return {x: Date.parse(i.window.startTime), y: i.close};
     });
-    console.log(stockMonthData, 'STOCKDATA');
-    // [Math.min(...yPrices), Math.max(...yPrices)]
-    //X and Y
-    //X
-    // const xDates = this.props.route.params.item.dates.map(
-    //   (item) => new Date(item * 1000),
-    // );
+    const stockMonthData = stockMonthDataOriginal.reverse();
+    // console.log(stockMonthData, 'STOCKDATA');
+
+    //THREE MONTH DATA
+    let threeMonthPrices = this.props.stockThreeMonth.map((a) => a.close);
+    const threeMonthPriceRange = [
+      Math.floor(Math.min(...threeMonthPrices)),
+      Math.ceil(Math.max(...threeMonthPrices)),
+    ];
+    // console.log(threeMonthPriceRange, 'threeMonthPRICERANGE');
+    const stockThreeMonthDataOriginal = this.props.stockThreeMonth.map((i) => {
+      return {x: Date.parse(i.window.startTime), y: i.close};
+    });
+    const stockThreeMonthData = stockThreeMonthDataOriginal.reverse();
+    // console.log(stockThreeMonthData, 'threeMonthDATA');
+
+    //YEAR DATA
+    let yearPrices = this.props.stockYear.map((a) => a.close);
+    const yearPriceRange = [
+      Math.floor(Math.min(...yearPrices)),
+      Math.ceil(Math.max(...yearPrices)),
+    ];
+    // console.log(yearPriceRange, 'yearPRICERANGE');
+    const stockYearDataOriginal = this.props.stockYear.map((i) => {
+      return {x: Date.parse(i.window.startTime), y: i.close};
+    });
+    const stockYearData = stockYearDataOriginal.reverse();
+    // console.log(stockYearData, 'yearDATA');
 
     //Y
     const yPrices = this.state.yPrices;
@@ -215,9 +259,9 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  graphData: weekData,
+                  graphData: stockWeekData,
                   percent: percentChange,
-                  range: weekRange,
+                  range: weekPriceRange,
                   timeFilter: 'week',
                 })
               }>
@@ -252,6 +296,8 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
+                  graphData: stockThreeMonthData,
+                  range: threeMonthPriceRange,
                   timeFilter: '3 months',
                 })
               }>
@@ -267,6 +313,8 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
+                  graphData: stockYearData,
+                  range: yearPriceRange,
                   timeFilter: 'year',
                 })
               }>
@@ -368,12 +416,18 @@ export class CompanyInformation extends Component {
 }
 const mapStateToProps = (state) => {
   return {
+    stockWeek: state.company.stockWeek,
     stockMonth: state.company.stockMonth,
+    stockThreeMonth: state.company.stockThreeMonth,
+    stockYear: state.company.stockYear,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchStockWeek: (ticker) => dispatch(fetchStockWeek(ticker)),
     fetchStockMonth: (ticker) => dispatch(fetchStockMonth(ticker)),
+    fetchStockThreeMonth: (ticker) => dispatch(fetchStockThreeMonth(ticker)),
+    fetchStockYear: (ticker) => dispatch(fetchStockYear(ticker)),
   };
 };
 

@@ -12,8 +12,39 @@ import {
   FETCHSTOCKMONTH_START,
   FETCHSTOCKMONTH_SUCCESS,
   FETCHSTOCKMONTH_ERROR,
+  FETCHSTOCKWEEK_START,
+  FETCHSTOCKWEEK_SUCCESS,
+  FETCHSTOCKWEEK_ERROR,
+  FETCHSTOCKTHREEMONTH_START,
+  FETCHSTOCKTHREEMONTH_SUCCESS,
+  FETCHSTOCKTHREEMONTH_ERROR,
+  FETCHSTOCKYEAR_START,
+  FETCHSTOCKYEAR_SUCCESS,
+  FETCHSTOCKYEAR_ERROR,
 } from 'constants';
 import axios from 'axios';
+
+export const fetchStockWeek = (ticker) => {
+  return (dispatch) => {
+    dispatch({type: FETCHSTOCKWEEK_START});
+    axios
+      .get(
+        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=week`,
+      )
+
+      // .then(response => console.log (response.data.result, "Month Stock DATA"))
+      .then((response) => {
+        dispatch({
+          type: FETCHSTOCKWEEK_SUCCESS,
+          payload: response.data.result.quotes,
+        });
+      })
+
+      .catch((error) =>
+        dispatch({type: FETCHSTOCKWEEK_ERROR, payload: error.response}),
+      );
+  };
+};
 
 export const fetchStockMonth = (ticker) => {
   return (dispatch) => {
@@ -36,6 +67,51 @@ export const fetchStockMonth = (ticker) => {
       );
   };
 };
+
+export const fetchStockThreeMonth = (ticker) => {
+  return (dispatch) => {
+    dispatch({type: FETCHSTOCKTHREEMONTH_START});
+    axios
+      .get(
+        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=three_month`,
+      )
+
+      // .then(response => console.log (response.data.result, "Month Stock DATA"))
+      .then((response) => {
+        dispatch({
+          type: FETCHSTOCKTHREEMONTH_SUCCESS,
+          payload: response.data.result.quotes,
+        });
+      })
+
+      .catch((error) =>
+        dispatch({type: FETCHSTOCKTHREEMONTH_ERROR, payload: error.response}),
+      );
+  };
+};
+
+export const fetchStockYear = (ticker) => {
+  return (dispatch) => {
+    dispatch({type: FETCHSTOCKYEAR_START});
+    axios
+      .get(
+        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=year`,
+      )
+
+      // .then(response => console.log (response.data.result, "Month Stock DATA"))
+      .then((response) => {
+        dispatch({
+          type: FETCHSTOCKYEAR_SUCCESS,
+          payload: response.data.result.quotes,
+        });
+      })
+
+      .catch((error) =>
+        dispatch({type: FETCHSTOCKYEAR_ERROR, payload: error.response}),
+      );
+  };
+};
+
 
 export const fetchTickers = () => {
   return (dispatch) => {
