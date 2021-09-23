@@ -90,7 +90,7 @@ console.log(marketGainers,"MARKET GAINERS API")
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 justifyContent="space-between">
-                {marketGainersTest.map((item) => {
+                {marketGainers.map((item) => {
                   return (
                     <TouchableOpacity
                       key={item.ticker}

@@ -21,8 +21,33 @@ import {
   FETCHSTOCKYEAR_START,
   FETCHSTOCKYEAR_SUCCESS,
   FETCHSTOCKYEAR_ERROR,
+  FETCHSTOCKDAY_START,
+  FETCHSTOCKDAY_SUCCESS,
+  FETCHSTOCKDAY_ERROR,
 } from 'constants';
 import axios from 'axios';
+
+export const fetchStockDay = (ticker) => {
+  return (dispatch) => {
+    dispatch({type: FETCHSTOCKDAY_START});
+    axios
+      .get(
+        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=day`,
+      )
+
+      // .then(response => console.log (response.data.result, "Month Stock DATA"))
+      .then((response) => {
+        dispatch({
+          type: FETCHSTOCKDAY_SUCCESS,
+          payload: response.data.result.quotes,
+        });
+      })
+
+      .catch((error) =>
+        dispatch({type: FETCHSTOCKDAY_ERROR, payload: error.response}),
+      );
+  };
+};
 
 export const fetchStockWeek = (ticker) => {
   return (dispatch) => {

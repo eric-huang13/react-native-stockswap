@@ -12,6 +12,7 @@ import CompanyStockGraph from '../SearchTabComponents/CompanyStockGraph';
 import CompanySymbolList from '../SearchTabComponents/CompanySymbolList';
 import {connect} from 'react-redux';
 import {
+  fetchStockDay,
   fetchStockMonth,
   fetchStockWeek,
   fetchStockThreeMonth,
@@ -41,6 +42,7 @@ export class CompanyInformation extends Component {
   //All logic needs to be handled before hand, either in backend or in action? Will change this when we actually have data coming in
 
   componentDidMount() {
+    this.props.fetchStockDay(this.props.route.params.item.ticker);
     this.props.fetchStockWeek(this.props.route.params.item.ticker);
     this.props.fetchStockMonth(this.props.route.params.item.ticker);
     this.props.fetchStockThreeMonth(this.props.route.params.item.ticker);
@@ -77,6 +79,19 @@ export class CompanyInformation extends Component {
   render() {
     // console.log(this.props.stockMonth, "STOCK MONTH IN COMPANY INFO")
     // console.log(this.props.route.params, "PARAMS IN COMPANY INFO")
+
+      //DAY DATA
+      let dayPrices = this.props.stockDay.map((a) => a.close);
+      const dayPriceRange = [
+        Math.floor(Math.min(...dayPrices)),
+        Math.ceil(Math.max(...dayPrices)),
+      ];
+      console.log(dayPriceRange, 'dayPRICERANGE');
+      const stockDayDataOriginal = this.props.stockDay.map((i) => {
+        return {x: Date.parse(i.window.startTime), y: i.close};
+      });
+      const stockDayData = stockDayDataOriginal.reverse();
+      // console.log(stockWeekData, 'WEEKDATA');
 
     //WEEK DATA
     let weekPrices = this.props.stockWeek.map((a) => a.close);
@@ -230,6 +245,8 @@ export class CompanyInformation extends Component {
               onPress={() =>
                 this.setState({
                   timeFilter: 'live',
+                  graphData: stockDayData,
+                  range: dayPriceRange,
                 })
               }>
               <Text
@@ -245,6 +262,8 @@ export class CompanyInformation extends Component {
               onPress={() =>
                 this.setState({
                   timeFilter: 'day',
+                  graphData: stockDayData,
+                  range: dayPriceRange,
                 })
               }>
               <Text
@@ -416,6 +435,7 @@ export class CompanyInformation extends Component {
 }
 const mapStateToProps = (state) => {
   return {
+    stockDay: state.company.stockDay,
     stockWeek: state.company.stockWeek,
     stockMonth: state.company.stockMonth,
     stockThreeMonth: state.company.stockThreeMonth,
@@ -424,6 +444,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchStockDay: (ticker) => dispatch(fetchStockDay(ticker)),
     fetchStockWeek: (ticker) => dispatch(fetchStockWeek(ticker)),
     fetchStockMonth: (ticker) => dispatch(fetchStockMonth(ticker)),
     fetchStockThreeMonth: (ticker) => dispatch(fetchStockThreeMonth(ticker)),

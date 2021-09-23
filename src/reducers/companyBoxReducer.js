@@ -21,6 +21,9 @@ import {
   FETCHSTOCKYEAR_START,
   FETCHSTOCKYEAR_SUCCESS,
   FETCHSTOCKYEAR_ERROR,
+  FETCHSTOCKDAY_START,
+  FETCHSTOCKDAY_SUCCESS,
+  FETCHSTOCKDAY_ERROR,
 } from '../constants';
 
 const defaultState = {
@@ -856,6 +859,7 @@ const defaultState = {
   marketLosers: [],
   tickers:[],
   tickersAll:[],
+  stockDay:[],
   stockWeek:[],
   stockMonth:[],
   stockThreeMonth:[],
@@ -941,6 +945,25 @@ const companyBoxReducer = (state = defaultState, action) => {
         error: "",
         tickersAll: action.payload,
       };
+      case FETCHSTOCKDAY_START:
+        return {
+          ...state,
+          loading: true,
+          error: "",
+        };
+      case FETCHSTOCKDAY_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          error: "",
+          stockDay: action.payload,
+        };
+      case FETCHSTOCKDAY_ERROR:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
       case FETCHSTOCKWEEK_START:
         return {
           ...state,
