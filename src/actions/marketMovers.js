@@ -24,8 +24,33 @@ import {
   FETCHSTOCKDAY_START,
   FETCHSTOCKDAY_SUCCESS,
   FETCHSTOCKDAY_ERROR,
+  FETCHSTOCKDETAILS_START,
+  FETCHSTOCKDETAILS_SUCCESS,
+  FETCHSTOCKDETAILS_ERROR,
 } from 'constants';
 import axios from 'axios';
+
+export const fetchStockDetails = (ticker) => {
+  return (dispatch) => {
+    dispatch({type: FETCHSTOCKDETAILS_START});
+    axios
+      .get(
+        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/tickers/${ticker}`,
+      )
+
+      // .then(response => console.log (response.data.result, "Month Stock DATA"))
+      .then((response) => {
+        dispatch({
+          type: FETCHSTOCKDETAILS_SUCCESS,
+          payload: response.data.result.details,
+        });
+      })
+
+      .catch((error) =>
+        dispatch({type: FETCHSTOCKDETAILS_ERROR, payload: error.response}),
+      );
+  };
+};
 
 export const fetchStockDay = (ticker) => {
   return (dispatch) => {

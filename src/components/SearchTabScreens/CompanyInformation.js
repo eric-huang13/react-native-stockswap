@@ -17,6 +17,7 @@ import {
   fetchStockWeek,
   fetchStockThreeMonth,
   fetchStockYear,
+  fetchStockDetails
 } from '../../actions/marketMovers';
 
 export class CompanyInformation extends Component {
@@ -47,6 +48,8 @@ export class CompanyInformation extends Component {
     this.props.fetchStockMonth(this.props.route.params.item.ticker);
     this.props.fetchStockThreeMonth(this.props.route.params.item.ticker);
     this.props.fetchStockYear(this.props.route.params.item.ticker);
+    this.props.fetchStockDetails(this.props.route.params.item.ticker);
+
 
     //X
     // const xDates = this.props.route.params.item.dates.map(
@@ -422,11 +425,12 @@ export class CompanyInformation extends Component {
           </View>
           <View style={style.aboutSection}>
             <Text style={style.aboutHeader}>ABOUT</Text>
+
             <Text style={style.sectorData}>
               <Text style={style.sectorText}>Sector:</Text>{' '}
-              {route.params.item.sector}
+              {this.props.stockDetails.sector}
             </Text>
-            <Text style={style.about}>{route.params.item.about}</Text>
+            <Text style={style.about}>{this.props.stockDetails.description}</Text>
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -440,6 +444,8 @@ const mapStateToProps = (state) => {
     stockMonth: state.company.stockMonth,
     stockThreeMonth: state.company.stockThreeMonth,
     stockYear: state.company.stockYear,
+    stockDetails: state.company.stockDetails,
+
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -449,6 +455,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchStockMonth: (ticker) => dispatch(fetchStockMonth(ticker)),
     fetchStockThreeMonth: (ticker) => dispatch(fetchStockThreeMonth(ticker)),
     fetchStockYear: (ticker) => dispatch(fetchStockYear(ticker)),
+    fetchStockDetails: (ticker) => dispatch(fetchStockDetails(ticker)),
+
   };
 };
 
