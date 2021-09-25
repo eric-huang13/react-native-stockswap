@@ -15,12 +15,12 @@ export default class CompanyCategoryBox extends Component {
         }>
         <View key={item.id} style={style.companyRow}>
           <View style={style.nameContainer}>
-            <Text style={style.symbol}>{item.symbol}</Text>
+            <Text style={style.symbol}>{item.ticker}</Text>
             <Text style={style.title}>{item.title}</Text>
           </View>
           <View style={style.detailsContainer}>
-            <Text style={style.price}>${item.price}</Text>
-            <Text style={style.percentage}>{item.percentage}</Text>
+            <Text style={style.price}>${item.quote.volumeWeightedAveragePrice}</Text>
+            <Text style={style.percentage}>{item.change}%</Text>
           </View>
         </View>
       </SafeAreaView>

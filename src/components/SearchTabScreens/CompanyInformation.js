@@ -210,6 +210,7 @@ export class CompanyInformation extends Component {
           navigation={this.props.navigation}
           symbol={route.params.item.ticker}
           itemId={route.params.item.id}
+          stockCategory={route.params.stockCategory}
         />
         <ScrollView>
           {this.props.route.params ? (

@@ -67,7 +67,7 @@ console.log(marketGainers,"MARKET GAINERS API")
                   this.props.navigation.navigate('CompanyCategory', {
                     name: 'Gainers',
                     params: {
-                      category: gainers,
+                      category: marketGainersTest,
                     },
                   })
                 }>
@@ -78,7 +78,7 @@ console.log(marketGainers,"MARKET GAINERS API")
                   this.props.navigation.navigate('CompanyCategory', {
                     name: 'Gainers',
                     params: {
-                      category: gainers,
+                      category: marketGainersTest,
                     },
                   })
                 }>
@@ -90,14 +90,15 @@ console.log(marketGainers,"MARKET GAINERS API")
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 justifyContent="space-between">
-                {marketGainers.map((item) => {
+                {marketGainersTest.map((item) => {
                   return (
                     <TouchableOpacity
                       key={item.ticker}
                       onPress={() =>
                         this.props.navigation.navigate({
                           name: 'CompanyInformation',
-                          params: {item},
+                          params: {item, stockCategory: 'gainers',}, 
+                          
                         })
                       }>
                       <CompanyBox item={item} category={'gainers'} />
@@ -146,7 +147,8 @@ console.log(marketGainers,"MARKET GAINERS API")
                       onPress={() =>
                         this.props.navigation.navigate({
                           name: 'CompanyInformation',
-                          params: {item},
+                          params: {item, stockCategory: 'losers'},
+                         
                         })
                       }>
                       <CompanyBox item={item} category={'losers'} />
@@ -194,7 +196,8 @@ console.log(marketGainers,"MARKET GAINERS API")
                       onPress={() =>
                         this.props.navigation.navigate({
                           name: 'CompanyInformation',
-                          params: {item},
+                          params: {item,  stockCategory: 'hbv'},
+                          
                         })
                       }>
                       <CompanyBox item={item} category={'hbv'} />
