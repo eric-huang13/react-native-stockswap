@@ -22,11 +22,11 @@ export class CompanySymbolList extends Component {
   componentDidMount() {
     this.props.stockCategory == 'gainers'
       ? this.setState({
-          stockData: this.props.marketGainersTest,
+          stockData: this.props.marketGainers,
         })
       : this.props.stockCategory == 'losers'
       ? this.setState({
-          stockData: this.props.gainers,
+          stockData: this.props.marketLosers,
         })
       : this.props.stockCategory == 'hbv'
       ? this.setState({
@@ -85,7 +85,9 @@ export class CompanySymbolList extends Component {
 const mapStateToProps = (state) => {
   return {
     gainers: state.company.gainers,
-    losers: state.company.losers,
+    marketGainers: state.company.marketGainers,
+
+    marketLosers: state.company.marketLosers,
     highestByVolume: state.company.highestByVolume,
 
     marketGainersTest: state.company.marketGainersTest,

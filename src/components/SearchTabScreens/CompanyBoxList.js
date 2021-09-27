@@ -78,7 +78,7 @@ console.log(marketGainers,"MARKET GAINERS API")
                   this.props.navigation.navigate('CompanyCategory', {
                     name: 'Gainers',
                     params: {
-                      category: marketGainersTest,
+                      category: marketGainers,
                     },
                   })
                 }>
@@ -90,7 +90,7 @@ console.log(marketGainers,"MARKET GAINERS API")
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 justifyContent="space-between">
-                {marketGainersTest.map((item) => {
+                {marketGainers.map((item) => {
                   return (
                     <TouchableOpacity
                       key={item.ticker}
@@ -127,7 +127,7 @@ console.log(marketGainers,"MARKET GAINERS API")
                   this.props.navigation.navigate('CompanyCategory', {
                     name: 'Losers',
                     params: {
-                      category: losers,
+                      category: marketLosers,
                     },
                   })
                 }>
