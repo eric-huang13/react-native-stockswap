@@ -160,6 +160,16 @@ class MyProfileSettings extends Component {
                 <Text style={style.detailsButton}>Show</Text>
               </TouchableOpacity>
               </View>
+              <View style={style.bottomInnerContiner}>
+              <Text style={style.bottomText}>Accounts</Text>
+              <TouchableOpacity
+                style={style.detailsButtonChange}
+                onPress={() =>
+                  this.props.navigation.navigate('PortfolioMangement')
+                }>
+                <Text style={style.detailsButton}>Manage Accounts</Text>
+              </TouchableOpacity>
+              </View>
             <View style={style.bottomInnerContiner}>
               <Text style={style.bottomText}>Link Bank Account</Text>
            

@@ -30,7 +30,9 @@ import MyFollowers from '../components/MyProfileTabScreens/MyFollowers';
 import MyFollowing from '../components/MyProfileTabScreens/MyFollowing';
 import LikedPosts from '../components/MyProfileTabScreens/LikedPosts';
 import LoggingOutScreen from '../components/LoggedOutScreens/LoggingOutScreen';
-import PlaidComponent from '../components/MyProfileTabScreens/PlaidComponent'
+import PlaidComponent from '../components/MyProfileTabScreens/PlaidComponent';
+import PortfolioMangement from '../components/MyProfileTabScreens/PortfolioMangement'
+
 
 
 
@@ -486,6 +488,24 @@ export default class MyProfileStackNavigator extends Component {
         <MyProfileStack.Screen
           name="PlaidComponent"
           component={PlaidComponent}
+          options={{
+            title: 'Plaid',
+            headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+             <MyProfileStack.Screen
+          name="PortfolioMangement"
+          component={PortfolioMangement}
           options={{
             title: 'Plaid',
             headerStyle: {

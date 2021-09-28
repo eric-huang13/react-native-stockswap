@@ -33,6 +33,13 @@ import {
   PLAIDBANK_START,
   PLAIDBANK_SUCCESS,
   PLAIDBANK_ERROR,
+  FETCHPORTFOLIOACCOUNTS_START,
+  FETCHPORTFOLIOACCOUNTS_SUCCESS,
+  FETCHPORTFOLIOACCOUNTS_ERROR, 
+  FETCHINSTITUTION_START,
+  FETCHINSTITUTION_SUCCESS,
+  FETCHINSTITUTION_ERROR, 
+
 } from 'constants';
 
 const defaultState = {
@@ -45,6 +52,8 @@ const defaultState = {
   token:'',
   linkToken: [],
   plaidBank:[],
+  portfolioAccounts:[],
+  institution:[],
   userFakeData: {
     id: 4,
     name: 'Bob Fields',
@@ -68,6 +77,44 @@ const defaultState = {
 
 const userReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case FETCHINSTITUTION_START:
+      return {
+        ...state,
+        loading: true,
+        error: '',
+      };
+    case FETCHINSTITUTION_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        institution: action.payload,
+      };
+    case FETCHINSTITUTION_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case FETCHPORTFOLIOACCOUNTS_START:
+      return {
+        ...state,
+        loading: true,
+        error: '',
+      };
+    case FETCHPORTFOLIOACCOUNTS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        portfolioAccounts: action.payload,
+      };
+    case FETCHPORTFOLIOACCOUNTS_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     case PLAIDBANK_START:
       return {
         ...state,
@@ -81,7 +128,7 @@ const userReducer = (state = defaultState, action) => {
         error: '',
         plaidBank: action.payload,
       };
-    case PLAIDTOKEN_ERROR:
+    case PLAIDBANK_ERROR:
       return {
         ...state,
         loading: false,
