@@ -75,7 +75,7 @@ export class CompanyBox extends Component {
             <View style={style.bottomDetails}>
               <Text style={style.price}>${item.quote.volumeWeightedAveragePrice}</Text>
               <Text style={{...style.percentage, color: '#D13C3D'}}>
-                {item.change}
+                {item.change}%
               </Text>
             </View>
           </SafeAreaView>

@@ -33,37 +33,56 @@ import apiInstance from '../util/axiosConfig';
 import {navigate} from '../../RootNavigation';
 import Toast from 'react-native-toast-message';
 
-export const PortfolioInstitution = () => {
-  return (dispatch) => {
-    dispatch({type: FETCHINSTITUTION_START});
-    apiInstance
-    //add endpoint
-      .get(`http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio`)
-      .then((response) => {
-        console.log(response, 'Success in FETCHINSTITUTION');
-        dispatch({type: FETCHINSTITUTION_SUCCESS, payload: response.data});
-      })
-      .catch((error) => {
-        dispatch({type: FETCHINSTITUTION_ERROR, payload: error.response});
-        console.log(error.response, 'Error in PLAIDBANK');
-      });
-  };
-};
 
 
 export const PortfolioAccounts = () => {
   return (dispatch) => {
     dispatch({type: FETCHPORTFOLIOACCOUNTS_START});
     apiInstance
-    //add endpoint
-      .get(`http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio`)
+      //add endpoint
+      .get(
+        `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio`,
+      )
       .then((response) => {
-        console.log(response, 'Success in FETCHPORTFOLIOACCOUNTS');
-        dispatch({type: FETCHPORTFOLIOACCOUNTS_SUCCESS, payload: response});
+        console.log(response.data.institutions, 'Success in FETCHPORTFOLIOACCOUNTS');
+     
+        const ids = [];
+       let idmap = response.data.institutions.map((item) => {
+          ids.push(item.institutionId);
+        })
+        console.log(ids, 'IDS');
+
+        dispatch(PortfolioInstitution(ids));
+        // dispatch(PortfolioInstitution({ids:'ins_3'}));
+
+
+        dispatch({
+          type: FETCHPORTFOLIOACCOUNTS_SUCCESS,
+          payload: response.data,
+        });
       })
       .catch((error) => {
         dispatch({type: FETCHPORTFOLIOACCOUNTS_ERROR, payload: error.response});
-        console.log(error.response, 'Error in PLAIDBANK');
+        console.log(error.response, 'Error in portfolio');
+      });
+  };
+};
+export const PortfolioInstitution = (input) => {
+  return (dispatch) => {
+    dispatch({type: FETCHINSTITUTION_START});
+    apiInstance
+      //add endpoint
+      .get(
+        `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio/institutions`,
+       {ids:input},
+      )
+      .then((response) => {
+        console.log(response, 'Success in FETCHINSTITUTION');
+        dispatch({type: FETCHINSTITUTION_SUCCESS, payload: response.data});
+      })
+      .catch((error) => {
+        dispatch({type: FETCHINSTITUTION_ERROR, payload: error.response});
+        console.log(error, 'Error in Institution');
       });
   };
 };
@@ -72,8 +91,11 @@ export const PlaidBank = (input) => {
   return (dispatch) => {
     dispatch({type: PLAIDBANK_START});
     apiInstance
-    //add endpoint
-      .post(`http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio/link`, input,)
+      //add endpoint
+      .post(
+        `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio/link`,
+        input,
+      )
       .then((response) => {
         console.log(response, 'Success in PLAIDBANK');
         dispatch({type: PLAIDBANK_SUCCESS, payload: response.data});
@@ -89,7 +111,9 @@ export const PlaidToken = () => {
   return (dispatch) => {
     dispatch({type: PLAIDTOKEN_START});
     apiInstance
-      .post(`http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio/initiate`)
+      .post(
+        `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio/initiate`,
+      )
       .then((response) => {
         console.log(response, 'Success in Plaidtoken');
         dispatch({type: PLAIDTOKEN_SUCCESS, payload: response.data});
@@ -113,7 +137,6 @@ export const CreateProfile = (input) => {
         console.log(response, 'profile created');
         dispatch({type: CREATEPROFILE_SUCCESS, payload: response.data});
         navigate('ConnectAccount');
-
 
         Toast.show({
           type: 'success',

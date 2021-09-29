@@ -223,9 +223,16 @@ export class CompanyInformation extends Component {
               </View>
               <View style={style.titleView}>
                 <Text style={style.title}>{route.params.item.title}</Text>
-                <Text style={style.percentage}>
-                  ({route.params.item.percentage})
+                {
+                this.props.route.params.stockCategory == 'losers' ?
+                <Text style={style.percentageLoss}>
+                  ({route.params.item.change}%)
                 </Text>
+                :
+                <Text style={style.percentage}>
+                  (+{route.params.item.change}%)
+                </Text> 
+  }
               </View>
             </View>
           ) : (
@@ -522,6 +529,11 @@ const style = StyleSheet.create({
   },
   percentage: {
     color: 'rgb(8, 177, 40)',
+    fontSize: moderateScale(12),
+    fontFamily: 'Montserrat-Medium',
+  },
+  percentageLoss: {
+    color: '#D13C3D',
     fontSize: moderateScale(12),
     fontFamily: 'Montserrat-Medium',
   },

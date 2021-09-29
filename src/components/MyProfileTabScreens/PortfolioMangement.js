@@ -9,13 +9,34 @@ import {PortfolioAccounts} from '../../actions/profile';
     componentDidMount() {
         // const {companies, fetchGainers} = this.props;
         this.props.PortfolioAccounts();
+        const insIds = this.props
     }
     render() {
-        console.log(this.props.portfolioAccounts, "Accounts in PortfolioManagment")
-        return (
-            <View>
+      console.log(this.props.portfolioAccounts.institutions, "Accounts in PortfolioManagment")
+    if (!this.props.portfolioAccounts.accounts){
+      return null
+    }
+      return (
+        <View>
                 <Text> Portfolio Managment </Text>
+        {/* //filter instead for itemID */}
+                {this.props.portfolioAccounts.accounts.map((item) => (
+              <View key={item.id}>
+             <Text>{item.name}</Text>
+              </View>
+            ))}
             </View>
+        
+            // <View>
+            //     <Text> Portfolio Managment </Text>
+        
+            //     {this.props.portfolioAccounts.accounts.map((item) => (
+            //   <View key={item.id}>
+            //  <Text>{item.name}</Text>
+            //   </View>
+            // ))}
+            // </View>
+            
         )
     }
 }
