@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View } from 'react-native'
 import {connect} from 'react-redux';
 import {PortfolioAccounts} from '../../actions/profile';
+import InstitutionCard from './InstitutionCard';
 
 
 
@@ -20,10 +21,12 @@ import {PortfolioAccounts} from '../../actions/profile';
         <View>
                 <Text> Portfolio Managment </Text>
         {/* //filter instead for itemID */}
-                {this.props.portfolioAccounts.accounts.map((item) => (
-              <View key={item.id}>
-             <Text>{item.name}</Text>
-              </View>
+                {this.props.portfolioAccounts.institutions.map((item) => (
+              // <View key={item.itemId}>
+            //  <Text>{item.itemId}</Text>
+            //  <Text>Nameeeeeeeeeeeeeee:{item.institutionId}</Text>
+             <InstitutionCard insId={item.itemId}/>
+              // </View>
             ))}
             </View>
         
