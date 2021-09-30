@@ -19,21 +19,21 @@ class InstitutionCard extends Component {
       return null;
     }
     return (
-      <ScrollView>
-        <View>
-          {filteredInstitutions.map((item) => (
-            <View>
-              <Text style={style.accountName}>{item.name}</Text>
-            </View>
-          ))}
+      <View style={style.institutionCard}>
+        {filteredInstitutions.map((item) => (
+          <View>
+            <Text style={style.accountName}>{item.name}</Text>
+          </View>
+        ))}
 
-          {filteredAccounts.map((item) => (
-            <View>
-              <Text style={style.accountOfficial}>{item.officialName}</Text>
-            </View>
-          ))}
-        </View>
-      </ScrollView>
+        {filteredAccounts.map((item) => (
+          <View>
+            <Text style={style.accountOfficial}>{item.officialName}</Text>
+            {/* <Text style={style.account}>{item.name}</Text>
+            <Text style={style.hashtag}>{item.itemId}</Text> */}
+          </View>
+        ))}
+      </View>
     );
   }
 }
@@ -57,6 +57,13 @@ const style = StyleSheet.create({
     flex: 1,
     backgroundColor: '#2a334a',
   },
+  institutionCard: {
+    // borderColor:'lightgrey',
+    // borderWidth:.5,
+    marginVertical: moderateScale(10),
+    marginHorizontal: moderateScale(4),
+    padding: moderateScale(4),
+  },
 
   name: {
     color: 'white',
@@ -69,7 +76,7 @@ const style = StyleSheet.create({
   },
   hashtag: {
     color: '#9082cf',
-    fontSize: moderateScale(15),
+    fontSize: moderateScale(14),
   },
 
   accountName: {
@@ -80,5 +87,11 @@ const style = StyleSheet.create({
   accountOfficial: {
     color: 'white',
     fontSize: moderateScale(16),
+  },
+  account: {
+    color: 'white',
+    fontStyle:'italic',
+    fontSize: moderateScale(16),
+    marginBottom:moderateScale(12),
   },
 });

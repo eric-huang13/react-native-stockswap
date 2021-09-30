@@ -16,12 +16,16 @@ class PortfolioMangement extends Component {
     }
     return (
       <SafeAreaView style={style.container}>
+              <ScrollView>
+
         <View>
           <Text style={style.header}> Linked Accounts </Text>
           {this.props.portfolioAccounts.institutions.map((item) => (
             <InstitutionCard itemId={item.itemId} insId={item.institutionId} />
           ))}
         </View>
+        </ScrollView>
+
       </SafeAreaView>
     );
   }
