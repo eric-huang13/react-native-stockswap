@@ -1,52 +1,39 @@
 import React, {Component} from 'react';
-import {Text, View, ScrollView} from 'react-native';
+import {Text, View, ScrollView, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {PortfolioAccounts} from '../../actions/profile';
+import {moderateScale} from '../../util/responsiveFont';
 
 class InstitutionCard extends Component {
-  // componentDidMount() {
-  //     // const {companies, fetchGainers} = this.props;
-  //     this.props.PortfolioAccounts();
-  //     const insIds = this.props
-  // }
   render() {
-    const {portfolioAccounts, insId} = this.props;
-console.log(this.props,"props in ins")
-console.log(portfolioAccounts,"accounts")
+    const {portfolioAccounts, itemId, insId} = this.props;
 
     const filteredAccounts = portfolioAccounts.accounts.filter(
-      (account) => account.itemId == insId,
+      (account) => account.itemId == itemId,
     );
-    //   console.log(this.props.portfolioAccounts.institutions, "Accounts in PortfolioManagment")
+
+    const filteredInstitutions = this.props.institution.filter(
+      (institution) => institution.id == insId,
+    );
     if (!this.props) {
       return null;
     }
     return (
-        <ScrollView>
-      <View>
-          <Text>INSTITUTION NAME</Text>
-          <Text>ID: {insId}</Text>
-        {filteredAccounts.map((item) => (
-          <View key={item.itemId}>
-            <Text>{item.officialName}</Text>           
+      <ScrollView>
+        <View>
+          {filteredInstitutions.map((item) => (
+            <View>
+              <Text style={style.accountName}>{item.name}</Text>
+            </View>
+          ))}
 
-            {/* <Text>{item.name}</Text>
-            <Text>{item.maskedAccountNumber}</Text>
-            <Text>{item.type}</Text> */}
-          </View>
-        ))}
-      </View>
+          {filteredAccounts.map((item) => (
+            <View>
+              <Text style={style.accountOfficial}>{item.officialName}</Text>
+            </View>
+          ))}
+        </View>
       </ScrollView>
-      // <View>
-
-      //     <Text> Portfolio Managment </Text>
-
-      //     {this.props.portfolioAccounts.accounts.map((item) => (
-      //   <View key={item.id}>
-      //  <Text>{item.name}</Text>
-      //   </View>
-      // ))}
-      // </View>
     );
   }
 }
@@ -54,6 +41,7 @@ console.log(portfolioAccounts,"accounts")
 const mapStateToProps = (state) => {
   return {
     portfolioAccounts: state.user.portfolioAccounts,
+    institution: state.user.institution,
   };
 };
 
@@ -63,3 +51,34 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(InstitutionCard);
+
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#2a334a',
+  },
+
+  name: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: moderateScale(22),
+  },
+  username: {
+    color: 'white',
+    fontSize: moderateScale(15),
+  },
+  hashtag: {
+    color: '#9082cf',
+    fontSize: moderateScale(15),
+  },
+
+  accountName: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: moderateScale(20),
+  },
+  accountOfficial: {
+    color: 'white',
+    fontSize: moderateScale(16),
+  },
+});

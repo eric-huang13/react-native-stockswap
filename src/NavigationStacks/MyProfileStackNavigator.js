@@ -507,7 +507,7 @@ export default class MyProfileStackNavigator extends Component {
           name="PortfolioMangement"
           component={PortfolioMangement}
           options={{
-            title: 'Plaid',
+            title: 'Manage Accounts',
             headerStyle: {
               backgroundColor: '#394463',
             },

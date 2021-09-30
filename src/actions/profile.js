@@ -44,15 +44,15 @@ export const PortfolioAccounts = () => {
         `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio`,
       )
       .then((response) => {
-        console.log(response.data.institutions, 'Success in FETCHPORTFOLIOACCOUNTS');
+        // console.log(response.data.institutions, 'Success in FETCHPORTFOLIOACCOUNTS');
      
-        const ids = [];
-       let idmap = response.data.institutions.map((item) => {
-          ids.push(item.institutionId);
-        })
-        console.log(ids, 'IDS');
+      //   const ids = [];
+      //  let idmap = response.data.institutions.map((item) => {
+      //     ids.push(item.institutionId);
+      //   })
+      //   console.log(ids, 'IDS');
 
-        dispatch(PortfolioInstitution(ids));
+        dispatch(PortfolioInstitution());
         // dispatch(PortfolioInstitution({ids:'ins_3'}));
 
 
@@ -67,18 +67,20 @@ export const PortfolioAccounts = () => {
       });
   };
 };
-export const PortfolioInstitution = (input) => {
+export const PortfolioInstitution = () => {
   return (dispatch) => {
     dispatch({type: FETCHINSTITUTION_START});
     apiInstance
       //add endpoint
       .get(
         `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio/institutions`,
-       {ids:input},
       )
       .then((response) => {
         console.log(response, 'Success in FETCHINSTITUTION');
+        
+        // dispatch({type: FETCHINSTITUTION_SUCCESS, payload: response.data});
         dispatch({type: FETCHINSTITUTION_SUCCESS, payload: response.data});
+
       })
       .catch((error) => {
         dispatch({type: FETCHINSTITUTION_ERROR, payload: error.response});
