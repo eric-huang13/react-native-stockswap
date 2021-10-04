@@ -38,7 +38,6 @@ export class CompanyBoxList extends Component {
 
   render() {
     const {gainers, losers, highestByVolume, marketGainers, marketLosers, marketGainersTest} = this.props;
-console.log(marketGainers,"MARKET GAINERS API")
     return (
       <SafeAreaView style={style.mainContainer}>
         <ScrollView contentContainerStyle={{paddingBottom: moderateScale(180)}}>

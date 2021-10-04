@@ -7,7 +7,7 @@ import {moderateScale} from '../../util/responsiveFont';
 class InstitutionCard extends Component {
   render() {
     const {portfolioAccounts, itemId, insId} = this.props;
-
+console.log(portfolioAccounts,"ACCOUNTS")
     const filteredAccounts = portfolioAccounts.accounts.filter(
       (account) => account.itemId == itemId,
     );
@@ -66,12 +66,12 @@ const style = StyleSheet.create({
   },
 
   name: {
-    color: 'white',
+    color: 'green',
     fontWeight: 'bold',
     fontSize: moderateScale(22),
   },
   username: {
-    color: 'white',
+    color: 'green',
     fontSize: moderateScale(15),
   },
   hashtag: {
@@ -80,12 +80,12 @@ const style = StyleSheet.create({
   },
 
   accountName: {
-    color: 'white',
+    color: 'green',
     fontWeight: 'bold',
     fontSize: moderateScale(20),
   },
   accountOfficial: {
-    color: 'white',
+    color: 'green',
     fontSize: moderateScale(16),
   },
   account: {

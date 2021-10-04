@@ -118,7 +118,7 @@ const userReducer = (state = defaultState, action) => {
     case PLAIDBANK_START:
       return {
         ...state,
-        loading: true,
+        // loading: true,
         error: '',
       };
     case PLAIDBANK_SUCCESS:
@@ -137,7 +137,7 @@ const userReducer = (state = defaultState, action) => {
     case PLAIDTOKEN_START:
       return {
         ...state,
-        loading: true,
+        // loading: true,
         error: '',
       };
     case PLAIDTOKEN_SUCCESS:

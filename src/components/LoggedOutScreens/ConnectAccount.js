@@ -15,7 +15,7 @@ const ConnectAccount = (props) => {
     :
 null
   };
-  console.log(props.user)
+  // console.log(props.user)
   return (
     <LinearGradient
       start={{x: 0.1, y: 1}}

@@ -76,7 +76,7 @@ export const PortfolioInstitution = () => {
         `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio/institutions`,
       )
       .then((response) => {
-        console.log(response, 'Success in FETCHINSTITUTION');
+        // console.log(response, 'Success in FETCHINSTITUTION');
         
         // dispatch({type: FETCHINSTITUTION_SUCCESS, payload: response.data});
         dispatch({type: FETCHINSTITUTION_SUCCESS, payload: response.data});
@@ -117,7 +117,7 @@ export const PlaidToken = () => {
         `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio/initiate`,
       )
       .then((response) => {
-        console.log(response, 'Success in Plaidtoken');
+        // console.log(response, 'Success in Plaidtoken');
         dispatch({type: PLAIDTOKEN_SUCCESS, payload: response.data});
       })
       .catch((error) => {
@@ -136,7 +136,7 @@ export const CreateProfile = (input) => {
         input,
       )
       .then((response) => {
-        console.log(response, 'profile created');
+        // console.log(response, 'profile created');
         dispatch({type: CREATEPROFILE_SUCCESS, payload: response.data});
         navigate('ConnectAccount');
 
@@ -192,7 +192,7 @@ export const GetProfileImage = (token, id) => {
       .then((response) => {
         // console.log(response.request.responseURL, 'IMAGE get response');
         // const data = `data:${response.headers['content-type']};base64,${Buffer.from(response.data).toString('base64')}`;
-        console.log(response, 'DATA IMAGE');
+        // console.log(response, 'DATA IMAGE');
         dispatch({
           type: GETPROFILEIMAGE_SUCCESS,
           payload: response.request.responseURL,
