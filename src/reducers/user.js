@@ -38,7 +38,8 @@ import {
   FETCHPORTFOLIOACCOUNTS_ERROR, 
   FETCHINSTITUTION_START,
   FETCHINSTITUTION_SUCCESS,
-  FETCHINSTITUTION_ERROR, 
+  FETCHINSTITUTION_ERROR,
+  NEWPLAIDACCOUNT_SUCCESS,
 
 } from 'constants';
 
@@ -54,6 +55,7 @@ const defaultState = {
   plaidBank:[],
   portfolioAccounts:[],
   institution:[],
+  newPlaidAccount:[],
   userFakeData: {
     id: 4,
     name: 'Bob Fields',
@@ -114,6 +116,12 @@ const userReducer = (state = defaultState, action) => {
         ...state,
         loading: false,
         error: action.payload,
+      };
+      case NEWPLAIDACCOUNT_SUCCESS:
+      return {
+        ...state,
+        error: '',
+        newPlaidAccount: action.payload,
       };
     case PLAIDBANK_START:
       return {

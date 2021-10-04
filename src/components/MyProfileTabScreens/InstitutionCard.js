@@ -66,12 +66,12 @@ const style = StyleSheet.create({
   },
 
   name: {
-    color: 'green',
+    color: 'white',
     fontWeight: 'bold',
     fontSize: moderateScale(22),
   },
   username: {
-    color: 'green',
+    color: 'white',
     fontSize: moderateScale(15),
   },
   hashtag: {
@@ -80,12 +80,12 @@ const style = StyleSheet.create({
   },
 
   accountName: {
-    color: 'green',
+    color: 'white',
     fontWeight: 'bold',
     fontSize: moderateScale(20),
   },
   accountOfficial: {
-    color: 'green',
+    color: 'white',
     fontSize: moderateScale(16),
   },
   account: {

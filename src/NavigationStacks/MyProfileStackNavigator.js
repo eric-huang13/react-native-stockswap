@@ -32,6 +32,8 @@ import LikedPosts from '../components/MyProfileTabScreens/LikedPosts';
 import LoggingOutScreen from '../components/LoggedOutScreens/LoggingOutScreen';
 import PlaidComponent from '../components/MyProfileTabScreens/PlaidComponent';
 import PortfolioMangement from '../components/MyProfileTabScreens/PortfolioMangement'
+import EnableAccounts from '../components/MyProfileTabScreens/EnableAccounts'
+
 
 
 
@@ -508,6 +510,24 @@ export default class MyProfileStackNavigator extends Component {
           component={PortfolioMangement}
           options={{
             title: 'Manage Accounts',
+            headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+        <MyProfileStack.Screen
+          name="EnableAccounts"
+          component={EnableAccounts}
+          options={{
+            title: 'Choose accounts to show',
             headerStyle: {
               backgroundColor: '#394463',
             },

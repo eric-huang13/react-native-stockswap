@@ -26,6 +26,7 @@ import {
   FETCHINSTITUTION_START,
   FETCHINSTITUTION_SUCCESS,
   FETCHINSTITUTION_ERROR,
+  NEWPLAIDACCOUNT_SUCCESS,
 } from 'constants';
 import axios from 'axios';
 import deviceStorage from '../util/DeviceStorage';
@@ -89,6 +90,14 @@ export const PortfolioInstitution = () => {
   };
 };
 
+export const NewPlaidAccount = (input) => {
+  return (dispatch) => {
+    dispatch({type: NEWPLAIDACCOUNT_SUCCESS, payload: input}); 
+    navigate('EnableAccounts');
+
+  };
+};
+
 export const PlaidBank = (input) => {
   return (dispatch) => {
     dispatch({type: PLAIDBANK_START});
@@ -101,6 +110,7 @@ export const PlaidBank = (input) => {
       .then((response) => {
         console.log(response, 'Success in PLAIDBANK');
         dispatch({type: PLAIDBANK_SUCCESS, payload: response.data});
+
       })
       .catch((error) => {
         dispatch({type: PLAIDBANK_ERROR, payload: error.response});
