@@ -14,10 +14,10 @@ class EnableAccountsCard extends Component {
   }
   toggleSwitch = (value) => {
     this.setState({enabled: value});
+    this.props.accountFlag(this.props.item.id, value);
   };
   render() {
-    const {item} = this.props;
-    console.log(item, 'ACCOUNTS');
+    const {item} = this.props    
 
     if (!this.props) {
       return null;
@@ -35,14 +35,11 @@ class EnableAccountsCard extends Component {
             style={this.state.enabled ? style.username : style.usernameHide}>
             {item.mask}
           </Text>
-          {this.state.enabled ? 
-                <Text style={style.hashtag}>
-                 Account will be shown
-              </Text>
-              :
-              <Text style={style.hashtag}>
-                 Account will be hidden
-              </Text>}
+          {this.state.enabled ? (
+            <Text style={style.hashtag}>Account will be shown</Text>
+          ) : (
+            <Text style={style.hashtag}>Account will be hidden</Text>
+          )}
         </View>
         <View style={style.notificationsContainer}>
           <Switch
@@ -51,8 +48,8 @@ class EnableAccountsCard extends Component {
             ios_backgroundColor="#f4f3f4"
             onValueChange={this.toggleSwitch}
             value={this.state.enabled}
-            style={{ transform: [{ scaleX: 1.4}, { scaleY: 1.4}] }}
-            />
+            style={{transform: [{scaleX: 1.4}, {scaleY: 1.4}]}}
+          />
         </View>
       </View>
     );
@@ -85,11 +82,10 @@ const style = StyleSheet.create({
     marginHorizontal: moderateScale(8),
     padding: moderateScale(4),
     flexDirection: 'row',
-    justifyContent:'space-between',
-    alignItems:'center'
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  notificationsContainer: {
-  },
+  notificationsContainer: {},
   switch: {
     alignContent: 'center',
   },
