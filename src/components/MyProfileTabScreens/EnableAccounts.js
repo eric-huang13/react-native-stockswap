@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import {Text, View, ScrollView, StyleSheet, SafeAreaView} from 'react-native';
+import {Text, View, ScrollView, StyleSheet, SafeAreaView, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import {PortfolioAccounts} from '../../actions/profile';
 import EnableAccountsCard from './EnableAccountsCard';
 import {moderateScale} from '../../util/responsiveFont';
+import {PlaidAccountStatus} from '../../actions/profile';
+
 
 class EnableAccounts extends Component {
   constructor(props) {
@@ -54,11 +56,15 @@ class EnableAccounts extends Component {
           ))} */}
             {this.state.newAccounts.map((item) => (
               <EnableAccountsCard
+                key={item.id}
                 item={item}
                 accountFlag={this.accountFlag.bind(this)}
               />
             ))}
           </View>
+          <TouchableOpacity onPress={() => this.props.PlaidAccountStatus(this.state.accountStatus)}>
+                <Text style={style.publishButton}>Save</Text>
+              </TouchableOpacity>
         </ScrollView>
       </SafeAreaView>
     );
@@ -73,7 +79,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    PortfolioAccounts: () => dispatch(PortfolioAccounts()),
+    PlaidAccountStatus: (input) => dispatch(PlaidAccountStatus(input)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(EnableAccounts);
@@ -90,5 +96,19 @@ const style = StyleSheet.create({
     textAlign: 'center',
     marginTop: moderateScale(2),
     marginBottom: moderateScale(28),
+  },
+  publishButton: {
+    alignSelf: 'center',
+    backgroundColor: '#8b64ff',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    paddingVertical: moderateScale(12),
+    paddingHorizontal: moderateScale(20),
+    width: moderateScale(160),
+    borderRadius: moderateScale(6),
+    fontSize: moderateScale(14),
+    fontFamily: 'Montserrat-SemiBold',
+    marginTop:14,
+    marginBottom:10,
   },
 });

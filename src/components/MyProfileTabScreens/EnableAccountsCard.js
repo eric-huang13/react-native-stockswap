@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, ScrollView, StyleSheet, Switch} from 'react-native';
+import {Text, View, ScrollView, StyleSheet, Switch, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import {PortfolioAccounts} from '../../actions/profile';
 import {moderateScale} from '../../util/responsiveFont';

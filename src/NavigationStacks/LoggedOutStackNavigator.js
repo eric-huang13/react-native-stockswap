@@ -16,6 +16,8 @@ import ConfirmCodeScreen from '../components/LoggedOutScreens/ConfirmCodeScreen'
 import NewPassword from '../components/LoggedOutScreens/NewPassword';
 import ConnectAccount from '../components/LoggedOutScreens/ConnectAccount';
 import PlaidComponent from '../components/MyProfileTabScreens/PlaidComponent'
+import EnableAccounts from '../components/MyProfileTabScreens/EnableAccounts';
+
 
 
 const LoggedOutStack = createStackNavigator();
@@ -96,6 +98,20 @@ export default class LoggedOutStackNavigator extends Component {
           name="PlaidComponent"
           component={PlaidComponent}
           options={{headerShown: false, animationEnabled: false}}
+        />
+          <LoggedOutStack.Screen
+          name="EnableAccounts"
+          component={EnableAccounts}
+          options={{
+            title: 'Choose which accounts you see',
+            headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
         />
         
       </LoggedOutStack.Navigator>
