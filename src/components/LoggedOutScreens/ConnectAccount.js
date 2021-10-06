@@ -8,6 +8,7 @@ import PlaidComponent from '../MyProfileTabScreens/PlaidComponent';
 import {AddLater} from '../../actions/user';
 import BulbIcon from '../../icons/BulbIcon';
 import LockIcon from '../../icons/LockIcon';
+import HouseIcon from '../../icons/HouseIcon';
 
 
 
@@ -35,7 +36,7 @@ null
             <View>
               <View style={style.headerIcon}>
                 <View style={style.bulb}>
-                <LockIcon/>
+                <HouseIcon/>
                 </View>
               <Text style={style.header}>Secure</Text>
               </View>
@@ -45,7 +46,12 @@ null
               </Text>
             </View>
             <View>
+            <View style={style.headerIcon}>
+                <View style={style.bulb}>
+                <LockIcon/>
+                </View>
               <Text style={style.header}>Private</Text>
+              </View>
               <Text style={style.detailsText}>
                 Choose between making your portfolio private or public, with no
                 dollar amounts ever shown.
