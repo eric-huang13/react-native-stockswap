@@ -21,7 +21,7 @@ class PortfolioMangement extends Component {
         <View>
           <Text style={style.header}> Linked Accounts </Text>
           {this.props.portfolioAccounts.institutions.map((item) => (
-            <InstitutionCard itemId={item.itemId} insId={item.institutionId} />
+            <InstitutionCard key={item.id * Math.Random} itemId={item.itemId} insId={item.institutionId} />
           ))}
         </View>
         </ScrollView>

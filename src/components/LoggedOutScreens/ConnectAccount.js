@@ -6,6 +6,10 @@ import LinearGradient from 'react-native-linear-gradient';
 import SmallStockSwap from '../../icons/SmallStockSwap';
 import PlaidComponent from '../MyProfileTabScreens/PlaidComponent';
 import {AddLater} from '../../actions/user';
+import BulbIcon from '../../icons/BulbIcon';
+import LockIcon from '../../icons/LockIcon';
+
+
 
 
 const ConnectAccount = (props) => {
@@ -29,7 +33,12 @@ null
                     </View>
           <View>
             <View>
+              <View style={style.headerIcon}>
+                <View style={style.bulb}>
+                <LockIcon/>
+                </View>
               <Text style={style.header}>Secure</Text>
+              </View>
               <Text style={style.detailsText}>
                 Bank level security with full encryption for your financial
                 data.
@@ -42,8 +51,13 @@ null
                 dollar amounts ever shown.
               </Text>
             </View>
+            
             <View>
+              <View style={style.headerIcon}>
+            <View style={style.bulb}><BulbIcon /></View>
+
               <Text style={style.header}>Insights</Text>
+              </View>
               <Text style={style.detailsText}>
                 Learn insights about your portfolio like trading accuracy and
                 profit breakdowns along with qualifying for the interactive
@@ -90,6 +104,17 @@ const style = StyleSheet.create({
     flex: 1,
     padding: moderateScale(8),
     paddingHorizontal: moderateScale(24),
+  },
+  headerIcon:{
+    flexDirection:'row', 
+  },
+  bulb: {
+    marginVertical: moderateScale(0),
+    height:moderateScale(28),
+    width:moderateScale(24),
+    marginRight:moderateScale(0),
+    flexWrap:'nowrap'
+    
   },
   stockHeader: {
     flexDirection: 'row',
