@@ -76,6 +76,7 @@ const defaultState = {
       'https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTh8fGhlYWRzaG90JTIwc3VpdHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
   },
   loading: false,
+  plaidLoading:false,
   error: '',
 };
 
@@ -136,13 +137,13 @@ const userReducer = (state = defaultState, action) => {
     case PLAIDBANK_START:
       return {
         ...state,
-        // loading: true,
+        plaidLoading: true,
         error: '',
       };
     case PLAIDBANK_SUCCESS:
       return {
         ...state,
-        loading: false,
+        plaidLoading: false,
         error: '',
         plaidBank: action.payload,
       };
@@ -150,6 +151,7 @@ const userReducer = (state = defaultState, action) => {
       return {
         ...state,
         loading: false,
+        plaidLoading: false,
         error: action.payload,
       };
     case PLAIDTOKEN_START:

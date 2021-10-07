@@ -1,5 +1,13 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  SafeAreaView,
+  ScrollView,
+  ActivityIndicator,
+} from 'react-native';
 import {connect} from 'react-redux';
 import {moderateScale} from '../../util/responsiveFont';
 import LinearGradient from 'react-native-linear-gradient';
@@ -10,17 +18,27 @@ import BulbIcon from '../../icons/BulbIcon';
 import LockIcon from '../../icons/LockIcon';
 import HouseIcon from '../../icons/HouseIcon';
 
-
-
-
 const ConnectAccount = (props) => {
   const handleAddLater = () => {
-    props.user.token !== '' ? 
-    props.AddLater()
-    :
-null
+    props.user.token !== '' ? props.AddLater() : null;
   };
   // console.log(props.user)
+  if (props.plaidLoading) {
+    return (
+      <LinearGradient
+      start={{x: 0.1, y: 1}}
+      end={{x: 0.1, y: 0.1}}
+      colors={['#1D2842', '#3d4b6e']}
+      style={{flex: 1}}>
+      <View style={style.loadingView}>
+        <Text style={style.loadingText}>Loading Accounts...</Text>
+        <ActivityIndicator size="large" color="#8b64ff" />
+
+      </View>
+          </LinearGradient>
+
+    );
+  }
   return (
     <LinearGradient
       start={{x: 0.1, y: 1}}
@@ -29,16 +47,16 @@ null
       style={{flex: 1}}>
       <SafeAreaView style={style.mainContainer}>
         <ScrollView>
-        <View style={style.stockHeader}>
-                      <SmallStockSwap />
-                    </View>
+          <View style={style.stockHeader}>
+            <SmallStockSwap />
+          </View>
           <View>
             <View>
               <View style={style.headerIcon}>
                 <View style={style.bulb}>
-                <HouseIcon/>
+                  <HouseIcon />
                 </View>
-              <Text style={style.header}>Secure</Text>
+                <Text style={style.header}>Secure</Text>
               </View>
               <Text style={style.detailsText}>
                 Bank level security with full encryption for your financial
@@ -46,23 +64,25 @@ null
               </Text>
             </View>
             <View>
-            <View style={style.headerIcon}>
+              <View style={style.headerIcon}>
                 <View style={style.bulb}>
-                <LockIcon/>
+                  <LockIcon />
                 </View>
-              <Text style={style.header}>Private</Text>
+                <Text style={style.header}>Private</Text>
               </View>
               <Text style={style.detailsText}>
                 Choose between making your portfolio private or public, with no
                 dollar amounts ever shown.
               </Text>
             </View>
-            
+
             <View>
               <View style={style.headerIcon}>
-            <View style={style.bulb}><BulbIcon /></View>
+                <View style={style.bulb}>
+                  <BulbIcon />
+                </View>
 
-              <Text style={style.header}>Insights</Text>
+                <Text style={style.header}>Insights</Text>
               </View>
               <Text style={style.detailsText}>
                 Learn insights about your portfolio like trading accuracy and
@@ -71,13 +91,12 @@ null
               </Text>
             </View>
             <View style={style.buttonContainer}>
-            
               <PlaidComponent />
-           
-            <View style={style.buttonContainer}>
-              <TouchableOpacity onPress={() => handleAddLater()}>
-                <Text style={style.button}>Add later</Text>
-              </TouchableOpacity>
+
+              <View style={style.buttonContainer}>
+                <TouchableOpacity onPress={() => handleAddLater()}>
+                  <Text style={style.button}>Add later</Text>
+                </TouchableOpacity>
               </View>
             </View>
           </View>
@@ -90,6 +109,7 @@ null
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    plaidLoading: state.user.plaidLoading,
     loading: state.user.loading,
     error: state.user.error,
   };
@@ -98,8 +118,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     AddLater: () => dispatch(AddLater()),
-
-
   };
 };
 
@@ -111,16 +129,16 @@ const style = StyleSheet.create({
     padding: moderateScale(8),
     paddingHorizontal: moderateScale(24),
   },
-  headerIcon:{
-    flexDirection:'row', 
+  headerIcon: {
+    flexDirection: 'row',
   },
+ 
   bulb: {
     marginVertical: moderateScale(0),
-    height:moderateScale(28),
-    width:moderateScale(24),
-    marginRight:moderateScale(0),
-    flexWrap:'nowrap'
-    
+    height: moderateScale(28),
+    width: moderateScale(24),
+    marginRight: moderateScale(0),
+    flexWrap: 'nowrap',
   },
   stockHeader: {
     flexDirection: 'row',
@@ -261,10 +279,9 @@ const style = StyleSheet.create({
   buttonContainer: {
     marginTop: moderateScale(20),
     marginBottom: moderateScale(10),
-    flexDirection:'row',
+    flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems:'center'
-
+    alignItems: 'center',
   },
   errorText: {
     color: '#F66E6E',
@@ -272,5 +289,16 @@ const style = StyleSheet.create({
     marginBottom: moderateScale(1),
     marginTop: moderateScale(1),
     textAlign: 'center',
+  }, 
+  loadingView: {
+    alignContent:'center',
+    alignItems:'center',
+    marginTop:moderateScale(180),
+  },
+  loadingText: {
+    color: '#B8A0FF',
+    fontSize: moderateScale(18),
+    fontFamily: 'Montserrat-SemiBold',
+    marginBottom:moderateScale(24),   
   },
 });

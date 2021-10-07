@@ -82,17 +82,8 @@ export default class LoggedOutStackNavigator extends Component {
         />
             <LoggedOutStack.Screen
           name="ConnectAccount"
-          component={ConnectAccount}
-          options={{
-            title: 'Connect your portfolio',
-            headerStyle: {
-              backgroundColor: '#394463',
-            },
-            headerTintColor: 'white',
-            headerTitleAlign: {
-              textAlign: 'center',
-            },
-          }}
+          component={ConnectAccount}      
+          options={{headerShown: false, animationEnabled: false}}
         />
          <LoggedOutStack.Screen
           name="PlaidComponent"
@@ -103,7 +94,7 @@ export default class LoggedOutStackNavigator extends Component {
           name="EnableAccounts"
           component={EnableAccounts}
           options={{
-            title: 'Choose which accounts you see',
+            title: 'Show/Hide Accounts',
             headerStyle: {
               backgroundColor: '#394463',
             },

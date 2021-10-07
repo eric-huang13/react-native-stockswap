@@ -7,12 +7,13 @@ import {
   SafeAreaView,
   Switch,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native';
 import TriangleIcon from '../../icons/TriangleIcon';
 import {connect} from 'react-redux';
 import {Logout} from '../../actions/user';
 import { moderateScale } from '../../util/responsiveFont';
-
+import LinearGradient from 'react-native-linear-gradient';
 import { CommonActions } from '@react-navigation/native';
 import PlaidComponent from './PlaidComponent'
 
@@ -44,6 +45,23 @@ class MyProfileSettings extends Component {
   render() {
     const {LogoutUser} = this.props;
     const {shouldShow} = this.state;
+
+    if (this.props.plaidLoading) {
+      return (
+        <LinearGradient
+        start={{x: 0.1, y: 1}}
+        end={{x: 0.1, y: 0.1}}
+        colors={['#1D2842', '#3d4b6e']}
+        style={{flex: 1}}>
+        <View style={style.loadingView}>
+          <Text style={style.loadingText}>Loading...</Text>
+          <ActivityIndicator size="large" color="#8b64ff" />
+  
+        </View>
+            </LinearGradient>
+  
+      );
+    }
 
     return (
       <SafeAreaView style={style.container}>
@@ -201,6 +219,7 @@ class MyProfileSettings extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user.user,
+    plaidLoading: state.user.plaidLoading,
     users: state.people.users,
     userAccount: state.user.userFakeData,
   };
@@ -350,5 +369,16 @@ const style = StyleSheet.create({
     fontFamily: 'Montserrat-SemiBold',
     color: '#8B64FF',
     fontSize: moderateScale(14),
+  },
+  loadingView: {
+    alignContent:'center',
+    alignItems:'center',
+    marginTop:moderateScale(180),
+  },
+  loadingText: {
+    color: '#B8A0FF',
+    fontSize: moderateScale(18),
+    fontFamily: 'Montserrat-SemiBold',
+    marginBottom:moderateScale(24),   
   },
 });

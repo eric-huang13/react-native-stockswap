@@ -93,6 +93,12 @@ export const PortfolioInstitution = () => {
   };
 };
 
+export const PlaidLoading = () => {
+  return (dispatch) => {
+    dispatch({type: PLAIDBANK_START});
+  };
+};
+
 export const NewPlaidAccount = (input) => {
   return (dispatch) => {
     dispatch({type: NEWPLAIDACCOUNT_SUCCESS, payload: input}); 
@@ -122,7 +128,7 @@ export const PlaidAccountStatus = (input) => {
 
 export const PlaidBank = (input) => {
   return (dispatch) => {
-    dispatch({type: PLAIDBANK_START});
+    // dispatch({type: PLAIDBANK_START});
     apiInstance
       //add endpoint
       .post(

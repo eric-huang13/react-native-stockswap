@@ -1,18 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {PlaidLink, LinkSuccess, LinkExit} from 'react-native-plaid-link-sdk';
+import {PlaidLink, LinkSuccess, LinkExit, usePlaidEmitter} from 'react-native-plaid-link-sdk';
 import {connect} from 'react-redux';
 import {moderateScale} from '../../util/responsiveFont';
 import {PlaidToken} from '../../actions/profile';
-import {PlaidBank, NewPlaidAccount} from '../../actions/profile';
+import {PlaidBank, NewPlaidAccount, PlaidLoading} from '../../actions/profile';
 
  
 const PlaidComponent = (props) => {
+
   useEffect(() => {
     props.PlaidToken();
   }, []);
-  console.log(props.linkToken, 'LINKTOKEN');
+  console.log(props, 'LINKTOKEN');
  
+  usePlaidEmitter((OPEN) => {
+    console.log(OPEN, 'here open');
+    props.PlaidLoading()
+  });
   return (
     <View>
       {props.linkToken ? (
@@ -20,11 +25,11 @@ const PlaidComponent = (props) => {
           tokenConfig={{
             token: props.linkToken.linkToken,
           }}
+          
           onSuccess={(success: LinkSuccess) => {
             console.log(success, 'HERE');
             //sending publicToken
             props.PlaidBank({publicToken:success.publicToken})
-
             props.NewPlaidAccount(success.metadata.accounts)
 
           }}
@@ -60,6 +65,8 @@ const mapDispatchToProps = (dispatch) => {
     PlaidToken: () => dispatch(PlaidToken()),
     PlaidBank: (input) => dispatch(PlaidBank(input)),
     NewPlaidAccount: (input) => dispatch(NewPlaidAccount(input)),
+    PlaidLoading: () => dispatch(PlaidLoading()),
+
 
   };
 };
