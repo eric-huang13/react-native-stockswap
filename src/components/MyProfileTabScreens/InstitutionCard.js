@@ -7,7 +7,7 @@ import {moderateScale} from '../../util/responsiveFont';
 class InstitutionCard extends Component {
   render() {
     const {portfolioAccounts, itemId, insId} = this.props;
-console.log(portfolioAccounts,"ACCOUNTS")
+    console.log(portfolioAccounts, 'ACCOUNTS');
     const filteredAccounts = portfolioAccounts.accounts.filter(
       (account) => account.itemId == itemId,
     );
@@ -86,12 +86,13 @@ const style = StyleSheet.create({
   },
   accountOfficial: {
     color: 'white',
+    fontFamily: 'Montserrat-Regular',
     fontSize: moderateScale(16),
   },
   account: {
     color: 'white',
-    fontStyle:'italic',
+    fontStyle: 'italic',
     fontSize: moderateScale(16),
-    marginBottom:moderateScale(12),
+    marginBottom: moderateScale(12),
   },
 });

@@ -1,11 +1,17 @@
 import React, {Component} from 'react';
-import {Text, View, ScrollView, StyleSheet, SafeAreaView, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  View,
+  ScrollView,
+  StyleSheet,
+  SafeAreaView,
+  TouchableOpacity,
+} from 'react-native';
 import {connect} from 'react-redux';
 import {PortfolioAccounts} from '../../actions/profile';
 import EnableAccountsCard from './EnableAccountsCard';
 import {moderateScale} from '../../util/responsiveFont';
 import {PlaidAccountStatus} from '../../actions/profile';
-
 
 class EnableAccounts extends Component {
   constructor(props) {
@@ -38,9 +44,7 @@ class EnableAccounts extends Component {
     });
   };
 
- 
   render() {
-  
     console.log(this.state.accountStatus, 'Account Status');
 
     if (!this.props.newPlaidAccount) {
@@ -51,9 +55,7 @@ class EnableAccounts extends Component {
         <ScrollView>
           <View>
             <Text style={style.header}> {this.props.newInstitution.name}</Text>
-            {/* {this.props.newPlaidAccount.map((item) => (
-            <EnableAccountsCard item={item} />
-          ))} */}
+          
             {this.state.newAccounts.map((item) => (
               <EnableAccountsCard
                 key={item.id}
@@ -62,9 +64,12 @@ class EnableAccounts extends Component {
               />
             ))}
           </View>
-          <TouchableOpacity onPress={() => this.props.PlaidAccountStatus(this.state.accountStatus)}>
-                <Text style={style.publishButton}>Save</Text>
-              </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              this.props.PlaidAccountStatus(this.state.accountStatus)
+            }>
+            <Text style={style.publishButton}>Save</Text>
+          </TouchableOpacity>
         </ScrollView>
       </SafeAreaView>
     );
@@ -75,7 +80,6 @@ const mapStateToProps = (state) => {
   return {
     newPlaidAccount: state.user.newPlaidAccount,
     newInstitution: state.user.newInstitution,
-
   };
 };
 
@@ -94,7 +98,7 @@ const style = StyleSheet.create({
   header: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: moderateScale(24),
+    fontSize: moderateScale(30),
     textAlign: 'center',
     marginTop: moderateScale(14),
     marginBottom: moderateScale(12),
@@ -110,7 +114,7 @@ const style = StyleSheet.create({
     borderRadius: moderateScale(6),
     fontSize: moderateScale(14),
     fontFamily: 'Montserrat-SemiBold',
-    marginTop:14,
-    marginBottom:10,
+    marginTop: 14,
+    marginBottom: 10,
   },
 });

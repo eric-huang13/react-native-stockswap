@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {Text, View, ScrollView, StyleSheet, Switch, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  View,
+  ScrollView,
+  StyleSheet,
+  Switch,
+  TouchableOpacity,
+} from 'react-native';
 import {connect} from 'react-redux';
 import {PortfolioAccounts} from '../../actions/profile';
 import {moderateScale} from '../../util/responsiveFont';
@@ -17,7 +24,7 @@ class EnableAccountsCard extends Component {
     this.props.accountFlag(this.props.item.id, value);
   };
   render() {
-    const {item} = this.props    
+    const {item} = this.props;
     if (!this.props) {
       return null;
     }
@@ -35,9 +42,9 @@ class EnableAccountsCard extends Component {
             {item.mask}
           </Text>
           {this.state.enabled ? (
-            <Text style={style.hashtag}>Account will be shown</Text>
+            <Text style={style.mask}>Account will be shown</Text>
           ) : (
-            <Text style={style.hashtag}>Account will be hidden</Text>
+            <Text style={style.mask}>Account will be hidden</Text>
           )}
         </View>
         <View style={style.notificationsContainer}>
@@ -94,26 +101,29 @@ const style = StyleSheet.create({
   },
   username: {
     color: 'white',
-    fontSize: moderateScale(15),
+    fontFamily: 'Montserrat-SemiBold',
+
+    fontSize: moderateScale(14),
   },
   usernameHide: {
     color: 'lightgrey',
-    fontSize: moderateScale(15),
+    fontFamily: 'Montserrat-SemiBold',
+    fontSize: moderateScale(14),
   },
-  hashtag: {
+  mask: {
     color: '#9082cf',
-    fontWeight: 'bold',
+    fontFamily: 'Montserrat-Bold',
     fontSize: moderateScale(14),
   },
 
   accountName: {
     color: 'white',
-    fontWeight: 'bold',
+    fontFamily: 'Montserrat-SemiBold',
     fontSize: moderateScale(20),
   },
   accountNameHide: {
     color: 'lightgrey',
-    fontWeight: 'bold',
+    fontFamily: 'Montserrat-SemiBold',
     fontSize: moderateScale(20),
   },
   accountOfficial: {
