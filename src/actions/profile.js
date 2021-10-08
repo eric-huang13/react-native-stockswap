@@ -26,6 +26,7 @@ import {
   FETCHINSTITUTION_START,
   FETCHINSTITUTION_SUCCESS,
   FETCHINSTITUTION_ERROR,
+  NEWPLAIDACCOUNT_INSTITUTION,
   NEWPLAIDACCOUNT_SUCCESS,
   PLAIDACCOUNTSTATUS_START,
   PLAIDACCOUNTSTATUS_SUCCESS,
@@ -47,14 +48,7 @@ export const PortfolioAccounts = () => {
       .get(
         `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio`,
       )
-      .then((response) => {
-        // console.log(response.data.institutions, 'Success in FETCHPORTFOLIOACCOUNTS');
-     
-      //   const ids = [];
-      //  let idmap = response.data.institutions.map((item) => {
-      //     ids.push(item.institutionId);
-      //   })
-      //   console.log(ids, 'IDS');
+      .then((response) => {  
 
         dispatch(PortfolioInstitution());
         // dispatch(PortfolioInstitution({ids:'ins_3'}));
@@ -80,9 +74,7 @@ export const PortfolioInstitution = () => {
         `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio/institutions`,
       )
       .then((response) => {
-        // console.log(response, 'Success in FETCHINSTITUTION');
-        
-        // dispatch({type: FETCHINSTITUTION_SUCCESS, payload: response.data});
+       
         dispatch({type: FETCHINSTITUTION_SUCCESS, payload: response.data});
 
       })
@@ -99,9 +91,11 @@ export const PlaidLoading = () => {
   };
 };
 
-export const NewPlaidAccount = (input) => {
+export const NewPlaidAccount = (accounts, institution) => {
   return (dispatch) => {
-    dispatch({type: NEWPLAIDACCOUNT_SUCCESS, payload: input}); 
+    dispatch({type: NEWPLAIDACCOUNT_SUCCESS, payload: accounts}); 
+    dispatch({type: NEWPLAIDACCOUNT_INSTITUTION, payload: institution}); 
+
     navigate('EnableAccounts');
 
   };

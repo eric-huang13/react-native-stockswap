@@ -18,7 +18,6 @@ class EnableAccountsCard extends Component {
   };
   render() {
     const {item} = this.props    
-
     if (!this.props) {
       return null;
     }
@@ -59,7 +58,6 @@ class EnableAccountsCard extends Component {
 const mapStateToProps = (state) => {
   return {
     portfolioAccounts: state.user.portfolioAccounts,
-    institution: state.user.institution,
   };
 };
 

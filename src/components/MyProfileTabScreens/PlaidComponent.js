@@ -30,7 +30,7 @@ const PlaidComponent = (props) => {
             console.log(success, 'HERE');
             //sending publicToken
             props.PlaidBank({publicToken:success.publicToken})
-            props.NewPlaidAccount(success.metadata.accounts)
+            props.NewPlaidAccount(success.metadata.accounts, success.metadata.institution)
 
           }}
           onExit={(exit: LinkExit) => {
@@ -64,7 +64,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     PlaidToken: () => dispatch(PlaidToken()),
     PlaidBank: (input) => dispatch(PlaidBank(input)),
-    NewPlaidAccount: (input) => dispatch(NewPlaidAccount(input)),
+    NewPlaidAccount: (accounts, institution) => dispatch(NewPlaidAccount(accounts, institution)),
     PlaidLoading: () => dispatch(PlaidLoading()),
 
 

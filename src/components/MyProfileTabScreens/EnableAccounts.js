@@ -50,7 +50,7 @@ class EnableAccounts extends Component {
       <SafeAreaView style={style.container}>
         <ScrollView>
           <View>
-            <Text style={style.header}> Accounts </Text>
+            <Text style={style.header}> {this.props.newInstitution.name}</Text>
             {/* {this.props.newPlaidAccount.map((item) => (
             <EnableAccountsCard item={item} />
           ))} */}
@@ -74,6 +74,8 @@ class EnableAccounts extends Component {
 const mapStateToProps = (state) => {
   return {
     newPlaidAccount: state.user.newPlaidAccount,
+    newInstitution: state.user.newInstitution,
+
   };
 };
 
@@ -92,10 +94,10 @@ const style = StyleSheet.create({
   header: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: moderateScale(22),
+    fontSize: moderateScale(24),
     textAlign: 'center',
-    marginTop: moderateScale(2),
-    marginBottom: moderateScale(28),
+    marginTop: moderateScale(14),
+    marginBottom: moderateScale(12),
   },
   publishButton: {
     alignSelf: 'center',
