@@ -66,7 +66,7 @@ class EnableAccounts extends Component {
           </View>
           <TouchableOpacity
             onPress={() =>
-              this.props.PlaidAccountStatus(this.state.accountStatus)
+              this.props.PlaidAccountStatus({accounts:this.state.accountStatus})
             }>
             <Text style={style.publishButton}>Save</Text>
           </TouchableOpacity>

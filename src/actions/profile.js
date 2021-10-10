@@ -104,19 +104,19 @@ export const NewPlaidAccount = (accounts, institution) => {
 export const PlaidAccountStatus = (input) => {
   console.log(input, "INPUT IN ACCOUNT REDUX")
   return (dispatch) => {
-    dispatch({type: PLAIDACCOUNTSTATUS_SUCCESS});
-    // apiInstance
-    //   .post(
-    //     `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio/initiate`, input,
-    //   )
-    //   .then((response) => {
-    //     // console.log(response, 'Success in PLAIDACCOUNTSTATUS');
-    //     dispatch({type: PLAIDACCOUNTSTATUS_SUCCESS, payload: response.data});
-    //   })
-    //   .catch((error) => {
-    //     dispatch({type: PLAIDACCOUNTSTATUS_ERROR, payload: error.response});
-    //     console.log(error.response, 'Error in PlaidToken');
-    //   });
+    // dispatch({type: PLAIDACCOUNTSTATUS_SUCCESS});
+    apiInstance
+      .post(
+        `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio/account`, input,
+      )
+      .then((response) => {
+        console.log(response, 'Success in PLAIDACCOUNTSTATUS');
+        dispatch({type: PLAIDACCOUNTSTATUS_SUCCESS, payload: response.data});
+      })
+      .catch((error) => {
+        dispatch({type: PLAIDACCOUNTSTATUS_ERROR, payload: error.response});
+        console.log(error.response, 'Error in PlaidToken');
+      });
   };
 };
 
