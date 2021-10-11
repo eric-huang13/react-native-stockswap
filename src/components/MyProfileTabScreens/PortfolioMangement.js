@@ -8,24 +8,27 @@ import {moderateScale} from '../../util/responsiveFont';
 class PortfolioMangement extends Component {
   componentDidMount() {
     this.props.PortfolioAccounts();
-    const insIds = this.props;
   }
   render() {
-    if (!this.props.portfolioAccounts.accounts) {
-      return null;
-    }
+    if (!this.props.portfolioAccounts.institutions) {
+      return (
+        <SafeAreaView style={style.container}>        
+        </SafeAreaView>
+      );    }
     return (
       <SafeAreaView style={style.container}>
-              <ScrollView>
-
-        <View>
-          <Text style={style.header}> Linked Accounts </Text>
-          {this.props.portfolioAccounts.institutions.map((item) => (
-            <InstitutionCard key={item.id * Math.Random} itemId={item.itemId} insId={item.institutionId} />
-          ))}
-        </View>
+        <ScrollView>
+          <View>
+            <Text style={style.header}> Linked Accounts </Text>
+            {this.props.portfolioAccounts.institutions.map((item) => (
+              <InstitutionCard
+                key={item.id}
+                itemId={item.itemId}
+                insId={item.institutionId}
+              />
+            ))}
+          </View>
         </ScrollView>
-
       </SafeAreaView>
     );
   }
@@ -54,7 +57,7 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: moderateScale(22),
     textAlign: 'center',
-    marginTop:moderateScale(2),
-    marginBottom:moderateScale(28),
+    marginTop: moderateScale(2),
+    marginBottom: moderateScale(28),
   },
 });
