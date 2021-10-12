@@ -4,19 +4,7 @@ import deviceStorage from "./DeviceStorage";
 import Toast from "react-native-toast-message";
 import { navigate } from "../../RootNavigation";
 
-import {
-  
-  REFRESH_TOKEN,
-} from 'constants';
- 
- 
-// import { refreshTokeng } from "../actions/user";
-import reduxStore from 'store/index';
-// axios.defaults.baseURL = 'http://10.0.2.2:9000'
-// axios.defaults.headers.common['Authorization'] = 'authToken'
-// axios.defaults.headers.post['Content-Type'] = 'application/json'
 
-const {store} = reduxStore();
  
 const apiInstance = axios.create();
 
@@ -29,10 +17,7 @@ apiInstance.interceptors.request.use(
       config.headers.Authorization = `JWT ${token}`
       console.log(config.headers.Authorization, "Auth headers")
     }
-    // store.dispatch({
-    //   type: REFRESH_TOKEN,
-    //   payload: refreshToken });
-    // console.log(store.getState(),"THESTOREEEEEEEEEEEEEEE")
+   
 
     return config;
   },
@@ -68,9 +53,7 @@ apiInstance.interceptors.response.use(
           deviceStorage.saveItem("token", res.data.accessToken);
           deviceStorage.saveItem("refreshToken", res.data.refreshToken);
           originalRequest.headers.Authorization = `JWT ${res.data.accessToken}`;
-          // store.dispatch({
-          //   type: REFRESH_TOKEN,
-          //   payload: res.data.accessToken });
+    
           return apiInstance(originalRequest);
         })
         .catch((error) => {

@@ -4,7 +4,6 @@ import ConfirmCodeForm from './ConfirmCodeForm';
 
 const ConfirmCodeScreen = ({navigation, route}) => {
   const [value, setValue] = useState('');
-  console.log(value, 'V');
   return (
     <ConfirmCodeForm
       navigation={navigation}

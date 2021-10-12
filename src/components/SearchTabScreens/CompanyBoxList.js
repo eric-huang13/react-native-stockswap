@@ -13,14 +13,18 @@ import {moderateScale} from '../../util/responsiveFont';
 import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
 import CompanyBox from '../SearchTabComponents/CompanyBox';
-// import {fetchMarketGainers} from '../../actions/marketMovers'
+import {fetchMarketGainers} from '../../actions/marketMovers';
+import {fetchMarketLosers} from '../../actions/marketMovers'
+
+
 
 export class CompanyBoxList extends Component {
   //Ready for redux action hookup
-  //   componentDidMount() {
-  //     const {companies, fetchGainers} = this.props;
-  //     fetchGainers(companies);
-  // }
+    componentDidMount() {
+      // const {companies, fetchGainers} = this.props;
+      this.props.fetchGainers();
+      this.props.fetchLosers();
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -33,8 +37,7 @@ export class CompanyBoxList extends Component {
   };
 
   render() {
-    const {gainers, losers, highestByVolume} = this.props;
-
+    const {gainers, losers, highestByVolume, marketGainers, marketLosers, marketGainersTest} = this.props;
     return (
       <SafeAreaView style={style.mainContainer}>
         <ScrollView contentContainerStyle={{paddingBottom: moderateScale(180)}}>
@@ -63,7 +66,7 @@ export class CompanyBoxList extends Component {
                   this.props.navigation.navigate('CompanyCategory', {
                     name: 'Gainers',
                     params: {
-                      category: gainers,
+                      category: marketGainersTest,
                     },
                   })
                 }>
@@ -74,7 +77,7 @@ export class CompanyBoxList extends Component {
                   this.props.navigation.navigate('CompanyCategory', {
                     name: 'Gainers',
                     params: {
-                      category: gainers,
+                      category: marketGainers,
                     },
                   })
                 }>
@@ -86,17 +89,18 @@ export class CompanyBoxList extends Component {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 justifyContent="space-between">
-                {gainers.map((item) => {
+                {marketGainers.map((item) => {
                   return (
                     <TouchableOpacity
-                      key={item.id}
+                      key={item.ticker}
                       onPress={() =>
                         this.props.navigation.navigate({
                           name: 'CompanyInformation',
-                          params: {item},
+                          params: {item, stockCategory: 'gainers',}, 
+                          
                         })
                       }>
-                      <CompanyBox item={item} />
+                      <CompanyBox item={item} category={'gainers'} />
                     </TouchableOpacity>
                   );
                 })}
@@ -122,7 +126,7 @@ export class CompanyBoxList extends Component {
                   this.props.navigation.navigate('CompanyCategory', {
                     name: 'Losers',
                     params: {
-                      category: losers,
+                      category: marketLosers,
                     },
                   })
                 }>
@@ -135,17 +139,18 @@ export class CompanyBoxList extends Component {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 justifyContent="space-between">
-                {losers.map((item) => {
+                {marketLosers.map((item) => {
                   return (
                     <TouchableOpacity
-                      key={item.id}
+                      key={item.ticker}
                       onPress={() =>
                         this.props.navigation.navigate({
                           name: 'CompanyInformation',
-                          params: {item},
+                          params: {item, stockCategory: 'losers'},
+                         
                         })
                       }>
-                      <CompanyBox item={item} />
+                      <CompanyBox item={item} category={'losers'} />
                     </TouchableOpacity>
                   );
                 })}
@@ -190,10 +195,11 @@ export class CompanyBoxList extends Component {
                       onPress={() =>
                         this.props.navigation.navigate({
                           name: 'CompanyInformation',
-                          params: {item},
+                          params: {item,  stockCategory: 'hbv'},
+                          
                         })
                       }>
-                      <CompanyBox item={item} />
+                      <CompanyBox item={item} category={'hbv'} />
                     </TouchableOpacity>
                   );
                 })}
@@ -211,16 +217,24 @@ const mapStateToProps = (state) => {
     gainers: state.company.gainers,
     losers: state.company.losers,
     highestByVolume: state.company.highestByVolume,
+    marketGainers: state.company.marketGainers,
+    marketLosers: state.company.marketLosers,
+
+    marketGainersTest: state.company.marketGainersTest,
+
+
+
   };
 };
 
 //Ready for redux hook up. Add mapDipatchToProps in export
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     fetchGainers: () => dispatch(fetchMarketGainers()),
-//   };
-// };
-export default connect(mapStateToProps)(CompanyBoxList);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchGainers: () => dispatch(fetchMarketGainers()),
+    fetchLosers: () => dispatch(fetchMarketLosers()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(CompanyBoxList);
 
 const style = StyleSheet.create({
   mainContainer: {

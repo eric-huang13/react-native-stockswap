@@ -92,7 +92,7 @@ export const NewPassword = ({
                   ResetPassword({
                     email: values.email,
                     password: values.password,
-                    code: values.code,
+                    accessCode: values.code,
                   });
                 }}>
                 {(props) => (

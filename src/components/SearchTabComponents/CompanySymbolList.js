@@ -16,7 +16,23 @@ export class CompanySymbolList extends Component {
     super(props);
     this.state = {
       initialIndex: 4,
+      stockData: [],
     };
+  }
+  componentDidMount() {
+    this.props.stockCategory == 'gainers'
+      ? this.setState({
+          stockData: this.props.marketGainers,
+        })
+      : this.props.stockCategory == 'losers'
+      ? this.setState({
+          stockData: this.props.marketLosers,
+        })
+      : this.props.stockCategory == 'hbv'
+      ? this.setState({
+          stockData: this.props.hbv,
+        })
+      : null;
   }
 
   render() {
@@ -26,12 +42,13 @@ export class CompanySymbolList extends Component {
       index,
     });
 
-    const {gainers} = this.props;
+    const {gainers, stockCategory, marketGainersTest} = this.props;
+
     return (
       <SafeAreaView style={style.mainContainer}>
         <FlatList
           keyExtractor={(item, index) => index.toString()}
-          data={gainers}
+          data={this.state.stockData}
           style={style.scollContainer}
           horizontal
           alignItems="center"
@@ -50,11 +67,11 @@ export class CompanySymbolList extends Component {
               <View style={style.symbolBox}>
                 <Text
                   style={
-                    this.props.symbol === item.symbol
+                    this.props.ticker === item.ticker
                       ? {...style.symbol, backgroundColor: '#8B64FF'}
                       : {...style.symbol}
                   }>
-                  {item.symbol}
+                  {item.ticker}
                 </Text>
               </View>
             </TouchableOpacity>
@@ -68,8 +85,12 @@ export class CompanySymbolList extends Component {
 const mapStateToProps = (state) => {
   return {
     gainers: state.company.gainers,
-    losers: state.company.losers,
+    marketGainers: state.company.marketGainers,
+
+    marketLosers: state.company.marketLosers,
     highestByVolume: state.company.highestByVolume,
+
+    marketGainersTest: state.company.marketGainersTest,
   };
 };
 
