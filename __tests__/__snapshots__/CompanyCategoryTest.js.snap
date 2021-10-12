@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<LinearGradient
+  colors={
+    Array [
+      "#2c3752",
+      "#2e3955",
+      "#313c58",
+      "#333e5c",
+      "#36415f",
+      "#394463",
+    ]
+  }
+  end={
+    Object {
+      "x": 1,
+      "y": 1,
+    }
+  }
+  start={
+    Object {
+      "x": 0.1,
+      "y": 0.1,
+    }
+  }
+  style={
+    Object {
+      "flex": 1,
+      "paddingBottom": 7.062043795620438,
+    }
+  }
+>
+  <ForwardRef(SafeAreaView)
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "marginBottom": 45.197080291970806,
+        }
+      }
+    >
+      <Component
+        allowFontScaling={true}
+        onChangeText={[Function]}
+        placeholder="Search by name"
+        placeholderTextColor="lightgrey"
+        rejectResponderTermination={true}
+        style={
+          Object {
+            "alignContent": "center",
+            "backgroundColor": "#3e4d6c",
+            "color": "lightgrey",
+            "fontFamily": "Montserrat-Regular",
+            "fontSize": 23.304744525547445,
+            "height": 56.496350364963504,
+            "paddingLeft": 56.496350364963504,
+            "paddingVertical": 0,
+          }
+        }
+        underlineColorAndroid="transparent"
+      />
+    </View>
+    <FlatList
+      data={Array []}
+      disableVirtualization={false}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onEndReachedThreshold={2}
+      removeClippedSubviews={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      style={Object {}}
+      updateCellsBatchingPeriod={50}
+      windowSize={21}
+    />
+  </ForwardRef(SafeAreaView)>
+</LinearGradient>
+`;

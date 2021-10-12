@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)
+  style={
+    Object {
+      "backgroundColor": "#2a334a",
+      "paddingVertical": 5.649635036496351,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignContent": "space-between",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginVertical": 8.474452554744525,
+        "paddingHorizontal": 16.94890510948905,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flexDirection": "column",
+          "justifyContent": "space-evenly",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontFamily": "Montserrat-Bold",
+            "fontSize": 28.954379562043794,
+          }
+        }
+      />
+      <Text
+        style={
+          Object {
+            "color": "#d0d3dc",
+            "fontFamily": "Montserrat-Regular",
+            "fontSize": 19.77372262773723,
+            "marginTop": 4.237226277372263,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "marginTop": 7.062043795620438,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontFamily": "Montserrat-Bold",
+            "fontSize": 28.954379562043794,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        $
+      </Text>
+      <Text
+        style={
+          Object {
+            "alignSelf": "flex-end",
+            "color": "#5fc48c",
+            "fontFamily": "Montserrat-Medium",
+            "fontSize": 19.77372262773723,
+            "marginTop": 4.237226277372263,
+          }
+        }
+      />
+    </View>
+  </View>
+</ForwardRef(SafeAreaView)>
+`;

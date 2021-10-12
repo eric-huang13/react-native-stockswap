@@ -10,6 +10,7 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
+  Platform
 } from 'react-native';
 
 import {EditUser} from '../../actions/user';

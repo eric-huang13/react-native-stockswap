@@ -2,6 +2,31 @@ import {
   MARKETGAINERS_FETCHING,
   MARKETGAINERS_SUCCESS,
   MARKETGAINERS_FAILURE,
+  FETCHTICKERS_START,
+  FETCHTICKERS_SUCCESS,
+  FETCHTICKERS_ERROR,
+  FETCHTICKERSALL_SUCCESS,
+  MARKETLOSERS_FETCHING,
+  MARKETLOSERS_SUCCESS,
+  MARKETLOSERS_FAILURE,
+  FETCHSTOCKMONTH_START,
+  FETCHSTOCKMONTH_SUCCESS,
+  FETCHSTOCKMONTH_ERROR,
+  FETCHSTOCKWEEK_START,
+  FETCHSTOCKWEEK_SUCCESS,
+  FETCHSTOCKWEEK_ERROR,
+  FETCHSTOCKTHREEMONTH_START,
+  FETCHSTOCKTHREEMONTH_SUCCESS,
+  FETCHSTOCKTHREEMONTH_ERROR,
+  FETCHSTOCKYEAR_START,
+  FETCHSTOCKYEAR_SUCCESS,
+  FETCHSTOCKYEAR_ERROR,
+  FETCHSTOCKDAY_START,
+  FETCHSTOCKDAY_SUCCESS,
+  FETCHSTOCKDAY_ERROR,
+  FETCHSTOCKDETAILS_START,
+  FETCHSTOCKDETAILS_SUCCESS,
+  FETCHSTOCKDETAILS_ERROR
 } from '../constants';
 
 const defaultState = {
@@ -801,6 +826,48 @@ const defaultState = {
     },
   ],
   marketGainers: [],
+  marketGainersTest:[
+    {
+      "ticker": "HLBZ",
+      "quote": {
+        "open": 23.1999,
+        "close": 22.9999,
+        "high": 23.1999,
+        "low": 22.7,
+        "volume": 85402,
+        "volumeWeightedAveragePrice": 22.9316,
+        "window": {
+          "startTime": "Invalid date"
+        }
+      },
+      "change": 13.891,
+      "changePercent": 154.348
+    },
+    {
+      "ticker": "HLBZW",
+      "quote": {
+        "open": 1.35,
+        "close": 1.3399,
+        "high": 1.35,
+        "low": 1.33,
+        "volume": 2830,
+        "volumeWeightedAveragePrice": 1.3351,
+        "window": {
+          "startTime": "Invalid date"
+        }
+      },
+      "change": 0.59,
+      "changePercent": 79.73
+    },],
+  marketLosers: [],
+  tickers:[],
+  tickersAll:[],
+  stockDetails:[],
+  stockDay:[],
+  stockWeek:[],
+  stockMonth:[],
+  stockThreeMonth:[],
+  stockYear:[],
   articles: [
     {
       id: '1',
@@ -818,25 +885,184 @@ const defaultState = {
 const companyBoxReducer = (state = defaultState, action) => {
   switch (action.type) {
     //Ready for hook up
-    // case MARKETGAINERS_FETCHING:
-    //   return {
-    //     ...state,
-    //     loading: true,
-    //     error: "",
-    //   };
-    // case MARKETGAINERS_SUCCESS:
-    //   return {
-    //     ...state,
-    //     loading: false,
-    //     error: "",
-    //     marketGainers: action.payload,
-    //   };
-    // case MARKETGAINERS_FAILURE:
-    //   return {
-    //     ...state,
-    //     loading: false,
-    //     error: action.payload,
-    //   };
+    case MARKETGAINERS_FETCHING:
+      return {
+        ...state,
+        loading: true,
+        error: "",
+      };
+    case MARKETGAINERS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: "",
+        marketGainers: action.payload,
+      };
+    case MARKETGAINERS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+      case MARKETLOSERS_FETCHING:
+      return {
+        ...state,
+        loading: true,
+        error: "",
+      };
+    case MARKETLOSERS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: "",
+        marketLosers: action.payload,
+      };
+    case MARKETLOSERS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+      case FETCHTICKERS_START:
+      return {
+        ...state,
+        loading: true,
+        error: "",
+      };
+    case FETCHTICKERS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: "",
+        tickers: action.payload,
+      };
+    case FETCHTICKERS_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+      case FETCHTICKERSALL_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: "",
+        tickersAll: action.payload,
+      };
+      case FETCHSTOCKDAY_START:
+        return {
+          ...state,
+          loading: true,
+          error: "",
+        };
+      case FETCHSTOCKDAY_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          error: "",
+          stockDay: action.payload,
+        };
+      case FETCHSTOCKDAY_ERROR:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+      case FETCHSTOCKWEEK_START:
+        return {
+          ...state,
+          loading: true,
+          error: "",
+        };
+      case FETCHSTOCKWEEK_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          error: "",
+          stockWeek: action.payload,
+        };
+      case FETCHSTOCKWEEK_ERROR:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+      case FETCHSTOCKMONTH_START:
+      return {
+        ...state,
+        loading: true,
+        error: "",
+      };
+    case FETCHSTOCKMONTH_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: "",
+        stockMonth: action.payload,
+      };
+    case FETCHSTOCKMONTH_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+      case FETCHSTOCKTHREEMONTH_START:
+        return {
+          ...state,
+          loading: true,
+          error: "",
+        };
+      case FETCHSTOCKTHREEMONTH_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          error: "",
+          stockThreeMonth: action.payload,
+        };
+      case FETCHSTOCKTHREEMONTH_ERROR:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+        case FETCHSTOCKYEAR_START:
+          return {
+            ...state,
+            loading: true,
+            error: "",
+          };
+        case FETCHSTOCKYEAR_SUCCESS:
+          return {
+            ...state,
+            loading: false,
+            error: "",
+            stockYear: action.payload,
+          };
+        case FETCHSTOCKYEAR_ERROR:
+          return {
+            ...state,
+            loading: false,
+            error: action.payload,
+          };
+          case FETCHSTOCKDETAILS_START:
+            return {
+              ...state,
+              loading: true,
+              error: "",
+            };
+          case FETCHSTOCKDETAILS_SUCCESS:
+            return {
+              ...state,
+              loading: false,
+              error: "",
+              stockDetails: action.payload,
+            };
+          case FETCHSTOCKDETAILS_ERROR:
+            return {
+              ...state,
+              loading: false,
+              error: action.payload,
+            };
     default:
       return state;
   }

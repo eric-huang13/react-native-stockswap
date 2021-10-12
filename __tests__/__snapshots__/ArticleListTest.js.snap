@@ -1,0 +1,212 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+>
+  <RCTScrollView
+    ListFooterComponent={
+      <View
+        style={
+          Object {
+            "height": 0,
+            "marginBottom": 210,
+          }
+        }
+      />
+    }
+    ListHeaderComponent={
+      <View
+        style={
+          Object {
+            "marginBottom": 28.248175182481752,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "left": 19.77372262773723,
+              "position": "absolute",
+              "top": 14.124087591240876,
+              "zIndex": 1,
+            }
+          }
+        >
+          <SearchInput />
+        </View>
+        <Component
+          allowFontScaling={true}
+          onChangeText={[Function]}
+          placeholder="Search"
+          placeholderTextColor="lightgrey"
+          rejectResponderTermination={true}
+          style={
+            Object {
+              "alignContent": "center",
+              "backgroundColor": "#3e4d6c",
+              "color": "lightgrey",
+              "fontFamily": "Montserrat-Italic",
+              "fontSize": 22.598540145985403,
+              "height": 50.846715328467155,
+              "paddingLeft": 56.496350364963504,
+              "paddingVertical": 0,
+            }
+          }
+          underlineColorAndroid="transparent"
+        />
+      </View>
+    }
+    contentContainerStyle={
+      Object {
+        "paddingBottom": 20,
+      }
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReached={[Function]}
+    onEndReachedThreshold={0.1}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            Object {
+              "marginBottom": 28.248175182481752,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "left": 19.77372262773723,
+                "position": "absolute",
+                "top": 14.124087591240876,
+                "zIndex": 1,
+              }
+            }
+          >
+            <RNSVGSvgView
+              align="xMidYMid"
+              bbHeight={25.423357664233578}
+              bbWidth={25.423357664233578}
+              focusable={false}
+              height={25.423357664233578}
+              meetOrSlice={0}
+              minX={0}
+              minY={0}
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                  Object {
+                    "flex": 0,
+                    "height": 25,
+                    "width": 25,
+                  },
+                ]
+              }
+              vbHeight={18}
+              vbWidth={18}
+              width={25.423357664233578}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <RNSVGGroup>
+                <RNSVGDefs />
+                <RNSVGGroup
+                  fill={null}
+                  fillRule={0}
+                  matrix={
+                    Array [
+                      1,
+                      0,
+                      0,
+                      1,
+                      -346,
+                      -529,
+                    ]
+                  }
+                  propList={
+                    Array [
+                      "fill",
+                      "fillRule",
+                    ]
+                  }
+                >
+                  <RNSVGPath
+                    d="M362.805 544.862l-5.114-5.109a5.97 5.97 0 001.32-3.753c0-3.314-2.689-6-6.005-6a6.003 6.003 0 00-6.006 6c0 3.314 2.689 6 6.006 6a5.983 5.983 0 003.74-1.306l5.115 5.11a.668.668 0 00.944-.942zM348.335 536a4.67 4.67 0 014.67-4.667 4.67 4.67 0 014.672 4.667 4.65 4.65 0 01-1.376 3.307s0 0 0 0 0 0 0 0a4.659 4.659 0 01-3.295 1.36 4.67 4.67 0 01-4.671-4.667z"
+                    fill={4288192172}
+                    fillRule={1}
+                    propList={
+                      Array [
+                        "fill",
+                        "fillRule",
+                        "stroke",
+                      ]
+                    }
+                    stroke={4288192172}
+                  />
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGSvgView>
+          </View>
+          <TextInput
+            allowFontScaling={true}
+            onChangeText={[Function]}
+            placeholder="Search"
+            placeholderTextColor="lightgrey"
+            rejectResponderTermination={true}
+            style={
+              Object {
+                "alignContent": "center",
+                "backgroundColor": "#3e4d6c",
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Italic",
+                "fontSize": 22.598540145985403,
+                "height": 50.846715328467155,
+                "paddingLeft": 56.496350364963504,
+                "paddingVertical": 0,
+              }
+            }
+            underlineColorAndroid="transparent"
+          />
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            Object {
+              "height": 0,
+              "marginBottom": 210,
+            }
+          }
+        />
+      </View>
+    </View>
+  </RCTScrollView>
+</RCTSafeAreaView>
+`;

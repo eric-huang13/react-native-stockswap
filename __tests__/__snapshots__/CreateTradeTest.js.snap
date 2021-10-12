@@ -1,0 +1,451 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<RCTSafeAreaView
+  accessible={true}
+  emulateUnlessSupported={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#2a334a",
+      "flex": 1,
+      "flexDirection": "column",
+      "justifyContent": "space-around",
+      "paddingHorizontal": 50.846715328467155,
+      "paddingVertical": 11.299270072992702,
+    }
+  }
+>
+  <RCTScrollView>
+    <View>
+      <View
+        onLayout={[Function]}
+      >
+        <View>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 28.248175182481752,
+                "marginBottom": 16.94890510948905,
+                "textAlign": "center",
+              }
+            }
+          >
+            Post a Trade
+          </Text>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#46486e",
+                "borderRadius": 2,
+                "height": 67.7956204379562,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-Regular",
+                  "fontSize": 19.77372262773723,
+                }
+              }
+            >
+              Upload trade screenshot for autofill
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "marginTop": 28.248175182481752,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#babec8",
+                  "fontFamily": "Montserrat-Regular",
+                  "fontSize": 16.94890510948905,
+                  "marginBottom": 4.237226277372263,
+                }
+              }
+            >
+              Stock name
+            </Text>
+            <TextInput
+              allowFontScaling={true}
+              onBlur={[Function]}
+              onChangeText={[Function]}
+              placeholder="Start typing stock name"
+              placeholderTextColor="#9ea6b5"
+              rejectResponderTermination={true}
+              style={
+                Object {
+                  "backgroundColor": "#3e4d6c",
+                  "borderRadius": 6,
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-Italic",
+                  "fontSize": 19.77372262773723,
+                  "height": 59.32116788321168,
+                  "marginTop": 1.4124087591240877,
+                  "padding": 11.299270072992702,
+                  "textAlignVertical": "center",
+                }
+              }
+              underlineColorAndroid="transparent"
+              value=""
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#F66E6E",
+                  "fontWeight": "bold",
+                  "textAlign": "center",
+                }
+              }
+            />
+          </View>
+          <View>
+            <Text
+              style={
+                Object {
+                  "color": "#babec8",
+                  "fontFamily": "Montserrat-Regular",
+                  "fontSize": 16.94890510948905,
+                  "marginBottom": 4.237226277372263,
+                }
+              }
+            >
+              Order Type
+            </Text>
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "marginBottom": 25.423357664233578,
+                  "marginTop": 2.8248175182481754,
+                }
+              }
+            >
+              <View
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "alignSelf": "center",
+                      "backgroundColor": "#8b64ff",
+                      "borderRadius": 6,
+                      "color": "#FFFFFF",
+                      "fontFamily": "Montserrat-SemiBold",
+                      "fontSize": 19.77372262773723,
+                      "paddingHorizontal": 28.248175182481752,
+                      "paddingVertical": 16.94890510948905,
+                      "textAlign": "center",
+                      "width": 199.14963503649636,
+                    }
+                  }
+                >
+                  Buy
+                </Text>
+              </View>
+              <View
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "alignSelf": "center",
+                      "backgroundColor": "#536183",
+                      "borderRadius": 6,
+                      "color": "#FFFFFF",
+                      "fontFamily": "Montserrat-SemiBold",
+                      "fontSize": 19.77372262773723,
+                      "paddingHorizontal": 28.248175182481752,
+                      "paddingVertical": 16.94890510948905,
+                      "textAlign": "center",
+                      "width": 199.14963503649636,
+                    }
+                  }
+                >
+                  Sell
+                </Text>
+              </View>
+            </View>
+          </View>
+          <View>
+            <Text
+              style={
+                Object {
+                  "color": "#babec8",
+                  "fontFamily": "Montserrat-Regular",
+                  "fontSize": 16.94890510948905,
+                  "marginBottom": 4.237226277372263,
+                }
+              }
+            >
+              Time
+            </Text>
+            <TextInput
+              allowFontScaling={true}
+              onBlur={[Function]}
+              onChangeText={[Function]}
+              placeholder="Time when you sell it"
+              placeholderTextColor="#9ea6b5"
+              rejectResponderTermination={true}
+              style={
+                Object {
+                  "backgroundColor": "#3e4d6c",
+                  "borderRadius": 6,
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-Italic",
+                  "fontSize": 19.77372262773723,
+                  "height": 59.32116788321168,
+                  "marginTop": 1.4124087591240877,
+                  "padding": 11.299270072992702,
+                  "textAlignVertical": "center",
+                }
+              }
+              underlineColorAndroid="transparent"
+              value=""
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#F66E6E",
+                  "fontWeight": "bold",
+                  "textAlign": "center",
+                }
+              }
+            />
+          </View>
+          <View>
+            <Text
+              style={
+                Object {
+                  "color": "#babec8",
+                  "fontFamily": "Montserrat-Regular",
+                  "fontSize": 16.94890510948905,
+                  "marginBottom": 4.237226277372263,
+                }
+              }
+            >
+              Quantity
+            </Text>
+            <TextInput
+              allowFontScaling={true}
+              onBlur={[Function]}
+              onChangeText={[Function]}
+              placeholder="Number of shares"
+              placeholderTextColor="#9ea6b5"
+              rejectResponderTermination={true}
+              style={
+                Object {
+                  "backgroundColor": "#3e4d6c",
+                  "borderRadius": 6,
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-Italic",
+                  "fontSize": 19.77372262773723,
+                  "height": 59.32116788321168,
+                  "marginTop": 1.4124087591240877,
+                  "padding": 11.299270072992702,
+                  "textAlignVertical": "center",
+                }
+              }
+              underlineColorAndroid="transparent"
+              value=""
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#F66E6E",
+                  "fontWeight": "bold",
+                  "textAlign": "center",
+                }
+              }
+            />
+          </View>
+          <View>
+            <Text
+              style={
+                Object {
+                  "color": "#babec8",
+                  "fontFamily": "Montserrat-Regular",
+                  "fontSize": 16.94890510948905,
+                  "marginBottom": 4.237226277372263,
+                }
+              }
+            >
+              Stock privacy
+            </Text>
+            <View>
+              <View
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#3E4D6C",
+                      "borderRadius": 6,
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "paddingHorizontal": 14.124087591240876,
+                      "paddingVertical": 14.124087591240876,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "#FFFFFF",
+                        "fontFamily": "Montserrat-Medium",
+                        "fontSize": 22.598540145985403,
+                      }
+                    }
+                  >
+                    Visible for all
+                  </Text>
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={12.711678832116789}
+                    bbWidth={16.94890510948905}
+                    focusable={false}
+                    height={12.711678832116789}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {
+                          "marginRight": 5.649635036496351,
+                        },
+                        Object {
+                          "flex": 0,
+                          "height": 12,
+                          "width": 16,
+                        },
+                      ]
+                    }
+                    vbHeight={9}
+                    vbWidth={12}
+                    width={16.94890510948905}
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <RNSVGGroup>
+                      <RNSVGPath
+                        d="M6.79 7.985l4.955-6.371A1 1 0 0010.955 0h-9.91a1 1 0 00-.79 1.614l4.956 6.371a1 1 0 001.578 0z"
+                        fill={4290289919}
+                        fillRule={0}
+                        propList={
+                          Array [
+                            "fill",
+                            "fillRule",
+                          ]
+                        }
+                      />
+                    </RNSVGGroup>
+                  </RNSVGSvgView>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "backgroundColor": "#8b64ff",
+                  "borderRadius": 6,
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-SemiBold",
+                  "fontSize": 19.77372262773723,
+                  "marginBottom": 11.299270072992702,
+                  "marginTop": 50.846715328467155,
+                  "paddingHorizontal": 28.248175182481752,
+                  "paddingVertical": 16.94890510948905,
+                  "textAlign": "center",
+                  "width": 427.95985401459853,
+                }
+              }
+            >
+              Publish
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</RCTSafeAreaView>
+`;

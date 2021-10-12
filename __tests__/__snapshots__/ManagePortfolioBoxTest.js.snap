@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)
+  style={
+    Object {
+      "backgroundColor": "#2a334a",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "width": 139.8284671532847,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flexDirection": "column",
+        "justifyContent": "space-evenly",
+        "paddingLeft": 11.299270072992702,
+        "paddingVertical": 5.649635036496351,
+        "textAlign": "left",
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#71F59C",
+          "fontFamily": "Montserrat-Bold",
+          "fontSize": 22.598540145985403,
+          "textAlign": "left",
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "color": "lightgrey",
+          "fontFamily": "Montserrat-Regular",
+          "fontSize": 14.124087591240876,
+          "textAlign": "left",
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "color": "#FFFFFF",
+          "fontFamily": "Montserrat-Regular",
+          "fontSize": 16.94890510948905,
+          "textAlign": "left",
+        }
+      }
+    >
+      Shares: 22
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "#FFFFFF",
+          "fontFamily": "Montserrat-Regular",
+          "fontSize": 16.94890510948905,
+          "textAlign": "left",
+        }
+      }
+    >
+      Price: $
+    </Text>
+  </View>
+  <View>
+    <PortfolioGraph
+      graphData={
+        Array [
+          Object {
+            "x": 2,
+            "y": 10,
+          },
+          Object {
+            "x": 3,
+            "y": 21,
+          },
+          Object {
+            "x": 4,
+            "y": 32,
+          },
+          Object {
+            "x": 5,
+            "y": 14,
+          },
+          Object {
+            "x": 6,
+            "y": 4,
+          },
+          Object {
+            "x": 7,
+            "y": 25,
+          },
+        ]
+      }
+      percent="1.22"
+      range={
+        Array [
+          5,
+          30,
+        ]
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "flex-end",
+        "flexDirection": "column",
+        "justifyContent": "space-evenly",
+        "paddingRight": 42.372262773722625,
+        "paddingVertical": 5.649635036496351,
+      }
+    }
+  >
+    <BullIcon
+      style={
+        Object {
+          "alignSelf": "flex-end",
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "color": "#71F59C",
+          "fontFamily": "Montserrat-Bold",
+          "fontSize": 22.598540145985403,
+          "textAlign": "left",
+        }
+      }
+    >
+      1.22
+      %
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "#FFFFFF",
+          "fontFamily": "Montserrat-Regular",
+          "fontSize": 16.94890510948905,
+          "textAlign": "left",
+        }
+      }
+    >
+      Portfolio:
+    </Text>
+  </View>
+</ForwardRef(SafeAreaView)>
+`;

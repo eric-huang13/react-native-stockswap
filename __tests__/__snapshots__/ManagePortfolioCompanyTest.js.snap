@@ -1,0 +1,795 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)
+  style={
+    Object {
+      "backgroundColor": "#2a334a",
+      "flex": 1,
+      "paddingVertical": 10,
+    }
+  }
+>
+  <ScrollView>
+    <View
+      style={
+        Object {
+          "marginBottom": 10,
+          "paddingVertical": 14,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "color": "rgb(8, 177, 40)",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingHorizontal": 15,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "lightgrey",
+              "fontFamily": "Montserrat-Regular",
+              "fontSize": 16,
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "color": "rgb(8, 177, 40)",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingHorizontal": 18,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-ExtraBold",
+                "fontSize": 24,
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Regular",
+                "fontSize": 12,
+                "marginLeft": 10,
+              }
+            }
+          >
+            Shares
+          </Text>
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "rgb(8, 177, 40)",
+              "fontFamily": "Montserrat-Medium",
+              "fontSize": 12,
+            }
+          }
+        >
+          (
+          1.22
+          %)
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+        }
+      }
+    >
+      <CompanyStockGraph
+        graphData={
+          Array [
+            Object {
+              "x": 2,
+              "y": 10,
+            },
+            Object {
+              "x": 3,
+              "y": 11,
+            },
+            Object {
+              "x": 4,
+              "y": 12,
+            },
+            Object {
+              "x": 5,
+              "y": 14,
+            },
+            Object {
+              "x": 6,
+              "y": 14,
+            },
+            Object {
+              "x": 7,
+              "y": 15,
+            },
+          ]
+        }
+        range={
+          Array [
+            10,
+            15,
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "borderLeftColor": "lightgrey",
+            "borderLeftWidth": 1,
+            "flexDirection": "column-reverse",
+            "justifyContent": "space-around",
+            "marginRight": 10,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "lightgrey",
+              "fontSize": 14.5,
+            }
+          }
+        >
+          -
+          10
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "lightgrey",
+              "fontSize": 14.5,
+            }
+          }
+        >
+          -
+          12
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "lightgrey",
+              "fontSize": 14.5,
+            }
+          }
+        >
+          -
+          13
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "lightgrey",
+              "fontSize": 14.5,
+            }
+          }
+        >
+          -
+          15
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "borderBottomColor": "lightgrey",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "justifyContent": "space-evenly",
+          "marginBottom": 10,
+          "marginTop": 7,
+          "paddingBottom": 9,
+        }
+      }
+    >
+      <ForwardRef
+        onPress={[Function]}
+      >
+        <Text
+          style={
+            Object {
+              "color": "#8b64ff",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Live
+        </Text>
+      </ForwardRef>
+      <ForwardRef
+        onPress={[Function]}
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          1D
+        </Text>
+      </ForwardRef>
+      <ForwardRef
+        onPress={[Function]}
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          1W
+        </Text>
+      </ForwardRef>
+      <ForwardRef
+        onPress={[Function]}
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          1M
+        </Text>
+      </ForwardRef>
+      <ForwardRef
+        onPress={[Function]}
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          3M
+        </Text>
+      </ForwardRef>
+      <ForwardRef
+        onPress={[Function]}
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          1Y
+        </Text>
+      </ForwardRef>
+      <ForwardRef
+        onPress={[Function]}
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          All
+        </Text>
+      </ForwardRef>
+    </View>
+    <View
+      style={
+        Object {
+          "paddingHorizontal": 6,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "lightgrey",
+            "fontFamily": "Montserrat-Regular",
+            "fontSize": 12,
+            "marginTop": 6,
+            "paddingLeft": 2,
+          }
+        }
+      >
+        Account privacy
+      </Text>
+      <View>
+        <ForwardRef
+          onPress={[Function]}
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#3E4D6C",
+                "borderRadius": 6,
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginTop": 4,
+                "paddingHorizontal": 10,
+                "paddingVertical": 10,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-Medium",
+                  "fontSize": 16,
+                }
+              }
+            >
+              Visible for all
+            </Text>
+            <TriangleIcon
+              style={
+                Object {
+                  "marginRight": 4,
+                }
+              }
+            />
+          </View>
+        </ForwardRef>
+      </View>
+    </View>
+    <Text
+      style={
+        Object {
+          "color": "#FFFFFF",
+          "fontFamily": "Montserrat-Bold",
+          "fontSize": 22,
+          "marginTop": 28,
+          "paddingHorizontal": 10,
+          "textAlign": "left",
+        }
+      }
+    >
+      STATS
+    </Text>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginTop": 6,
+          "paddingHorizontal": 10,
+          "paddingTop": 4,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "color": "black",
+            "flexDirection": "column",
+            "fontSize": 31,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 14,
+                "marginBottom": 10,
+              }
+            }
+          >
+            Open:
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 14,
+                "marginBottom": 10,
+                "marginLeft": 55,
+              }
+            }
+          >
+            $
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 14,
+                "marginBottom": 10,
+              }
+            }
+          >
+            High:
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 14,
+                "marginBottom": 10,
+                "marginLeft": 55,
+              }
+            }
+          >
+            $
+            -Infinity
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 14,
+                "marginBottom": 10,
+              }
+            }
+          >
+            Low:
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 14,
+                "marginBottom": 10,
+                "marginLeft": 55,
+              }
+            }
+          >
+            $
+            Infinity
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 14,
+                "marginBottom": 10,
+              }
+            }
+          >
+            Volume:
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 14,
+                "marginBottom": 10,
+                "marginLeft": 55,
+              }
+            }
+          >
+            $
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 14,
+                "marginBottom": 10,
+              }
+            }
+          >
+            Avg Vol:
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 14,
+                "marginBottom": 10,
+                "marginLeft": 55,
+              }
+            }
+          >
+            $
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "color": "black",
+            "flexDirection": "column",
+            "fontSize": 31,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 14,
+                "marginBottom": 10,
+              }
+            }
+          >
+            P/E:
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 14,
+                "marginBottom": 10,
+                "marginLeft": 55,
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 14,
+                "marginBottom": 10,
+              }
+            }
+          >
+            MKT Cap:
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 14,
+                "marginBottom": 10,
+                "marginLeft": 55,
+              }
+            }
+          >
+            $
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 14,
+                "marginBottom": 10,
+              }
+            }
+          >
+            52w High:
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 14,
+                "marginBottom": 10,
+                "marginLeft": 55,
+              }
+            }
+          >
+            $
+            -Infinity
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 14,
+                "marginBottom": 10,
+              }
+            }
+          >
+            52w Low:
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 14,
+                "marginBottom": 10,
+                "marginLeft": 55,
+              }
+            }
+          >
+            $
+            Infinity
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Medium",
+                "fontSize": 14,
+                "marginBottom": 10,
+              }
+            }
+          >
+            Div/Yield:
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 14,
+                "marginBottom": 10,
+                "marginLeft": 55,
+              }
+            }
+          >
+            %
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "marginBottom": 4,
+          "marginTop": 24,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "backgroundColor": "#8b64ff",
+            "borderRadius": 6,
+            "color": "#FFFFFF",
+            "fontFamily": "Montserrat-SemiBold",
+            "fontSize": 14,
+            "paddingHorizontal": 40,
+            "paddingVertical": 10,
+          }
+        }
+      >
+        Publish a trade
+      </Text>
+    </View>
+  </ScrollView>
+</ForwardRef(SafeAreaView)>
+`;

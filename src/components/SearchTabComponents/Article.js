@@ -5,19 +5,22 @@ import {moderateScale} from '../../util/responsiveFont';
 export class Article extends Component {
   render() {
     const {item} = this.props;
+    // console.log(this.props, 'props in news')
 
     return (
       <SafeAreaView style={style.container}>
         <View style={style.imageContainer}>
-          <Image style={style.image} source={{uri: item.img}} />
+          <Image style={style.image} source={{uri: item.image_url}} />
         </View>
         <View style={style.headlineContainer}>
-          <Text style={style.headline}>{item.headline}</Text>
-          <Text style={style.intro}>{item.intro}</Text>
+          <Text style={style.headline}>{item.title}</Text>
+          {/* <Text style={style.headline}>{item.news_url}</Text> */}
+
+          <Text style={style.intro}>{item.text}</Text>
         </View>
         <View style={style.sourceContainer}>
-          <Text style={style.source}>{item.source}</Text>
-          <Text style={style.released}>{item.released} ago</Text>
+          <Text style={style.source}>{item.source_name}</Text>
+          <Text style={style.released}>{item.date}</Text>
         </View>
       </SafeAreaView>
     );

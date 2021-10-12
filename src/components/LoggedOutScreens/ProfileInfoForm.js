@@ -17,21 +17,25 @@ import {Formik} from 'formik';
 import * as Yup from 'yup';
 import LinearGradient from 'react-native-linear-gradient';
 import {Register} from '../../actions/user';
+import { CreateProfile } from '../../actions/profile';
+import { CreateProfileImage } from '../../actions/profile';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {moderateScale} from '../../util/responsiveFont';
+import {Buffer} from "buffer";
 
 const validationSchema = Yup.object().shape({
-  fullName: Yup.string()
+  name: Yup.string()
     .label('Name')
     .required('Name is required')
     .min(2, 'Must have at least 2 characters'),
 
-  username: Yup.string().label('username').required('Username is required'),
+  username: Yup.string().label('username')
+  .required('username is required'),
 
-  hashtag: Yup.string()
-    .label('hashtag')
-    .matches(/^#\w+$/, 'Must be a hashtag')
-    .min(2, 'Hashtag must have more than 2 characters '),
+  tags: Yup.string()
+    .label('tags')
+    .matches(/^#\w+$/, 'Must be a tags')
+    .min(2, 'tags must have more than 2 characters '),
 
   bio: Yup.string()
     .label('bio')
@@ -55,22 +59,24 @@ export class ProfileInfoForm extends Component {
     this.setState({isPrivate: setting, shouldShow: false});
   }
 
-
   render() {
-    const {RegisterUser, LoginUser} = this.props;
-    const {userInfo} = this.props.route.params;
+    const {RegisterUser, CreateProfile, CreateProfileImage} = this.props;
+    console.log(this.props.userId, "ID")
+    console.log(this.props.userData, "userInfo")
+
+    // const {userInfo} = this.props.route.params;
 
     const {shouldShow} = this.state;
 
     //Creating FormData for sending image to backend
-    const createFormData = (values) => {
-      let formData = new FormData();
-      Object.keys(values).forEach((fieldName) => {
-        console.log(fieldName, values[fieldName]);
-        formData.append(fieldName, values[fieldName]);
-      });
-      return formData;
-    };
+    // const createFormData = (values) => {
+    //   let formData = new FormData();
+    //   Object.keys(values).forEach((fieldName) => {
+    //     console.log(fieldName, values[fieldName]);
+    //     formData.append(fieldName, values[fieldName]);
+    //   });
+    //   return formData;
+    // };
 
     return (
       <LinearGradient
@@ -85,28 +91,33 @@ export class ProfileInfoForm extends Component {
             <ScrollView>
               <Formik
                 initialValues={{
-                  email: userInfo.email,
-                  password: userInfo.password,
-                  termsVersion: userInfo.termsVersion,
-                  fullName: '',
+                  // email: userInfo.email,
+                  // password: userInfo.password,
+                  // termsVersion: userInfo.termsVersion,
+                  name: '',
                   username: '',
-                  image: {name: '', type: '', uri: ''},
-                  hashtag: '',
+                  image: {data: '', name: '', type: '', uri: ''},
+                  tags: '',
                   bio: '',
                   isPrivate: false,
                 }}
                 onSubmit={(values) => {
                 //Adding to FormData for image
-                  const data = createFormData(values);
-                  console.log(data, 'form');
+                  // const data = createFormData(values.image);
+                  // console.log(data, 'form');
+                  const id = this.props.userId
+                  const token = this.props.userData.accessToken
+                  const buffer = Buffer.from(values.image.data, 'base64')
+
+                  CreateProfileImage(id, token, buffer)
 
                   // RegisterUser(data);
-
-
-                    ({email: values.email,
-                    password: values.password,
+                  
+                  CreateProfile ({name: values.name,
                     username: values.username,
-                    fullName: values.fullName,})
+                    bio: values.bio,
+                    tags: values.tags,
+                  })
 
                 }}
                 validationSchema={validationSchema}>
@@ -128,12 +139,13 @@ export class ProfileInfoForm extends Component {
                         onPress={() => {
                           const options = {
                             mediaType: 'photo',
-                            // includeBase64:true,
+                            includeBase64:true,
                           };
                           launchImageLibrary(options, (response) => {
-                            console.log(response, 'response image');
+                            // console.log(response, 'response image');
                             if (response.uri) {
                               setFieldValue('image', {
+                                data: response.base64,
                                 name: response.fileName,
                                 type: response.type,
                                 uri:
@@ -157,13 +169,14 @@ export class ProfileInfoForm extends Component {
                           onPress={() => {
                             const options = {
                               mediaType: 'photo',
-                              // includeBase64:true,
+                              includeBase64:true,
 
                             };
                             launchImageLibrary(options, (response) => {
-                              console.log(response, 'response image');
+                              // console.log(response, 'response image');
                               if (response.uri) {
                                 setFieldValue('image', {
+                                  data: response.base64,
                                   name: response.fileName,
                                   type: response.type,
                                   uri:
@@ -187,17 +200,17 @@ export class ProfileInfoForm extends Component {
                         <Text style={style.inputHeader}>Name</Text>
                         <TextInput
                           style={style.inputStyle}
-                          onBlur={handleBlur('fullName')}
-                          value={values.fullName}
-                          onChangeText={handleChange('fullName')}
+                          onBlur={handleBlur('name')}
+                          value={values.name}
+                          onChangeText={handleChange('name')}
                           placeholder="Enter your name"
                           placeholderTextColor="#9ea6b5"
                           returnKeyType="next"
                           onSubmitEditing={() => this.username.focus()}
-                          ref={(input) => (this.fullName = input)}
+                          ref={(input) => (this.name = input)}
                         />
                         <Text style={style.errorText}>
-                          {touched.fullName && errors.fullName}
+                          {touched.name && errors.name}
                         </Text>
                       </View>
 
@@ -220,22 +233,7 @@ export class ProfileInfoForm extends Component {
                       </View>
                     </View>
                     <View style={style.bottomColumn}>
-                      {/* <View style={style.imageContainer}>
-                        <Text style={style.inputHeader}>Image</Text>
-                        <TextInput
-                          value={values.image}
-                          onBlur={handleBlur('image')}
-                          onChangeText={handleChange('image')}
-                          placeholder="Image url"
-                          placeholderTextColor="#9ea6b5"
-                          style={style.inputStyle}
-                          ref={(input) => (this.image = input)}
-                          onSubmitEditing={() => this.hashtag.focus()}
-                        />
-                        <Text style={style.errorText}>
-                          {touched.image && errors.image}
-                        </Text>
-                      </View> */}
+                  
 
                       <View>
                         <Text style={style.inputHeader}>
@@ -244,17 +242,17 @@ export class ProfileInfoForm extends Component {
 
                         <TextInput
                           style={style.inputStyle}
-                          value={values.hashtag}
-                          onBlur={handleBlur('hashtag')}
-                          onChangeText={handleChange('hashtag')}
-                          placeholder="Add hashtags which describe you"
+                          value={values.tags}
+                          onBlur={handleBlur('tags')}
+                          onChangeText={handleChange('tags')}
+                          placeholder="Add tags which describe you"
                           placeholderTextColor="#9ea6b5"
                           returnKeyType="next"
-                          ref={(input) => (this.hashtag = input)}
+                          ref={(input) => (this.tags = input)}
                           onSubmitEditing={() => this.bio.focus()}
                         />
                         <Text style={style.errorText}>
-                          {touched.hashtag && errors.hashtag}
+                          {touched.tags && errors.tags}
                         </Text>
                       </View>
                       <View>
@@ -341,12 +339,17 @@ export class ProfileInfoForm extends Component {
 const mapStateToProps = (state) => {
   return {
     userData: state.user.userData,
+    userId: state.user.userId,
+
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     RegisterUser: (input) => dispatch(Register(input)),
+    CreateProfile: (input) => dispatch(CreateProfile(input)),
+    CreateProfileImage: (id, token, input) => dispatch(CreateProfileImage(id, token, input)),
+
   };
 };
 

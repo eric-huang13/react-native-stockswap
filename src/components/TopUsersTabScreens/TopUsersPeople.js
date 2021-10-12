@@ -3,14 +3,16 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  ScrollView,
   StyleSheet,
   Text,
   SafeAreaView,
+  FlatList
 } from 'react-native';
 import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
 import UserBox from '../SearchTabComponents/UserBox';
+import {fetchFake} from '../../actions/people'
+
 import {moderateScale} from '../../util/responsiveFont';
 
 export class TopUsersPeople extends Component {
@@ -21,6 +23,17 @@ export class TopUsersPeople extends Component {
       timeFilter: 'day',
     };
   }
+ componentDidMount() {
+  this.props.fetchFake(this.props.page, this.props.offset)
+}
+
+ //fetches more data, increases page number by 1
+  fetchMoreData = () => {
+  if (!this.props.loading && this.props.loadMore){
+  this.props.fetchFake(this.props.page, this.props.offset);
+  console.log(this.props.page,'ran')
+  }
+};
 
   timeFilterSelect(time) {
     this.setState({timeFilter: time});
@@ -44,11 +57,13 @@ export class TopUsersPeople extends Component {
       });
     }
   };
+ 
 
   render() {
+    console.log(this.props.loadMore,'ran')
+
     const {timeFilter, input} = this.state;
     const {users, userAccount} = this.props;
-
     const accountId = userAccount.id;
 
     const filteredUsers = users.filter((item) =>
@@ -57,11 +72,10 @@ export class TopUsersPeople extends Component {
 
     return (
       <SafeAreaView style={style.mainContainer}>
-        <ScrollView
-          contentContainerStyle={{
-            paddingBottom: 180,
-            backgroundColor: '#2a334a',
-          }}>
+          <FlatList
+
+          ListHeaderComponent={
+            <View>
           <View style={style.searchInputContainer}>
             <View
               style={{
@@ -152,32 +166,68 @@ export class TopUsersPeople extends Component {
               </Text>
             </TouchableOpacity>
           </View>
-          {filteredUsers.map((item) => {
-            return (
-              <TouchableOpacity
-                key={item.id}
-                onPress={() => this.navigationByCondition(item)}>
-                <UserBox item={item} />
-              </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
+          </View>
+          }
+          keyExtractor={(item, index) => String(index)}
+          contentContainerStyle={{ paddingBottom: 20 }}
+          data={filteredUsers}
+           renderItem={({item, index}) => (
+            <TouchableOpacity
+            // key={item.id}
+            onPress={() => this.navigationByCondition(item)}>
+            <UserBox item={item} index={index} />
+          </TouchableOpacity>
+           )}  
+           onEndReachedThreshold={0.1} 
+           onEndReached={this.fetchMoreData}
+        ListFooterComponent={
+          <View style={style.footer}>
+            {this.props.loading ? <Text style={style.loadingText}>LOADING...</Text> : null}
+          </View>
+        }                   
+          />
+          
       </SafeAreaView>
     );
   }
 }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchFake: (page, offset) => dispatch(fetchFake(page, offset)),
+  };
+};
 
 const mapStateToProps = (state) => {
   return {
     users: state.people.users,
     userAccount: state.user.userFakeData,
+    loading:state.people.loading,
+    page:state.people.page,
+    loadMore:state.people.loadMore,
   };
 };
 
-export default connect(mapStateToProps)(TopUsersPeople);
+export default connect(mapStateToProps, mapDispatchToProps)(TopUsersPeople);
 
 const style = StyleSheet.create({
-  mainContainer: {},
+  fakeView: {
+    flexDirection: "column",
+    borderColor: "black",
+    justifyContent: "space-between", 
+  },
+  fakeText: {
+    marginVertical: 30,
+    backgroundColor: "lightgray",
+    textAlign: "center",
+    color:'blue',
+    fontSize:18,
+  },
+  loadingText:{
+    color:'#8B64FF',
+    textAlign:"center",
+    fontSize:18,
+  },
+   mainContainer: {},
   searchInputContainer: {
     marginBottom: moderateScale(15),
   },
@@ -209,4 +259,8 @@ const style = StyleSheet.create({
     fontFamily: 'Montserrat-Bold',
     fontSize: moderateScale(16),
   },
+  footer:{
+    height: 0, 
+    marginBottom: 200,
+  }
 });

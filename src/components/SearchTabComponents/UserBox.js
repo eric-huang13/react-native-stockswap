@@ -4,12 +4,12 @@ import {moderateScale} from '../../util/responsiveFont';
 
 export default class UserBox extends Component {
   render() {
-    const {item} = this.props;
+    const {item, index} = this.props;
 
     return (
       <SafeAreaView
         style={
-          item.id % 2 === 0
+          index % 2 !== 0
             ? {...style.container, backgroundColor: '#2a334a'}
             : {...style.container}
         }>

@@ -1,0 +1,316 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<LinearGradient
+  colors={
+    Array [
+      "#1D2842",
+      "#3d4b6e",
+    ]
+  }
+  end={
+    Object {
+      "x": 0.1,
+      "y": 0.1,
+    }
+  }
+  start={
+    Object {
+      "x": 0.1,
+      "y": 1,
+    }
+  }
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <KeyboardAvoidingView
+    behavior="padding"
+    enabled={true}
+    keyboardVerticalOffset={0}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <ForwardRef(SafeAreaView)
+      style={
+        Object {
+          "flex": 1,
+          "padding": 11.299270072992702,
+          "paddingHorizontal": 33.8978102189781,
+        }
+      }
+    >
+      <ScrollView>
+        <TouchableWithoutFeedback
+          onPress={[Function]}
+        >
+          <Formik
+            initialValues={
+              Object {
+                "email": "",
+                "password": "",
+              }
+            }
+            onSubmit={[Function]}
+            validationSchema={
+              ObjectSchema {
+                "_blacklist": ReferenceSet {
+                  "list": Set {},
+                  "refs": Map {},
+                },
+                "_excludedEdges": Array [],
+                "_mutate": undefined,
+                "_nodes": Array [
+                  "password",
+                  "email",
+                ],
+                "_sortErrors": [Function],
+                "_typeError": [Function],
+                "_whitelist": ReferenceSet {
+                  "list": Set {},
+                  "refs": Map {},
+                },
+                "conditions": Array [],
+                "deps": Array [],
+                "exclusiveTests": Object {},
+                "fields": Object {
+                  "email": StringSchema {
+                    "_blacklist": ReferenceSet {
+                      "list": Set {},
+                      "refs": Map {},
+                    },
+                    "_blacklistError": undefined,
+                    "_typeError": [Function],
+                    "_whitelist": ReferenceSet {
+                      "list": Set {},
+                      "refs": Map {},
+                    },
+                    "_whitelistError": undefined,
+                    "conditions": Array [],
+                    "deps": Array [],
+                    "exclusiveTests": Object {
+                      "email": false,
+                      "required": true,
+                    },
+                    "spec": Object {
+                      "abortEarly": true,
+                      "label": undefined,
+                      "meta": undefined,
+                      "nullable": false,
+                      "presence": "required",
+                      "recursive": true,
+                      "strict": false,
+                      "strip": false,
+                    },
+                    "tests": Array [
+                      [Function],
+                      [Function],
+                    ],
+                    "transforms": Array [
+                      [Function],
+                    ],
+                    "type": "string",
+                  },
+                  "password": StringSchema {
+                    "_blacklist": ReferenceSet {
+                      "list": Set {},
+                      "refs": Map {},
+                    },
+                    "_blacklistError": undefined,
+                    "_typeError": [Function],
+                    "_whitelist": ReferenceSet {
+                      "list": Set {},
+                      "refs": Map {},
+                    },
+                    "_whitelistError": undefined,
+                    "conditions": Array [],
+                    "deps": Array [],
+                    "exclusiveTests": Object {
+                      "matches": false,
+                      "min": true,
+                      "required": true,
+                    },
+                    "spec": Object {
+                      "abortEarly": true,
+                      "label": undefined,
+                      "meta": undefined,
+                      "nullable": false,
+                      "presence": "required",
+                      "recursive": true,
+                      "strict": false,
+                      "strip": false,
+                    },
+                    "tests": Array [
+                      [Function],
+                      [Function],
+                      [Function],
+                      [Function],
+                      [Function],
+                    ],
+                    "transforms": Array [
+                      [Function],
+                    ],
+                    "type": "string",
+                  },
+                },
+                "spec": Object {
+                  "abortEarly": true,
+                  "label": undefined,
+                  "meta": undefined,
+                  "nullable": false,
+                  "presence": "optional",
+                  "recursive": true,
+                  "strict": false,
+                  "strip": false,
+                },
+                "tests": Array [],
+                "transforms": Array [
+                  [Function],
+                ],
+                "type": "object",
+              }
+            }
+          >
+            [Function]
+          </Formik>
+        </TouchableWithoutFeedback>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#CBCDD7",
+                "fontFamily": "Montserrat-Regular",
+                "fontSize": 19.77372262773723,
+                "marginVertical": 22.598540145985403,
+              }
+            }
+          >
+            --OR--
+          </Text>
+          <View
+            style={
+              Object {
+                "flexDirection": "column",
+                "justifyContent": "space-between",
+              }
+            }
+          >
+            <Memo(Connect(GoogleOauth)) />
+            <View
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "backgroundColor": "#2C3957",
+                  "borderRadius": 11.299270072992702,
+                  "flexDirection": "row",
+                  "marginBottom": 14.124087591240876,
+                  "paddingHorizontal": 5.649635036496351,
+                  "paddingVertical": 16.94890510948905,
+                  "width": 494.3430656934307,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "backgroundColor": "#3A4A6D",
+                    "borderRadius": 9.886861313868614,
+                    "marginRight": 88.98175182481751,
+                    "marginVertical": -11.299270072992702,
+                    "padding": 9.886861313868614,
+                  }
+                }
+              >
+                <FacebookIcon />
+              </View>
+              <Text
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "color": "#FFFFFF",
+                    "elevation": 1,
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 19.77372262773723,
+                    "justifyContent": "center",
+                    "shadowOffset": Object {
+                      "height": 2,
+                      "width": 0,
+                    },
+                    "shadowOpacity": 0.25,
+                    "shadowRadius": 3.84,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                LOGIN WITH FACEBOOK
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "backgroundColor": "#2C3957",
+                  "borderRadius": 11.299270072992702,
+                  "flexDirection": "row",
+                  "marginBottom": 14.124087591240876,
+                  "paddingHorizontal": 5.649635036496351,
+                  "paddingVertical": 16.94890510948905,
+                  "width": 494.3430656934307,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "backgroundColor": "#3A4A6D",
+                    "borderRadius": 9.886861313868614,
+                    "marginRight": 88.98175182481751,
+                    "marginVertical": -11.299270072992702,
+                    "padding": 9.886861313868614,
+                  }
+                }
+              >
+                <AppleIcon />
+              </View>
+              <Text
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "color": "#FFFFFF",
+                    "elevation": 1,
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 19.77372262773723,
+                    "justifyContent": "center",
+                    "shadowOffset": Object {
+                      "height": 2,
+                      "width": 0,
+                    },
+                    "shadowOpacity": 0.25,
+                    "shadowRadius": 3.84,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                LOGIN WITH APPLE
+              </Text>
+            </View>
+          </View>
+        </View>
+      </ScrollView>
+    </ForwardRef(SafeAreaView)>
+  </KeyboardAvoidingView>
+</LinearGradient>
+`;

@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<LinearGradient
+  colors={
+    Array [
+      "#1D2842",
+      "#3d4b6e",
+    ]
+  }
+  end={
+    Object {
+      "x": 0.1,
+      "y": 0.1,
+    }
+  }
+  start={
+    Object {
+      "x": 0.1,
+      "y": 1,
+    }
+  }
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <ForwardRef(SafeAreaView)
+    style={
+      Object {
+        "backgroundColor": "#323e5b",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 11.299270072992702,
+        "paddingHorizontal": 2,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignSelf": "center",
+          "backgroundColor": "#2C3957",
+          "borderRadius": 11.299270072992702,
+          "elevation": 1,
+          "flexDirection": "column",
+          "height": "55%",
+          "paddingHorizontal": 49.434306569343065,
+          "paddingVertical": 39.54744525547446,
+          "shadowColor": "rgba(0,0,0,0.13)",
+          "shadowOffset": Object {
+            "height": 2,
+            "width": 0,
+          },
+          "shadowOpacity": 0.25,
+          "shadowRadius": 3.84,
+          "width": "85%",
+        }
+      }
+    >
+      <EmailIcon
+        style={
+          Object {
+            "alignSelf": "center",
+            "marginTop": 42.372262773722625,
+          }
+        }
+      />
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontFamily": "Montserrat-Bold",
+            "fontSize": 28.248175182481752,
+            "marginBottom": 7.062043795620438,
+            "marginTop": 28.248175182481752,
+            "textAlign": "center",
+          }
+        }
+      >
+        Success
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontFamily": "Montserrat-Medium",
+            "fontSize": 19.77372262773723,
+            "marginBottom": 22.598540145985403,
+            "textAlign": "center",
+          }
+        }
+      >
+        Email sucessfully changed.
+      </Text>
+      <View
+        style={
+          Object {
+            "marginTop": 14.124087591240876,
+          }
+        }
+      >
+        <ForwardRef
+          onPress={[Function]}
+        >
+          <Text
+            style={
+              Object {
+                "alignSelf": "center",
+                "backgroundColor": "#8B64FF",
+                "borderRadius": 8.474452554744525,
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-SemiBold",
+                "fontSize": 22.598540145985403,
+                "marginTop": 14.124087591240876,
+                "paddingHorizontal": 28.248175182481752,
+                "paddingVertical": 16.94890510948905,
+                "textAlign": "center",
+                "width": 228.8102189781022,
+              }
+            }
+          >
+            Ok
+          </Text>
+        </ForwardRef>
+      </View>
+    </View>
+  </ForwardRef(SafeAreaView)>
+</LinearGradient>
+`;

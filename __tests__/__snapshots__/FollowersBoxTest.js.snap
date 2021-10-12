@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#2a334a",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "paddingHorizontal": 14.124087591240876,
+      "paddingVertical": 19.77372262773723,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "uri": "test",
+        }
+      }
+      style={
+        Object {
+          "borderRadius": 70.62043795620437,
+          "height": 88.98175182481751,
+          "width": 88.98175182481751,
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "marginLeft": 8.474452554744525,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontFamily": "Montserrat-Bold",
+            "fontSize": 22.598540145985403,
+          }
+        }
+      />
+      <Text
+        style={
+          Object {
+            "color": "lightgrey",
+            "fontFamily": "Montserrat-Regular",
+            "fontSize": 19.77372262773723,
+          }
+        }
+      />
+    </View>
+  </View>
+</ForwardRef(SafeAreaView)>
+`;

@@ -10,8 +10,9 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Image,
+  Platform
 } from 'react-native';
-import {EditUser} from '../../actions/user';
+import { EditUserProfile } from '../../actions/profile';
 import LinearGradient from 'react-native-linear-gradient';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
@@ -24,12 +25,12 @@ const validationSchema = Yup.object().shape({
     .required('Name is required')
     .min(2, 'Must have at least 2 characters'),
 
-  username: Yup.string().label('username').required('Username is required'),
+  username: Yup.string().label('username').required('username is required'),
 
-  hashtag: Yup.string()
-    .label('hashtag')
-    .matches(/^#\w+$/, 'Must be a hashtag')
-    .min(2, 'Hashtag must have more than 2 characters '),
+  tags: Yup.string()
+    .label('tags')
+    .matches(/^#\w+$/, 'Must be a tags')
+    .min(2, 'tags must have more than 2 characters '),
 
   bio: Yup.string()
     .label('bio')
@@ -53,7 +54,7 @@ class EditProfile extends Component {
   };
 
   render() {
-    const {EditUserAccount, userAccount} = this.props;
+    const {userAccount, userProfile, EditUserProfile, userImage} = this.props;
     return (
       <LinearGradient
         start={{x: 0.1, y: 1}}
@@ -67,17 +68,22 @@ class EditProfile extends Component {
             <ScrollView>
               <Formik
                 initialValues={{
-                  id: userAccount.id,
-                  name: userAccount.name,
-                  username: userAccount.username,
-                  image: {name: '', type: '', uri: userAccount.img},
-                  hashtag: userAccount.hashtag,
-                  bio: userAccount.bio,
+                  // id: userAccount.id,
+                  name: userProfile.name,
+                  username: userProfile.username,
+                  image: {name: '', type: '', uri: userImage},
+                  tags: userAccount.hashtag,
+                  bio: userProfile.bio,
                 }}
                 onSubmit={(values) => {
                   console.log(values, 'infooooo');
                   const data = this.createFormData(values);
                   console.log(data, 'form');
+                  EditUserProfile ({name: values.name,
+                    username: values.username,
+                    bio: values.bio,
+                    tags: values.tags,
+                  })
                 }}
                 validationSchema={validationSchema}>
                 {({
@@ -117,7 +123,7 @@ class EditProfile extends Component {
                         }}>
                         <Image
                           style={style.uploadPhotoContainer}
-                          source={{uri: values.image.uri}}
+                          source={{uri: values.image.uri, headers:{Authorization: `Bearer ${this.props.userData.accessToken}`}}}
                         />
                       </TouchableOpacity>
                     ) : (
@@ -203,7 +209,7 @@ class EditProfile extends Component {
                           placeholderTextColor="#9ea6b5"
                           style={style.inputStyle}
                           ref={(input) => (this.image = input)}
-                          onSubmitEditing={() => this.hashtag.focus()}
+                          onSubmitEditing={() => this.tags.focus()}
                         />
                         <Text style={style.errorText}>
                           {touched.image && errors.image}
@@ -211,22 +217,22 @@ class EditProfile extends Component {
                       </View> */}
                       <View>
                         <Text style={style.inputHeader}>
-                          Hashtag (up to 3 tags)
+                          tags (up to 3 tags)
                         </Text>
 
                         <TextInput
                           style={style.inputStyle}
-                          value={values.hashtag}
-                          onBlur={handleBlur('hashtag')}
-                          onChangeText={handleChange('hashtag')}
-                          placeholder="Add hashtags which describe you"
+                          value={values.tags}
+                          onBlur={handleBlur('tags')}
+                          onChangeText={handleChange('tags')}
+                          placeholder="Add tagss which describe you"
                           placeholderTextColor="#9ea6b5"
                           returnKeyType="next"
-                          ref={(input) => (this.hashtag = input)}
+                          ref={(input) => (this.tags = input)}
                           onSubmitEditing={() => this.bio.focus()}
                         />
                         <Text style={style.errorText}>
-                          {touched.hashtag && errors.hashtag}
+                          {touched.tags && errors.tags}
                         </Text>
                       </View>
                       <View>
@@ -272,12 +278,17 @@ const mapStateToProps = (state) => {
   return {
     users: state.people.users,
     userAccount: state.user.userFakeData,
+    userProfile: state.user.userProfile,
+    userImage: state.user.userImage,
+    userData: state.user.userData,
+
+
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    EditUserAccount: (input) => dispatch(EditUser(input)),
+    EditUserProfile: (input) => dispatch(EditUserProfile(input)),
   };
 };
 

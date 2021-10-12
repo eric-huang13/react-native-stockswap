@@ -10,6 +10,15 @@ import {
 import {moderateScale} from '../../util/responsiveFont';
 import CompanyStockGraph from '../SearchTabComponents/CompanyStockGraph';
 import CompanySymbolList from '../SearchTabComponents/CompanySymbolList';
+import {connect} from 'react-redux';
+import {
+  fetchStockDay,
+  fetchStockMonth,
+  fetchStockWeek,
+  fetchStockThreeMonth,
+  fetchStockYear,
+  fetchStockDetails,
+} from '../../actions/marketMovers';
 
 export class CompanyInformation extends Component {
   constructor(props) {
@@ -34,36 +43,128 @@ export class CompanyInformation extends Component {
   //All logic needs to be handled before hand, either in backend or in action? Will change this when we actually have data coming in
 
   componentDidMount() {
-    //X
-    const xDates = this.props.route.params.item.dates.map(
-      (item) => new Date(item * 1000),
-    );
-    //Y
-    const yPrices = this.props.route.params.item.priceHistory;
+    this.props.fetchStockDay(this.props.route.params.item.ticker);
+    this.props.fetchStockWeek(this.props.route.params.item.ticker);
+    this.props.fetchStockMonth(this.props.route.params.item.ticker);
+    this.props.fetchStockThreeMonth(this.props.route.params.item.ticker);
+    this.props.fetchStockYear(this.props.route.params.item.ticker);
+    this.props.fetchStockDetails(this.props.route.params.item.ticker);
 
-    this.setState({
-      xDates: xDates,
-      yPrices: yPrices,
+    //DAY DATA
+    let dayPrices = this.props.stockDay.map((a) => a.close);
+    const dayPriceRange = [
+      Math.floor(Math.min(...dayPrices)),
+      Math.ceil(Math.max(...dayPrices)),
+    ];
+    console.log(dayPriceRange, 'dayPRICERANGE');
+    const stockDayDataOriginal = this.props.stockDay.map((i) => {
+      return {x: Date.parse(i.window.startTime), y: i.close};
     });
-  }
+    const stockDayData = stockDayDataOriginal.reverse();
 
-  componentDidUpdate(prevProps) {
-    if (
-      this.props.route.params.item.dates !== prevProps.route.params.item.dates
-    ) {
-      this.setState({
-        xDates: this.props.route.params.item.dates,
-        yPrices: this.props.route.params.item.priceHistory,
-      });
-    }
-  }
-
-  render() {
-    //X and Y
+    // this.setState({
+    //   timeFilter: 'live',
+    //   graphData: stockDayData,
+    //   range: dayPriceRange,
+    // })
+    // console.log(stockWeekData, 'WEEKDATA');
     //X
     // const xDates = this.props.route.params.item.dates.map(
     //   (item) => new Date(item * 1000),
     // );
+    // //Y
+    // const yPrices = this.props.route.params.item.priceHistory;
+
+    // this.setState({
+    //   xDates: xDates,
+    //   yPrices: yPrices,
+    // });
+    //   this.setState({
+    //     xDates: [1604188800, 1604275200, 1604361600, 1604448000, 1604534400],
+    //     yPrices: [61, 49, 19, 85, 18],
+    //   });
+  }
+
+  // componentDidUpdate(prevProps) {
+  //   if (
+  //     this.props.route.params.item.dates !== prevProps.route.params.item.dates
+  //   ) {
+  //     this.setState({
+  //       xDates: this.props.route.params.item.dates,
+  //       yPrices: this.props.route.params.item.priceHistory,
+  //     });
+  //   }
+  // }
+
+  render() {
+    // console.log(this.props.stockMonth, "STOCK MONTH IN COMPANY INFO")
+    // console.log(this.props.route.params, "PARAMS IN COMPANY INFO")
+
+    //DAY DATA
+    let dayPrices = this.props.stockDay.map((a) => a.close);
+    const dayPriceRange = [
+      Math.floor(Math.min(...dayPrices)),
+      Math.ceil(Math.max(...dayPrices)),
+    ];
+    console.log(dayPriceRange, 'dayPRICERANGE');
+    const stockDayDataOriginal = this.props.stockDay.map((i) => {
+      return {x: Date.parse(i.window.startTime), y: i.close};
+    });
+    const stockDayData = stockDayDataOriginal.reverse();
+    // console.log(stockWeekData, 'WEEKDATA');
+
+    //WEEK DATA
+    let weekPrices = this.props.stockWeek.map((a) => a.close);
+    const weekPriceRange = [
+      Math.floor(Math.min(...weekPrices)),
+      Math.ceil(Math.max(...weekPrices)),
+    ];
+    console.log(weekPriceRange, 'weekPRICERANGE');
+    const stockWeekDataOriginal = this.props.stockWeek.map((i) => {
+      return {x: Date.parse(i.window.startTime), y: i.close};
+    });
+    const stockWeekData = stockWeekDataOriginal.reverse();
+    // console.log(stockWeekData, 'WEEKDATA');
+
+    //MONTH DATA
+    let monthPrices = this.props.stockMonth.map((a) => a.close);
+    const monthPriceRange = [
+      Math.floor(Math.min(...monthPrices)),
+      Math.ceil(Math.max(...monthPrices)),
+    ];
+    // console.log(monthPriceRange, 'MONTHPRICERANGE');
+    const stockMonthDataOriginal = this.props.stockMonth.map((i) => {
+      return {x: Date.parse(i.window.startTime), y: i.close};
+    });
+    const stockMonthData = stockMonthDataOriginal.reverse();
+    // console.log(stockMonthData, 'STOCKDATA');
+
+    //THREE MONTH DATA
+    let threeMonthPrices = this.props.stockThreeMonth.map((a) => a.close);
+    const threeMonthPriceRange = [
+      Math.floor(Math.min(...threeMonthPrices)),
+      Math.ceil(Math.max(...threeMonthPrices)),
+    ];
+    // console.log(threeMonthPriceRange, 'threeMonthPRICERANGE');
+    const stockThreeMonthDataOriginal = this.props.stockThreeMonth.map((i) => {
+      return {x: Date.parse(i.window.startTime), y: i.close};
+    });
+    const stockThreeMonthData = stockThreeMonthDataOriginal.reverse();
+    // console.log(stockThreeMonthData, 'threeMonthDATA');
+
+    //YEAR DATA
+    let yearPrices = this.props.stockYear.map((a) => a.close);
+    const yearPriceRange = [
+      Math.floor(Math.min(...yearPrices)),
+      Math.ceil(Math.max(...yearPrices)),
+    ];
+    // console.log(yearPriceRange, 'yearPRICERANGE');
+    const stockYearDataOriginal = this.props.stockYear.map((i) => {
+      return {x: Date.parse(i.window.startTime), y: i.close};
+    });
+    const stockYearData = stockYearDataOriginal.reverse();
+    // console.log(stockYearData, 'yearDATA');
+
     //Y
     const yPrices = this.state.yPrices;
     //X and Y data
@@ -76,10 +177,14 @@ export class CompanyInformation extends Component {
     const weekData = xyData.slice(xyData.length - 7);
     //Data for month
     const monthData = xyData.slice(xyData.length - 31);
+    // console.log(monthData,"MONTHDATA")
 
     //Info to display
     //Current stock price
-    const currentPrice = this.state.yPrices[yPrices.length - 1];
+    // const currentPrice = this.state.yPrices[yPrices.length - 1];
+    const currentPrice = this.props.route.params.item.quote
+      .volumeWeightedAveragePrice;
+
     // Growth/Loss percentage
     const percentChange = (
       ((currentPrice - yPrices[yPrices.length - 7]) /
@@ -110,9 +215,9 @@ export class CompanyInformation extends Component {
     //High/Low difference
     const numberDifference = (chartHigh - chartLow) / 3;
     //Graph three quarter numbernumber
-    const chartThreeQuarter = (chartHigh - numberDifference).toFixed(0);
+    const chartThreeQuarter = (chartHigh - numberDifference).toFixed(2);
     //Graph quarter number
-    const chartOneQuarter = (chartLow + numberDifference).toFixed(0);
+    const chartOneQuarter = (chartLow + numberDifference).toFixed(2);
     // console.log(weekData, 'WEEKDATA')
     const {route} = this.props;
     const {graphData, percent, range} = this.state;
@@ -120,21 +225,30 @@ export class CompanyInformation extends Component {
       <SafeAreaView style={style.mainContainer}>
         <CompanySymbolList
           navigation={this.props.navigation}
-          symbol={route.params.item.symbol}
+          symbol={route.params.item.ticker}
           itemId={route.params.item.id}
+          stockCategory={route.params.stockCategory}
         />
         <ScrollView>
           {this.props.route.params ? (
             <View style={style.aboveGraphContainer}>
               <View style={style.symbolView}>
-                <Text style={style.symbol}>{route.params.item.symbol}</Text>
-                <Text style={style.price}>${currentPrice}</Text>
+                <Text style={style.symbol}>{route.params.item.ticker}</Text>
+                <Text style={style.price}>
+                  ${route.params.item.quote.volumeWeightedAveragePrice}
+                </Text>
               </View>
               <View style={style.titleView}>
                 <Text style={style.title}>{route.params.item.title}</Text>
-                <Text style={style.percentage}>
-                  ({route.params.item.percentage})
-                </Text>
+                {this.props.route.params.stockCategory == 'losers' ? (
+                  <Text style={style.percentageLoss}>
+                    ({route.params.item.change}%)
+                  </Text>
+                ) : (
+                  <Text style={style.percentage}>
+                    (+{route.params.item.change}%)
+                  </Text>
+                )}
               </View>
             </View>
           ) : (
@@ -143,7 +257,7 @@ export class CompanyInformation extends Component {
           <View style={style.graphContainer}>
             <CompanyStockGraph
               graphData={graphData}
-              symbol={route.params.item.title}
+              symbol={route.params.item.ticker}
               range={range}
             />
             <View style={style.graphNumbers}>
@@ -158,6 +272,8 @@ export class CompanyInformation extends Component {
               onPress={() =>
                 this.setState({
                   timeFilter: 'live',
+                  graphData: stockDayData,
+                  range: dayPriceRange,
                 })
               }>
               <Text
@@ -173,6 +289,8 @@ export class CompanyInformation extends Component {
               onPress={() =>
                 this.setState({
                   timeFilter: 'day',
+                  graphData: stockDayData,
+                  range: dayPriceRange,
                 })
               }>
               <Text
@@ -187,9 +305,9 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  graphData: weekData,
+                  graphData: stockWeekData,
                   percent: percentChange,
-                  range: weekRange,
+                  range: weekPriceRange,
                   timeFilter: 'week',
                 })
               }>
@@ -205,9 +323,10 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
-                  graphData: monthData,
+                  graphData: stockMonthData,
                   percent: percentChangeMonth,
-                  range: newrange,
+                  // range: [Math.floor(stockMonthData[0].y), Math.ceil(stockMonthData[stockMonthData.length-1].y)+1],
+                  range: monthPriceRange,
                   timeFilter: 'month',
                 })
               }>
@@ -223,6 +342,8 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
+                  graphData: stockThreeMonthData,
+                  range: threeMonthPriceRange,
                   timeFilter: '3 months',
                 })
               }>
@@ -238,6 +359,8 @@ export class CompanyInformation extends Component {
             <TouchableOpacity
               onPress={() =>
                 this.setState({
+                  graphData: stockYearData,
+                  range: yearPriceRange,
                   timeFilter: 'year',
                 })
               }>
@@ -276,15 +399,21 @@ export class CompanyInformation extends Component {
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>High:</Text>
-                <Text style={style.vitalDetailsData}>${newrange[1]}</Text>
+                <Text style={style.vitalDetailsData}>
+                  ${this.props.route.params.item.quote.high}
+                </Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Low:</Text>
-                <Text style={style.vitalDetailsData}>${newrange[0]}</Text>
+                <Text style={style.vitalDetailsData}>
+                  ${this.props.route.params.item.quote.low}
+                </Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Volume:</Text>
-                <Text style={style.vitalDetailsData}>${currentPrice}</Text>
+                <Text style={style.vitalDetailsData}>
+                  ${this.props.route.params.item.quote.volume}
+                </Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Avg Vol:</Text>
@@ -320,19 +449,44 @@ export class CompanyInformation extends Component {
           </View>
           <View style={style.aboutSection}>
             <Text style={style.aboutHeader}>ABOUT</Text>
+
             <Text style={style.sectorData}>
               <Text style={style.sectorText}>Sector:</Text>{' '}
-              {route.params.item.sector}
+              {this.props.stockDetails.sector}
             </Text>
-            <Text style={style.about}>{route.params.item.about}</Text>
+            <Text style={style.about}>
+              {this.props.stockDetails.description}
+            </Text>
           </View>
         </ScrollView>
       </SafeAreaView>
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    stockDay: state.company.stockDay,
+    stockWeek: state.company.stockWeek,
+    stockMonth: state.company.stockMonth,
+    stockThreeMonth: state.company.stockThreeMonth,
+    stockYear: state.company.stockYear,
+    stockDetails: state.company.stockDetails,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchStockDay: (ticker) => dispatch(fetchStockDay(ticker)),
+    fetchStockWeek: (ticker) => dispatch(fetchStockWeek(ticker)),
+    fetchStockMonth: (ticker) => dispatch(fetchStockMonth(ticker)),
+    fetchStockThreeMonth: (ticker) => dispatch(fetchStockThreeMonth(ticker)),
+    fetchStockYear: (ticker) => dispatch(fetchStockYear(ticker)),
+    fetchStockDetails: (ticker) => dispatch(fetchStockDetails(ticker)),
+  };
+};
 
-export default CompanyInformation;
+export default connect(mapStateToProps, mapDispatchToProps)(CompanyInformation);
+
+// export default CompanyInformation;
 
 const style = StyleSheet.create({
   mainContainer: {
@@ -391,6 +545,11 @@ const style = StyleSheet.create({
   },
   percentage: {
     color: 'rgb(8, 177, 40)',
+    fontSize: moderateScale(12),
+    fontFamily: 'Montserrat-Medium',
+  },
+  percentageLoss: {
+    color: '#D13C3D',
     fontSize: moderateScale(12),
     fontFamily: 'Montserrat-Medium',
   },

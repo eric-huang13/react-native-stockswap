@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<LinearGradient
+  colors={
+    Array [
+      "#1d2842",
+      "#1f2a45",
+      "#222d47",
+      "#242f4a",
+      "#27324d",
+      "#293450",
+      "#2c3752",
+      "#2e3955",
+      "#313c58",
+      "#333e5c",
+      "#36415f",
+      "#394463",
+    ]
+  }
+  end={
+    Object {
+      "x": 1,
+      "y": 1,
+    }
+  }
+  start={
+    Object {
+      "x": 0.1,
+      "y": 0.1,
+    }
+  }
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <ForwardRef(SafeAreaView)>
+    <LinearGradient
+      colors={
+        Array [
+          "#2c3752",
+          "#2e3955",
+          "#313c58",
+          "#333e5c",
+          "#36415f",
+          "#394463",
+        ]
+      }
+      end={
+        Object {
+          "x": 1,
+          "y": 1,
+        }
+      }
+      start={
+        Object {
+          "x": 0.1,
+          "y": 0.1,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontSize": 26.835766423357665,
+            "fontWeight": "700",
+            "marginVertical": 11.299270072992702,
+            "textAlign": "center",
+          }
+        }
+      >
+        Top Users
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-around",
+            "marginVertical": 21.186131386861312,
+            "paddingBottom": 2.8248175182481754,
+          }
+        }
+      >
+        <ForwardRef
+          onPress={[Function]}
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#855cff",
+                "borderBottomWidth": 4.237226277372263,
+                "paddingBottom": 2.5423357664233577,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#8257FF",
+                  "fontFamily": "Montserrat-Bold",
+                  "fontSize": 19.77372262773723,
+                  "textShadowColor": "#8257FF",
+                  "textShadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
+                  },
+                  "textShadowRadius": 50,
+                }
+              }
+            >
+              All people
+            </Text>
+          </View>
+        </ForwardRef>
+        <ForwardRef
+          onPress={[Function]}
+        >
+          <View
+            style={Object {}}
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-Bold",
+                  "fontSize": 19.77372262773723,
+                }
+              }
+            >
+              Following
+            </Text>
+          </View>
+        </ForwardRef>
+        <ForwardRef
+          onPress={[Function]}
+        >
+          <View
+            style={Object {}}
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-Bold",
+                  "fontSize": 19.77372262773723,
+                }
+              }
+            >
+              Trending
+            </Text>
+          </View>
+        </ForwardRef>
+      </View>
+    </LinearGradient>
+    <TopUsersPeople />
+  </ForwardRef(SafeAreaView)>
+</LinearGradient>
+`;

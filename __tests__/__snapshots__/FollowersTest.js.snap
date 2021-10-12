@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)
+  style={
+    Object {
+      "backgroundColor": "#2a334a",
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "marginBottom": 21.186131386861312,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "left": 19.77372262773723,
+          "position": "absolute",
+          "top": 14.124087591240876,
+          "zIndex": 1,
+        }
+      }
+    >
+      <SearchInput />
+    </View>
+    <Component
+      allowFontScaling={true}
+      onChangeText={[Function]}
+      placeholder="Search"
+      placeholderTextColor="lightgrey"
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "alignContent": "center",
+          "backgroundColor": "#3e4d6c",
+          "color": "lightgrey",
+          "fontFamily": "Montserrat-Italic",
+          "fontSize": 21.186131386861312,
+          "height": 50.846715328467155,
+          "paddingLeft": 56.496350364963504,
+          "paddingVertical": 0,
+        }
+      }
+      underlineColorAndroid="transparent"
+    />
+  </View>
+  <FlatList
+    data={Array []}
+    disableVirtualization={false}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onEndReachedThreshold={2}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    style={Object {}}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  />
+</ForwardRef(SafeAreaView)>
+`;

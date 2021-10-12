@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {
-  
   SafeAreaView,
   Text,
   View,
@@ -14,7 +13,7 @@ import {
   ScrollView,
   Platform,
 } from 'react-native';
-import {Login} from '../../actions/user';
+import {ForgotPasswordEmail} from '../../actions/user';
 import LinearGradient from 'react-native-linear-gradient';
 import SmallStockSwap from '../../icons/SmallStockSwap';
 import {Formik} from 'formik';
@@ -25,7 +24,7 @@ const reviewSchema = yup.object({
   email: yup
     .string()
     .required('Email is required')
-    .email('A valid email address is required'),
+    .email('A valid email address is required'),    
 });
 
 export class ForgotPassword extends Component {
@@ -34,7 +33,7 @@ export class ForgotPassword extends Component {
   }
 
   render() {
-    const {LoginUser} = this.props;
+    const {ForgotPasswordEmail} = this.props;
 
     return (
       <LinearGradient
@@ -51,13 +50,10 @@ export class ForgotPassword extends Component {
                 <Formik
                   initialValues={{
                     email: '',
-                    // password: '',
                   }}
                   validationSchema={reviewSchema}
                   onSubmit={(values, actions) => {
-                    console.log(values, 'Values');
-
-                    LoginUser(values);
+                    ForgotPasswordEmail(values);
                   }}>
                   {(props) => (
                     <View style={style.inner}>
@@ -96,7 +92,6 @@ export class ForgotPassword extends Component {
                             {props.touched.email && props.errors.email}
                           </Text>
                         </View>
-                        
 
                         <View style={style.termsContainer}>
                           <View style={style.leftTerms}>
@@ -143,7 +138,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    LoginUser: (input) => dispatch(Login(input)),
+    ForgotPasswordEmail: (input) => dispatch(ForgotPasswordEmail(input)),
   };
 };
 

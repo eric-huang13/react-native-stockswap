@@ -12,6 +12,11 @@ import ProfileGraph from '../HomeTabComponents/ProfileGraph';
 import {connect} from 'react-redux';
 import MyProfilePostBox from '../MyProfileTabComponents/MyProfilePostBox';
 import {moderateScale} from '../../util/responsiveFont';
+import {GetProfile} from '../../actions/profile';
+import {GetProfileImage} from '../../actions/profile';
+import {RefreshToken} from '../../actions/user';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class Profile extends Component {
   constructor(props) {
@@ -29,18 +34,24 @@ class Profile extends Component {
       range: [10, 15],
       timeFilter: 'day',
       selectedPosts: [],
-      user: [],
+      user: [],     
     };
   }
   timeFilterSelect(time) {
     this.setState({timeFilter: time});
   }
   componentDidMount() {
-    //fetch data()
-    const {post, user} = this.props;
+    this.props.GetProfile();
+    // this.props.GetProfileImage(this.props.userData.accessToken, this.props.userId);
+    AsyncStorage.getItem('token').then((token) => {
+      if (token) {
+        this.props.RefreshToken(token);
+        this.props.GetProfileImage(token, this.props.userId);
+      }
+    });
+    const {post, user, userProfile} = this.props;
     const id = this.props.user.id;
     const selectedPosts = post.filter((user) => user.userId === id);
-
     this.setState({
       selectedPosts: selectedPosts,
       user: user,
@@ -64,7 +75,7 @@ class Profile extends Component {
   }
   render() {
     const {graphData, percent, range, timeFilter} = this.state;
-    const {user, post} = this.props;
+    const {user, post, userProfile, userImage, userData} = this.props;
 
     return (
       <SafeAreaView style={style.container}>
@@ -86,7 +97,17 @@ class Profile extends Component {
                   </View>
                 </View>
                 <View style={style.graphContainer}>
-                  <ProfileGraph graphData={graphData} range={range} />
+                  <ProfileGraph
+                    graphData={[
+                      {x: 2, y: 10},
+                      {x: 3, y: 11},
+                      {x: 4, y: 12},
+                      {x: 5, y: 14},
+                      {x: 6, y: 14},
+                      {x: 7, y: 15},
+                    ]}
+                    range={[10, 15]}
+                  />
                 </View>
                 <View style={style.timeFilterButtonsContainer}>
                   <TouchableOpacity
@@ -168,14 +189,28 @@ class Profile extends Component {
                 </View>
                 <View style={style.infoContainer}>
                   <View style={style.detailsRow}>
-                    <Image
+                    {userImage !== '' ? (
+                      <Image
+                        style={style.image}
+                        source={{
+                          uri: this.props.userImage,
+                          headers: {
+                            Authorization: `Bearer ${this.props.reduxToken}`,
+                          },
+                        }}
+                      />
+                    ) : null}
+
+                    {/* ///WORKING Add response url */}
+                    {/* <Image
                       style={style.image}
-                      source={{uri: this.state.user.img}}
-                    />
+                      source={{uri:`https://d13h17hkw4i0vn.cloudfront.net/${this.props.userId}/profile.jpg`, headers:{Authorization: `Bearer ${this.props.userData.accessToken}`}}}
+                    /> */}
+
                     <View style={style.personalDetails}>
-                      <Text style={style.name}>{this.state.user.name}</Text>
+                      <Text style={style.name}>{userProfile.name}</Text>
                       <Text style={style.username}>
-                        @{this.state.user.username}
+                        @{userProfile.username}
                       </Text>
                       <Text style={style.hashtag}>
                         {this.state.user.hashtag}
@@ -183,7 +218,7 @@ class Profile extends Component {
                     </View>
                   </View>
                   <View style={style.bioContainer}>
-                    <Text style={style.bio}>{this.state.user.bio}</Text>
+                    <Text style={style.bio}>{userProfile.bio}</Text>
                   </View>
                   <View style={style.numberRow}>
                     <TouchableOpacity
@@ -271,10 +306,23 @@ const mapStateToProps = (state) => {
     users: state.people.users,
     reply: state.posts.reply,
     user: state.user.userFakeData,
+    userProfile: state.user.userProfile,
+    userImage: state.user.userImage,
+    userId: state.user.userId,
+    userData: state.user.userData,
+    reduxToken: state.user.token,
   };
 };
 
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    GetProfile: () => dispatch(GetProfile()),
+    GetProfileImage: (token, id) => dispatch(GetProfileImage(token, id)),
+    RefreshToken: (token) => dispatch(RefreshToken(token)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
 
 const style = StyleSheet.create({
   container: {

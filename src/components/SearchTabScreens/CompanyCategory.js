@@ -28,8 +28,9 @@ export class CompanyCategory extends Component {
 
     const filteredCategory = category.filter(
       (item) =>
-        item.title.toLowerCase().includes(this.state.input.toLowerCase()) ||
-        item.symbol.toLowerCase().includes(this.state.input.toLowerCase()),
+        item.ticker.toLowerCase().includes(this.state.input.toLowerCase()) 
+        // ||
+        // item.symbol.toLowerCase().includes(this.state.input.toLowerCase()),
     );
 
     return (

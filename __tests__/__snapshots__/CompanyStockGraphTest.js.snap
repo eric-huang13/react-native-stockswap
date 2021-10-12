@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)
+  style={
+    Object {
+      "backgroundColor": "#2a334a",
+      "flex": 1,
+    }
+  }
+>
+  <SlideAreaChart
+    alwaysShowIndicator={true}
+    animated={true}
+    axisHeight={5}
+    axisWidth={5}
+    chartLineColor="#91f2b1"
+    chartLineWidth={3}
+    chartPaddingTop={16}
+    cursorProps={
+      Object {
+        "cursorBorderColor": "black",
+        "cursorColor": "black",
+        "cursorLine": true,
+        "cursorMarkerHeight": 15,
+        "cursorMarkerWidth": 11,
+      }
+    }
+    curveType={[Function]}
+    data={Array []}
+    height={200}
+    paddingBottom={10}
+    paddingLeft={3}
+    paddingRight={8}
+    paddingTop={8}
+    renderFillGradient={[Function]}
+    shouldCancelWhenOutside={true}
+    style={
+      Object {
+        "backgroundColor": "#2a334a",
+      }
+    }
+    throttleAndroid={true}
+    toolTipProps={
+      Object {
+        "backgroundColor": "#8b64ff",
+        "borderRadius": 18,
+        "displayTriangle": false,
+        "fontSize": 14,
+        "height": 50,
+        "textStyles": Array [
+          Object {
+            "color": "white",
+          },
+          Object {
+            "color": "white",
+            "fontSize": 14.1,
+            "fontWeight": "700",
+          },
+        ],
+        "toolTipTextRenderers": Array [
+          [Function],
+          [Function],
+        ],
+      }
+    }
+    width={710}
+    xScale="linear"
+    yAxisProps={
+      Object {
+        "axisLabelAlignment": "top",
+        "hideMarkers": true,
+        "horizontalLineWidth": 0,
+        "labelTopPadding": 0,
+        "markFirstLine": true,
+        "numberOfTicks": 0,
+        "rotateAxisLabel": true,
+        "showBaseLine": false,
+        "verticalLineWidth": 0,
+      }
+    }
+  />
+</ForwardRef(SafeAreaView)>
+`;

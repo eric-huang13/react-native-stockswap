@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)>
+  <LinearGradient
+    colors={
+      Array [
+        "#2C3957",
+        "#5B449B",
+      ]
+    }
+    end={
+      Object {
+        "x": 1,
+        "y": 1,
+      }
+    }
+    start={
+      Object {
+        "x": 0.1,
+        "y": 0.1,
+      }
+    }
+    style={
+      Object {
+        "alignSelf": "center",
+        "borderRadius": 16.94890510948905,
+        "flexDirection": "column",
+        "height": 218.97810218978103,
+        "justifyContent": "space-around",
+        "marginLeft": 5.649635036496351,
+        "marginRight": 5.649635036496351,
+        "marginTop": 4.237226277372263,
+        "padding": 4.237226277372263,
+        "paddingTop": 0,
+        "width": 231.75182481751824,
+      }
+    }
+  >
+    <ForwardRef(SafeAreaView)
+      style={
+        Object {
+          "borderRadius": 21.186131386861312,
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "space-evenly",
+          "paddingHorizontal": 5.649635036496351,
+          "paddingTop": 0,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "marginTop": -5.649635036496351,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#B8A0FF",
+              "fontFamily": "Montserrat-Bold",
+              "fontSize": 26.835766423357665,
+            }
+          }
+        />
+        <Text
+          style={
+            Object {
+              "color": "#b3b3b3",
+              "fontFamily": "Montserrat-Regular",
+              "fontSize": 18.361313868613138,
+            }
+          }
+        >
+          test
+        </Text>
+      </View>
+      <View
+        style={Object {}}
+      >
+        <Text
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Montserrat-Regular",
+              "fontSize": 26.835766423357665,
+            }
+          }
+        >
+          $
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "#1AB968",
+              "fontFamily": "Montserrat-SemiBold",
+              "fontSize": 18.361313868613138,
+            }
+          }
+        />
+      </View>
+    </ForwardRef(SafeAreaView)>
+  </LinearGradient>
+</ForwardRef(SafeAreaView)>
+`;

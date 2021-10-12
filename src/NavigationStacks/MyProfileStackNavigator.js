@@ -29,6 +29,14 @@ import CreatePostPreview from '../components/PostTabScreens/CreatePostPreview';
 import MyFollowers from '../components/MyProfileTabScreens/MyFollowers';
 import MyFollowing from '../components/MyProfileTabScreens/MyFollowing';
 import LikedPosts from '../components/MyProfileTabScreens/LikedPosts';
+import LoggingOutScreen from '../components/LoggedOutScreens/LoggingOutScreen';
+import PlaidComponent from '../components/MyProfileTabScreens/PlaidComponent';
+import PortfolioMangement from '../components/MyProfileTabScreens/PortfolioMangement'
+import EnableAccounts from '../components/MyProfileTabScreens/EnableAccounts'
+
+
+
+
 
 //responsive scale
 import {moderateScale} from '../util/responsiveFont';
@@ -63,6 +71,11 @@ export default class MyProfileStackNavigator extends Component {
               </TouchableOpacity>
             ),
           })}
+        />
+        <MyProfileStack.Screen
+          name="LoggingOut"
+          component={LoggingOutScreen}
+          options={{headerShown: false}}
         />
 
         <MyProfileStack.Screen
@@ -461,6 +474,60 @@ export default class MyProfileStackNavigator extends Component {
           component={LikedPosts}
           options={{
             title: 'Liked Posts',
+            headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+        <MyProfileStack.Screen
+          name="PlaidComponent"
+          component={PlaidComponent}
+          options={{
+            title: 'Plaid',
+            headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+             <MyProfileStack.Screen
+          name="PortfolioMangement"
+          component={PortfolioMangement}
+          options={{
+            title: 'Manage Accounts',
+            headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+        <MyProfileStack.Screen
+          name="EnableAccounts"
+          component={EnableAccounts}
+          options={{
+            title: 'Choose accounts to show',
             headerStyle: {
               backgroundColor: '#394463',
             },

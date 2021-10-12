@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)
+  style={
+    Object {
+      "backgroundColor": "#2a334a",
+      "flex": 1,
+      "flexDirection": "column",
+      "paddingLeft": 5.649635036496351,
+      "paddingVertical": 14.124087591240876,
+    }
+  }
+>
+  <ScrollView />
+</ForwardRef(SafeAreaView)>
+`;

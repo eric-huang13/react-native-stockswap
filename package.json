@@ -24,15 +24,19 @@
     "@react-navigation/stack": "^5.11.0",
     "axios": "^0.21.0",
     "babel-plugin-module-resolver": "^4.0.0",
+    "buffer": "^6.0.3",
     "formik": "^2.2.6",
+    "jwt-decode": "^3.1.2",
     "npm-run-all": "^4.1.5",
     "react": "16.13.1",
     "react-native": "0.63.3",
     "react-native-bootsplash": "^3.2.1",
+    "react-native-confirmation-code-field": "6",
     "react-native-gesture-handler": "^1.10.2",
     "react-native-image-picker": "^3.3.2",
     "react-native-linear-gradient": "^2.5.6",
     "react-native-modal-dropdown": "https://github.com/siemiatj/react-native-modal-dropdown",
+    "react-native-plaid-link-sdk": "^7.0.7",
     "react-native-reanimated": "^1.13.1",
     "react-native-safe-area-context": "^3.1.8",
     "react-native-screens": "^2.12.0",
@@ -58,6 +62,9 @@
   },
   "jest": {
     "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-(native|universal|navigation)-(.*)|@react-native-community/(.*)|@react-navigation/(.*)|@connectedcars/react-native-slide-charts|(@[a-zA-Z]+/)?(bs|reason|rescript)-(.*)+)"
+    ],
     "setupFiles": [
       "./node_modules/react-native-gesture-handler/jestSetup.js"
     ]

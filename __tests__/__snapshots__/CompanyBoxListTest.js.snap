@@ -1,0 +1,260 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)
+  style={
+    Object {
+      "marginBottom": 70.62043795620437,
+    }
+  }
+>
+  <ScrollView
+    contentContainerStyle={
+      Object {
+        "paddingBottom": 254.23357664233578,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "marginBottom": 21.186131386861312,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "left": 14,
+            "position": "absolute",
+            "top": 10,
+            "zIndex": 1,
+          }
+        }
+      >
+        <SearchInput />
+      </View>
+      <Component
+        allowFontScaling={true}
+        onChangeText={[Function]}
+        placeholder="Search"
+        placeholderTextColor="lightgrey"
+        rejectResponderTermination={true}
+        style={
+          Object {
+            "alignContent": "center",
+            "backgroundColor": "#3e4d6c",
+            "color": "lightgrey",
+            "flex": 1,
+            "fontFamily": "Montserrat-Italic",
+            "fontSize": 22.598540145985403,
+            "height": 50.846715328467155,
+            "paddingLeft": 56.496350364963504,
+            "paddingVertical": 0,
+          }
+        }
+        underlineColorAndroid="transparent"
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "marginBottom": 25.423357664233578,
+          "paddingHorizontal": 2.8248175182481754,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 5.649635036496351,
+            "paddingRight": 11.299270072992702,
+          }
+        }
+      >
+        <ForwardRef
+          onPress={[Function]}
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Regular",
+                "fontSize": 24.010948905109487,
+                "marginLeft": 7.768248175182482,
+              }
+            }
+          >
+            Daily Gainers
+          </Text>
+        </ForwardRef>
+        <ForwardRef
+          onPress={[Function]}
+        >
+          <Text
+            style={
+              Object {
+                "color": "#B8A0FF",
+                "fontFamily": "Montserrat-SemiBold",
+                "fontSize": 21.186131386861312,
+                "paddingRight": 2.8248175182481754,
+                "paddingTop": 4.943430656934307,
+              }
+            }
+          >
+            See all
+          </Text>
+        </ForwardRef>
+      </View>
+      <View
+        style={
+          Object {
+            "paddingLeft": 2.8248175182481754,
+          }
+        }
+      >
+        <ScrollView
+          horizontal={true}
+          justifyContent="space-between"
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "marginBottom": 25.423357664233578,
+          "paddingHorizontal": 2.8248175182481754,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 5.649635036496351,
+            "paddingRight": 11.299270072992702,
+          }
+        }
+      >
+        <ForwardRef
+          onPress={[Function]}
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Regular",
+                "fontSize": 24.010948905109487,
+                "marginLeft": 7.768248175182482,
+              }
+            }
+          >
+            Daily Losers
+          </Text>
+        </ForwardRef>
+        <ForwardRef
+          onPress={[Function]}
+        >
+          <Text
+            style={
+              Object {
+                "color": "#B8A0FF",
+                "fontFamily": "Montserrat-SemiBold",
+                "fontSize": 21.186131386861312,
+                "paddingRight": 2.8248175182481754,
+                "paddingTop": 4.943430656934307,
+              }
+            }
+          >
+            See all
+          </Text>
+        </ForwardRef>
+      </View>
+      <View
+        style={
+          Object {
+            "paddingLeft": 2.8248175182481754,
+          }
+        }
+      >
+        <ScrollView
+          horizontal={true}
+          justifyContent="space-between"
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "marginBottom": 25.423357664233578,
+          "paddingHorizontal": 2.8248175182481754,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 5.649635036496351,
+            "paddingRight": 11.299270072992702,
+          }
+        }
+      >
+        <ForwardRef
+          onPress={[Function]}
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Regular",
+                "fontSize": 24.010948905109487,
+                "marginLeft": 7.768248175182482,
+              }
+            }
+          >
+            Daily Highest by Volume
+          </Text>
+        </ForwardRef>
+        <ForwardRef
+          onPress={[Function]}
+        >
+          <Text
+            style={
+              Object {
+                "color": "#B8A0FF",
+                "fontFamily": "Montserrat-SemiBold",
+                "fontSize": 21.186131386861312,
+                "paddingRight": 2.8248175182481754,
+                "paddingTop": 4.943430656934307,
+              }
+            }
+          >
+            See all
+          </Text>
+        </ForwardRef>
+      </View>
+      <View
+        style={
+          Object {
+            "paddingLeft": 2.8248175182481754,
+          }
+        }
+      >
+        <ScrollView
+          horizontal={true}
+          justifyContent="space-between"
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
+    </View>
+  </ScrollView>
+</ForwardRef(SafeAreaView)>
+`;

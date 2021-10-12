@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)
+  style={
+    Object {
+      "backgroundColor": "#2a334a",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "paddingHorizontal": 14.124087591240876,
+      "paddingVertical": 19.77372262773723,
+    }
+  }
+>
+  <Image
+    source={
+      Object {
+        "uri": "test",
+      }
+    }
+    style={
+      Object {
+        "borderRadius": 70.62043795620437,
+        "height": 88.98175182481751,
+        "width": 88.98175182481751,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "flexDirection": "column",
+        "justifyContent": "space-between",
+        "marginLeft": -211.86131386861314,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#FFFFFF",
+          "fontFamily": "Montserrat-Bold",
+          "fontSize": 22.598540145985403,
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "color": "lightgrey",
+          "fontFamily": "Montserrat-Regular",
+          "fontSize": 16.94890510948905,
+        }
+      }
+    >
+      Posts: 
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontFamily": "Montserrat-Medium",
+            "fontSize": 16.94890510948905,
+          }
+        }
+      />
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "lightgrey",
+          "fontFamily": "Montserrat-Regular",
+          "fontSize": 16.94890510948905,
+        }
+      }
+    >
+      Followers: 
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontFamily": "Montserrat-Medium",
+            "fontSize": 16.94890510948905,
+          }
+        }
+      />
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "lightgrey",
+          "fontFamily": "Montserrat-Regular",
+          "fontSize": 16.94890510948905,
+        }
+      }
+    >
+      Trading since:
+       
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontFamily": "Montserrat-Medium",
+            "fontSize": 16.94890510948905,
+          }
+        }
+      />
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignContent": "center",
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "alignSelf": "center",
+          "color": "#1AB968",
+          "fontFamily": "Montserrat-Bold",
+          "fontSize": 22.598540145985403,
+        }
+      }
+    >
+      %
+    </Text>
+  </View>
+</ForwardRef(SafeAreaView)>
+`;

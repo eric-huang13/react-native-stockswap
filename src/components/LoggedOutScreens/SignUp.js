@@ -43,11 +43,11 @@ const reviewSchema = yup.object({
     .min(8, ({min}) => `Password must be at least ${min} characters`)
     .matches(/\d/, 'Password must have a number')
     .matches(/\w*[a-z]\w*/, 'Password must have a lowercase letter')
-    .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter'),
-  // .matches(
-  //   /[!@#$%^&*()\-_"=+{}; :,<.>]/,
-  //   'Password must have a special character',
-  // ),
+    .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter')
+    .matches(
+      /[!@#$%^&*()\-_"=+{}; :,<.>]/,
+      'Password must have a special character',
+    ),
 
   passwordConfirmation: yup
     .string()
@@ -107,10 +107,13 @@ export const SignUp = ({
                 validationSchema={reviewSchema}
                 onSubmit={(values, actions) => {
                   console.log(values, 'Values');
-                  navigation.navigate({
-                    name: 'ProfileInfoForm',
-                    params: {userInfo: values},
-                  });
+                  // navigation.navigate({
+                  //   name: 'ProfileInfoForm',
+                  //   params: {userInfo: values},
+                  // });
+                  RegisterUser ({email: values.email,
+                    password: values.password,                    
+                  })
                 }}>
                 {(props) => (
                   <View style={style.inner}>
@@ -121,7 +124,7 @@ export const SignUp = ({
                       <TermsAndConditions
                         handleTerms={handleTerms}
                         handleCheck={handleCheck}
-                        formik={props}
+                        props={props}
                         navigation={navigation}
                       />
                     </Modal>
@@ -252,7 +255,7 @@ export const SignUp = ({
             <View style={style.bottomButtonsContainer}>
               <Text style={style.orText}>--OR--</Text>
               <View style={style.alternateSignUpContainer}>
-                <GoogleOauth RegisterUserGoogle={RegisterUserGoogle} />
+                <GoogleOauth signup={'signup'} RegisterUserGoogle={RegisterUserGoogle} />
                 <View style={style.alternateSignupInner}>
                   <View style={style.signupIcon}>
                     <FacebookIcon />

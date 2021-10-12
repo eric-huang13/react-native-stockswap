@@ -1,0 +1,216 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)
+  style={
+    Object {
+      "backgroundColor": "#2a334a",
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "marginBottom": 31.072992700729927,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "left": 19.77372262773723,
+          "position": "absolute",
+          "top": 14.124087591240876,
+          "zIndex": 1,
+        }
+      }
+    >
+      <SearchInput />
+    </View>
+    <Component
+      allowFontScaling={true}
+      onChangeText={[Function]}
+      placeholder="Search"
+      placeholderTextColor="lightgrey"
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "alignContent": "center",
+          "backgroundColor": "#3e4d6c",
+          "color": "lightgrey",
+          "fontFamily": "Montserrat-Italic",
+          "fontSize": 21.186131386861312,
+          "height": 50.846715328467155,
+          "paddingLeft": 56.496350364963504,
+          "paddingVertical": 0,
+        }
+      }
+      underlineColorAndroid="transparent"
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "paddingHorizontal": 8.474452554744525,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 11.299270072992702,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Montserrat-Regular",
+              "fontSize": 22.598540145985403,
+            }
+          }
+        >
+          Portfolio
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Montserrat-ExtraBold",
+              "fontSize": 33.8978102189781,
+            }
+          }
+        >
+          $3,201
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "paddingHorizontal": 5.649635036496351,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#F66E6E",
+              "fontFamily": "Montserrat-Medium",
+              "fontSize": 16.94890510948905,
+            }
+          }
+        >
+          $-10.75(-11%)
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "lightgrey",
+              "fontFamily": "Montserrat-Medium",
+              "fontSize": 14.124087591240876,
+              "marginLeft": 11.299270072992702,
+            }
+          }
+        >
+          Past hour
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginTop": 16.94890510948905,
+          "paddingHorizontal": 11.299270072992702,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontFamily": "Montserrat-Bold",
+            "fontSize": 31.072992700729927,
+          }
+        }
+      >
+        STOCKS
+      </Text>
+      <View>
+        <ForwardRef
+          onPress={[Function]}
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#3E4D6C",
+                "borderRadius": 8.474452554744525,
+                "flexDirection": "row",
+                "height": 42.372262773722625,
+                "justifyContent": "space-between",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "backgroundColor": "#3E4D6C",
+                  "borderRadius": 8.474452554744525,
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-Italic",
+                  "fontSize": 19.77372262773723,
+                  "marginLeft": 8.474452554744525,
+                  "width": 268.35766423357666,
+                }
+              }
+            >
+              Select sorting
+            </Text>
+            <TriangleIcon
+              style={
+                Object {
+                  "marginRight": 5.649635036496351,
+                }
+              }
+            />
+          </View>
+        </ForwardRef>
+      </View>
+    </View>
+    <FlatList
+      data={Array []}
+      disableVirtualization={false}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onEndReachedThreshold={2}
+      removeClippedSubviews={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      style={
+        Object {
+          "marginTop": 8.474452554744525,
+        }
+      }
+      updateCellsBatchingPeriod={50}
+      windowSize={21}
+    />
+  </View>
+</ForwardRef(SafeAreaView)>
+`;

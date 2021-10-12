@@ -1,0 +1,468 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ForwardRef(SafeAreaView)
+  style={
+    Object {
+      "backgroundColor": "#2a334a",
+      "flex": 1,
+      "paddingBottom": 28.248175182481752,
+      "paddingTop": 14.124087591240876,
+    }
+  }
+>
+  <ScrollView>
+    <View
+      style={
+        Object {
+          "borderBottomColor": "rgba(158, 150, 150, .4)",
+          "borderBottomWidth": 1.4124087591240877,
+          "paddingHorizontal": 16.94890510948905,
+          "paddingVertical": 22.598540145985403,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingVertical": 22.598540145985403,
+          }
+        }
+      >
+        <View
+          style={Object {}}
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Regular",
+                "fontSize": 16.94890510948905,
+                "paddingLeft": 2.8248175182481754,
+              }
+            }
+          >
+            Email
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-SemiBold",
+                "fontSize": 22.598540145985403,
+                "marginTop": 1.4124087591240877,
+              }
+            }
+          >
+            
+          </Text>
+        </View>
+        <ForwardRef
+          onPress={[Function]}
+        >
+          <Text
+            style={
+              Object {
+                "alignSelf": "flex-end",
+                "color": "#B8A0FF",
+                "fontFamily": "Montserrat-SemiBold",
+                "fontSize": 19.77372262773723,
+                "marginRight": 6,
+              }
+            }
+          >
+            Change
+          </Text>
+        </ForwardRef>
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingVertical": 22.598540145985403,
+          }
+        }
+      >
+        <View
+          style={Object {}}
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Regular",
+                "fontSize": 16.94890510948905,
+                "paddingLeft": 2.8248175182481754,
+              }
+            }
+          >
+            Phone Number
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-SemiBold",
+                "fontSize": 22.598540145985403,
+                "marginTop": 1.4124087591240877,
+              }
+            }
+          >
+            Test
+          </Text>
+        </View>
+        <ForwardRef
+          onPress={[Function]}
+        >
+          <Text
+            style={
+              Object {
+                "alignSelf": "flex-end",
+                "color": "#B8A0FF",
+                "fontFamily": "Montserrat-SemiBold",
+                "fontSize": 19.77372262773723,
+                "marginRight": 6,
+              }
+            }
+          >
+            Change
+          </Text>
+        </ForwardRef>
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingVertical": 22.598540145985403,
+          }
+        }
+      >
+        <View
+          style={Object {}}
+        >
+          <Text
+            style={
+              Object {
+                "color": "lightgrey",
+                "fontFamily": "Montserrat-Regular",
+                "fontSize": 16.94890510948905,
+                "paddingLeft": 2.8248175182481754,
+              }
+            }
+          >
+            Password
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-SemiBold",
+                "fontSize": 22.598540145985403,
+                "marginTop": 1.4124087591240877,
+              }
+            }
+          >
+            Test
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "alignSelf": "flex-end",
+                "color": "#B8A0FF",
+                "fontFamily": "Montserrat-SemiBold",
+                "fontSize": 19.77372262773723,
+                "marginRight": 6,
+              }
+            }
+          >
+            Show
+          </Text>
+          <ForwardRef
+            onPress={[Function]}
+            style={
+              Object {
+                "alignSelf": "flex-end",
+                "color": "#B8A0FF",
+                "fontFamily": "Montserrat-SemiBold",
+                "fontSize": 19.77372262773723,
+                "marginLeft": 24,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "alignSelf": "flex-end",
+                  "color": "#B8A0FF",
+                  "fontFamily": "Montserrat-SemiBold",
+                  "fontSize": 19.77372262773723,
+                  "marginRight": 6,
+                }
+              }
+            >
+              Change
+            </Text>
+          </ForwardRef>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "borderBottomColor": "rgba(158, 150, 150, .4)",
+          "borderBottomWidth": 1,
+          "paddingHorizontal": 16.94890510948905,
+          "paddingVertical": 30,
+        }
+      }
+    >
+      <View
+        style={Object {}}
+      >
+        <Text
+          style={
+            Object {
+              "color": "lightgrey",
+              "fontFamily": "Montserrat-Regular",
+              "fontSize": 16.94890510948905,
+              "paddingLeft": 2.8248175182481754,
+            }
+          }
+        >
+          Account privacy
+        </Text>
+        <View>
+          <ForwardRef
+            onPress={[Function]}
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#3E4D6C",
+                  "borderRadius": 6,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "marginTop": 4,
+                  "paddingHorizontal": 10,
+                  "paddingVertical": 10,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#FFFFFF",
+                    "fontFamily": "Montserrat-Medium",
+                    "fontSize": 22.598540145985403,
+                  }
+                }
+              >
+                Visible for all
+              </Text>
+              <TriangleIcon
+                style={
+                  Object {
+                    "marginRight": 5.649635036496351,
+                  }
+                }
+              />
+            </View>
+          </ForwardRef>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 14.124087591240876,
+            "marginTop": 50.846715328467155,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Montserrat-Medium",
+              "fontSize": 22.598540145985403,
+            }
+          }
+        >
+          Turn off notifications
+        </Text>
+        <Switch
+          ios_backgroundColor="#f4f3f4"
+          onValueChange={[Function]}
+          style={
+            Object {
+              "transform": Array [
+                Object {
+                  "scaleX": 1.5,
+                },
+                Object {
+                  "scaleY": 1.5,
+                },
+              ],
+            }
+          }
+          thumbColor="#f4f3f4"
+          trackColor={
+            Object {
+              "false": "#767577",
+              "true": "#B8A0FF",
+            }
+          }
+          value={false}
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "borderBottomColor": "rgba(158, 150, 150, .4)",
+          "borderBottomWidth": 1.4124087591240877,
+          "paddingHorizontal": 14.124087591240876,
+          "paddingVertical": 28.248175182481752,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 11.299270072992702,
+            "paddingVertical": 11.299270072992702,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Montserrat-SemiBold",
+              "fontSize": 22.598540145985403,
+            }
+          }
+        >
+          Privacy policy
+        </Text>
+        <ForwardRef
+          onPress={[Function]}
+          style={
+            Object {
+              "alignSelf": "flex-end",
+              "color": "#B8A0FF",
+              "fontFamily": "Montserrat-SemiBold",
+              "fontSize": 19.77372262773723,
+              "marginLeft": 24,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "alignSelf": "flex-end",
+                "color": "#B8A0FF",
+                "fontFamily": "Montserrat-SemiBold",
+                "fontSize": 19.77372262773723,
+                "marginRight": 6,
+              }
+            }
+          >
+            Show
+          </Text>
+        </ForwardRef>
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 11.299270072992702,
+            "paddingVertical": 11.299270072992702,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Montserrat-SemiBold",
+              "fontSize": 22.598540145985403,
+            }
+          }
+        >
+          Terms and conditions
+        </Text>
+        <ForwardRef
+          onPress={[Function]}
+          style={
+            Object {
+              "alignSelf": "flex-end",
+              "color": "#B8A0FF",
+              "fontFamily": "Montserrat-SemiBold",
+              "fontSize": 19.77372262773723,
+              "marginLeft": 24,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "alignSelf": "flex-end",
+                "color": "#B8A0FF",
+                "fontFamily": "Montserrat-SemiBold",
+                "fontSize": 19.77372262773723,
+                "marginRight": 6,
+              }
+            }
+          >
+            Show
+          </Text>
+        </ForwardRef>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "borderColor": "#8B64FF",
+          "borderRadius": 8.474452554744525,
+          "borderWidth": 1.4124087591240877,
+          "marginHorizontal": 28.248175182481752,
+          "marginTop": 48.021897810218974,
+          "paddingVertical": 14.124087591240876,
+        }
+      }
+    >
+      <Text
+        onPress={[Function]}
+        style={
+          Object {
+            "color": "#8B64FF",
+            "fontFamily": "Montserrat-SemiBold",
+            "fontSize": 19.77372262773723,
+            "textAlign": "center",
+          }
+        }
+      >
+        Log Out
+      </Text>
+    </View>
+  </ScrollView>
+</ForwardRef(SafeAreaView)>
+`;

@@ -1,0 +1,420 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Object {
+      "backgroundColor": "#2a334a",
+      "flex": 1,
+      "paddingHorizontal": 36.722627737226276,
+      "paddingVertical": 28.248175182481752,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#FFFFFF",
+        "fontFamily": "Montserrat-Bold",
+        "fontSize": 28.248175182481752,
+        "marginTop": 235.87226277372264,
+        "textAlign": "center",
+      }
+    }
+  >
+     SELECT POST TYPE 
+  </Text>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "space-evenly",
+        "marginTop": 33.8978102189781,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#2C3957",
+            "flexDirection": "column",
+            "height": 218.92335766423358,
+            "paddingVertical": 14.124087591240876,
+            "width": 200.56204379562044,
+          }
+        }
+      >
+        <View>
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={108.75547445255475}
+            bbWidth={192.0875912408759}
+            focusable={false}
+            height={108.75547445255475}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 108,
+                  "width": 192,
+                },
+              ]
+            }
+            vbHeight={77}
+            vbWidth={136}
+            width={192.0875912408759}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <RNSVGGroup>
+              <RNSVGDefs>
+                <RNSVGLinearGradient
+                  gradient={
+                    Array [
+                      0,
+                      -10850142,
+                      1,
+                      -11509367,
+                    ]
+                  }
+                  gradientTransform={null}
+                  gradientUnits={0}
+                  name="prefix__a"
+                  x1="71.46%"
+                  x2="1.369%"
+                  y1="47.73%"
+                  y2="50%"
+                />
+              </RNSVGDefs>
+              <RNSVGPath
+                d="M45 939v5h2v33h-2v7h-2v-7h-2v-33h2v-5h2zm-10-10v5h2v33h-2v7h-2v-7h-2v-33h2v-5h2zm20 12v4h2v24h-2v5h-2v-5h-2v-24h2v-4h2zm30-10v5h2v30h-2v6h-2v-6h-2v-30h2v-5h2zm60-10v6h2v36h-2v7h-2v-7h-2v-36h2v-6h2zm-10-2v6h2v33h-2v7h-2v-7h-2v-33h2v-6h2zm-70 12v4h2v24h-2v5h-2v-5h-2v-24h2v-4h2zm-40-14v5h2v33h-2v7h-2v-7h-2v-33h2v-5h2zm80 12v4h2v23h-2v5h-2v-5h-2v-23h2v-4h2zm-10-10v5h2v30h-2v6h-2v-6h-2v-30h2v-5h2zm-20 2v4h2v24h-2v5h-2v-5h-2v-24h2v-4h2zm40-2v3h2v21h-2v4h-2v-4h-2v-21h2v-3h2zm40 0v3h2v21h-2v4h-2v-4h-2v-21h2v-3h2zm-30-12v6h2v22h-2v4h-2v-4h-2v-22h2v-6h2z"
+                fill={
+                  Array [
+                    1,
+                    "prefix__a",
+                  ]
+                }
+                fillRule={0}
+                matrix={
+                  Array [
+                    1,
+                    0,
+                    0,
+                    1,
+                    -21,
+                    -907,
+                  ]
+                }
+                propList={
+                  Array [
+                    "fill",
+                    "fillRule",
+                  ]
+                }
+              />
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Montserrat-Bold",
+              "fontSize": 22.598540145985403,
+              "marginTop": 28.248175182481752,
+            }
+          }
+        >
+          Trade
+        </Text>
+      </View>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#2C3957",
+            "flexDirection": "column",
+            "height": 218.92335766423358,
+            "paddingVertical": 14.124087591240876,
+            "width": 200.56204379562044,
+          }
+        }
+      >
+        <View>
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={114.4051094890511}
+            bbWidth={166.66423357664235}
+            focusable={false}
+            height={114.4051094890511}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 114,
+                  "width": 166,
+                },
+              ]
+            }
+            vbHeight={81}
+            vbWidth={118}
+            width={166.66423357664235}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <RNSVGGroup>
+              <RNSVGDefs>
+                <RNSVGLinearGradient
+                  gradient={
+                    Array [
+                      0,
+                      -10850142,
+                      1,
+                      -11509367,
+                    ]
+                  }
+                  gradientTransform={null}
+                  gradientUnits={0}
+                  name="prefix__a"
+                  x1="100%"
+                  x2="0%"
+                  y1="50%"
+                  y2="50%"
+                />
+                <RNSVGLinearGradient
+                  gradient={
+                    Array [
+                      0,
+                      -10850142,
+                      1,
+                      -11509367,
+                    ]
+                  }
+                  gradientTransform={null}
+                  gradientUnits={0}
+                  name="prefix__b"
+                  x1="100%"
+                  x2="0%"
+                  y1="50%"
+                  y2="50%"
+                />
+                <RNSVGLinearGradient
+                  gradient={
+                    Array [
+                      0,
+                      -10850142,
+                      1,
+                      -11509367,
+                    ]
+                  }
+                  gradientTransform={null}
+                  gradientUnits={0}
+                  name="prefix__c"
+                  x1="100%"
+                  x2="0%"
+                  y1="50%"
+                  y2="50%"
+                />
+                <RNSVGLinearGradient
+                  gradient={
+                    Array [
+                      0,
+                      -10850142,
+                      1,
+                      -11509367,
+                    ]
+                  }
+                  gradientTransform={null}
+                  gradientUnits={0}
+                  name="prefix__d"
+                  x1="100%"
+                  x2="0%"
+                  y1="50%"
+                  y2="50%"
+                />
+                <RNSVGLinearGradient
+                  gradient={
+                    Array [
+                      0,
+                      -10850142,
+                      1,
+                      -11509367,
+                    ]
+                  }
+                  gradientTransform={null}
+                  gradientUnits={0}
+                  name="prefix__e"
+                  x1="100%"
+                  x2="0%"
+                  y1="50%"
+                  y2="50%"
+                />
+              </RNSVGDefs>
+              <RNSVGGroup
+                fill={null}
+                fillRule={0}
+                propList={
+                  Array [
+                    "fill",
+                    "fillRule",
+                  ]
+                }
+              >
+                <RNSVGRect
+                  fill={
+                    Array [
+                      1,
+                      "prefix__a",
+                    ]
+                  }
+                  height={41}
+                  propList={
+                    Array [
+                      "fill",
+                    ]
+                  }
+                  rx={2}
+                  width={118}
+                  x={0}
+                  y={0}
+                />
+                <RNSVGRect
+                  fill={
+                    Array [
+                      1,
+                      "prefix__b",
+                    ]
+                  }
+                  height={5}
+                  propList={
+                    Array [
+                      "fill",
+                    ]
+                  }
+                  rx={2.5}
+                  width={103}
+                  x={0}
+                  y={49}
+                />
+                <RNSVGRect
+                  fill={
+                    Array [
+                      1,
+                      "prefix__c",
+                    ]
+                  }
+                  height={5}
+                  propList={
+                    Array [
+                      "fill",
+                    ]
+                  }
+                  rx={2.5}
+                  width={118}
+                  x={0}
+                  y={58}
+                />
+                <RNSVGRect
+                  fill={
+                    Array [
+                      1,
+                      "prefix__d",
+                    ]
+                  }
+                  height={5}
+                  propList={
+                    Array [
+                      "fill",
+                    ]
+                  }
+                  rx={2.5}
+                  width={105}
+                  x={0}
+                  y={67}
+                />
+                <RNSVGRect
+                  fill={
+                    Array [
+                      1,
+                      "prefix__e",
+                    ]
+                  }
+                  height={5}
+                  propList={
+                    Array [
+                      "fill",
+                    ]
+                  }
+                  rx={2.5}
+                  width={113}
+                  x={0}
+                  y={76}
+                />
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "Montserrat-Bold",
+              "fontSize": 22.598540145985403,
+              "marginTop": 28.248175182481752,
+            }
+          }
+        >
+          Post
+        </Text>
+      </View>
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;

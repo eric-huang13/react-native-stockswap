@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Image,
+  Platform
 } from 'react-native';
 import {EditUser} from '../../actions/user';
 import {UserPost} from '../../actions/posts';
@@ -61,7 +62,6 @@ class EditPost extends Component {
     const {UserPost} = this.props;
     const {post, userAccount} = this.props.route.params;
     const postId = this.props.route.params.post.id;
-    
 
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -94,7 +94,10 @@ class EditPost extends Component {
                   isSubmitting,
                   setFieldValue,
                 }) => (
-              <View>            
+              <View>
+            {/* <Text style={style.header}>Edit Post</Text> */}
+            {values.image.uri && !errors.image ?
+            
                     <TouchableOpacity onPress={() => {
                       const options={
                         mediaType:'photo',
@@ -109,31 +112,51 @@ class EditPost extends Component {
                         }
                       });
                   }}>
-                                 {values.image.uri && !errors.image ?
-                                 <>
                     <Text style={style.uploadImageText}>
                           Tap to upload a new photo
                         </Text>
-           
                       <Image
                         style={style.uploadImageContainer}
                         source={{uri: values.image.uri}}
                       />
-                      <TouchableOpacity onPress={() => {
-                            setFieldValue('image', '');
-                          }}>
-                <Text style={style.uploadImageText}>Remove Photo</Text>
-              </TouchableOpacity>
-                      </>
-                      :
-                     <View style={style.uploadImageContainer}>
-                       <Text style={style.uploadImageText}>
-                          Tap to upload a new photo
+                    </TouchableOpacity>
+ 
+                     : 
+                      <View style={style.uploadImageContainer}>
+                        <TouchableOpacity onPress={() => {
+                            const options={
+                              mediaType:'photo',
+                              // includeBase64:true,                        
+                            }
+                            launchImageLibrary(options, response=> {
+                              console.log(response, "response image")
+                              if (response.uri)
+                              {
+                                setFieldValue('image', {name:response.fileName, type:response.type, uri:
+                                  Platform.OS === 'android' ? response.uri : response.uri.replace('file://', ''),})
+       
+                              }
+                            });
+                        }}>
+                        <Text style={style.uploadImageText}>
+                          Tap to upload new photo
                         </Text>
-                     </View>
-                        }
-                    </TouchableOpacity>               
-                
+                        </TouchableOpacity>
+                      </View>
+                     } 
+            {/* <View style={style.uploadImageContainer}>
+              <TextInput
+                onBlur={handleBlur('image')}
+                value={values.image}
+                onChangeText={handleChange('image')}
+                placeholder="Upload cover image"
+                placeholderTextColor="#FFFFFF"
+                style={style.inputStyleImage}
+              />
+              <Text style={style.errorText}>
+                          {touched.image && errors.image}
+                        </Text>
+            </View> */}
             <View style={style.postContainer}>
               <Text style={style.inputHeader}>Post</Text>
               <TextInput
@@ -245,7 +268,6 @@ const style = StyleSheet.create({
     marginBottom: moderateScale(1),
     fontFamily: 'Montserrat-Regular',
     marginTop:moderateScale(12),
-    textAlign:'center',
   },
   inputStyleImage: {
     fontFamily: 'Montserrat-Regular',

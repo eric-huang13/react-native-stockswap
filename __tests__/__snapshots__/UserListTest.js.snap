@@ -1,0 +1,203 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+>
+  <View
+    style={
+      Object {
+        "marginBottom": 21.186131386861312,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "left": 19.77372262773723,
+          "position": "absolute",
+          "top": 14.124087591240876,
+          "zIndex": 1,
+        }
+      }
+    >
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight={25.423357664233578}
+        bbWidth={25.423357664233578}
+        focusable={false}
+        height={25.423357664233578}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            Object {
+              "flex": 0,
+              "height": 25,
+              "width": 25,
+            },
+          ]
+        }
+        vbHeight={18}
+        vbWidth={18}
+        width={25.423357664233578}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <RNSVGGroup>
+          <RNSVGDefs />
+          <RNSVGGroup
+            fill={null}
+            fillRule={0}
+            matrix={
+              Array [
+                1,
+                0,
+                0,
+                1,
+                -346,
+                -529,
+              ]
+            }
+            propList={
+              Array [
+                "fill",
+                "fillRule",
+              ]
+            }
+          >
+            <RNSVGPath
+              d="M362.805 544.862l-5.114-5.109a5.97 5.97 0 001.32-3.753c0-3.314-2.689-6-6.005-6a6.003 6.003 0 00-6.006 6c0 3.314 2.689 6 6.006 6a5.983 5.983 0 003.74-1.306l5.115 5.11a.668.668 0 00.944-.942zM348.335 536a4.67 4.67 0 014.67-4.667 4.67 4.67 0 014.672 4.667 4.65 4.65 0 01-1.376 3.307s0 0 0 0 0 0 0 0a4.659 4.659 0 01-3.295 1.36 4.67 4.67 0 01-4.671-4.667z"
+              fill={4288192172}
+              fillRule={1}
+              propList={
+                Array [
+                  "fill",
+                  "fillRule",
+                  "stroke",
+                ]
+              }
+              stroke={4288192172}
+            />
+          </RNSVGGroup>
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+    <TextInput
+      allowFontScaling={true}
+      onChangeText={[Function]}
+      placeholder="Search by name"
+      placeholderTextColor="lightgrey"
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "alignContent": "center",
+          "backgroundColor": "#3e4d6c",
+          "color": "lightgrey",
+          "fontFamily": "Montserrat-Italic",
+          "fontSize": 21.186131386861312,
+          "height": 50.846715328467155,
+          "paddingLeft": 56.496350364963504,
+          "paddingVertical": 0,
+        }
+      }
+      underlineColorAndroid="transparent"
+    />
+  </View>
+  <RCTScrollView>
+    <View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "marginTop": 169.4890510948905,
+          }
+        }
+      >
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight={112.99270072992701}
+          bbWidth={185.02554744525548}
+          focusable={false}
+          height={112.99270072992701}
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              Object {
+                "flex": 0,
+                "height": 112,
+                "width": 185,
+              },
+            ]
+          }
+          vbHeight={80}
+          vbWidth={131}
+          width={185.02554744525548}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <RNSVGGroup>
+            <RNSVGGroup
+              fill={4294967295}
+              fillRule={1}
+              opacity={0.2}
+              propList={
+                Array [
+                  "fill",
+                  "fillRule",
+                ]
+              }
+            >
+              <RNSVGPath
+                d="M65.5 12.719c-10.287 0-18.655 8.386-18.655 18.695 0 10.309 8.369 18.695 18.655 18.695 10.286 0 18.655-8.387 18.655-18.695 0-10.309-8.368-18.695-18.655-18.695zm0 29.081c-5.715 0-10.364-4.66-10.364-10.386 0-5.728 4.649-10.386 10.364-10.386 5.715 0 10.364 4.658 10.364 10.386 0 5.728-4.649 10.386-10.364 10.386z"
+              />
+              <RNSVGPath
+                d="M65.5 41.662c-15.315 0-27.775 12.487-27.775 27.835v6.232a4.15 4.15 0 004.145 4.154 4.15 4.15 0 004.146-4.154v-6.232c0-10.767 8.74-19.526 19.484-19.526 10.744 0 19.484 8.76 19.484 19.526v6.232a4.15 4.15 0 004.146 4.154 4.15 4.15 0 004.146-4.154v-6.232c0-15.348-12.46-27.835-27.776-27.835zM103.225.117C92.938.117 84.57 8.504 84.57 18.812c0 10.309 8.368 18.695 18.655 18.695 10.288 0 18.655-8.386 18.655-18.695 0-10.308-8.369-18.695-18.655-18.695zm0 29.081c-5.716 0-10.364-4.658-10.364-10.386 0-5.728 4.648-10.386 10.364-10.386 5.715 0 10.364 4.658 10.364 10.386 0 5.728-4.649 10.386-10.364 10.386z"
+              />
+              <RNSVGPath
+                d="M103.225 29.06c-12.704 0-23.789 8.629-26.953 20.985a4.155 4.155 0 002.983 5.057c2.218.576 4.476-.768 5.045-2.99 2.225-8.682 10.008-14.743 18.925-14.743 10.744 0 19.484 8.76 19.484 19.526v6.232a4.15 4.15 0 004.146 4.155A4.15 4.15 0 00131 63.127v-6.232c0-15.348-12.46-27.835-27.775-27.835zM27.775.117C17.49.117 9.12 8.504 9.12 18.812c0 10.309 8.369 18.695 18.655 18.695 10.287 0 18.655-8.386 18.655-18.695C46.43 8.504 38.062.117 27.775.117zm0 29.081c-5.715 0-10.364-4.658-10.364-10.386 0-5.728 4.649-10.386 10.364-10.386 5.716 0 10.364 4.658 10.364 10.386 0 5.728-4.648 10.386-10.364 10.386z"
+              />
+              <RNSVGPath
+                d="M54.592 49.907C51.447 37.632 40.419 29.06 27.775 29.06 12.46 29.06 0 41.547 0 56.895v6.232a4.15 4.15 0 004.146 4.154 4.15 4.15 0 004.145-4.154v-6.232c0-10.766 8.74-19.526 19.485-19.526 8.857 0 16.582 6.004 18.785 14.604a4.147 4.147 0 005.046 2.991 4.156 4.156 0 002.985-5.057z"
+              />
+            </RNSVGGroup>
+          </RNSVGGroup>
+        </RNSVGSvgView>
+        <Text
+          style={
+            Object {
+              "color": "#9ea6b5",
+              "fontFamily": "Montserrat-SemiBold",
+              "fontSize": 25.423357664233578,
+              "marginTop": 14.124087591240876,
+              "textAlign": "center",
+              "width": 254.23357664233578,
+            }
+          }
+        >
+          Find any person on the platform
+        </Text>
+      </View>
+    </View>
+  </RCTScrollView>
+</RCTSafeAreaView>
+`;

@@ -1,0 +1,297 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<RCTSafeAreaView
+  accessible={true}
+  emulateUnlessSupported={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#2a334a",
+      "flex": 1,
+      "paddingHorizontal": 36.722627737226276,
+      "paddingVertical": 28.248175182481752,
+    }
+  }
+>
+  <RCTScrollView>
+    <View>
+      <View
+        onLayout={[Function]}
+        style={
+          Array [
+            Object {
+              "flex": 1,
+            },
+            Object {
+              "paddingBottom": 0,
+            },
+          ]
+        }
+      >
+        <View>
+          <Text
+            style={
+              Object {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontSize": 28.248175182481752,
+                "marginTop": 28.248175182481752,
+                "textAlign": "center",
+              }
+            }
+          >
+             Post a Publication 
+          </Text>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "alignSelf": "center",
+                "backgroundColor": "#46486e",
+                "borderRadius": 2.8248175182481754,
+                "height": 183.61313868613138,
+                "justifyContent": "center",
+                "marginTop": 28.248175182481752,
+                "width": "100%",
+              }
+            }
+          >
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#FFFFFF",
+                    "fontFamily": "Montserrat-Regular",
+                    "fontSize": 19.77372262773723,
+                  }
+                }
+              >
+                Tap to upload your photo
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "alignSelf": "center",
+                "marginTop": 28.248175182481752,
+                "width": "100%",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#babec8",
+                  "fontFamily": "Montserrat-Regular",
+                  "fontSize": 16.94890510948905,
+                  "marginBottom": 1.4124087591240877,
+                }
+              }
+            >
+              Post
+            </Text>
+            <TextInput
+              allowFontScaling={true}
+              multiline={true}
+              numberOfLines={4}
+              onChangeText={[Function]}
+              placeholder="Enter post text"
+              placeholderTextColor="#9ea6b5"
+              rejectResponderTermination={true}
+              style={
+                Object {
+                  "backgroundColor": "#3e4d6c",
+                  "borderRadius": 8.474452554744525,
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-Italic",
+                  "fontSize": 19.77372262773723,
+                  "height": 282.4817518248175,
+                  "marginBottom": 16.94890510948905,
+                  "marginTop": 1.4124087591240877,
+                  "padding": 11.299270072992702,
+                  "textAlignVertical": "top",
+                }
+              }
+              underlineColorAndroid="transparent"
+              value=""
+            />
+            <Text
+              style={
+                Object {
+                  "color": "#F66E6E",
+                  "fontWeight": "bold",
+                  "marginBottom": 1.4124087591240877,
+                  "marginTop": 1.4124087591240877,
+                  "textAlign": "center",
+                }
+              }
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginBottom": 14.124087591240876,
+                "marginTop": 14.124087591240876,
+                "paddingRight": 22.598540145985403,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-SemiBold",
+                  "fontSize": 22.598540145985403,
+                }
+              }
+            >
+              Turn off comments
+            </Text>
+            <RCTSwitch
+              accessibilityRole="switch"
+              onChange={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              onTintColor="#B8A0FF"
+              style={
+                Array [
+                  Object {
+                    "height": 31,
+                    "width": 51,
+                  },
+                  Array [
+                    Object {
+                      "transform": Array [
+                        Object {
+                          "scaleX": 2.1186131386861313,
+                        },
+                        Object {
+                          "scaleY": 2.1186131386861313,
+                        },
+                      ],
+                    },
+                    Object {
+                      "backgroundColor": "#f4f3f4",
+                      "borderRadius": 16,
+                    },
+                  ],
+                ]
+              }
+              thumbTintColor="#f4f3f4"
+              tintColor="#1A2542"
+              value={false}
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginTop": 56.496350364963504,
+              }
+            }
+          >
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "borderColor": "#8b64ff",
+                    "borderRadius": 8.474452554744525,
+                    "borderWidth": 1.4124087591240877,
+                    "color": "#8b64ff",
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 19.77372262773723,
+                    "paddingHorizontal": 28.248175182481752,
+                    "paddingVertical": 16.94890510948905,
+                    "textAlign": "center",
+                    "width": 225.98540145985402,
+                  }
+                }
+              >
+                Publish
+              </Text>
+            </View>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "backgroundColor": "#8b64ff",
+                    "borderRadius": 8.474452554744525,
+                    "color": "#FFFFFF",
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 19.77372262773723,
+                    "paddingHorizontal": 28.248175182481752,
+                    "paddingVertical": 16.94890510948905,
+                    "textAlign": "center",
+                    "width": 225.98540145985402,
+                  }
+                }
+              >
+                Preview
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</RCTSafeAreaView>
+`;
