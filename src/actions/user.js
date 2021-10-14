@@ -19,7 +19,7 @@ import {
   RESETPASSWORD_SUCCESS,
   RESETPASSWORD_ERROR,
   REFRESH_TOKEN,
-  ADD_LATER
+  ADD_LATER,
 } from 'constants';
 import axios from 'axios';
 import deviceStorage from '../util/DeviceStorage';
@@ -29,7 +29,7 @@ import clearAppData from '../util/ClearStorage';
 import {navigate} from '../../RootNavigation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import jwt_decode from 'jwt-decode';
-
+import {Platform} from 'react-native';
 import Toast from 'react-native-toast-message';
 import {GoogleSignin, statusCodes} from '@react-native-community/google-signin';
 import {
@@ -84,9 +84,8 @@ export const RefreshToken = (token) => {
 };
 export const AddLater = () => {
   return (dispatch) => {
-    dispatch({type: ADD_LATER})
-  }
-  
+    dispatch({type: ADD_LATER});
+  };
 };
 
 export const Register = (input) => {
@@ -107,7 +106,7 @@ export const Register = (input) => {
           //route to profileinfo
           dispatch({type: SIGNUP_SUCCESS, payload: response.data});
         dispatch({type: TOKEN_SUCCESS, payload: decoded.sub});
-            dispatch({type: REFRESH_TOKEN, payload: response.data.accessToken});
+        dispatch({type: REFRESH_TOKEN, payload: response.data.accessToken});
 
         navigate('ProfileInfoForm');
 
@@ -185,8 +184,7 @@ export const RegisterGoogleSignIn = (input) => {
 
         dispatch({type: SIGNUP_SUCCESS, payload: response.data});
         dispatch({type: TOKEN_SUCCESS, payload: decoded.sub});
-            dispatch({type: REFRESH_TOKEN, payload: response.data.accessToken});
-
+        dispatch({type: REFRESH_TOKEN, payload: response.data.accessToken});
 
         deviceStorage.saveItem('token', response.data.accessToken),
           deviceStorage.saveItem('refreshToken', response.data.refreshToken),
@@ -229,8 +227,7 @@ export const RegisterGoogle = (input) => {
 
         dispatch({type: LOGIN_SUCCESS, payload: response.data});
         dispatch({type: TOKEN_SUCCESS, payload: decoded.sub});
-            dispatch({type: REFRESH_TOKEN, payload: response.data.accessToken});
-
+        dispatch({type: REFRESH_TOKEN, payload: response.data.accessToken});
 
         deviceStorage.saveItem('token', response.data.accessToken),
           deviceStorage.saveItem('refreshToken', response.data.refreshToken),
@@ -277,8 +274,7 @@ export const Login = (input) => {
           deviceStorage.saveItem('email', input.email),
           dispatch({type: LOGIN_SUCCESS, payload: response.data});
         dispatch({type: TOKEN_SUCCESS, payload: decoded.sub});
-            dispatch({type: REFRESH_TOKEN, payload: response.data.accessToken});
-
+        dispatch({type: REFRESH_TOKEN, payload: response.data.accessToken});
 
         Toast.show({
           type: 'success',
@@ -298,12 +294,19 @@ export const Login = (input) => {
       });
   };
 };
+
+const GOOGLE_IOS_CLIENT_ID =
+  Platform.OS === 'ios'
+    ? '534509051413-1up4ql426i3annnm2j3p2ouj9dd3nn42.apps.googleusercontent.com'
+    : '';
+const GOOGLE_WEB_CLIENT_ID =
+  '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com';
+
 export const GoogleSignUp = () => {
   GoogleSignin.configure({
-    webClientId:
-      '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
+    webClientId: GOOGLE_WEB_CLIENT_ID,
     offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-    iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+    iosClientId: GOOGLE_IOS_CLIENT_ID, // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
   return async (dispatch) => {
     dispatch({type: GOOGLE_LOGIN_START});
@@ -314,7 +317,10 @@ export const GoogleSignUp = () => {
         console.log(userInfo, 'USERINFO GOOGLE SIGNUP');
       //send token to backend
       dispatch(
-        RegisterGoogleSignIn({token: userInfo.idToken, platform: 'android'}),
+        RegisterGoogleSignIn({
+          token: userInfo.idToken,
+          platform: Platform.OS === 'ios' ? 'ios' : 'android',
+        }),
       );
 
       dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
@@ -336,10 +342,9 @@ export const GoogleSignUp = () => {
 //original
 export const GoogleLogin = () => {
   GoogleSignin.configure({
-    webClientId:
-      '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
+    webClientId: GOOGLE_WEB_CLIENT_ID,
     offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-    iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+    iosClientId: GOOGLE_IOS_CLIENT_ID, // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
   return async (dispatch) => {
     dispatch({type: GOOGLE_LOGIN_START});
@@ -350,7 +355,12 @@ export const GoogleLogin = () => {
         console.log(userInfo, 'USERINFO GOOGLE LOGIN');
 
       //send token to backend
-      dispatch(RegisterGoogle({token: userInfo.idToken, platform: 'android'}));
+      dispatch(
+        RegisterGoogle({
+          token: userInfo.idToken,
+          platform: Platform.OS === 'ios' ? 'ios' : 'android',
+        }),
+      );
 
       dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
     } catch (error) {
@@ -370,10 +380,9 @@ export const GoogleLogin = () => {
 
 export const GoogleIsSignedIn = () => {
   GoogleSignin.configure({
-    webClientId:
-      '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
+    webClientId: GOOGLE_WEB_CLIENT_ID,
     offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-    iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+    iosClientId: GOOGLE_IOS_CLIENT_ID, // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
   return async (dispatch) => {
     const isSignedIn = await GoogleSignin.isSignedIn();
@@ -382,7 +391,10 @@ export const GoogleIsSignedIn = () => {
         const userInfo = await GoogleSignin.signInSilently();
         //send token to backend
         dispatch(
-          RegisterGoogle({token: userInfo.idToken, platform: 'android'}),
+          RegisterGoogle({
+            token: userInfo.idToken,
+            platform: Platform.OS === 'ios' ? 'ios' : 'android',
+          }),
         );
       } catch (error) {
         if (error.code === statusCodes.SIGN_IN_REQUIRED) {
@@ -400,10 +412,9 @@ export const GoogleIsSignedIn = () => {
 
 export const GoogleLogout = () => {
   GoogleSignin.configure({
-    webClientId:
-      '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
+    webClientId: GOOGLE_WEB_CLIENT_ID,
     offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-    iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+    iosClientId: GOOGLE_IOS_CLIENT_ID, // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
   return async (dispatch) => {
     try {
@@ -576,4 +587,3 @@ export const ResetPassword = (input) => {
       });
   };
 };
-
