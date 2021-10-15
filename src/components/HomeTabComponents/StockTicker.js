@@ -1,42 +1,35 @@
 import React, {PureComponent} from 'react';
-import {StyleSheet, Text, SafeAreaView} from 'react-native';
+import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
 import TextTicker from 'react-native-text-ticker';
 import {connect} from 'react-redux';
 import {moderateScale} from '../../util/responsiveFont';
-import {fetchTickers} from '../../actions/marketMovers'
-
+import {fetchTickers} from '../../actions/marketMovers';
 
 export class StockTicker extends PureComponent {
-//   componentDidMount() {
-//     // const {companies, fetchGainers} = this.props;
-//     this.props.fetchTickers();
-// }
+  //   componentDidMount() {
+  //     // const {companies, fetchGainers} = this.props;
+  //     this.props.fetchTickers();
+  // }
   render() {
     const {gainers, tickers} = this.props;
-    console.log(tickers, "tickers in component")
-    
+    console.log(tickers, 'tickers in component');
+
     return (
-      <SafeAreaView style={styles.container}>
-        { tickers.length > 0 ?
-        <TextTicker
-          style={{fontSize: 24}}
-          scrollSpeed={5000}
-          loop
-          bounce
-          repeatSpacer={0}
-          marqueeDelay={0}
-          animationType="scroll">
-          {tickers.map((item) => (
-            <React.Fragment key={item}>
-              <Text
-                style={
-                 styles.marqueeSymbol
-                }
-                >
-                {' '}
-                {item}{' '}
-              </Text>
-              {/* <Text
+      <View style={styles.container}>
+        {tickers.length > 0 ? (
+          <TextTicker
+            style={{fontSize: 24}}
+            scrollSpeed={5000}
+            duration={30000}
+            loop
+            bounce
+            repeatSpacer={0}
+            marqueeDelay={0}
+            animationType="scroll">
+            {tickers.map((item) => (
+              <React.Fragment key={item}>
+                <Text style={styles.marqueeSymbol}> {item} </Text>
+                {/* <Text
                 style={
                   item.percentage[0] === '-'
                     ? {...styles.marqueePercentage, color: '#F66E6E'}
@@ -45,19 +38,18 @@ export class StockTicker extends PureComponent {
                 {item.percentage}
                 {'   '}
               </Text> */}
-            </React.Fragment>
-          ))}
-        </TextTicker>
-        :
-        null}
-      </SafeAreaView>
+              </React.Fragment>
+            ))}
+          </TextTicker>
+        ) : null}
+      </View>
     );
   }
 }
 const mapStateToProps = (state) => {
   return {
     gainers: state.company.gainers,
-    tickers: state.company.tickers
+    tickers: state.company.tickers,
   };
 };
 const mapDispatchToProps = (dispatch) => {
