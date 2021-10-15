@@ -1,5 +1,6 @@
 //React
 import React, {Component} from 'react';
+import {StyleSheet, View, Text, Image} from 'react-native';
 
 //Navigation
 import {createStackNavigator} from '@react-navigation/stack';
@@ -17,6 +18,8 @@ import Followers from '../components/HomeTabScreens/Followers';
 import Following from '../components/HomeTabScreens/Following';
 import EditPost from '../components/MyProfileTabScreens/EditPost';
 import CreatePostPreview from '../components/PostTabScreens/CreatePostPreview';
+import HeaderStockSwap from '../icons/HeaderStockSwap';
+import Logo from '../icons/Logo.png';
 
 //responsive scale
 import {moderateScale} from '../util/responsiveFont';
@@ -31,9 +34,16 @@ export default class HomeStackNavigator extends Component {
           name="HomeTab"
           component={HomeScreen}
           options={{
-            title: 'StockSwap',
+            title:  
+            <View style={style.stockHeader}>
+              <Text style={style.headerText}>StockSwap</Text>
+             <Image
+          style={style.logo}
+          source={require('../icons/Logo.png')}
+        /></View>
+          ,
             headerStyle: {
-              backgroundColor: '#313c58',
+              backgroundColor: '#2D384E',
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
@@ -43,18 +53,22 @@ export default class HomeStackNavigator extends Component {
             headerTitleAlign: {
               textAlign: 'center',
             },
+            
+            
+          
           }}
         />
         <HomeStack.Screen
           name="PostScreen"
           component={PostScreen}
           options={({route}) => ({
-            title: route.params.name,
-
+            title:  <View style={style.stockHeader}>
+            <HeaderStockSwap />
+          </View>,
             headerShown: true,
-
+            headerBackTitle:'Feed',
             headerStyle: {
-              backgroundColor: '#394463',
+              backgroundColor: '#2A334B',
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
@@ -73,7 +87,7 @@ export default class HomeStackNavigator extends Component {
           options={{
             title: 'Comments',
             headerStyle: {
-              backgroundColor: '#394463',
+              backgroundColor: '#2A334B',
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
@@ -91,7 +105,7 @@ export default class HomeStackNavigator extends Component {
           options={{
             title: 'Profile',
             headerStyle: {
-              backgroundColor: '#394463',
+              backgroundColor: '#2A334B',
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
@@ -127,7 +141,7 @@ export default class HomeStackNavigator extends Component {
           options={{
             title: 'Stock details',
             headerStyle: {
-              backgroundColor: '#394463',
+              backgroundColor: '#2A334B',
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
@@ -145,7 +159,7 @@ export default class HomeStackNavigator extends Component {
           options={{
             title: 'My Profile',
             headerStyle: {
-              backgroundColor: '#394463',
+              backgroundColor: '#2A334B',
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
@@ -163,7 +177,7 @@ export default class HomeStackNavigator extends Component {
           options={{
             title: 'All my posts',
             headerStyle: {
-              backgroundColor: '#394463',
+              backgroundColor: '#2A334B',
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
@@ -181,7 +195,7 @@ export default class HomeStackNavigator extends Component {
           options={({route}) => ({
             title: route.params.name,
             headerStyle: {
-              backgroundColor: '#394463',
+              backgroundColor: '#2A334B',
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
@@ -199,7 +213,7 @@ export default class HomeStackNavigator extends Component {
           options={({route}) => ({
             title: route.params.name,
             headerStyle: {
-              backgroundColor: '#394463',
+              backgroundColor: '#2A334B',
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
@@ -217,7 +231,7 @@ export default class HomeStackNavigator extends Component {
           options={{
             title: 'Edit Post',
             headerStyle: {
-              backgroundColor: '#394463',
+              backgroundColor: '#2A334B',
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
@@ -235,7 +249,7 @@ export default class HomeStackNavigator extends Component {
           options={{
             title: 'Post preview',
             headerStyle: {
-              backgroundColor: '#394463',
+              backgroundColor: '#2A334B',
             },
             headerTitleStyle: {
               fontFamily: 'Montserrat-Bold',
@@ -251,3 +265,23 @@ export default class HomeStackNavigator extends Component {
     );
   }
 }
+
+const style = StyleSheet.create({
+  stockHeader: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: moderateScale(20),
+    marginBottom: moderateScale(20),
+  },
+  logo: {    
+    height:36,
+    width:36,
+  },
+  headerText:{
+    fontFamily: 'Montserrat-Bold',
+    fontSize: moderateScale(16),
+    color:'white',
+    textAlign:'center',
+    alignSelf:'center'
+  },
+});

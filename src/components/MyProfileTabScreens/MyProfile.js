@@ -212,9 +212,9 @@ class Profile extends Component {
                       <Text style={style.username}>
                         @{userProfile.username}
                       </Text>
-                      <Text style={style.hashtag}>
+                      {/* <Text style={style.hashtag}>
                         {this.state.user.hashtag}
-                      </Text>
+                      </Text> */}
                     </View>
                   </View>
                   <View style={style.bioContainer}>
@@ -342,7 +342,7 @@ const style = StyleSheet.create({
     borderColor: 'yellow',
     marginLeft: moderateScale(8),
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
   },
   detailsRow: {
     borderColor: 'orange',
