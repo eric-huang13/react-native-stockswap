@@ -176,8 +176,11 @@ export class LoginScreen extends Component {
               <View style={style.bottomButtonsContainer}>
                 <Text style={style.orText}>--OR--</Text>
                 <View style={style.alternateSignUpContainer}>
-                  <GoogleOauth login={'login'} RegisterUserGoogle={RegisterUserGoogle} />
-                  <View style={style.alternateSignupInner}>
+                  <GoogleOauth
+                    login={'login'}
+                    RegisterUserGoogle={RegisterUserGoogle}
+                  />
+                  {/*<View style={style.alternateSignupInner}>
                     <View style={style.signupIcon}>
                       <FacebookIcon />
                     </View>
@@ -192,7 +195,7 @@ export class LoginScreen extends Component {
                     <Text style={style.alternateSignUpButton}>
                       LOGIN WITH APPLE
                     </Text>
-                  </View>
+                          </View> */}
                 </View>
               </View>
             </ScrollView>

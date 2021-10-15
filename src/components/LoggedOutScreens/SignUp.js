@@ -111,9 +111,10 @@ export const SignUp = ({
                   //   name: 'ProfileInfoForm',
                   //   params: {userInfo: values},
                   // });
-                  RegisterUser ({email: values.email,
-                    password: values.password,                    
-                  })
+                  RegisterUser({
+                    email: values.email,
+                    password: values.password,
+                  });
                 }}>
                 {(props) => (
                   <View style={style.inner}>
@@ -255,8 +256,11 @@ export const SignUp = ({
             <View style={style.bottomButtonsContainer}>
               <Text style={style.orText}>--OR--</Text>
               <View style={style.alternateSignUpContainer}>
-                <GoogleOauth signup={'signup'} RegisterUserGoogle={RegisterUserGoogle} />
-                <View style={style.alternateSignupInner}>
+                <GoogleOauth
+                  signup={'signup'}
+                  RegisterUserGoogle={RegisterUserGoogle}
+                />
+                {/* <View style={style.alternateSignupInner}>
                   <View style={style.signupIcon}>
                     <FacebookIcon />
                   </View>
@@ -271,7 +275,7 @@ export const SignUp = ({
                   <Text style={style.alternateSignUpButton}>
                     LOGIN WITH APPLE
                   </Text>
-                </View>
+                          </View> */}
               </View>
             </View>
           </ScrollView>
