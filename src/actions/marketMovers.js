@@ -27,8 +27,33 @@ import {
   FETCHSTOCKDETAILS_START,
   FETCHSTOCKDETAILS_SUCCESS,
   FETCHSTOCKDETAILS_ERROR,
+  SEARCHSTOCK_START,
+  SEARCHSTOCK_SUCCESS,
+  SEARCHSTOCK_ERROR,
 } from 'constants';
 import axios from 'axios';
+
+export const searchStock = (ticker) => {
+  return (dispatch) => {
+    dispatch({type: SEARCHSTOCK_START});
+    axios
+      .get(
+        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/tickers/all/search?query=${ticker}`,
+      )
+
+      .then(response => console.log (response.data, "SEARCH STOCK DATA"))
+      // .then((response) => {
+      //   dispatch({
+      //     type: SEARCHSTOCK_SUCCESS,
+      //     payload: response.data.result.details,
+      //   });
+      // })
+
+      .catch((error) =>
+        dispatch({type: SEARCHSTOCK_ERROR, payload: error.response}),
+      );
+  };
+};
 
 export const fetchStockDetails = (ticker) => {
   return (dispatch) => {

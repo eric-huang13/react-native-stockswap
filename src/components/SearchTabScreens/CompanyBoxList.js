@@ -14,7 +14,7 @@ import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
 import CompanyBox from '../SearchTabComponents/CompanyBox';
 import {fetchMarketGainers} from '../../actions/marketMovers';
-import {fetchMarketLosers} from '../../actions/marketMovers'
+import {fetchMarketLosers, searchStock} from '../../actions/marketMovers'
 
 
 
@@ -219,11 +219,7 @@ const mapStateToProps = (state) => {
     highestByVolume: state.company.highestByVolume,
     marketGainers: state.company.marketGainers,
     marketLosers: state.company.marketLosers,
-
     marketGainersTest: state.company.marketGainersTest,
-
-
-
   };
 };
 
@@ -232,6 +228,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchGainers: () => dispatch(fetchMarketGainers()),
     fetchLosers: () => dispatch(fetchMarketLosers()),
+    searchStock: (input) => dispatch(searchStock(input)),
+
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(CompanyBoxList);

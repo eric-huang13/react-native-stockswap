@@ -26,7 +26,10 @@ import {
   FETCHSTOCKDAY_ERROR,
   FETCHSTOCKDETAILS_START,
   FETCHSTOCKDETAILS_SUCCESS,
-  FETCHSTOCKDETAILS_ERROR
+  FETCHSTOCKDETAILS_ERROR,
+  SEARCHSTOCK_START,
+  SEARCHSTOCK_SUCCESS,
+  SEARCHSTOCK_ERROR
 } from '../constants';
 
 const defaultState = {
@@ -868,6 +871,8 @@ const defaultState = {
   stockMonth:[],
   stockThreeMonth:[],
   stockYear:[],
+  searchStock:[],
+  searchStockLoading:false,
   articles: [
     {
       id: '1',
@@ -885,6 +890,25 @@ const defaultState = {
 const companyBoxReducer = (state = defaultState, action) => {
   switch (action.type) {
     //Ready for hook up
+    case SEARCHSTOCK_START:
+      return {
+        ...state,
+        searchStockLoading: true,
+        error: "",
+      };
+    case SEARCHSTOCK_SUCCESS:
+      return {
+        ...state,
+        searchStockLoading: false,
+        error: "",
+        searchStock: action.payload,
+      };
+    case SEARCHSTOCK_ERROR:
+      return {
+        ...state,
+        searchStockLoading: false,
+        error: action.payload,
+      };
     case MARKETGAINERS_FETCHING:
       return {
         ...state,
