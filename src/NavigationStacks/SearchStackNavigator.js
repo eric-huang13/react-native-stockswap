@@ -41,6 +41,7 @@ export default class SearchStackNavigator extends Component {
           component={CompanyInformation}
           options={{
             title: 'Stock details',
+            headerBackTitle:'Search',
             headerStyle: {
               backgroundColor: '#394463',
             },
@@ -62,7 +63,7 @@ export default class SearchStackNavigator extends Component {
             //Need to figure out way to make header height shown when transparent or add Linearcolors directly
             // headerTransparent: true,
             headerShown: true,
-
+            headerBackTitle:'Search',
             headerStyle: {
               backgroundColor: '#394463',
             },

@@ -63,7 +63,7 @@ class ManagePortfolio extends Component {
             </View>
             <View style={style.gainDetailsContainer}>
               <Text style={style.gain}>$-10.75(-11%)</Text>
-              <Text style={style.gainTime}>Past hour</Text>
+              <Text style={style.gainTime}>Past day</Text>
             </View>
           </View>
           <View style={style.percentButtonContainer}>
