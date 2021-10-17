@@ -41,13 +41,13 @@ export const searchStock = (ticker) => {
         `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/tickers/all/search?query=${ticker}`,
       )
 
-      .then(response => console.log (response.data, "SEARCH STOCK DATA"))
-      // .then((response) => {
-      //   dispatch({
-      //     type: SEARCHSTOCK_SUCCESS,
-      //     payload: response.data.result.details,
-      //   });
-      // })
+      // .then(response => console.log (response.data.result.searchResults, "SEARCH STOCK DATA"))
+      .then((response) => {
+        dispatch({
+          type: SEARCHSTOCK_SUCCESS,
+          payload: response.data.result.searchResults,
+        });
+      })
 
       .catch((error) =>
         dispatch({type: SEARCHSTOCK_ERROR, payload: error.response}),

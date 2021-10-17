@@ -871,7 +871,7 @@ const defaultState = {
   stockMonth:[],
   stockThreeMonth:[],
   stockYear:[],
-  searchStock:[],
+  searchStockResults:[],
   searchStockLoading:false,
   articles: [
     {
@@ -901,7 +901,7 @@ const companyBoxReducer = (state = defaultState, action) => {
         ...state,
         searchStockLoading: false,
         error: "",
-        searchStock: action.payload,
+        searchStockResults: action.payload,
       };
     case SEARCHSTOCK_ERROR:
       return {
