@@ -37,46 +37,17 @@ import {
   FORGOTPASSWORD_START,
   FORGOTPASSWORD_SUCCESS,
 } from '../constants';
-// GoogleSignin.configure({
-//   webClientId:
-//     '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
-//   offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-//   iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
-// });
-// export const Register = (input) => {
-//   return (dispatch) => {
-//     dispatch({type: SIGNUP_START});
-//     axios
-//       .post(
-//         'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/signup',
-//         input,
-//       )
-//       .then((response) => {
-//         console.log(response, 'RESPONSE in Signup');
 
-//         deviceStorage.saveItem('token', response.data.accessToken),
-//         deviceStorage.saveItem('refreshToken', response.data.refreshToken),
-//         deviceStorage.saveItem('email', input.email),
+// TODO: This needs to move to a config file
+const GOOGLE_IOS_CLIENT_ID =
+  Platform.OS === 'ios'
+    ? '534509051413-1up4ql426i3annnm2j3p2ouj9dd3nn42.apps.googleusercontent.com'
+    : '';
+const GOOGLE_WEB_CLIENT_ID =
+  Platform.OS === 'ios'
+    ? ''
+    : '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com';
 
-//         //route to profileinfo
-//           dispatch({type: SIGNUP_SUCCESS, payload: response.data});
-//         Toast.show({
-//           type: 'success',
-//           text2: 'Sign up successful!',
-//         });
-//       })
-//       .catch((error) => {
-//         console.log(error, 'ERROR in Signup');
-//         dispatch({type: SIGNUP_ERROR, payload: error.response});
-//         navigate('SignUp');
-//         Toast.show({
-//           type: 'errorSignUp',
-//           text1: 'Error',
-//           text2: error.response.data.message,
-//         });
-//       });
-//   };
-// };
 export const RefreshToken = (token) => {
   return (dispatch) => {
     dispatch({type: REFRESH_TOKEN, payload: token});
@@ -127,54 +98,18 @@ export const Register = (input) => {
       });
   };
 };
-// For signup with image
-// export const RegisterwithImage = (input) => {
-//   console.log(input, 'inputapi');
-//   const config = {
-//     headers: {
-//       Accept: 'application/json',
-//       'content-type': 'multipart/form-data',
-//     },
-//   };
-//   return (dispatch) => {
-//     dispatch({type: SIGNUP_START});
-//     axios
-//       .post('http://192.168.0.103:3000/api/upload', input, config)
-
-//       .then((response) => {
-//         console.log(response, 'RESPONSE in Signup');
-
-//         dispatch({type: SIGNUP_SUCCESS, payload: response.data});
-//         Toast.show({
-//           type: 'success',
-//           text2: 'Sign up successful!',
-//         });
-//       })
-//       .catch((error) => {
-//         console.log(error, 'ERROR in Signup');
-//         dispatch({type: SIGNUP_ERROR, payload: error.response});
-//         navigate('SignUp');
-//         Toast.show({
-//           type: 'errorSignUp',
-//           text1: 'Error',
-//           text2: error.response.data.message,
-//         });
-//       });
-//   };
-// };
 
 export const RegisterGoogleSignIn = (input) => {
   GoogleSignin.configure({
-    webClientId:
-      '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
-    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-    iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+    webClientId: GOOGLE_WEB_CLIENT_ID,
+    offlineAccess: false, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    iosClientId: GOOGLE_IOS_CLIENT_ID, // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
   return (dispatch) => {
     dispatch({type: SIGNUP_START});
     axios
       .post(
-        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/oauth/signup',
+        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/oauth/login',
         input,
       )
 
@@ -196,6 +131,7 @@ export const RegisterGoogleSignIn = (input) => {
         });
       })
       .catch((error) => {
+        console.log('GOOGLE ERROR', error);
         dispatch({type: SIGNUP_ERROR, payload: error.response});
         Toast.show({
           type: 'error',
@@ -208,10 +144,9 @@ export const RegisterGoogleSignIn = (input) => {
 //original
 export const RegisterGoogle = (input) => {
   GoogleSignin.configure({
-    webClientId:
-      '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
-    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-    iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+    webClientId: GOOGLE_WEB_CLIENT_ID,
+    offlineAccess: false, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    iosClientId: GOOGLE_IOS_CLIENT_ID, // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
   console.log(input, 'input in google action');
   return (dispatch) => {
@@ -238,6 +173,7 @@ export const RegisterGoogle = (input) => {
           });
       })
       .catch((error) => {
+        // console.log('ERROR 101:', error);
         dispatch({type: SIGNUP_ERROR, payload: error.response});
         //if response is email not registered then should dispatch oauth signup
         dispatch(GoogleLogoutCheck());
@@ -295,17 +231,10 @@ export const Login = (input) => {
   };
 };
 
-const GOOGLE_IOS_CLIENT_ID =
-  Platform.OS === 'ios'
-    ? '534509051413-1up4ql426i3annnm2j3p2ouj9dd3nn42.apps.googleusercontent.com'
-    : '';
-const GOOGLE_WEB_CLIENT_ID =
-  '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com';
-
 export const GoogleSignUp = () => {
   GoogleSignin.configure({
     webClientId: GOOGLE_WEB_CLIENT_ID,
-    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    offlineAccess: false, // if you want to access Google API on behalf of the user FROM YOUR SERVER
     iosClientId: GOOGLE_IOS_CLIENT_ID, // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
   return async (dispatch) => {
@@ -343,7 +272,7 @@ export const GoogleSignUp = () => {
 export const GoogleLogin = () => {
   GoogleSignin.configure({
     webClientId: GOOGLE_WEB_CLIENT_ID,
-    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    offlineAccess: false, // if you want to access Google API on behalf of the user FROM YOUR SERVER
     iosClientId: GOOGLE_IOS_CLIENT_ID, // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
   return async (dispatch) => {
@@ -381,7 +310,7 @@ export const GoogleLogin = () => {
 export const GoogleIsSignedIn = () => {
   GoogleSignin.configure({
     webClientId: GOOGLE_WEB_CLIENT_ID,
-    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    offlineAccess: false, // if you want to access Google API on behalf of the user FROM YOUR SERVER
     iosClientId: GOOGLE_IOS_CLIENT_ID, // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
   return async (dispatch) => {
@@ -413,7 +342,7 @@ export const GoogleIsSignedIn = () => {
 export const GoogleLogout = () => {
   GoogleSignin.configure({
     webClientId: GOOGLE_WEB_CLIENT_ID,
-    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    offlineAccess: false, // if you want to access Google API on behalf of the user FROM YOUR SERVER
     iosClientId: GOOGLE_IOS_CLIENT_ID, // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
   return async (dispatch) => {
@@ -435,51 +364,6 @@ export const GoogleLogoutCheck = () => {
     }
   };
 };
-
-//Working POST with token sent on headers
-
-// export const Login = (input) => {
-//   return (dispatch) => {
-//     dispatch({type: LOGIN_START});
-//     apiInstance
-//             .post('https://jiujitsux.herokuapp.com/api/moves/takedown', (input))
-//             .then((response) => {
-//                 console.log(response, 'TAKEDOWN response')
-//                 // window.location.reload();
-//             })
-//         // .then(response =>{ deviceStorage.saveItem('token', response.data.token), dispatch({ type: LOGIN_SUCCESS, payload: response.data })
-
-// .catch(error => {dispatch({ type: SIGNUP_ERROR, payload: error.response })
-// console.log(error.response )
-
-// })
-//   };
-// };
-
-// export const Login = () => (dispatch) => {
-//   Toast.show({
-//     type: 'success',
-//     text2: 'Sign up successful!',
-//   });
-
-//   return dispatch({
-//     type: LOGIN_SUCCESS,
-//   });
-// };
-
-// export const Logout = () => (dispatch) => {
-//   clearAppData()
-//   Toast.show({
-//     type: 'success',
-//     topOffset: 30,
-//     text2: 'You have been successfully logged out.',
-//   });
-//   dispatch(GoogleLogoutCheck());
-//   return dispatch({
-//     type: LOGOUT,
-//   });
-
-// };
 
 export const Logout = () => {
   return async (dispatch) => {
