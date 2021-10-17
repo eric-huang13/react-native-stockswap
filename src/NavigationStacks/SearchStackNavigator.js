@@ -39,9 +39,9 @@ export default class SearchStackNavigator extends Component {
         <SearchStack.Screen
           name="CompanyInformation"
           component={CompanyInformation}
-          options={{
-            title: 'Stock details',
-            headerBackTitle:'Search',
+          options={({route}) => ({
+            title: route.params.item.name,
+            headerBackTitle: 'Search',
             headerStyle: {
               backgroundColor: '#394463',
             },
@@ -53,14 +53,14 @@ export default class SearchStackNavigator extends Component {
             headerTitleAlign: {
               textAlign: 'center',
             },
-          }}
+          })}
         />
         <SearchStack.Screen
           name="StockSearchInformation"
           component={StockSearchInformation}
-          options={{
-            title: 'Stock details',
-            headerBackTitle:'Search',
+          options={({route}) => ({
+            title: route.params.item.name,
+            headerBackTitle: 'Search',
             headerStyle: {
               backgroundColor: '#394463',
             },
@@ -72,9 +72,9 @@ export default class SearchStackNavigator extends Component {
             headerTitleAlign: {
               textAlign: 'center',
             },
-          }}
+          })}
         />
-        
+
         <SearchStack.Screen
           name="CompanyCategory"
           component={CompanyCategory}
