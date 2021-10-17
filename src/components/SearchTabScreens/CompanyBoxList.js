@@ -227,7 +227,7 @@ export class CompanyBoxList extends Component {
                       key={item.ticker}
                       onPress={() =>
                         this.props.navigation.navigate({
-                          name: 'CompanyInformation',
+                          name: 'StockSearchInformation',
                           params: {item, stockCategory: 'gainers'},
                         })
                       }>

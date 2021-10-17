@@ -30,6 +30,9 @@ import {
   SEARCHSTOCK_START,
   SEARCHSTOCK_SUCCESS,
   SEARCHSTOCK_ERROR,
+  STOCKLATEST_START,
+  STOCKLATEST_SUCCESS,
+  STOCKLATEST_ERROR,
 } from 'constants';
 import axios from 'axios';
 
@@ -51,6 +54,27 @@ export const searchStock = (ticker) => {
 
       .catch((error) =>
         dispatch({type: SEARCHSTOCK_ERROR, payload: error.response}),
+      );
+  };
+};
+export const stockLatest = (ticker) => {
+  return (dispatch) => {
+    dispatch({type: STOCKLATEST_START});
+    axios
+      .get(
+        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/latest`,
+      )
+
+      // .then(response => console.log (response.data.result.quote, "SEARCH STOCK DATA"))
+      .then((response) => {
+        dispatch({
+          type: STOCKLATEST_SUCCESS,
+          payload: response.data.result.quote,
+        });
+      })
+
+      .catch((error) =>
+        dispatch({type: STOCKLATEST_ERROR, payload: error.response}),
       );
   };
 };

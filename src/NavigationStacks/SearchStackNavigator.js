@@ -16,7 +16,7 @@ import MyProfile from '../components/MyProfileTabScreens/MyProfile';
 import MyProfilePosts from '../components/MyProfileTabScreens/MyProfilePosts';
 import CompanySymbolList from '../components/SearchTabComponents/CompanySymbolList';
 import LoggingOut from '../components/LoggedOutScreens/LoggingOutScreen';
-
+import StockSearchInformation from '../components/SearchTabScreens/StockSearchInformation';
 //responsive scale
 import {moderateScale} from '../util/responsiveFont';
 
@@ -55,6 +55,26 @@ export default class SearchStackNavigator extends Component {
             },
           }}
         />
+        <SearchStack.Screen
+          name="StockSearchInformation"
+          component={StockSearchInformation}
+          options={{
+            title: 'Stock details',
+            headerBackTitle:'Search',
+            headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+        
         <SearchStack.Screen
           name="CompanyCategory"
           component={CompanyCategory}

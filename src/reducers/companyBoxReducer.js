@@ -29,7 +29,10 @@ import {
   FETCHSTOCKDETAILS_ERROR,
   SEARCHSTOCK_START,
   SEARCHSTOCK_SUCCESS,
-  SEARCHSTOCK_ERROR
+  SEARCHSTOCK_ERROR,
+  STOCKLATEST_START,
+  STOCKLATEST_SUCCESS,
+  STOCKLATEST_ERROR
 } from '../constants';
 
 const defaultState = {
@@ -873,6 +876,7 @@ const defaultState = {
   stockYear:[],
   searchStockResults:[],
   searchStockLoading:false,
+  stockLatestData:[],
   articles: [
     {
       id: '1',
@@ -907,6 +911,22 @@ const companyBoxReducer = (state = defaultState, action) => {
       return {
         ...state,
         searchStockLoading: false,
+        error: action.payload,
+      };
+      case STOCKLATEST_START:
+      return {
+        ...state,
+        error: "",
+      };
+    case STOCKLATEST_SUCCESS:
+      return {
+        ...state,
+        error: "",
+        stockLatestData: action.payload,
+      };
+    case STOCKLATEST_ERROR:
+      return {
+        ...state,
         error: action.payload,
       };
     case MARKETGAINERS_FETCHING:
