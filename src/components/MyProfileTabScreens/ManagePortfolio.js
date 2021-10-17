@@ -146,7 +146,8 @@ export default connect(mapStateToProps)(ManagePortfolio);
 const style = StyleSheet.create({
   container: {
     backgroundColor: '#2a334a',
-    flex: 1,
+    paddingBottom:315,
+
   },
   searchInputContainer: {
     marginBottom: moderateScale(22),
@@ -191,7 +192,8 @@ const style = StyleSheet.create({
     marginLeft: moderateScale(8),
   },
   boxContainer: {
-    marginTop: moderateScale(6),
+    marginTop: moderateScale(6),  
+
   },
   portfolioBoxContainer: {
     borderBottomWidth: 1,
