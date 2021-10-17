@@ -35,7 +35,7 @@ export class StockSearchInformation extends Component {
         {x: 7, y: 15},
       ],
       percent: '1.22',
-      range: [10, 15],
+      range: [10.00, 15.00],
       timeFilter: 'live',
       xDates: [],
       yPrices: [],
@@ -47,18 +47,18 @@ export class StockSearchInformation extends Component {
 
   componentDidMount() {
     this.props.stockLatest(this.props.route.params.item.ticker);
-    this.props.fetchStockDay(this.props.route.params.item.ticker);
-    this.props.fetchStockWeek(this.props.route.params.item.ticker);
-    this.props.fetchStockMonth(this.props.route.params.item.ticker);
-    this.props.fetchStockThreeMonth(this.props.route.params.item.ticker);
+    // this.props.fetchStockDay(this.props.route.params.item.ticker);
+    // this.props.fetchStockWeek(this.props.route.params.item.ticker);
+    // this.props.fetchStockMonth(this.props.route.params.item.ticker);
+    // this.props.fetchStockThreeMonth(this.props.route.params.item.ticker);
     this.props.fetchStockYear(this.props.route.params.item.ticker);
     this.props.fetchStockDetails(this.props.route.params.item.ticker);
 
     //DAY DATA
     let dayPrices = this.props.stockDay.map((a) => a.close);
     const dayPriceRange = [
-      Math.floor(Math.min(...dayPrices)),
-      Math.ceil(Math.max(...dayPrices)),
+      Math.min(...dayPrices),
+      Math.max(...dayPrices),
     ];
     console.log(dayPriceRange, 'dayPRICERANGE');
     const stockDayDataOriginal = this.props.stockDay.map((i) => {
@@ -66,10 +66,7 @@ export class StockSearchInformation extends Component {
     });
     const stockDayData = stockDayDataOriginal.reverse();
 
-    this.setState({
-      volumeWeightedAveragePrice: this.props.stockLatestData
-        .volumeWeightedAveragePrice,
-    });
+    
   }
 
   render() {
@@ -78,8 +75,8 @@ export class StockSearchInformation extends Component {
     //DAY DATA
     let dayPrices = this.props.stockDay.map((a) => a.close);
     const dayPriceRange = [
-      Math.floor(Math.min(...dayPrices)),
-      Math.ceil(Math.max(...dayPrices)),
+      Math.min(...dayPrices),
+      Math.max(...dayPrices),
     ];
     console.log(dayPriceRange, 'dayPRICERANGE');
     const stockDayDataOriginal = this.props.stockDay.map((i) => {
@@ -90,8 +87,8 @@ export class StockSearchInformation extends Component {
     //WEEK DATA
     let weekPrices = this.props.stockWeek.map((a) => a.close);
     const weekPriceRange = [
-      Math.floor(Math.min(...weekPrices)),
-      Math.ceil(Math.max(...weekPrices)),
+      Math.min(...weekPrices),
+      Math.max(...weekPrices),
     ];
     console.log(weekPriceRange, 'weekPRICERANGE');
     const stockWeekDataOriginal = this.props.stockWeek.map((i) => {
@@ -102,8 +99,8 @@ export class StockSearchInformation extends Component {
     //MONTH DATA
     let monthPrices = this.props.stockMonth.map((a) => a.close);
     const monthPriceRange = [
-      Math.floor(Math.min(...monthPrices)),
-      Math.ceil(Math.max(...monthPrices)),
+      Math.min(...monthPrices),
+      Math.max(...monthPrices),
     ];
     const stockMonthDataOriginal = this.props.stockMonth.map((i) => {
       return {x: Date.parse(i.window.startTime), y: i.close};
@@ -113,8 +110,8 @@ export class StockSearchInformation extends Component {
     //THREE MONTH DATA
     let threeMonthPrices = this.props.stockThreeMonth.map((a) => a.close);
     const threeMonthPriceRange = [
-      Math.floor(Math.min(...threeMonthPrices)),
-      Math.ceil(Math.max(...threeMonthPrices)),
+      Math.min(...threeMonthPrices),
+      Math.max(...threeMonthPrices),
     ];
     const stockThreeMonthDataOriginal = this.props.stockThreeMonth.map((i) => {
       return {x: Date.parse(i.window.startTime), y: i.close};
@@ -124,8 +121,8 @@ export class StockSearchInformation extends Component {
     //YEAR DATA
     let yearPrices = this.props.stockYear.map((a) => a.close);
     const yearPriceRange = [
-      Math.floor(Math.min(...yearPrices)),
-      Math.ceil(Math.max(...yearPrices)),
+      Math.min(...yearPrices),
+      Math.max(...yearPrices),
     ];
     const stockYearDataOriginal = this.props.stockYear.map((i) => {
       return {x: Date.parse(i.window.startTime), y: i.close};

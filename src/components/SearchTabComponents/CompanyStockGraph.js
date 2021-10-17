@@ -41,7 +41,7 @@ export default class CompanyStockGraph extends Component {
         <SlideAreaChart
           data={this.state.graphData}
           yRange={this.props.range}
-          width={Dimensions.get('window').width - 40}
+          width={Dimensions.get('window').width - 60}
           height={200}
           style={{backgroundColor: '#2a334a'}}
           axisWidth={5}
@@ -94,10 +94,7 @@ export default class CompanyStockGraph extends Component {
             ],
             toolTipTextRenderers: [
               ({scaleX, x}) => ({
-                text: new Date(scaleX.invert(x)).toLocaleDateString('en-US', {
-                  hour: '2-digit',
-                  minute: 'numeric',
-                }),
+                text: new Date(scaleX.invert(x)).toLocaleDateString('en-US'),
               }),
               ({scaleY, y}) => ({
                 text: '$' + scaleY.invert(y).toFixed(2).toString(),

@@ -33,7 +33,7 @@ export class CompanyInformation extends Component {
         {x: 7, y: 15},
       ],
       percent: '1.22',
-      range: [10, 15],
+      range: [10.00, 15.00],
       timeFilter: 'live',
       xDates: [],
       yPrices: [],
@@ -53,8 +53,8 @@ export class CompanyInformation extends Component {
     //DAY DATA
     let dayPrices = this.props.stockDay.map((a) => a.close);
     const dayPriceRange = [
-      Math.floor(Math.min(...dayPrices)),
-      Math.ceil(Math.max(...dayPrices)),
+      Math.min(...dayPrices),
+      Math.max(...dayPrices),
     ];
     console.log(dayPriceRange, 'dayPRICERANGE');
     const stockDayDataOriginal = this.props.stockDay.map((i) => {
@@ -116,8 +116,8 @@ export class CompanyInformation extends Component {
     //WEEK DATA
     let weekPrices = this.props.stockWeek.map((a) => a.close);
     const weekPriceRange = [
-      Math.floor(Math.min(...weekPrices)),
-      Math.ceil(Math.max(...weekPrices)),
+      Math.min(...weekPrices),
+      Math.max(...weekPrices),
     ];
     console.log(weekPriceRange, 'weekPRICERANGE');
     const stockWeekDataOriginal = this.props.stockWeek.map((i) => {
@@ -129,8 +129,8 @@ export class CompanyInformation extends Component {
     //MONTH DATA
     let monthPrices = this.props.stockMonth.map((a) => a.close);
     const monthPriceRange = [
-      Math.floor(Math.min(...monthPrices)),
-      Math.ceil(Math.max(...monthPrices)),
+      Math.min(...monthPrices),
+      Math.max(...monthPrices),
     ];
     // console.log(monthPriceRange, 'MONTHPRICERANGE');
     const stockMonthDataOriginal = this.props.stockMonth.map((i) => {
@@ -142,8 +142,8 @@ export class CompanyInformation extends Component {
     //THREE MONTH DATA
     let threeMonthPrices = this.props.stockThreeMonth.map((a) => a.close);
     const threeMonthPriceRange = [
-      Math.floor(Math.min(...threeMonthPrices)),
-      Math.ceil(Math.max(...threeMonthPrices)),
+      Math.min(...threeMonthPrices),
+      Math.max(...threeMonthPrices),
     ];
     // console.log(threeMonthPriceRange, 'threeMonthPRICERANGE');
     const stockThreeMonthDataOriginal = this.props.stockThreeMonth.map((i) => {
@@ -155,8 +155,8 @@ export class CompanyInformation extends Component {
     //YEAR DATA
     let yearPrices = this.props.stockYear.map((a) => a.close);
     const yearPriceRange = [
-      Math.floor(Math.min(...yearPrices)),
-      Math.ceil(Math.max(...yearPrices)),
+      Math.min(...yearPrices),
+      Math.max(...yearPrices),
     ];
     // console.log(yearPriceRange, 'yearPRICERANGE');
     const stockYearDataOriginal = this.props.stockYear.map((i) => {
