@@ -21,7 +21,7 @@ import AppleIcon from '../../icons/AppleIcon';
 import FacebookIcon from '../../icons/FacebookIcon';
 import {Formik} from 'formik';
 import * as yup from 'yup';
-import {RegisterGoogle} from '../../actions/user';
+import {RegisterGoogleSignIn} from '../../actions/user';
 import GoogleOauth from '../LoggedOutComponents/GoogleOauth';
 import {moderateScale} from '../../util/responsiveFont';
 
@@ -217,7 +217,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     LoginUser: (input) => dispatch(Login(input)),
-    RegisterUserGoogle: (input) => dispatch(RegisterGoogle(input)),
+    RegisterUserGoogle: (input) => dispatch(RegisterGoogleSignIn(input)),
   };
 };
 

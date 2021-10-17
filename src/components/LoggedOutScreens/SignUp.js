@@ -17,7 +17,7 @@ import {Formik} from 'formik';
 import * as yup from 'yup';
 import {connect} from 'react-redux';
 import {Register} from '../../actions/user';
-import {RegisterGoogle} from '../../actions/user';
+import {RegisterGoogleSignup} from '../../actions/user';
 
 import CheckBox from '@react-native-community/checkbox';
 import LinearGradient from 'react-native-linear-gradient';
@@ -296,7 +296,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     RegisterUser: (input) => dispatch(Register(input)),
-    RegisterUserGoogle: (input) => dispatch(RegisterGoogle(input)),
+    RegisterUserGoogle: (input) => dispatch(RegisterGoogleSignup(input)),
   };
 };
 

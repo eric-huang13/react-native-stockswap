@@ -142,7 +142,7 @@ export const RegisterGoogleSignIn = (input) => {
 };
 
 //original
-export const RegisterGoogle = (input) => {
+export const RegisterGoogleSignup = (input) => {
   GoogleSignin.configure({
     webClientId: GOOGLE_WEB_CLIENT_ID,
     offlineAccess: false, // if you want to access Google API on behalf of the user FROM YOUR SERVER
@@ -153,7 +153,7 @@ export const RegisterGoogle = (input) => {
     dispatch({type: SIGNUP_START});
     axios
       .post(
-        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/oauth/login',
+        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/oauth/signup',
         input,
       )
 
@@ -246,7 +246,7 @@ export const GoogleSignUp = () => {
         console.log(userInfo, 'USERINFO GOOGLE SIGNUP');
       //send token to backend
       dispatch(
-        RegisterGoogleSignIn({
+        RegisterGoogleSignup({
           token: userInfo.idToken,
           platform: Platform.OS === 'ios' ? 'ios' : 'android',
         }),
@@ -285,7 +285,7 @@ export const GoogleLogin = () => {
 
       //send token to backend
       dispatch(
-        RegisterGoogle({
+        RegisterGoogleSignIn({
           token: userInfo.idToken,
           platform: Platform.OS === 'ios' ? 'ios' : 'android',
         }),
@@ -320,7 +320,7 @@ export const GoogleIsSignedIn = () => {
         const userInfo = await GoogleSignin.signInSilently();
         //send token to backend
         dispatch(
-          RegisterGoogle({
+          RegisterGoogleSignIn({
             token: userInfo.idToken,
             platform: Platform.OS === 'ios' ? 'ios' : 'android',
           }),
