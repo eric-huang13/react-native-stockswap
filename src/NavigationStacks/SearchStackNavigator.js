@@ -1,5 +1,6 @@
 //React
 import React, {Component} from 'react';
+import {StyleSheet, View, Text, Image} from 'react-native';
 
 //Navigation
 import {createStackNavigator} from '@react-navigation/stack';
@@ -17,6 +18,8 @@ import MyProfilePosts from '../components/MyProfileTabScreens/MyProfilePosts';
 import CompanySymbolList from '../components/SearchTabComponents/CompanySymbolList';
 import LoggingOut from '../components/LoggedOutScreens/LoggingOutScreen';
 import StockSearchInformation from '../components/SearchTabScreens/StockSearchInformation';
+import Logo from '../icons/Logo.png';
+
 //responsive scale
 import {moderateScale} from '../util/responsiveFont';
 
@@ -40,7 +43,15 @@ export default class SearchStackNavigator extends Component {
           name="CompanyInformation"
           component={CompanyInformation}
           options={({route}) => ({
-            title: route.params.item.name,
+            title: 
+              <View style={style.stockHeader}>
+                <Text style={style.headerText}>StockSwap</Text>
+                <Image
+                  style={style.logo}
+                  source={require('../icons/Logo.png')}
+                />
+              </View>
+            ,
             headerBackTitle: 'Search',
             headerStyle: {
               backgroundColor: '#394463',
@@ -83,7 +94,7 @@ export default class SearchStackNavigator extends Component {
             //Need to figure out way to make header height shown when transparent or add Linearcolors directly
             // headerTransparent: true,
             headerShown: true,
-            headerBackTitle:'Search',
+            headerBackTitle: 'Search',
             headerStyle: {
               backgroundColor: '#394463',
             },
@@ -230,3 +241,23 @@ export default class SearchStackNavigator extends Component {
     );
   }
 }
+
+const style = StyleSheet.create({
+  stockHeader: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: moderateScale(20),
+    marginBottom: moderateScale(20),
+  },
+  logo: {
+    height: 36,
+    width: 36,
+  },
+  headerText: {
+    fontFamily: 'Montserrat-Bold',
+    fontSize: moderateScale(16),
+    color: 'white',
+    textAlign: 'center',
+    alignSelf: 'center',
+  },
+});

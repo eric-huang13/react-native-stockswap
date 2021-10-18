@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   SafeAreaView,
+  ActivityIndicator,
 } from 'react-native';
 import {moderateScale} from '../../util/responsiveFont';
 import CompanyStockGraph from '../SearchTabComponents/CompanyStockGraph';
@@ -43,19 +44,19 @@ export class StockSearchInformation extends Component {
     };
   }
 
-
   componentDidMount() {
-    this.props.stockLatest(this.props.route.params.item.ticker); 
+    this.props.stockLatest(this.props.route.params.item.ticker);
     this.props.fetchStockWeek(this.props.route.params.item.ticker);
     this.props.fetchStockDetails(this.props.route.params.item.ticker);
-
-    
   }
 
   render() {
-    console.log(this.props.stockGraphData, 'GRAPH render');
-    console.log(this.props.stockRange, 'RANGE render');
-
+    const getLivedata = () => {
+      this.props.fetchStockDay(this.props.route.params.item.ticker);
+      this.setState({
+        timeFilter: 'live',
+      });
+    };
     const getDaydata = () => {
       this.props.fetchStockDay(this.props.route.params.item.ticker);
       this.setState({
@@ -86,14 +87,15 @@ export class StockSearchInformation extends Component {
         timeFilter: 'year',
       });
     };
-    // if(this.props.stockGraphData.length < 2 ){
-    //   return <View><Text>Loading...</Text></View>
-
+    const getAlldata = () => {
+      this.props.fetchStockYear(this.props.route.params.item.ticker);
+      this.setState({
+        timeFilter: 'all',
+      });
+    };
 
     //Current stock price
     const currentPrice = this.props.stockLatestData.volumeWeightedAveragePrice;
-
-    
 
     //Numbers to display graph numbers, can also use use built in graph numbers instead
     //Graph high number
@@ -109,10 +111,16 @@ export class StockSearchInformation extends Component {
     // console.log(weekData, 'WEEKDATA')
     const {route} = this.props;
     const {graphData, percent, range} = this.state;
-    console.log(this.props.stockLatestData, "latestDATAAAA")
 
     if (this.props.stockGraphData.length < 2) {
-      return <View></View>;
+      return (
+        <View style={style.mainContainer}>
+          <View style={style.loadingView}>
+            <Text style={style.loadingText}>Loading...</Text>
+            <ActivityIndicator size="large" color="#8b64ff" />
+          </View>
+        </View>
+      );
     }
     return (
       <SafeAreaView style={style.mainContainer}>
@@ -153,10 +161,7 @@ export class StockSearchInformation extends Component {
             </View>
           ) : null}
           <View style={style.stockButtonsContainer}>
-            <TouchableOpacity
-              onPress={() =>
-                getDaydata()
-              }>
+            <TouchableOpacity onPress={() => getLivedata()}>
               <Text
                 style={
                   this.state.timeFilter === 'live'
@@ -166,10 +171,7 @@ export class StockSearchInformation extends Component {
                 Live
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                getDaydata()
-              }>
+            <TouchableOpacity onPress={() => getDaydata()}>
               <Text
                 style={
                   this.state.timeFilter === 'day'
@@ -179,10 +181,7 @@ export class StockSearchInformation extends Component {
                 1D
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                getWeekdata()
-              }>
+            <TouchableOpacity onPress={() => getWeekdata()}>
               <Text
                 style={
                   this.state.timeFilter === 'week'
@@ -202,10 +201,7 @@ export class StockSearchInformation extends Component {
                 1M
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                getThreeMonthdata()
-              }>
+            <TouchableOpacity onPress={() => getThreeMonthdata()}>
               <Text
                 style={
                   this.state.timeFilter === '3 months'
@@ -215,10 +211,7 @@ export class StockSearchInformation extends Component {
                 3M
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                getYeardata()
-              }>
+            <TouchableOpacity onPress={() => getYeardata()}>
               <Text
                 style={
                   this.state.timeFilter === 'year'
@@ -228,10 +221,7 @@ export class StockSearchInformation extends Component {
                 1Y
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                getYeardata()
-              }>
+            <TouchableOpacity onPress={() => getAlldata()}>
               <Text
                 style={
                   this.state.timeFilter === 'all'
@@ -270,30 +260,30 @@ export class StockSearchInformation extends Component {
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Avg Vol:</Text>
-                <Text style={style.vitalDetailsData}>${currentPrice}</Text>
+                <Text style={style.vitalDetailsData}>
+                  ${this.props.stockLatestData.volumeWeightedAveragePrice}
+                </Text>
               </View>
             </View>
 
             <View style={style.vitalsRightColumn}>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>P/E:</Text>
-                <Text style={style.vitalDetailsData}>{currentPrice}</Text>
+                <Text style={style.vitalDetailsData}></Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>MKT Cap:</Text>
-                <Text style={style.vitalDetailsData}>${currentPrice}</Text>
+                <Text style={style.vitalDetailsData}>$</Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>52w High:</Text>
-                {/* <Text style={style.vitalDetailsData}>${newrange[1]}</Text> */}
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>52w Low:</Text>
-                {/* <Text style={style.vitalDetailsData}>${newrange[0]}</Text> */}
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Div/Yield:</Text>
-                <Text style={style.vitalDetailsData}>{currentPrice}%</Text>
+                <Text style={style.vitalDetailsData}>%</Text>
               </View>
             </View>
           </View>
@@ -318,7 +308,6 @@ export class StockSearchInformation extends Component {
 }
 const mapStateToProps = (state) => {
   return {
- 
     stockGraphData: state.company.stockGraphData,
     stockRange: state.company.stockRange,
     stockDetails: state.company.stockDetails,
@@ -349,6 +338,17 @@ const style = StyleSheet.create({
   mainContainer: {
     backgroundColor: '#2a334a',
     flex: 1,
+  },
+  loadingView: {
+    alignContent: 'center',
+    alignItems: 'center',
+    marginTop: moderateScale(180),
+  },
+  loadingText: {
+    color: '#B8A0FF',
+    fontSize: moderateScale(18),
+    fontFamily: 'Montserrat-SemiBold',
+    marginBottom: moderateScale(24),
   },
   aboveGraphContainer: {
     paddingHorizontal: moderateScale(4),
