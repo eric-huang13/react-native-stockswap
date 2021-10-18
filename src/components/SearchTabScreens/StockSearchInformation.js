@@ -30,12 +30,12 @@ export class StockSearchInformation extends Component {
         {x: 2, y: 10},
         {x: 3, y: 11},
         {x: 4, y: 12},
-        {x: 5, y: 14},
-        {x: 6, y: 14},
-        {x: 7, y: 15},
+        // {x: 5, y: 14},
+        // {x: 6, y: 14},
+        // {x: 7, y: 15},
       ],
       percent: '1.22',
-      range: [10.00, 15.00],
+      range: [100, 600],
       timeFilter: 'live',
       xDates: [],
       yPrices: [],
@@ -43,138 +43,63 @@ export class StockSearchInformation extends Component {
     };
   }
 
-  //All logic needs to be handled before hand, either in backend or in action? Will change this when we actually have data coming in
 
   componentDidMount() {
-    this.props.stockLatest(this.props.route.params.item.ticker);
-    // this.props.fetchStockDay(this.props.route.params.item.ticker);
-    // this.props.fetchStockWeek(this.props.route.params.item.ticker);
-    // this.props.fetchStockMonth(this.props.route.params.item.ticker);
-    // this.props.fetchStockThreeMonth(this.props.route.params.item.ticker);
-    this.props.fetchStockYear(this.props.route.params.item.ticker);
+    this.props.stockLatest(this.props.route.params.item.ticker); 
+    this.props.fetchStockWeek(this.props.route.params.item.ticker);
     this.props.fetchStockDetails(this.props.route.params.item.ticker);
-
-    //DAY DATA
-    let dayPrices = this.props.stockDay.map((a) => a.close);
-    const dayPriceRange = [
-      Math.min(...dayPrices),
-      Math.max(...dayPrices),
-    ];
-    console.log(dayPriceRange, 'dayPRICERANGE');
-    const stockDayDataOriginal = this.props.stockDay.map((i) => {
-      return {x: Date.parse(i.window.startTime), y: i.close};
-    });
-    const stockDayData = stockDayDataOriginal.reverse();
 
     
   }
 
   render() {
-    console.log(this.props.stockLatestData, 'DATAAAAAAAAAA');
+    console.log(this.props.stockGraphData, 'GRAPH render');
+    console.log(this.props.stockRange, 'RANGE render');
 
-    //DAY DATA
-    let dayPrices = this.props.stockDay.map((a) => a.close);
-    const dayPriceRange = [
-      Math.min(...dayPrices),
-      Math.max(...dayPrices),
-    ];
-    console.log(dayPriceRange, 'dayPRICERANGE');
-    const stockDayDataOriginal = this.props.stockDay.map((i) => {
-      return {x: Date.parse(i.window.startTime), y: i.close};
-    });
-    const stockDayData = stockDayDataOriginal.reverse();
+    const getDaydata = () => {
+      this.props.fetchStockDay(this.props.route.params.item.ticker);
+      this.setState({
+        timeFilter: 'day',
+      });
+    };
+    const getWeekdata = () => {
+      this.props.fetchStockWeek(this.props.route.params.item.ticker);
+      this.setState({
+        timeFilter: 'week',
+      });
+    };
+    const getMonthdata = () => {
+      this.props.fetchStockMonth(this.props.route.params.item.ticker);
+      this.setState({
+        timeFilter: 'month',
+      });
+    };
+    const getThreeMonthdata = () => {
+      this.props.fetchStockThreeMonth(this.props.route.params.item.ticker);
+      this.setState({
+        timeFilter: '3 month',
+      });
+    };
+    const getYeardata = () => {
+      this.props.fetchStockYear(this.props.route.params.item.ticker);
+      this.setState({
+        timeFilter: 'year',
+      });
+    };
+    // if(this.props.stockGraphData.length < 2 ){
+    //   return <View><Text>Loading...</Text></View>
 
-    //WEEK DATA
-    let weekPrices = this.props.stockWeek.map((a) => a.close);
-    const weekPriceRange = [
-      Math.min(...weekPrices),
-      Math.max(...weekPrices),
-    ];
-    console.log(weekPriceRange, 'weekPRICERANGE');
-    const stockWeekDataOriginal = this.props.stockWeek.map((i) => {
-      return {x: Date.parse(i.window.startTime), y: i.close};
-    });
-    const stockWeekData = stockWeekDataOriginal.reverse();
 
-    //MONTH DATA
-    let monthPrices = this.props.stockMonth.map((a) => a.close);
-    const monthPriceRange = [
-      Math.min(...monthPrices),
-      Math.max(...monthPrices),
-    ];
-    const stockMonthDataOriginal = this.props.stockMonth.map((i) => {
-      return {x: Date.parse(i.window.startTime), y: i.close};
-    });
-    const stockMonthData = stockMonthDataOriginal.reverse();
-
-    //THREE MONTH DATA
-    let threeMonthPrices = this.props.stockThreeMonth.map((a) => a.close);
-    const threeMonthPriceRange = [
-      Math.min(...threeMonthPrices),
-      Math.max(...threeMonthPrices),
-    ];
-    const stockThreeMonthDataOriginal = this.props.stockThreeMonth.map((i) => {
-      return {x: Date.parse(i.window.startTime), y: i.close};
-    });
-    const stockThreeMonthData = stockThreeMonthDataOriginal.reverse();
-
-    //YEAR DATA
-    let yearPrices = this.props.stockYear.map((a) => a.close);
-    const yearPriceRange = [
-      Math.min(...yearPrices),
-      Math.max(...yearPrices),
-    ];
-    const stockYearDataOriginal = this.props.stockYear.map((i) => {
-      return {x: Date.parse(i.window.startTime), y: i.close};
-    });
-    const stockYearData = stockYearDataOriginal.reverse();
-    // console.log(stockYearData, 'yearDATA');
-
-    //Y
-    const yPrices = this.state.yPrices;
-    //X and Y data
-    const xyData = this.state.xDates.map((stockDate, stockPrice) => {
-      return {x: stockDate, y: yPrices[stockPrice]};
-    });
-
-    //Data periods
-    // Data for week
-    const weekData = xyData.slice(xyData.length - 7);
-    //Data for month
-    const monthData = xyData.slice(xyData.length - 31);
-    // console.log(monthData,"MONTHDATA")
-
-    //Info to display
     //Current stock price
     const currentPrice = this.props.stockLatestData.volumeWeightedAveragePrice;
 
-    // Growth/Loss percentage
-    const percentChange = (
-      ((currentPrice - yPrices[yPrices.length - 7]) /
-        yPrices[yPrices.length - 7]) *
-      100
-    ).toFixed(2);
-
-    // Growth/Loss percentage
-    const percentChangeMonth = (
-      ((currentPrice - yPrices[yPrices.length - 30]) /
-        yPrices[yPrices.length - 30]) *
-      100
-    ).toFixed(2);
-
-    //Range of highest and lowest numbers on graph, passed into graph component
-    //Total range of stock prices
-    const newrange = [Math.min(...yPrices), Math.max(...yPrices)];
-
-    const newweek = yPrices.slice(yPrices.length - 7);
-    //Week range of stock prices
-    const weekRange = [Math.min(...newweek), Math.max(...newweek)];
+    
 
     //Numbers to display graph numbers, can also use use built in graph numbers instead
     //Graph high number
-    const chartHigh = this.state.range[1];
+    const chartHigh = this.props.stockRange[1];
     //Graph low number
-    const chartLow = this.state.range[0];
+    const chartLow = this.props.stockRange[0];
     //High/Low difference
     const numberDifference = (chartHigh - chartLow) / 3;
     //Graph three quarter numbernumber
@@ -184,8 +109,9 @@ export class StockSearchInformation extends Component {
     // console.log(weekData, 'WEEKDATA')
     const {route} = this.props;
     const {graphData, percent, range} = this.state;
+    console.log(this.props.stockLatestData, "latestDATAAAA")
 
-    if (!this.props.stockLatestData) {
+    if (this.props.stockGraphData.length < 2) {
       return <View></View>;
     }
     return (
@@ -210,27 +136,26 @@ export class StockSearchInformation extends Component {
           ) : (
             <Text>Company Information</Text>
           )}
-          <View style={style.graphContainer}>
-            <CompanyStockGraph
-              graphData={graphData}
-              symbol={route.params.item.ticker}
-              range={range}
-            />
-            <View style={style.graphNumbers}>
-              <Text style={style.graphNumberText}>-{chartLow}</Text>
-              <Text style={style.graphNumberText}>-{chartOneQuarter}</Text>
-              <Text style={style.graphNumberText}>-{chartThreeQuarter}</Text>
-              <Text style={style.graphNumberText}>-{chartHigh}</Text>
+          {this.props.stockGraphData.length > 2 &&
+          this.props.stockRange.length > 1 ? (
+            <View style={style.graphContainer}>
+              <CompanyStockGraph
+                graphData={this.props.stockGraphData}
+                symbol={route.params.item.ticker}
+                range={this.props.stockRange}
+              />
+              <View style={style.graphNumbers}>
+                <Text style={style.graphNumberText}>-{chartLow}</Text>
+                <Text style={style.graphNumberText}>-{chartOneQuarter}</Text>
+                <Text style={style.graphNumberText}>-{chartThreeQuarter}</Text>
+                <Text style={style.graphNumberText}>-{chartHigh}</Text>
+              </View>
             </View>
-          </View>
+          ) : null}
           <View style={style.stockButtonsContainer}>
             <TouchableOpacity
               onPress={() =>
-                this.setState({
-                  timeFilter: 'live',
-                  graphData: stockDayData,
-                  range: dayPriceRange,
-                })
+                getDaydata()
               }>
               <Text
                 style={
@@ -243,11 +168,7 @@ export class StockSearchInformation extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
-                this.setState({
-                  timeFilter: 'day',
-                  graphData: stockDayData,
-                  range: dayPriceRange,
-                })
+                getDaydata()
               }>
               <Text
                 style={
@@ -260,12 +181,7 @@ export class StockSearchInformation extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
-                this.setState({
-                  graphData: stockWeekData,
-                  percent: percentChange,
-                  range: weekPriceRange,
-                  timeFilter: 'week',
-                })
+                getWeekdata()
               }>
               <Text
                 style={
@@ -276,16 +192,7 @@ export class StockSearchInformation extends Component {
                 1W
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                this.setState({
-                  graphData: stockMonthData,
-                  percent: percentChangeMonth,
-                  // range: [Math.floor(stockMonthData[0].y), Math.ceil(stockMonthData[stockMonthData.length-1].y)+1],
-                  range: monthPriceRange,
-                  timeFilter: 'month',
-                })
-              }>
+            <TouchableOpacity onPress={() => getMonthdata()}>
               <Text
                 style={
                   this.state.timeFilter === 'month'
@@ -297,11 +204,7 @@ export class StockSearchInformation extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
-                this.setState({
-                  graphData: stockThreeMonthData,
-                  range: threeMonthPriceRange,
-                  timeFilter: '3 months',
-                })
+                getThreeMonthdata()
               }>
               <Text
                 style={
@@ -314,11 +217,7 @@ export class StockSearchInformation extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
-                this.setState({
-                  graphData: stockYearData,
-                  range: yearPriceRange,
-                  timeFilter: 'year',
-                })
+                getYeardata()
               }>
               <Text
                 style={
@@ -331,9 +230,7 @@ export class StockSearchInformation extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
-                this.setState({
-                  timeFilter: 'all',
-                })
+                getYeardata()
               }>
               <Text
                 style={
@@ -388,11 +285,11 @@ export class StockSearchInformation extends Component {
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>52w High:</Text>
-                <Text style={style.vitalDetailsData}>${newrange[1]}</Text>
+                {/* <Text style={style.vitalDetailsData}>${newrange[1]}</Text> */}
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>52w Low:</Text>
-                <Text style={style.vitalDetailsData}>${newrange[0]}</Text>
+                {/* <Text style={style.vitalDetailsData}>${newrange[0]}</Text> */}
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Div/Yield:</Text>
@@ -421,13 +318,12 @@ export class StockSearchInformation extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    stockDay: state.company.stockDay,
-    stockWeek: state.company.stockWeek,
-    stockMonth: state.company.stockMonth,
-    stockThreeMonth: state.company.stockThreeMonth,
-    stockYear: state.company.stockYear,
+ 
+    stockGraphData: state.company.stockGraphData,
+    stockRange: state.company.stockRange,
     stockDetails: state.company.stockDetails,
     stockLatestData: state.company.stockLatestData,
+    yearLoading: state.company.yearLoading,
   };
 };
 const mapDispatchToProps = (dispatch) => {

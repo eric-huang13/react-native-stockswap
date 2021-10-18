@@ -32,7 +32,12 @@ import {
   SEARCHSTOCK_ERROR,
   STOCKLATEST_START,
   STOCKLATEST_SUCCESS,
-  STOCKLATEST_ERROR
+  STOCKLATEST_ERROR,
+  STOCKRANGEDAY,
+  STOCKRANGEMONTH,
+  STOCKRANGETHREEMONTH,
+  STOCKRANGEWEEK,
+  STOCKRANGEYEAR,
 } from '../constants';
 
 const defaultState = {
@@ -874,9 +879,12 @@ const defaultState = {
   stockMonth:[],
   stockThreeMonth:[],
   stockYear:[],
+  yearLoading:false,
   searchStockResults:[],
   searchStockLoading:false,
   stockLatestData:[],
+  stockRange:[],
+  stockGraphData:[],
   articles: [
     {
       id: '1',
@@ -1004,7 +1012,7 @@ const companyBoxReducer = (state = defaultState, action) => {
           ...state,
           loading: false,
           error: "",
-          stockDay: action.payload,
+          stockGraphData: action.payload,
         };
       case FETCHSTOCKDAY_ERROR:
         return {
@@ -1012,6 +1020,14 @@ const companyBoxReducer = (state = defaultState, action) => {
           loading: false,
           error: action.payload,
         };
+        case STOCKRANGEDAY:
+          return {
+            ...state,
+            loading: false,
+            error: "",
+            stockRange: action.payload,
+            
+          };
       case FETCHSTOCKWEEK_START:
         return {
           ...state,
@@ -1023,7 +1039,7 @@ const companyBoxReducer = (state = defaultState, action) => {
           ...state,
           loading: false,
           error: "",
-          stockWeek: action.payload,
+          stockGraphData: action.payload,
         };
       case FETCHSTOCKWEEK_ERROR:
         return {
@@ -1031,6 +1047,14 @@ const companyBoxReducer = (state = defaultState, action) => {
           loading: false,
           error: action.payload,
         };
+        case STOCKRANGEWEEK:
+          return {
+            ...state,
+            loading: false,
+            error: "",
+            stockRange: action.payload,
+            
+          };
       case FETCHSTOCKMONTH_START:
       return {
         ...state,
@@ -1042,7 +1066,16 @@ const companyBoxReducer = (state = defaultState, action) => {
         ...state,
         loading: false,
         error: "",
-        stockMonth: action.payload,
+        stockGraphData: action.payload,
+        
+      };
+      case STOCKRANGEMONTH:
+      return {
+        ...state,
+        loading: false,
+        error: "",
+        stockRange: action.payload,
+        
       };
     case FETCHSTOCKMONTH_ERROR:
       return {
@@ -1061,7 +1094,7 @@ const companyBoxReducer = (state = defaultState, action) => {
           ...state,
           loading: false,
           error: "",
-          stockThreeMonth: action.payload,
+          stockGraphData: action.payload,
         };
       case FETCHSTOCKTHREEMONTH_ERROR:
         return {
@@ -1069,25 +1102,41 @@ const companyBoxReducer = (state = defaultState, action) => {
           loading: false,
           error: action.payload,
         };
+        case STOCKRANGETHREEMONTH:
+          return {
+            ...state,
+            loading: false,
+            error: "",
+            stockRange: action.payload,
+            
+          };
         case FETCHSTOCKYEAR_START:
           return {
             ...state,
-            loading: true,
+            yearLoading: true,
             error: "",
           };
         case FETCHSTOCKYEAR_SUCCESS:
           return {
             ...state,
-            loading: false,
+            yearLoading: false,
             error: "",
-            stockYear: action.payload,
+            stockGraphData: action.payload,
           };
         case FETCHSTOCKYEAR_ERROR:
           return {
             ...state,
-            loading: false,
+            yearLoading: false,
             error: action.payload,
           };
+          case STOCKRANGEYEAR:
+      return {
+        ...state,
+        loading: false,
+        error: "",
+        stockRange: action.payload,
+        
+      };
           case FETCHSTOCKDETAILS_START:
             return {
               ...state,

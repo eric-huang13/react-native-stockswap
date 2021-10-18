@@ -8,7 +8,12 @@ export default class CompanyStockGraph extends Component {
     super(props);
 
     this.state = {
-      graphData: [],
+      graphData: [  {x: 2, y: 10},
+        {x: 3, y: 11},
+        {x: 4, y: 12},
+        {x: 5, y: 14},
+        {x: 6, y: 14},
+        {x: 7, y: 15},],
     };
   }
 
