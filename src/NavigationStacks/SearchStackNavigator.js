@@ -42,16 +42,15 @@ export default class SearchStackNavigator extends Component {
         <SearchStack.Screen
           name="CompanyInformation"
           component={CompanyInformation}
-          options={({route}) => ({
-            title: 
-              <View style={style.stockHeader}>
-                <Text style={style.headerText}>StockSwap</Text>
-                <Image
-                  style={style.logo}
-                  source={require('../icons/Logo.png')}
-                />
-              </View>
-            ,
+          options={{
+            title:  
+            <View style={style.stockHeader}>
+              <Text style={style.headerText}>StockSwap</Text>
+             <Image
+          style={style.logo}
+          source={require('../icons/Logo.png')}
+        /></View>
+          ,
             headerBackTitle: 'Search',
             headerStyle: {
               backgroundColor: '#394463',
@@ -64,7 +63,7 @@ export default class SearchStackNavigator extends Component {
             headerTitleAlign: {
               textAlign: 'center',
             },
-          })}
+          }}
         />
         <SearchStack.Screen
           name="StockSearchInformation"
