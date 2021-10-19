@@ -60,6 +60,7 @@ class EditProfile extends Component {
       // includeBase64:true,
     };
     ImagePicker.openPicker({
+      forceJpg: true,
       mediaType: 'image',
     }).then((image) => {
       console.log('Image:', image);
