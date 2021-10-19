@@ -10,13 +10,14 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Image,
-  Platform
+  Platform,
 } from 'react-native';
-import { EditUserProfile } from '../../actions/profile';
+import {EditUserProfile} from '../../actions/profile';
 import LinearGradient from 'react-native-linear-gradient';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-crop-picker';
 import {moderateScale} from '../../util/responsiveFont';
 
 const validationSchema = Yup.object().shape({
@@ -53,6 +54,27 @@ class EditProfile extends Component {
     return formData;
   };
 
+  onImageSelection = (setFieldValue) => {
+    const options = {
+      mediaType: 'photo',
+      // includeBase64:true,
+    };
+    ImagePicker.openPicker({
+      mediaType: 'image',
+    }).then((image) => {
+      console.log('Image:', image);
+      const path = image?.path || image?.sourceURL;
+      console.log('Path:', path);
+      if (path && setFieldValue) {
+        setFieldValue('image', {
+          name: image.filename,
+          type: image.mime,
+          uri: Platform.OS === 'android' ? path : path.replace('file://', ''),
+        });
+      }
+    });
+  };
+
   render() {
     const {userAccount, userProfile, EditUserProfile, userImage} = this.props;
     return (
@@ -79,11 +101,12 @@ class EditProfile extends Component {
                   console.log(values, 'infooooo');
                   const data = this.createFormData(values);
                   console.log(data, 'form');
-                  EditUserProfile ({name: values.name,
+                  EditUserProfile({
+                    name: values.name,
                     username: values.username,
                     bio: values.bio,
                     tags: values.tags,
-                  })
+                  });
                 }}
                 validationSchema={validationSchema}>
                 {({
@@ -102,52 +125,21 @@ class EditProfile extends Component {
 
                     {values.image.uri && !errors.image ? (
                       <TouchableOpacity
-                        onPress={() => {
-                          const options = {
-                            mediaType: 'photo',
-                            // includeBase64:true,
-                          };
-                          launchImageLibrary(options, (response) => {
-                            console.log(response, 'response image');
-                            if (response.uri) {
-                              setFieldValue('image', {
-                                name: response.fileName,
-                                type: response.type,
-                                uri:
-                                  Platform.OS === 'android'
-                                    ? response.uri
-                                    : response.uri.replace('file://', ''),
-                              });
-                            }
-                          });
-                        }}>
+                        onPress={() => this.onImageSelection(setFieldValue)}>
                         <Image
                           style={style.uploadPhotoContainer}
-                          source={{uri: values.image.uri, headers:{Authorization: `Bearer ${this.props.userData.accessToken}`}}}
+                          source={{
+                            uri: values.image.uri,
+                            headers: {
+                              Authorization: `Bearer ${this.props.userData.accessToken}`,
+                            },
+                          }}
                         />
                       </TouchableOpacity>
                     ) : (
                       <View style={style.uploadPhotoContainer}>
                         <TouchableOpacity
-                          onPress={() => {
-                            const options = {
-                              mediaType: 'photo',
-                              // includeBase64:true,
-                            };
-                            launchImageLibrary(options, (response) => {
-                              console.log(response, 'response image');
-                              if (response.uri) {
-                                setFieldValue('image', {
-                                  name: response.fileName,
-                                  type: response.type,
-                                  uri:
-                                    Platform.OS === 'android'
-                                      ? response.uri
-                                      : response.uri.replace('file://', ''),})
-
-                              }
-                            });
-                          }}>
+                          onPress={() => this.onImageSelection(setFieldValue)}>
                           <Text style={style.uploadPhotoText}>
                             Tap to upload your photo
                           </Text>
@@ -281,8 +273,6 @@ const mapStateToProps = (state) => {
     userProfile: state.user.userProfile,
     userImage: state.user.userImage,
     userData: state.user.userData,
-
-
   };
 };
 
