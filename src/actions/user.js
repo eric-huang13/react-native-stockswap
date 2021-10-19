@@ -99,7 +99,7 @@ export const Register = (input) => {
   };
 };
 
-export const RegisterGoogleSignIn = (input) => {
+export const RegisterGoogleSignup = (input) => {
   GoogleSignin.configure({
     webClientId: GOOGLE_WEB_CLIENT_ID,
     offlineAccess: false, // if you want to access Google API on behalf of the user FROM YOUR SERVER
@@ -109,7 +109,7 @@ export const RegisterGoogleSignIn = (input) => {
     dispatch({type: SIGNUP_START});
     axios
       .post(
-        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/oauth/login',
+        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/oauth/signup',
         input,
       )
 
@@ -142,7 +142,7 @@ export const RegisterGoogleSignIn = (input) => {
 };
 
 //original
-export const RegisterGoogleSignup = (input) => {
+export const RegisterGoogleSignIn = (input) => {
   GoogleSignin.configure({
     webClientId: GOOGLE_WEB_CLIENT_ID,
     offlineAccess: false, // if you want to access Google API on behalf of the user FROM YOUR SERVER
@@ -150,10 +150,10 @@ export const RegisterGoogleSignup = (input) => {
   });
   console.log(input, 'input in google action');
   return (dispatch) => {
-    dispatch({type: SIGNUP_START});
+    dispatch({type: GOOGLE_LOGIN_START});
     axios
       .post(
-        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/oauth/signup',
+        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/oauth/login',
         input,
       )
 
@@ -174,7 +174,7 @@ export const RegisterGoogleSignup = (input) => {
       })
       .catch((error) => {
         // console.log('ERROR 101:', error);
-        dispatch({type: SIGNUP_ERROR, payload: error.response});
+        dispatch({type: GOOGLE_LOGIN_ERROR, payload: error.response});
         //if response is email not registered then should dispatch oauth signup
         dispatch(GoogleLogoutCheck());
         navigate('SignUp');

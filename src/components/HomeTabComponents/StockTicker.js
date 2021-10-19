@@ -20,7 +20,7 @@ export class StockTicker extends PureComponent {
           <TextTicker
             style={{fontSize: 24}}
             scrollSpeed={5000}
-            duration={30000}
+            duration={tickers.length * 1000}
             loop
             bounce
             repeatSpacer={0}
