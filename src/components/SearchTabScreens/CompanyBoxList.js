@@ -216,11 +216,8 @@ export class CompanyBoxList extends Component {
               </View>
             </View>
           ) : (
-            <View style={style.boxContainer}>
-              <ScrollView
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                justifyContent="space-between">
+            <View>
+              <View style={style.searchContainer}>
                 {this.props.searchStockResults.map((item) => {
                   return (
                     <TouchableOpacity
@@ -235,7 +232,7 @@ export class CompanyBoxList extends Component {
                     </TouchableOpacity>
                   );
                 })}
-              </ScrollView>
+              </View>
             </View>
           )}
         </ScrollView>
@@ -276,6 +273,12 @@ const style = StyleSheet.create({
   },
   boxContainer: {
     paddingLeft: moderateScale(2),
+  },
+  searchContainer: {
+    padding: moderateScale(2),
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
   },
   headerContainer: {
     flexDirection: 'row',
