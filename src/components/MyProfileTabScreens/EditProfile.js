@@ -62,6 +62,7 @@ class EditProfile extends Component {
     ImagePicker.openPicker({
       forceJpg: true,
       mediaType: 'image',
+      includeBase64: true,
     }).then((image) => {
       console.log('Image:', image);
       const path = image?.path || image?.sourceURL;
@@ -70,6 +71,7 @@ class EditProfile extends Component {
         setFieldValue('image', {
           name: image.filename,
           type: image.mime,
+          // data: image.data,
           uri: Platform.OS === 'android' ? path : path.replace('file://', ''),
         });
       }
