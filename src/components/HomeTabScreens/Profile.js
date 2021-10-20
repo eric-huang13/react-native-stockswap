@@ -60,7 +60,7 @@ class Profile extends Component {
                     <Text style={style.percentage}>+{user.percentage}%</Text>
                   </View>
                   <View style={style.timeNumberContainer}>
-                    <Text style={style.timeNumber}>Past hour</Text>
+                    <Text style={style.timeNumber}>Past day</Text>
                   </View>
                 </View>
                 <View style={style.graphContainer}>

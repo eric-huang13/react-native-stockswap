@@ -9,21 +9,19 @@ import {
   SafeAreaView,
 } from 'react-native';
 import {moderateScale} from '../../util/responsiveFont';
-
 import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
 import CompanyBox from '../SearchTabComponents/CompanyBox';
 import {fetchMarketGainers} from '../../actions/marketMovers';
-import {fetchMarketLosers} from '../../actions/marketMovers'
-
-
+import {fetchMarketLosers, searchStock} from '../../actions/marketMovers';
+import StockSearchBox from '../SearchTabComponents/StockSearchBox';
+import {debounce} from 'lodash';
 
 export class CompanyBoxList extends Component {
-  //Ready for redux action hookup
-    componentDidMount() {
-      // const {companies, fetchGainers} = this.props;
-      this.props.fetchGainers();
-      this.props.fetchLosers();
+  componentDidMount() {
+    this.props.fetchGainers();
+    this.props.fetchLosers();
+    this.handleChange = debounce(this.handleChange, 1000);
   }
   constructor(props) {
     super(props);
@@ -34,10 +32,22 @@ export class CompanyBoxList extends Component {
 
   handleChange = (text) => {
     console.log(text);
+    this.setState({
+      input: text,
+    });
+    this.state.input !== '' ? this.props.searchStock(text) : null;
   };
 
   render() {
-    const {gainers, losers, highestByVolume, marketGainers, marketLosers, marketGainersTest} = this.props;
+    const {
+      gainers,
+      losers,
+      highestByVolume,
+      marketGainers,
+      marketLosers,
+      marketGainersTest,
+    } = this.props;
+
     return (
       <SafeAreaView style={style.mainContainer}>
         <ScrollView contentContainerStyle={{paddingBottom: moderateScale(180)}}>
@@ -58,154 +68,173 @@ export class CompanyBoxList extends Component {
               onChangeText={(text) => this.handleChange(text)}
             />
           </View>
+          {this.state.input.length == 0 ? (
+            <View>
+              <View style={style.container}>
+                <View style={style.headerContainer}>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.props.navigation.navigate('CompanyCategory', {
+                        name: 'Gainers',
+                        params: {
+                          category: marketGainersTest,
+                        },
+                      })
+                    }>
+                    <Text style={style.header}>Daily Gainers</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.props.navigation.navigate('CompanyCategory', {
+                        name: 'Gainers',
+                        params: {
+                          category: marketGainers,
+                        },
+                      })
+                    }>
+                    <Text style={style.seeAllHeader}>See all</Text>
+                  </TouchableOpacity>
+                </View>
+                <View style={style.boxContainer}>
+                  <ScrollView
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    justifyContent="space-between">
+                    {marketGainers.map((item) => {
+                      return (
+                        <TouchableOpacity
+                          key={item.ticker}
+                          onPress={() =>
+                            this.props.navigation.navigate({
+                              name: 'CompanyInformation',
+                              params: {item, stockCategory: 'gainers'},
+                            })
+                          }>
+                          <CompanyBox item={item} category={'gainers'} />
+                        </TouchableOpacity>
+                      );
+                    })}
+                  </ScrollView>
+                </View>
+              </View>
 
-          <View style={style.container}>
-            <View style={style.headerContainer}>
-              <TouchableOpacity
-                onPress={() =>
-                  this.props.navigation.navigate('CompanyCategory', {
-                    name: 'Gainers',
-                    params: {
-                      category: marketGainersTest,
-                    },
-                  })
-                }>
-                <Text style={style.header}>Daily Gainers</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() =>
-                  this.props.navigation.navigate('CompanyCategory', {
-                    name: 'Gainers',
-                    params: {
-                      category: marketGainers,
-                    },
-                  })
-                }>
-                <Text style={style.seeAllHeader}>See all</Text>
-              </TouchableOpacity>
+              <View style={style.container}>
+                <View style={style.headerContainer}>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.props.navigation.navigate('CompanyCategory', {
+                        name: 'Losers',
+                        params: {
+                          category: losers,
+                        },
+                      })
+                    }>
+                    <Text style={style.header}>Daily Losers</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.props.navigation.navigate('CompanyCategory', {
+                        name: 'Losers',
+                        params: {
+                          category: marketLosers,
+                        },
+                      })
+                    }>
+                    <Text style={style.seeAllHeader}>See all</Text>
+                  </TouchableOpacity>
+                </View>
+
+                <View style={style.boxContainer}>
+                  <ScrollView
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    justifyContent="space-between">
+                    {marketLosers.map((item) => {
+                      return (
+                        <TouchableOpacity
+                          key={item.ticker}
+                          onPress={() =>
+                            this.props.navigation.navigate({
+                              name: 'CompanyInformation',
+                              params: {item, stockCategory: 'losers'},
+                            })
+                          }>
+                          <CompanyBox item={item} category={'losers'} />
+                        </TouchableOpacity>
+                      );
+                    })}
+                  </ScrollView>
+                </View>
+              </View>
+
+              <View style={style.container}>
+                <View style={style.headerContainer}>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.props.navigation.navigate('CompanyCategory', {
+                        name: 'Highest by Volume',
+                        params: {
+                          category: highestByVolume,
+                        },
+                      })
+                    }>
+                    <Text style={style.header}>Daily Highest by Volume</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.props.navigation.navigate('CompanyCategory', {
+                        name: 'Highest by Volume',
+                        params: {
+                          category: highestByVolume,
+                        },
+                      })
+                    }>
+                    <Text style={style.seeAllHeader}>See all</Text>
+                  </TouchableOpacity>
+                </View>
+                <View style={style.boxContainer}>
+                  <ScrollView
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    justifyContent="space-between">
+                    {highestByVolume.map((item) => {
+                      return (
+                        <TouchableOpacity
+                          key={item.id}
+                          onPress={() =>
+                            this.props.navigation.navigate({
+                              name: 'CompanyInformation',
+                              params: {item, stockCategory: 'hbv'},
+                            })
+                          }>
+                          <CompanyBox item={item} category={'hbv'} />
+                        </TouchableOpacity>
+                      );
+                    })}
+                  </ScrollView>
+                </View>
+              </View>
             </View>
-            <View style={style.boxContainer}>
-              <ScrollView
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                justifyContent="space-between">
-                {marketGainers.map((item) => {
+          ) : (
+            <View>
+              <View style={style.searchContainer}>
+                {this.props.searchStockResults.map((item) => {
                   return (
                     <TouchableOpacity
                       key={item.ticker}
                       onPress={() =>
                         this.props.navigation.navigate({
-                          name: 'CompanyInformation',
-                          params: {item, stockCategory: 'gainers',}, 
-                          
+                          name: 'StockSearchInformation',
+                          params: {item, stockCategory: 'gainers'},
                         })
                       }>
-                      <CompanyBox item={item} category={'gainers'} />
+                      <StockSearchBox item={item} />
                     </TouchableOpacity>
                   );
                 })}
-              </ScrollView>
+              </View>
             </View>
-          </View>
-
-          <View style={style.container}>
-            <View style={style.headerContainer}>
-              <TouchableOpacity
-                onPress={() =>
-                  this.props.navigation.navigate('CompanyCategory', {
-                    name: 'Losers',
-                    params: {
-                      category: losers,
-                    },
-                  })
-                }>
-                <Text style={style.header}>Daily Losers</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() =>
-                  this.props.navigation.navigate('CompanyCategory', {
-                    name: 'Losers',
-                    params: {
-                      category: marketLosers,
-                    },
-                  })
-                }>
-                <Text style={style.seeAllHeader}>See all</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={style.boxContainer}>
-              <ScrollView
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                justifyContent="space-between">
-                {marketLosers.map((item) => {
-                  return (
-                    <TouchableOpacity
-                      key={item.ticker}
-                      onPress={() =>
-                        this.props.navigation.navigate({
-                          name: 'CompanyInformation',
-                          params: {item, stockCategory: 'losers'},
-                         
-                        })
-                      }>
-                      <CompanyBox item={item} category={'losers'} />
-                    </TouchableOpacity>
-                  );
-                })}
-              </ScrollView>
-            </View>
-          </View>
-
-          <View style={style.container}>
-            <View style={style.headerContainer}>
-              <TouchableOpacity
-                onPress={() =>
-                  this.props.navigation.navigate('CompanyCategory', {
-                    name: 'Highest by Volume',
-                    params: {
-                      category: highestByVolume,
-                    },
-                  })
-                }>
-                <Text style={style.header}>Daily Highest by Volume</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() =>
-                  this.props.navigation.navigate('CompanyCategory', {
-                    name: 'Highest by Volume',
-                    params: {
-                      category: highestByVolume,
-                    },
-                  })
-                }>
-                <Text style={style.seeAllHeader}>See all</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={style.boxContainer}>
-              <ScrollView
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                justifyContent="space-between">
-                {highestByVolume.map((item) => {
-                  return (
-                    <TouchableOpacity
-                      key={item.id}
-                      onPress={() =>
-                        this.props.navigation.navigate({
-                          name: 'CompanyInformation',
-                          params: {item,  stockCategory: 'hbv'},
-                          
-                        })
-                      }>
-                      <CompanyBox item={item} category={'hbv'} />
-                    </TouchableOpacity>
-                  );
-                })}
-              </ScrollView>
-            </View>
-          </View>
+          )}
         </ScrollView>
       </SafeAreaView>
     );
@@ -219,11 +248,8 @@ const mapStateToProps = (state) => {
     highestByVolume: state.company.highestByVolume,
     marketGainers: state.company.marketGainers,
     marketLosers: state.company.marketLosers,
-
     marketGainersTest: state.company.marketGainersTest,
-
-
-
+    searchStockResults: state.company.searchStockResults,
   };
 };
 
@@ -232,6 +258,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchGainers: () => dispatch(fetchMarketGainers()),
     fetchLosers: () => dispatch(fetchMarketLosers()),
+    searchStock: (input) => dispatch(searchStock(input)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(CompanyBoxList);
@@ -246,6 +273,12 @@ const style = StyleSheet.create({
   },
   boxContainer: {
     paddingLeft: moderateScale(2),
+  },
+  searchContainer: {
+    padding: moderateScale(2),
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
   },
   headerContainer: {
     flexDirection: 'row',

@@ -66,7 +66,7 @@ class MyProfileSettings extends Component {
     return (
       <SafeAreaView style={style.container}>
         <ScrollView>
-          <View style={style.topDetailsContainer}>
+          {/* <View style={style.topDetailsContainer}>
             <View style={style.detailsRow}>
               <View style={style.detailsColumn}>
                 <Text style={style.detailsText}>Email</Text>
@@ -107,7 +107,7 @@ class MyProfileSettings extends Component {
                 </TouchableOpacity>
               </View>
             </View>
-          </View>
+          </View> */}
 
           <View style={style.middleContainer}>
             <View style={style.accountPrivacyContainer}>

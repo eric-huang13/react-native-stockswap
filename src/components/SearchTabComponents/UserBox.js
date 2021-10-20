@@ -26,7 +26,7 @@ export default class UserBox extends Component {
           </Text>
           <Text style={style.followers}>
             Trading since:{' '}
-            <Text style={style.detailsBold}>{item.followers}</Text>
+            <Text style={style.detailsBold}>2004</Text>
           </Text>
         </View>
         <View style={style.percentageView}>

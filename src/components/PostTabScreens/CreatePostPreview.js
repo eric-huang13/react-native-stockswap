@@ -26,7 +26,7 @@ class CreatePostPreview extends Component {
   };
 
   render() {
-    const {UserPost, EditPost, userAccount} = this.props;
+    const {UserPost, EditPost, userAccount, userProfile} = this.props;
     const {data} = this.props.route.params;
     const id = this.props.route.params.edit;
 
@@ -39,8 +39,8 @@ class CreatePostPreview extends Component {
 
     const userObject = {
       id: userAccount.id,
-      name: userAccount.name,
-      profileImage: userAccount.img,
+      name: userProfile.name,
+      profileImage: this.props.userImage,
       enabled: data.enabled,
       image: data.image.uri,
       body: data.body,
@@ -54,8 +54,12 @@ class CreatePostPreview extends Component {
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Image
                 style={style.postUserImage}
-                source={{uri: userObject.profileImage}}
-              />
+                source={{
+                  uri: this.props.userImage,
+                  headers: {
+                    Authorization: `Bearer ${this.props.reduxToken}`,
+                  },
+                }}              />
               <Text style={style.postUserName}>{userObject.name}</Text>
             </View>
           </View>
@@ -101,6 +105,9 @@ class CreatePostPreview extends Component {
 const mapStateToProps = (state) => {
   return {
     userAccount: state.user.userFakeData,
+    userProfile: state.user.userProfile,
+    userData: state.user.userData,
+    userImage: state.user.userImage,
   };
 };
 
