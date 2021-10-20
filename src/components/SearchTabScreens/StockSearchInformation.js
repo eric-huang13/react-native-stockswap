@@ -46,7 +46,7 @@ export class StockSearchInformation extends Component {
 
   componentDidMount() {
     this.props.stockLatest(this.props.route.params.item.ticker);
-    this.props.fetchStockWeek(this.props.route.params.item.ticker);
+    this.props.fetchStockDay(this.props.route.params.item.ticker);
     this.props.fetchStockDetails(this.props.route.params.item.ticker);
   }
 
