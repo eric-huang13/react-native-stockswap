@@ -27,8 +27,62 @@ import {
   FETCHSTOCKDETAILS_START,
   FETCHSTOCKDETAILS_SUCCESS,
   FETCHSTOCKDETAILS_ERROR,
+  SEARCHSTOCK_START,
+  SEARCHSTOCK_SUCCESS,
+  SEARCHSTOCK_ERROR,
+  STOCKLATEST_START,
+  STOCKLATEST_SUCCESS,
+  STOCKLATEST_ERROR,
+  STOCKRANGEYEAR,
+  STOCKRANGETHREEMONTH,
+  STOCKRANGEMONTH,
+  STOCKRANGEWEEK,
+  STOCKRANGEDAY,
 } from 'constants';
 import axios from 'axios';
+
+export const searchStock = (ticker) => {
+  return (dispatch) => {
+    dispatch({type: SEARCHSTOCK_START});
+    axios
+      .get(
+        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/tickers/all/search?query=${ticker}`,
+      )
+
+      // .then(response => console.log (response.data.result.searchResults, "SEARCH STOCK DATA"))
+      .then((response) => {
+        dispatch({
+          type: SEARCHSTOCK_SUCCESS,
+          payload: response.data.result.searchResults,
+        });
+      })
+
+      .catch((error) =>
+        dispatch({type: SEARCHSTOCK_ERROR, payload: error.response}),
+      );
+  };
+};
+export const stockLatest = (ticker) => {
+  return (dispatch) => {
+    dispatch({type: STOCKLATEST_START});
+    axios
+      .get(
+        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/latest`,
+      )
+
+      // .then(response => console.log (response.data.result.quote, "SEARCH STOCK DATA"))
+      .then((response) => {
+        dispatch({
+          type: STOCKLATEST_SUCCESS,
+          payload: response.data.result.quote,
+        });
+      })
+
+      .catch((error) =>
+        dispatch({type: STOCKLATEST_ERROR, payload: error.response}),
+      );
+  };
+};
 
 export const fetchStockDetails = (ticker) => {
   return (dispatch) => {
@@ -62,9 +116,24 @@ export const fetchStockDay = (ticker) => {
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
       .then((response) => {
+          //DAY DATA
+    let dayPrices = response.data.result.quotes.map((a) => a.close);
+    const dayPriceRange = [
+      Math.min(...dayPrices),
+      Math.max(...dayPrices),
+    ];
+    // console.log(dayPriceRange, 'dayPRICERANGE');
+    const stockDayDataOriginal = response.data.result.quotes.map((i) => {
+      return {x: Date.parse(i.window.startTime), y: i.close};
+    });
+    const stockDayData = stockDayDataOriginal.reverse();
         dispatch({
           type: FETCHSTOCKDAY_SUCCESS,
-          payload: response.data.result.quotes,
+          payload: stockDayData,
+        });
+        dispatch({
+          type: STOCKRANGEDAY,
+          payload: dayPriceRange,
         });
       })
 
@@ -84,9 +153,24 @@ export const fetchStockWeek = (ticker) => {
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
       .then((response) => {
+        // //WEEK DATA
+    let weekPrices = response.data.result.quotes.map((a) => a.close);
+    const weekPriceRange = [
+      Math.min(...weekPrices),
+      Math.max(...weekPrices),
+    ];
+    // console.log(weekPriceRange, 'weekPRICERANGE');
+    const stockWeekDataOriginal = response.data.result.quotes.map((i) => {
+      return {x: Date.parse(i.window.startTime), y: i.close};
+    });
+    const stockWeekData = stockWeekDataOriginal.reverse();
         dispatch({
           type: FETCHSTOCKWEEK_SUCCESS,
-          payload: response.data.result.quotes,
+          payload: stockWeekData,
+        });
+        dispatch({
+          type: STOCKRANGEWEEK,
+          payload: weekPriceRange,
         });
       })
 
@@ -106,11 +190,26 @@ export const fetchStockMonth = (ticker) => {
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
       .then((response) => {
+    // //MONTH DATA
+    let monthPrices = response.data.result.quotes.map((a) => a.close);
+    const monthPriceRange = [
+      Math.min(...monthPrices),
+      Math.max(...monthPrices),
+    ];
+    const stockMonthDataOriginal = response.data.result.quotes.map((i) => {
+      return {x: Date.parse(i.window.startTime), y: i.close};
+    });
+    const stockMonthData = stockMonthDataOriginal.reverse();
         dispatch({
           type: FETCHSTOCKMONTH_SUCCESS,
-          payload: response.data.result.quotes,
+          payload: stockMonthData,
+        });
+        dispatch({
+          type: STOCKRANGEMONTH,
+          payload: monthPriceRange,
         });
       })
+      
 
       .catch((error) =>
         dispatch({type: FETCHSTOCKMONTH_ERROR, payload: error.response}),
@@ -128,9 +227,24 @@ export const fetchStockThreeMonth = (ticker) => {
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
       .then((response) => {
+        
+    // //THREE MONTH DATA
+    let threeMonthPrices = response.data.result.quotes.map((a) => a.close);
+    const threeMonthPriceRange = [
+      Math.min(...threeMonthPrices),
+      Math.max(...threeMonthPrices),
+    ];
+    const stockThreeMonthDataOriginal = response.data.result.quotes.map((i) => {
+      return {x: Date.parse(i.window.startTime), y: i.close};
+    });
+    const stockThreeMonthData = stockThreeMonthDataOriginal.reverse();
         dispatch({
           type: FETCHSTOCKTHREEMONTH_SUCCESS,
-          payload: response.data.result.quotes,
+          payload: stockThreeMonthData,
+        });
+        dispatch({
+          type: STOCKRANGETHREEMONTH,
+          payload: threeMonthPriceRange,
         });
       })
 
@@ -150,9 +264,22 @@ export const fetchStockYear = (ticker) => {
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
       .then((response) => {
+        let yearPrices = response.data.result.quotes.map((a) => a.close);
+        const yearPriceRange = [
+          Math.min(...yearPrices),
+          Math.max(...yearPrices),
+        ];
+        const stockYearDataOriginal = response.data.result.quotes.map((i) => {
+          return {x: Date.parse(i.window.startTime), y: i.close};
+        });
+        const stockYearData = stockYearDataOriginal.reverse();
         dispatch({
           type: FETCHSTOCKYEAR_SUCCESS,
-          payload: response.data.result.quotes,
+          payload: stockYearData,
+        });
+        dispatch({
+          type: STOCKRANGEYEAR,
+          payload: yearPriceRange,
         });
       })
 

@@ -237,7 +237,7 @@ export class ProfileInfoForm extends Component {
 
                       <View>
                         <Text style={style.inputHeader}>
-                          Hashtag (up to 3 tags)
+                          Hashtag
                         </Text>
 
                         <TextInput

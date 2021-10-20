@@ -63,7 +63,7 @@ class ManagePortfolio extends Component {
             </View>
             <View style={style.gainDetailsContainer}>
               <Text style={style.gain}>$-10.75(-11%)</Text>
-              <Text style={style.gainTime}>Past hour</Text>
+              <Text style={style.gainTime}>Past day</Text>
             </View>
           </View>
           <View style={style.percentButtonContainer}>
@@ -146,7 +146,8 @@ export default connect(mapStateToProps)(ManagePortfolio);
 const style = StyleSheet.create({
   container: {
     backgroundColor: '#2a334a',
-    flex: 1,
+    paddingBottom:315,
+
   },
   searchInputContainer: {
     marginBottom: moderateScale(22),
@@ -191,7 +192,8 @@ const style = StyleSheet.create({
     marginLeft: moderateScale(8),
   },
   boxContainer: {
-    marginTop: moderateScale(6),
+    marginTop: moderateScale(6),  
+
   },
   portfolioBoxContainer: {
     borderBottomWidth: 1,
