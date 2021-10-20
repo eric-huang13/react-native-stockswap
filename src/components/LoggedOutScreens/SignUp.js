@@ -217,6 +217,7 @@ export const SignUp = ({
                           <CheckBox
                             style={style.checkbox}
                             disabled={true}
+                            boxType="square"
                             value={toggleCheckBox}
                             onValueChange={(newValue) =>
                               setToggleCheckBox(newValue)
@@ -225,8 +226,11 @@ export const SignUp = ({
                               true: '#b8a0ff',
                               false: 'lightgrey',
                             }}
+                            onCheckColor="#b8a0ff"
                           />
-                          <TouchableOpacity onPress={() => handleTerms(true)}>
+                          <TouchableOpacity
+                            style={style.termsTouchOpacity}
+                            onPress={() => handleTerms(true)}>
                             <Text style={style.termsText}>
                               I agree with the Terms and Conditions
                             </Text>
@@ -406,6 +410,9 @@ const style = StyleSheet.create({
   },
   termsError: {
     marginBottom: moderateScale(18),
+  },
+  termsTouchOpacity: {
+    paddingLeft: 10,
   },
   checkbox: {},
   bottomButtonsContainer: {

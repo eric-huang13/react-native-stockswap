@@ -12,13 +12,13 @@ import {
   Image,
   Platform,
 } from 'react-native';
-import {EditUserProfile} from '../../actions/profile';
+import {CreateProfileImage, EditUserProfile} from '../../actions/profile';
 import LinearGradient from 'react-native-linear-gradient';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import ImagePicker from 'react-native-image-crop-picker';
 import {moderateScale} from '../../util/responsiveFont';
+import {Buffer} from 'buffer';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -71,7 +71,7 @@ class EditProfile extends Component {
         setFieldValue('image', {
           name: image.filename,
           type: image.mime,
-          // data: image.data,
+          data: image.data,
           uri: Platform.OS === 'android' ? path : path.replace('file://', ''),
         });
       }
@@ -79,7 +79,16 @@ class EditProfile extends Component {
   };
 
   render() {
-    const {userAccount, userProfile, EditUserProfile, userImage} = this.props;
+    const {
+      userAccount,
+      userProfile,
+      CreateProfileImage,
+      EditUserProfile,
+      userImage,
+      userData,
+    } = this.props;
+    // console.log('USER PROFILE:', JSON.stringify(userProfile));
+
     return (
       <LinearGradient
         start={{x: 0.1, y: 1}}
@@ -102,8 +111,13 @@ class EditProfile extends Component {
                 }}
                 onSubmit={(values) => {
                   console.log(values, 'infooooo');
-                  const data = this.createFormData(values);
-                  console.log(data, 'form');
+                  // const data = this.createFormData(values);
+                  // console.log(data, 'form');
+                  const id = userProfile?._id;
+                  const token = userData.accessToken;
+                  const buffer = Buffer.from(values.image.data, 'base64');
+                  CreateProfileImage(id, token, buffer);
+
                   EditUserProfile({
                     name: values.name,
                     username: values.username,
@@ -282,6 +296,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     EditUserProfile: (input) => dispatch(EditUserProfile(input)),
+    CreateProfileImage: (id, token, input) =>
+      dispatch(CreateProfileImage(id, token, input)),
   };
 };
 
