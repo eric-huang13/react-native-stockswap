@@ -37,46 +37,17 @@ import {
   FORGOTPASSWORD_START,
   FORGOTPASSWORD_SUCCESS,
 } from '../constants';
-// GoogleSignin.configure({
-//   webClientId:
-//     '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
-//   offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-//   iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
-// });
-// export const Register = (input) => {
-//   return (dispatch) => {
-//     dispatch({type: SIGNUP_START});
-//     axios
-//       .post(
-//         'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/signup',
-//         input,
-//       )
-//       .then((response) => {
-//         console.log(response, 'RESPONSE in Signup');
 
-//         deviceStorage.saveItem('token', response.data.accessToken),
-//         deviceStorage.saveItem('refreshToken', response.data.refreshToken),
-//         deviceStorage.saveItem('email', input.email),
+// TODO: This needs to move to a config file
+const GOOGLE_IOS_CLIENT_ID =
+  Platform.OS === 'ios'
+    ? '534509051413-1up4ql426i3annnm2j3p2ouj9dd3nn42.apps.googleusercontent.com'
+    : '';
+const GOOGLE_WEB_CLIENT_ID =
+  Platform.OS === 'ios'
+    ? ''
+    : '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com';
 
-//         //route to profileinfo
-//           dispatch({type: SIGNUP_SUCCESS, payload: response.data});
-//         Toast.show({
-//           type: 'success',
-//           text2: 'Sign up successful!',
-//         });
-//       })
-//       .catch((error) => {
-//         console.log(error, 'ERROR in Signup');
-//         dispatch({type: SIGNUP_ERROR, payload: error.response});
-//         navigate('SignUp');
-//         Toast.show({
-//           type: 'errorSignUp',
-//           text1: 'Error',
-//           text2: error.response.data.message,
-//         });
-//       });
-//   };
-// };
 export const RefreshToken = (token) => {
   return (dispatch) => {
     dispatch({type: REFRESH_TOKEN, payload: token});
@@ -97,7 +68,7 @@ export const Register = (input) => {
         input,
       )
       .then((response) => {
-        console.log(response, 'RESPONSE in Signup');
+        // console.log(response, 'RESPONSE in Signup');
         const decoded = jwt_decode(response.data.accessToken);
 
         deviceStorage.saveItem('token', response.data.accessToken),
@@ -116,7 +87,7 @@ export const Register = (input) => {
         });
       })
       .catch((error) => {
-        console.log(error, 'ERROR in Signup');
+        // console.log(error, 'ERROR in Signup');
         dispatch({type: SIGNUP_ERROR, payload: error.response});
         navigate('SignUp');
         Toast.show({
@@ -127,48 +98,12 @@ export const Register = (input) => {
       });
   };
 };
-// For signup with image
-// export const RegisterwithImage = (input) => {
-//   console.log(input, 'inputapi');
-//   const config = {
-//     headers: {
-//       Accept: 'application/json',
-//       'content-type': 'multipart/form-data',
-//     },
-//   };
-//   return (dispatch) => {
-//     dispatch({type: SIGNUP_START});
-//     axios
-//       .post('http://192.168.0.103:3000/api/upload', input, config)
 
-//       .then((response) => {
-//         console.log(response, 'RESPONSE in Signup');
-
-//         dispatch({type: SIGNUP_SUCCESS, payload: response.data});
-//         Toast.show({
-//           type: 'success',
-//           text2: 'Sign up successful!',
-//         });
-//       })
-//       .catch((error) => {
-//         console.log(error, 'ERROR in Signup');
-//         dispatch({type: SIGNUP_ERROR, payload: error.response});
-//         navigate('SignUp');
-//         Toast.show({
-//           type: 'errorSignUp',
-//           text1: 'Error',
-//           text2: error.response.data.message,
-//         });
-//       });
-//   };
-// };
-
-export const RegisterGoogleSignIn = (input) => {
+export const RegisterGoogleSignup = (input) => {
   GoogleSignin.configure({
-    webClientId:
-      '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
-    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-    iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+    webClientId: GOOGLE_WEB_CLIENT_ID,
+    offlineAccess: false, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    iosClientId: GOOGLE_IOS_CLIENT_ID, // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
   return (dispatch) => {
     dispatch({type: SIGNUP_START});
@@ -196,6 +131,7 @@ export const RegisterGoogleSignIn = (input) => {
         });
       })
       .catch((error) => {
+        // console.log('GOOGLE ERROR', error);
         dispatch({type: SIGNUP_ERROR, payload: error.response});
         Toast.show({
           type: 'error',
@@ -206,16 +142,15 @@ export const RegisterGoogleSignIn = (input) => {
 };
 
 //original
-export const RegisterGoogle = (input) => {
+export const RegisterGoogleSignIn = (input) => {
   GoogleSignin.configure({
-    webClientId:
-      '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com',
-    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-    iosClientId: '', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+    webClientId: GOOGLE_WEB_CLIENT_ID,
+    offlineAccess: false, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    iosClientId: GOOGLE_IOS_CLIENT_ID, // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
-  console.log(input, 'input in google action');
+  // console.log(input, 'input in google action');
   return (dispatch) => {
-    dispatch({type: SIGNUP_START});
+    dispatch({type: GOOGLE_LOGIN_START});
     axios
       .post(
         'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/oauth/login',
@@ -238,7 +173,8 @@ export const RegisterGoogle = (input) => {
           });
       })
       .catch((error) => {
-        dispatch({type: SIGNUP_ERROR, payload: error.response});
+        // console.log('ERROR 101:', error);
+        dispatch({type: GOOGLE_LOGIN_ERROR, payload: error.response});
         //if response is email not registered then should dispatch oauth signup
         dispatch(GoogleLogoutCheck());
         navigate('SignUp');
@@ -264,10 +200,10 @@ export const Login = (input) => {
         input,
       )
       .then((response) => {
-        console.log('FIRST', response.data.refreshToken);
-        console.log('INPUT', input.email);
+        // console.log('FIRST', response.data.refreshToken);
+        // console.log('INPUT', input.email);
         const decoded = jwt_decode(response.data.accessToken);
-        console.log(decoded.sub);
+        // console.log(decoded.sub);
 
         deviceStorage.saveItem('token', response.data.accessToken),
           deviceStorage.saveItem('refreshToken', response.data.refreshToken),
@@ -284,7 +220,7 @@ export const Login = (input) => {
       })
 
       .catch((error) => {
-        console.log(error.response.data.message, 'ERROR in LOGIN');
+        // console.log(error.response.data.message, 'ERROR in LOGIN');
         dispatch({type: SIGNUP_ERROR, payload: error.response});
         Toast.show({
           type: 'errorLogin',
@@ -295,17 +231,10 @@ export const Login = (input) => {
   };
 };
 
-const GOOGLE_IOS_CLIENT_ID =
-  Platform.OS === 'ios'
-    ? '534509051413-1up4ql426i3annnm2j3p2ouj9dd3nn42.apps.googleusercontent.com'
-    : '';
-const GOOGLE_WEB_CLIENT_ID =
-  '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com';
-
 export const GoogleSignUp = () => {
   GoogleSignin.configure({
     webClientId: GOOGLE_WEB_CLIENT_ID,
-    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    offlineAccess: false, // if you want to access Google API on behalf of the user FROM YOUR SERVER
     iosClientId: GOOGLE_IOS_CLIENT_ID, // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
   return async (dispatch) => {
@@ -314,26 +243,26 @@ export const GoogleSignUp = () => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       deviceStorage.saveItem('email', userInfo.user.email),
-        console.log(userInfo, 'USERINFO GOOGLE SIGNUP');
-      //send token to backend
-      dispatch(
-        RegisterGoogleSignIn({
-          token: userInfo.idToken,
-          platform: Platform.OS === 'ios' ? 'ios' : 'android',
-        }),
-      );
+        // console.log(userInfo, 'USERINFO GOOGLE SIGNUP');
+        //send token to backend
+        dispatch(
+          RegisterGoogleSignup({
+            token: userInfo.idToken,
+            platform: Platform.OS === 'ios' ? 'ios' : 'android',
+          }),
+        );
 
       dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
     } catch (error) {
-      console.log('Message', error.message);
+      // console.log('Message', error.message);
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        console.log('User Cancelled the Login Flow');
+        // console.log('User Cancelled the Login Flow');
       } else if (error.code === statusCodes.IN_PROGRESS) {
-        console.log('Signing In');
+        // console.log('Signing In');
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        console.log('Play Services Not Available or Outdated');
+        // console.log('Play Services Not Available or Outdated');
       } else {
-        console.log(error);
+        // console.log(error);
       }
     }
   };
@@ -343,7 +272,7 @@ export const GoogleSignUp = () => {
 export const GoogleLogin = () => {
   GoogleSignin.configure({
     webClientId: GOOGLE_WEB_CLIENT_ID,
-    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    offlineAccess: false, // if you want to access Google API on behalf of the user FROM YOUR SERVER
     iosClientId: GOOGLE_IOS_CLIENT_ID, // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
   return async (dispatch) => {
@@ -352,27 +281,27 @@ export const GoogleLogin = () => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       deviceStorage.saveItem('email', userInfo.user.email),
-        console.log(userInfo, 'USERINFO GOOGLE LOGIN');
+        // console.log(userInfo, 'USERINFO GOOGLE LOGIN');
 
-      //send token to backend
-      dispatch(
-        RegisterGoogle({
-          token: userInfo.idToken,
-          platform: Platform.OS === 'ios' ? 'ios' : 'android',
-        }),
-      );
+        //send token to backend
+        dispatch(
+          RegisterGoogleSignIn({
+            token: userInfo.idToken,
+            platform: Platform.OS === 'ios' ? 'ios' : 'android',
+          }),
+        );
 
       dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
     } catch (error) {
-      console.log('Message', error.message);
+      // console.log('Message', error.message);
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        console.log('User Cancelled the Login Flow');
+        // console.log('User Cancelled the Login Flow');
       } else if (error.code === statusCodes.IN_PROGRESS) {
-        console.log('Signing In');
+        // console.log('Signing In');
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        console.log('Play Services Not Available or Outdated');
+        // console.log('Play Services Not Available or Outdated');
       } else {
-        console.log(error);
+        // console.log(error);
       }
     }
   };
@@ -381,7 +310,7 @@ export const GoogleLogin = () => {
 export const GoogleIsSignedIn = () => {
   GoogleSignin.configure({
     webClientId: GOOGLE_WEB_CLIENT_ID,
-    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    offlineAccess: false, // if you want to access Google API on behalf of the user FROM YOUR SERVER
     iosClientId: GOOGLE_IOS_CLIENT_ID, // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
   return async (dispatch) => {
@@ -391,21 +320,21 @@ export const GoogleIsSignedIn = () => {
         const userInfo = await GoogleSignin.signInSilently();
         //send token to backend
         dispatch(
-          RegisterGoogle({
+          RegisterGoogleSignIn({
             token: userInfo.idToken,
             platform: Platform.OS === 'ios' ? 'ios' : 'android',
           }),
         );
       } catch (error) {
         if (error.code === statusCodes.SIGN_IN_REQUIRED) {
-          console.log('User has not signed in yet');
+          // console.log('User has not signed in yet');
         } else {
-          console.log("Something went wrong. Unable to get user's info");
+          // console.log("Something went wrong. Unable to get user's info");
         }
       }
     } else {
       dispatch({type: GOOGLE_LOGOUT_SUCCESS, payload: {}});
-      console.log('Please Login');
+      // console.log('Please Login');
     }
   };
 };
@@ -413,7 +342,7 @@ export const GoogleIsSignedIn = () => {
 export const GoogleLogout = () => {
   GoogleSignin.configure({
     webClientId: GOOGLE_WEB_CLIENT_ID,
-    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    offlineAccess: false, // if you want to access Google API on behalf of the user FROM YOUR SERVER
     iosClientId: GOOGLE_IOS_CLIENT_ID, // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
   return async (dispatch) => {
@@ -436,51 +365,6 @@ export const GoogleLogoutCheck = () => {
   };
 };
 
-//Working POST with token sent on headers
-
-// export const Login = (input) => {
-//   return (dispatch) => {
-//     dispatch({type: LOGIN_START});
-//     apiInstance
-//             .post('https://jiujitsux.herokuapp.com/api/moves/takedown', (input))
-//             .then((response) => {
-//                 console.log(response, 'TAKEDOWN response')
-//                 // window.location.reload();
-//             })
-//         // .then(response =>{ deviceStorage.saveItem('token', response.data.token), dispatch({ type: LOGIN_SUCCESS, payload: response.data })
-
-// .catch(error => {dispatch({ type: SIGNUP_ERROR, payload: error.response })
-// console.log(error.response )
-
-// })
-//   };
-// };
-
-// export const Login = () => (dispatch) => {
-//   Toast.show({
-//     type: 'success',
-//     text2: 'Sign up successful!',
-//   });
-
-//   return dispatch({
-//     type: LOGIN_SUCCESS,
-//   });
-// };
-
-// export const Logout = () => (dispatch) => {
-//   clearAppData()
-//   Toast.show({
-//     type: 'success',
-//     topOffset: 30,
-//     text2: 'You have been successfully logged out.',
-//   });
-//   dispatch(GoogleLogoutCheck());
-//   return dispatch({
-//     type: LOGOUT,
-//   });
-
-// };
-
 export const Logout = () => {
   return async (dispatch) => {
     const refreshToken = await AsyncStorage.getItem('refreshToken');
@@ -501,13 +385,13 @@ export const Logout = () => {
           text2: 'You have been successfully logged out.',
         });
         dispatch(GoogleLogoutCheck());
-        console.log(res, 'Logging out');
+        // console.log(res, 'Logging out');
         dispatch({
           type: LOGOUT,
         });
       })
       .catch((error) => {
-        console.log(error, 'Error logging out');
+        // console.log(error, 'Error logging out');
         clearAppData();
         dispatch({
           type: LOGOUT,
@@ -542,7 +426,7 @@ export const ForgotPasswordEmail = (input) => {
         });
       })
       .catch((error) => {
-        console.log(error, 'ERROR in Signup');
+        // console.log(error, 'ERROR in Signup');
         dispatch({type: FORGOTPASSWORD_ERROR, payload: error.response});
         // navigate('Login');
         Toast.show({
@@ -577,7 +461,7 @@ export const ResetPassword = (input) => {
         });
       })
       .catch((error) => {
-        console.log(error.response.data.message, 'ERROR in LOGIN');
+        // console.log(error.response.data.message, 'ERROR in LOGIN');
         dispatch({type: RESETPASSWORD_ERROR, payload: error.response});
         Toast.show({
           type: 'errorLogin',

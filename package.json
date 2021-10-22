@@ -34,6 +34,7 @@
     "react-native-bootsplash": "^3.2.1",
     "react-native-confirmation-code-field": "6",
     "react-native-gesture-handler": "^1.10.2",
+    "react-native-image-crop-picker": "^0.36.4",
     "react-native-image-picker": "^3.3.2",
     "react-native-linear-gradient": "^2.5.6",
     "react-native-modal-dropdown": "https://github.com/siemiatj/react-native-modal-dropdown",

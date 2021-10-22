@@ -38,8 +38,6 @@ import apiInstance from '../util/axiosConfig';
 import {navigate} from '../../RootNavigation';
 import Toast from 'react-native-toast-message';
 
-
-
 export const PortfolioAccounts = () => {
   return (dispatch) => {
     dispatch({type: FETCHPORTFOLIOACCOUNTS_START});
@@ -48,11 +46,9 @@ export const PortfolioAccounts = () => {
       .get(
         `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio`,
       )
-      .then((response) => {  
-
+      .then((response) => {
         dispatch(PortfolioInstitution());
         // dispatch(PortfolioInstitution({ids:'ins_3'}));
-
 
         dispatch({
           type: FETCHPORTFOLIOACCOUNTS_SUCCESS,
@@ -74,9 +70,7 @@ export const PortfolioInstitution = () => {
         `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio/institutions`,
       )
       .then((response) => {
-       
         dispatch({type: FETCHINSTITUTION_SUCCESS, payload: response.data});
-
       })
       .catch((error) => {
         dispatch({type: FETCHINSTITUTION_ERROR, payload: error.response});
@@ -93,21 +87,21 @@ export const PlaidLoading = () => {
 
 export const NewPlaidAccount = (accounts, institution) => {
   return (dispatch) => {
-    dispatch({type: NEWPLAIDACCOUNT_SUCCESS, payload: accounts}); 
-    dispatch({type: NEWPLAIDACCOUNT_INSTITUTION, payload: institution}); 
+    dispatch({type: NEWPLAIDACCOUNT_SUCCESS, payload: accounts});
+    dispatch({type: NEWPLAIDACCOUNT_INSTITUTION, payload: institution});
 
     navigate('EnableAccounts');
-
   };
 };
 
 export const PlaidAccountStatus = (input) => {
-  console.log(input, "INPUT IN ACCOUNT REDUX")
+  console.log(input, 'INPUT IN ACCOUNT REDUX');
   return (dispatch) => {
     // dispatch({type: PLAIDACCOUNTSTATUS_SUCCESS});
     apiInstance
       .post(
-        `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio/account`, input,
+        `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio/account`,
+        input,
       )
       .then((response) => {
         console.log(response, 'Success in PLAIDACCOUNTSTATUS');
@@ -132,7 +126,6 @@ export const PlaidBank = (input) => {
       .then((response) => {
         console.log(response, 'Success in PLAIDBANK');
         dispatch({type: PLAIDBANK_SUCCESS, payload: response.data});
-
       })
       .catch((error) => {
         dispatch({type: PLAIDBANK_ERROR, payload: error.response});
@@ -231,7 +224,7 @@ export const GetProfileImage = (token, id) => {
         });
       })
       .catch((error) => {
-        console.log(error.response, 'IMAGE ERROR');
+        // console.log(error.response, 'IMAGE ERROR');
         // Toast.show({
         //   type: 'error',
         //   text2: 'Error getting IMAGE.',
@@ -243,6 +236,9 @@ export const GetProfileImage = (token, id) => {
 export const CreateProfileImage = (id, token, input) => {
   return (dispatch) => {
     dispatch({type: CREATEPROFILEIMAGE_START});
+    // console.log('ID:', id);
+    // console.log('Token:', token);
+    // console.log('IMAGE INPUT:' + input);
     axios
       .put(`https://d13h17hkw4i0vn.cloudfront.net/${id}/profile.jpg`, input, {
         headers: {
@@ -253,13 +249,14 @@ export const CreateProfileImage = (id, token, input) => {
       })
 
       .then((response) => {
+        // console.log('image upload success');
         dispatch({
           type: CREATEPROFILEIMAGE_SUCCESS,
           payload: response.request.responseURL,
         });
       })
       .catch((error) => {
-        console.log(error, 'ERROR in Image upload');
+        // console.log('ERROR in Image upload', error);
         dispatch({type: CREATEPROFILEIMAGE_ERROR, payload: error.response});
         Toast.show({
           type: 'errorSignUp',
@@ -279,7 +276,7 @@ export const EditUserProfile = (input) => {
         input,
       )
       .then((response) => {
-        console.log(response, 'Edit profile response');
+        // console.log(response, 'Edit profile response');
         dispatch({type: EDITPROFILE_SUCCESS, payload: response.data});
         navigate('MyProfile');
         Toast.show({
@@ -290,7 +287,7 @@ export const EditUserProfile = (input) => {
 
       .catch((error) => {
         dispatch({type: EDITPROFILE_ERROR, payload: error.response});
-        console.log(error.response);
+        // console.log(error.response);
       });
   };
 };

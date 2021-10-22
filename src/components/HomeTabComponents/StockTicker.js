@@ -12,7 +12,7 @@ export class StockTicker extends PureComponent {
   // }
   render() {
     const {gainers, tickers} = this.props;
-    console.log(tickers, 'tickers in component');
+    // console.log(tickers, 'tickers in component');
 
     return (
       <View style={styles.container}>
@@ -20,7 +20,7 @@ export class StockTicker extends PureComponent {
           <TextTicker
             style={{fontSize: 24}}
             scrollSpeed={5000}
-            duration={30000}
+            duration={tickers.length * 1000}
             loop
             bounce
             repeatSpacer={0}
