@@ -65,6 +65,13 @@ export default class UserPosts extends Component {
     // console.log(this.props.navigation, 'props in post');
     if (post.trade === true) {
       return (
+        <TouchableOpacity
+          onPress={() =>
+            this.props.navigation.navigate({
+              name: 'TradePostScreen',
+              params: {post, filteredComments, reply, userAccount},
+            })
+          }>
         <TradePost
           key={post.id}
           post={post}
@@ -73,6 +80,7 @@ export default class UserPosts extends Component {
           reply={reply}
           userAccount={userAccount}
         />
+        </TouchableOpacity>
       );
     }
     return (

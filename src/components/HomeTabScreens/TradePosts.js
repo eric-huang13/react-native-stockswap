@@ -147,7 +147,7 @@ export default class TradePost extends Component {
         <TouchableOpacity
           onPress={() =>
             this.props.navigation.navigate({
-              name: 'PostScreen',
+              name: 'TradePostScreen',
               params: {post, filteredComments, reply, userAccount},
             })
           }>
@@ -183,7 +183,10 @@ export default class TradePost extends Component {
             </View>
             <View>
               <Text style={style.stockName}>
-                {post.stockName} <Text style={style.tradeMade}>(Trade made: {post.tradeDate})</Text>
+                {post.stockName}{' '}
+                <Text style={style.tradeMade}>
+                  (Trade made: {post.tradeDate})
+                </Text>
               </Text>
             </View>
             {post.body.length < 80 ? (
@@ -342,7 +345,7 @@ const style = StyleSheet.create({
     color: 'lightgrey',
     fontFamily: 'Montserrat-Regular',
   },
-  stockName:{
+  stockName: {
     fontSize: moderateScale(14.5),
     color: 'lightgrey',
     fontFamily: 'Montserrat-Regular',
@@ -372,7 +375,7 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   body: {
- fontSize: moderateScale(15),  
+    fontSize: moderateScale(15),
     color: '#FFFFFF',
     marginTop: moderateScale(10),
     marginBottom: moderateScale(4),
