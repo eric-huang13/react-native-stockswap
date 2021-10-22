@@ -48,25 +48,22 @@ class EditProfile extends Component {
   createFormData = (values) => {
     let formData = new FormData();
     Object.keys(values).forEach((fieldName) => {
-      console.log(fieldName, values[fieldName]);
+      // console.log(fieldName, values[fieldName]);
       formData.append(fieldName, values[fieldName]);
     });
     return formData;
   };
 
   onImageSelection = (setFieldValue) => {
-    const options = {
-      mediaType: 'photo',
-      // includeBase64:true,
-    };
     ImagePicker.openPicker({
       forceJpg: true,
       mediaType: 'image',
       includeBase64: true,
+      cropping: true,
     }).then((image) => {
-      console.log('Image:', image);
+      // console.log('Image:', image);
       const path = image?.path || image?.sourceURL;
-      console.log('Path:', path);
+      // console.log('Path:', path);
       if (path && setFieldValue) {
         setFieldValue('image', {
           name: image.filename,
@@ -110,11 +107,12 @@ class EditProfile extends Component {
                   bio: userProfile.bio,
                 }}
                 onSubmit={(values) => {
-                  console.log(values, 'infooooo');
+                  // console.log('infooooo::', values?.image?.uri);
                   // const data = this.createFormData(values);
                   // console.log(data, 'form');
                   const id = userProfile?._id;
                   const token = userData.accessToken;
+                  // console.log('token::', token);
                   const buffer = Buffer.from(values.image.data, 'base64');
                   CreateProfileImage(id, token, buffer);
 

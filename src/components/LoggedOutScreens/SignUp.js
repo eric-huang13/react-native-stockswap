@@ -106,7 +106,7 @@ export const SignUp = ({
                 }}
                 validationSchema={reviewSchema}
                 onSubmit={(values, actions) => {
-                  console.log(values, 'Values');
+                  // console.log(values, 'Values');
                   // navigation.navigate({
                   //   name: 'ProfileInfoForm',
                   //   params: {userInfo: values},

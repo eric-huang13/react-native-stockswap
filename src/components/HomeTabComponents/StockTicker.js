@@ -12,7 +12,7 @@ export class StockTicker extends PureComponent {
   // }
   render() {
     const {gainers, tickers} = this.props;
-    console.log(tickers, 'tickers in component');
+    // console.log(tickers, 'tickers in component');
 
     return (
       <View style={styles.container}>

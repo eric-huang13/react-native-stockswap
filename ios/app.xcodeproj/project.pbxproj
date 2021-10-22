@@ -757,7 +757,7 @@
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.3;
+				MARKETING_VERSION = 0.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -784,7 +784,7 @@
 				DEVELOPMENT_TEAM = AG543APX4K;
 				INFOPLIST_FILE = app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.3;
+				MARKETING_VERSION = 0.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

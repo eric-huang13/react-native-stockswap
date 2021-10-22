@@ -60,18 +60,15 @@ export class ProfileInfoForm extends Component {
   }
 
   onImageSelection = (setFieldValue) => {
-    const options = {
-      mediaType: 'photo',
-      // includeBase64:true,
-    };
     ImagePicker.openPicker({
       forceJpg: true,
       mediaType: 'image',
       includeBase64: true,
+      cropping: true,
     }).then((image) => {
-      console.log('Image:', image);
+      // console.log('Image:', image);
       const path = image?.path || image?.sourceURL;
-      console.log('Path:', path);
+      // console.log('Path:', path);
       if (path && setFieldValue) {
         setFieldValue('image', {
           name: image.filename,
@@ -85,8 +82,8 @@ export class ProfileInfoForm extends Component {
 
   render() {
     const {RegisterUser, CreateProfile, CreateProfileImage} = this.props;
-    console.log('USER ID:', this.props.userId);
-    console.log('USER INFO:', this.props.userData);
+    // console.log('USER ID:', this.props.userId);
+    // console.log('USER INFO:', this.props.userData);
 
     // const {userInfo} = this.props.route.params;
 
@@ -128,7 +125,7 @@ export class ProfileInfoForm extends Component {
                 onSubmit={(values) => {
                   //Adding to FormData for image
                   // const data = createFormData(values.image);
-                  console.log('User Data:');
+                  // console.log('User Data:');
                   const id = this.props.userId;
                   const token = this.props.userData.accessToken;
                   const buffer = Buffer.from(values.image.data, 'base64');

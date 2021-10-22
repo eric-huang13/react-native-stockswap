@@ -224,7 +224,7 @@ export const GetProfileImage = (token, id) => {
         });
       })
       .catch((error) => {
-        console.log(error.response, 'IMAGE ERROR');
+        // console.log(error.response, 'IMAGE ERROR');
         // Toast.show({
         //   type: 'error',
         //   text2: 'Error getting IMAGE.',
@@ -236,8 +236,8 @@ export const GetProfileImage = (token, id) => {
 export const CreateProfileImage = (id, token, input) => {
   return (dispatch) => {
     dispatch({type: CREATEPROFILEIMAGE_START});
-    console.log('ID:', id);
-    console.log('Token:', token);
+    // console.log('ID:', id);
+    // console.log('Token:', token);
     // console.log('IMAGE INPUT:' + input);
     axios
       .put(`https://d13h17hkw4i0vn.cloudfront.net/${id}/profile.jpg`, input, {
@@ -249,14 +249,14 @@ export const CreateProfileImage = (id, token, input) => {
       })
 
       .then((response) => {
-        console.log('image upload success');
+        // console.log('image upload success');
         dispatch({
           type: CREATEPROFILEIMAGE_SUCCESS,
           payload: response.request.responseURL,
         });
       })
       .catch((error) => {
-        console.log('ERROR in Image upload', error);
+        // console.log('ERROR in Image upload', error);
         dispatch({type: CREATEPROFILEIMAGE_ERROR, payload: error.response});
         Toast.show({
           type: 'errorSignUp',
@@ -276,7 +276,7 @@ export const EditUserProfile = (input) => {
         input,
       )
       .then((response) => {
-        console.log(response, 'Edit profile response');
+        // console.log(response, 'Edit profile response');
         dispatch({type: EDITPROFILE_SUCCESS, payload: response.data});
         navigate('MyProfile');
         Toast.show({
@@ -287,7 +287,7 @@ export const EditUserProfile = (input) => {
 
       .catch((error) => {
         dispatch({type: EDITPROFILE_ERROR, payload: error.response});
-        console.log(error.response);
+        // console.log(error.response);
       });
   };
 };

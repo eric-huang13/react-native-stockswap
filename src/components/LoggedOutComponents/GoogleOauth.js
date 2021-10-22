@@ -11,7 +11,7 @@ import {
 } from '../../actions/user';
 
 export function GoogleOauth(props) {
-  console.log(props, 'props google');
+  // console.log(props, 'props google');
   useEffect(() => {
     props.GoogleIsSignedIn();
   }, []);

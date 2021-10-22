@@ -68,7 +68,7 @@ export const Register = (input) => {
         input,
       )
       .then((response) => {
-        console.log(response, 'RESPONSE in Signup');
+        // console.log(response, 'RESPONSE in Signup');
         const decoded = jwt_decode(response.data.accessToken);
 
         deviceStorage.saveItem('token', response.data.accessToken),
@@ -87,7 +87,7 @@ export const Register = (input) => {
         });
       })
       .catch((error) => {
-        console.log(error, 'ERROR in Signup');
+        // console.log(error, 'ERROR in Signup');
         dispatch({type: SIGNUP_ERROR, payload: error.response});
         navigate('SignUp');
         Toast.show({
@@ -131,7 +131,7 @@ export const RegisterGoogleSignup = (input) => {
         });
       })
       .catch((error) => {
-        console.log('GOOGLE ERROR', error);
+        // console.log('GOOGLE ERROR', error);
         dispatch({type: SIGNUP_ERROR, payload: error.response});
         Toast.show({
           type: 'error',
@@ -148,7 +148,7 @@ export const RegisterGoogleSignIn = (input) => {
     offlineAccess: false, // if you want to access Google API on behalf of the user FROM YOUR SERVER
     iosClientId: GOOGLE_IOS_CLIENT_ID, // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
-  console.log(input, 'input in google action');
+  // console.log(input, 'input in google action');
   return (dispatch) => {
     dispatch({type: GOOGLE_LOGIN_START});
     axios
@@ -200,10 +200,10 @@ export const Login = (input) => {
         input,
       )
       .then((response) => {
-        console.log('FIRST', response.data.refreshToken);
-        console.log('INPUT', input.email);
+        // console.log('FIRST', response.data.refreshToken);
+        // console.log('INPUT', input.email);
         const decoded = jwt_decode(response.data.accessToken);
-        console.log(decoded.sub);
+        // console.log(decoded.sub);
 
         deviceStorage.saveItem('token', response.data.accessToken),
           deviceStorage.saveItem('refreshToken', response.data.refreshToken),
@@ -220,7 +220,7 @@ export const Login = (input) => {
       })
 
       .catch((error) => {
-        console.log(error.response.data.message, 'ERROR in LOGIN');
+        // console.log(error.response.data.message, 'ERROR in LOGIN');
         dispatch({type: SIGNUP_ERROR, payload: error.response});
         Toast.show({
           type: 'errorLogin',
@@ -243,26 +243,26 @@ export const GoogleSignUp = () => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       deviceStorage.saveItem('email', userInfo.user.email),
-        console.log(userInfo, 'USERINFO GOOGLE SIGNUP');
-      //send token to backend
-      dispatch(
-        RegisterGoogleSignup({
-          token: userInfo.idToken,
-          platform: Platform.OS === 'ios' ? 'ios' : 'android',
-        }),
-      );
+        // console.log(userInfo, 'USERINFO GOOGLE SIGNUP');
+        //send token to backend
+        dispatch(
+          RegisterGoogleSignup({
+            token: userInfo.idToken,
+            platform: Platform.OS === 'ios' ? 'ios' : 'android',
+          }),
+        );
 
       dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
     } catch (error) {
-      console.log('Message', error.message);
+      // console.log('Message', error.message);
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        console.log('User Cancelled the Login Flow');
+        // console.log('User Cancelled the Login Flow');
       } else if (error.code === statusCodes.IN_PROGRESS) {
-        console.log('Signing In');
+        // console.log('Signing In');
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        console.log('Play Services Not Available or Outdated');
+        // console.log('Play Services Not Available or Outdated');
       } else {
-        console.log(error);
+        // console.log(error);
       }
     }
   };
@@ -281,27 +281,27 @@ export const GoogleLogin = () => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       deviceStorage.saveItem('email', userInfo.user.email),
-        console.log(userInfo, 'USERINFO GOOGLE LOGIN');
+        // console.log(userInfo, 'USERINFO GOOGLE LOGIN');
 
-      //send token to backend
-      dispatch(
-        RegisterGoogleSignIn({
-          token: userInfo.idToken,
-          platform: Platform.OS === 'ios' ? 'ios' : 'android',
-        }),
-      );
+        //send token to backend
+        dispatch(
+          RegisterGoogleSignIn({
+            token: userInfo.idToken,
+            platform: Platform.OS === 'ios' ? 'ios' : 'android',
+          }),
+        );
 
       dispatch({type: GOOGLE_LOGIN_SUCCESS, payload: userInfo});
     } catch (error) {
-      console.log('Message', error.message);
+      // console.log('Message', error.message);
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        console.log('User Cancelled the Login Flow');
+        // console.log('User Cancelled the Login Flow');
       } else if (error.code === statusCodes.IN_PROGRESS) {
-        console.log('Signing In');
+        // console.log('Signing In');
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        console.log('Play Services Not Available or Outdated');
+        // console.log('Play Services Not Available or Outdated');
       } else {
-        console.log(error);
+        // console.log(error);
       }
     }
   };
@@ -327,14 +327,14 @@ export const GoogleIsSignedIn = () => {
         );
       } catch (error) {
         if (error.code === statusCodes.SIGN_IN_REQUIRED) {
-          console.log('User has not signed in yet');
+          // console.log('User has not signed in yet');
         } else {
-          console.log("Something went wrong. Unable to get user's info");
+          // console.log("Something went wrong. Unable to get user's info");
         }
       }
     } else {
       dispatch({type: GOOGLE_LOGOUT_SUCCESS, payload: {}});
-      console.log('Please Login');
+      // console.log('Please Login');
     }
   };
 };
@@ -385,13 +385,13 @@ export const Logout = () => {
           text2: 'You have been successfully logged out.',
         });
         dispatch(GoogleLogoutCheck());
-        console.log(res, 'Logging out');
+        // console.log(res, 'Logging out');
         dispatch({
           type: LOGOUT,
         });
       })
       .catch((error) => {
-        console.log(error, 'Error logging out');
+        // console.log(error, 'Error logging out');
         clearAppData();
         dispatch({
           type: LOGOUT,
@@ -426,7 +426,7 @@ export const ForgotPasswordEmail = (input) => {
         });
       })
       .catch((error) => {
-        console.log(error, 'ERROR in Signup');
+        // console.log(error, 'ERROR in Signup');
         dispatch({type: FORGOTPASSWORD_ERROR, payload: error.response});
         // navigate('Login');
         Toast.show({
@@ -461,7 +461,7 @@ export const ResetPassword = (input) => {
         });
       })
       .catch((error) => {
-        console.log(error.response.data.message, 'ERROR in LOGIN');
+        // console.log(error.response.data.message, 'ERROR in LOGIN');
         dispatch({type: RESETPASSWORD_ERROR, payload: error.response});
         Toast.show({
           type: 'errorLogin',
