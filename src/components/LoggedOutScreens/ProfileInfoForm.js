@@ -20,7 +20,6 @@ import {Register} from '../../actions/user';
 import {CreateProfile} from '../../actions/profile';
 import {CreateProfileImage} from '../../actions/profile';
 import ImagePicker from 'react-native-image-crop-picker';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {moderateScale} from '../../util/responsiveFont';
 import {Buffer} from 'buffer';
 

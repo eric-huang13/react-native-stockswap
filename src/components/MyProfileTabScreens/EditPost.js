@@ -12,7 +12,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Image,
-  Platform
+  Platform,
 } from 'react-native';
 import {EditUser} from '../../actions/user';
 import {UserPost} from '../../actions/posts';
@@ -21,15 +21,14 @@ import * as Yup from 'yup';
 import Toast from 'react-native-toast-message';
 
 import {connect} from 'react-redux';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import { moderateScale } from '../../util/responsiveFont';
+import ImagePicker from 'react-native-image-crop-picker';
+
+import {moderateScale} from '../../util/responsiveFont';
 
 const validationSchema = Yup.object().shape({
-  
   body: Yup.string()
     .label('body')
     .min(2, 'body must have more than 2 characters '),
-
 });
 class EditPost extends Component {
   constructor(props) {
@@ -46,13 +45,32 @@ class EditPost extends Component {
   //Creating FormData for sending image to backend
   createFormData = (values) => {
     let formData = new FormData();
-      Object.keys(values).forEach(fieldName => {
+    Object.keys(values).forEach((fieldName) => {
       console.log(fieldName, values[fieldName]);
       formData.append(fieldName, values[fieldName]);
-      })
+    });
     return formData;
   };
-
+  onImageSelection = (setFieldValue) => {
+    ImagePicker.openPicker({
+      forceJpg: true,
+      mediaType: 'image',
+      includeBase64: true,
+      cropping: true,
+    }).then((image) => {
+      // console.log('Image:', image);
+      const path = image?.path || image?.sourceURL;
+      // console.log('Path:', path);
+      if (path && setFieldValue) {
+        setFieldValue('image', {
+          name: image.filename,
+          type: image.mime,
+          data: image.data,
+          uri: Platform.OS === 'android' ? path : path.replace('file://', ''),
+        });
+      }
+    });
+  };
   render() {
     //for testing
     // const credentials = {
@@ -67,19 +85,19 @@ class EditPost extends Component {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <SafeAreaView style={style.mainContainer}>
           <ScrollView>
-          <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'padding' : null}
-            style={{flex: 1}}>
+            <KeyboardAvoidingView
+              behavior={Platform.OS === 'ios' ? 'padding' : null}
+              style={{flex: 1}}>
               <Formik
                 initialValues={{
                   enabled: false,
-                  image:{name:'', type:'', uri:post.img},
-                  body:post.body,                  
+                  image: {name: '', type: '', uri: post.img},
+                  body: post.body,
                 }}
                 onSubmit={(values) => {
                   console.log(values, 'values');
                   const data = this.createFormData(values);
-                  console.log(data,"form") 
+                  console.log(data, 'form');
                   // UserPost(values)
                 }}
                 validationSchema={validationSchema}>
@@ -94,132 +112,93 @@ class EditPost extends Component {
                   isSubmitting,
                   setFieldValue,
                 }) => (
-              <View>
-            {/* <Text style={style.header}>Edit Post</Text> */}
-            {values.image.uri && !errors.image ?
-            
-                    <TouchableOpacity onPress={() => {
-                      const options={
-                        mediaType:'photo',
-                        // includeBase64:true,                  
-                      }
-                      launchImageLibrary(options, response=> {
-                        console.log(response, "response image")
-                        if (response.uri)
-                        {
-                          setFieldValue('image', {name:response.fileName, type:response.type, uri:
-                            Platform.OS === 'android' ? response.uri : response.uri.replace('file://', ''),}) 
-                        }
-                      });
-                  }}>
-                    <Text style={style.uploadImageText}>
+                  <View>
+                    {/* <Text style={style.header}>Edit Post</Text> */}
+                    {values.image.uri && !errors.image ? (
+                      <TouchableOpacity
+                        onPress={() => this.onImageSelection(setFieldValue)}>
+                        <Text style={style.uploadImageText}>
                           Tap to upload a new photo
                         </Text>
-                      <Image
-                        style={style.uploadImageContainer}
-                        source={{uri: values.image.uri}}
-                      />
-                    </TouchableOpacity>
- 
-                     : 
+                        <Image
+                          style={style.uploadImageContainer}
+                          source={{uri: values.image.uri}}
+                        />
+                      </TouchableOpacity>
+                    ) : (
                       <View style={style.uploadImageContainer}>
-                        <TouchableOpacity onPress={() => {
-                            const options={
-                              mediaType:'photo',
-                              // includeBase64:true,                        
-                            }
-                            launchImageLibrary(options, response=> {
-                              console.log(response, "response image")
-                              if (response.uri)
-                              {
-                                setFieldValue('image', {name:response.fileName, type:response.type, uri:
-                                  Platform.OS === 'android' ? response.uri : response.uri.replace('file://', ''),})
-       
-                              }
-                            });
-                        }}>
-                        <Text style={style.uploadImageText}>
-                          Tap to upload new photo
-                        </Text>
+                        <TouchableOpacity
+                          onPress={() => this.onImageSelection(setFieldValue)}>
+                          <Text style={style.uploadImageText}>
+                            Tap to upload new photo
+                          </Text>
                         </TouchableOpacity>
                       </View>
-                     } 
-            {/* <View style={style.uploadImageContainer}>
-              <TextInput
-                onBlur={handleBlur('image')}
-                value={values.image}
-                onChangeText={handleChange('image')}
-                placeholder="Upload cover image"
-                placeholderTextColor="#FFFFFF"
-                style={style.inputStyleImage}
-              />
-              <Text style={style.errorText}>
-                          {touched.image && errors.image}
-                        </Text>
-            </View> */}
-            <View style={style.postContainer}>
-              <Text style={style.inputHeader}>Post</Text>
-              <TextInput
-                style={style.inputStyleBody}
-                // onBlur={handleBlur('body')}
-                value={values.body}
-                onChangeText={handleChange('body')}
-                placeholder="Enter post text"
-                placeholderTextColor="#9ea6b5"
-                multiline={true}
-                numberOfLines={4}
-              />
-              <Text style={style.errorText}>
-                          {errors.body}
-                        </Text>
-            </View>
+                    )}
+               
+                    <View style={style.postContainer}>
+                      <Text style={style.inputHeader}>Post</Text>
+                      <TextInput
+                        style={style.inputStyleBody}
+                        // onBlur={handleBlur('body')}
+                        value={values.body}
+                        onChangeText={handleChange('body')}
+                        placeholder="Enter post text"
+                        placeholderTextColor="#9ea6b5"
+                        multiline={true}
+                        numberOfLines={4}
+                      />
+                      <Text style={style.errorText}>{errors.body}</Text>
+                    </View>
 
-            <View style={style.notificationsContainer}>
-              <Text style={style.middleDetailsText}>Turn off comments</Text>
-              <Switch
-                trackColor={{false: '#1A2542', true: '#B8A0FF'}}
-                thumbColor={this.state.enabled ? '#f4f3f4' : '#f4f3f4'}
-                ios_backgroundColor="#f4f3f4"
-                onValueChange={value =>
-                  setFieldValue('enabled', value)
-                }
-                value={values.enabled}
-                style={{transform: [{scaleX: moderateScale(1.5)}, {scaleY: moderateScale(1.5)}]}}
-              />
-            </View>
-            <View style={style.buttonsContainer}>
-              <TouchableOpacity onPress={() => handleSubmit(
-
-              )}>
-                <Text style={style.publishButton}>Publish</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() =>
-                  values.body === "" && values.image === "" ?
-                  Toast.show({
-                    type: 'error',
-                    text2: 'Post must include body or image.',
-                  })
-                  :
-                  errors.body ||errors.image?
-                  Toast.show({
-                    type: 'error',
-                    text2: 'Please fix errors',
-                  })
-                  :
-                  this.props.navigation.navigate({
-                    name: 'CreatePostPreview',
-                    params: {data: values, edit: postId},
-                  })
-                 
-                }>
-                <Text style={style.previewButton}>Preview</Text>
-              </TouchableOpacity>
-            </View>
-            </View>
-            )}
-            </Formik>
-          </KeyboardAvoidingView>
+                    <View style={style.notificationsContainer}>
+                      <Text style={style.middleDetailsText}>
+                        Turn off comments
+                      </Text>
+                      <Switch
+                        trackColor={{false: '#1A2542', true: '#B8A0FF'}}
+                        thumbColor={this.state.enabled ? '#f4f3f4' : '#f4f3f4'}
+                        ios_backgroundColor="#f4f3f4"
+                        onValueChange={(value) =>
+                          setFieldValue('enabled', value)
+                        }
+                        value={values.enabled}
+                        style={{
+                          transform: [
+                            {scaleX: moderateScale(1.5)},
+                            {scaleY: moderateScale(1.5)},
+                          ],
+                        }}
+                      />
+                    </View>
+                    <View style={style.buttonsContainer}>
+                      <TouchableOpacity onPress={() => handleSubmit()}>
+                        <Text style={style.publishButton}>Publish</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={() =>
+                          values.body === '' && values.image === ''
+                            ? Toast.show({
+                                type: 'error',
+                                text2: 'Post must include body or image.',
+                              })
+                            : errors.body || errors.image
+                            ? Toast.show({
+                                type: 'error',
+                                text2: 'Please fix errors',
+                              })
+                            : this.props.navigation.navigate({
+                                name: 'CreatePostPreview',
+                                params: {data: values, edit: postId},
+                              })
+                        }>
+                        <Text style={style.previewButton}>Preview</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                )}
+              </Formik>
+            </KeyboardAvoidingView>
           </ScrollView>
         </SafeAreaView>
       </TouchableWithoutFeedback>
@@ -267,7 +246,7 @@ const style = StyleSheet.create({
     color: '#babec8',
     marginBottom: moderateScale(1),
     fontFamily: 'Montserrat-Regular',
-    marginTop:moderateScale(12),
+    marginTop: moderateScale(12),
   },
   inputStyleImage: {
     fontFamily: 'Montserrat-Regular',
