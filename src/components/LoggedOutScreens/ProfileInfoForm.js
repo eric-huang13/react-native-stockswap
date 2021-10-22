@@ -17,11 +17,12 @@ import {Formik} from 'formik';
 import * as Yup from 'yup';
 import LinearGradient from 'react-native-linear-gradient';
 import {Register} from '../../actions/user';
-import { CreateProfile } from '../../actions/profile';
-import { CreateProfileImage } from '../../actions/profile';
+import {CreateProfile} from '../../actions/profile';
+import {CreateProfileImage} from '../../actions/profile';
+import ImagePicker from 'react-native-image-crop-picker';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {moderateScale} from '../../util/responsiveFont';
-import {Buffer} from "buffer";
+import {Buffer} from 'buffer';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -29,8 +30,7 @@ const validationSchema = Yup.object().shape({
     .required('Name is required')
     .min(2, 'Must have at least 2 characters'),
 
-  username: Yup.string().label('username')
-  .required('username is required'),
+  username: Yup.string().label('username').required('username is required'),
 
   tags: Yup.string()
     .label('tags')
@@ -59,10 +59,31 @@ export class ProfileInfoForm extends Component {
     this.setState({isPrivate: setting, shouldShow: false});
   }
 
+  onImageSelection = (setFieldValue) => {
+    ImagePicker.openPicker({
+      forceJpg: true,
+      mediaType: 'image',
+      includeBase64: true,
+      cropping: true,
+    }).then((image) => {
+      // console.log('Image:', image);
+      const path = image?.path || image?.sourceURL;
+      // console.log('Path:', path);
+      if (path && setFieldValue) {
+        setFieldValue('image', {
+          name: image.filename,
+          type: image.mime,
+          data: image.data,
+          uri: Platform.OS === 'android' ? path : path.replace('file://', ''),
+        });
+      }
+    });
+  };
+
   render() {
     const {RegisterUser, CreateProfile, CreateProfileImage} = this.props;
-    console.log(this.props.userId, "ID")
-    console.log(this.props.userData, "userInfo")
+    // console.log('USER ID:', this.props.userId);
+    // console.log('USER INFO:', this.props.userData);
 
     // const {userInfo} = this.props.route.params;
 
@@ -102,23 +123,23 @@ export class ProfileInfoForm extends Component {
                   isPrivate: false,
                 }}
                 onSubmit={(values) => {
-                //Adding to FormData for image
+                  //Adding to FormData for image
                   // const data = createFormData(values.image);
-                  // console.log(data, 'form');
-                  const id = this.props.userId
-                  const token = this.props.userData.accessToken
-                  const buffer = Buffer.from(values.image.data, 'base64')
+                  // console.log('User Data:');
+                  const id = this.props.userId;
+                  const token = this.props.userData.accessToken;
+                  const buffer = Buffer.from(values.image.data, 'base64');
 
-                  CreateProfileImage(id, token, buffer)
+                  CreateProfileImage(id, token, buffer);
 
                   // RegisterUser(data);
-                  
-                  CreateProfile ({name: values.name,
+
+                  CreateProfile({
+                    name: values.name,
                     username: values.username,
                     bio: values.bio,
                     tags: values.tags,
-                  })
-
+                  });
                 }}
                 validationSchema={validationSchema}>
                 {({
@@ -136,28 +157,7 @@ export class ProfileInfoForm extends Component {
                     <Text style={style.header}>Fill Profile Info</Text>
                     {values.image.uri && !errors.image ? (
                       <TouchableOpacity
-                        onPress={() => {
-                          const options = {
-                            mediaType: 'photo',
-                            includeBase64:true,
-                          };
-                          launchImageLibrary(options, (response) => {
-                            // console.log(response, 'response image');
-                            if (response.uri) {
-                              setFieldValue('image', {
-                                data: response.base64,
-                                name: response.fileName,
-                                type: response.type,
-                                uri:
-                                  Platform.OS === 'android'
-                                    ? response.uri
-                                    : response.uri.replace('file://', ''),
-                              });
-                              // this.setState({ imageData: response.uri });
-
-                        }
-                          });
-                        }}>
+                        onPress={() => this.onImageSelection(setFieldValue)}>
                         <Image
                           style={style.uploadPhotoContainer}
                           source={{uri: values.image.uri}}
@@ -166,29 +166,7 @@ export class ProfileInfoForm extends Component {
                     ) : (
                       <View style={style.uploadPhotoContainer}>
                         <TouchableOpacity
-                          onPress={() => {
-                            const options = {
-                              mediaType: 'photo',
-                              includeBase64:true,
-
-                            };
-                            launchImageLibrary(options, (response) => {
-                              // console.log(response, 'response image');
-                              if (response.uri) {
-                                setFieldValue('image', {
-                                  data: response.base64,
-                                  name: response.fileName,
-                                  type: response.type,
-                                  uri:
-                                    Platform.OS === 'android'
-                                      ? response.uri
-                                      : response.uri.replace('file://', ''),
-                                });
-                                // this.setState({ imageData: response.uri });
-
-                              }
-                            });
-                          }}>
+                          onPress={() => this.onImageSelection(setFieldValue)}>
                           <Text style={style.uploadPhotoText}>
                             Tap to upload your photo
                           </Text>
@@ -233,12 +211,8 @@ export class ProfileInfoForm extends Component {
                       </View>
                     </View>
                     <View style={style.bottomColumn}>
-                  
-
                       <View>
-                        <Text style={style.inputHeader}>
-                          Hashtag
-                        </Text>
+                        <Text style={style.inputHeader}>Hashtag</Text>
 
                         <TextInput
                           style={style.inputStyle}
@@ -340,7 +314,6 @@ const mapStateToProps = (state) => {
   return {
     userData: state.user.userData,
     userId: state.user.userId,
-
   };
 };
 
@@ -348,8 +321,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     RegisterUser: (input) => dispatch(Register(input)),
     CreateProfile: (input) => dispatch(CreateProfile(input)),
-    CreateProfileImage: (id, token, input) => dispatch(CreateProfileImage(id, token, input)),
-
+    CreateProfileImage: (id, token, input) =>
+      dispatch(CreateProfileImage(id, token, input)),
   };
 };
 

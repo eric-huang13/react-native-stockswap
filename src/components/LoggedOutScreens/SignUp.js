@@ -17,7 +17,7 @@ import {Formik} from 'formik';
 import * as yup from 'yup';
 import {connect} from 'react-redux';
 import {Register} from '../../actions/user';
-import {RegisterGoogle} from '../../actions/user';
+import {RegisterGoogleSignup} from '../../actions/user';
 
 import CheckBox from '@react-native-community/checkbox';
 import LinearGradient from 'react-native-linear-gradient';
@@ -106,7 +106,7 @@ export const SignUp = ({
                 }}
                 validationSchema={reviewSchema}
                 onSubmit={(values, actions) => {
-                  console.log(values, 'Values');
+                  // console.log(values, 'Values');
                   // navigation.navigate({
                   //   name: 'ProfileInfoForm',
                   //   params: {userInfo: values},
@@ -217,6 +217,7 @@ export const SignUp = ({
                           <CheckBox
                             style={style.checkbox}
                             disabled={true}
+                            boxType="square"
                             value={toggleCheckBox}
                             onValueChange={(newValue) =>
                               setToggleCheckBox(newValue)
@@ -225,8 +226,11 @@ export const SignUp = ({
                               true: '#b8a0ff',
                               false: 'lightgrey',
                             }}
+                            onCheckColor="#b8a0ff"
                           />
-                          <TouchableOpacity onPress={() => handleTerms(true)}>
+                          <TouchableOpacity
+                            style={style.termsTouchOpacity}
+                            onPress={() => handleTerms(true)}>
                             <Text style={style.termsText}>
                               I agree with the Terms and Conditions
                             </Text>
@@ -296,7 +300,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     RegisterUser: (input) => dispatch(Register(input)),
-    RegisterUserGoogle: (input) => dispatch(RegisterGoogle(input)),
+    RegisterUserGoogle: (input) => dispatch(RegisterGoogleSignup(input)),
   };
 };
 
@@ -406,6 +410,9 @@ const style = StyleSheet.create({
   },
   termsError: {
     marginBottom: moderateScale(18),
+  },
+  termsTouchOpacity: {
+    paddingLeft: 10,
   },
   checkbox: {},
   bottomButtonsContainer: {
