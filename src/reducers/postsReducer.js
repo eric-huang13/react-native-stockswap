@@ -15,6 +15,7 @@ const defaultState = {
       likes: 99,
       comments: 15,
       timestamp: '1 hour ago',
+      trade:false,
       body:
         'An article from the newspaper that I thought was interesting. Let me know what you think or if you have any questions.',
       username: 'hfields123',
@@ -30,11 +31,32 @@ const defaultState = {
       likes: 929,
       comments: 125,
       timestamp: '1 hour ago',
+      trade:false,
       body:
         'Here is a post that I created. Please read it and like it if it was helpful to you.',
       username: 'hfields123',
       img:
         'https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NTF8fHN0b2Nrc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    },
+    {
+      id: 8,
+      name: 'Hallie Fields',
+      profileImg:
+        'https://images.unsplash.com/photo-1459180129673-eefb56f79b45?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzR8fGJ1c2luZXNzJTIwbWFufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      userId: 1,
+      likes: 19,
+      comments: 5,
+      timestamp: '1 hour ago',
+      trade:true,
+      body:
+        'I have been researching this stock for a long time and decided to buy it.',
+      username: 'hfields123',
+      stockSymbol:'TSLA',
+      stockName:'Tesla',
+      portfolioPercentage:'2',
+      tradeDate:'10/20/2021',
+      gain:'1.25',
+      action:'Sell',
     },
     {
       id: 3,
@@ -45,6 +67,7 @@ const defaultState = {
       likes: 99,
       comments: 15,
       timestamp: '1 hour ago',
+      trade:false,
       body:
         'Doing some research on investing today. Here is my favorite article about trading stocks.',
       img:
@@ -59,6 +82,7 @@ const defaultState = {
       likes: 19,
       comments: 10,
       timestamp: '1 hour ago',
+      trade:false,
       body: 'My first post. Nice!',
       img:
         'https://images.unsplash.com/photo-1462206092226-f46025ffe607?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8YnVzaW5lc3N8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
@@ -72,6 +96,7 @@ const defaultState = {
       likes: 9,
       comments: 11,
       timestamp: '1 hour ago',
+      trade:false,
       body: 'My second post. Yes!',
       img:
         'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTR8fGJ1c2luZXNzfGVufDB8fDB8&auto=format&fit=crop&w=500&q=60',
@@ -85,6 +110,7 @@ const defaultState = {
       likes: 2,
       comments: 4,
       timestamp: '1 hour ago',
+      trade:false,
       body: 'My third post. Cool!',
       img:
         'https://images.unsplash.com/photo-1559589689-577aabd1db4f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTV8fHN0b2NrJTIwbWFya2V0fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
@@ -98,10 +124,13 @@ const defaultState = {
       likes: 3,
       comments: 8,
       timestamp: '1 hour ago',
+      trade:false,
       body: 'My fourth post. Awesome!',
       img:
         'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NDV8fHN0b2NrJTIwbWFya2V0fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
     },
+    
+    
   ],
   comments: [
     {

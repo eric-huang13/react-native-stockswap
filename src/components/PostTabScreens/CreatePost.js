@@ -19,7 +19,8 @@ import {UserPost} from '../../actions/posts';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import Toast from 'react-native-toast-message';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-crop-picker';
+
 import {moderateScale} from '../../util/responsiveFont';
 
 const validationSchema = Yup.object().shape({
@@ -49,6 +50,27 @@ class CreatePost extends Component {
     return formData;
   };
 
+  onImageSelection = (setFieldValue) => {
+    ImagePicker.openPicker({
+      forceJpg: true,
+      mediaType: 'image',
+      includeBase64: true,
+      cropping: true,
+    }).then((image) => {
+      // console.log('Image:', image);
+      const path = image?.path || image?.sourceURL;
+      // console.log('Path:', path);
+      if (path && setFieldValue) {
+        setFieldValue('image', {
+          name: image.filename,
+          type: image.mime,
+          data: image.data,
+          uri: Platform.OS === 'android' ? path : path.replace('file://', ''),
+        });
+      }
+    });
+  };
+
   render() {
     //for testing
     // const credentials = {
@@ -73,7 +95,7 @@ class CreatePost extends Component {
                 onSubmit={(values) => {
                   console.log(values, 'values');
                   const data = this.createFormData(values);
-                  console.log(data,'form'); 
+                  console.log(data, 'form');
                   // UserPost(values)
                 }}
                 validationSchema={validationSchema}>
@@ -92,25 +114,7 @@ class CreatePost extends Component {
                     <Text style={style.header}> Post a Publication </Text>
                     {values.image.uri && !errors.image ? (
                       <TouchableOpacity
-                        onPress={() => {
-                          const options = {
-                            mediaType: 'photo',
-                            // includeBase64:true,
-                          };
-                          launchImageLibrary(options, (response) => {
-                            console.log(response, 'response image');
-                            if (response.uri) {
-                              setFieldValue('image', {
-                                name: response.fileName,
-                                type: response.type,
-                                uri:
-                                  Platform.OS === 'android'
-                                    ? response.uri
-                                    : response.uri.replace('file://', ''),
-                              });
-                            }
-                          });
-                        }}>
+                        onPress={() => this.onImageSelection(setFieldValue)}>
                         <Image
                           style={style.uploadImageContainer}
                           source={{uri: values.image.uri}}
@@ -119,25 +123,7 @@ class CreatePost extends Component {
                     ) : (
                       <View style={style.uploadImageContainer}>
                         <TouchableOpacity
-                          onPress={() => {
-                            const options = {
-                              mediaType: 'photo',
-                              // includeBase64:true,
-                            };
-                            launchImageLibrary(options, (response) => {
-                              console.log(response, 'response image');
-                              if (response.uri) {
-                                setFieldValue('image', {
-                                  name: response.fileName,
-                                  type: response.type,
-                                  uri:
-                                    Platform.OS === 'android'
-                                      ? response.uri
-                                      : response.uri.replace('file://', ''),})
-
-                              }
-                            });
-                          }}>
+                          onPress={() => this.onImageSelection(setFieldValue)}>
                           <Text style={style.uploadImageText}>
                             Tap to upload your photo
                           </Text>
