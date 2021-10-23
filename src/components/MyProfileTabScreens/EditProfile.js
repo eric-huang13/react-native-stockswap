@@ -102,7 +102,7 @@ class EditProfile extends Component {
                   // id: userAccount.id,
                   name: userProfile.name,
                   username: userProfile.username,
-                  image: {name: '', type: '', uri: userImage},
+                  image: {name: '', type: '', uri: ''},
                   tags: userAccount.hashtag,
                   bio: userProfile.bio,
                 }}
@@ -140,26 +140,25 @@ class EditProfile extends Component {
 
                     {values.image.uri && !errors.image ? (
                       <TouchableOpacity
-                        onPress={() => this.onImageSelection(setFieldValue)}>
-                        <Image
-                          style={style.uploadPhotoContainer}
-                          source={{
-                            uri: values.image.uri,
-                            headers: {
-                              Authorization: `Bearer ${this.props.userData.accessToken}`,
-                            },
-                          }}
-                        />
-                      </TouchableOpacity>
+                      onPress={() => this.onImageSelection(setFieldValue)}>
+                      <Image
+                        style={style.uploadPhotoContainer}
+                        source={{uri: values.image.uri}}
+                      />
+                    </TouchableOpacity>
                     ) : (
-                      <View style={style.uploadPhotoContainer}>
-                        <TouchableOpacity
-                          onPress={() => this.onImageSelection(setFieldValue)}>
-                          <Text style={style.uploadPhotoText}>
-                            Tap to upload your photo
-                          </Text>
-                        </TouchableOpacity>
-                      </View>
+                      <TouchableOpacity
+                      onPress={() => this.onImageSelection(setFieldValue)}>
+                      <Image
+                        style={style.uploadPhotoContainer}
+                        source={{
+                          uri: this.props.userImage + '?' + new Date(),
+                          headers: {
+                            Authorization: `Bearer ${this.props.reduxToken}`,
+                          },
+                        }}
+                      />
+                    </TouchableOpacity>
                     )}
 
                     {/* {values.image === '' ? (
@@ -288,6 +287,8 @@ const mapStateToProps = (state) => {
     userProfile: state.user.userProfile,
     userImage: state.user.userImage,
     userData: state.user.userData,
+    reduxToken: state.user.token,
+
   };
 };
 

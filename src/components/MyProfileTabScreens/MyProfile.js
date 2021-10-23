@@ -34,7 +34,7 @@ class Profile extends Component {
       range: [10, 15],
       timeFilter: 'day',
       selectedPosts: [],
-      user: [],     
+      user: [],
     };
   }
   timeFilterSelect(time) {
@@ -193,7 +193,7 @@ class Profile extends Component {
                       <Image
                         style={style.image}
                         source={{
-                          uri: this.props.userImage,
+                          uri: this.props.userImage + '?' + new Date(),
                           headers: {
                             Authorization: `Bearer ${this.props.reduxToken}`,
                           },
