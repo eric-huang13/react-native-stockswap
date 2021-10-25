@@ -297,8 +297,9 @@ const style = StyleSheet.create({
     marginBottom: moderateScale(20),
   },
   logo: {    
-    height:36,
-    width:36,
+    height:moderateScale(26),
+    width:moderateScale(26),
+    marginTop:moderateScale(3.3)
   },
   headerText:{
     fontFamily: 'Montserrat-Bold',
