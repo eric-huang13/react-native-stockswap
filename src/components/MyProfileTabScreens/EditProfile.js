@@ -111,7 +111,7 @@ class EditProfile extends Component {
                   // const data = this.createFormData(values);
                   // console.log(data, 'form');
                   const id = userProfile?._id;
-                  const token = userData.accessToken;
+                  const token = this.props.reduxToken;
                   // console.log('token::', token);
                   const buffer = Buffer.from(values.image.data, 'base64');
                   CreateProfileImage(id, token, buffer);
@@ -152,7 +152,8 @@ class EditProfile extends Component {
                       <Image
                         style={style.uploadPhotoContainer}
                         source={{
-                          uri: this.props.userImage + '?' + new Date(),
+                          uri: this.props.userImage,
+                          cache:'reload',
                           headers: {
                             Authorization: `Bearer ${this.props.reduxToken}`,
                           },

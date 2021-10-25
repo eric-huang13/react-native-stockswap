@@ -63,9 +63,13 @@ export default class HomeStackNavigator extends Component {
           name="PostScreen"
           component={PostScreen}
           options={({route}) => ({
-            title:  <View style={style.stockHeader}>
-            <HeaderStockSwap />
-          </View>,
+            title:  
+            <View style={style.stockHeader}>
+              <Text style={style.headerText}>StockSwap</Text>
+             <Image
+          style={style.logo}
+          source={require('../icons/Logo.png')}
+        /></View>,
             headerShown: true,
             headerBackTitle:'Feed',
             headerStyle: {
@@ -299,7 +303,8 @@ const style = StyleSheet.create({
   logo: {    
     height:moderateScale(26),
     width:moderateScale(26),
-    marginTop:moderateScale(3.3)
+    marginTop:moderateScale(3),
+    marginLeft:moderateScale(2),
   },
   headerText:{
     fontFamily: 'Montserrat-Bold',

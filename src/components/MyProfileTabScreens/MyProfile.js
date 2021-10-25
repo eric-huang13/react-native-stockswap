@@ -192,8 +192,10 @@ class Profile extends Component {
                     {userImage !== '' ? (
                       <Image
                         style={style.image}
+                        // key={this.state.imageSrc}
                         source={{
-                          uri: this.props.userImage + '?' + new Date(),
+                          uri: this.props.userImage,
+                          cache: 'reload',
                           headers: {
                             Authorization: `Bearer ${this.props.reduxToken}`,
                           },

@@ -251,7 +251,8 @@ const style = StyleSheet.create({
   logo: {    
     height:moderateScale(26),
     width:moderateScale(26),
-    marginTop:moderateScale(3.3)
+    marginTop:moderateScale(3),
+    marginLeft:moderateScale(2),
   },
   headerText: {
     fontFamily: 'Montserrat-Bold',
