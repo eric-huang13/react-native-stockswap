@@ -260,8 +260,8 @@ export const CreateProfileImage = (id, token, input) => {
         dispatch({type: CREATEPROFILEIMAGE_ERROR, payload: error.response});
         Toast.show({
           type: 'errorSignUp',
-          text1: 'Error',
-          text2: error.response,
+          text1: 'Error uploading picture',
+          // text2: error.response,
         });
       });
   };

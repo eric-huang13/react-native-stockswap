@@ -110,18 +110,28 @@ class EditProfile extends Component {
                   // console.log('infooooo::', values?.image?.uri);
                   // const data = this.createFormData(values);
                   // console.log(data, 'form');
-                  const id = userProfile?._id;
-                  const token = userData.accessToken;
-                  // console.log('token::', token);
-                  const buffer = Buffer.from(values.image.data, 'base64');
-                  CreateProfileImage(id, token, buffer);
+                  if (values.image.type != '') {
+                    const id = userProfile?._id;
+                    const token = userData.accessToken;
+                    // console.log('token::', token);
+                    const buffer = Buffer.from(values.image.data, 'base64');
 
-                  EditUserProfile({
-                    name: values.name,
-                    username: values.username,
-                    bio: values.bio,
-                    tags: values.tags,
-                  });
+                    CreateProfileImage(id, token, buffer);
+
+                    EditUserProfile({
+                      name: values.name,
+                      username: values.username,
+                      bio: values.bio,
+                      tags: values.tags,
+                    });
+                  } else {
+                    EditUserProfile({
+                      name: values.name,
+                      username: values.username,
+                      bio: values.bio,
+                      tags: values.tags,
+                    });
+                  }
                 }}
                 validationSchema={validationSchema}>
                 {({
