@@ -102,7 +102,7 @@ class EditProfile extends Component {
                   // id: userAccount.id,
                   name: userProfile.name,
                   username: userProfile.username,
-                  image: {name: '', type: '', uri: ''},
+                  image: {name: '', type: '', uri: userImage},
                   tags: userAccount.hashtag,
                   bio: userProfile.bio,
                 }}
@@ -110,18 +110,28 @@ class EditProfile extends Component {
                   // console.log('infooooo::', values?.image?.uri);
                   // const data = this.createFormData(values);
                   // console.log(data, 'form');
-                  const id = userProfile?._id;
-                  const token = this.props.reduxToken;
-                  // console.log('token::', token);
-                  const buffer = Buffer.from(values.image.data, 'base64');
-                  CreateProfileImage(id, token, buffer);
+                  if (values.image.type != '') {
+                    const id = userProfile?._id;
+                    const token = userData.accessToken;
+                    // console.log('token::', token);
+                    const buffer = Buffer.from(values.image.data, 'base64');
 
-                  EditUserProfile({
-                    name: values.name,
-                    username: values.username,
-                    bio: values.bio,
-                    tags: values.tags,
-                  });
+                    CreateProfileImage(id, token, buffer);
+
+                    EditUserProfile({
+                      name: values.name,
+                      username: values.username,
+                      bio: values.bio,
+                      tags: values.tags,
+                    });
+                  } else {
+                    EditUserProfile({
+                      name: values.name,
+                      username: values.username,
+                      bio: values.bio,
+                      tags: values.tags,
+                    });
+                  }
                 }}
                 validationSchema={validationSchema}>
                 {({
@@ -140,26 +150,26 @@ class EditProfile extends Component {
 
                     {values.image.uri && !errors.image ? (
                       <TouchableOpacity
-                      onPress={() => this.onImageSelection(setFieldValue)}>
-                      <Image
-                        style={style.uploadPhotoContainer}
-                        source={{uri: values.image.uri}}
-                      />
-                    </TouchableOpacity>
+                        onPress={() => this.onImageSelection(setFieldValue)}>
+                        <Image
+                          style={style.uploadPhotoContainer}
+                          source={{
+                            uri: values.image.uri,
+                            headers: {
+                              Authorization: `Bearer ${this.props.userData.accessToken}`,
+                            },
+                          }}
+                        />
+                      </TouchableOpacity>
                     ) : (
-                      <TouchableOpacity
-                      onPress={() => this.onImageSelection(setFieldValue)}>
-                      <Image
-                        style={style.uploadPhotoContainer}
-                        source={{
-                          uri: this.props.userImage,
-                          cache:'reload',
-                          headers: {
-                            Authorization: `Bearer ${this.props.reduxToken}`,
-                          },
-                        }}
-                      />
-                    </TouchableOpacity>
+                      <View style={style.uploadPhotoContainer}>
+                        <TouchableOpacity
+                          onPress={() => this.onImageSelection(setFieldValue)}>
+                          <Text style={style.uploadPhotoText}>
+                            Tap to upload your photo
+                          </Text>
+                        </TouchableOpacity>
+                      </View>
                     )}
 
                     {/* {values.image === '' ? (
@@ -288,8 +298,6 @@ const mapStateToProps = (state) => {
     userProfile: state.user.userProfile,
     userImage: state.user.userImage,
     userData: state.user.userData,
-    reduxToken: state.user.token,
-
   };
 };
 
