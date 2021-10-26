@@ -6,10 +6,10 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   TouchableOpacity,
+  Image
 } from 'react-native';
 import {moderateScale} from '../../util/responsiveFont';
 import LinearGradient from 'react-native-linear-gradient';
-import SmallStockSwap from '../../icons/SmallStockSwap';
 
 import {
   CodeField,
@@ -39,9 +39,13 @@ const ConfirmCodeForm = ({navigation, email, value, setValue}) => {
         style={{flex: 1}}>
         <SafeAreaView style={style.root}>
           <View style={style.inner}>
-            <View style={style.stockHeader}>
-              <SmallStockSwap />
-            </View>
+          <View style={style.stockHeader}>
+                        <Image
+                          style={style.logo}
+                          source={require('../../icons/Logo.png')}
+                        />
+                        <Text style={style.headerText}>StockSwap</Text>
+                      </View>
             <View style={style.container}>
               <Text style={style.welcomeHeader}>Verification Code</Text>
               <CodeField
@@ -310,5 +314,26 @@ const style = StyleSheet.create({
     marginBottom: moderateScale(-20),
     marginTop: moderateScale(1),
     textAlign: 'center',
+  },
+  logo: {
+    height: moderateScale(44),
+    width: moderateScale(44),
+    marginLeft: moderateScale(2),
+    marginBottom: moderateScale(-3),
+
+  },
+  stockHeader: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    marginTop: moderateScale(10),
+    marginBottom: moderateScale(10),
+    alignItems: 'center',
+  },
+  headerText: {
+    fontFamily: 'Montserrat-ExtraBold',
+    fontSize: moderateScale(15),
+    color: 'white',
+    textAlign: 'center',
+    alignSelf: 'center',
   },
 });

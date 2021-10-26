@@ -17,7 +17,6 @@ import {
 import {Login} from '../../actions/user';
 import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
-import SmallStockSwap from '../../icons/SmallStockSwap';
 import AppleIcon from '../../icons/AppleIcon';
 import FacebookIcon from '../../icons/FacebookIcon';
 import {Formik} from 'formik';
@@ -404,7 +403,7 @@ const style = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     marginTop: moderateScale(10),
-    marginBottom: moderateScale(12),
+    marginBottom: moderateScale(10),
     alignItems: 'center',
   },
   headerText: {
