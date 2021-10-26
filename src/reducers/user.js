@@ -35,31 +35,30 @@ import {
   PLAIDBANK_ERROR,
   FETCHPORTFOLIOACCOUNTS_START,
   FETCHPORTFOLIOACCOUNTS_SUCCESS,
-  FETCHPORTFOLIOACCOUNTS_ERROR, 
+  FETCHPORTFOLIOACCOUNTS_ERROR,
   FETCHINSTITUTION_START,
   FETCHINSTITUTION_SUCCESS,
   FETCHINSTITUTION_ERROR,
   NEWPLAIDACCOUNT_SUCCESS,
   NEWPLAIDACCOUNT_INSTITUTION,
-  PLAIDACCOUNTSTATUS_SUCCESS
-
+  PLAIDACCOUNTSTATUS_SUCCESS,
 } from 'constants';
 
 const defaultState = {
   isLoggedIn: false,
   userData: [],
-  userProfile:[],
+  userProfile: [],
   googleUser: [],
   userImage: '',
   userId: [],
-  token:'',
+  token: '',
   linkToken: [],
-  plaidBank:[],
-  portfolioAccounts:[],
-  institution:[],
-  newPlaidAccount:[],
-  plaidAccountStatus:[],
-  newInstitution:[],
+  plaidBank: [],
+  portfolioAccounts: [],
+  institution: [],
+  newPlaidAccount: [],
+  plaidAccountStatus: [],
+  newInstitution: [],
   userFakeData: {
     id: 4,
     name: 'Bob Fields',
@@ -68,21 +67,20 @@ const defaultState = {
     followers: 82,
     following: 219,
     trades: 29,
-    bio:
-      'New to the trading world. Business major interested in finding new stock buying opportunities. Excited to learn the best ways to diversify my portfolio. ',
+    bio: 'New to the trading world. Business major interested in finding new stock buying opportunities. Excited to learn the best ways to diversify my portfolio. ',
     username: 'bob123',
     hashtag: '#Myhashtag',
     gain: 1103.24,
     percentage: 11,
-    img:
-      'https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTh8fGhlYWRzaG90JTIwc3VpdHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+    img: 'https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTh8fGhlYWRzaG90JTIwc3VpdHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
   },
   loading: false,
-  plaidLoading:false,
+  plaidLoading: false,
   error: '',
 };
 
 const userReducer = (state = defaultState, action) => {
+  // console.log('ACTION:', action.type);
   switch (action.type) {
     case FETCHINSTITUTION_START:
       return {
@@ -122,26 +120,26 @@ const userReducer = (state = defaultState, action) => {
         loading: false,
         error: action.payload,
       };
-      case NEWPLAIDACCOUNT_INSTITUTION:
-        return {
-          ...state,
-          error: '',
-          newInstitution: action.payload,
-        };
-      case NEWPLAIDACCOUNT_SUCCESS:
+    case NEWPLAIDACCOUNT_INSTITUTION:
+      return {
+        ...state,
+        error: '',
+        newInstitution: action.payload,
+      };
+    case NEWPLAIDACCOUNT_SUCCESS:
       return {
         ...state,
         error: '',
         newPlaidAccount: action.payload,
       };
-      case PLAIDACCOUNTSTATUS_SUCCESS:
-        return {
-          ...state,
-          loading: false,
-          error: '',
-          isLoggedIn: true,
-          plaidAccountStatus: action.payload,
-        };
+    case PLAIDACCOUNTSTATUS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        // isLoggedIn: true,
+        plaidAccountStatus: action.payload,
+      };
     case PLAIDBANK_START:
       return {
         ...state,
@@ -190,11 +188,11 @@ const userReducer = (state = defaultState, action) => {
         error: '',
         token: action.payload,
       };
-      case ADD_LATER:
+    case ADD_LATER:
       return {
         ...state,
         loading: false,
-        isLoggedIn: true,
+        // isLoggedIn: true,
         error: '',
       };
     case SIGNUP_START:
@@ -232,13 +230,12 @@ const userReducer = (state = defaultState, action) => {
         error: '',
         userData: action.payload,
       };
-      case TOKEN_SUCCESS:
+    case TOKEN_SUCCESS:
       return {
         ...state,
         loading: false,
         error: '',
         userId: action.payload,
-
       };
     case CREATEPROFILE_START:
       return {
@@ -260,7 +257,7 @@ const userReducer = (state = defaultState, action) => {
         loading: false,
         error: action.payload,
       };
-      case EDITPROFILE_START:
+    case EDITPROFILE_START:
       return {
         ...state,
         loading: true,
@@ -270,7 +267,7 @@ const userReducer = (state = defaultState, action) => {
       return {
         ...state,
         loading: false,
-        isLoggedIn: true,
+        // isLoggedIn: true,
         error: '',
         userProfile: action.payload,
       };
@@ -280,7 +277,7 @@ const userReducer = (state = defaultState, action) => {
         loading: false,
         error: action.payload,
       };
-      case GETPROFILE_START:
+    case GETPROFILE_START:
       return {
         ...state,
         loading: true,
@@ -290,7 +287,7 @@ const userReducer = (state = defaultState, action) => {
       return {
         ...state,
         loading: false,
-        isLoggedIn: true,
+        // isLoggedIn: true,
         error: '',
         userProfile: action.payload,
       };
@@ -300,7 +297,7 @@ const userReducer = (state = defaultState, action) => {
         loading: false,
         error: action.payload,
       };
-      case GETPROFILEIMAGE_START:
+    case GETPROFILEIMAGE_START:
       return {
         ...state,
         loading: true,
@@ -319,7 +316,7 @@ const userReducer = (state = defaultState, action) => {
         loading: false,
         error: action.payload,
       };
-      case CREATEPROFILEIMAGE_START:
+    case CREATEPROFILEIMAGE_START:
       return {
         ...state,
         loading: true,
