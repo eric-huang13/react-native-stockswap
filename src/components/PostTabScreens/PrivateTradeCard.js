@@ -12,7 +12,6 @@ import {moderateScale} from '../../util/responsiveFont';
 
 class PrivateTradeCard extends Component {
   render() {
-
     const {item} = this.props;
     if (!this.props) {
       return null;
@@ -20,21 +19,24 @@ class PrivateTradeCard extends Component {
     return (
       <View style={style.PrivateTradeCard} key={item.id}>
         <View>
-        <Text style={style.accountName}>
-                {item.title.length < 20
-                  ? `${item.title}`
-                  : `${item.title.substring(0, 19)}...`}
-              </Text>
+          <Text style={style.accountName}>
+            {item.title.length < 20
+              ? `${item.title}`
+              : `${item.title.substring(0, 19)}...`}
+          </Text>
           {/* <Text style={style.accountName}>{item.title}</Text> */}
           <Text style={style.username}>Price: ${item.price}</Text>
+          <Text style={style.username}>
+            Total percent change: {item.portfolioPercentage}%
+          </Text>
+          <Text style={style.username}>Date bought: {item.tradeDate}</Text>
         </View>
         <View style={style.notificationsContainer}>
           <TouchableOpacity
             onPress={() =>
               this.props.navigation.navigate({
                 name: 'CreatePublicTrade',
-                params: {post:item},
-
+                params: {post: item},
               })
             }>
             <Text style={style.publishButton}>Post</Text>
@@ -128,5 +130,10 @@ const style = StyleSheet.create({
     fontFamily: 'Montserrat-SemiBold',
     marginTop: 14,
     marginBottom: 10,
+  },
+  tradeMade: {
+    fontSize: moderateScale(12),
+    color: 'lightgrey',
+    fontFamily: 'Montserrat-Regular',
   },
 });

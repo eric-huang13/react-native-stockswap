@@ -49,8 +49,13 @@ export default class CreatePublicTrade extends Component {
             <Formik
               initialValues={{
                 enabled: false,
-                image: {name: '', type: '', uri: ''},
+                title: this.props.route.params.post.title,
+                tradeDate: this.props.route.params.post.tradeDate,
+                portfolioPercentage: this.props.route.params.post
+                  .portfolioPercentage,
+                gain: this.props.route.params.post.gain,
                 body: '',
+                action: this.props.route.params.post.action,
               }}
               onSubmit={(values) => {
                 console.log(values, 'values');
@@ -70,21 +75,8 @@ export default class CreatePublicTrade extends Component {
                 isSubmitting,
                 setFieldValue,
               }) => (
-                <View>
-                  <View style={style.postNameContainer}>
-                    <TouchableOpacity
-                      key={post.id}
-                      onPress={() => this.navigationByCondition(post)}>
-                      <View
-                        style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Image
-                          style={style.postUserImage}
-                          source={{uri: post.profileImg}}
-                        />
-                        <Text style={style.postUserName}>{post.name}</Text>
-                      </View>
-                    </TouchableOpacity>
-                  </View>
+                <View style={style.mainPostContainer}>
+                  <Text style={style.header}> Post Trade </Text>
 
                   <View style={style.tradeContainer}>
                     <View style={style.tradeDetails}>
@@ -174,18 +166,14 @@ export default class CreatePublicTrade extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity
                       onPress={() =>
-                        values.body === '' && values.image === ''
-                          ? Toast.show({
-                              type: 'error',
-                              text2: 'Post must include body or image.',
-                            })
-                          : errors.body || errors.image
+                        // console.log(values, 'values')
+                        values.body === '' && values.errors
                           ? Toast.show({
                               type: 'error',
                               text2: 'Please fix errors',
                             })
                           : this.props.navigation.navigate({
-                              name: 'CreatePostPreview',
+                              name: 'CreatePublicTradePreview',
                               params: {data: values},
                             })
                       }>
@@ -197,13 +185,6 @@ export default class CreatePublicTrade extends Component {
             </Formik>
           </KeyboardAvoidingView>
         </ScrollView>
-        {/* <View style={style.searchInputContainer}>
-          <TextInput
-            style={style.searchInput}
-            placeholder="Enter your comment"
-            placeholderTextColor="lightgrey"
-          />
-        </View> */}
       </SafeAreaView>
     );
   }
@@ -216,99 +197,18 @@ const style = StyleSheet.create({
     paddingBottom: moderateScale(14),
     backgroundColor: '#2a334a',
   },
+  mainPostContainer: {},
   bodyContainer: {
     alignSelf: 'center',
     marginTop: moderateScale(28),
   },
-  reportModalContainer: {
-    flex: 1,
-    marginTop: moderateScale(310),
-    backgroundColor: '#3e4d6c',
-    borderRadius: moderateScale(20),
-    padding: moderateScale(24),
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  innerReportContainer: {
-    marginTop: moderateScale(10),
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    height: '50%',
-  },
-  optionModalText: {
-    color: '#B8A0FF',
-    marginLeft: moderateScale(16),
-    fontFamily: 'Montserrat-SemiBold',
-    fontSize: moderateScale(13),
-    marginBottom: moderateScale(10),
-  },
-
   scrollContainer: {
     paddingHorizontal: moderateScale(10),
-  },
-  image: {
-    height: moderateScale(184),
-    width: '100%',
-    borderRadius: moderateScale(10),
-  },
-  postNameContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: moderateScale(9),
-    justifyContent: 'space-between',
-  },
-  postUserImage: {
-    height: moderateScale(38),
-    width: moderateScale(38),
-    borderRadius: moderateScale(50),
-  },
-  postUserName: {
-    color: '#FFFFFF',
-    fontSize: moderateScale(16),
-    marginLeft: moderateScale(8),
-    fontFamily: 'Montserrat-Bold',
-  },
-  detailsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginTop: moderateScale(8),
-  },
-  likesContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  timestamp: {
-    fontSize: moderateScale(12.5),
-    color: 'lightgrey',
-    fontFamily: 'Montserrat-Italic',
   },
   iconContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-  },
-  likes: {
-    fontSize: moderateScale(16),
-    color: 'lightgrey',
-    fontFamily: 'Montserrat-Medium',
-    marginLeft: 3,
-    marginRight: 14,
-  },
-  comments: {
-    fontSize: moderateScale(16),
-    color: 'lightgrey',
-    fontFamily: 'Montserrat-Medium',
-    marginRight: moderateScale(1),
-    marginLeft: moderateScale(3),
   },
   body: {
     fontSize: moderateScale(15),
@@ -320,71 +220,6 @@ const style = StyleSheet.create({
     paddingBottom: moderateScale(18),
     fontFamily: 'Montserrat-Medium',
   },
-
-  dotsDropdownContainer: {
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
-    alignContent: 'center',
-  },
-  dotsButton: {
-    alignSelf: 'flex-end',
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: moderateScale(20),
-    marginBottom: moderateScale(9),
-  },
-  dropdownEdit: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    width: '100%',
-    marginTop: moderateScale(1),
-    marginBottom: moderateScale(-77),
-    backgroundColor: '#2C3957',
-    zIndex: 1,
-    paddingVertical: moderateScale(6),
-  },
-  dropdown: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    width: '100%',
-    marginTop: moderateScale(1),
-    marginBottom: moderateScale(-153),
-    backgroundColor: '#2C3957',
-    zIndex: 1,
-    paddingVertical: moderateScale(6),
-  },
-  dropDownText: {
-    color: 'white',
-    fontSize: moderateScale(16),
-    marginHorizontal: moderateScale(12),
-    paddingVertical: moderateScale(2),
-    fontFamily: 'Montserrat-Medium',
-  },
-  dropDownTextReportContainer: {
-    borderTopWidth: moderateScale(1),
-    borderTopColor: 'lightgrey',
-    paddingTop: moderateScale(6),
-    backgroundColor: '#2C3957',
-  },
-  searchInputContainer: {
-    backgroundColor: '#2C3957',
-    marginBottom: moderateScale(-10),
-    paddingHorizontal: moderateScale(10),
-  },
-  searchInput: {
-    marginTop: moderateScale(10),
-    paddingLeft: moderateScale(20),
-    alignContent: 'center',
-    backgroundColor: '#3e4d6c',
-    color: 'lightgrey',
-    fontSize: moderateScale(15),
-    height: moderateScale(36),
-    fontFamily: 'Montserrat-Italic',
-    paddingVertical: moderateScale(10),
-    borderRadius: moderateScale(6),
-  },
   tradeContainer: {
     height: scale(166),
     width: '100%',
@@ -392,6 +227,7 @@ const style = StyleSheet.create({
     backgroundColor: '#334166',
     paddingHorizontal: moderateScale(12),
     paddingVertical: moderateScale(14),
+    marginTop: moderateScale(26),
   },
   tradeDetails: {
     flexDirection: 'row',
@@ -489,7 +325,7 @@ const style = StyleSheet.create({
     paddingHorizontal: moderateScale(26),
   },
   header: {
-    marginTop: moderateScale(20),
+    marginTop: moderateScale(30),
     fontSize: moderateScale(20),
     fontFamily: 'Montserrat-Bold',
     color: '#FFFFFF',
