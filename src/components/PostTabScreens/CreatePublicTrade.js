@@ -213,12 +213,12 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    paddingVertical: moderateScale(21),
+    paddingBottom: moderateScale(14),
     backgroundColor: '#2a334a',
   },
   bodyContainer: {
-      alignSelf:'center',
-      marginTop:moderateScale(28)
+    alignSelf: 'center',
+    marginTop: moderateScale(28),
   },
   reportModalContainer: {
     flex: 1,
