@@ -26,6 +26,7 @@ class PrivateTrades extends Component {
   }
 
   render() {
+
     if (!this.props.gainers) {
       return null;
     }
@@ -34,7 +35,7 @@ class PrivateTrades extends Component {
         <ScrollView>
           <View>
             {this.state.stocks.map((item) => (
-              <PrivateTradeCard key={item.id} item={item} />
+              <PrivateTradeCard key={item.id} item={item} navigation={this.props.navigation} />
             ))}
           </View>
         </ScrollView>

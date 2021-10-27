@@ -10,6 +10,7 @@ import PostType from '../components/PostTabScreens/PostType';
 import CreatePostPreview from '../components/PostTabScreens/CreatePostPreview';
 import CreateTrade from '../components/PostTabScreens/CreateTrade';
 import SelectTrades from '../components/PostTabScreens/SelectTrades';
+import CreatePublicTrade from '../components/PostTabScreens/CreatePublicTrade';
 
 
 //responsive scale
@@ -99,6 +100,24 @@ export default class PostStackNavigator extends Component {
           component={SelectTrades}
           options={{
             title: 'Trades',
+            headerStyle: {
+              backgroundColor: '#313c58',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+         <PostStack.Screen
+          name="CreatePublicTrade"
+          component={CreatePublicTrade}
+          options={{
+            title: 'Create Post',
             headerStyle: {
               backgroundColor: '#313c58',
             },

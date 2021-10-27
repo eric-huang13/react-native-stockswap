@@ -49,6 +49,10 @@ const defaultState = {
       percentage: '+3.25%',
       about:
         'Founded in 2001, this company creates new and exciting products that help change the world.',
+      portfolioPercentage: '2',
+      tradeDate: '10/20/2021',
+      gain: '1.25',
+      action: 'Sell',
       sector: 'Retail Trade',
       category: 'gainers',
       price: '30.78',
@@ -127,6 +131,10 @@ const defaultState = {
       percentage: '-35.06%',
       about:
         'Founded in 2001, this company creates new and exciting products that help change the world.',
+      portfolioPercentage: '2',
+      tradeDate: '10/20/2021',
+      gain: '1.25',
+      action: 'Sell',
       sector: 'Retail Trade',
       category: 'gainers',
       price: '12.73',
@@ -148,6 +156,10 @@ const defaultState = {
       percentage: '+70.08%',
       about:
         'Founded in 2001, this company creates new and exciting products that help change the world.',
+      portfolioPercentage: '2',
+      tradeDate: '10/20/2021',
+      gain: '1.25',
+      action: 'Sell',
       sector: 'Retail Trade',
       category: 'gainers',
       price: '48.58',
@@ -226,6 +238,10 @@ const defaultState = {
       percentage: '-20.29%',
       about:
         'Founded in 2001, this company creates new and exciting products that help change the world.',
+      portfolioPercentage: '2',
+      tradeDate: '10/20/2021',
+      gain: '1.25',
+      action: 'Sell',
       sector: 'Retail Trade',
       category: 'gainers',
       price: '531.28',
@@ -304,6 +320,10 @@ const defaultState = {
       percentage: '+10.21%',
       about:
         'Founded in 2001, this company creates new and exciting products that help change the world.',
+      portfolioPercentage: '2',
+      tradeDate: '10/20/2021',
+      gain: '1.25',
+      action: 'Sell',
       sector: 'Retail Trade',
       category: 'gainers',
       price: '154.82',
@@ -382,6 +402,10 @@ const defaultState = {
       percentage: '+70.08%',
       about:
         'Founded in 2001, this company creates new and exciting products that help change the world.',
+      portfolioPercentage: '2',
+      tradeDate: '10/20/2021',
+      gain: '1.25',
+      action: 'Sell',
       sector: 'Retail Trade',
       category: 'gainers',
       price: '48.58',
@@ -460,6 +484,10 @@ const defaultState = {
       percentage: '+20.29%',
       about:
         'Founded in 2001, this company creates new and exciting products that help change the world.',
+      portfolioPercentage: '2',
+      tradeDate: '10/20/2021',
+      gain: '1.25',
+      action: 'Sell',
       sector: 'Retail Trade',
       category: 'gainers',
       price: '531.28',
@@ -538,6 +566,10 @@ const defaultState = {
       percentage: '+10.21%',
       about:
         'Founded in 2001, this company creates new and exciting products that help change the world.',
+      portfolioPercentage: '2',
+      tradeDate: '10/20/2021',
+      gain: '1.25',
+      action: 'Sell',
       sector: 'Retail Trade',
       category: 'gainers',
       price: '154.82',
@@ -616,6 +648,10 @@ const defaultState = {
       percentage: '+20.29%',
       about:
         'Founded in 2001, this company creates new and exciting products that help change the world.',
+      portfolioPercentage: '2',
+      tradeDate: '10/20/2021',
+      gain: '1.25',
+      action: 'Sell',
       sector: 'Retail Trade',
       category: 'gainers',
       price: '531.28',
@@ -694,6 +730,10 @@ const defaultState = {
       percentage: '+10.21%',
       about:
         'Founded in 2001, this company creates new and exciting products that help change the world.',
+      portfolioPercentage: '2',
+      tradeDate: '10/20/2021',
+      gain: '1.25',
+      action: 'Sell',
       sector: 'Retail Trade',
       category: 'gainers',
       price: '154.82',
@@ -774,6 +814,10 @@ const defaultState = {
       percentage: '-15.25%',
       about:
         'Founded in 2001, this company creates new and exciting products that help change the world.',
+      portfolioPercentage: '2',
+      tradeDate: '10/20/2021',
+      gain: '1.25',
+      action: 'Sell',
       sector: 'Retail Trade',
       category: 'losers',
       price: '30.78',
@@ -785,6 +829,10 @@ const defaultState = {
       percentage: '-8.90%',
       about:
         'Founded in 2001, this company creates new and exciting products that help change the world.',
+      portfolioPercentage: '2',
+      tradeDate: '10/20/2021',
+      gain: '1.25',
+      action: 'Sell',
       sector: 'Retail Trade',
       category: 'losers',
       price: '30.78',
@@ -796,6 +844,10 @@ const defaultState = {
       percentage: '-10.87%',
       about:
         'Founded in 2001, this company creates new and exciting products that help change the world.',
+      portfolioPercentage: '2',
+      tradeDate: '10/20/2021',
+      gain: '1.25',
+      action: 'Sell',
       sector: 'Retail Trade',
       category: 'losers',
       price: '30.78',
@@ -809,6 +861,10 @@ const defaultState = {
       percentage: '+0.75%',
       about:
         'Founded in 2001, this company creates new and exciting products that help change the world.',
+      portfolioPercentage: '2',
+      tradeDate: '10/20/2021',
+      gain: '1.25',
+      action: 'Sell',
       sector: 'Retail Trade',
       category: 'HBV',
       price: '30.78',
@@ -820,6 +876,10 @@ const defaultState = {
       percentage: '-1.08%',
       about:
         'Founded in 2001, this company creates new and exciting products that help change the world.',
+      portfolioPercentage: '2',
+      tradeDate: '10/20/2021',
+      gain: '1.25',
+      action: 'Sell',
       sector: 'Retail Trade',
       category: 'HBV',
       price: '30.78',
@@ -831,60 +891,65 @@ const defaultState = {
       percentage: '-1.05%',
       about:
         'Founded in 2001, this company creates new and exciting products that help change the world.',
+      portfolioPercentage: '2',
+      tradeDate: '10/20/2021',
+      gain: '1.25',
+      action: 'Sell',
       sector: 'Retail Trade',
       category: 'HBV',
       price: '30.78',
     },
   ],
   marketGainers: [],
-  marketGainersTest:[
+  marketGainersTest: [
     {
-      "ticker": "HLBZ",
-      "quote": {
-        "open": 23.1999,
-        "close": 22.9999,
-        "high": 23.1999,
-        "low": 22.7,
-        "volume": 85402,
-        "volumeWeightedAveragePrice": 22.9316,
-        "window": {
-          "startTime": "Invalid date"
-        }
+      ticker: 'HLBZ',
+      quote: {
+        open: 23.1999,
+        close: 22.9999,
+        high: 23.1999,
+        low: 22.7,
+        volume: 85402,
+        volumeWeightedAveragePrice: 22.9316,
+        window: {
+          startTime: 'Invalid date',
+        },
       },
-      "change": 13.891,
-      "changePercent": 154.348
+      change: 13.891,
+      changePercent: 154.348,
     },
     {
-      "ticker": "HLBZW",
-      "quote": {
-        "open": 1.35,
-        "close": 1.3399,
-        "high": 1.35,
-        "low": 1.33,
-        "volume": 2830,
-        "volumeWeightedAveragePrice": 1.3351,
-        "window": {
-          "startTime": "Invalid date"
-        }
+      ticker: 'HLBZW',
+      quote: {
+        open: 1.35,
+        close: 1.3399,
+        high: 1.35,
+        low: 1.33,
+        volume: 2830,
+        volumeWeightedAveragePrice: 1.3351,
+        window: {
+          startTime: 'Invalid date',
+        },
       },
-      "change": 0.59,
-      "changePercent": 79.73
-    },],
+      change: 0.59,
+      changePercent: 79.73,
+    },
+  ],
   marketLosers: [],
-  tickers:[],
-  tickersAll:[],
-  stockDetails:[],
-  stockDay:[],
-  stockWeek:[],
-  stockMonth:[],
-  stockThreeMonth:[],
-  stockYear:[],
-  yearLoading:false,
-  searchStockResults:[],
-  searchStockLoading:false,
-  stockLatestData:[],
-  stockRange:[],
-  stockGraphData:[],
+  tickers: [],
+  tickersAll: [],
+  stockDetails: [],
+  stockDay: [],
+  stockWeek: [],
+  stockMonth: [],
+  stockThreeMonth: [],
+  stockYear: [],
+  yearLoading: false,
+  searchStockResults: [],
+  searchStockLoading: false,
+  stockLatestData: [],
+  stockRange: [],
+  stockGraphData: [],
   articles: [
     {
       id: '1',
@@ -906,13 +971,13 @@ const companyBoxReducer = (state = defaultState, action) => {
       return {
         ...state,
         searchStockLoading: true,
-        error: "",
+        error: '',
       };
     case SEARCHSTOCK_SUCCESS:
       return {
         ...state,
         searchStockLoading: false,
-        error: "",
+        error: '',
         searchStockResults: action.payload,
       };
     case SEARCHSTOCK_ERROR:
@@ -921,15 +986,15 @@ const companyBoxReducer = (state = defaultState, action) => {
         searchStockLoading: false,
         error: action.payload,
       };
-      case STOCKLATEST_START:
+    case STOCKLATEST_START:
       return {
         ...state,
-        error: "",
+        error: '',
       };
     case STOCKLATEST_SUCCESS:
       return {
         ...state,
-        error: "",
+        error: '',
         stockLatestData: action.payload,
       };
     case STOCKLATEST_ERROR:
@@ -941,13 +1006,13 @@ const companyBoxReducer = (state = defaultState, action) => {
       return {
         ...state,
         loading: true,
-        error: "",
+        error: '',
       };
     case MARKETGAINERS_SUCCESS:
       return {
         ...state,
         loading: false,
-        error: "",
+        error: '',
         marketGainers: action.payload,
       };
     case MARKETGAINERS_FAILURE:
@@ -956,17 +1021,17 @@ const companyBoxReducer = (state = defaultState, action) => {
         loading: false,
         error: action.payload,
       };
-      case MARKETLOSERS_FETCHING:
+    case MARKETLOSERS_FETCHING:
       return {
         ...state,
         loading: true,
-        error: "",
+        error: '',
       };
     case MARKETLOSERS_SUCCESS:
       return {
         ...state,
         loading: false,
-        error: "",
+        error: '',
         marketLosers: action.payload,
       };
     case MARKETLOSERS_FAILURE:
@@ -975,17 +1040,17 @@ const companyBoxReducer = (state = defaultState, action) => {
         loading: false,
         error: action.payload,
       };
-      case FETCHTICKERS_START:
+    case FETCHTICKERS_START:
       return {
         ...state,
         loading: true,
-        error: "",
+        error: '',
       };
     case FETCHTICKERS_SUCCESS:
       return {
         ...state,
         loading: false,
-        error: "",
+        error: '',
         tickers: action.payload,
       };
     case FETCHTICKERS_ERROR:
@@ -994,88 +1059,84 @@ const companyBoxReducer = (state = defaultState, action) => {
         loading: false,
         error: action.payload,
       };
-      case FETCHTICKERSALL_SUCCESS:
+    case FETCHTICKERSALL_SUCCESS:
       return {
         ...state,
         loading: false,
-        error: "",
+        error: '',
         tickersAll: action.payload,
       };
-      case FETCHSTOCKDAY_START:
-        return {
-          ...state,
-          loading: true,
-          error: "",
-        };
-      case FETCHSTOCKDAY_SUCCESS:
-        return {
-          ...state,
-          loading: false,
-          error: "",
-          stockGraphData: action.payload,
-        };
-      case FETCHSTOCKDAY_ERROR:
-        return {
-          ...state,
-          loading: false,
-          error: action.payload,
-        };
-        case STOCKRANGEDAY:
-          return {
-            ...state,
-            loading: false,
-            error: "",
-            stockRange: action.payload,
-            
-          };
-      case FETCHSTOCKWEEK_START:
-        return {
-          ...state,
-          loading: true,
-          error: "",
-        };
-      case FETCHSTOCKWEEK_SUCCESS:
-        return {
-          ...state,
-          loading: false,
-          error: "",
-          stockGraphData: action.payload,
-        };
-      case FETCHSTOCKWEEK_ERROR:
-        return {
-          ...state,
-          loading: false,
-          error: action.payload,
-        };
-        case STOCKRANGEWEEK:
-          return {
-            ...state,
-            loading: false,
-            error: "",
-            stockRange: action.payload,
-            
-          };
-      case FETCHSTOCKMONTH_START:
+    case FETCHSTOCKDAY_START:
       return {
         ...state,
         loading: true,
-        error: "",
+        error: '',
+      };
+    case FETCHSTOCKDAY_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        stockGraphData: action.payload,
+      };
+    case FETCHSTOCKDAY_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case STOCKRANGEDAY:
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        stockRange: action.payload,
+      };
+    case FETCHSTOCKWEEK_START:
+      return {
+        ...state,
+        loading: true,
+        error: '',
+      };
+    case FETCHSTOCKWEEK_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        stockGraphData: action.payload,
+      };
+    case FETCHSTOCKWEEK_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case STOCKRANGEWEEK:
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        stockRange: action.payload,
+      };
+    case FETCHSTOCKMONTH_START:
+      return {
+        ...state,
+        loading: true,
+        error: '',
       };
     case FETCHSTOCKMONTH_SUCCESS:
       return {
         ...state,
         loading: false,
-        error: "",
+        error: '',
         stockGraphData: action.payload,
-        
       };
-      case STOCKRANGEMONTH:
+    case STOCKRANGEMONTH:
       return {
         ...state,
         loading: false,
-        error: "",
+        error: '',
         stockRange: action.payload,
-        
       };
     case FETCHSTOCKMONTH_ERROR:
       return {
@@ -1083,79 +1144,77 @@ const companyBoxReducer = (state = defaultState, action) => {
         loading: false,
         error: action.payload,
       };
-      case FETCHSTOCKTHREEMONTH_START:
-        return {
-          ...state,
-          loading: true,
-          error: "",
-        };
-      case FETCHSTOCKTHREEMONTH_SUCCESS:
-        return {
-          ...state,
-          loading: false,
-          error: "",
-          stockGraphData: action.payload,
-        };
-      case FETCHSTOCKTHREEMONTH_ERROR:
-        return {
-          ...state,
-          loading: false,
-          error: action.payload,
-        };
-        case STOCKRANGETHREEMONTH:
-          return {
-            ...state,
-            loading: false,
-            error: "",
-            stockRange: action.payload,
-            
-          };
-        case FETCHSTOCKYEAR_START:
-          return {
-            ...state,
-            yearLoading: true,
-            error: "",
-          };
-        case FETCHSTOCKYEAR_SUCCESS:
-          return {
-            ...state,
-            yearLoading: false,
-            error: "",
-            stockGraphData: action.payload,
-          };
-        case FETCHSTOCKYEAR_ERROR:
-          return {
-            ...state,
-            yearLoading: false,
-            error: action.payload,
-          };
-          case STOCKRANGEYEAR:
+    case FETCHSTOCKTHREEMONTH_START:
+      return {
+        ...state,
+        loading: true,
+        error: '',
+      };
+    case FETCHSTOCKTHREEMONTH_SUCCESS:
       return {
         ...state,
         loading: false,
-        error: "",
-        stockRange: action.payload,
-        
+        error: '',
+        stockGraphData: action.payload,
       };
-          case FETCHSTOCKDETAILS_START:
-            return {
-              ...state,
-              loading: true,
-              error: "",
-            };
-          case FETCHSTOCKDETAILS_SUCCESS:
-            return {
-              ...state,
-              loading: false,
-              error: "",
-              stockDetails: action.payload,
-            };
-          case FETCHSTOCKDETAILS_ERROR:
-            return {
-              ...state,
-              loading: false,
-              error: action.payload,
-            };
+    case FETCHSTOCKTHREEMONTH_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case STOCKRANGETHREEMONTH:
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        stockRange: action.payload,
+      };
+    case FETCHSTOCKYEAR_START:
+      return {
+        ...state,
+        yearLoading: true,
+        error: '',
+      };
+    case FETCHSTOCKYEAR_SUCCESS:
+      return {
+        ...state,
+        yearLoading: false,
+        error: '',
+        stockGraphData: action.payload,
+      };
+    case FETCHSTOCKYEAR_ERROR:
+      return {
+        ...state,
+        yearLoading: false,
+        error: action.payload,
+      };
+    case STOCKRANGEYEAR:
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        stockRange: action.payload,
+      };
+    case FETCHSTOCKDETAILS_START:
+      return {
+        ...state,
+        loading: true,
+        error: '',
+      };
+    case FETCHSTOCKDETAILS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        stockDetails: action.payload,
+      };
+    case FETCHSTOCKDETAILS_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }

@@ -15,13 +15,14 @@ import {moderateScale} from '../../util/responsiveFont';
 
 class SelectTrades extends Component {
   render() {
+
     return (
       <SafeAreaView style={style.container}>
         <ScrollView>
           <Text style={style.header}>Private Trades</Text>
-          <PrivateTrades />
+          <PrivateTrades navigation={this.props.navigation} />
           <Text style={style.header}>Public Trades</Text>
-          <PublicTrades />
+          <PublicTrades navigation={this.props.navigation} />
         </ScrollView>
       </SafeAreaView>
     );

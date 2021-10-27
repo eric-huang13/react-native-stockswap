@@ -12,6 +12,7 @@ import {moderateScale} from '../../util/responsiveFont';
 
 class PrivateTradeCard extends Component {
   render() {
+
     const {item} = this.props;
     if (!this.props) {
       return null;
@@ -30,7 +31,11 @@ class PrivateTradeCard extends Component {
         <View style={style.notificationsContainer}>
           <TouchableOpacity
             onPress={() =>
-              console.log('Post')
+              this.props.navigation.navigate({
+                name: 'CreatePublicTrade',
+                params: {post:item},
+
+              })
             }>
             <Text style={style.publishButton}>Post</Text>
           </TouchableOpacity>
