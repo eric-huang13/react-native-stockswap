@@ -479,7 +479,7 @@ const defaultState = {
     },
     {
       id: '7',
-      title: 'The Boing Company',
+      title: 'The Boeing Company',
       symbol: 'BA',
       percentage: '+20.29%',
       about:

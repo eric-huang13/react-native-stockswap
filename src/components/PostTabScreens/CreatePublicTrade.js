@@ -54,6 +54,7 @@ export default class CreatePublicTrade extends Component {
                 portfolioPercentage: this.props.route.params.post
                   .portfolioPercentage,
                 gain: this.props.route.params.post.gain,
+                symbol: this.props.route.params.post.symbol,
                 body: '',
                 action: this.props.route.params.post.action,
               }}

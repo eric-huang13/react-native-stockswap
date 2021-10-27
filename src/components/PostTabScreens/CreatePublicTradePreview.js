@@ -45,6 +45,7 @@ class CreatePostPreview extends Component {
       profileImage: this.props.userImage,
       enabled: data.enabled,
       title: data.title,
+      symbol: data.symbol,
       portfolioPercentage: data.portfolioPercentage,
       tradeDate: data.tradeDate,
       gain: data.gain,
