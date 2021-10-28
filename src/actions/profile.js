@@ -249,14 +249,14 @@ export const CreateProfileImage = (id, token, input) => {
       })
 
       .then((response) => {
-        // console.log('image upload success');
+        console.log('image upload success');
         dispatch({
           type: CREATEPROFILEIMAGE_SUCCESS,
           payload: response.request.responseURL,
         });
       })
       .catch((error) => {
-        // console.log('ERROR in Image upload', error);
+        console.log('ERROR in Image upload', error);
         dispatch({type: CREATEPROFILEIMAGE_ERROR, payload: error.response});
         Toast.show({
           type: 'errorSignUp',

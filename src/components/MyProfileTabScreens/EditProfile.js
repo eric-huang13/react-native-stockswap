@@ -153,6 +153,7 @@ class EditProfile extends Component {
                         onPress={() => this.onImageSelection(setFieldValue)}>
                         <Image
                           style={style.uploadPhotoContainer}
+                          key={(new Date()).getTime()}
                           source={{
                             uri: values.image.uri,
                             headers: {
