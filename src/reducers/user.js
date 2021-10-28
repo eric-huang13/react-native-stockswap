@@ -46,6 +46,7 @@ import {
 
 const defaultState = {
   isLoggedIn: false,
+  firstTimeFlow: false,
   userData: [],
   userProfile: [],
   googleUser: [],
@@ -137,7 +138,8 @@ const userReducer = (state = defaultState, action) => {
         ...state,
         loading: false,
         error: '',
-        // isLoggedIn: true,
+        isLoggedIn: true,
+        firstTimeFlow: false,
         plaidAccountStatus: action.payload,
       };
     case PLAIDBANK_START:
@@ -192,7 +194,8 @@ const userReducer = (state = defaultState, action) => {
       return {
         ...state,
         loading: false,
-        // isLoggedIn: true,
+        isLoggedIn: true,
+        firstTimeFlow: false,
         error: '',
       };
     case SIGNUP_START:
@@ -205,7 +208,8 @@ const userReducer = (state = defaultState, action) => {
       return {
         ...state,
         loading: false,
-        // isLoggedIn: true,
+        isLoggedIn: true,
+        firstTimeFlow: true,
         error: '',
         userData: action.payload,
       };
@@ -247,7 +251,7 @@ const userReducer = (state = defaultState, action) => {
       return {
         ...state,
         loading: false,
-        // isLoggedIn: true,
+        isLoggedIn: true,
         error: '',
         userProfile: action.payload,
       };
@@ -267,7 +271,7 @@ const userReducer = (state = defaultState, action) => {
       return {
         ...state,
         loading: false,
-        // isLoggedIn: true,
+        isLoggedIn: true,
         error: '',
         userProfile: action.payload,
       };
@@ -287,7 +291,7 @@ const userReducer = (state = defaultState, action) => {
       return {
         ...state,
         loading: false,
-        // isLoggedIn: true,
+        isLoggedIn: true,
         error: '',
         userProfile: action.payload,
       };

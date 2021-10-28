@@ -485,13 +485,6 @@ const style = StyleSheet.create({
     marginLeft: moderateScale(2),
     marginBottom: moderateScale(-3),
   },
-  stockHeader: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    marginTop: moderateScale(10),
-    marginBottom: moderateScale(10),
-    alignItems: 'center',
-  },
   headerText: {
     fontFamily: 'Montserrat-ExtraBold',
     fontSize: moderateScale(15),
