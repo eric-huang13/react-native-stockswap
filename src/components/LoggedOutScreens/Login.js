@@ -330,13 +330,13 @@ const style = StyleSheet.create({
   },
   newText: {
     color: '#FFFFFF',
-    fontSize: moderateScale(12),
+    fontSize: moderateScale(14),
     marginRight: moderateScale(3),
     fontFamily: 'Montserrat-Medium',
   },
   termsText: {
     color: '#B8A0FF',
-    fontSize: moderateScale(12),
+    fontSize: moderateScale(14),
     fontFamily: 'Montserrat-Medium',
   },
   bottomButtonsContainer: {
@@ -397,14 +397,6 @@ const style = StyleSheet.create({
     width: moderateScale(44),
     marginLeft: moderateScale(2),
     marginBottom: moderateScale(-3),
-
-  },
-  stockHeader: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    marginTop: moderateScale(10),
-    marginBottom: moderateScale(10),
-    alignItems: 'center',
   },
   headerText: {
     fontFamily: 'Montserrat-ExtraBold',

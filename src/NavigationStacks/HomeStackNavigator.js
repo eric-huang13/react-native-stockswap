@@ -37,11 +37,11 @@ export default class HomeStackNavigator extends Component {
           options={{
             title: (
               <View style={style.stockHeader}>
-                <Text style={style.headerText}>StockSwap</Text>
                 <Image
                   style={style.logo}
                   source={require('../icons/Logo.png')}
                 />
+                <Text style={style.headerText}>StockSwap</Text>
               </View>
             ),
             headerStyle: {
@@ -299,21 +299,21 @@ const style = StyleSheet.create({
   stockHeader: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: moderateScale(20),
-    marginBottom: moderateScale(20),
+    marginTop: moderateScale(2),
+    marginBottom: moderateScale(6),
   },
   logo: {
     height: moderateScale(26),
     width: moderateScale(26),
-    marginTop: moderateScale(3),
     marginLeft: moderateScale(2),
+    marginBottom: moderateScale(-3),
   },
   headerText: {
-    fontFamily: 'Montserrat-Bold',
-    fontSize: moderateScale(16),
+    fontFamily: 'Montserrat-ExtraBold',
+    fontSize: moderateScale(15),
     color: 'white',
     textAlign: 'center',
     alignSelf: 'center',
-    paddingRight: 10,
+    paddingLeft: 5,
   },
 });
