@@ -9,7 +9,9 @@ import CreatePost from '../components/PostTabScreens/CreatePost';
 import PostType from '../components/PostTabScreens/PostType';
 import CreatePostPreview from '../components/PostTabScreens/CreatePostPreview';
 import CreateTrade from '../components/PostTabScreens/CreateTrade';
-
+import SelectTrades from '../components/PostTabScreens/SelectTrades';
+import CreatePublicTrade from '../components/PostTabScreens/CreatePublicTrade';
+import CreatePublicTradePreview from '../components/PostTabScreens/CreatePublicTradePreview';
 //responsive scale
 import {moderateScale} from '../util/responsiveFont';
 
@@ -75,8 +77,63 @@ export default class PostStackNavigator extends Component {
           }}
         />
         <PostStack.Screen
+          name="CreatePublicTradePreview"
+          component={CreatePublicTradePreview}
+          options={{
+            title: 'Post Preview',
+            headerShown: false,
+            headerStyle: {
+              backgroundColor: '#313c58',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+        <PostStack.Screen
           name="CreateTrade"
           component={CreateTrade}
+          options={{
+            title: 'Create Post',
+            headerStyle: {
+              backgroundColor: '#313c58',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+         <PostStack.Screen
+          name="SelectTrades"
+          component={SelectTrades}
+          options={{
+            title: 'Trades',
+            headerStyle: {
+              backgroundColor: '#313c58',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+         <PostStack.Screen
+          name="CreatePublicTrade"
+          component={CreatePublicTrade}
           options={{
             title: 'Create Post',
             headerStyle: {

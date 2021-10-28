@@ -163,10 +163,10 @@ export class CompanyInformation extends Component {
                 range={this.props.stockRange}
               />
               <View style={style.graphNumbers}>
-                <Text style={style.graphNumberText}>-{chartLow}</Text>
+                <Text style={style.graphNumberText}>-{chartLow.toFixed(2)}</Text>
                 <Text style={style.graphNumberText}>-{chartOneQuarter}</Text>
                 <Text style={style.graphNumberText}>-{chartThreeQuarter}</Text>
-                <Text style={style.graphNumberText}>-{chartHigh}</Text>
+                <Text style={style.graphNumberText}>-{chartHigh.toFixed(2)}</Text>
               </View>
             </View>
           ) : null}

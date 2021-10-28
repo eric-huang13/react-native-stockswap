@@ -89,11 +89,13 @@ export default class HomeStackNavigator extends Component {
           name="TradePostScreen"
           component={TradePostScreen}
           options={({route}) => ({
-            title: (
-              <View style={style.stockHeader}>
-                <HeaderStockSwap />
-              </View>
-            ),
+            title:  
+            <View style={style.stockHeader}>
+              <Text style={style.headerText}>StockSwap</Text>
+             <Image
+          style={style.logo}
+          source={require('../icons/Logo.png')}
+        /></View>,
             headerShown: true,
             headerBackTitle: 'Feed',
             headerStyle: {
