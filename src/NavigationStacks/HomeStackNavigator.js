@@ -20,6 +20,7 @@ import EditPost from '../components/MyProfileTabScreens/EditPost';
 import CreatePostPreview from '../components/PostTabScreens/CreatePostPreview';
 import HeaderStockSwap from '../icons/HeaderStockSwap';
 import Logo from '../icons/Logo.png';
+import TradePostScreen from '../components/HomeTabScreens/TradePostScreen';
 
 //responsive scale
 import {moderateScale} from '../util/responsiveFont';
@@ -59,6 +60,34 @@ export default class HomeStackNavigator extends Component {
         <HomeStack.Screen
           name="PostScreen"
           component={PostScreen}
+          options={({route}) => ({
+            title: (
+              <View style={style.stockHeader}>
+                <Text style={style.headerText}>StockSwap</Text>
+                <Image
+                  style={style.logo}
+                  source={require('../icons/Logo.png')}
+                />
+              </View>
+            ),
+            headerShown: true,
+            headerBackTitle: 'Feed',
+            headerStyle: {
+              backgroundColor: '#2A334B',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          })}
+        />
+        <HomeStack.Screen
+          name="TradePostScreen"
+          component={TradePostScreen}
           options={({route}) => ({
             title: (
               <View style={style.stockHeader}>
@@ -274,8 +303,10 @@ const style = StyleSheet.create({
     marginBottom: moderateScale(20),
   },
   logo: {
-    height: 36,
-    width: 36,
+    height: moderateScale(26),
+    width: moderateScale(26),
+    marginTop: moderateScale(3),
+    marginLeft: moderateScale(2),
   },
   headerText: {
     fontFamily: 'Montserrat-Bold',

@@ -20,7 +20,6 @@ import {Register} from '../../actions/user';
 import {CreateProfile} from '../../actions/profile';
 import {CreateProfileImage} from '../../actions/profile';
 import ImagePicker from 'react-native-image-crop-picker';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {moderateScale} from '../../util/responsiveFont';
 import {Buffer} from 'buffer';
 
@@ -219,7 +218,7 @@ export class ProfileInfoForm extends Component {
                           value={values.tags}
                           onBlur={handleBlur('tags')}
                           onChangeText={handleChange('tags')}
-                          placeholder="Add tags which describe you"
+                          placeholder="Add a tag which describes you"
                           placeholderTextColor="#9ea6b5"
                           returnKeyType="next"
                           ref={(input) => (this.tags = input)}

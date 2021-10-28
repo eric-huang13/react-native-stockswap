@@ -12,6 +12,7 @@ import {
   ScrollView,
   Modal,
   Platform,
+  Image
 } from 'react-native';
 import {Formik} from 'formik';
 import * as yup from 'yup';
@@ -21,7 +22,6 @@ import {RegisterGoogleSignup} from '../../actions/user';
 
 import CheckBox from '@react-native-community/checkbox';
 import LinearGradient from 'react-native-linear-gradient';
-import SmallStockSwap from '../../icons/SmallStockSwap';
 import AppleIcon from '../../icons/AppleIcon';
 import FacebookIcon from '../../icons/FacebookIcon';
 import TermsAndConditions from './TermsAndConditions';
@@ -130,8 +130,12 @@ export const SignUp = ({
                       />
                     </Modal>
                     <View style={style.stockHeader}>
-                      <SmallStockSwap />
-                    </View>
+                        <Image
+                          style={style.logo}
+                          source={require('../../icons/Logo.png')}
+                        />
+                        <Text style={style.headerText}>StockSwap</Text>
+                      </View>
                     <View style={style.container}>
                       <Text style={style.signUpHeader}>Sign Up</Text>
                       <View>
@@ -467,5 +471,26 @@ const style = StyleSheet.create({
     marginBottom: moderateScale(1),
     marginTop: moderateScale(1),
     textAlign: 'center',
+  },
+  logo: {
+    height: moderateScale(44),
+    width: moderateScale(44),
+    marginLeft: moderateScale(2),
+    marginBottom: moderateScale(-3),
+
+  },
+  stockHeader: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    marginTop: moderateScale(10),
+    marginBottom: moderateScale(10),
+    alignItems: 'center',
+  },
+  headerText: {
+    fontFamily: 'Montserrat-ExtraBold',
+    fontSize: moderateScale(15),
+    color: 'white',
+    textAlign: 'center',
+    alignSelf: 'center',
   },
 });

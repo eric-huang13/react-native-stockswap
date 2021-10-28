@@ -12,11 +12,11 @@ import {
   Keyboard,
   ScrollView,
   Platform,
+  Image,
 } from 'react-native';
 import {Login} from '../../actions/user';
 import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
-import SmallStockSwap from '../../icons/SmallStockSwap';
 import AppleIcon from '../../icons/AppleIcon';
 import FacebookIcon from '../../icons/FacebookIcon';
 import {Formik} from 'formik';
@@ -88,7 +88,11 @@ export class LoginScreen extends Component {
                   {(props) => (
                     <View style={style.inner}>
                       <View style={style.stockHeader}>
-                        <SmallStockSwap />
+                        <Image
+                          style={style.logo}
+                          source={require('../../icons/Logo.png')}
+                        />
+                        <Text style={style.headerText}>StockSwap</Text>
                       </View>
                       {/* <Text>Is User Logged in: {'' + isLoggedIn} </Text> */}
                       <View style={style.container}>
@@ -387,5 +391,26 @@ const style = StyleSheet.create({
     marginBottom: moderateScale(1),
     marginTop: moderateScale(1),
     textAlign: 'center',
+  },
+  logo: {
+    height: moderateScale(44),
+    width: moderateScale(44),
+    marginLeft: moderateScale(2),
+    marginBottom: moderateScale(-3),
+
+  },
+  stockHeader: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    marginTop: moderateScale(10),
+    marginBottom: moderateScale(10),
+    alignItems: 'center',
+  },
+  headerText: {
+    fontFamily: 'Montserrat-ExtraBold',
+    fontSize: moderateScale(15),
+    color: 'white',
+    textAlign: 'center',
+    alignSelf: 'center',
   },
 });
