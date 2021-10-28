@@ -12,10 +12,10 @@ import {
 import TriangleIcon from '../../icons/TriangleIcon';
 import {connect} from 'react-redux';
 import {Logout} from '../../actions/user';
-import { moderateScale } from '../../util/responsiveFont';
+import {moderateScale} from '../../util/responsiveFont';
 import LinearGradient from 'react-native-linear-gradient';
-import { CommonActions } from '@react-navigation/native';
-import PlaidComponent from './PlaidComponent'
+import {CommonActions} from '@react-navigation/native';
+import PlaidComponent from './PlaidComponent';
 
 class MyProfileSettings extends Component {
   constructor(props) {
@@ -35,7 +35,7 @@ class MyProfileSettings extends Component {
   dropDownSelect(pick) {
     this.setState({dropDown: pick, shouldShow: false});
   }
- 
+
   componentDidMount() {
     const {users, userAccount} = this.props;
     this.setState({
@@ -49,17 +49,15 @@ class MyProfileSettings extends Component {
     if (this.props.plaidLoading) {
       return (
         <LinearGradient
-        start={{x: 0.1, y: 1}}
-        end={{x: 0.1, y: 0.1}}
-        colors={['#1D2842', '#3d4b6e']}
-        style={{flex: 1}}>
-        <View style={style.loadingView}>
-          <Text style={style.loadingText}>Loading...</Text>
-          <ActivityIndicator size="large" color="#8b64ff" />
-  
-        </View>
-            </LinearGradient>
-  
+          start={{x: 0.1, y: 1}}
+          end={{x: 0.1, y: 0.1}}
+          colors={['#1D2842', '#3d4b6e']}
+          style={{flex: 1}}>
+          <View style={style.loadingView}>
+            <Text style={style.loadingText}>Loading...</Text>
+            <ActivityIndicator size="large" color="#8b64ff" />
+          </View>
+        </LinearGradient>
       );
     }
 
@@ -129,18 +127,18 @@ class MyProfileSettings extends Component {
                 </TouchableOpacity>
                 {this.state.shouldShow ? (
                   <View style={style.dropdown}>
-                    {this.state.dropDown == 'Visible for all' ? 
+                    {this.state.dropDown == 'Visible for all' ? (
                       <TouchableOpacity
                         onPress={() => this.dropDownSelect('Private')}>
                         <Text style={style.dropDownText}>Private</Text>
                       </TouchableOpacity>
-                     : 
+                    ) : (
                       <TouchableOpacity
                         onPress={() => this.dropDownSelect('Visible for all')}>
                         <Text style={style.dropDownText}>Visible for all</Text>
                       </TouchableOpacity>
-                  }
-                </View>
+                    )}
+                  </View>
                 ) : null}
               </View>
             </View>
@@ -177,8 +175,8 @@ class MyProfileSettings extends Component {
                 }>
                 <Text style={style.detailsButton}>Show</Text>
               </TouchableOpacity>
-              </View>
-              <View style={style.bottomInnerContiner}>
+            </View>
+            <View style={style.bottomInnerContiner}>
               <Text style={style.bottomText}>Accounts</Text>
               <TouchableOpacity
                 style={style.detailsButtonChange}
@@ -194,17 +192,13 @@ class MyProfileSettings extends Component {
                 }>
                 <Text style={style.detailsButton}>Enable Accounts</Text>
               </TouchableOpacity>
-              </View>
+            </View>
             <View style={style.bottomInnerContiner}>
               <Text style={style.bottomText}>Link Bank Account</Text>
-           
-              <PlaidComponent/>
 
+              <PlaidComponent />
             </View>
-          
-           
-              
-                      </View>
+          </View>
           <View style={style.logoutButtonContainer}>
             <Text style={style.logoutButton} onPress={() => LogoutUser()}>
               Log Out
@@ -371,14 +365,14 @@ const style = StyleSheet.create({
     fontSize: moderateScale(14),
   },
   loadingView: {
-    alignContent:'center',
-    alignItems:'center',
-    marginTop:moderateScale(180),
+    alignContent: 'center',
+    alignItems: 'center',
+    marginTop: moderateScale(180),
   },
   loadingText: {
     color: '#B8A0FF',
     fontSize: moderateScale(18),
     fontFamily: 'Montserrat-SemiBold',
-    marginBottom:moderateScale(24),   
+    marginBottom: moderateScale(24),
   },
 });

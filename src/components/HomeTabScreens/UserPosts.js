@@ -168,7 +168,10 @@ export default class UserPosts extends Component {
               params: {post, filteredComments, reply, userAccount},
             })
           }>
-          <Image style={style.image} source={{uri: post.img}} />
+          <Image
+            style={[style.image, shouldShow ? {opacity: 0.2} : null]}
+            source={{uri: post.img}}
+          />
         </TouchableOpacity>
 
         <View style={style.detailsContainer}>

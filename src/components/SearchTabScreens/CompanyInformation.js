@@ -93,8 +93,8 @@ export class CompanyInformation extends Component {
       });
     };
 
-    const currentPrice = this.props.route.params.item.quote
-      .volumeWeightedAveragePrice;
+    const currentPrice =
+      this.props?.route?.params?.item?.quote?.volumeWeightedAveragePrice;
 
     //Numbers to display graph numbers, can also use use built in graph numbers instead
     //Graph high number

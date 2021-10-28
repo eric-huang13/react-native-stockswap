@@ -143,7 +143,10 @@ export default class PostScreen extends Component {
               </View>
             )}
           </View>
-          <Image style={style.image} source={{uri: post.img}} />
+          <Image
+            style={[style.image, shouldShow ? {opacity: 0.2} : null]}
+            source={{uri: post.img}}
+          />
           <View style={style.detailsContainer}>
             <Text style={style.timestamp}>{post.timestamp}</Text>
 
