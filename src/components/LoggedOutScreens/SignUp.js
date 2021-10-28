@@ -12,7 +12,7 @@ import {
   ScrollView,
   Modal,
   Platform,
-  Image
+  Image,
 } from 'react-native';
 import {Formik} from 'formik';
 import * as yup from 'yup';
@@ -28,7 +28,7 @@ import TermsAndConditions from './TermsAndConditions';
 import GoogleOauth from '../LoggedOutComponents/GoogleOauth';
 
 import {moderateScale} from '../../util/responsiveFont';
-
+import {textSizes} from '../../styles/text';
 import Toast from 'react-native-toast-message';
 
 const reviewSchema = yup.object({
@@ -130,12 +130,12 @@ export const SignUp = ({
                       />
                     </Modal>
                     <View style={style.stockHeader}>
-                        <Image
-                          style={style.logo}
-                          source={require('../../icons/Logo.png')}
-                        />
-                        <Text style={style.headerText}>StockSwap</Text>
-                      </View>
+                      <Image
+                        style={style.logo}
+                        source={require('../../icons/Logo.png')}
+                      />
+                      <Text style={style.headerText}>StockSwap</Text>
+                    </View>
                     <View style={style.container}>
                       <Text style={style.signUpHeader}>Sign Up</Text>
                       <View>
@@ -218,24 +218,25 @@ export const SignUp = ({
                       </View>
                       <View style={style.termsOuterContainer}>
                         <View style={style.termsInnerContainer}>
-                          <CheckBox
-                            style={style.checkbox}
-                            disabled={true}
-                            boxType="square"
-                            value={toggleCheckBox}
-                            onValueChange={(newValue) =>
-                              setToggleCheckBox(newValue)
-                            }
-                            tintColors={{
-                              true: '#b8a0ff',
-                              false: 'lightgrey',
-                            }}
-                            onCheckColor="#b8a0ff"
-                          />
                           <TouchableOpacity
                             style={style.termsTouchOpacity}
                             onPress={() => handleTerms(true)}>
-                            <Text style={style.termsText}>
+                            <CheckBox
+                              style={style.checkbox}
+                              disabled={true}
+                              boxType="square"
+                              value={toggleCheckBox}
+                              onValueChange={(newValue) =>
+                                setToggleCheckBox(newValue)
+                              }
+                              tintColors={{
+                                true: '#b8a0ff',
+                                false: 'lightgrey',
+                              }}
+                              onCheckColor="#b8a0ff"
+                            />
+
+                            <Text style={[style.termsText, textSizes.sm]}>
                               I agree with the Terms and Conditions
                             </Text>
                           </TouchableOpacity>
@@ -243,7 +244,9 @@ export const SignUp = ({
                         </View>
                         <TouchableOpacity
                           onPress={() => navigation.navigate('Login')}>
-                          <Text style={style.termsText}>Login</Text>
+                          <Text style={[style.termsText, textSizes.sm]}>
+                            Login
+                          </Text>
                         </TouchableOpacity>
                       </View>
 
@@ -408,15 +411,19 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   termsText: {
+    paddingLeft: 10,
     color: '#b8a0ff',
-    fontSize: moderateScale(11),
+    //fontSize: moderateScale(11),
     fontFamily: 'Montserrat-Medium',
   },
   termsError: {
     marginBottom: moderateScale(18),
   },
   termsTouchOpacity: {
-    paddingLeft: 10,
+    // flex: 1,
+    alignItems: 'center',
+    paddingVertical: 5,
+    flexDirection: 'row',
   },
   checkbox: {},
   bottomButtonsContainer: {
@@ -477,7 +484,6 @@ const style = StyleSheet.create({
     width: moderateScale(44),
     marginLeft: moderateScale(2),
     marginBottom: moderateScale(-3),
-
   },
   stockHeader: {
     flexDirection: 'column',
