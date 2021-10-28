@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {
   Text,
   View,
+  SafeAreaView,
   StyleSheet,
   TouchableOpacity,
   ScrollView,
@@ -38,29 +39,32 @@ export default class TermsAndConditions extends Component {
     };
 
     return (
-      <View style={style.scrollContainer}>
-        {this.state.screen === 'agreement' ? (
-          <ScrollView>
-            <UserAgreement screenSelect={this.screenSelect} />
-            <View style={style.buttonContainer}>
-              <TouchableOpacity onPress={() => handleFormikTermsCancel()}>
-                <Text style={style.agreeButton}>Cancel</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => handleFormikTermsAgree()}>
-                <Text style={style.agreeButton}>I agree</Text>
-              </TouchableOpacity>
-            </View>
-          </ScrollView>
-        ) : (
-          <PrivacyPolicy screenSelect={this.screenSelect} />
-        )}
-      </View>
+      <SafeAreaView>
+        <View style={style.scrollContainer}>
+          {this.state.screen === 'agreement' ? (
+            <ScrollView>
+              <UserAgreement screenSelect={this.screenSelect} />
+              <View style={style.buttonContainer}>
+                <TouchableOpacity onPress={() => handleFormikTermsCancel()}>
+                  <Text style={style.agreeButton}>Cancel</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => handleFormikTermsAgree()}>
+                  <Text style={style.agreeButton}>I agree</Text>
+                </TouchableOpacity>
+              </View>
+            </ScrollView>
+          ) : (
+            <PrivacyPolicy screenSelect={this.screenSelect} />
+          )}
+        </View>
+      </SafeAreaView>
     );
   }
 }
 
 const style = StyleSheet.create({
   scrollContainer: {
+    // paddingTop: 40,
     backgroundColor: '#323e5b',
   },
   container: {

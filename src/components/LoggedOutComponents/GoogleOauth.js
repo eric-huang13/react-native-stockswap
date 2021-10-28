@@ -13,7 +13,7 @@ import {
 export function GoogleOauth(props) {
   // console.log(props, 'props google');
   useEffect(() => {
-    props.GoogleIsSignedIn();
+    // props.GoogleIsSignedIn();
   }, []);
 
   const signIn = useCallback(() => {

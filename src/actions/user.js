@@ -150,6 +150,7 @@ export const RegisterGoogleSignIn = (input) => {
   });
   // console.log(input, 'input in google action');
   return (dispatch) => {
+    // console.log('RegisterGoogleSignIn called');
     dispatch({type: GOOGLE_LOGIN_START});
     axios
       .post(
@@ -238,6 +239,7 @@ export const GoogleSignUp = () => {
     iosClientId: GOOGLE_IOS_CLIENT_ID, // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
   return async (dispatch) => {
+    // console.log('GoogleSignUp called');
     dispatch({type: GOOGLE_LOGIN_START});
     try {
       await GoogleSignin.hasPlayServices();
@@ -276,6 +278,7 @@ export const GoogleLogin = () => {
     iosClientId: GOOGLE_IOS_CLIENT_ID, // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
   return async (dispatch) => {
+    // console.log('GoogleLogin called');
     dispatch({type: GOOGLE_LOGIN_START});
     try {
       await GoogleSignin.hasPlayServices();

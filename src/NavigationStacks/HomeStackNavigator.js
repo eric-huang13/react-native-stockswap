@@ -35,14 +35,15 @@ export default class HomeStackNavigator extends Component {
           name="HomeTab"
           component={HomeScreen}
           options={{
-            title:  
-            <View style={style.stockHeader}>
-              <Text style={style.headerText}>StockSwap</Text>
-             <Image
-          style={style.logo}
-          source={require('../icons/Logo.png')}
-        /></View>
-          ,
+            title: (
+              <View style={style.stockHeader}>
+                <Text style={style.headerText}>StockSwap</Text>
+                <Image
+                  style={style.logo}
+                  source={require('../icons/Logo.png')}
+                />
+              </View>
+            ),
             headerStyle: {
               backgroundColor: '#2D384E',
             },
@@ -54,24 +55,23 @@ export default class HomeStackNavigator extends Component {
             headerTitleAlign: {
               textAlign: 'center',
             },
-            
-            
-          
           }}
         />
         <HomeStack.Screen
           name="PostScreen"
           component={PostScreen}
           options={({route}) => ({
-            title:  
-            <View style={style.stockHeader}>
-              <Text style={style.headerText}>StockSwap</Text>
-             <Image
-          style={style.logo}
-          source={require('../icons/Logo.png')}
-        /></View>,
+            title: (
+              <View style={style.stockHeader}>
+                <Text style={style.headerText}>StockSwap</Text>
+                <Image
+                  style={style.logo}
+                  source={require('../icons/Logo.png')}
+                />
+              </View>
+            ),
             headerShown: true,
-            headerBackTitle:'Feed',
+            headerBackTitle: 'Feed',
             headerStyle: {
               backgroundColor: '#2A334B',
             },
@@ -85,15 +85,17 @@ export default class HomeStackNavigator extends Component {
             },
           })}
         />
-              <HomeStack.Screen
+        <HomeStack.Screen
           name="TradePostScreen"
           component={TradePostScreen}
           options={({route}) => ({
-            title:  <View style={style.stockHeader}>
-            <HeaderStockSwap />
-          </View>,
+            title: (
+              <View style={style.stockHeader}>
+                <HeaderStockSwap />
+              </View>
+            ),
             headerShown: true,
-            headerBackTitle:'Feed',
+            headerBackTitle: 'Feed',
             headerStyle: {
               backgroundColor: '#2A334B',
             },
@@ -300,17 +302,18 @@ const style = StyleSheet.create({
     marginTop: moderateScale(20),
     marginBottom: moderateScale(20),
   },
-  logo: {    
-    height:moderateScale(26),
-    width:moderateScale(26),
-    marginTop:moderateScale(3),
-    marginLeft:moderateScale(2),
+  logo: {
+    height: moderateScale(26),
+    width: moderateScale(26),
+    marginTop: moderateScale(3),
+    marginLeft: moderateScale(2),
   },
-  headerText:{
+  headerText: {
     fontFamily: 'Montserrat-Bold',
     fontSize: moderateScale(16),
-    color:'white',
-    textAlign:'center',
-    alignSelf:'center'
+    color: 'white',
+    textAlign: 'center',
+    alignSelf: 'center',
+    paddingRight: 10,
   },
 });
