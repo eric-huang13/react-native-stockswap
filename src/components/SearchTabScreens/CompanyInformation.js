@@ -307,17 +307,19 @@ export class CompanyInformation extends Component {
           <View style={style.buyButtonContainer}>
             <Text style={style.buyButton}>Buy {route.params.item.title}</Text>
           </View>
-          <View style={style.aboutSection}>
-            <Text style={style.aboutHeader}>ABOUT</Text>
+          {this.props.stockDetails.sector !== 'Unavailable' ? (
+            <View style={style.aboutSection}>
+              <Text style={style.aboutHeader}>ABOUT</Text>
 
-            <Text style={style.sectorData}>
-              <Text style={style.sectorText}>Sector:</Text>{' '}
-              {this.props.stockDetails.sector}
-            </Text>
-            <Text style={style.about}>
-              {this.props.stockDetails.description}
-            </Text>
-          </View>
+              <Text style={style.sectorData}>
+                <Text style={style.sectorText}>Sector:</Text>{' '}
+                {this.props.stockDetails.sector}
+              </Text>
+              <Text style={style.about}>
+                {this.props.stockDetails.description}
+              </Text>
+            </View>
+          ) : null}
         </ScrollView>
       </SafeAreaView>
     );

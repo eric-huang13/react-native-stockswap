@@ -1214,6 +1214,8 @@ const companyBoxReducer = (state = defaultState, action) => {
         ...state,
         loading: false,
         error: action.payload,
+        stockDetails: action.payload,
+
       };
     default:
       return state;
