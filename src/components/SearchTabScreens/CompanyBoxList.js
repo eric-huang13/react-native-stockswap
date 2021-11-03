@@ -154,11 +154,12 @@ export class CompanyBoxList extends Component {
                       return (
                         <TouchableOpacity
                           key={item.ticker}
-                          onPress={() =>
+                          onPress={() =>{
                             this.props.navigation.navigate({
                               name: 'CompanyInformation',
                               params: {item, stockCategory: 'losers'},
-                            })
+                            }),
+                            this.props.resetStockData()}
                           }>
                           <CompanyBox item={item} category={'losers'} />
                         </TouchableOpacity>
@@ -202,11 +203,12 @@ export class CompanyBoxList extends Component {
                       return (
                         <TouchableOpacity
                           key={item.id}
-                          onPress={() =>
+                          onPress={() =>{
                             this.props.navigation.navigate({
                               name: 'CompanyInformation',
                               params: {item, stockCategory: 'hbv'},
-                            })
+                            }),
+                            this.props.resetStockData()}
                           }>
                           <CompanyBox item={item} category={'hbv'} />
                         </TouchableOpacity>
@@ -223,11 +225,12 @@ export class CompanyBoxList extends Component {
                   return (
                     <TouchableOpacity
                       key={item.ticker}
-                      onPress={() =>
+                      onPress={() =>{
                         this.props.navigation.navigate({
                           name: 'StockSearchInformation',
                           params: {item, stockCategory: 'gainers'},
-                        })
+                        }),
+                        this.props.resetStockData()}
                       }>
                       <StockSearchBox item={item} />
                     </TouchableOpacity>

@@ -112,7 +112,7 @@ export class StockSearchInformation extends Component {
     const {route} = this.props;
     const {graphData, percent, range} = this.state;
 
-    if (this.props.stockGraphData.length < 2) {
+    if (this.props.stockGraphData == null) {
       return (
         <View style={style.mainContainer}>
           <View style={style.loadingView}>
