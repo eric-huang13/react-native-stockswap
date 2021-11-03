@@ -30,6 +30,7 @@ import GoogleOauth from '../LoggedOutComponents/GoogleOauth';
 import {moderateScale} from '../../util/responsiveFont';
 import {textSizes} from '../../styles/text';
 import Toast from 'react-native-toast-message';
+import Logo from '../../components/Logo';
 
 const reviewSchema = yup.object({
   email: yup
@@ -129,13 +130,7 @@ export const SignUp = ({
                         navigation={navigation}
                       />
                     </Modal>
-                    <View style={style.stockHeader}>
-                      <Image
-                        style={style.logo}
-                        source={require('../../icons/Logo.png')}
-                      />
-                      <Text style={style.headerText}>StockSwap</Text>
-                    </View>
+                    <Logo />
                     <View style={style.container}>
                       <Text style={style.signUpHeader}>Sign Up</Text>
                       <View>

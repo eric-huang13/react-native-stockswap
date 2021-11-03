@@ -12,19 +12,20 @@ import {
   Keyboard,
   ScrollView,
   Platform,
-  Image
+  Image,
 } from 'react-native';
 import {ForgotPasswordEmail} from '../../actions/user';
 import LinearGradient from 'react-native-linear-gradient';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import {moderateScale} from '../../util/responsiveFont';
+import Logo from '../Logo';
 
 const reviewSchema = yup.object({
   email: yup
     .string()
     .required('Email is required')
-    .email('A valid email address is required'),    
+    .email('A valid email address is required'),
 });
 
 export class ForgotPassword extends Component {
@@ -57,13 +58,7 @@ export class ForgotPassword extends Component {
                   }}>
                   {(props) => (
                     <View style={style.inner}>
-                       <View style={style.stockHeader}>
-                        <Image
-                          style={style.logo}
-                          source={require('../../icons/Logo.png')}
-                        />
-                        <Text style={style.headerText}>StockSwap</Text>
-                      </View>
+                      <Logo />
                       <View style={style.container}>
                         <Text style={style.welcomeHeader}>
                           Forgot your password?
@@ -318,7 +313,6 @@ const style = StyleSheet.create({
     width: moderateScale(44),
     marginLeft: moderateScale(2),
     marginBottom: moderateScale(-3),
-
   },
   stockHeader: {
     flexDirection: 'column',

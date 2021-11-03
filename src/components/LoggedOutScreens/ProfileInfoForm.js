@@ -152,7 +152,7 @@ export class ProfileInfoForm extends Component {
                   isSubmitting,
                   setFieldValue,
                 }) => (
-                  <View>
+                  <View style={{padding: moderateScale(10)}}>
                     <Text style={style.header}>Fill Profile Info</Text>
                     {values.image.uri && !errors.image ? (
                       <TouchableOpacity
