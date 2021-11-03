@@ -290,6 +290,7 @@ export class StockSearchInformation extends Component {
           <View style={style.buyButtonContainer}>
             <Text style={style.buyButton}>Buy {route.params.item.title}</Text>
           </View>
+          {this.props.stockDetails.sector !== 'Unavailable' ? (
           <View style={style.aboutSection}>
             <Text style={style.aboutHeader}>ABOUT</Text>
 
@@ -301,6 +302,7 @@ export class StockSearchInformation extends Component {
               {this.props.stockDetails.description}
             </Text>
           </View>
+          ) : null}
         </ScrollView>
       </SafeAreaView>
     );

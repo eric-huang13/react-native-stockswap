@@ -101,12 +101,14 @@ export const fetchStockDetails = (ticker) => {
       })
       .catch((error) => {
         // console.log(error.response.data.message, 'ERROR in LOGIN');
-        let emptyData = {description:'Information for this company is unavailable.',
-      sector:'Unavailable'}
-        dispatch({type: FETCHSTOCKDETAILS_ERROR, payload: emptyData})        
+        let emptyData = {
+          description: 'Information for this company is unavailable.',
+          sector: 'Unavailable',
+        };
+        dispatch({type: FETCHSTOCKDETAILS_ERROR, payload: emptyData});
       });
+  };
 };
-}
 export const fetchStockDay = (ticker) => {
   return (dispatch) => {
     dispatch({type: FETCHSTOCKDAY_START});
@@ -117,17 +119,14 @@ export const fetchStockDay = (ticker) => {
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
       .then((response) => {
-          //DAY DATA
-    let dayPrices = response.data.result.quotes.map((a) => a.close);
-    const dayPriceRange = [
-      Math.min(...dayPrices),
-      Math.max(...dayPrices),
-    ];
-    // console.log(dayPriceRange, 'dayPRICERANGE');
-    const stockDayDataOriginal = response.data.result.quotes.map((i) => {
-      return {x: Date.parse(i.window.startTime), y: i.close};
-    });
-    const stockDayData = stockDayDataOriginal.reverse();
+        //DAY DATA
+        let dayPrices = response.data.result.quotes.map((a) => a.close);
+        const dayPriceRange = [Math.min(...dayPrices), Math.max(...dayPrices)];
+        // console.log(dayPriceRange, 'dayPRICERANGE');
+        const stockDayDataOriginal = response.data.result.quotes.map((i) => {
+          return {x: Date.parse(i.window.startTime), y: i.close};
+        });
+        const stockDayData = stockDayDataOriginal.reverse();
         dispatch({
           type: FETCHSTOCKDAY_SUCCESS,
           payload: stockDayData,
@@ -155,16 +154,16 @@ export const fetchStockWeek = (ticker) => {
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
       .then((response) => {
         // //WEEK DATA
-    let weekPrices = response.data.result.quotes.map((a) => a.close);
-    const weekPriceRange = [
-      Math.min(...weekPrices),
-      Math.max(...weekPrices),
-    ];
-    // console.log(weekPriceRange, 'weekPRICERANGE');
-    const stockWeekDataOriginal = response.data.result.quotes.map((i) => {
-      return {x: Date.parse(i.window.startTime), y: i.close};
-    });
-    const stockWeekData = stockWeekDataOriginal.reverse();
+        let weekPrices = response.data.result.quotes.map((a) => a.close);
+        const weekPriceRange = [
+          Math.min(...weekPrices),
+          Math.max(...weekPrices),
+        ];
+        // console.log(weekPriceRange, 'weekPRICERANGE');
+        const stockWeekDataOriginal = response.data.result.quotes.map((i) => {
+          return {x: Date.parse(i.window.startTime), y: i.close};
+        });
+        const stockWeekData = stockWeekDataOriginal.reverse();
         dispatch({
           type: FETCHSTOCKWEEK_SUCCESS,
           payload: stockWeekData,
@@ -191,16 +190,16 @@ export const fetchStockMonth = (ticker) => {
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
       .then((response) => {
-    // //MONTH DATA
-    let monthPrices = response.data.result.quotes.map((a) => a.close);
-    const monthPriceRange = [
-      Math.min(...monthPrices),
-      Math.max(...monthPrices),
-    ];
-    const stockMonthDataOriginal = response.data.result.quotes.map((i) => {
-      return {x: Date.parse(i.window.startTime), y: i.close};
-    });
-    const stockMonthData = stockMonthDataOriginal.reverse();
+        // //MONTH DATA
+        let monthPrices = response.data.result.quotes.map((a) => a.close);
+        const monthPriceRange = [
+          Math.min(...monthPrices),
+          Math.max(...monthPrices),
+        ];
+        const stockMonthDataOriginal = response.data.result.quotes.map((i) => {
+          return {x: Date.parse(i.window.startTime), y: i.close};
+        });
+        const stockMonthData = stockMonthDataOriginal.reverse();
         dispatch({
           type: FETCHSTOCKMONTH_SUCCESS,
           payload: stockMonthData,
@@ -210,7 +209,6 @@ export const fetchStockMonth = (ticker) => {
           payload: monthPriceRange,
         });
       })
-      
 
       .catch((error) =>
         dispatch({type: FETCHSTOCKMONTH_ERROR, payload: error.response}),
@@ -228,17 +226,18 @@ export const fetchStockThreeMonth = (ticker) => {
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
       .then((response) => {
-        
-    // //THREE MONTH DATA
-    let threeMonthPrices = response.data.result.quotes.map((a) => a.close);
-    const threeMonthPriceRange = [
-      Math.min(...threeMonthPrices),
-      Math.max(...threeMonthPrices),
-    ];
-    const stockThreeMonthDataOriginal = response.data.result.quotes.map((i) => {
-      return {x: Date.parse(i.window.startTime), y: i.close};
-    });
-    const stockThreeMonthData = stockThreeMonthDataOriginal.reverse();
+        // //THREE MONTH DATA
+        let threeMonthPrices = response.data.result.quotes.map((a) => a.close);
+        const threeMonthPriceRange = [
+          Math.min(...threeMonthPrices),
+          Math.max(...threeMonthPrices),
+        ];
+        const stockThreeMonthDataOriginal = response.data.result.quotes.map(
+          (i) => {
+            return {x: Date.parse(i.window.startTime), y: i.close};
+          },
+        );
+        const stockThreeMonthData = stockThreeMonthDataOriginal.reverse();
         dispatch({
           type: FETCHSTOCKTHREEMONTH_SUCCESS,
           payload: stockThreeMonthData,
@@ -289,7 +288,6 @@ export const fetchStockYear = (ticker) => {
       );
   };
 };
-
 
 export const fetchTickers = () => {
   return (dispatch) => {
