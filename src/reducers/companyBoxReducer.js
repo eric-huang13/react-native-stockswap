@@ -38,6 +38,7 @@ import {
   STOCKRANGETHREEMONTH,
   STOCKRANGEWEEK,
   STOCKRANGEYEAR,
+  RESET_STOCK_DATA
 } from '../constants';
 
 const defaultState = {
@@ -1065,6 +1066,13 @@ const companyBoxReducer = (state = defaultState, action) => {
         loading: false,
         error: '',
         tickersAll: action.payload,
+      };
+      case RESET_STOCK_DATA:
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        stockGraphData: action.payload,
       };
     case FETCHSTOCKDAY_START:
       return {

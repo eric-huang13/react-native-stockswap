@@ -38,6 +38,7 @@ import {
   STOCKRANGEMONTH,
   STOCKRANGEWEEK,
   STOCKRANGEDAY,
+  RESET_STOCK_DATA
 } from 'constants';
 import axios from 'axios';
 
@@ -109,6 +110,15 @@ export const fetchStockDetails = (ticker) => {
       });
   };
 };
+
+export const resetStockData = () => {
+  return (dispatch) => {
+    console.log('ran reset');
+    let emptyData = null;
+    dispatch({type: RESET_STOCK_DATA, payload: emptyData});
+  };
+};
+
 export const fetchStockDay = (ticker) => {
   return (dispatch) => {
     dispatch({type: FETCHSTOCKDAY_START});

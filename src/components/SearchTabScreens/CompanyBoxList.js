@@ -13,7 +13,7 @@ import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
 import CompanyBox from '../SearchTabComponents/CompanyBox';
 import {fetchMarketGainers} from '../../actions/marketMovers';
-import {fetchMarketLosers, searchStock} from '../../actions/marketMovers';
+import {fetchMarketLosers, searchStock, resetStockData} from '../../actions/marketMovers';
 import StockSearchBox from '../SearchTabComponents/StockSearchBox';
 import {debounce} from 'lodash';
 
@@ -105,10 +105,11 @@ export class CompanyBoxList extends Component {
                         <TouchableOpacity
                           key={item.ticker}
                           onPress={() =>
-                            this.props.navigation.navigate({
+                            {this.props.navigation.navigate({
                               name: 'CompanyInformation',
                               params: {item, stockCategory: 'gainers'},
-                            })
+                            }),
+                            this.props.resetStockData()}
                           }>
                           <CompanyBox item={item} category={'gainers'} />
                         </TouchableOpacity>
@@ -259,6 +260,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchGainers: () => dispatch(fetchMarketGainers()),
     fetchLosers: () => dispatch(fetchMarketLosers()),
     searchStock: (input) => dispatch(searchStock(input)),
+    resetStockData: () => dispatch(resetStockData()),
+
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(CompanyBoxList);

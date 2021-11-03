@@ -19,6 +19,7 @@ import * as Yup from 'yup';
 import ImagePicker from 'react-native-image-crop-picker';
 import {moderateScale} from '../../util/responsiveFont';
 import {Buffer} from 'buffer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -43,6 +44,15 @@ const validationSchema = Yup.object().shape({
 class EditProfile extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    AsyncStorage.getItem('token').then((token) => {
+      if (token) {
+        this.props.RefreshToken(token);
+      }
+    });
+   
   }
   //Creating FormData for sending image to backend
   createFormData = (values) => {
@@ -102,7 +112,7 @@ class EditProfile extends Component {
                   // id: userAccount.id,
                   name: userProfile.name,
                   username: userProfile.username,
-                  image: {name: '', type: '', uri: userImage},
+                  image: {name: '', type: '', uri: userImage+'?time'+(new Date()).getTime()},
                   tags: userAccount.hashtag,
                   bio: userProfile.bio,
                 }}
