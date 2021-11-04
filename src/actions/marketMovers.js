@@ -113,7 +113,6 @@ export const fetchStockDetails = (ticker) => {
 
 export const resetStockData = () => {
   return (dispatch) => {
-    console.log('ran reset');
     let emptyData = {};
     dispatch({type: RESET_STOCK_DATA, payload: emptyData});
   };
