@@ -110,7 +110,7 @@ export class CompanyInformation extends Component {
 
     const {route} = this.props;
     const {graphData, percent, range} = this.state;
-    if (this.props.stockGraphData == null) {
+    if (this.props.stockDetails.length < 1) {
       return (
         <View style={style.mainContainer}>
           <View style={style.loadingView}>
@@ -124,7 +124,7 @@ export class CompanyInformation extends Component {
       <SafeAreaView style={style.mainContainer}>
         <CompanySymbolList
           navigation={this.props.navigation}
-          symbol={route.params.item.ticker}
+          ticker={route.params.item.ticker}
           itemId={route.params.item.id}
           stockCategory={route.params.stockCategory}
         />
@@ -168,7 +168,12 @@ export class CompanyInformation extends Component {
                 <Text style={style.graphNumberText}>-{chartHigh.toFixed(2)}</Text>
               </View>
             </View>
-          ) : null}
+          ) : <View style={style.mainContainer}>
+          <View style={style.loadingViewGraph}>
+            <Text style={style.loadingText}>Loading...</Text>
+            <ActivityIndicator size="large" color="#8b64ff" />
+          </View>
+        </View>}
           <View style={style.stockButtonsContainer}>
             <TouchableOpacity onPress={() => getLivedata()}>
               <Text
@@ -357,6 +362,12 @@ const style = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     marginTop: moderateScale(180),
+  },
+  loadingViewGraph: {
+    alignContent: 'center',
+    alignItems: 'center',
+    marginTop: moderateScale(65),
+    marginBottom: moderateScale(50),
   },
   loadingText: {
     color: '#B8A0FF',
