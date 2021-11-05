@@ -107,7 +107,6 @@ export class CompanyInformation extends Component {
     const chartThreeQuarter = (chartHigh - numberDifference).toFixed(2);
     //Graph quarter number
     const chartOneQuarter = (chartLow + numberDifference).toFixed(2);
-
     const {route} = this.props;
     const {graphData, percent, range} = this.state;
     if (this.props.stockDetails.length < 1) {
@@ -126,6 +125,7 @@ export class CompanyInformation extends Component {
           navigation={this.props.navigation}
           ticker={route.params.item.ticker}
           itemId={route.params.item.id}
+          indexNumber={this.props.route.params.index}
           stockCategory={route.params.stockCategory}
         />
         <ScrollView>
@@ -154,7 +154,7 @@ export class CompanyInformation extends Component {
             <Text>Company Information</Text>
           )}
           {this.props.stockGraphData.length > 2 &&
-          this.props.stockRange.length > 1 ? (
+          this.props.stockRange.length > 1 && !this.props.stockLoading ? (
             <View style={style.graphContainer}>
               <CompanyStockGraph
                 graphData={this.props.stockGraphData}
@@ -333,8 +333,8 @@ const mapStateToProps = (state) => {
   return {
     stockGraphData: state.company.stockGraphData,
     stockRange: state.company.stockRange,
-    // stockLatestData: state.company.stockLatestData,
     stockDetails: state.company.stockDetails,
+    stockLoading: state.company.stockLoading,
   };
 };
 const mapDispatchToProps = (dispatch) => {

@@ -10,6 +10,7 @@ import {
 
 import {connect} from 'react-redux';
 import {moderateScale} from '../../util/responsiveFont';
+import {fetchStockDay, fetchStockDetails} from '../../actions/marketMovers';
 
 export class CompanySymbolList extends Component {
   constructor(props) {
@@ -42,8 +43,6 @@ export class CompanySymbolList extends Component {
       index,
     });
 
-    const {gainers, stockCategory, marketGainersTest} = this.props;
-
     return (
       <SafeAreaView style={style.mainContainer}>
         <FlatList
@@ -53,17 +52,19 @@ export class CompanySymbolList extends Component {
           horizontal
           alignItems="center"
           showsHorizontalScrollIndicator={false}
-          initialScrollIndex={this.props.itemId - 1}
+          // initialScrollIndex={this.props.indexNumber - 1}
           getItemLayout={getItemLayout}
           renderItem={({item, index}) => (
             <TouchableOpacity
               key={item.id}
-              onPress={() =>
+              onPress={() => {
                 this.props.navigation.navigate({
                   name: 'CompanyInformation',
                   params: {item},
-                })
-              }>
+                }),
+                  this.props.fetchStockDay(item.ticker);
+                this.props.fetchStockDetails(item.ticker);
+              }}>
               <View style={style.symbolBox}>
                 <Text
                   style={
@@ -93,8 +94,14 @@ const mapStateToProps = (state) => {
     marketGainersTest: state.company.marketGainersTest,
   };
 };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchStockDay: (ticker) => dispatch(fetchStockDay(ticker)),
+    fetchStockDetails: (ticker) => dispatch(fetchStockDetails(ticker)),
+  };
+};
 
-export default connect(mapStateToProps)(CompanySymbolList);
+export default connect(mapStateToProps, mapDispatchToProps)(CompanySymbolList);
 
 const style = StyleSheet.create({
   mainContainer: {

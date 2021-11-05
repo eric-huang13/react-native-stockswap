@@ -100,14 +100,14 @@ export class CompanyBoxList extends Component {
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     justifyContent="space-between">
-                    {marketGainers.map((item) => {
+                    {marketGainers.map((item, index) => {
                       return (
                         <TouchableOpacity
                           key={item.ticker}
                           onPress={() =>
                             {this.props.navigation.navigate({
                               name: 'CompanyInformation',
-                              params: {item, stockCategory: 'gainers'},
+                              params: {item, stockCategory: 'gainers', index},
                             }),
                             this.props.resetStockData()}
                           }>

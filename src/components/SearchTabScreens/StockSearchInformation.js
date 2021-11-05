@@ -319,7 +319,6 @@ const mapStateToProps = (state) => {
     stockRange: state.company.stockRange,
     stockDetails: state.company.stockDetails,
     stockLatestData: state.company.stockLatestData,
-    yearLoading: state.company.yearLoading,
   };
 };
 const mapDispatchToProps = (dispatch) => {
