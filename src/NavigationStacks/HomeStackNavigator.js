@@ -18,8 +18,7 @@ import Followers from '../components/HomeTabScreens/Followers';
 import Following from '../components/HomeTabScreens/Following';
 import EditPost from '../components/MyProfileTabScreens/EditPost';
 import CreatePostPreview from '../components/PostTabScreens/CreatePostPreview';
-import HeaderStockSwap from '../icons/HeaderStockSwap';
-import Logo from '../icons/Logo.png';
+import Logo from '../components/Logo';
 import TradePostScreen from '../components/HomeTabScreens/TradePostScreen';
 
 //responsive scale
@@ -35,15 +34,7 @@ export default class HomeStackNavigator extends Component {
           name="HomeTab"
           component={HomeScreen}
           options={{
-            title: (
-              <View style={style.stockHeader}>
-                <Image
-                  style={style.logo}
-                  source={require('../icons/Logo.png')}
-                />
-                <Text style={style.headerText}>StockSwap</Text>
-              </View>
-            ),
+            title: <Logo compact={true} />,
             headerStyle: {
               backgroundColor: '#2D384E',
             },
@@ -61,15 +52,7 @@ export default class HomeStackNavigator extends Component {
           name="PostScreen"
           component={PostScreen}
           options={({route}) => ({
-            title: (
-              <View style={style.stockHeader}>
-                <Text style={style.headerText}>StockSwap</Text>
-                <Image
-                  style={style.logo}
-                  source={require('../icons/Logo.png')}
-                />
-              </View>
-            ),
+            title: <Logo compact={true} />,
             headerShown: true,
             headerBackTitle: 'Feed',
             headerStyle: {
@@ -89,13 +72,7 @@ export default class HomeStackNavigator extends Component {
           name="TradePostScreen"
           component={TradePostScreen}
           options={({route}) => ({
-            title:  
-            <View style={style.stockHeader}>
-              <Text style={style.headerText}>StockSwap</Text>
-             <Image
-          style={style.logo}
-          source={require('../icons/Logo.png')}
-        /></View>,
+            title: <Logo compact={true} />,
             headerShown: true,
             headerBackTitle: 'Feed',
             headerStyle: {
