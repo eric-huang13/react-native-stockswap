@@ -24,6 +24,7 @@ import * as yup from 'yup';
 import {RegisterGoogleSignIn} from '../../actions/user';
 import GoogleOauth from '../LoggedOutComponents/GoogleOauth';
 import {moderateScale} from '../../util/responsiveFont';
+import Logo from '../../components/Logo';
 
 const reviewSchema = yup.object({
   email: yup
@@ -87,13 +88,7 @@ export class LoginScreen extends Component {
                   }}>
                   {(props) => (
                     <View style={style.inner}>
-                      <View style={style.stockHeader}>
-                        <Image
-                          style={style.logo}
-                          source={require('../../icons/Logo.png')}
-                        />
-                        <Text style={style.headerText}>StockSwap</Text>
-                      </View>
+                      <Logo />
                       {/* <Text>Is User Logged in: {'' + isLoggedIn} </Text> */}
                       <View style={style.container}>
                         <Text style={style.welcomeHeader}>Welcome</Text>
