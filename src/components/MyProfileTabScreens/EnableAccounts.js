@@ -53,9 +53,9 @@ class EnableAccounts extends Component {
     return (
       <SafeAreaView style={style.container}>
         <ScrollView>
-          <View>
+          <View style={{paddingHorizontal: moderateScale(12)}}>
             <Text style={style.header}> {this.props.newInstitution.name}</Text>
-          
+
             {this.state.newAccounts.map((item) => (
               <EnableAccountsCard
                 key={item.id}
@@ -64,13 +64,15 @@ class EnableAccounts extends Component {
               />
             ))}
           </View>
-          <TouchableOpacity
-            onPress={() =>
-              this.props.PlaidAccountStatus({accounts:this.state.accountStatus})
-            }>
-            <Text style={style.publishButton}>Save</Text>
-          </TouchableOpacity>
         </ScrollView>
+        <TouchableOpacity
+          onPress={() =>
+            this.props.PlaidAccountStatus({
+              accounts: this.state.accountStatus,
+            })
+          }>
+          <Text style={style.publishButton}>Save</Text>
+        </TouchableOpacity>
       </SafeAreaView>
     );
   }
