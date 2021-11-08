@@ -13,6 +13,7 @@ import {
   Platform,
 } from 'react-native';
 import {CreateProfileImage, EditUserProfile} from '../../actions/profile';
+import {RefreshToken} from '../../actions/user';
 import LinearGradient from 'react-native-linear-gradient';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
@@ -167,7 +168,7 @@ class EditProfile extends Component {
                           source={{
                             uri: values.image.uri,
                             headers: {
-                              Authorization: `Bearer ${this.props.userData.accessToken}`,
+                              Authorization: `Bearer ${this.props.reduxToken}`,
                             },
                           }}
                         />
@@ -309,6 +310,8 @@ const mapStateToProps = (state) => {
     userProfile: state.user.userProfile,
     userImage: state.user.userImage,
     userData: state.user.userData,
+    reduxToken: state.user.token,
+
   };
 };
 
@@ -317,6 +320,7 @@ const mapDispatchToProps = (dispatch) => {
     EditUserProfile: (input) => dispatch(EditUserProfile(input)),
     CreateProfileImage: (id, token, input) =>
       dispatch(CreateProfileImage(id, token, input)),
+    RefreshToken: (token) => dispatch(RefreshToken(token)),
   };
 };
 

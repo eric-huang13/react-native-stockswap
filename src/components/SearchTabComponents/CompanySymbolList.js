@@ -72,7 +72,9 @@ export class CompanySymbolList extends Component {
                       ? {...style.symbol, backgroundColor: '#8B64FF'}
                       : {...style.symbol}
                   }>
-                  {item.ticker}
+                    {item.ticker.length < 5
+                  ? `${item.ticker}`
+                  : `${item.ticker.substring(0, 5)}`}
                 </Text>
               </View>
             </TouchableOpacity>
