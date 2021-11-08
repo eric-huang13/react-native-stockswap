@@ -17,6 +17,7 @@ import {AddLater} from '../../actions/user';
 import BulbIcon from '../../icons/BulbIcon';
 import LockIcon from '../../icons/LockIcon';
 import HouseIcon from '../../icons/HouseIcon';
+import Logo from '../../components/Logo';
 
 const ConnectAccount = (props) => {
   const handleAddLater = () => {
@@ -45,14 +46,9 @@ const ConnectAccount = (props) => {
       style={{flex: 1}}>
       <SafeAreaView style={style.mainContainer}>
         <ScrollView>
-          <View style={style.stockHeader}>
-            <Image
-              style={style.logo}
-              source={require('../../icons/Logo.png')}
-            />
-            <Text style={style.headerText}>StockSwap</Text>
-          </View>
-          <View>
+          <Logo />
+          <View
+            style={{padding: moderateScale(16), paddingTop: moderateScale(40)}}>
             <View>
               <View style={style.headerIcon}>
                 <View style={style.bulb}>
