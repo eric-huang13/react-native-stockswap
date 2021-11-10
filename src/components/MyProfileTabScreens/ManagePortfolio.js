@@ -175,7 +175,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(ManagePortfolio);
 const style = StyleSheet.create({
   container: {
     backgroundColor: '#2a334a',
-    paddingBottom:315,
+    paddingBottom:275,
     flex:1
 
   },

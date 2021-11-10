@@ -28,18 +28,7 @@ class InstitutionHoldingsCard extends Component {
         ))}
 
         {filteredAccounts.map((item, index) => (
-        //   <View key={index}> 
-        //     <Text style={style.accountOfficial}>{item.officialName}</Text>
-        //     {/* <Text style={style.account}>{item.name}</Text>
-        //     <Text style={style.hashtag}>{item.itemId}</Text> */}
-        //   </View>
-
-          <AccountCard
-                key={index}
-                    item={item}
-                // itemId={item.itemId}
-                // insId={item.institutionId}
-              />
+          <AccountCard key={index} item={item} />
         ))}
       </View>
     );
@@ -58,7 +47,10 @@ const mapDispatchToProps = (dispatch) => {
     PortfolioAccounts: () => dispatch(PortfolioAccounts()),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(InstitutionHoldingsCard);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(InstitutionHoldingsCard);
 
 const style = StyleSheet.create({
   container: {
@@ -91,7 +83,7 @@ const style = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: moderateScale(26),
-    textAlign:'center'
+    textAlign: 'center',
   },
   accountOfficial: {
     color: 'white',

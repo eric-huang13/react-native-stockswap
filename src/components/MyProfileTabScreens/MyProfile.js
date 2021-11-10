@@ -15,6 +15,7 @@ import {moderateScale} from '../../util/responsiveFont';
 import {GetProfile} from '../../actions/profile';
 import {GetProfileImage} from '../../actions/profile';
 import {RefreshToken} from '../../actions/user';
+import {PortfolioAccounts} from '../../actions/profile';
 
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -43,6 +44,7 @@ class Profile extends Component {
   }
   componentDidMount() {
     this.props.GetProfile();
+    
     // this.props.GetProfileImage(this.props.userData.accessToken, this.props.userId);
     AsyncStorage.getItem('token').then((token) => {
       if (token) {
@@ -57,6 +59,8 @@ class Profile extends Component {
       selectedPosts: selectedPosts,
       user: user,
     });
+    this.props.PortfolioAccounts();
+
   }
 
   componentDidUpdate(prevProps) {
@@ -322,6 +326,8 @@ const mapDispatchToProps = (dispatch) => {
     GetProfile: () => dispatch(GetProfile()),
     GetProfileImage: (token, id) => dispatch(GetProfileImage(token, id)),
     RefreshToken: (token) => dispatch(RefreshToken(token)),
+    PortfolioAccounts: () => dispatch(PortfolioAccounts()),
+
   };
 };
 

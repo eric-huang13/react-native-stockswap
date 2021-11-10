@@ -8,32 +8,22 @@ import ManagePortfolioBox from '../MyProfileTabComponents/ManagePortfolioBox';
 class AccountCard extends Component {
   render() {
     const {portfolioAccounts, itemId, insId} = this.props;
-    console.log(portfolioAccounts, 'INACCOUNTCARD');
     const filteredHoldings = portfolioAccounts.holdings.filter(
       (holding) => holding.accountId == this.props.item.accountId,
     );
 
-    // const filteredInstitutions = this.props.institution.filter(
-    //   (institution) => institution.id == insId,
-    // );
     if (!this.props) {
       return null;
     }
     return (
       <View style={style.institutionCard}>
-        {/* {filteredInstitutions.map((item, index) => ( */}
-          <View >
-            <Text style={style.accountName}>{this.props.item.name}</Text>
-          </View>
-        {/* ))} */}
+        <View>
+          <Text style={style.accountName}>{this.props.item.name}</Text>
+        </View>
+      
 
         {filteredHoldings.map((item, index) => (
-            <ManagePortfolioBox key={index} item={item}/>
-        //   <View key={index}> 
-        //     <Text style={style.accountOfficial}>{item.securityId}</Text>
-        //     {/* <Text style={style.account}>{item.name}</Text>
-        //     <Text style={style.hashtag}>{item.itemId}</Text> */}
-        //   </View>
+          <ManagePortfolioBox key={index} item={item} />
         ))}
       </View>
     );

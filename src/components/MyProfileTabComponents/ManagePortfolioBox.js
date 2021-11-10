@@ -23,6 +23,7 @@ class ManagePortfolioBox extends Component {
       start: '',
       end: '',
       securityDetails: [],
+      stockSymbol:'',
     };
   }
 
@@ -66,20 +67,16 @@ class ManagePortfolioBox extends Component {
     //       yPrices[yPrices.length - 7]) *
     //     100
     //   ).toFixed(2);
-    //  filteredSecurities = this.props.portfolioAccounts.securities.filter(
-    //   (security) => security.securityId == this.props.item.securityId,
-    // );
-    // this.setState({
-    //   securityDetails: filteredSecurities.map((item) => {
-    //     return {tickerSymbol: item.tickerSymbol, securityId: item.securityId, type: item.type};
-    //   }),
-    // });
+  
+    const filteredSecurities = this.props.portfolioAccounts.securities.filter(
+      (security) =>
+        security.securityId == this.props.item.securityId &&
+        security.tickerSymbol !== null,
+    );
 
-    //   this.setState({
-    //     graphData: weekData,
-    //     range: weekRange,
-    //     percent: percentChange,
-    //   });
+
+        const tickerSym = filteredSecurities.map((item) => this.setState({stockSymbol:item.tickerSymbol}));
+
   }
 
   render() {
@@ -89,13 +86,15 @@ class ManagePortfolioBox extends Component {
         security.securityId == this.props.item.securityId &&
         security.tickerSymbol !== null,
     );
-    console.log(filteredSecurities, 'SECURITIES');
-    // const {graphData, percent, range} = this.state;
+console.log(this.state, "STATE")
+const stockObject =this.props.tickersAll[this.state.stockSymbol]
+
+
 
     return (
       <SafeAreaView style={style.container}>
         {filteredSecurities.map((item, index) => (
-          <View style={style.container}>
+          <View style={style.container} key={index}>
             <View style={style.symbolContainer}>
               <Text
                 style={
@@ -103,9 +102,17 @@ class ManagePortfolioBox extends Component {
                 }>
                 {item.tickerSymbol}
               </Text>
-              <Text style={style.title}>tesla</Text>
+              { stockObject ?
+           <Text style={style.title}>
+                {stockObject.name.length < 15
+                  ? `${stockObject.name}`
+                  : `${stockObject.name.substring(0, 14)}...`}
+              </Text>
+              :
+              null
+  }
               <Text style={style.price}>Shares: 22</Text>
-              <Text style={style.price}>Price: ${this.props.price}</Text>
+              <Text style={style.price}>Price: ${this.props.item.price}</Text>
             </View>
             <View style={style.graphContainer}>
               <PortfolioGraph
@@ -126,7 +133,7 @@ class ManagePortfolioBox extends Component {
                 }>
                 {this.state.percent}%
               </Text>
-              <Text style={style.price}>Portfolio:</Text>
+              <Text style={style.price}>Portfolio</Text>
             </View>
           </View>
         ))}
@@ -138,6 +145,8 @@ const mapStateToProps = (state) => {
   return {
     portfolioAccounts: state.user.portfolioAccounts,
     // institution: state.user.institution,
+    tickersAll: state.company.tickersAll
+
   };
 };
 
@@ -153,7 +162,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     flex: 1,
-    width: moderateScale(89),
+    width: moderateScale(84),
   },
   icon: {
     alignSelf: 'flex-end',
