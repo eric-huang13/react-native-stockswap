@@ -3,35 +3,37 @@ import {Text, View, ScrollView, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {PortfolioAccounts} from '../../actions/profile';
 import {moderateScale} from '../../util/responsiveFont';
+import ManagePortfolioBox from '../MyProfileTabComponents/ManagePortfolioBox';
 
-class InstitutionCard extends Component {
+class AccountCard extends Component {
   render() {
     const {portfolioAccounts, itemId, insId} = this.props;
-    console.log(portfolioAccounts, 'ACCOUNTS');
-    const filteredAccounts = portfolioAccounts.accounts.filter(
-      (account) => account.itemId == itemId,
+    console.log(portfolioAccounts, 'INACCOUNTCARD');
+    const filteredHoldings = portfolioAccounts.holdings.filter(
+      (holding) => holding.accountId == this.props.item.accountId,
     );
 
-    const filteredInstitutions = this.props.institution.filter(
-      (institution) => institution.id == insId,
-    );
+    // const filteredInstitutions = this.props.institution.filter(
+    //   (institution) => institution.id == insId,
+    // );
     if (!this.props) {
       return null;
     }
     return (
       <View style={style.institutionCard}>
-        {filteredInstitutions.map((item, index) => (
-          <View key={index}>
-            <Text style={style.accountName}>{item.name}</Text>
+        {/* {filteredInstitutions.map((item, index) => ( */}
+          <View >
+            <Text style={style.accountName}>{this.props.item.name}</Text>
           </View>
-        ))}
+        {/* ))} */}
 
-        {filteredAccounts.map((item, index) => (
-          <View key={index}> 
-            <Text style={style.accountOfficial}>{item.officialName}</Text>
-            {/* <Text style={style.account}>{item.name}</Text>
-            <Text style={style.hashtag}>{item.itemId}</Text> */}
-          </View>
+        {filteredHoldings.map((item, index) => (
+            <ManagePortfolioBox key={index} item={item}/>
+        //   <View key={index}> 
+        //     <Text style={style.accountOfficial}>{item.securityId}</Text>
+        //     {/* <Text style={style.account}>{item.name}</Text>
+        //     <Text style={style.hashtag}>{item.itemId}</Text> */}
+        //   </View>
         ))}
       </View>
     );
@@ -41,7 +43,7 @@ class InstitutionCard extends Component {
 const mapStateToProps = (state) => {
   return {
     portfolioAccounts: state.user.portfolioAccounts,
-    institution: state.user.institution,
+    // institution: state.user.institution,
   };
 };
 
@@ -50,7 +52,7 @@ const mapDispatchToProps = (dispatch) => {
     PortfolioAccounts: () => dispatch(PortfolioAccounts()),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(InstitutionCard);
+export default connect(mapStateToProps, mapDispatchToProps)(AccountCard);
 
 const style = StyleSheet.create({
   container: {

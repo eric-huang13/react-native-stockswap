@@ -14,8 +14,14 @@ import TriangleIcon from '../../icons/TriangleIcon';
 import {connect} from 'react-redux';
 import ManagePortfolioBox from '../MyProfileTabComponents/ManagePortfolioBox';
 import {moderateScale} from '../../util/responsiveFont';
+import {PortfolioAccounts} from '../../actions/profile';
+import InstitutionHoldingsCard from './InstitutionHoldingsCard';
+
 
 class ManagePortfolio extends Component {
+  componentDidMount() {
+    this.props.PortfolioAccounts();
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -41,7 +47,11 @@ class ManagePortfolio extends Component {
     );
 
     const {shouldShow} = this.state;
-
+    if (!this.props.portfolioAccounts.institutions) {
+      return (
+        <SafeAreaView style={style.container}>        
+        </SafeAreaView>
+      );    }
     return (
       <SafeAreaView style={style.container}>
         <View style={style.searchInputContainer}>
@@ -112,7 +122,7 @@ class ManagePortfolio extends Component {
               ) : null}
             </View>
           </View>
-          <FlatList
+          {/* <FlatList
             style={style.boxContainer}
             data={filteredStocks}
             renderItem={({item}) => (
@@ -129,7 +139,19 @@ class ManagePortfolio extends Component {
                 </View>
               </TouchableOpacity>
             )}
-          />
+          /> */}
+          <View>
+            <ScrollView style={style.scrollContainer}>
+            {this.props.portfolioAccounts.institutions.map((item, index) => (
+              <InstitutionHoldingsCard
+                key={index}
+                itemId={item.itemId}
+                insId={item.institutionId}
+              />
+ 
+            ))}
+            </ScrollView>
+          </View>
         </View>
       </SafeAreaView>
     );
@@ -139,15 +161,26 @@ class ManagePortfolio extends Component {
 const mapStateToProps = (state) => {
   return {
     gainers: state.company.gainers,
+    portfolioAccounts: state.user.portfolioAccounts,
+
   };
 };
-export default connect(mapStateToProps)(ManagePortfolio);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    PortfolioAccounts: () => dispatch(PortfolioAccounts()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ManagePortfolio);
 
 const style = StyleSheet.create({
   container: {
     backgroundColor: '#2a334a',
     paddingBottom:315,
+    flex:1
 
+  },
+  scrollContainer:{
+// flex:1
   },
   searchInputContainer: {
     marginBottom: moderateScale(22),

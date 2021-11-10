@@ -16,6 +16,7 @@ import {GetProfile} from '../../actions/profile';
 import {GetProfileImage} from '../../actions/profile';
 import {RefreshToken} from '../../actions/user';
 
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class Profile extends Component {
@@ -96,7 +97,7 @@ class Profile extends Component {
                     </Text>
                   </View>
                 </View>
-                <View style={style.graphContainer}>
+                {/* <View style={style.graphContainer}>
                   <ProfileGraph
                     graphData={[
                       {x: 2, y: 10},
@@ -108,7 +109,7 @@ class Profile extends Component {
                     ]}
                     range={[10, 15]}
                   />
-                </View>
+                </View> */}
                 <View style={style.timeFilterButtonsContainer}>
                   <TouchableOpacity
                     onPress={() => this.timeFilterSelect('live')}>

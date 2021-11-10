@@ -4,8 +4,9 @@ import PortfolioGraph from '../HomeTabComponents/PortfolioGraph';
 import BearIcon from '../../icons/BearIcon';
 import BullIcon from '../../icons/BullIcon';
 import {moderateScale} from '../../util/responsiveFont';
+import {connect} from 'react-redux';
 
-export default class UserPortfolioBox extends Component {
+class ManagePortfolioBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,101 +22,138 @@ export default class UserPortfolioBox extends Component {
       range: [5, 30],
       start: '',
       end: '',
+      securityDetails: [],
     };
   }
 
   componentDidMount() {
     const {item} = this.props;
     //X and Y
-    //X
-    const xDates = item.dates.map((item) => new Date(item * 1000));
-    //Y
-    const yPrices = item.priceHistory;
-    //X and Y data
-    const xyData = xDates.map((stockDate, stockPrice) => {
-      return {x: stockDate, y: yPrices[stockPrice]};
-    });
-    //Data periods
-    // Data for week
-    const weekData = xyData.slice(xyData.length - 7);
-    //Data for month
-    const monthData = xyData.slice(xyData.length - 31);
-    //Week range of stock prices
-    const weekRange = [
-      Math.min(...yPrices.slice(yPrices.length - 7)),
-      Math.max(...yPrices.slice(yPrices.length - 7)),
-    ];
+    //   //X
+    //   const xDates = item.dates.map((item) => new Date(item * 1000));
+    //   //Y
+    //   const yPrices = item.priceHistory;
+    //   //X and Y data
+    //   const xyData = xDates.map((stockDate, stockPrice) => {
+    //     return {x: stockDate, y: yPrices[stockPrice]};
+    //   });
+    //   //Data periods
+    //   // Data for week
+    //   const weekData = xyData.slice(xyData.length - 7);
+    //   //Data for month
+    //   const monthData = xyData.slice(xyData.length - 31);
+    //   //Week range of stock prices
+    //   const weekRange = [
+    //     Math.min(...yPrices.slice(yPrices.length - 7)),
+    //     Math.max(...yPrices.slice(yPrices.length - 7)),
+    //   ];
 
-    //Week begin and end prices
-    const weekStart = yPrices[yPrices.length - 7];
-    const weekEnd = yPrices[yPrices.length - 1];
+    //   //Week begin and end prices
+    //   const weekStart = yPrices[yPrices.length - 7];
+    //   const weekEnd = yPrices[yPrices.length - 1];
 
-    //Info to display
-    //Current stock price
-    const currentPrice = yPrices[yPrices.length - 1];
+    //   //Info to display
+    //   //Current stock price
+    //   const currentPrice = yPrices[yPrices.length - 1];
 
-    const seven = yPrices[yPrices.length - 7];
+    //   const seven = yPrices[yPrices.length - 7];
 
-    const testing = currentPrice - yPrices[yPrices.length - 7];
+    //   const testing = currentPrice - yPrices[yPrices.length - 7];
 
-    // Growth/Loss percentage
-    const percentChange = (
-      ((currentPrice - yPrices[yPrices.length - 7]) /
-        yPrices[yPrices.length - 7]) *
-      100
-    ).toFixed(2);
+    //   // Growth/Loss percentage
+    //   const percentChange = (
+    //     ((currentPrice - yPrices[yPrices.length - 7]) /
+    //       yPrices[yPrices.length - 7]) *
+    //     100
+    //   ).toFixed(2);
+    //  filteredSecurities = this.props.portfolioAccounts.securities.filter(
+    //   (security) => security.securityId == this.props.item.securityId,
+    // );
+    // this.setState({
+    //   securityDetails: filteredSecurities.map((item) => {
+    //     return {tickerSymbol: item.tickerSymbol, securityId: item.securityId, type: item.type};
+    //   }),
+    // });
 
-    this.setState({
-      graphData: weekData,
-      range: weekRange,
-      percent: percentChange,
-    });
+    //   this.setState({
+    //     graphData: weekData,
+    //     range: weekRange,
+    //     percent: percentChange,
+    //   });
   }
 
   render() {
-    const {item} = this.props;
-    const {graphData, percent, range} = this.state;
+    const {item, portfolioAccounts} = this.props;
+    const filteredSecurities = portfolioAccounts.securities.filter(
+      (security) =>
+        security.securityId == this.props.item.securityId &&
+        security.tickerSymbol !== null,
+    );
+    console.log(filteredSecurities, 'SECURITIES');
+    // const {graphData, percent, range} = this.state;
 
     return (
       <SafeAreaView style={style.container}>
-        <View style={style.symbolContainer}>
-          <Text style={percent > 0 ? style.symbolGain : style.symbolLoss}>
-            {item.symbol}
-          </Text>
-          <Text style={style.title}>{item.title}</Text>
-          <Text style={style.price}>Shares: 22</Text>
-          <Text style={style.price}>Price: ${item.price}</Text>
-        </View>
-        <View style={style.graphContainer}>
-          <PortfolioGraph
-            graphData={graphData}
-            range={range}
-            percent={percent}
-          />
-        </View>
-        <View style={style.percentContainer}>
-          {percent > 0 ? (
-            <BullIcon style={style.icon} />
-          ) : (
-            <BearIcon style={style.icon} />
-          )}
-          <Text style={percent > 0 ? style.percentGain : style.percentLoss}>
-            {percent}%
-          </Text>
-          <Text style={style.price}>Portfolio:</Text>
-        </View>
+        {filteredSecurities.map((item, index) => (
+          <View style={style.container}>
+            <View style={style.symbolContainer}>
+              <Text
+                style={
+                  this.state.percent > 0 ? style.symbolGain : style.symbolLoss
+                }>
+                {item.tickerSymbol}
+              </Text>
+              <Text style={style.title}>tesla</Text>
+              <Text style={style.price}>Shares: 22</Text>
+              <Text style={style.price}>Price: ${this.props.price}</Text>
+            </View>
+            <View style={style.graphContainer}>
+              <PortfolioGraph
+                graphData={this.state.graphData}
+                range={this.state.range}
+                percent={this.state.percent}
+              />
+            </View>
+            <View style={style.percentContainer}>
+              {this.state.percent > 0 ? (
+                <BullIcon style={style.icon} />
+              ) : (
+                <BearIcon style={style.icon} />
+              )}
+              <Text
+                style={
+                  this.state.percent > 0 ? style.percentGain : style.percentLoss
+                }>
+                {this.state.percent}%
+              </Text>
+              <Text style={style.price}>Portfolio:</Text>
+            </View>
+          </View>
+        ))}
       </SafeAreaView>
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    portfolioAccounts: state.user.portfolioAccounts,
+    // institution: state.user.institution,
+  };
+};
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // PortfolioAccounts: () => dispatch(PortfolioAccounts()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ManagePortfolioBox);
 const style = StyleSheet.create({
   container: {
     backgroundColor: '#2a334a',
     flexDirection: 'row',
     justifyContent: 'space-between',
     flex: 1,
-    width: moderateScale(99),
+    width: moderateScale(89),
   },
   icon: {
     alignSelf: 'flex-end',

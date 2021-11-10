@@ -116,7 +116,7 @@ export class ManagePortfolioCompany extends Component {
           ) : (
             <Text>Company Information</Text>
           )}
-          <View style={style.graphContainer}>
+          {/* <View style={style.graphContainer}>
             <CompanyStockGraph graphData={graphData} range={range} />
             <View style={style.graphNumbers}>
               <Text style={style.graphNumberText}>-{chartLow}</Text>
@@ -124,7 +124,7 @@ export class ManagePortfolioCompany extends Component {
               <Text style={style.graphNumberText}>-{chartThreeQuarter}</Text>
               <Text style={style.graphNumberText}>-{chartHigh}</Text>
             </View>
-          </View>
+          </View> */}
           <View style={style.stockButtonsContainer}>
             <TouchableOpacity
               onPress={() =>
