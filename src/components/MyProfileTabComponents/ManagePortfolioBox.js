@@ -49,7 +49,7 @@ class ManagePortfolioBox extends Component {
     const ticker = filteredSecurities.map((item) => item.tickerSymbol);
     axios
       .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=year`,
+        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=day`,
       )
       .then((response) => {
         this.setState({

@@ -19,7 +19,7 @@ import {
   fetchStockThreeMonth,
   fetchStockYear,
   fetchStockDetails,
-  // stockLatest,
+  stockLatest,
 } from '../../actions/marketMovers';
 import TriangleIcon from '../../icons/TriangleIcon';
 
@@ -51,6 +51,8 @@ export class ManagePortfolioCompany extends Component {
     this.props.fetchStockDay(this.props.route.params.item.tickerSymbol);
     // this.props.stockLatest(this.props.route.params.item.tickerSymbol);
     this.props.fetchStockDetails(this.props.route.params.item.tickerSymbol);
+    this.props.stockLatest(this.props.route.params.item.tickerSymbol);
+
     // this.props.navigation.setOptions({title: this.props.stockDetails.name});
   }
 
@@ -100,8 +102,8 @@ export class ManagePortfolioCompany extends Component {
       });
     };
 
-    // const currentPrice =
-    //   this.props?.route?.params?.item?.quote?.volumeWeightedAveragePrice;
+    const currentPrice = this.props.stockLatestData.volumeWeightedAveragePrice;
+
 
     //Numbers to display graph numbers, can also use use built in graph numbers instead
     //Graph high number
@@ -129,28 +131,21 @@ export class ManagePortfolioCompany extends Component {
     return (
       <SafeAreaView style={style.mainContainer}>
         <ScrollView>
-          {this.props.route.params ? (
+        {this.props.route.params ? (
             <View style={style.aboveGraphContainer}>
               <View style={style.symbolView}>
-                <Text style={style.symbol}>
-                  {route.params.item.tickerSymbol}
+                <Text style={style.symbol}>{route.params.item.ticker}</Text>
+                <Text style={style.price}>
+                  ${this.props.stockLatestData.volumeWeightedAveragePrice}
                 </Text>
-                {/* <Text style={style.price}>
-                  ${route.params.item.quote.volumeWeightedAveragePrice}
-                </Text> */}
               </View>
-              {/* <View style={style.titleView}>
-                <Text style={style.title}>{route.params.item.title}</Text>
-                {this.props.route.params.stockCategory == 'losers' ? (
-                  <Text style={style.percentageLoss}>
-                    ({route.params.item.change}%)
-                  </Text>
-                ) : (
-                  <Text style={style.percentage}>
-                    (+{route.params.item.change}%)
-                  </Text>
-                )}
-              </View> */}
+              <View style={style.titleView}>
+                {/* <Text style={style.title}>{route.params.item.title}</Text> */}
+
+                <Text style={style.percentage}>
+                  (+{this.props.stockLatestDatachange}%)
+                </Text>
+              </View>
             </View>
           ) : (
             <Text>Company Information</Text>
@@ -292,41 +287,37 @@ export class ManagePortfolioCompany extends Component {
 
           <Text style={style.vitalsHeader}>STATS</Text>
           <View style={style.vitalsContainer}>
-            <View style={style.vitalsLeftColumn}>
+          <View style={style.vitalsLeftColumn}>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Open:</Text>
-                {/* <Text style={style.vitalDetailsData}>
-                  ${currentPrice.toFixed(2)}
-                </Text> */}
+                <Text style={style.vitalDetailsData}>${currentPrice}</Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>High:</Text>
-                {/* <Text style={style.vitalDetailsData}>
-                  ${this.props.route.params.item.quote.high.toFixed(2)}
-                </Text> */}
+                <Text style={style.vitalDetailsData}>
+                  ${this.props.stockLatestData.high}
+                </Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Low:</Text>
-                {/* <Text style={style.vitalDetailsData}>
-                  ${this.props.route.params.item.quote.low.toFixed(2)}
-                </Text> */}
+                <Text style={style.vitalDetailsData}>
+                  ${this.props.stockLatestData.low}
+                </Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Volume:</Text>
-                {/* <Text style={style.vitalDetailsData}>
-                  ${this.props.route.params.item.quote.volume.toFixed(2)}
-                </Text> */}
+                <Text style={style.vitalDetailsData}>
+                  ${this.props.stockLatestData.volume}
+                </Text>
               </View>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Avg Vol:</Text>
-                {/* <Text style={style.vitalDetailsData}>
-                  $
-                  {this.props.route.params.item.quote.volumeWeightedAveragePrice.toFixed(
-                    2,
-                  )}
-                </Text> */}
+                <Text style={style.vitalDetailsData}>
+                  ${this.props.stockLatestData.volumeWeightedAveragePrice}
+                </Text>
               </View>
             </View>
+
 
             <View style={style.vitalsRightColumn}>
               <View style={style.vitalsRow}>
@@ -379,6 +370,8 @@ const mapStateToProps = (state) => {
     stockRange: state.company.stockRange,
     stockDetails: state.company.stockDetails,
     stockLoading: state.company.stockLoading,
+    stockLatestData: state.company.stockLatestData,
+
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -389,7 +382,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchStockThreeMonth: (ticker) => dispatch(fetchStockThreeMonth(ticker)),
     fetchStockYear: (ticker) => dispatch(fetchStockYear(ticker)),
     fetchStockDetails: (ticker) => dispatch(fetchStockDetails(ticker)),
-    // stockLatest: (ticker) => dispatch(stockLatest(ticker)),
+    stockLatest: (ticker) => dispatch(stockLatest(ticker)),
   };
 };
 
