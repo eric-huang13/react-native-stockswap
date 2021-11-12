@@ -153,6 +153,7 @@ class ManagePortfolio extends Component {
                   key={index}
                   itemId={item.itemId}
                   insId={item.institutionId}
+                  navigation={this.props.navigation}
                 />
               ))}
             </ScrollView>

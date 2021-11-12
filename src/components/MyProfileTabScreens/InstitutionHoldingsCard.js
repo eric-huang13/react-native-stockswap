@@ -28,7 +28,11 @@ class InstitutionHoldingsCard extends Component {
         ))}
 
         {filteredAccounts.map((item, index) => (
-          <AccountCard key={index} item={item} />
+          <AccountCard
+            key={index}
+            item={item}
+            navigation={this.props.navigation}
+          />
         ))}
       </View>
     );

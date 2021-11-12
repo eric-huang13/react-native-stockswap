@@ -27,11 +27,14 @@ class AccountCard extends Component {
               key={index}
               item={item}
               InstitutionId={this.props.itemId}
+              navigation={this.props.navigation}
             />
           ))
         ) : (
           <View>
-            <Text style={style.loadingText}>You have no holdings in this account.</Text>
+            <Text style={style.loadingText}>
+              You have no holdings in this account.
+            </Text>
           </View>
         )}
       </View>
@@ -42,7 +45,6 @@ class AccountCard extends Component {
 const mapStateToProps = (state) => {
   return {
     portfolioAccounts: state.user.portfolioAccounts,
-    // institution: state.user.institution,
   };
 };
 
@@ -101,6 +103,6 @@ const style = StyleSheet.create({
     fontSize: moderateScale(13),
     fontFamily: 'Montserrat-SemiBold',
     alignSelf: 'center',
-    marginTop:moderateScale(10),
+    marginTop: moderateScale(10),
   },
 });

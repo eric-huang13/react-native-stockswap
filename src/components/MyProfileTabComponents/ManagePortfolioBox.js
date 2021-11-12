@@ -1,145 +1,140 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  SafeAreaView,
+  TouchableOpacity,
+} from 'react-native';
 import PortfolioGraph from '../HomeTabComponents/PortfolioGraph';
 import BearIcon from '../../icons/BearIcon';
 import BullIcon from '../../icons/BullIcon';
 import {moderateScale} from '../../util/responsiveFont';
 import {connect} from 'react-redux';
+import axios from 'axios';
 
 class ManagePortfolioBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      graphData: [
-        {x: 2, y: 10},
-        {x: 3, y: 21},
-        {x: 4, y: 32},
-        {x: 5, y: 14},
-        {x: 6, y: 4},
-        {x: 7, y: 25},
-      ],
+      graphData: [],
       percent: '1.22',
       range: [5, 30],
       start: '',
       end: '',
       securityDetails: [],
       stockSymbol: '',
+
+      loading: true,
+      error: false,
     };
   }
 
   componentDidMount() {
     const {item} = this.props;
-    //X and Y
-    //   //X
-    //   const xDates = item.dates.map((item) => new Date(item * 1000));
-    //   //Y
-    //   const yPrices = item.priceHistory;
-    //   //X and Y data
-    //   const xyData = xDates.map((stockDate, stockPrice) => {
-    //     return {x: stockDate, y: yPrices[stockPrice]};
-    //   });
-    //   //Data periods
-    //   // Data for week
-    //   const weekData = xyData.slice(xyData.length - 7);
-    //   //Data for month
-    //   const monthData = xyData.slice(xyData.length - 31);
-    //   //Week range of stock prices
-    //   const weekRange = [
-    //     Math.min(...yPrices.slice(yPrices.length - 7)),
-    //     Math.max(...yPrices.slice(yPrices.length - 7)),
-    //   ];
-
-    //   //Week begin and end prices
-    //   const weekStart = yPrices[yPrices.length - 7];
-    //   const weekEnd = yPrices[yPrices.length - 1];
-
-    //   //Info to display
-    //   //Current stock price
-    //   const currentPrice = yPrices[yPrices.length - 1];
-
-    //   const seven = yPrices[yPrices.length - 7];
-
-    //   const testing = currentPrice - yPrices[yPrices.length - 7];
-
-    //   // Growth/Loss percentage
-    //   const percentChange = (
-    //     ((currentPrice - yPrices[yPrices.length - 7]) /
-    //       yPrices[yPrices.length - 7]) *
-    //     100
-    //   ).toFixed(2);
 
     const filteredSecurities = this.props.portfolioAccounts.securities.filter(
       (security) =>
         security.securityId == this.props.item.securityId &&
         security.itemId == this.props.item.itemId &&
-        security.tickerSymbol !== null,
+        security.tickerSymbol !== null &&
+        security.type !== 'cash' &&
+        security.type !== 'derivative',
     );
 
     const tickerSym = filteredSecurities.map((item) =>
       this.setState({stockSymbol: item.tickerSymbol}),
     );
+    this.setState({securityDetails: filteredSecurities});
+    const ticker = filteredSecurities.map((item) => item.tickerSymbol);
+    axios
+      .get(
+        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=year`,
+      )
+      .then((response) => {
+        this.setState({
+          graphData: response.data.result.quotes,
+          loading: false,
+          error: false,
+        });
+      })
+      .catch((error) => {
+        console.log(error, 'error'),
+          this.setState({loading: false, error: true});
+      });
   }
 
   render() {
-    const {item, portfolioAccounts} = this.props;
-    const filteredSecurities = portfolioAccounts.securities.filter(
-      (security) =>
-        security.securityId == this.props.item.securityId &&
-        security.itemId == this.props.item.itemId &&
-        security.tickerSymbol !== null,
-    );
     const stockObject = this.props.tickersAll[this.state.stockSymbol];
+    let yearPrices = this.state.graphData.map((a) => a.close);
+
+    const yearPriceRange = [Math.min(...yearPrices), Math.max(...yearPrices)];
+    const stockYearDataOriginal = this.state.graphData.map((i) => {
+      return {x: Date.parse(i.window.startTime), y: i.close};
+    });
+    const stockYearData = stockYearDataOriginal.reverse();
 
     return (
       <SafeAreaView style={style.container}>
-        {filteredSecurities.map((item, index) => (
-          <View style={style.container} key={index}>
-            <View style={style.symbolContainer}>
-              <Text
-                style={
-                  this.state.percent > 0 ? style.symbolGain : style.symbolLoss
-                }>
-                {item.tickerSymbol}
-              </Text>
-              {stockObject ? (
-                <Text style={style.title}>
-                  {stockObject.name.length < 15
-                    ? `${stockObject.name}`
-                    : `${stockObject.name.substring(0, 14)}...`}
+        {this.state.securityDetails.map((item, index) => (
+          <TouchableOpacity
+            key={index}
+            onPress={() =>
+              this.props.navigation.navigate({
+                name: 'ManagePortfolioCompany',
+                params: {item},
+              })
+            }>
+            <View style={style.container} key={index}>
+              <View style={style.symbolContainer}>
+                <Text
+                  style={
+                    this.state.percent > 0 ? style.symbolGain : style.symbolLoss
+                  }>
+                  {item.tickerSymbol}
                 </Text>
-              ) : null}
-              <Text style={style.price}>Shares: 22</Text>
-              <Text style={style.price}>Price: ${this.props.item.price}</Text>
-            </View>
-            {this.state.stockSymbol !== '' ? (
+                {stockObject ? (
+                  <Text style={style.title}>
+                    {stockObject.name.length < 15
+                      ? `${stockObject.name}`
+                      : `${stockObject.name.substring(0, 14)}...`}
+                  </Text>
+                ) : null}
+                <Text style={style.price}>Shares: 22</Text>
+                <Text style={style.price}>Price: ${this.props.item.price}</Text>
+              </View>
+              {/* {this.state.stockSymbol !== '' ? ( */}
               <View style={style.graphContainer}>
                 <PortfolioGraph
                   ticker={this.state.stockSymbol}
+                  stockYearData={stockYearData}
+                  yearPriceRange={yearPriceRange}
+                  loading={this.state.loading}
+                  error={this.state.error}
                   graphData={this.state.graphData}
-                  range={this.state.range}
+                  // range={this.state.range}
                   // percent={this.state.percent}
                 />
               </View>
-            ) : (
-              <View style={style.unavailableView}>
-                <Text style={style.loadingText}>Graph data unavailable</Text>
+
+              <View style={style.percentContainer}>
+                {this.state.percent > 0 ? (
+                  <BullIcon style={style.icon} />
+                ) : (
+                  <BearIcon style={style.icon} />
+                )}
+                <Text
+                  style={
+                    this.state.percent > 0
+                      ? style.percentGain
+                      : style.percentLoss
+                  }>
+                  {this.state.percent}%
+                </Text>
+                <Text style={style.price}>Portfolio</Text>
               </View>
-            )}
-            <View style={style.percentContainer}>
-              {this.state.percent > 0 ? (
-                <BullIcon style={style.icon} />
-              ) : (
-                <BearIcon style={style.icon} />
-              )}
-              <Text
-                style={
-                  this.state.percent > 0 ? style.percentGain : style.percentLoss
-                }>
-                {this.state.percent}%
-              </Text>
-              <Text style={style.price}>Portfolio</Text>
             </View>
-          </View>
+          </TouchableOpacity>
         ))}
       </SafeAreaView>
     );
@@ -148,15 +143,12 @@ class ManagePortfolioBox extends Component {
 const mapStateToProps = (state) => {
   return {
     portfolioAccounts: state.user.portfolioAccounts,
-    // institution: state.user.institution,
     tickersAll: state.company.tickersAll,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    // PortfolioAccounts: () => dispatch(PortfolioAccounts()),
-  };
+  return {};
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ManagePortfolioBox);
 const style = StyleSheet.create({

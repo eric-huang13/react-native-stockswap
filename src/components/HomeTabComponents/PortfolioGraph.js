@@ -18,45 +18,23 @@ export default class PortfolioGraph extends Component {
     };
   }
 
-  componentDidMount() {
-    axios
-      .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${this.props.ticker}/quote/historic?interval=year`,
-      )
-      .then((response) => {
-        this.setState({
-          graphData: response.data.result.quotes,
-          loading: false,
-          error: false,
-        });
-      })
-      .catch((error) => {
-        console.log(error, 'error'),
-          this.setState({loading: false, error: true});
-      });
-  }
+  componentDidMount() {}
   render() {
-    if (this.state.loading) {
+    if (this.props.loading) {
       return (
         <View style={styles.container}>
           <Text style={styles.loadingText}>Loading...</Text>
         </View>
       );
     }
-    if (this.state.error || this.state.graphData < 2) {
+    if (this.props.error || this.props.graphData < 2) {
       return (
         <View style={styles.unavailableView}>
           <Text style={styles.loadingText}>Graph data unavailable</Text>
         </View>
       );
     }
-    let yearPrices = this.state.graphData.map((a) => a.close);
 
-    const yearPriceRange = [Math.min(...yearPrices), Math.max(...yearPrices)];
-    const stockYearDataOriginal = this.state.graphData.map((i) => {
-      return {x: Date.parse(i.window.startTime), y: i.close};
-    });
-    const stockYearData = stockYearDataOriginal.reverse();
     const lineColor = this.state.percent > 0 ? '#91f2b1' : '#F66E6E';
 
     const fillGradient = (props) => {
@@ -71,8 +49,8 @@ export default class PortfolioGraph extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <SlideAreaChart
-          data={stockYearData}
-          yRange={yearPriceRange}
+          data={this.props.stockYearData}
+          yRange={this.props.yearPriceRange}
           width={Dimensions.get('window').width - 180}
           height={70}
           style={{backgroundColor: '#2a334a'}}
