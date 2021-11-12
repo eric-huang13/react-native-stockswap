@@ -21,13 +21,19 @@ class AccountCard extends Component {
           <Text style={style.accountName}>{this.props.item.name}</Text>
         </View>
 
-        {filteredHoldings.map((item, index) => (
-          <ManagePortfolioBox
-            key={index}
-            item={item}
-            InstitutionId={this.props.itemId}
-          />
-        ))}
+        {filteredHoldings.length > 1 ? (
+          filteredHoldings.map((item, index) => (
+            <ManagePortfolioBox
+              key={index}
+              item={item}
+              InstitutionId={this.props.itemId}
+            />
+          ))
+        ) : (
+          <View>
+            <Text style={style.loadingText}>You have no holdings in this account.</Text>
+          </View>
+        )}
       </View>
     );
   }
@@ -89,5 +95,12 @@ const style = StyleSheet.create({
     fontStyle: 'italic',
     fontSize: moderateScale(16),
     marginBottom: moderateScale(12),
+  },
+  loadingText: {
+    color: '#B8A0FF',
+    fontSize: moderateScale(13),
+    fontFamily: 'Montserrat-SemiBold',
+    alignSelf: 'center',
+    marginTop:moderateScale(10),
   },
 });

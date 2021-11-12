@@ -75,7 +75,7 @@ class ManagePortfolio extends Component {
           <View style={style.topDetailsRow}>
             <View style={style.percentContainer}>
               <Text style={style.portfolio}>Portfolio</Text>
-              <Text style={style.percent}>{this.state.portfolioTotal}</Text>
+              <Text style={style.percent}>${this.state.portfolioTotal}</Text>
             </View>
             <View style={style.gainDetailsContainer}>
               <Text style={style.gain}>$-10.75(-11%)</Text>
