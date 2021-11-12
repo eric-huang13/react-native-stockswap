@@ -23,7 +23,7 @@ class ManagePortfolioBox extends Component {
       start: '',
       end: '',
       securityDetails: [],
-      stockSymbol:'',
+      stockSymbol: '',
     };
   }
 
@@ -67,16 +67,17 @@ class ManagePortfolioBox extends Component {
     //       yPrices[yPrices.length - 7]) *
     //     100
     //   ).toFixed(2);
-  
+
     const filteredSecurities = this.props.portfolioAccounts.securities.filter(
       (security) =>
         security.securityId == this.props.item.securityId &&
+        security.itemId == this.props.item.itemId &&
         security.tickerSymbol !== null,
     );
 
-
-        const tickerSym = filteredSecurities.map((item) => this.setState({stockSymbol:item.tickerSymbol}));
-
+    const tickerSym = filteredSecurities.map((item) =>
+      this.setState({stockSymbol: item.tickerSymbol}),
+    );
   }
 
   render() {
@@ -84,12 +85,10 @@ class ManagePortfolioBox extends Component {
     const filteredSecurities = portfolioAccounts.securities.filter(
       (security) =>
         security.securityId == this.props.item.securityId &&
+        security.itemId == this.props.item.itemId &&
         security.tickerSymbol !== null,
     );
-console.log(this.state, "STATE")
-const stockObject =this.props.tickersAll[this.state.stockSymbol]
-
-
+    const stockObject = this.props.tickersAll[this.state.stockSymbol];
 
     return (
       <SafeAreaView style={style.container}>
@@ -102,25 +101,30 @@ const stockObject =this.props.tickersAll[this.state.stockSymbol]
                 }>
                 {item.tickerSymbol}
               </Text>
-              { stockObject ?
-           <Text style={style.title}>
-                {stockObject.name.length < 15
-                  ? `${stockObject.name}`
-                  : `${stockObject.name.substring(0, 14)}...`}
-              </Text>
-              :
-              null
-  }
+              {stockObject ? (
+                <Text style={style.title}>
+                  {stockObject.name.length < 15
+                    ? `${stockObject.name}`
+                    : `${stockObject.name.substring(0, 14)}...`}
+                </Text>
+              ) : null}
               <Text style={style.price}>Shares: 22</Text>
               <Text style={style.price}>Price: ${this.props.item.price}</Text>
             </View>
-            <View style={style.graphContainer}>
-              <PortfolioGraph
-                graphData={this.state.graphData}
-                range={this.state.range}
-                percent={this.state.percent}
-              />
-            </View>
+            {this.state.stockSymbol !== '' ? (
+              <View style={style.graphContainer}>
+                <PortfolioGraph
+                  ticker={this.state.stockSymbol}
+                  graphData={this.state.graphData}
+                  range={this.state.range}
+                  // percent={this.state.percent}
+                />
+              </View>
+            ) : (
+              <View style={style.unavailableView}>
+                <Text style={style.loadingText}>Graph data unavailable</Text>
+              </View>
+            )}
             <View style={style.percentContainer}>
               {this.state.percent > 0 ? (
                 <BullIcon style={style.icon} />
@@ -145,8 +149,7 @@ const mapStateToProps = (state) => {
   return {
     portfolioAccounts: state.user.portfolioAccounts,
     // institution: state.user.institution,
-    tickersAll: state.company.tickersAll
-
+    tickersAll: state.company.tickersAll,
   };
 };
 
@@ -217,5 +220,20 @@ const style = StyleSheet.create({
     fontFamily: 'Montserrat-Bold',
     fontSize: moderateScale(16),
     textAlign: 'left',
+  },
+  unavailableView: {
+    backgroundColor: '#2a334a',
+    flexDirection: 'row',
+
+    width: moderateScale(234),
+    alignItems: 'center',
+  },
+  loadingText: {
+    color: '#B8A0FF',
+    fontSize: moderateScale(13),
+    fontFamily: 'Montserrat-SemiBold',
+    marginBottom: moderateScale(24),
+    alignSelf: 'center',
+    marginLeft: 28,
   },
 });

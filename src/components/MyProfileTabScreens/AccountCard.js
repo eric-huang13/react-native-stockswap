@@ -20,10 +20,13 @@ class AccountCard extends Component {
         <View>
           <Text style={style.accountName}>{this.props.item.name}</Text>
         </View>
-      
 
         {filteredHoldings.map((item, index) => (
-          <ManagePortfolioBox key={index} item={item} />
+          <ManagePortfolioBox
+            key={index}
+            item={item}
+            InstitutionId={this.props.itemId}
+          />
         ))}
       </View>
     );

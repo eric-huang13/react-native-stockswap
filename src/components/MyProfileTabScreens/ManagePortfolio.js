@@ -17,10 +17,17 @@ import {moderateScale} from '../../util/responsiveFont';
 import {PortfolioAccounts} from '../../actions/profile';
 import InstitutionHoldingsCard from './InstitutionHoldingsCard';
 
-
 class ManagePortfolio extends Component {
   componentDidMount() {
     this.props.PortfolioAccounts();
+    let sum = this.props.portfolioAccounts.holdings.reduce(function (
+      total,
+      currentValue,
+    ) {
+      return total + currentValue.price;
+    },
+    0);
+    this.setState({portfolioTotal: sum.toFixed(2)});
   }
   constructor(props) {
     super(props);
@@ -28,6 +35,7 @@ class ManagePortfolio extends Component {
       input: '',
       shouldShow: false,
       dropDown: 'Select sorting',
+      portfolioTotal: null,
     };
   }
   handleChange = (text) => {
@@ -48,10 +56,8 @@ class ManagePortfolio extends Component {
 
     const {shouldShow} = this.state;
     if (!this.props.portfolioAccounts.institutions) {
-      return (
-        <SafeAreaView style={style.container}>        
-        </SafeAreaView>
-      );    }
+      return <SafeAreaView style={style.container}></SafeAreaView>;
+    }
     return (
       <SafeAreaView style={style.container}>
         <View style={style.searchInputContainer}>
@@ -69,7 +75,7 @@ class ManagePortfolio extends Component {
           <View style={style.topDetailsRow}>
             <View style={style.percentContainer}>
               <Text style={style.portfolio}>Portfolio</Text>
-              <Text style={style.percent}>$3,201</Text>
+              <Text style={style.percent}>{this.state.portfolioTotal}</Text>
             </View>
             <View style={style.gainDetailsContainer}>
               <Text style={style.gain}>$-10.75(-11%)</Text>
@@ -142,14 +148,13 @@ class ManagePortfolio extends Component {
           /> */}
           <View>
             <ScrollView style={style.scrollContainer}>
-            {this.props.portfolioAccounts.institutions.map((item, index) => (
-              <InstitutionHoldingsCard
-                key={index}
-                itemId={item.itemId}
-                insId={item.institutionId}
-              />
- 
-            ))}
+              {this.props.portfolioAccounts.institutions.map((item, index) => (
+                <InstitutionHoldingsCard
+                  key={index}
+                  itemId={item.itemId}
+                  insId={item.institutionId}
+                />
+              ))}
             </ScrollView>
           </View>
         </View>
@@ -162,7 +167,6 @@ const mapStateToProps = (state) => {
   return {
     gainers: state.company.gainers,
     portfolioAccounts: state.user.portfolioAccounts,
-
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -175,12 +179,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(ManagePortfolio);
 const style = StyleSheet.create({
   container: {
     backgroundColor: '#2a334a',
-    paddingBottom:275,
-    flex:1
-
+    paddingBottom: 275,
+    flex: 1,
   },
-  scrollContainer:{
-// flex:1
+  scrollContainer: {
+    // flex:1
   },
   searchInputContainer: {
     marginBottom: moderateScale(22),
@@ -225,8 +228,7 @@ const style = StyleSheet.create({
     marginLeft: moderateScale(8),
   },
   boxContainer: {
-    marginTop: moderateScale(6),  
-
+    marginTop: moderateScale(6),
   },
   portfolioBoxContainer: {
     borderBottomWidth: 1,
