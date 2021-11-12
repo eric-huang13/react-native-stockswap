@@ -16,6 +16,7 @@ import ShareToModal from '../HomeTabComponents/ShareToModal';
 import LikeInactiveIcon from '../../icons/LikeInactiveIcon';
 import CommentIcon from '../../icons/CommentIcon';
 import {moderateScale} from '../../util/responsiveFont';
+import MoreBox from '../HomeTabComponents/MoreBox';
 
 export default class PostScreen extends Component {
   constructor(props) {
@@ -24,6 +25,7 @@ export default class PostScreen extends Component {
       shouldShow: false,
       reportModalState: false,
       shareModalState: false,
+      options: [],
     };
   }
   accountId = this.props.route.params.userAccount.id;
@@ -73,6 +75,9 @@ export default class PostScreen extends Component {
           visible={shareModalState}
           animationType="slide">
           <ShareToModal shareModal={this.shareModal.bind(this)} />
+        </Modal>
+        <Modal transparent={true} visible={shouldShow} animationType="slide">
+          <MoreBox reportModal={this.reportModal.bind(this)} />
         </Modal>
         <ScrollView style={style.scrollContainer}>
           <View style={style.postNameContainer}>

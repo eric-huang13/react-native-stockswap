@@ -1,41 +1,122 @@
-import React, {Component} from 'react';
-import UserPosts from './UserPosts';
+import React, {Component, useState, useEffect, useRef} from 'react';
+import UserPosts from '../UserPost/UserPosts';
 import StockTicker from '../HomeTabComponents/StockTicker';
 import {connect} from 'react-redux';
-import {Button, SafeAreaView, Text, ScrollView, StyleSheet} from 'react-native';
+import {
+  Button,
+  Modal,
+  SafeAreaView,
+  Text,
+  ScrollView,
+  StyleSheet,
+} from 'react-native';
 import {fetchTickers} from '../../actions/marketMovers';
-
+import ReportModal from '../HomeTabComponents/ReportModal';
+import ShareToModal from '../HomeTabComponents/ShareToModal';
 import {Logout} from 'actions/user';
+import MoreBox from '../HomeTabComponents/MoreBox';
 
-class HomeScreen extends Component {
-  componentDidMount() {
-    // const {companies, fetchGainers} = this.props;
-    this.props.fetchTickers();
-  }
-  render() {
-    const {isLoggedIn, LogoutUser, posts, comments, reply, userAccount} =
-      this.props;
+const myPostsOptions = [
+  {
+    label: 'Edit Post',
+    value: 'EDIT_POST',
+  },
+  {label: 'Remove Post', value: 'REMOVE_POST'},
+];
 
-    return (
-      <SafeAreaView style={style.mainContainer}>
-        <ScrollView>
-          <StockTicker />
+const otherPostsOptions = [
+  {
+    label: 'Repost',
+    value: 'REPOST',
+  },
+  {label: 'Copy link', value: 'COPY_LINK'},
+  {label: 'Share to...', value: 'SHARE_POST'},
+  {label: 'Turn on notifications', value: 'TURN_ON_NOTIFICATIONS'},
+  {label: 'Report', value: 'REPORT'},
+];
 
-          {posts.map((post) => (
-            <UserPosts
-              key={post.id}
-              post={post}
-              navigation={this.props.navigation}
-              comments={comments}
-              reply={reply}
-              userAccount={userAccount}
-            />
-          ))}
-        </ScrollView>
-      </SafeAreaView>
-    );
-  }
-}
+const HomeScreen = ({
+  navigation,
+  fetchTickers,
+  isLoggedIn,
+  LogoutUser,
+  posts,
+  comments,
+  reply,
+  userAccount,
+}) => {
+  const [reportModalState, setReportModalState] = useState(false);
+  const [shareModalState, setShareModalState] = useState(false);
+  const [optionsModalState, setOptionsModalState] = useState(false);
+  const [optionsState, setOptionsState] = useState([]);
+  const accountId = userAccount.id;
+
+  useEffect(() => {
+    fetchTickers && fetchTickers();
+  }, []);
+
+  const reportModal = () => {
+    setReportModalState(show);
+  };
+
+  const shareModal = () => {
+    setShareModalState(true);
+  };
+
+  const optionModal = (post) => {
+    setOptionsModalState(true);
+    if (post?.userId == accountId) {
+      setOptionsState(myPostsOptions);
+    } else {
+      setOptionsState(otherPostsOptions);
+    }
+  };
+
+  return (
+    <SafeAreaView style={style.mainContainer}>
+      <ScrollView>
+        <StockTicker />
+        <Modal
+          transparent={true}
+          visible={reportModalState}
+          animationType="slide">
+          <ReportModal
+            reportModal={setReportModalState}
+            onClose={() => setOptionsModalState(false)}
+          />
+        </Modal>
+        <Modal
+          transparent={true}
+          visible={shareModalState}
+          animationType="slide">
+          <ShareToModal shareModal={setShareModalState} />
+        </Modal>
+        <Modal
+          transparent={true}
+          visible={optionsModalState}
+          animationType="slide">
+          <MoreBox
+            options={optionsState}
+            onClose={() => setOptionsModalState(false)}
+          />
+        </Modal>
+        {posts.map((post) => (
+          <UserPosts
+            key={post.id}
+            post={post}
+            navigation={navigation}
+            comments={comments}
+            reply={reply}
+            userAccount={userAccount}
+            reportModal={reportModal}
+            shareModal={shareModal}
+            optionModal={optionModal}
+          />
+        ))}
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
