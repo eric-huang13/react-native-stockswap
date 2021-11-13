@@ -24,7 +24,6 @@ class ManagePortfolioBox extends Component {
       end: '',
       securityDetails: [],
       stockSymbol: '',
-
       loading: true,
       error: false,
     };
@@ -73,7 +72,10 @@ class ManagePortfolioBox extends Component {
       return {x: Date.parse(i.window.startTime), y: i.close};
     });
     const stockYearData = stockYearDataOriginal.reverse();
-
+   
+    if (this.state.securityDetails.length < 1) {
+      return null;
+    }
     return (
       <SafeAreaView style={style.container}>
         {this.state.securityDetails.map((item, index) => (
@@ -85,7 +87,7 @@ class ManagePortfolioBox extends Component {
                 params: {item},
               })
             }>
-            <View style={style.container} key={index}>
+            <View style={style.mainContainer} key={index}>
               <View style={style.symbolContainer}>
                 <Text
                   style={
@@ -95,12 +97,14 @@ class ManagePortfolioBox extends Component {
                 </Text>
                 {stockObject ? (
                   <Text style={style.title}>
-                    {stockObject.name.length < 15
+                    {stockObject.name.length < 19
                       ? `${stockObject.name}`
-                      : `${stockObject.name.substring(0, 14)}...`}
+                      : `${stockObject.name.substring(0, 18)}...`}
                   </Text>
                 ) : null}
-                <Text style={style.price}>Shares: 22</Text>
+                <Text style={style.price}>
+                  Shares: {this.props.item.quantity}
+                </Text>
                 <Text style={style.price}>Price: ${this.props.item.price}</Text>
               </View>
               {/* {this.state.stockSymbol !== '' ? ( */}
@@ -154,10 +158,21 @@ export default connect(mapStateToProps, mapDispatchToProps)(ManagePortfolioBox);
 const style = StyleSheet.create({
   container: {
     backgroundColor: '#2a334a',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(158, 150, 150, .6)',
+    padding: moderateScale(0.1),
+    marginTop: moderateScale(8),
+  },
+  mainContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    flex: 1,
-    width: moderateScale(84),
+    width: moderateScale(180),
+  },
+  portfolioBoxContainer: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(158, 150, 150, .6)',
+    padding: moderateScale(0.1),
+    marginTop: moderateScale(8),
   },
   icon: {
     alignSelf: 'flex-end',
@@ -167,7 +182,7 @@ const style = StyleSheet.create({
     justifyContent: 'space-evenly',
     paddingVertical: moderateScale(4),
     paddingLeft: moderateScale(8),
-    width: '100%',
+    width: '45%',
     textAlign: 'left',
   },
   symbolGain: {

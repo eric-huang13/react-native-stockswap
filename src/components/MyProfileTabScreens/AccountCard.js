@@ -61,13 +61,8 @@ const style = StyleSheet.create({
     backgroundColor: '#2a334a',
   },
   institutionCard: {
-    // borderColor:'lightgrey',
-    // borderWidth:.5,
     marginVertical: moderateScale(10),
-    marginHorizontal: moderateScale(4),
-    padding: moderateScale(4),
   },
-
   name: {
     color: 'white',
     fontWeight: 'bold',
