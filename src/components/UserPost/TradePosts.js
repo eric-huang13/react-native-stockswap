@@ -10,8 +10,6 @@ import {
 } from 'react-native';
 import LikeInactiveIcon from '../../icons/LikeInactiveIcon';
 import CommentIcon from '../../icons/CommentIcon';
-import ReportModal from '../HomeTabComponents/ReportModal';
-import ShareToModal from '../HomeTabComponents/ShareToModal';
 import BullIcon from '../../icons/BullIcon';
 import BearIcon from '../../icons/BearIcon';
 
@@ -56,9 +54,7 @@ export default class TradePost extends Component {
     this.setState({shareModalState: item, shouldShow: false});
   }
   render() {
-    const {shouldShow, reportModalState, shareModalState} = this.state;
-
-    const {post, comments, reply, userAccount} = this.props;
+    const {post, comments, reply, userAccount, onMorePress} = this.props;
 
     const filteredComments = comments.filter(
       (comment) => comment.postId === post.id,
@@ -79,57 +75,11 @@ export default class TradePost extends Component {
               <Text style={style.postUserName}>{post.name}</Text>
             </View>
           </TouchableOpacity>
-          {userAccount.id === post.userId ? (
-            <View style={style.dotsDropdownContainer}>
-              <TouchableOpacity
-                onPress={() =>
-                  this.setState({
-                    shouldShow: !shouldShow,
-                  })
-                }>
-                <Text style={style.dotsButton}>...</Text>
-              </TouchableOpacity>
-              {this.state.shouldShow ? (
-                <View style={style.dropdownEdit}>
-                  <TouchableOpacity
-                    onPress={() => this.dropDownSelect(post, userAccount)}>
-                    <Text style={style.dropDownText}>Edit post</Text>
-                  </TouchableOpacity>
-                  <View style={style.dropDownTextReportContainer}>
-                    <Text style={style.dropDownText}>Remove post</Text>
-                  </View>
-                </View>
-              ) : null}
-            </View>
-          ) : (
-            <View style={style.dotsDropdownContainer}>
-              <TouchableOpacity
-                onPress={() =>
-                  this.setState({
-                    shouldShow: !shouldShow,
-                  })
-                }>
-                <Text style={style.dotsButton}>...</Text>
-              </TouchableOpacity>
-              {this.state.shouldShow ? (
-                <View style={style.dropdown}>
-                  <Text style={style.dropDownText}>Repost</Text>
-                  <Text style={style.dropDownText}>Copy link</Text>
-                  <TouchableOpacity onPress={() => this.shareModal(true)}>
-                    <Text style={style.dropDownText}>Share to...</Text>
-                  </TouchableOpacity>
-                  <Text style={style.dropDownText}>Turn on notifications</Text>
-                  <TouchableOpacity
-                    key={post.id}
-                    onPress={() => this.reportModal(true)}>
-                    <View style={style.dropDownTextReportContainer}>
-                      <Text style={style.dropDownText}>Report</Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-              ) : null}
-            </View>
-          )}
+          <View style={style.dotsDropdownContainer}>
+            <TouchableOpacity onPress={onMorePress}>
+              <Text style={style.dotsButton}>...</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
         <TouchableOpacity

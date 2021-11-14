@@ -15,25 +15,17 @@ import ReportModal from '../HomeTabComponents/ReportModal';
 import ShareToModal from '../HomeTabComponents/ShareToModal';
 import {Logout} from 'actions/user';
 import MoreBox from '../HomeTabComponents/MoreBox';
-
-const myPostsOptions = [
-  {
-    label: 'Edit Post',
-    value: 'EDIT_POST',
-  },
-  {label: 'Remove Post', value: 'REMOVE_POST'},
-];
-
-const otherPostsOptions = [
-  {
-    label: 'Repost',
-    value: 'REPOST',
-  },
-  {label: 'Copy link', value: 'COPY_LINK'},
-  {label: 'Share to...', value: 'SHARE_POST'},
-  {label: 'Turn on notifications', value: 'TURN_ON_NOTIFICATIONS'},
-  {label: 'Report', value: 'REPORT'},
-];
+import {
+  EDIT_POST,
+  REMOVE_POST,
+  REPOST,
+  COPY_LINK,
+  SHARE_POST,
+  TURN_ON_NOTIFICATIONS,
+  REPORT,
+  myPostsOptions,
+  otherPostsOptions,
+} from './constants';
 
 const HomeScreen = ({
   navigation,
@@ -56,7 +48,7 @@ const HomeScreen = ({
   }, []);
 
   const reportModal = () => {
-    setReportModalState(show);
+    setReportModalState(true);
   };
 
   const shareModal = () => {
@@ -72,34 +64,33 @@ const HomeScreen = ({
     }
   };
 
+  const onSelectOption = (action) => {
+    switch (action) {
+      case EDIT_POST:
+        break;
+      case REMOVE_POST:
+        break;
+      case REPOST:
+        break;
+      case COPY_LINK:
+        break;
+      case SHARE_POST:
+        shareModal();
+        break;
+      case TURN_ON_NOTIFICATIONS:
+        break;
+      case REPORT:
+        reportModal();
+        break;
+      default:
+        console.log('Not a valid action');
+    }
+  };
+
   return (
     <SafeAreaView style={style.mainContainer}>
       <ScrollView>
         <StockTicker />
-        <Modal
-          transparent={true}
-          visible={reportModalState}
-          animationType="slide">
-          <ReportModal
-            reportModal={setReportModalState}
-            onClose={() => setOptionsModalState(false)}
-          />
-        </Modal>
-        <Modal
-          transparent={true}
-          visible={shareModalState}
-          animationType="slide">
-          <ShareToModal shareModal={setShareModalState} />
-        </Modal>
-        <Modal
-          transparent={true}
-          visible={optionsModalState}
-          animationType="slide">
-          <MoreBox
-            options={optionsState}
-            onClose={() => setOptionsModalState(false)}
-          />
-        </Modal>
         {posts.map((post) => (
           <UserPosts
             key={post.id}
@@ -114,6 +105,31 @@ const HomeScreen = ({
           />
         ))}
       </ScrollView>
+      <Modal
+        transparent={true}
+        visible={reportModalState}
+        animationType="slide">
+        <ReportModal
+          reportModal={reportModal}
+          onClose={() => setReportModalState(false)}
+        />
+      </Modal>
+      <Modal transparent={true} visible={shareModalState} animationType="slide">
+        <ShareToModal
+          shareModal={setShareModalState}
+          onClose={() => setShareModalState(false)}
+        />
+      </Modal>
+      <Modal
+        transparent={true}
+        visible={optionsModalState}
+        animationType="slide">
+        <MoreBox
+          options={optionsState}
+          onClose={() => setOptionsModalState(false)}
+          onSelect={onSelectOption}
+        />
+      </Modal>
     </SafeAreaView>
   );
 };

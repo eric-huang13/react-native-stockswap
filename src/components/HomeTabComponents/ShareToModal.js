@@ -4,10 +4,10 @@ import {moderateScale} from '../../util/responsiveFont';
 
 export default class ShareToModal extends Component {
   render() {
-    const {shareModal} = this.props;
+    const {shareModal, onClose} = this.props;
     return (
       <View style={style.shareToContainer}>
-        <TouchableOpacity onPress={() => shareModal(false)}>
+        <TouchableOpacity onPress={onClose}>
           <Text style={style.closeButton}>Close</Text>
         </TouchableOpacity>
         <Text style={style.optionTextHeader}>Share to...</Text>

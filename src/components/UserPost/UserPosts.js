@@ -10,8 +10,6 @@ import {
 } from 'react-native';
 import LikeInactiveIcon from '../../icons/LikeInactiveIcon';
 import CommentIcon from '../../icons/CommentIcon';
-import ReportModal from '../HomeTabComponents/ReportModal';
-import ShareToModal from '../HomeTabComponents/ShareToModal';
 import {moderateScale, scale} from '../../util/responsiveFont';
 import TradePost from './TradePosts';
 
@@ -76,6 +74,7 @@ export default class UserPosts extends Component {
             key={post.id}
             post={post}
             navigation={this.props.navigation}
+            onMorePress={() => this.props.optionModal(post)}
             comments={comments}
             reply={reply}
             userAccount={userAccount}
@@ -104,7 +103,6 @@ export default class UserPosts extends Component {
           </View>
         </View>
         <TouchableOpacity
-          disabled={true}
           onPress={() =>
             this.props.navigation.navigate({
               name: 'PostScreen',

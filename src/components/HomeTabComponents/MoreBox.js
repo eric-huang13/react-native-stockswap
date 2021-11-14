@@ -3,37 +3,40 @@ import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
 import {moderateScale} from '../../util/responsiveFont';
 import Close from '../../icons/close-times';
 
-const MoreBox = ({options, onSelect, onClose}) => {
+const MoreBox = ({style, options, onSelect, onClose}) => {
   const _onSelect = (action) => {
+    onClose && onClose();
     onSelect && onSelect(action);
   };
 
   return (
-    <View style={style.shareToContainer}>
-      <TouchableOpacity
-        onPress={() => onClose && onClose()}
-        style={{alignSelf: 'flex-end'}}>
-        <Close />
-      </TouchableOpacity>
-      <View style={style.options}>
-        {options
-          ? options?.map((option) => (
-              <TouchableOpacity
-                style={style.option}
-                onPress={() => _onSelect(option.value)}>
-                <Text style={style.optionText}>{option.label}</Text>
-              </TouchableOpacity>
-            ))
-          : null}
+    <View style={{flex: 1}}>
+      <View style={{flex: 1}} />
+      <View style={[styles.shareToContainer, style]}>
+        <TouchableOpacity
+          onPress={() => onClose && onClose()}
+          style={{alignSelf: 'flex-end'}}>
+          <Close />
+        </TouchableOpacity>
+        <View style={styles.options}>
+          {options
+            ? options?.map((option) => (
+                <TouchableOpacity
+                  style={styles.option}
+                  onPress={() => _onSelect(option.value)}>
+                  <Text style={styles.optionText}>{option.label}</Text>
+                </TouchableOpacity>
+              ))
+            : null}
+        </View>
       </View>
     </View>
   );
 };
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   shareToContainer: {
-    flex: 1,
-    marginTop: moderateScale(600),
+    paddingBottom: 40,
     backgroundColor: '#3e4d6c',
     borderRadius: moderateScale(20),
     padding: moderateScale(14),
@@ -61,7 +64,7 @@ const style = StyleSheet.create({
   },
   optionText: {
     color: 'white',
-    fontSize: moderateScale(15),
+    fontSize: moderateScale(16),
     marginHorizontal: moderateScale(12),
     paddingVertical: moderateScale(2),
     fontFamily: 'Montserrat-Medium',
