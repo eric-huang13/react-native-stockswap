@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {
   Text,
   View,
@@ -9,6 +9,7 @@ import {
   ScrollView,
   TextInput,
   Modal,
+  KeyboardAvoidingView,
 } from 'react-native';
 import UserCommentList from './UserCommentList';
 import ReportModal from '../HomeTabComponents/ReportModal';
@@ -18,21 +19,38 @@ import CommentIcon from '../../icons/CommentIcon';
 import {moderateScale, scale} from '../../util/responsiveFont';
 import BullIcon from '../../icons/BullIcon';
 import BearIcon from '../../icons/BearIcon';
+import MoreBox from '../HomeTabComponents/MoreBox';
+import {
+  EDIT_POST,
+  REMOVE_POST,
+  REPOST,
+  COPY_LINK,
+  SHARE_POST,
+  TURN_ON_NOTIFICATIONS,
+  REPORT,
+  myPostsOptions,
+  otherPostsOptions,
+} from './constants';
 
-export default class TradePostScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      shouldShow: false,
-      reportModalState: false,
-      shareModalState: false,
-    };
-  }
-  accountId = this.props.route.params.userAccount.id;
+const TradePostScreen = ({navigation, route}) => {
+  const {post, userAccount} = route.params;
+  const accountId = userAccount?.id;
+  const [reportModalState, setReportModalState] = useState(false);
+  const [shareModalState, setShareModalState] = useState(false);
+  const [optionsModalState, setOptionsModalState] = useState(false);
+  const optionsState =
+    userAccount.id === post.userId ? myPostsOptions : otherPostsOptions;
 
-  navigationByCondition = (post) => {
-    const {navigation} = this.props;
-    if (post.userId === this.accountId) {
+  const reportModal = () => {
+    setReportModalState(true);
+  };
+
+  const shareModal = () => {
+    setShareModalState(true);
+  };
+
+  const navigationByCondition = () => {
+    if (post.userId === accountId) {
       navigation.navigate({
         name: 'MyProfile',
         params: {id: post.id},
@@ -44,43 +62,72 @@ export default class TradePostScreen extends Component {
       });
     }
   };
-  dropDownSelect(post, userAccount) {
-    this.setState({shouldShow: false});
-    this.props.navigation.navigate({
+  const dropDownSelect = (post, userAccount) => {
+    // this.setState({shouldShow: false});
+    navigation.navigate({
       name: 'EditPost',
       params: {post, userAccount},
     });
-  }
-  reportModal(item) {
-    this.setState({reportModalState: item, shouldShow: false});
-  }
-  shareModal(item) {
-    this.setState({shareModalState: item, shouldShow: false});
-  }
-
-  render() {
-    const {shouldShow, reportModalState, shareModalState} = this.state;
-
-    const {post, userAccount} = this.props.route.params;
-    return (
-      <SafeAreaView style={style.container}>
+  };
+  const onSelectOption = (action) => {
+    switch (action) {
+      case EDIT_POST:
+        break;
+      case REMOVE_POST:
+        break;
+      case REPOST:
+        break;
+      case COPY_LINK:
+        break;
+      case SHARE_POST:
+        shareModal();
+        break;
+      case TURN_ON_NOTIFICATIONS:
+        break;
+      case REPORT:
+        reportModal();
+        break;
+      default:
+        console.log('Not a valid action');
+    }
+  };
+  return (
+    <SafeAreaView style={style.container}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={100}
+        style={{flex: 1}}>
         <Modal
           transparent={true}
           visible={reportModalState}
           animationType="slide">
-          <ReportModal reportModal={this.reportModal.bind(this)} />
+          <ReportModal
+            reportModal={reportModal}
+            onClose={() => setReportModalState(false)}
+          />
         </Modal>
         <Modal
           transparent={true}
           visible={shareModalState}
           animationType="slide">
-          <ShareToModal shareModal={this.shareModal.bind(this)} />
+          <ShareToModal
+            shareModal={setShareModalState}
+            onClose={() => setShareModalState(false)}
+          />
+        </Modal>
+        <Modal
+          transparent={true}
+          visible={optionsModalState}
+          animationType="slide">
+          <MoreBox
+            options={optionsState}
+            onClose={() => setOptionsModalState(false)}
+            onSelect={onSelectOption}
+          />
         </Modal>
         <ScrollView style={style.scrollContainer}>
           <View style={style.postNameContainer}>
-            <TouchableOpacity
-              key={post.id}
-              onPress={() => this.navigationByCondition(post)}>
+            <TouchableOpacity key={post.id} onPress={navigationByCondition}>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <Image
                   style={style.postUserImage}
@@ -89,61 +136,13 @@ export default class TradePostScreen extends Component {
                 <Text style={style.postUserName}>{post.name}</Text>
               </View>
             </TouchableOpacity>
-            {userAccount.id === post.userId ? (
-              <View style={style.dotsDropdownContainer}>
-                <View>
-                  <TouchableOpacity
-                    onPress={() =>
-                      this.setState({
-                        shouldShow: !shouldShow,
-                      })
-                    }>
-                    <Text style={style.dotsButton}>...</Text>
-                  </TouchableOpacity>
-                </View>
-                {this.state.shouldShow ? (
-                  <View style={style.dropdownEdit}>
-                    <TouchableOpacity
-                      onPress={() => this.dropDownSelect(post, userAccount)}>
-                      <Text style={style.dropDownText}>Edit post</Text>
-                    </TouchableOpacity>
-                    <View style={style.dropDownTextReportContainer}>
-                      <Text style={style.dropDownText}>Remove post</Text>
-                    </View>
-                  </View>
-                ) : null}
-              </View>
-            ) : (
-              <View style={style.dotsDropdownContainer}>
-                <TouchableOpacity
-                  onPress={() =>
-                    this.setState({
-                      shouldShow: !shouldShow,
-                    })
-                  }>
+            <View style={style.dotsDropdownContainer}>
+              <View>
+                <TouchableOpacity onPress={() => setOptionsModalState(true)}>
                   <Text style={style.dotsButton}>...</Text>
                 </TouchableOpacity>
-                {this.state.shouldShow ? (
-                  <View style={style.dropdown}>
-                    <Text style={style.dropDownText}>Repost</Text>
-                    <Text style={style.dropDownText}>Copy link</Text>
-                    <TouchableOpacity onPress={() => this.shareModal(true)}>
-                      <Text style={style.dropDownText}>Share to...</Text>
-                    </TouchableOpacity>
-                    <Text style={style.dropDownText}>
-                      Turn on notifications
-                    </Text>
-                    <TouchableOpacity
-                      key={post.id}
-                      onPress={() => this.reportModal(true)}>
-                      <View style={style.dropDownTextReportContainer}>
-                        <Text style={style.dropDownText}>Report</Text>
-                      </View>
-                    </TouchableOpacity>
-                  </View>
-                ) : null}
               </View>
-            )}
+            </View>
           </View>
 
           {/* <Image style={style.image} source={{uri: post.img}} />
@@ -232,7 +231,7 @@ export default class TradePostScreen extends Component {
 
           <UserCommentList
             postId={post.id}
-            navigation={this.props.navigation}
+            navigation={navigation}
             userAccount={userAccount}
           />
         </ScrollView>
@@ -243,10 +242,12 @@ export default class TradePostScreen extends Component {
             placeholderTextColor="lightgrey"
           />
         </View>
-      </SafeAreaView>
-    );
-  }
-}
+      </KeyboardAvoidingView>
+    </SafeAreaView>
+  );
+};
+
+export default TradePostScreen;
 
 const style = StyleSheet.create({
   container: {
@@ -408,6 +409,7 @@ const style = StyleSheet.create({
     backgroundColor: '#2C3957',
     marginBottom: moderateScale(-10),
     paddingHorizontal: moderateScale(10),
+    paddingBottom: 5,
   },
   searchInput: {
     marginTop: moderateScale(10),
