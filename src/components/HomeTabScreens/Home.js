@@ -1,41 +1,138 @@
-import React, {Component} from 'react';
-import UserPosts from './UserPosts';
+import React, {Component, useState, useEffect, useRef} from 'react';
+import UserPosts from '../UserPost/UserPosts';
 import StockTicker from '../HomeTabComponents/StockTicker';
 import {connect} from 'react-redux';
-import {Button, SafeAreaView, Text, ScrollView, StyleSheet} from 'react-native';
+import {
+  Button,
+  Modal,
+  SafeAreaView,
+  Text,
+  ScrollView,
+  StyleSheet,
+} from 'react-native';
 import {fetchTickers} from '../../actions/marketMovers';
-
+import ReportModal from '../HomeTabComponents/ReportModal';
+import ShareToModal from '../HomeTabComponents/ShareToModal';
 import {Logout} from 'actions/user';
+import MoreBox from '../HomeTabComponents/MoreBox';
+import {
+  EDIT_POST,
+  REMOVE_POST,
+  REPOST,
+  COPY_LINK,
+  SHARE_POST,
+  TURN_ON_NOTIFICATIONS,
+  REPORT,
+  myPostsOptions,
+  otherPostsOptions,
+} from './constants';
 
-class HomeScreen extends Component {
-  componentDidMount() {
-    // const {companies, fetchGainers} = this.props;
-    this.props.fetchTickers();
-  }
-  render() {
-    const {isLoggedIn, LogoutUser, posts, comments, reply, userAccount} =
-      this.props;
+const HomeScreen = ({
+  navigation,
+  fetchTickers,
+  isLoggedIn,
+  LogoutUser,
+  posts,
+  comments,
+  reply,
+  userAccount,
+}) => {
+  const [reportModalState, setReportModalState] = useState(false);
+  const [shareModalState, setShareModalState] = useState(false);
+  const [optionsModalState, setOptionsModalState] = useState(false);
+  const [optionsState, setOptionsState] = useState([]);
+  const accountId = userAccount.id;
 
-    return (
-      <SafeAreaView style={style.mainContainer}>
-        <ScrollView>
-          <StockTicker />
+  useEffect(() => {
+    fetchTickers && fetchTickers();
+  }, []);
 
-          {posts.map((post) => (
-            <UserPosts
-              key={post.id}
-              post={post}
-              navigation={this.props.navigation}
-              comments={comments}
-              reply={reply}
-              userAccount={userAccount}
-            />
-          ))}
-        </ScrollView>
-      </SafeAreaView>
-    );
-  }
-}
+  const reportModal = () => {
+    setReportModalState(true);
+  };
+
+  const shareModal = () => {
+    setShareModalState(true);
+  };
+
+  const optionModal = (post) => {
+    setOptionsModalState(true);
+    if (post?.userId == accountId) {
+      setOptionsState(myPostsOptions);
+    } else {
+      setOptionsState(otherPostsOptions);
+    }
+  };
+
+  const onSelectOption = (action) => {
+    switch (action) {
+      case EDIT_POST:
+        break;
+      case REMOVE_POST:
+        break;
+      case REPOST:
+        break;
+      case COPY_LINK:
+        break;
+      case SHARE_POST:
+        shareModal();
+        break;
+      case TURN_ON_NOTIFICATIONS:
+        break;
+      case REPORT:
+        reportModal();
+        break;
+      default:
+        console.log('Not a valid action');
+    }
+  };
+
+  return (
+    <SafeAreaView style={style.mainContainer}>
+      <ScrollView>
+        <StockTicker />
+        {posts.map((post) => (
+          <UserPosts
+            key={post.id}
+            post={post}
+            navigation={navigation}
+            comments={comments}
+            reply={reply}
+            userAccount={userAccount}
+            reportModal={reportModal}
+            shareModal={shareModal}
+            optionModal={optionModal}
+          />
+        ))}
+      </ScrollView>
+      <Modal
+        transparent={true}
+        visible={reportModalState}
+        animationType="slide">
+        <ReportModal
+          reportModal={reportModal}
+          onClose={() => setReportModalState(false)}
+        />
+      </Modal>
+      <Modal transparent={true} visible={shareModalState} animationType="slide">
+        <ShareToModal
+          shareModal={setShareModalState}
+          onClose={() => setShareModalState(false)}
+        />
+      </Modal>
+      <Modal
+        transparent={true}
+        visible={optionsModalState}
+        animationType="slide">
+        <MoreBox
+          options={optionsState}
+          onClose={() => setOptionsModalState(false)}
+          onSelect={onSelectOption}
+        />
+      </Modal>
+    </SafeAreaView>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
