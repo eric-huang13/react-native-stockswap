@@ -162,6 +162,8 @@ const style = StyleSheet.create({
     borderBottomColor: 'rgba(158, 150, 150, .6)',
     padding: moderateScale(0.1),
     marginTop: moderateScale(8),
+    paddingBottom: moderateScale(6),
+
   },
   mainContainer: {
     flexDirection: 'row',

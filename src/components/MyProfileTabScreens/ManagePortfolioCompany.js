@@ -10,17 +10,16 @@ import {
 } from 'react-native';
 import {moderateScale} from '../../util/responsiveFont';
 import CompanyStockGraph from '../SearchTabComponents/CompanyStockGraph';
-import CompanySymbolList from '../SearchTabComponents/CompanySymbolList';
 import {connect} from 'react-redux';
 import {
-  fetchStockDay,
-  fetchStockMonth,
-  fetchStockWeek,
-  fetchStockThreeMonth,
-  fetchStockYear,
-  fetchStockDetails,
-  stockLatest,
-} from '../../actions/marketMovers';
+  fetchStockDayPortfolio,
+  fetchStockMonthPotfolio,
+  fetchStockWeekPortfolio,
+  fetchStockThreeMonthPortfolio,
+  fetchStockYearPortfolio,
+  fetchStockDetailsPortfolio,
+  stockLatestPortfolio,
+} from '../../actions/portfolio';
 import TriangleIcon from '../../icons/TriangleIcon';
 
 export class ManagePortfolioCompany extends Component {
@@ -48,41 +47,41 @@ export class ManagePortfolioCompany extends Component {
     this.setState({dropDown: pick, shouldShow: false});
   }
   componentDidMount() {
-    this.props.fetchStockDay(this.props.route.params.item.tickerSymbol);
-    // this.props.stockLatest(this.props.route.params.item.tickerSymbol);
-    this.props.fetchStockDetails(this.props.route.params.item.tickerSymbol);
-    this.props.stockLatest(this.props.route.params.item.tickerSymbol);
+    this.props.fetchStockDayPortfolio(this.props.route.params.item.tickerSymbol);
+    // this.props.stockLatestPortfolio(this.props.route.params.item.tickerSymbol);
+    this.props.fetchStockDetailsPortfolio(this.props.route.params.item.tickerSymbol);
+    this.props.stockLatestPortfolio(this.props.route.params.item.tickerSymbol);
 
     // this.props.navigation.setOptions({title: this.props.stockDetails.name});
   }
 
   render() {
     const getLivedata = () => {
-      this.props.fetchStockDay(this.props.route.params.item.tickerSymbol);
+      this.props.fetchStockDayPortfolio(this.props.route.params.item.tickerSymbol);
       this.setState({
         timeFilter: 'live',
       });
     };
     const getDaydata = () => {
-      this.props.fetchStockDay(this.props.route.params.item.tickerSymbol);
+      this.props.fetchStockDayPortfolio(this.props.route.params.item.tickerSymbol);
       this.setState({
         timeFilter: 'day',
       });
     };
     const getWeekdata = () => {
-      this.props.fetchStockWeek(this.props.route.params.item.tickerSymbol);
+      this.props.fetchStockWeekPortfolio(this.props.route.params.item.tickerSymbol);
       this.setState({
         timeFilter: 'week',
       });
     };
     const getMonthdata = () => {
-      this.props.fetchStockMonth(this.props.route.params.item.tickerSymbol);
+      this.props.fetchStockMonthPotfolio(this.props.route.params.item.tickerSymbol);
       this.setState({
         timeFilter: 'month',
       });
     };
     const getThreeMonthdata = () => {
-      this.props.fetchStockThreeMonth(
+      this.props.fetchStockThreeMonthPortfolio(
         this.props.route.params.item.tickerSymbol,
       );
       this.setState({
@@ -90,13 +89,13 @@ export class ManagePortfolioCompany extends Component {
       });
     };
     const getYeardata = () => {
-      this.props.fetchStockYear(this.props.route.params.item.tickerSymbol);
+      this.props.fetchStockYearPortfolio(this.props.route.params.item.tickerSymbol);
       this.setState({
         timeFilter: 'year',
       });
     };
     const getAlldata = () => {
-      this.props.fetchStockYear(this.props.route.params.item.tickerSymbol);
+      this.props.fetchStockYearPortfolio(this.props.route.params.item.tickerSymbol);
       this.setState({
         timeFilter: 'all',
       });
@@ -366,23 +365,23 @@ export class ManagePortfolioCompany extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    stockGraphData: state.company.stockGraphData,
-    stockRange: state.company.stockRange,
-    stockDetails: state.company.stockDetails,
-    stockLoading: state.company.stockLoading,
-    stockLatestData: state.company.stockLatestData,
+    stockGraphData: state.portfolio.stockGraphData,
+    stockRange: state.portfolio.stockRange,
+    stockDetails: state.portfolio.stockDetails,
+    stockLoading: state.portfolio.stockLoading,
+    stockLatestData: state.portfolio.stockLatestPortfolioData,
 
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchStockDay: (ticker) => dispatch(fetchStockDay(ticker)),
-    fetchStockWeek: (ticker) => dispatch(fetchStockWeek(ticker)),
-    fetchStockMonth: (ticker) => dispatch(fetchStockMonth(ticker)),
-    fetchStockThreeMonth: (ticker) => dispatch(fetchStockThreeMonth(ticker)),
-    fetchStockYear: (ticker) => dispatch(fetchStockYear(ticker)),
-    fetchStockDetails: (ticker) => dispatch(fetchStockDetails(ticker)),
-    stockLatest: (ticker) => dispatch(stockLatest(ticker)),
+    fetchStockDayPortfolio: (ticker) => dispatch(fetchStockDayPortfolio(ticker)),
+    fetchStockWeekPortfolio: (ticker) => dispatch(fetchStockWeekPortfolio(ticker)),
+    fetchStockMonthPotfolio: (ticker) => dispatch(fetchStockMonthPotfolio(ticker)),
+    fetchStockThreeMonthPortfolio: (ticker) => dispatch(fetchStockThreeMonthPortfolio(ticker)),
+    fetchStockYearPortfolio: (ticker) => dispatch(fetchStockYearPortfolio(ticker)),
+    fetchStockDetailsPortfolio: (ticker) => dispatch(fetchStockDetailsPortfolio(ticker)),
+    stockLatestPortfolio: (ticker) => dispatch(stockLatestPortfolio(ticker)),
   };
 };
 
