@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {moderateScale} from '../../util/responsiveFont';
 import CompanyStockGraph from '../SearchTabComponents/CompanyStockGraph';
+import PortfolioStockGraph from '../MyProfileTabComponents/PortfolioStockGraph';
 import {connect} from 'react-redux';
 import {
   fetchStockDayPortfolio,
@@ -106,9 +107,9 @@ export class ManagePortfolioCompany extends Component {
 
     //Numbers to display graph numbers, can also use use built in graph numbers instead
     //Graph high number
-    const chartHigh = this.props.stockRange[1];
+    const chartHigh = this.props.stockRangePortfolio[1];
     //Graph low number
-    const chartLow = this.props.stockRange[0];
+    const chartLow = this.props.stockRangePortfolio[0];
     //High/Low difference
     const numberDifference = (chartHigh - chartLow) / 3;
     //Graph three quarter numbernumber
@@ -149,14 +150,14 @@ export class ManagePortfolioCompany extends Component {
           ) : (
             <Text>Company Information</Text>
           )}
-          {this.props.stockGraphData.length > 2 &&
-          this.props.stockRange.length > 1 &&
-          !this.props.stockLoading ? (
+          {this.props.stockGraphDataPortfolio.length > 2 &&
+          this.props.stockRangePortfolio.length > 1 &&
+          !this.props.stockPortfolioLoading ? (
             <View style={style.graphContainer}>
-              <CompanyStockGraph
-                graphData={this.props.stockGraphData}
+              <PortfolioStockGraph
+                graphData={this.props.stockGraphDataPortfolio}
                 symbol={route.params.item.tickerSymbol}
-                range={this.props.stockRange}
+                range={this.props.stockRangePortfolio}
               />
               <View style={style.graphNumbers}>
                 <Text style={style.graphNumberText}>
@@ -365,10 +366,10 @@ export class ManagePortfolioCompany extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    stockGraphData: state.portfolio.stockGraphData,
-    stockRange: state.portfolio.stockRange,
+    stockGraphDataPortfolio: state.portfolio.stockGraphDataPortfolio,
+    stockRangePortfolio: state.portfolio.stockRangePortfolio,
     stockDetails: state.portfolio.stockDetails,
-    stockLoading: state.portfolio.stockLoading,
+    stockPortfolioLoading: state.portfolio.stockPortfolioLoading,
     stockLatestData: state.portfolio.stockLatestPortfolioData,
 
   };

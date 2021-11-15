@@ -25,7 +25,6 @@ import {
   STOCKRANGETHREEMONTHPORTFOLIO,
   STOCKRANGEWEEKPORTFOLIO,
   STOCKRANGEYEARPORTFOLIO,
-  RESET_STOCK_DATA,
 } from '../constants';
 
 const defaultState = {
@@ -35,18 +34,16 @@ const defaultState = {
   stockMonth: [],
   stockThreeMonth: [],
   stockYear: [],
-  stockLoading: false,
+  stockPortfolioLoading: false,
   searchStockResults: [],
-  searchStockLoading: false,
+  searchStockPortfolioLoading: false,
   stockLatestPortfolioData: [],
-  stockRange: [],
-  stockGraphData: [],
+  stockRangePortfolio: [],
+  stockGraphDataPortfolio: [],
 };
 
 const portfolioReducer = (state = defaultState, action) => {
   switch (action.type) {
-    //Ready for hook up
-
     case STOCKLATESTPORTFOLIO_START:
       return {
         ...state,
@@ -64,30 +61,23 @@ const portfolioReducer = (state = defaultState, action) => {
         error: action.payload,
       };
 
-    case RESET_STOCK_DATA:
-      return {
-        ...state,
-        loading: false,
-        error: '',
-        stockGraphData: action.payload,
-      };
     case FETCHSTOCKDAYPORTFOLIO_START:
       return {
         ...state,
-        stockLoading: true,
+        stockPortfolioLoading: true,
         error: '',
       };
     case FETCHSTOCKDAYPORTFOLIO_SUCCESS:
       return {
         ...state,
-        stockLoading: false,
+        stockPortfolioLoading: false,
         error: '',
-        stockGraphData: action.payload,
+        stockGraphDataPortfolio: action.payload,
       };
     case FETCHSTOCKDAYPORTFOLIO_ERROR:
       return {
         ...state,
-        stockLoading: false,
+        stockPortfolioLoading: false,
         error: action.payload,
       };
     case STOCKRANGEDAYPORTFOLIO:
@@ -95,7 +85,7 @@ const portfolioReducer = (state = defaultState, action) => {
         ...state,
         loading: false,
         error: '',
-        stockRange: action.payload,
+        stockRangePortfolio: action.payload,
       };
     case FETCHSTOCKWEEKPORTFOLIO_START:
       return {
@@ -108,7 +98,7 @@ const portfolioReducer = (state = defaultState, action) => {
         ...state,
         loading: false,
         error: '',
-        stockGraphData: action.payload,
+        stockGraphDataPortfolio: action.payload,
       };
     case FETCHSTOCKWEEKPORTFOLIO_ERROR:
       return {
@@ -121,7 +111,7 @@ const portfolioReducer = (state = defaultState, action) => {
         ...state,
         loading: false,
         error: '',
-        stockRange: action.payload,
+        stockRangePortfolio: action.payload,
       };
     case FETCHSTOCKMONTHPORTFOLIO_START:
       return {
@@ -134,14 +124,14 @@ const portfolioReducer = (state = defaultState, action) => {
         ...state,
         loading: false,
         error: '',
-        stockGraphData: action.payload,
+        stockGraphDataPortfolio: action.payload,
       };
     case STOCKRANGEMONTHPORTFOLIO:
       return {
         ...state,
         loading: false,
         error: '',
-        stockRange: action.payload,
+        stockRangePortfolio: action.payload,
       };
     case FETCHSTOCKMONTHPORTFOLIO_ERROR:
       return {
@@ -160,7 +150,7 @@ const portfolioReducer = (state = defaultState, action) => {
         ...state,
         loading: false,
         error: '',
-        stockGraphData: action.payload,
+        stockGraphDataPortfolio: action.payload,
       };
     case FETCHSTOCKTHREEMONTHPORTFOLIO_ERROR:
       return {
@@ -173,7 +163,7 @@ const portfolioReducer = (state = defaultState, action) => {
         ...state,
         loading: false,
         error: '',
-        stockRange: action.payload,
+        stockRangePortfolio: action.payload,
       };
     case FETCHSTOCKYEARPORTFOLIO_START:
       return {
@@ -186,7 +176,7 @@ const portfolioReducer = (state = defaultState, action) => {
         ...state,
         loading: false,
         error: '',
-        stockGraphData: action.payload,
+        stockGraphDataPortfolio: action.payload,
       };
     case FETCHSTOCKYEARPORTFOLIO_ERROR:
       return {
@@ -199,7 +189,7 @@ const portfolioReducer = (state = defaultState, action) => {
         ...state,
         loading: false,
         error: '',
-        stockRange: action.payload,
+        stockRangePortfolio: action.payload,
       };
     case FETCHSTOCKDETAILSPORTFOLIO_START:
       return {
