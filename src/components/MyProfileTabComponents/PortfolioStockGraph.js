@@ -3,7 +3,7 @@ import {StyleSheet, Dimensions, SafeAreaView} from 'react-native';
 import {SlideAreaChart} from '@connectedcars/react-native-slide-charts';
 import {LinearGradient, Stop} from 'react-native-svg';
 
-export default class PrtfolioStockGraph extends Component {
+export default class PortfolioStockGraph extends Component {
   constructor(props) {
     super(props);
 
