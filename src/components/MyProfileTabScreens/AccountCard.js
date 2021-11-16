@@ -28,6 +28,7 @@ class AccountCard extends Component {
               item={item}
               InstitutionId={this.props.itemId}
               navigation={this.props.navigation}
+              dropDown={this.props.dropDown}
             />
           ))
         ) : (

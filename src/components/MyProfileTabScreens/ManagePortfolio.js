@@ -154,6 +154,7 @@ class ManagePortfolio extends Component {
                   itemId={item.itemId}
                   insId={item.institutionId}
                   navigation={this.props.navigation}
+                  dropDown={this.state.dropDown}
                 />
               ))}
             </ScrollView>

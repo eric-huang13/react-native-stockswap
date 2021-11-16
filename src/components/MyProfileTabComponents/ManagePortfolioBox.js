@@ -26,6 +26,12 @@ class ManagePortfolioBox extends Component {
       stockSymbol: '',
       loading: true,
       error: false,
+      lastQuote: '',
+      equity: '',
+      todaysReturn: '',
+      totalPercentChange: '',
+      percentChange: '',
+      totalReturn: '',
     };
   }
 
@@ -51,10 +57,40 @@ class ManagePortfolioBox extends Component {
         `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=day`,
       )
       .then((response) => {
+      
         this.setState({
           graphData: response.data.result.quotes,
           loading: false,
           error: false,
+          lastQuote: response.data.result.quotes[0].close.toFixed(2),
+          equity:
+            response.data.result.quotes[0].close.toFixed(2) *
+            this.props.item.quantity,
+          todaysReturn: (
+            response.data.result.quotes[0].close -
+            response.data.result.quotes[response.data.result.quotes.length - 1]
+              .close
+          ).toFixed(2),
+          totalPercentChange: (
+            ((response.data.result.quotes[0].close.toFixed(2) -
+              this.props.item.price) /
+              this.props.item.price) *
+            100
+          ).toFixed(2),
+          percentChange: (
+            ((response.data.result.quotes[
+              response.data.result.quotes.length - 1
+            ].close -
+              response.data.result.quotes[0].close) /
+              response.data.result.quotes[
+                response.data.result.quotes.length - 1
+              ].close) *
+            100
+          ).toFixed(2),
+          totalReturn: (
+            response.data.result.quotes[1].close.toFixed(2) -
+            this.props.item.price
+          ).toFixed(2),
         });
       })
       .catch((error) => {
@@ -72,7 +108,7 @@ class ManagePortfolioBox extends Component {
       return {x: Date.parse(i.window.startTime), y: i.close};
     });
     const stockYearData = stockYearDataOriginal.reverse();
-   
+ 
     if (this.state.securityDetails.length < 1) {
       return null;
     }
@@ -127,15 +163,76 @@ class ManagePortfolioBox extends Component {
                 ) : (
                   <BearIcon style={style.icon} />
                 )}
-                <Text
-                  style={
-                    this.state.percent > 0
-                      ? style.percentGain
-                      : style.percentLoss
-                  }>
-                  {this.state.percent}%
-                </Text>
-                <Text style={style.price}>Portfolio</Text>
+                {this.props.dropDown == 'Select sorting' ||
+                (this.props.dropDown == 'Percent Change' &&
+                  this.state.percentChange !== '') ? (
+                  <Text
+                    style={
+                      this.state.percent > 0
+                        ? style.percentGain
+                        : style.percentLoss
+                    }>
+                    {this.state.percentChange}%
+                  </Text>
+                ) : this.props.dropDown == 'Last price' &&
+                  this.state.lastQuote.length > 1 ? (
+                  <Text
+                    style={
+                      this.state.percent > 0
+                        ? style.percentGain
+                        : style.percentLoss
+                    }>
+                    ${this.state.lastQuote}
+                  </Text>
+                ) : this.props.dropDown == 'Your equity' &&
+                  this.state.equity !== '' ? (
+                  <Text
+                    style={
+                      this.state.percent > 0
+                        ? style.percentGain
+                        : style.percentLoss
+                    }>
+                    ${this.state.equity}
+                  </Text>
+                ) : this.props.dropDown == 'Total percent change' &&
+                  this.state.totalPercentChange !== '' ? (
+                  <Text
+                    style={
+                      this.state.percent > 0
+                        ? style.percentGain
+                        : style.percentLoss
+                    }>
+                    {this.state.totalPercentChange}%
+                  </Text>
+                ) : (this.props.dropDown == "Today's return") &
+                  (this.state.todaysReturn !== '') ? (
+                  <Text
+                    style={
+                      this.state.percent > 0
+                        ? style.percentGain
+                        : style.percentLoss
+                    }>
+                    ${this.state.todaysReturn}
+                  </Text>
+                ) : (this.props.dropDown == 'Total return') &
+                  (this.state.todaysReturn !== '') ? (
+                  <Text
+                    style={
+                      this.state.percent > 0
+                        ? style.percentGain
+                        : style.percentLoss
+                    }>
+                    ${this.state.totalReturn}
+                  </Text>
+                ) : (
+                  <Text style={style.unavailableText}>Unavailable</Text>
+                )}
+                {this.props.dropDown == 'Select sorting' ||
+                this.props.dropDown == 'Percent Change' ? (
+                  <Text style={style.price}>Portfolio</Text>
+                ) : (
+                  <Text style={style.price}>{this.props.dropDown}</Text>
+                )}
               </View>
             </View>
           </TouchableOpacity>
@@ -163,7 +260,6 @@ const style = StyleSheet.create({
     padding: moderateScale(0.1),
     marginTop: moderateScale(8),
     paddingBottom: moderateScale(6),
-
   },
   mainContainer: {
     flexDirection: 'row',
@@ -183,9 +279,10 @@ const style = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     paddingVertical: moderateScale(4),
-    paddingLeft: moderateScale(8),
+    paddingLeft: moderateScale(4),
     width: '45%',
     textAlign: 'left',
+    alignItems: 'flex-start',
   },
   symbolGain: {
     color: '#71F59C',
@@ -207,7 +304,7 @@ const style = StyleSheet.create({
   },
   price: {
     color: '#FFFFFF',
-    textAlign: 'left',
+    textAlign: 'center',
     fontFamily: 'Montserrat-Regular',
     fontSize: moderateScale(12),
   },
@@ -215,8 +312,11 @@ const style = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     paddingVertical: moderateScale(4),
-    paddingRight: moderateScale(30),
+    marginRight: moderateScale(6),
     alignItems: 'flex-end',
+    width: '42%',
+    // borderWidth: 1,
+    // borderColor: 'red',
   },
   percentGain: {
     color: '#71F59C',
@@ -244,5 +344,11 @@ const style = StyleSheet.create({
     marginBottom: moderateScale(24),
     alignSelf: 'center',
     marginLeft: 28,
+  },
+  unavailableText: {
+    color: '#B8A0FF',
+    textAlign: 'left',
+    fontFamily: 'Montserrat-Bold',
+    fontSize: moderateScale(11),
   },
 });

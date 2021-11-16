@@ -51,7 +51,7 @@ export default class PortfolioGraph extends Component {
         <SlideAreaChart
           data={this.props.stockYearData}
           yRange={this.props.yearPriceRange}
-          width={Dimensions.get('window').width - 180}
+          width={Dimensions.get('window').width - 190}
           height={70}
           style={{backgroundColor: '#2a334a'}}
           axisWidth={5}
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#2a334a',
     flexDirection: 'row',
     flex: 1,
-    width: moderateScale(234),
+    width: moderateScale(222),
     alignItems: 'center',
   },
   loadingText: {

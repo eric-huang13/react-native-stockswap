@@ -8,7 +8,7 @@ import AccountCard from './AccountCard';
 class InstitutionHoldingsCard extends Component {
   render() {
     const {portfolioAccounts, itemId, insId} = this.props;
-    console.log(portfolioAccounts, 'ACCOUNTS');
+    // console.log(portfolioAccounts, 'ACCOUNTS');
     const filteredAccounts = portfolioAccounts.accounts.filter(
       (account) => account.itemId == itemId,
     );
@@ -32,6 +32,7 @@ class InstitutionHoldingsCard extends Component {
             key={index}
             item={item}
             navigation={this.props.navigation}
+            dropDown={this.props.dropDown}
           />
         ))}
       </View>

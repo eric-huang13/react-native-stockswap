@@ -28,7 +28,7 @@ class InstitutionCard extends Component {
 
         {filteredAccounts.map((item, index) => (
           <View key={index}> 
-            <Text style={style.accountOfficial}>{item.officialName}</Text>
+            <Text style={style.accountOfficial}>{item.name}</Text>
             {/* <Text style={style.account}>{item.name}</Text>
             <Text style={style.hashtag}>{item.itemId}</Text> */}
           </View>
