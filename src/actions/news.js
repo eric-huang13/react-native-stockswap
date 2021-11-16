@@ -1,12 +1,13 @@
 import {NEWS_FETCHING, NEWS_SUCCESS, NEWS_ERROR, NEWS_STOP} from 'constants';
 import axios from 'axios';
 import apiInstance from '../util/axiosConfig';
+import {NEWS} from './api';
 
 export const fetchNews = (page, offset) => {
   return (dispatch) => {
     dispatch({type: NEWS_FETCHING});
     apiInstance
-      .get(`http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/news`)
+      .get(NEWS)
       // .then(response => console.log (response.data, "From NEWS API"))
       .then(
         (response) =>

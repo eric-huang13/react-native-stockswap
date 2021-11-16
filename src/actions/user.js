@@ -33,20 +33,21 @@ import {Platform} from 'react-native';
 import Toast from 'react-native-toast-message';
 import {GoogleSignin, statusCodes} from '@react-native-community/google-signin';
 import {
+  GOOGLE_IOS_CLIENT_ID,
+  GOOGLE_WEB_CLIENT_ID,
   FORGOTPASSWORD_ERROR,
   FORGOTPASSWORD_START,
   FORGOTPASSWORD_SUCCESS,
 } from '../constants';
-
-// TODO: This needs to move to a config file
-const GOOGLE_IOS_CLIENT_ID =
-  Platform.OS === 'ios'
-    ? '534509051413-1up4ql426i3annnm2j3p2ouj9dd3nn42.apps.googleusercontent.com'
-    : '';
-const GOOGLE_WEB_CLIENT_ID =
-  Platform.OS === 'ios'
-    ? ''
-    : '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com';
+import {
+  AUTH_FORGOT_PASSWORD,
+  AUTH_PASSWORD_RESET,
+  AUTH_SIGNUP,
+  AUTH_LOGIN,
+  AUTH_LOGOUT,
+  AUTH_OAUTH_SIGNUP,
+  AUTH_OAUTH_LOGIN,
+} from './api';
 
 export const RefreshToken = (token) => {
   return (dispatch) => {
@@ -63,10 +64,7 @@ export const Register = (input) => {
   return (dispatch) => {
     dispatch({type: SIGNUP_START});
     axios
-      .post(
-        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/signup',
-        input,
-      )
+      .post(AUTH_SIGNUP, input)
       .then((response) => {
         // console.log(response, 'RESPONSE in Signup');
         const decoded = jwt_decode(response.data.accessToken);
@@ -108,10 +106,7 @@ export const RegisterGoogleSignup = (input) => {
   return (dispatch) => {
     dispatch({type: SIGNUP_START});
     axios
-      .post(
-        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/oauth/signup',
-        input,
-      )
+      .post(AUTH_OAUTH_SIGNUP, input)
 
       .then((response) => {
         //here route to profile info
@@ -153,10 +148,7 @@ export const RegisterGoogleSignIn = (input) => {
     // console.log('RegisterGoogleSignIn called');
     dispatch({type: GOOGLE_LOGIN_START});
     axios
-      .post(
-        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/oauth/login',
-        input,
-      )
+      .post(AUTH_OAUTH_LOGIN, input)
 
       .then((response) => {
         const decoded = jwt_decode(response.data.accessToken);
@@ -196,10 +188,7 @@ export const Login = (input) => {
       text2: 'Sending credentials...',
     });
     axios
-      .post(
-        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/login',
-        input,
-      )
+      .post(AUTH_LOGIN, input)
       .then((response) => {
         // console.log('FIRST', response.data.refreshToken);
         // console.log('INPUT', input.email);
@@ -373,13 +362,10 @@ export const Logout = () => {
     const refreshToken = await AsyncStorage.getItem('refreshToken');
     const email = await AsyncStorage.getItem('email');
     return axios
-      .post(
-        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/logout',
-        {
-          refreshToken: refreshToken,
-          email: email,
-        },
-      )
+      .post(AUTH_LOGOUT, {
+        refreshToken: refreshToken,
+        email: email,
+      })
       .then((res) => {
         clearAppData();
         Toast.show({
@@ -413,10 +399,7 @@ export const ForgotPasswordEmail = (input) => {
   return (dispatch) => {
     dispatch({type: FORGOTPASSWORD_START});
     axios
-      .post(
-        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/forgotpassword',
-        input,
-      )
+      .post(AUTH_FORGOT_PASSWORD, input)
       .then((response) => {
         dispatch({type: FORGOTPASSWORD_SUCCESS, payload: response});
         navigate({
@@ -449,10 +432,7 @@ export const ResetPassword = (input) => {
       text2: 'Sending credentials...',
     });
     axios
-      .post(
-        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/auth/passwordreset',
-        input,
-      )
+      .post(AUTH_PASSWORD_RESET, input)
       .then((response) => {
         dispatch({type: RESETPASSWORD_SUCCESS, payload: response.data});
         navigate('Login');
