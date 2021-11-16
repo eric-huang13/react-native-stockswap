@@ -37,15 +37,21 @@ import deviceStorage from '../util/DeviceStorage';
 import apiInstance from '../util/axiosConfig';
 import {navigate} from '../../RootNavigation';
 import Toast from 'react-native-toast-message';
+import {
+  PORTFOLIO,
+  PORTFOLIO_INSTITUTIONS,
+  PORTFOLIO_INITIATE,
+  PORTFOLIO_LINK,
+  PORTFOLIO_ACCOUNT,
+  PROFILE,
+} from './api';
 
 export const PortfolioAccounts = () => {
   return (dispatch) => {
     dispatch({type: FETCHPORTFOLIOACCOUNTS_START});
     apiInstance
       //add endpoint
-      .get(
-        `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio`,
-      )
+      .get(PORTFOLIO)
       .then((response) => {
         dispatch(PortfolioInstitution());
         // dispatch(PortfolioInstitution({ids:'ins_3'}));
@@ -66,9 +72,7 @@ export const PortfolioInstitution = () => {
     dispatch({type: FETCHINSTITUTION_START});
     apiInstance
       //add endpoint
-      .get(
-        `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio/institutions`,
-      )
+      .get(PORTFOLIO_INSTITUTIONS)
       .then((response) => {
         dispatch({type: FETCHINSTITUTION_SUCCESS, payload: response.data});
       })
@@ -99,10 +103,7 @@ export const PlaidAccountStatus = (input) => {
   return (dispatch) => {
     // dispatch({type: PLAIDACCOUNTSTATUS_SUCCESS});
     apiInstance
-      .post(
-        `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio/account`,
-        input,
-      )
+      .post(PORTFOLIO_ACCOUNT, input)
       .then((response) => {
         console.log(response, 'Success in PLAIDACCOUNTSTATUS');
         dispatch({type: PLAIDACCOUNTSTATUS_SUCCESS, payload: response.data});
@@ -119,10 +120,7 @@ export const PlaidBank = (input) => {
     // dispatch({type: PLAIDBANK_START});
     apiInstance
       //add endpoint
-      .post(
-        `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio/link`,
-        input,
-      )
+      .post(PORTFOLIO_LINK, input)
       .then((response) => {
         console.log(response, 'Success in PLAIDBANK');
         dispatch({type: PLAIDBANK_SUCCESS, payload: response.data});
@@ -138,9 +136,7 @@ export const PlaidToken = () => {
   return (dispatch) => {
     dispatch({type: PLAIDTOKEN_START});
     apiInstance
-      .post(
-        `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/portfolio/initiate`,
-      )
+      .post(PORTFOLIO_INITIATE)
       .then((response) => {
         // console.log(response, 'Success in Plaidtoken');
         dispatch({type: PLAIDTOKEN_SUCCESS, payload: response.data});
@@ -156,10 +152,7 @@ export const CreateProfile = (input) => {
   return (dispatch) => {
     dispatch({type: CREATEPROFILE_START});
     apiInstance
-      .put(
-        `http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/profile`,
-        input,
-      )
+      .put(PROFILE, input)
       .then((response) => {
         // console.log(response, 'profile created');
         dispatch({type: CREATEPROFILE_SUCCESS, payload: response.data});
@@ -184,7 +177,7 @@ export const GetProfile = () => {
   return (dispatch) => {
     dispatch({type: GETPROFILE_START});
     apiInstance
-      .get(`http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/profile`)
+      .get(PROFILE)
       .then((response) => {
         dispatch({type: GETPROFILE_SUCCESS, payload: response.data});
       })
@@ -271,10 +264,7 @@ export const EditUserProfile = (input) => {
   return (dispatch) => {
     dispatch({type: EDITPROFILE_START});
     apiInstance
-      .post(
-        'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/profile',
-        input,
-      )
+      .post(PROFILE, input)
       .then((response) => {
         // console.log(response, 'Edit profile response');
         dispatch({type: EDITPROFILE_SUCCESS, payload: response.data});

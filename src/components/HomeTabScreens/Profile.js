@@ -9,7 +9,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import ProfileGraph from '../HomeTabComponents/ProfileGraph';
-import UserPosts from './UserPosts';
+import UserPosts from '../UserPost/UserPosts';
 import {connect} from 'react-redux';
 import {moderateScale} from '../../util/responsiveFont';
 

@@ -4,10 +4,10 @@ import {moderateScale} from '../../util/responsiveFont';
 
 export default class ReportModal extends Component {
   render() {
-    const {reportModal} = this.props;
+    const {reportModal, onClose} = this.props;
     return (
       <View style={style.reportModalContainer}>
-        <TouchableOpacity onPress={() => reportModal(false)}>
+        <TouchableOpacity onPress={onClose}>
           <Text style={style.closeButton}>Close</Text>
         </TouchableOpacity>
         <Text style={style.optionTextHeader}>

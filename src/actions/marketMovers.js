@@ -41,14 +41,13 @@ import {
   RESET_STOCK_DATA
 } from 'constants';
 import axios from 'axios';
+import {STOCKS_SERVER} from '../constants';
 
 export const searchStock = (ticker) => {
   return (dispatch) => {
     dispatch({type: SEARCHSTOCK_START});
     axios
-      .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/tickers/all/search?query=${ticker}`,
-      )
+      .get(STOCKS_SERVER + `/tickers/all/search?query=${ticker}`)
 
       // .then(response => console.log (response.data.result.searchResults, "SEARCH STOCK DATA"))
       .then((response) => {
@@ -67,9 +66,7 @@ export const stockLatest = (ticker) => {
   return (dispatch) => {
     dispatch({type: STOCKLATEST_START});
     axios
-      .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/latest`,
-      )
+      .get(STOCKS_SERVER + `/stocks/${ticker}/quote/latest`)
 
       // .then(response => console.log (response.data.result.quote, "SEARCH STOCK DATA"))
       .then((response) => {
@@ -89,9 +86,7 @@ export const fetchStockDetails = (ticker) => {
   return (dispatch) => {
     dispatch({type: FETCHSTOCKDETAILS_START});
     axios
-      .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/tickers/${ticker}`,
-      )
+      .get(STOCKS_SERVER + `/tickers/${ticker}`)
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
       .then((response) => {
@@ -122,9 +117,7 @@ export const fetchStockDay = (ticker) => {
   return (dispatch) => {
     dispatch({type: FETCHSTOCKDAY_START});
     axios
-      .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=day`,
-      )
+      .get(STOCKS_SERVER + `/stocks/${ticker}/quote/historic?interval=day`)
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
       .then((response) => {
@@ -156,9 +149,7 @@ export const fetchStockWeek = (ticker) => {
   return (dispatch) => {
     dispatch({type: FETCHSTOCKWEEK_START});
     axios
-      .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=week`,
-      )
+      .get(STOCKS_SERVER + `/stocks/${ticker}/quote/historic?interval=week`)
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
       .then((response) => {
@@ -193,9 +184,7 @@ export const fetchStockMonth = (ticker) => {
   return (dispatch) => {
     dispatch({type: FETCHSTOCKMONTH_START});
     axios
-      .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=month`,
-      )
+      .get(STOCKS_SERVER + `/stocks/${ticker}/quote/historic?interval=month`)
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
       .then((response) => {
@@ -230,7 +219,7 @@ export const fetchStockThreeMonth = (ticker) => {
     dispatch({type: FETCHSTOCKTHREEMONTH_START});
     axios
       .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=three_month`,
+        STOCKS_SERVER + `/stocks/${ticker}/quote/historic?interval=three_month`,
       )
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
@@ -267,9 +256,7 @@ export const fetchStockYear = (ticker) => {
   return (dispatch) => {
     dispatch({type: FETCHSTOCKYEAR_START});
     axios
-      .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=year`,
-      )
+      .get(STOCKS_SERVER + `/stocks/${ticker}/quote/historic?interval=year`)
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
       .then((response) => {
@@ -302,7 +289,7 @@ export const fetchTickers = () => {
   return (dispatch) => {
     dispatch({type: FETCHTICKERS_START});
     axios
-      .get(`http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/tickers/all`)
+      .get(STOCKS_SERVER + `/tickers/all`)
 
       // .then(response => console.log (response.data.result.tickers, "From TICKERS"))
       .then((response) => {
@@ -326,9 +313,7 @@ export const fetchMarketGainers = () => {
   return (dispatch) => {
     dispatch({type: MARKETGAINERS_FETCHING});
     axios
-      .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/daily/gainers`,
-      )
+      .get(STOCKS_SERVER + `/stocks/daily/gainers`)
 
       // .then(response => console.log (response.data.result.statType, "From MARKETGAINERS API"))
       .then((response) =>
@@ -348,9 +333,7 @@ export const fetchMarketLosers = () => {
   return (dispatch) => {
     dispatch({type: MARKETLOSERS_FETCHING});
     axios
-      .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/daily/losers`,
-      )
+      .get(STOCKS_SERVER + `/stocks/daily/losers`)
 
       // .then(response => console.log (response.data.result.statType, "From MARKETLOSERS API"))
       .then((response) =>
