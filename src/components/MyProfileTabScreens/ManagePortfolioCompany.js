@@ -14,7 +14,7 @@ import PortfolioStockGraph from '../MyProfileTabComponents/PortfolioStockGraph';
 import {connect} from 'react-redux';
 import {
   fetchStockDayPortfolio,
-  fetchStockMonthPotfolio,
+  fetchStockMonthPortfolio,
   fetchStockWeekPortfolio,
   fetchStockThreeMonthPortfolio,
   fetchStockYearPortfolio,
@@ -86,7 +86,7 @@ export class ManagePortfolioCompany extends Component {
       });
     };
     const getMonthdata = () => {
-      this.props.fetchStockMonthPotfolio(
+      this.props.fetchStockMonthPortfolio(
         this.props.route.params.item.tickerSymbol,
       );
       this.setState({
@@ -402,8 +402,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(fetchStockDayPortfolio(ticker)),
     fetchStockWeekPortfolio: (ticker) =>
       dispatch(fetchStockWeekPortfolio(ticker)),
-    fetchStockMonthPotfolio: (ticker) =>
-      dispatch(fetchStockMonthPotfolio(ticker)),
+    fetchStockMonthPortfolio: (ticker) =>
+      dispatch(fetchStockMonthPortfolio(ticker)),
     fetchStockThreeMonthPortfolio: (ticker) =>
       dispatch(fetchStockThreeMonthPortfolio(ticker)),
     fetchStockYearPortfolio: (ticker) =>
