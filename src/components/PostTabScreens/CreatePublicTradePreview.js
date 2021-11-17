@@ -61,10 +61,12 @@ class CreatePostPreview extends Component {
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Image
                 style={style.postUserImage}
+                key={(new Date()).getTime()}
                 source={{
-                  uri: this.props.userImage,
+                  uri: this.props.userImage+'?time'+(new Date()).getTime(),
+                  cache: 'reload',
                   headers: {
-                    Authorization: `Bearer ${this.props.reduxToken}`,
+                    Authorization: `Bearer ${this.props.reduxToken}`,                    
                   },
                 }}
               />

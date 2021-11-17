@@ -1,11 +1,43 @@
 import React, {Component} from 'react';
-import {StyleSheet, Dimensions, SafeAreaView} from 'react-native';
+import {StyleSheet, Dimensions, SafeAreaView, View, Text} from 'react-native';
 import {SlideAreaChart} from '@connectedcars/react-native-slide-charts';
 import {LinearGradient, Stop} from 'react-native-svg';
+import axios from 'axios';
+import {moderateScale} from '../../util/responsiveFont';
 
 export default class PortfolioGraph extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      graphData: [{x: 2, y: 10}],
+      range: [5, 30],
+      percent: '1.22',
+      graphDataaa: [],
+      loading: true,
+      error: false,
+    };
+  }
+
+  componentDidMount() {}
   render() {
+
+    if (this.props.loading) {
+      return (
+        <View style={styles.container}>
+          <Text style={styles.loadingText}>Loading...</Text>
+        </View>
+      );
+    }
+    if (this.props.error || this.props.graphData < 2) {
+      return (
+        <View style={styles.unavailableView}>
+          <Text style={styles.loadingText}>Graph data unavailable</Text>
+        </View>
+      );
+    }
+
     const lineColor = this.props.percent > 0 ? '#91f2b1' : '#F66E6E';
+
     const fillGradient = (props) => {
       return (
         <LinearGradient x1="40%" y1="0%" x2="40%" y2="100%" {...props}>
@@ -18,9 +50,9 @@ export default class PortfolioGraph extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <SlideAreaChart
-          data={this.props.graphData}
-          yRange={this.props.range}
-          width={Dimensions.get('window').width - 180}
+          data={this.props.stockYearData}
+          yRange={this.props.yearPriceRange}
+          width={Dimensions.get('window').width - 190}
           height={70}
           style={{backgroundColor: '#2a334a'}}
           axisWidth={5}
@@ -54,5 +86,20 @@ export default class PortfolioGraph extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  unavailableView: {
+    backgroundColor: '#2a334a',
+    flexDirection: 'row',
+    flex: 1,
+    width: moderateScale(222),
+    alignItems: 'center',
+  },
+  loadingText: {
+    color: '#B8A0FF',
+    fontSize: moderateScale(13),
+    fontFamily: 'Montserrat-SemiBold',
+    marginBottom: moderateScale(24),
+    alignSelf: 'center',
+    marginLeft: 28,
   },
 });

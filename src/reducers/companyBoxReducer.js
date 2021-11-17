@@ -38,6 +38,7 @@ import {
   STOCKRANGETHREEMONTH,
   STOCKRANGEWEEK,
   STOCKRANGEYEAR,
+  RESET_STOCK_DATA
 } from '../constants';
 
 const defaultState = {
@@ -944,7 +945,7 @@ const defaultState = {
   stockMonth: [],
   stockThreeMonth: [],
   stockYear: [],
-  yearLoading: false,
+  stockLoading: false,
   searchStockResults: [],
   searchStockLoading: false,
   stockLatestData: [],
@@ -1066,23 +1067,30 @@ const companyBoxReducer = (state = defaultState, action) => {
         error: '',
         tickersAll: action.payload,
       };
-    case FETCHSTOCKDAY_START:
-      return {
-        ...state,
-        loading: true,
-        error: '',
-      };
-    case FETCHSTOCKDAY_SUCCESS:
+      case RESET_STOCK_DATA:
       return {
         ...state,
         loading: false,
         error: '',
         stockGraphData: action.payload,
       };
+    case FETCHSTOCKDAY_START:
+      return {
+        ...state,
+        stockLoading: true,
+        error: '',
+      };
+    case FETCHSTOCKDAY_SUCCESS:
+      return {
+        ...state,
+        stockLoading: false,
+        error: '',
+        stockGraphData: action.payload,
+      };
     case FETCHSTOCKDAY_ERROR:
       return {
         ...state,
-        loading: false,
+        stockLoading: false,
         error: action.payload,
       };
     case STOCKRANGEDAY:
@@ -1173,20 +1181,20 @@ const companyBoxReducer = (state = defaultState, action) => {
     case FETCHSTOCKYEAR_START:
       return {
         ...state,
-        yearLoading: true,
+        loading: true,
         error: '',
       };
     case FETCHSTOCKYEAR_SUCCESS:
       return {
         ...state,
-        yearLoading: false,
+        loading: false,
         error: '',
         stockGraphData: action.payload,
       };
     case FETCHSTOCKYEAR_ERROR:
       return {
         ...state,
-        yearLoading: false,
+        loading: false,
         error: action.payload,
       };
     case STOCKRANGEYEAR:
@@ -1214,6 +1222,8 @@ const companyBoxReducer = (state = defaultState, action) => {
         ...state,
         loading: false,
         error: action.payload,
+        stockDetails: action.payload,
+
       };
     default:
       return state;

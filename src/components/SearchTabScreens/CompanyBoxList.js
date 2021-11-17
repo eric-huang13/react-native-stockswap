@@ -13,7 +13,7 @@ import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
 import CompanyBox from '../SearchTabComponents/CompanyBox';
 import {fetchMarketGainers} from '../../actions/marketMovers';
-import {fetchMarketLosers, searchStock} from '../../actions/marketMovers';
+import {fetchMarketLosers, searchStock, resetStockData} from '../../actions/marketMovers';
 import StockSearchBox from '../SearchTabComponents/StockSearchBox';
 import {debounce} from 'lodash';
 
@@ -100,15 +100,16 @@ export class CompanyBoxList extends Component {
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     justifyContent="space-between">
-                    {marketGainers.map((item) => {
+                    {marketGainers.map((item, index) => {
                       return (
                         <TouchableOpacity
                           key={item.ticker}
                           onPress={() =>
-                            this.props.navigation.navigate({
+                            {this.props.navigation.navigate({
                               name: 'CompanyInformation',
-                              params: {item, stockCategory: 'gainers'},
-                            })
+                              params: {item, stockCategory: 'gainers', index},
+                            }),
+                            this.props.resetStockData()}
                           }>
                           <CompanyBox item={item} category={'gainers'} />
                         </TouchableOpacity>
@@ -153,11 +154,12 @@ export class CompanyBoxList extends Component {
                       return (
                         <TouchableOpacity
                           key={item.ticker}
-                          onPress={() =>
+                          onPress={() =>{
                             this.props.navigation.navigate({
                               name: 'CompanyInformation',
                               params: {item, stockCategory: 'losers'},
-                            })
+                            }),
+                            this.props.resetStockData()}
                           }>
                           <CompanyBox item={item} category={'losers'} />
                         </TouchableOpacity>
@@ -201,11 +203,12 @@ export class CompanyBoxList extends Component {
                       return (
                         <TouchableOpacity
                           key={item.id}
-                          onPress={() =>
+                          onPress={() =>{
                             this.props.navigation.navigate({
                               name: 'CompanyInformation',
                               params: {item, stockCategory: 'hbv'},
-                            })
+                            }),
+                            this.props.resetStockData()}
                           }>
                           <CompanyBox item={item} category={'hbv'} />
                         </TouchableOpacity>
@@ -222,11 +225,12 @@ export class CompanyBoxList extends Component {
                   return (
                     <TouchableOpacity
                       key={item.ticker}
-                      onPress={() =>
+                      onPress={() =>{
                         this.props.navigation.navigate({
                           name: 'StockSearchInformation',
                           params: {item, stockCategory: 'gainers'},
-                        })
+                        }),
+                        this.props.resetStockData()}
                       }>
                       <StockSearchBox item={item} />
                     </TouchableOpacity>
@@ -259,6 +263,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchGainers: () => dispatch(fetchMarketGainers()),
     fetchLosers: () => dispatch(fetchMarketLosers()),
     searchStock: (input) => dispatch(searchStock(input)),
+    resetStockData: () => dispatch(resetStockData()),
+
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(CompanyBoxList);

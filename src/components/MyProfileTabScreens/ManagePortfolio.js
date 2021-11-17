@@ -14,14 +14,28 @@ import TriangleIcon from '../../icons/TriangleIcon';
 import {connect} from 'react-redux';
 import ManagePortfolioBox from '../MyProfileTabComponents/ManagePortfolioBox';
 import {moderateScale} from '../../util/responsiveFont';
+import {PortfolioAccounts} from '../../actions/profile';
+import InstitutionHoldingsCard from './InstitutionHoldingsCard';
 
 class ManagePortfolio extends Component {
+  componentDidMount() {
+    this.props.PortfolioAccounts();
+    let sum = this.props.portfolioAccounts.holdings.reduce(function (
+      total,
+      currentValue,
+    ) {
+      return total + currentValue.price;
+    },
+    0);
+    this.setState({portfolioTotal: sum.toFixed(2)});
+  }
   constructor(props) {
     super(props);
     this.state = {
       input: '',
       shouldShow: false,
       dropDown: 'Select sorting',
+      portfolioTotal: null,
     };
   }
   handleChange = (text) => {
@@ -41,10 +55,12 @@ class ManagePortfolio extends Component {
     );
 
     const {shouldShow} = this.state;
-
+    if (!this.props.portfolioAccounts.institutions) {
+      return <SafeAreaView style={style.container}></SafeAreaView>;
+    }
     return (
       <SafeAreaView style={style.container}>
-        <View style={style.searchInputContainer}>
+        {/* <View style={style.searchInputContainer}>
           <View style={style.searchInputInnerContainer}>
             <SearchInput />
           </View>
@@ -54,12 +70,12 @@ class ManagePortfolio extends Component {
             placeholderTextColor="lightgrey"
             onChangeText={(text) => this.handleChange(text)}
           />
-        </View>
+        </View> */}
         <View style={style.innerContainer}>
           <View style={style.topDetailsRow}>
             <View style={style.percentContainer}>
               <Text style={style.portfolio}>Portfolio</Text>
-              <Text style={style.percent}>$3,201</Text>
+              <Text style={style.percent}>${this.state.portfolioTotal}</Text>
             </View>
             <View style={style.gainDetailsContainer}>
               <Text style={style.gain}>$-10.75(-11%)</Text>
@@ -112,7 +128,7 @@ class ManagePortfolio extends Component {
               ) : null}
             </View>
           </View>
-          <FlatList
+          {/* <FlatList
             style={style.boxContainer}
             data={filteredStocks}
             renderItem={({item}) => (
@@ -129,7 +145,20 @@ class ManagePortfolio extends Component {
                 </View>
               </TouchableOpacity>
             )}
-          />
+          /> */}
+          <View>
+            <ScrollView style={style.scrollContainer}>
+              {this.props.portfolioAccounts.institutions.map((item, index) => (
+                <InstitutionHoldingsCard
+                  key={index}
+                  itemId={item.itemId}
+                  insId={item.institutionId}
+                  navigation={this.props.navigation}
+                  dropDown={this.state.dropDown}
+                />
+              ))}
+            </ScrollView>
+          </View>
         </View>
       </SafeAreaView>
     );
@@ -139,15 +168,24 @@ class ManagePortfolio extends Component {
 const mapStateToProps = (state) => {
   return {
     gainers: state.company.gainers,
+    portfolioAccounts: state.user.portfolioAccounts,
   };
 };
-export default connect(mapStateToProps)(ManagePortfolio);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    PortfolioAccounts: () => dispatch(PortfolioAccounts()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ManagePortfolio);
 
 const style = StyleSheet.create({
   container: {
     backgroundColor: '#2a334a',
-    paddingBottom:315,
-
+    paddingBottom: 275,
+    paddingTop:moderateScale(10),
+  },
+  scrollContainer: {
+    // flex:1
   },
   searchInputContainer: {
     marginBottom: moderateScale(22),
@@ -192,8 +230,7 @@ const style = StyleSheet.create({
     marginLeft: moderateScale(8),
   },
   boxContainer: {
-    marginTop: moderateScale(6),  
-
+    marginTop: moderateScale(6),
   },
   portfolioBoxContainer: {
     borderBottomWidth: 1,

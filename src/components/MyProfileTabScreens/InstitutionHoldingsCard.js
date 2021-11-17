@@ -3,11 +3,12 @@ import {Text, View, ScrollView, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {PortfolioAccounts} from '../../actions/profile';
 import {moderateScale} from '../../util/responsiveFont';
+import AccountCard from './AccountCard';
 
-class InstitutionCard extends Component {
+class InstitutionHoldingsCard extends Component {
   render() {
     const {portfolioAccounts, itemId, insId} = this.props;
-    console.log(portfolioAccounts, 'ACCOUNTS');
+    // console.log(portfolioAccounts, 'ACCOUNTS');
     const filteredAccounts = portfolioAccounts.accounts.filter(
       (account) => account.itemId == itemId,
     );
@@ -27,11 +28,12 @@ class InstitutionCard extends Component {
         ))}
 
         {filteredAccounts.map((item, index) => (
-          <View key={index}> 
-            <Text style={style.accountOfficial}>{item.name}</Text>
-            {/* <Text style={style.account}>{item.name}</Text>
-            <Text style={style.hashtag}>{item.itemId}</Text> */}
-          </View>
+          <AccountCard
+            key={index}
+            item={item}
+            navigation={this.props.navigation}
+            dropDown={this.props.dropDown}
+          />
         ))}
       </View>
     );
@@ -50,7 +52,10 @@ const mapDispatchToProps = (dispatch) => {
     PortfolioAccounts: () => dispatch(PortfolioAccounts()),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(InstitutionCard);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(InstitutionHoldingsCard);
 
 const style = StyleSheet.create({
   container: {
@@ -82,7 +87,8 @@ const style = StyleSheet.create({
   accountName: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: moderateScale(20),
+    fontSize: moderateScale(26),
+    textAlign: 'center',
   },
   accountOfficial: {
     color: 'white',

@@ -3,36 +3,41 @@ import {Text, View, ScrollView, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {PortfolioAccounts} from '../../actions/profile';
 import {moderateScale} from '../../util/responsiveFont';
+import ManagePortfolioBox from '../MyProfileTabComponents/ManagePortfolioBox';
 
-class InstitutionCard extends Component {
+class AccountCard extends Component {
   render() {
     const {portfolioAccounts, itemId, insId} = this.props;
-    console.log(portfolioAccounts, 'ACCOUNTS');
-    const filteredAccounts = portfolioAccounts.accounts.filter(
-      (account) => account.itemId == itemId,
+    const filteredHoldings = portfolioAccounts.holdings.filter(
+      (holding) => holding.accountId == this.props.item.accountId,
     );
 
-    const filteredInstitutions = this.props.institution.filter(
-      (institution) => institution.id == insId,
-    );
     if (!this.props) {
       return null;
     }
     return (
       <View style={style.institutionCard}>
-        {filteredInstitutions.map((item, index) => (
-          <View key={index}>
-            <Text style={style.accountName}>{item.name}</Text>
-          </View>
-        ))}
+        <View>
+          <Text style={style.accountName}>{this.props.item.name}</Text>
+        </View>
 
-        {filteredAccounts.map((item, index) => (
-          <View key={index}> 
-            <Text style={style.accountOfficial}>{item.name}</Text>
-            {/* <Text style={style.account}>{item.name}</Text>
-            <Text style={style.hashtag}>{item.itemId}</Text> */}
+        {filteredHoldings.length > 1 ? (
+          filteredHoldings.map((item, index) => (
+            <ManagePortfolioBox
+              key={index}
+              item={item}
+              InstitutionId={this.props.itemId}
+              navigation={this.props.navigation}
+              dropDown={this.props.dropDown}
+            />
+          ))
+        ) : (
+          <View>
+            <Text style={style.loadingText}>
+              You have no holdings in this account.
+            </Text>
           </View>
-        ))}
+        )}
       </View>
     );
   }
@@ -41,7 +46,6 @@ class InstitutionCard extends Component {
 const mapStateToProps = (state) => {
   return {
     portfolioAccounts: state.user.portfolioAccounts,
-    institution: state.user.institution,
   };
 };
 
@@ -50,7 +54,7 @@ const mapDispatchToProps = (dispatch) => {
     PortfolioAccounts: () => dispatch(PortfolioAccounts()),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(InstitutionCard);
+export default connect(mapStateToProps, mapDispatchToProps)(AccountCard);
 
 const style = StyleSheet.create({
   container: {
@@ -58,13 +62,8 @@ const style = StyleSheet.create({
     backgroundColor: '#2a334a',
   },
   institutionCard: {
-    // borderColor:'lightgrey',
-    // borderWidth:.5,
     marginVertical: moderateScale(10),
-    marginHorizontal: moderateScale(4),
-    padding: moderateScale(4),
   },
-
   name: {
     color: 'white',
     fontWeight: 'bold',
@@ -94,5 +93,12 @@ const style = StyleSheet.create({
     fontStyle: 'italic',
     fontSize: moderateScale(16),
     marginBottom: moderateScale(12),
+  },
+  loadingText: {
+    color: '#B8A0FF',
+    fontSize: moderateScale(13),
+    fontFamily: 'Montserrat-SemiBold',
+    alignSelf: 'center',
+    marginTop: moderateScale(10),
   },
 });

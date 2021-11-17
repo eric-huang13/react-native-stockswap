@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import deviceStorage from './DeviceStorage';
 import Toast from 'react-native-toast-message';
 import {navigate} from '../../RootNavigation';
-
+import { AUTH_REFRESH } from '../actions/api';
 const apiInstance = axios.create();
 
 apiInstance.interceptors.request.use(

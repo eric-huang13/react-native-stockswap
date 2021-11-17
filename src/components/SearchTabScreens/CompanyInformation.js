@@ -107,11 +107,9 @@ export class CompanyInformation extends Component {
     const chartThreeQuarter = (chartHigh - numberDifference).toFixed(2);
     //Graph quarter number
     const chartOneQuarter = (chartLow + numberDifference).toFixed(2);
-
     const {route} = this.props;
     const {graphData, percent, range} = this.state;
-
-    if (this.props.stockGraphData.length < 2) {
+    if (this.props.stockDetails.length < 1) {
       return (
         <View style={style.mainContainer}>
           <View style={style.loadingView}>
@@ -125,8 +123,9 @@ export class CompanyInformation extends Component {
       <SafeAreaView style={style.mainContainer}>
         <CompanySymbolList
           navigation={this.props.navigation}
-          symbol={route.params.item.ticker}
+          ticker={route.params.item.ticker}
           itemId={route.params.item.id}
+          indexNumber={this.props.route.params.index}
           stockCategory={route.params.stockCategory}
         />
         <ScrollView>
@@ -155,7 +154,7 @@ export class CompanyInformation extends Component {
             <Text>Company Information</Text>
           )}
           {this.props.stockGraphData.length > 2 &&
-          this.props.stockRange.length > 1 ? (
+          this.props.stockRange.length > 1 && !this.props.stockLoading ? (
             <View style={style.graphContainer}>
               <CompanyStockGraph
                 graphData={this.props.stockGraphData}
@@ -169,7 +168,12 @@ export class CompanyInformation extends Component {
                 <Text style={style.graphNumberText}>-{chartHigh.toFixed(2)}</Text>
               </View>
             </View>
-          ) : null}
+          ) : <View style={style.mainContainer}>
+          <View style={style.loadingViewGraph}>
+            <Text style={style.loadingText}>Loading...</Text>
+            <ActivityIndicator size="large" color="#8b64ff" />
+          </View>
+        </View>}
           <View style={style.stockButtonsContainer}>
             <TouchableOpacity onPress={() => getLivedata()}>
               <Text
@@ -307,17 +311,19 @@ export class CompanyInformation extends Component {
           <View style={style.buyButtonContainer}>
             <Text style={style.buyButton}>Buy {route.params.item.title}</Text>
           </View>
-          <View style={style.aboutSection}>
-            <Text style={style.aboutHeader}>ABOUT</Text>
+          {this.props.stockDetails.sector !== 'Unavailable' ? (
+            <View style={style.aboutSection}>
+              <Text style={style.aboutHeader}>ABOUT</Text>
 
-            <Text style={style.sectorData}>
-              <Text style={style.sectorText}>Sector:</Text>{' '}
-              {this.props.stockDetails.sector}
-            </Text>
-            <Text style={style.about}>
-              {this.props.stockDetails.description}
-            </Text>
-          </View>
+              <Text style={style.sectorData}>
+                <Text style={style.sectorText}>Sector:</Text>{' '}
+                {this.props.stockDetails.sector}
+              </Text>
+              <Text style={style.about}>
+                {this.props.stockDetails.description}
+              </Text>
+            </View>
+          ) : null}
         </ScrollView>
       </SafeAreaView>
     );
@@ -327,8 +333,8 @@ const mapStateToProps = (state) => {
   return {
     stockGraphData: state.company.stockGraphData,
     stockRange: state.company.stockRange,
-    // stockLatestData: state.company.stockLatestData,
     stockDetails: state.company.stockDetails,
+    stockLoading: state.company.stockLoading,
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -356,6 +362,12 @@ const style = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     marginTop: moderateScale(180),
+  },
+  loadingViewGraph: {
+    alignContent: 'center',
+    alignItems: 'center',
+    marginTop: moderateScale(65),
+    marginBottom: moderateScale(50),
   },
   loadingText: {
     color: '#B8A0FF',

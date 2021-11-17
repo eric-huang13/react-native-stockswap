@@ -112,7 +112,7 @@ export class StockSearchInformation extends Component {
     const {route} = this.props;
     const {graphData, percent, range} = this.state;
 
-    if (this.props.stockGraphData.length < 2) {
+    if (this.props.stockDetails.length < 1) {
       return (
         <View style={style.mainContainer}>
           <View style={style.loadingView}>
@@ -159,7 +159,12 @@ export class StockSearchInformation extends Component {
                 <Text style={style.graphNumberText}>-{chartHigh.toFixed(2)}</Text>
               </View>
             </View>
-          ) : null}
+          ) : <View style={style.mainContainer}>
+          <View style={style.loadingViewGraph}>
+            <Text style={style.loadingText}>Loading...</Text>
+            <ActivityIndicator size="large" color="#8b64ff" />
+          </View>
+        </View>}
           <View style={style.stockButtonsContainer}>
             <TouchableOpacity onPress={() => getLivedata()}>
               <Text
@@ -290,6 +295,7 @@ export class StockSearchInformation extends Component {
           <View style={style.buyButtonContainer}>
             <Text style={style.buyButton}>Buy {route.params.item.title}</Text>
           </View>
+          {this.props.stockDetails.sector !== 'Unavailable' ? (
           <View style={style.aboutSection}>
             <Text style={style.aboutHeader}>ABOUT</Text>
 
@@ -301,6 +307,7 @@ export class StockSearchInformation extends Component {
               {this.props.stockDetails.description}
             </Text>
           </View>
+          ) : null}
         </ScrollView>
       </SafeAreaView>
     );
@@ -312,7 +319,6 @@ const mapStateToProps = (state) => {
     stockRange: state.company.stockRange,
     stockDetails: state.company.stockDetails,
     stockLatestData: state.company.stockLatestData,
-    yearLoading: state.company.yearLoading,
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -343,6 +349,12 @@ const style = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     marginTop: moderateScale(180),
+  },
+  loadingViewGraph: {
+    alignContent: 'center',
+    alignItems: 'center',
+    marginTop: moderateScale(65),
+    marginBottom: moderateScale(50),
   },
   loadingText: {
     color: '#B8A0FF',
