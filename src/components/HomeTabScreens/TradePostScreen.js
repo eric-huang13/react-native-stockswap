@@ -94,7 +94,7 @@ const TradePostScreen = ({navigation, route}) => {
   return (
     <SafeAreaView style={style.container}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        behavior={Platform.OS === 'ios' ? 'padding' : null}
         keyboardVerticalOffset={100}
         style={{flex: 1}}>
         <Modal
