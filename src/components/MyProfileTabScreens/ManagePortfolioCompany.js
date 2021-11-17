@@ -48,9 +48,13 @@ export class ManagePortfolioCompany extends Component {
     this.setState({dropDown: pick, shouldShow: false});
   }
   componentDidMount() {
-    this.props.fetchStockDayPortfolio(this.props.route.params.item.tickerSymbol);
+    this.props.fetchStockDayPortfolio(
+      this.props.route.params.item.tickerSymbol,
+    );
     // this.props.stockLatestPortfolio(this.props.route.params.item.tickerSymbol);
-    this.props.fetchStockDetailsPortfolio(this.props.route.params.item.tickerSymbol);
+    this.props.fetchStockDetailsPortfolio(
+      this.props.route.params.item.tickerSymbol,
+    );
     this.props.stockLatestPortfolio(this.props.route.params.item.tickerSymbol);
 
     // this.props.navigation.setOptions({title: this.props.stockDetails.name});
@@ -58,25 +62,33 @@ export class ManagePortfolioCompany extends Component {
 
   render() {
     const getLivedata = () => {
-      this.props.fetchStockDayPortfolio(this.props.route.params.item.tickerSymbol);
+      this.props.fetchStockDayPortfolio(
+        this.props.route.params.item.tickerSymbol,
+      );
       this.setState({
         timeFilter: 'live',
       });
     };
     const getDaydata = () => {
-      this.props.fetchStockDayPortfolio(this.props.route.params.item.tickerSymbol);
+      this.props.fetchStockDayPortfolio(
+        this.props.route.params.item.tickerSymbol,
+      );
       this.setState({
         timeFilter: 'day',
       });
     };
     const getWeekdata = () => {
-      this.props.fetchStockWeekPortfolio(this.props.route.params.item.tickerSymbol);
+      this.props.fetchStockWeekPortfolio(
+        this.props.route.params.item.tickerSymbol,
+      );
       this.setState({
         timeFilter: 'week',
       });
     };
     const getMonthdata = () => {
-      this.props.fetchStockMonthPotfolio(this.props.route.params.item.tickerSymbol);
+      this.props.fetchStockMonthPotfolio(
+        this.props.route.params.item.tickerSymbol,
+      );
       this.setState({
         timeFilter: 'month',
       });
@@ -90,20 +102,23 @@ export class ManagePortfolioCompany extends Component {
       });
     };
     const getYeardata = () => {
-      this.props.fetchStockYearPortfolio(this.props.route.params.item.tickerSymbol);
+      this.props.fetchStockYearPortfolio(
+        this.props.route.params.item.tickerSymbol,
+      );
       this.setState({
         timeFilter: 'year',
       });
     };
     const getAlldata = () => {
-      this.props.fetchStockYearPortfolio(this.props.route.params.item.tickerSymbol);
+      this.props.fetchStockYearPortfolio(
+        this.props.route.params.item.tickerSymbol,
+      );
       this.setState({
         timeFilter: 'all',
       });
     };
 
     const currentPrice = this.props.stockLatestData.volumeWeightedAveragePrice;
-
 
     //Numbers to display graph numbers, can also use use built in graph numbers instead
     //Graph high number
@@ -131,10 +146,12 @@ export class ManagePortfolioCompany extends Component {
     return (
       <SafeAreaView style={style.mainContainer}>
         <ScrollView>
-        {this.props.route.params ? (
+          {this.props.route.params ? (
             <View style={style.aboveGraphContainer}>
               <View style={style.symbolView}>
-                <Text style={style.symbol}>{route.params.item.ticker}</Text>
+                <Text style={style.symbol}>
+                  {this.props.route.params.item.tickerSymbol}
+                </Text>
                 <Text style={style.price}>
                   ${this.props.stockLatestData.volumeWeightedAveragePrice}
                 </Text>
@@ -143,16 +160,30 @@ export class ManagePortfolioCompany extends Component {
                 {/* <Text style={style.title}>{route.params.item.title}</Text> */}
 
                 <Text style={style.percentage}>
-                  (+{this.props.stockLatestDatachange}%)
+                  ({this.props.route.params.percentChange}%)
                 </Text>
               </View>
             </View>
           ) : (
             <Text>Company Information</Text>
           )}
-          {this.props.stockGraphDataPortfolio.length > 2 &&
-          this.props.stockRangePortfolio.length > 1 &&
-          !this.props.stockPortfolioLoading ? (
+          {/* {this.props.stockGraphDataPortfolio.length > 2 &&
+          this.props.stockRangePortfolio.length > 1 && */}
+          {this.props.stockPortfolioLoading ? (
+            <View style={style.mainContainer}>
+              <View style={style.loadingViewGraph}>
+                <Text style={style.loadingText}>Loading...</Text>
+                <ActivityIndicator size="large" color="#8b64ff" />
+              </View>
+            </View>
+          ) : this.props.stockGraphDataPortfolio.length < 2 ||
+            this.props.stockRangePortfolio.length < 1 ? (
+            <View style={style.mainContainer}>
+              <View style={style.loadingViewGraph}>
+                <Text style={style.loadingText}>Graph data unavailable</Text>
+              </View>
+            </View>
+          ) : (
             <View style={style.graphContainer}>
               <PortfolioStockGraph
                 graphData={this.props.stockGraphDataPortfolio}
@@ -168,13 +199,6 @@ export class ManagePortfolioCompany extends Component {
                 <Text style={style.graphNumberText}>
                   -{chartHigh.toFixed(2)}
                 </Text>
-              </View>
-            </View>
-          ) : (
-            <View style={style.mainContainer}>
-              <View style={style.loadingViewGraph}>
-                <Text style={style.loadingText}>Loading...</Text>
-                <ActivityIndicator size="large" color="#8b64ff" />
               </View>
             </View>
           )}
@@ -287,7 +311,7 @@ export class ManagePortfolioCompany extends Component {
 
           <Text style={style.vitalsHeader}>STATS</Text>
           <View style={style.vitalsContainer}>
-          <View style={style.vitalsLeftColumn}>
+            <View style={style.vitalsLeftColumn}>
               <View style={style.vitalsRow}>
                 <Text style={style.vitalDetails}>Open:</Text>
                 <Text style={style.vitalDetailsData}>${currentPrice}</Text>
@@ -317,7 +341,6 @@ export class ManagePortfolioCompany extends Component {
                 </Text>
               </View>
             </View>
-
 
             <View style={style.vitalsRightColumn}>
               <View style={style.vitalsRow}>
@@ -371,17 +394,22 @@ const mapStateToProps = (state) => {
     stockDetails: state.portfolio.stockDetails,
     stockPortfolioLoading: state.portfolio.stockPortfolioLoading,
     stockLatestData: state.portfolio.stockLatestPortfolioData,
-
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchStockDayPortfolio: (ticker) => dispatch(fetchStockDayPortfolio(ticker)),
-    fetchStockWeekPortfolio: (ticker) => dispatch(fetchStockWeekPortfolio(ticker)),
-    fetchStockMonthPotfolio: (ticker) => dispatch(fetchStockMonthPotfolio(ticker)),
-    fetchStockThreeMonthPortfolio: (ticker) => dispatch(fetchStockThreeMonthPortfolio(ticker)),
-    fetchStockYearPortfolio: (ticker) => dispatch(fetchStockYearPortfolio(ticker)),
-    fetchStockDetailsPortfolio: (ticker) => dispatch(fetchStockDetailsPortfolio(ticker)),
+    fetchStockDayPortfolio: (ticker) =>
+      dispatch(fetchStockDayPortfolio(ticker)),
+    fetchStockWeekPortfolio: (ticker) =>
+      dispatch(fetchStockWeekPortfolio(ticker)),
+    fetchStockMonthPotfolio: (ticker) =>
+      dispatch(fetchStockMonthPotfolio(ticker)),
+    fetchStockThreeMonthPortfolio: (ticker) =>
+      dispatch(fetchStockThreeMonthPortfolio(ticker)),
+    fetchStockYearPortfolio: (ticker) =>
+      dispatch(fetchStockYearPortfolio(ticker)),
+    fetchStockDetailsPortfolio: (ticker) =>
+      dispatch(fetchStockDetailsPortfolio(ticker)),
     stockLatestPortfolio: (ticker) => dispatch(stockLatestPortfolio(ticker)),
   };
 };

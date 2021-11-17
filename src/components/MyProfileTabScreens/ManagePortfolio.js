@@ -60,7 +60,7 @@ class ManagePortfolio extends Component {
     }
     return (
       <SafeAreaView style={style.container}>
-        <View style={style.searchInputContainer}>
+        {/* <View style={style.searchInputContainer}>
           <View style={style.searchInputInnerContainer}>
             <SearchInput />
           </View>
@@ -70,7 +70,7 @@ class ManagePortfolio extends Component {
             placeholderTextColor="lightgrey"
             onChangeText={(text) => this.handleChange(text)}
           />
-        </View>
+        </View> */}
         <View style={style.innerContainer}>
           <View style={style.topDetailsRow}>
             <View style={style.percentContainer}>
@@ -182,7 +182,7 @@ const style = StyleSheet.create({
   container: {
     backgroundColor: '#2a334a',
     paddingBottom: 275,
-    flex: 1,
+    paddingTop:moderateScale(10),
   },
   scrollContainer: {
     // flex:1

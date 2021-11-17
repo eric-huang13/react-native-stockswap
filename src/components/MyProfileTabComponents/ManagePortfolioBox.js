@@ -57,7 +57,6 @@ class ManagePortfolioBox extends Component {
         `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=day`,
       )
       .then((response) => {
-      
         this.setState({
           graphData: response.data.result.quotes,
           loading: false,
@@ -78,10 +77,10 @@ class ManagePortfolioBox extends Component {
             100
           ).toFixed(2),
           percentChange: (
-            ((response.data.result.quotes[
-              response.data.result.quotes.length - 1
-            ].close -
-              response.data.result.quotes[0].close) /
+            ((response.data.result.quotes[0].close -
+              response.data.result.quotes[
+                response.data.result.quotes.length - 1
+              ].close) /
               response.data.result.quotes[
                 response.data.result.quotes.length - 1
               ].close) *
@@ -108,7 +107,7 @@ class ManagePortfolioBox extends Component {
       return {x: Date.parse(i.window.startTime), y: i.close};
     });
     const stockYearData = stockYearDataOriginal.reverse();
- 
+
     if (this.state.securityDetails.length < 1) {
       return null;
     }
@@ -120,7 +119,7 @@ class ManagePortfolioBox extends Component {
             onPress={() =>
               this.props.navigation.navigate({
                 name: 'ManagePortfolioCompany',
-                params: {item},
+                params: {item, percentChange: this.state.percentChange},
               })
             }>
             <View style={style.mainContainer} key={index}>
@@ -163,8 +162,10 @@ class ManagePortfolioBox extends Component {
                 ) : (
                   <BearIcon style={style.icon} />
                 )}
-                {this.props.dropDown == 'Select sorting' ||
-                (this.props.dropDown == 'Percent Change' &&
+                {/* {this.props.dropDown == 'Select sorting' || */}
+                {(this.props.dropDown == 'Percent Change' &&
+                  this.state.percentChange !== '') ||
+                (this.props.dropDown == 'Select sorting' &&
                   this.state.percentChange !== '') ? (
                   <Text
                     style={
