@@ -93,7 +93,7 @@ class ManagePortfolioBox extends Component {
         });
       })
       .catch((error) => {
-        console.log(error, 'error'),
+        // console.log(error, 'error'),
           this.setState({loading: false, error: true});
       });
   }
@@ -126,7 +126,10 @@ class ManagePortfolioBox extends Component {
               <View style={style.symbolContainer}>
                 <Text
                   style={
-                    this.state.percent > 0 ? style.symbolGain : style.symbolLoss
+                    this.state.percentChange < 0 &&
+                    this.state.percentChange !== ''
+                      ? style.symbolLoss
+                      : style.symbolGain
                   }>
                   {item.tickerSymbol}
                 </Text>
@@ -151,16 +154,18 @@ class ManagePortfolioBox extends Component {
                   loading={this.state.loading}
                   error={this.state.error}
                   graphData={this.state.graphData}
+                  percent={this.state.percentChange}
                   // range={this.state.range}
                   // percent={this.state.percent}
                 />
               </View>
 
               <View style={style.percentContainer}>
-                {this.state.percent > 0 ? (
-                  <BullIcon style={style.icon} />
-                ) : (
+                {this.state.percentChange < 0 &&
+                this.state.percentChange !== '' ? (
                   <BearIcon style={style.icon} />
+                ) : (
+                  <BullIcon style={style.icon} />
                 )}
                 {/* {this.props.dropDown == 'Select sorting' || */}
                 {(this.props.dropDown == 'Percent Change' &&
@@ -169,9 +174,10 @@ class ManagePortfolioBox extends Component {
                   this.state.percentChange !== '') ? (
                   <Text
                     style={
-                      this.state.percent > 0
-                        ? style.percentGain
-                        : style.percentLoss
+                      this.state.percentChange < 0 &&
+                      this.state.percentChange !== ''
+                        ? style.percentLoss
+                        : style.percentGain
                     }>
                     {this.state.percentChange}%
                   </Text>
@@ -179,9 +185,10 @@ class ManagePortfolioBox extends Component {
                   this.state.lastQuote.length > 1 ? (
                   <Text
                     style={
-                      this.state.percent > 0
-                        ? style.percentGain
-                        : style.percentLoss
+                      this.state.percentChange < 0 &&
+                      this.state.percentChange !== ''
+                        ? style.percentLoss
+                        : style.percentGain
                     }>
                     ${this.state.lastQuote}
                   </Text>
@@ -189,9 +196,10 @@ class ManagePortfolioBox extends Component {
                   this.state.equity !== '' ? (
                   <Text
                     style={
-                      this.state.percent > 0
-                        ? style.percentGain
-                        : style.percentLoss
+                      this.state.percentChange < 0 &&
+                      this.state.percentChange !== ''
+                        ? style.percentLoss
+                        : style.percentGain
                     }>
                     ${this.state.equity}
                   </Text>
@@ -199,9 +207,10 @@ class ManagePortfolioBox extends Component {
                   this.state.totalPercentChange !== '' ? (
                   <Text
                     style={
-                      this.state.percent > 0
-                        ? style.percentGain
-                        : style.percentLoss
+                      this.state.percentChange < 0 &&
+                      this.state.percentChange !== ''
+                        ? style.percentLoss
+                        : style.percentGain
                     }>
                     {this.state.totalPercentChange}%
                   </Text>
@@ -209,9 +218,10 @@ class ManagePortfolioBox extends Component {
                   (this.state.todaysReturn !== '') ? (
                   <Text
                     style={
-                      this.state.percent > 0
-                        ? style.percentGain
-                        : style.percentLoss
+                      this.state.percentChange < 0 &&
+                      this.state.percentChange !== ''
+                        ? style.percentLoss
+                        : style.percentGain
                     }>
                     ${this.state.todaysReturn}
                   </Text>
@@ -219,9 +229,10 @@ class ManagePortfolioBox extends Component {
                   (this.state.todaysReturn !== '') ? (
                   <Text
                     style={
-                      this.state.percent > 0
-                        ? style.percentGain
-                        : style.percentLoss
+                      this.state.percentChange < 0 &&
+                      this.state.percentChange !== ''
+                        ? style.percentLoss
+                        : style.percentGain
                     }>
                     ${this.state.totalReturn}
                   </Text>

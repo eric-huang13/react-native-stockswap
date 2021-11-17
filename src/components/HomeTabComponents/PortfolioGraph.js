@@ -20,6 +20,7 @@ export default class PortfolioGraph extends Component {
 
   componentDidMount() {}
   render() {
+
     if (this.props.loading) {
       return (
         <View style={styles.container}>
@@ -35,7 +36,7 @@ export default class PortfolioGraph extends Component {
       );
     }
 
-    const lineColor = this.state.percent > 0 ? '#91f2b1' : '#F66E6E';
+    const lineColor = this.props.percent > 0 ? '#91f2b1' : '#F66E6E';
 
     const fillGradient = (props) => {
       return (
