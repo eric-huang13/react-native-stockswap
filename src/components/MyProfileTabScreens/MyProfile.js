@@ -101,7 +101,7 @@ class Profile extends Component {
                     </Text>
                   </View>
                 </View>
-                {/* <View style={style.graphContainer}>
+                <View style={style.graphContainer}>
                   <ProfileGraph
                     graphData={[
                       {x: 2, y: 10},
@@ -113,7 +113,7 @@ class Profile extends Component {
                     ]}
                     range={[10, 15]}
                   />
-                </View> */}
+                </View>
                 <View style={style.timeFilterButtonsContainer}>
                   <TouchableOpacity
                     onPress={() => this.timeFilterSelect('live')}>

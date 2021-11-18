@@ -63,8 +63,8 @@ class ManagePortfolioBox extends Component {
           error: false,
           lastQuote: response.data.result.quotes[0].close.toFixed(2),
           equity:
-            response.data.result.quotes[0].close.toFixed(2) *
-            this.props.item.quantity,
+          (response.data.result.quotes[0].close *
+            this.props.item.quantity).toFixed(2),
           todaysReturn: (
             response.data.result.quotes[0].close -
             response.data.result.quotes[response.data.result.quotes.length - 1]
