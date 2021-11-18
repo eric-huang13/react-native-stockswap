@@ -38,6 +38,7 @@ import {
   STOCKRANGEMONTH,
   STOCKRANGEWEEK,
   STOCKRANGEDAY,
+  RESET_STOCK_DATA
 } from 'constants';
 import axios from 'axios';
 import {STOCKS_SERVER} from '../constants';
@@ -94,10 +95,21 @@ export const fetchStockDetails = (ticker) => {
           payload: response.data.result.details,
         });
       })
+      .catch((error) => {
+        // console.log(error.response.data.message, 'ERROR in LOGIN');
+        let emptyData = {
+          description: 'Information for this company is unavailable.',
+          sector: 'Unavailable',
+        };
+        dispatch({type: FETCHSTOCKDETAILS_ERROR, payload: emptyData});
+      });
+  };
+};
 
-      .catch((error) =>
-        dispatch({type: FETCHSTOCKDETAILS_ERROR, payload: error.response}),
-      );
+export const resetStockData = () => {
+  return (dispatch) => {
+    let emptyData = {};
+    dispatch({type: RESET_STOCK_DATA, payload: emptyData});
   };
 };
 

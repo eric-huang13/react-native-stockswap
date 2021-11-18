@@ -149,6 +149,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     LogoutUser: (userCredentials) => dispatch(Logout(userCredentials)),
     fetchTickers: () => dispatch(fetchTickers()),
+    GetProfileImage: (token, id) => dispatch(GetProfileImage(token, id)),
+    RefreshToken: (token) => dispatch(RefreshToken(token)),
   };
 };
 

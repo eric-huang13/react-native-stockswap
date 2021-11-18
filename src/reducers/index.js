@@ -7,6 +7,7 @@ import companyBoxReducer from './companyBoxReducer';
 import postsReducer from './postsReducer';
 import peopleReducer from './peopleReducer';
 import newsReducer from './newsReducer';
+import portfolioReducer from './portfolioReducer';
 
 const appReducer = combineReducers({
   user: userReducer,
@@ -14,6 +15,7 @@ const appReducer = combineReducers({
   posts: postsReducer,
   people: peopleReducer,
   news: newsReducer,
+  portfolio: portfolioReducer,
 });
 
 const rootReducer = (state, action) => {

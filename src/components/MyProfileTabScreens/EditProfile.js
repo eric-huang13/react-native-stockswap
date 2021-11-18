@@ -13,12 +13,14 @@ import {
   Platform,
 } from 'react-native';
 import {CreateProfileImage, EditUserProfile} from '../../actions/profile';
+import {RefreshToken} from '../../actions/user';
 import LinearGradient from 'react-native-linear-gradient';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import ImagePicker from 'react-native-image-crop-picker';
 import {moderateScale} from '../../util/responsiveFont';
 import {Buffer} from 'buffer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -43,6 +45,15 @@ const validationSchema = Yup.object().shape({
 class EditProfile extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    AsyncStorage.getItem('token').then((token) => {
+      if (token) {
+        this.props.RefreshToken(token);
+      }
+    });
+   
   }
   //Creating FormData for sending image to backend
   createFormData = (values) => {
@@ -102,7 +113,7 @@ class EditProfile extends Component {
                   // id: userAccount.id,
                   name: userProfile.name,
                   username: userProfile.username,
-                  image: {name: '', type: '', uri: userImage},
+                  image: {name: '', type: '', uri: userImage+'?time'+(new Date()).getTime()},
                   tags: userAccount.hashtag,
                   bio: userProfile.bio,
                 }}
@@ -157,7 +168,7 @@ class EditProfile extends Component {
                           source={{
                             uri: values.image.uri,
                             headers: {
-                              Authorization: `Bearer ${this.props.userData.accessToken}`,
+                              Authorization: `Bearer ${this.props.reduxToken}`,
                             },
                           }}
                         />
@@ -299,6 +310,8 @@ const mapStateToProps = (state) => {
     userProfile: state.user.userProfile,
     userImage: state.user.userImage,
     userData: state.user.userData,
+    reduxToken: state.user.token,
+
   };
 };
 
@@ -307,6 +320,7 @@ const mapDispatchToProps = (dispatch) => {
     EditUserProfile: (input) => dispatch(EditUserProfile(input)),
     CreateProfileImage: (id, token, input) =>
       dispatch(CreateProfileImage(id, token, input)),
+    RefreshToken: (token) => dispatch(RefreshToken(token)),
   };
 };
 

@@ -20,9 +20,9 @@ class PortfolioMangement extends Component {
         <ScrollView>
           <View>
             <Text style={style.header}> Linked Accounts </Text>
-            {this.props.portfolioAccounts.institutions.map((item) => (
+            {this.props.portfolioAccounts.institutions.map((item, index) => (
               <InstitutionCard
-                key={item.id}
+                key={index}
                 itemId={item.itemId}
                 insId={item.institutionId}
               />
