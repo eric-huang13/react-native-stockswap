@@ -20,6 +20,7 @@ import InstitutionHoldingsCard from './InstitutionHoldingsCard';
 class ManagePortfolio extends Component {
   componentDidMount() {
     this.props.PortfolioAccounts();
+    if(this.props.portfolioAccounts.length > 1){
     let sum = this.props.portfolioAccounts.holdings.reduce(function (
       total,
       currentValue,
@@ -28,6 +29,7 @@ class ManagePortfolio extends Component {
     },
     0);
     this.setState({portfolioTotal: sum.toFixed(2)});
+  }
   }
   constructor(props) {
     super(props);
@@ -56,8 +58,9 @@ class ManagePortfolio extends Component {
 
     const {shouldShow} = this.state;
     if (!this.props.portfolioAccounts.institutions) {
-      return <SafeAreaView style={style.container}></SafeAreaView>;
+      return <SafeAreaView style={style.emptyContainer}><Text style={style.stockHeader}>You have no linked accounts.</Text></SafeAreaView>;
     }
+    
     return (
       <SafeAreaView style={style.container}>
         {/* <View style={style.searchInputContainer}>
@@ -182,6 +185,12 @@ const style = StyleSheet.create({
   container: {
     backgroundColor: '#2a334a',
     paddingBottom: 275,
+    paddingTop:moderateScale(10),
+  },
+  emptyContainer: {
+    backgroundColor: '#2a334a',
+    paddingBottom: 275,
+    flex:1,
     paddingTop:moderateScale(10),
   },
   scrollContainer: {

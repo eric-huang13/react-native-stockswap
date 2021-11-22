@@ -12,8 +12,8 @@ class PortfolioMangement extends Component {
   render() {
     if (!this.props.portfolioAccounts.institutions) {
       return (
-        <SafeAreaView style={style.container}>        
-        </SafeAreaView>
+      <View style={style.container}><Text style={style.header}>You have no linked accounts.</Text></View>
+
       );    }
     return (
       <SafeAreaView style={style.container}>

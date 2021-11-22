@@ -62,9 +62,9 @@ class ManagePortfolioBox extends Component {
           loading: false,
           error: false,
           lastQuote: response.data.result.quotes[0].close.toFixed(2),
-          equity:
-          (response.data.result.quotes[0].close *
-            this.props.item.quantity).toFixed(2),
+          equity: (
+            response.data.result.quotes[0].close * this.props.item.quantity
+          ).toFixed(2),
           todaysReturn: (
             response.data.result.quotes[0].close -
             response.data.result.quotes[response.data.result.quotes.length - 1]
@@ -94,7 +94,7 @@ class ManagePortfolioBox extends Component {
       })
       .catch((error) => {
         // console.log(error, 'error'),
-          this.setState({loading: false, error: true});
+        this.setState({loading: false, error: true});
       });
   }
 
@@ -126,8 +126,9 @@ class ManagePortfolioBox extends Component {
               <View style={style.symbolContainer}>
                 <Text
                   style={
-                    this.state.percentChange < 0 &&
-                    this.state.percentChange !== ''
+                    this.state.percentChange == ''
+                      ? style.symbolNoData
+                      : this.state.percentChange < 0
                       ? style.symbolLoss
                       : style.symbolGain
                   }>
@@ -304,6 +305,12 @@ const style = StyleSheet.create({
   },
   symbolLoss: {
     color: '#F66E6E',
+    fontFamily: 'Montserrat-Bold',
+    fontSize: moderateScale(16),
+    textAlign: 'left',
+  },
+  symbolNoData: {
+    color: '#B8A0FF',
     fontFamily: 'Montserrat-Bold',
     fontSize: moderateScale(16),
     textAlign: 'left',

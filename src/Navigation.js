@@ -35,6 +35,7 @@ import ProfileInfoForm from './components/LoggedOutScreens/ProfileInfoForm';
 import ConnectAccount from './components/LoggedOutScreens/ConnectAccount';
 import PlaidComponent from './components/MyProfileTabScreens/PlaidComponent';
 import EnableAccounts from './components/MyProfileTabScreens/EnableAccounts';
+import LoggingOutScreen from './components/LoggedOutScreens/LoggingOutScreen';
 
 //toast
 import MyToast from './components/toast';
@@ -62,6 +63,11 @@ const FirstTimeStackNavigator = () => {
       <FirstTimeStack.Screen
         name="PlaidComponent"
         component={PlaidComponent}
+        options={{headerShown: false, animationEnabled: false}}
+      />
+       <FirstTimeStack.Screen
+        name="LoggingOut"
+        component={LoggingOutScreen}
         options={{headerShown: false, animationEnabled: false}}
       />
       <FirstTimeStack.Screen
