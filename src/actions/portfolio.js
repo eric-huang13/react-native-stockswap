@@ -47,7 +47,7 @@ export const stockLatestPortfolio = (ticker) => {
       })
 
       .catch((error) =>
-        dispatch({type: STOCKLATESTPORTFOLIO_ERROR, payload: error.response}),
+        dispatch({type: STOCKLATESTPORTFOLIO_ERROR, payload: []}),
       );
   };
 };

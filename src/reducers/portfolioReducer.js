@@ -59,6 +59,8 @@ const portfolioReducer = (state = defaultState, action) => {
       return {
         ...state,
         error: action.payload,
+        stockLatestPortfolioData: action.payload,
+
       };
 
     case FETCHSTOCKDAYPORTFOLIO_START:
