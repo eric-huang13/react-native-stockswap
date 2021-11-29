@@ -11,6 +11,7 @@ import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
 import MyFollowersBox from '../MyProfileTabComponents/MyFollowersBox';
 import {moderateScale} from '../../util/responsiveFont';
+import {getMyFollowers} from '../../actions/people';
 
 export class MyFollowers extends Component {
   constructor(props) {
@@ -19,6 +20,9 @@ export class MyFollowers extends Component {
       input: '',
     };
   }
+  // componentDidMount() {
+  //   this.props.getMyFollowers();
+  // }
 
   handleChange = (text) => {
     this.setState({input: text});
@@ -86,10 +90,16 @@ const mapStateToProps = (state) => {
   return {
     users: state.people.users,
     userAccount: state.user.userFakeData,
+    myFollowers: state.people.myFollowers
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getMyFollowers: () => dispatch(getMyFollowers()),
   };
 };
 
-export default connect(mapStateToProps)(MyFollowers);
+export default connect(mapStateToProps, mapDispatchToProps)(MyFollowers);
 
 const style = StyleSheet.create({
   mainContainer: {

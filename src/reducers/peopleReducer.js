@@ -3,6 +3,12 @@ import {
   USERS_SUCCESS,
   USERS_ERROR,
   USERS_STOP,
+  GETMYFOLLOWERS_START,
+  GETMYFOLLOWERS_SUCCESS,
+  GETMYFOLLOWING_ERROR,
+  GETMYFOLLOWING_START,
+  GETMYFOLLOWING_SUCCESS,
+  GETMYFOLLOWERS_ERROR
   
 } from '../constants';
 
@@ -81,6 +87,8 @@ loading:false,
 page:1,
 offset:10,
 loadMore:true,
+myFollowers: [],
+myfollowing: [],
 };
 
 const peopleReducer = (state = defaultState, action) => {
@@ -112,6 +120,34 @@ switch (action.type) {
       error: '',
       loadMore:action.payload
     };
+    case GETMYFOLLOWERS_START:
+    return {
+      ...state
+    };
+    case GETMYFOLLOWERS_SUCCESS:
+    return {
+      ...state,     
+      myFollowers:action.payload
+    };
+    case GETMYFOLLOWERS_ERROR:
+    return {
+      ...state,     
+      myFollowers:action.payload
+    };
+    case GETMYFOLLOWING_START:
+      return {
+        ...state,
+      };
+      case GETMYFOLLOWING_SUCCESS:
+      return {
+        ...state,      
+        myFollowing:action.payload
+      };
+      case GETMYFOLLOWING_ERROR:
+      return {
+        ...state,      
+        myFollowing:action.payload
+      };
   default:
     return state;
 }
