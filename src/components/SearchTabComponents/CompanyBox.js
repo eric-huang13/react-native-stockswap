@@ -13,14 +13,11 @@ import {connect} from 'react-redux';
 import {moderateScale, scale} from '../../util/responsiveFont';
 
 export class CompanyBox extends Component {
-
-
-  
   render() {
     const {item, category} = this.props;
     const {width, height} = Dimensions.get('window');
-    const symbol = item.ticker   
-    const stockObject =this.props.tickersAll[symbol]
+    const symbol = this.props.symbol;
+    const stockObject = this.props.tickersAll[symbol];
     const styledText =
       category === 'gainers' ? (
         <LinearGradient
@@ -33,20 +30,20 @@ export class CompanyBox extends Component {
               <Text style={{...style.symbol, color: '#1AB968'}}>
                 {item.ticker}
               </Text>
-              { stockObject ?
-           <Text style={style.title}>
-                {stockObject.name.length < 15
-                  ? `${stockObject.name}`
-                  : `${stockObject.name.substring(0, 14)}...`}
-              </Text>
-              :
-              null
-  }
+              {stockObject ? (
+                <Text style={style.title}>
+                  {stockObject.name.length < 15
+                    ? `${stockObject.name}`
+                    : `${stockObject.name.substring(0, 14)}...`}
+                </Text>
+              ) : null}
             </View>
             <View style={style.bottomDetails}>
-              <Text style={style.price}>${item.quote.volumeWeightedAveragePrice}</Text>
+              <Text style={style.price}>
+                ${item.quote.volumeWeightedAveragePrice}
+              </Text>
               <Text style={{...style.percentage, color: '#1AB968'}}>
-               +{item.change}%
+                +{item.change}%
               </Text>
             </View>
           </SafeAreaView>
@@ -62,25 +59,25 @@ export class CompanyBox extends Component {
               <Text style={{...style.symbol, color: '#D13C3D'}}>
                 {item.ticker}
               </Text>
-              { stockObject ?
-           <Text style={style.title}>
-                {stockObject.name.length < 15
-                  ? `${stockObject.name}`
-                  : `${stockObject.name.substring(0, 14)}...`}
-              </Text>
-              :
-              null
-                }  
+              {stockObject ? (
+                <Text style={style.title}>
+                  {stockObject.name.length < 15
+                    ? `${stockObject.name}`
+                    : `${stockObject.name.substring(0, 14)}...`}
+                </Text>
+              ) : null}
             </View>
             <View style={style.bottomDetails}>
-              <Text style={style.price}>${item.quote.volumeWeightedAveragePrice}</Text>
+              <Text style={style.price}>
+                ${item.quote.volumeWeightedAveragePrice}
+              </Text>
               <Text style={{...style.percentage, color: '#D13C3D'}}>
                 {item.change}%
               </Text>
             </View>
           </SafeAreaView>
         </LinearGradient>
-      ) :  (
+      ) : (
         <LinearGradient
           start={{x: 0.1, y: 0.1}}
           end={{x: 1, y: 1}}
@@ -89,18 +86,20 @@ export class CompanyBox extends Component {
           <SafeAreaView style={style.listContainer}>
             <View style={style.topDetails}>
               <Text style={{...style.symbol, color: '#B8A0FF'}}>
-                {item.symbol}
+                {this.props.symbol}
               </Text>
-              <Text style={style.title}>
-                {item.title.length < 15
-                  ? `${item.title}`
-                  : `${item.title.substring(0, 14)}...`}
-              </Text>
+              {stockObject ? (
+                <Text style={style.title}>
+                  {stockObject.name.length < 15
+                    ? `${stockObject.name}`
+                    : `${stockObject.name.substring(0, 14)}...`}
+                </Text>
+              ) : null}
             </View>
             <View style={style.bottomDetails}>
-              <Text style={style.price}>${item.price}</Text>
-              <Text style={{...style.percentage, color: '#1AB968'}}>
-                {item.percentage}
+              <Text style={style.price}>${item.closePrice}</Text>
+              <Text style={{...style.percentage, color: '#B8A0FF'}}>
+                {item.change}%
               </Text>
             </View>
           </SafeAreaView>
@@ -113,12 +112,11 @@ export class CompanyBox extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    tickersAll: state.company.tickersAll
+    tickersAll: state.company.tickersAll,
   };
 };
 const mapDispatchToProps = (dispatch) => {
-  return {
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompanyBox);

@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
+import {StyleSheet, Text, View, Platform} from 'react-native';
 import TextTicker from 'react-native-text-ticker';
 import {connect} from 'react-redux';
 import {moderateScale} from '../../util/responsiveFont';
@@ -21,42 +21,46 @@ export class StockTicker extends PureComponent {
       e,
       marketLosers[idx],
     ]);
-console.log(shuffledTickers[shuffledTickers.length-1],"TICKERS")
+    console.log(shuffledTickers[shuffledTickers.length - 1], 'TICKERS');
     return (
       <View style={styles.container}>
-        {shuffledTickers[shuffledTickers.length-1] ? (
+        {shuffledTickers[shuffledTickers.length - 1] ? (
           <TextTicker
             // style={{fontSize: 18}}
             scrollSpeed={5000}
-            duration={shuffledTickers.length * 1000}
+            duration={
+              Platform.OS === 'ios'
+                ? shuffledTickers.length * 1000
+                : shuffledTickers.length * 2000
+            }
             loop
             bounce
             repeatSpacer={0}
             marqueeDelay={0}
             animationType="scroll">
-            {shuffledTickers.map((item) => (
-              item.ticker !== undefined ?
-              <React.Fragment key={item.ticker}>
-                <Text
-                  style={
-                    Math.sign(item.change) < 0
-                      ? {...styles.marqueeSymbol, color: '#F66E6E'}
-                      : {...styles.marqueeSymbol}
-                  }>
-                  {' '}
-                  {item.ticker}{' '}
-                </Text>
-                <Text
-                  style={
-                    Math.sign(item.change) < 0
-                      ? {...styles.marqueePercentage, color: '#F66E6E'}
-                      : {...styles.marqueePercentage}
-                  }>
-                  {item.change}%{'   '}
-                </Text>
-              </React.Fragment>
-              : null
-            ))}
+            {shuffledTickers.map((item) =>
+              item.ticker !== undefined ? (
+                <React.Fragment key={item.ticker}>
+                  <Text
+                    style={
+                      Math.sign(item.change) < 0
+                        ? {...styles.marqueeSymbol, color: '#F66E6E'}
+                        : {...styles.marqueeSymbol}
+                    }>
+                    {' '}
+                    {item.ticker}{' '}
+                  </Text>
+                  <Text
+                    style={
+                      Math.sign(item.change) < 0
+                        ? {...styles.marqueePercentage, color: '#F66E6E'}
+                        : {...styles.marqueePercentage}
+                    }>
+                    {item.change}%{'   '}
+                  </Text>
+                </React.Fragment>
+              ) : null,
+            )}
           </TextTicker>
         ) : null}
       </View>
