@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {connect} from 'react-redux';
-import {fetchMarketGainers} from '../../actions/marketMovers';
 import PrivateTradeCard from './PrivateTradeCard';
 import {moderateScale} from '../../util/responsiveFont';
 
@@ -53,7 +52,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchGainers: () => dispatch(fetchMarketGainers()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(PrivateTrades);

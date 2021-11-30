@@ -3,42 +3,59 @@ import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
 import TextTicker from 'react-native-text-ticker';
 import {connect} from 'react-redux';
 import {moderateScale} from '../../util/responsiveFont';
-import {fetchTickers} from '../../actions/marketMovers';
+import {
+  fetchTickers,
+  fetchMarketGainers,
+  fetchMarketLosers,
+} from '../../actions/marketMovers';
 
 export class StockTicker extends PureComponent {
-  //   componentDidMount() {
-  //     // const {companies, fetchGainers} = this.props;
-  //     this.props.fetchTickers();
-  // }
+  componentDidMount() {
+    this.props.fetchGainers();
+    this.props.fetchLosers();
+  }
   render() {
-    const {gainers, tickers} = this.props;
-    // console.log(tickers, 'tickers in component');
+    const {marketGainers, marketLosers} = this.props;
 
+    const shuffledTickers = marketGainers.flatMap((e, idx) => [
+      e,
+      marketLosers[idx],
+    ]);
+console.log(shuffledTickers[shuffledTickers.length-1],"TICKERS")
     return (
       <View style={styles.container}>
-        {tickers.length > 0 ? (
+        {shuffledTickers[shuffledTickers.length-1] ? (
           <TextTicker
-            style={{fontSize: 24}}
+            // style={{fontSize: 18}}
             scrollSpeed={5000}
-            duration={tickers.length * 1000}
+            duration={shuffledTickers.length * 1000}
             loop
             bounce
             repeatSpacer={0}
             marqueeDelay={0}
             animationType="scroll">
-            {tickers.map((item) => (
-              <React.Fragment key={item}>
-                <Text style={styles.marqueeSymbol}> {item} </Text>
-                {/* <Text
-                style={
-                  item.percentage[0] === '-'
-                    ? {...styles.marqueePercentage, color: '#F66E6E'}
-                    : {...styles.marqueePercentage}
-                }>
-                {item.percentage}
-                {'   '}
-              </Text> */}
+            {shuffledTickers.map((item) => (
+              item.ticker !== undefined ?
+              <React.Fragment key={item.ticker}>
+                <Text
+                  style={
+                    Math.sign(item.change) < 0
+                      ? {...styles.marqueeSymbol, color: '#F66E6E'}
+                      : {...styles.marqueeSymbol}
+                  }>
+                  {' '}
+                  {item.ticker}{' '}
+                </Text>
+                <Text
+                  style={
+                    Math.sign(item.change) < 0
+                      ? {...styles.marqueePercentage, color: '#F66E6E'}
+                      : {...styles.marqueePercentage}
+                  }>
+                  {item.change}%{'   '}
+                </Text>
               </React.Fragment>
+              : null
             ))}
           </TextTicker>
         ) : null}
@@ -48,13 +65,16 @@ export class StockTicker extends PureComponent {
 }
 const mapStateToProps = (state) => {
   return {
-    gainers: state.company.gainers,
-    tickers: state.company.tickers,
+    marketGainers: state.company.marketGainers,
+    marketLosers: state.company.marketLosers,
+    // tickers: state.company.tickers,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchTickers: () => dispatch(fetchTickers()),
+    // fetchTickers: () => dispatch(fetchTickers()),
+    fetchGainers: () => dispatch(fetchMarketGainers()),
+    fetchLosers: () => dispatch(fetchMarketLosers()),
   };
 };
 
