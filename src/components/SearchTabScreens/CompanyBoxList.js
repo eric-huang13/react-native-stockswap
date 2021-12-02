@@ -20,37 +20,37 @@ import {
 } from '../../actions/marketMovers';
 import {PortfolioAccounts} from '../../actions/profile';
 import StockSearchBox from '../SearchTabComponents/StockSearchBox';
+import CompanyPortfolioBox from '../SearchTabComponents/CompanyPortfolioBox';
 import {debounce} from 'lodash';
 
 export class CompanyBoxList extends Component {
- constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       input: '',
       filteredSecurities: [],
     };
   }
-  
+
   componentDidMount() {
     this.props.fetchGainers();
     this.props.fetchLosers();
     this.props.PortfolioAccounts();
-    
-    if(this.props.portfolioAccounts.securities){
+
+    if (this.props.portfolioAccounts.securities) {
       const filteredSecurities = this.props.portfolioAccounts.securities.filter(
         (security) =>
           security.tickerSymbol !== null &&
           security.type !== 'cash' &&
           security.type !== 'derivative',
       );
-    this.setState({
-      filteredSecurities: filteredSecurities,
-    });
-  }
+      this.setState({
+        filteredSecurities: filteredSecurities,
+      });
+    }
 
     this.handleChange = debounce(this.handleChange, 1000);
   }
- 
 
   handleChange = (text) => {
     console.log(text);
@@ -69,7 +69,7 @@ export class CompanyBoxList extends Component {
       marketLosers,
       marketGainersTest,
     } = this.props;
-    
+
     // const filteredSecurities = this.props.portfolioAccounts.securities.filter(
     //   (security) =>
     //     security.tickerSymbol !== null &&
@@ -248,10 +248,9 @@ export class CompanyBoxList extends Component {
                               }),
                                 this.props.resetStockData();
                             }}>
-                            <CompanyBox
+                            <CompanyPortfolioBox
                               item={item}
                               symbol={item.tickerSymbol}
-                              category={'hbv'}
                             />
                           </TouchableOpacity>
                         );
