@@ -13,7 +13,7 @@ import {connect} from 'react-redux';
 import {moderateScale, scale} from '../../util/responsiveFont';
 import axios from 'axios';
 
-export class CompanyBox extends Component {
+export class CompanyPortfolioBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -84,7 +84,7 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompanyBox);
+export default connect(mapStateToProps, mapDispatchToProps)(CompanyPortfolioBox);
 
 const style = StyleSheet.create({
   linearGradient: {

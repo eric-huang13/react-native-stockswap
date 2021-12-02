@@ -69,13 +69,8 @@ export class CompanyBoxList extends Component {
       marketLosers,
       marketGainersTest,
     } = this.props;
-
-    // const filteredSecurities = this.props.portfolioAccounts.securities.filter(
-    //   (security) =>
-    //     security.tickerSymbol !== null &&
-    //     security.type !== 'cash' &&
-    //     security.type !== 'derivative',
-    // );
+console.log(this.state.filteredSecurities,"FILTERSEC")
+  
 
     return (
       <SafeAreaView style={style.mainContainer}>
@@ -210,21 +205,21 @@ export class CompanyBoxList extends Component {
                 <View style={style.headerContainer}>
                   <TouchableOpacity
                     onPress={() =>
-                      this.props.navigation.navigate('CompanyCategory', {
-                        name: 'Highest by Volume',
+                      this.props.navigation.navigate('CompanyCategoryPortfolio', {
+                        name: 'Your Stocks',
                         params: {
-                          category: highestByVolume,
+                          category: this.state.filteredSecurities,
                         },
                       })
                     }>
-                    <Text style={style.header}>Your Portfolio</Text>
+                    <Text style={style.header}>Your Stocks</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() =>
-                      this.props.navigation.navigate('CompanyCategory', {
-                        name: 'Highest by Volume',
+                      this.props.navigation.navigate('CompanyCategoryPortfolio', {
+                        name: 'Your Stocks',
                         params: {
-                          category: highestByVolume,
+                          category: this.state.filteredSecurities,
                         },
                       })
                     }>
@@ -243,7 +238,7 @@ export class CompanyBoxList extends Component {
                             key={index}
                             onPress={() => {
                               this.props.navigation.navigate({
-                                name: 'CompanyInformation',
+                                name: 'ManagePortfolioCompany',
                                 params: {item, stockCategory: 'hbv'},
                               }),
                                 this.props.resetStockData();

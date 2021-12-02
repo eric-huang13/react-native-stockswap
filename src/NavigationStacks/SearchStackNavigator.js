@@ -9,6 +9,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import SearchTab from '../components/SearchTabScreens/SearchTab';
 import CompanyInformation from '../components/SearchTabScreens/CompanyInformation';
 import CompanyCategory from '../components/SearchTabScreens/CompanyCategory';
+import CompanyCategoryPortfolio from '../components/SearchTabScreens/CompanyCategoryPortfolio';
 import Profile from '../components/HomeTabScreens/Profile';
 import UserCommentList from '../components/HomeTabScreens/UserCommentList';
 import PostScreen from '../components/HomeTabScreens/PostScreen';
@@ -19,6 +20,8 @@ import CompanySymbolList from '../components/SearchTabComponents/CompanySymbolLi
 import LoggingOut from '../components/LoggedOutScreens/LoggingOutScreen';
 import StockSearchInformation from '../components/SearchTabScreens/StockSearchInformation';
 import Logo from '../icons/Logo.png';
+import ManagePortfolioCompany from '../components/MyProfileTabScreens/ManagePortfolioCompany';
+
 
 //responsive scale
 import {moderateScale} from '../util/responsiveFont';
@@ -66,6 +69,32 @@ export default class SearchStackNavigator extends Component {
           }}
         />
         <SearchStack.Screen
+          name="ManagePortfolioCompany"
+          component={ManagePortfolioCompany}
+          options={{
+            title:  
+            <View style={style.stockHeader}>
+              <Text style={style.headerText}>StockSwap</Text>
+             <Image
+          style={style.logo}
+          source={require('../icons/Logo.png')}
+        /></View>
+          ,
+            headerBackTitle: 'Search',
+            headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          }}
+        />
+        <SearchStack.Screen
           name="StockSearchInformation"
           component={StockSearchInformation}
           options={({route}) => ({
@@ -88,6 +117,28 @@ export default class SearchStackNavigator extends Component {
         <SearchStack.Screen
           name="CompanyCategory"
           component={CompanyCategory}
+          options={({route}) => ({
+            title: route.params.name,
+            //Need to figure out way to make header height shown when transparent or add Linearcolors directly
+            // headerTransparent: true,
+            headerShown: true,
+            headerBackTitle: 'Search',
+            headerStyle: {
+              backgroundColor: '#394463',
+            },
+            headerTitleStyle: {
+              fontFamily: 'Montserrat-Bold',
+              fontSize: moderateScale(16),
+            },
+            headerTintColor: 'white',
+            headerTitleAlign: {
+              textAlign: 'center',
+            },
+          })}
+        />
+        <SearchStack.Screen
+          name="CompanyCategoryPortfolio"
+          component={CompanyCategoryPortfolio}
           options={({route}) => ({
             title: route.params.name,
             //Need to figure out way to make header height shown when transparent or add Linearcolors directly
