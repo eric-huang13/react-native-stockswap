@@ -54,11 +54,10 @@ const ConnectAccount = (props) => {
                 <View style={style.bulb}>
                   <HouseIcon />
                 </View>
-                <Text style={style.header}>Secure</Text>
+                <Text style={style.header}>Connect effortlessly</Text>
               </View>
               <Text style={style.detailsText}>
-                Bank level security with full encryption for your financial
-                data.
+                Plaid lets you securely connect your financial data to StockSwap in seconds
               </Text>
             </View>
             <View>
@@ -66,11 +65,10 @@ const ConnectAccount = (props) => {
                 <View style={style.bulb}>
                   <LockIcon />
                 </View>
-                <Text style={style.header}>Private</Text>
+                <Text style={style.header}>Share your data securely</Text>
               </View>
               <Text style={style.detailsText}>
-                Choose between making your portfolio private or public, with no
-                dollar amounts ever shown.
+                Plaid works to transfer your data with bank level security and full encryption to ensure your financial data is secure
               </Text>
             </View>
 
@@ -80,12 +78,10 @@ const ConnectAccount = (props) => {
                   <BulbIcon />
                 </View>
 
-                <Text style={style.header}>Insights</Text>
+                <Text style={style.header}>You're in control</Text>
               </View>
               <Text style={style.detailsText}>
-                Learn insights about your portfolio like trading accuracy and
-                profit breakdowns along with qualifying for the interactive
-                leaderboards.
+                Choose between making your trades private or public, but either way, no dollar amounts are ever seen. Success is measured by percent change in StockSwap
               </Text>
             </View>
             <View style={style.buttonContainer}>

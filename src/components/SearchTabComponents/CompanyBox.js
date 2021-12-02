@@ -66,7 +66,7 @@ export class CompanyBox extends Component {
                     : `${stockObject.name.substring(0, 14)}...`}
                 </Text>
               ) : null}
-            </View>
+            </View> 
             <View style={style.bottomDetails}>
               <Text style={style.price}>
                 ${item.quote.volumeWeightedAveragePrice}

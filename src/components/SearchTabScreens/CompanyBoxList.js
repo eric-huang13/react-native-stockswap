@@ -23,19 +23,34 @@ import StockSearchBox from '../SearchTabComponents/StockSearchBox';
 import {debounce} from 'lodash';
 
 export class CompanyBoxList extends Component {
+ constructor(props) {
+    super(props);
+    this.state = {
+      input: '',
+      filteredSecurities: [],
+    };
+  }
+  
   componentDidMount() {
     this.props.fetchGainers();
     this.props.fetchLosers();
     this.props.PortfolioAccounts();
+    
+    if(this.props.portfolioAccounts.securities){
+      const filteredSecurities = this.props.portfolioAccounts.securities.filter(
+        (security) =>
+          security.tickerSymbol !== null &&
+          security.type !== 'cash' &&
+          security.type !== 'derivative',
+      );
+    this.setState({
+      filteredSecurities: filteredSecurities,
+    });
+  }
 
     this.handleChange = debounce(this.handleChange, 1000);
   }
-  constructor(props) {
-    super(props);
-    this.state = {
-      input: '',
-    };
-  }
+ 
 
   handleChange = (text) => {
     console.log(text);
@@ -54,12 +69,13 @@ export class CompanyBoxList extends Component {
       marketLosers,
       marketGainersTest,
     } = this.props;
-    const filteredSecurities = this.props.portfolioAccounts.securities.filter(
-      (security) =>
-        security.tickerSymbol !== null &&
-        security.type !== 'cash' &&
-        security.type !== 'derivative',
-    );
+    
+    // const filteredSecurities = this.props.portfolioAccounts.securities.filter(
+    //   (security) =>
+    //     security.tickerSymbol !== null &&
+    //     security.type !== 'cash' &&
+    //     security.type !== 'derivative',
+    // );
 
     return (
       <SafeAreaView style={style.mainContainer}>
@@ -201,7 +217,7 @@ export class CompanyBoxList extends Component {
                         },
                       })
                     }>
-                    <Text style={style.header}>Daily Highest by Volume</Text>
+                    <Text style={style.header}>Your Portfolio</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() =>
@@ -215,13 +231,13 @@ export class CompanyBoxList extends Component {
                     <Text style={style.seeAllHeader}>See all</Text>
                   </TouchableOpacity>
                 </View>
-                {filteredSecurities.length > 1 ? (
+                {this.state.filteredSecurities.length > 1 ? (
                   <View style={style.boxContainer}>
                     <ScrollView
                       horizontal={true}
                       showsHorizontalScrollIndicator={false}
                       justifyContent="space-between">
-                      {filteredSecurities.map((item, index) => {
+                      {this.state.filteredSecurities.map((item, index) => {
                         return (
                           <TouchableOpacity
                             key={index}
