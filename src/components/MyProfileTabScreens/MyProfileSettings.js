@@ -196,7 +196,7 @@ class MyProfileSettings extends Component {
             <View style={style.bottomInnerContiner}>
               <Text style={style.bottomText}>Link Bank Account</Text>
 
-              <PlaidComponent />
+              <PlaidComponent screen={'settings'}/>
             </View>
           </View>
           <View style={style.logoutButtonContainer}>

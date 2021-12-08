@@ -85,13 +85,12 @@ const ConnectAccount = (props) => {
               </Text>
             </View>
             <View style={style.buttonContainer}>
-              <PlaidComponent />
+              <PlaidComponent screen={'connect'}/>
 
-              <View style={style.buttonContainer}>
                 <TouchableOpacity onPress={() => handleAddLater()}>
-                  <Text style={style.button}>Add later</Text>
+                  <Text style={style.detailsButton}>Add Later</Text>
                 </TouchableOpacity>
-              </View>
+             
             </View>
           </View>
         </ScrollView>
@@ -159,14 +158,14 @@ const style = StyleSheet.create({
 
   header: {
     // textAlign: 'center',
-    fontSize: moderateScale(16),
+    fontSize: moderateScale(18),
     color: '#FFFFFF',
     // marginBottom: moderateScale(20),
     fontFamily: 'Montserrat-Bold',
   },
   detailsText: {
     // textAlign: 'center',
-    fontSize: moderateScale(14),
+    fontSize: moderateScale(16),
     color: '#FFFFFF',
     marginBottom: moderateScale(34),
     fontFamily: 'Montserrat-Regular',
@@ -271,9 +270,9 @@ const style = StyleSheet.create({
     fontFamily: 'Montserrat-Regular',
   },
   buttonContainer: {
-    marginTop: moderateScale(20),
+    marginTop: moderateScale(40),
     marginBottom: moderateScale(10),
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
@@ -314,5 +313,12 @@ const style = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     alignSelf: 'center',
+  },
+  detailsButton: {
+    color: '#B8A0FF',
+    fontSize: moderateScale(15),
+    fontFamily: 'Montserrat-SemiBold',
+    alignSelf: 'flex-end',
+    marginTop: 18,
   },
 });
