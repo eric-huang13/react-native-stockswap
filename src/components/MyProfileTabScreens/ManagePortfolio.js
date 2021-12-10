@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   Text,
   View,
@@ -11,25 +11,25 @@ import {
 } from 'react-native';
 import SearchInput from '../../icons/SearchInput';
 import TriangleIcon from '../../icons/TriangleIcon';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import ManagePortfolioBox from '../MyProfileTabComponents/ManagePortfolioBox';
-import {moderateScale} from '../../util/responsiveFont';
-import {PortfolioAccounts} from '../../actions/profile';
+import { moderateScale } from '../../util/responsiveFont';
+import { PortfolioAccounts } from '../../actions/profile';
 import InstitutionHoldingsCard from './InstitutionHoldingsCard';
 
 class ManagePortfolio extends Component {
   componentDidMount() {
     this.props.PortfolioAccounts();
-    if(this.props.portfolioAccounts.length > 1){
-    let sum = this.props.portfolioAccounts.holdings.reduce(function (
-      total,
-      currentValue,
-    ) {
-      return total + currentValue.price;
-    },
-    0);
-    this.setState({portfolioTotal: sum.toFixed(2)});
-  }
+    if (this.props.portfolioAccounts.length > 1) {
+      let sum = this.props.portfolioAccounts.holdings.reduce(function (
+        total,
+        currentValue,
+      ) {
+        return total + currentValue.price;
+      },
+        0);
+      this.setState({ portfolioTotal: sum.toFixed(2) });
+    }
   }
   constructor(props) {
     super(props);
@@ -41,14 +41,14 @@ class ManagePortfolio extends Component {
     };
   }
   handleChange = (text) => {
-    this.setState({input: text});
+    this.setState({ input: text });
   };
 
   dropDownSelect(pick) {
-    this.setState({dropDown: pick, shouldShow: false});
+    this.setState({ dropDown: pick, shouldShow: false });
   }
   render() {
-    const {gainers} = this.props;
+    const { gainers } = this.props;
 
     const filteredStocks = gainers.filter(
       (item) =>
@@ -56,11 +56,11 @@ class ManagePortfolio extends Component {
         item.symbol.toLowerCase().includes(this.state.input.toLowerCase()),
     );
 
-    const {shouldShow} = this.state;
+    const { shouldShow } = this.state;
     if (!this.props.portfolioAccounts.institutions) {
       return <SafeAreaView style={style.emptyContainer}><Text style={style.stockHeader}>You have no linked accounts.</Text></SafeAreaView>;
     }
-    
+
     return (
       <SafeAreaView style={style.container}>
         {/* <View style={style.searchInputContainer}>
@@ -185,13 +185,13 @@ const style = StyleSheet.create({
   container: {
     backgroundColor: '#2a334a',
     paddingBottom: 275,
-    paddingTop:moderateScale(10),
+    paddingTop: moderateScale(10),
   },
   emptyContainer: {
     backgroundColor: '#2a334a',
     paddingBottom: 275,
-    flex:1,
-    paddingTop:moderateScale(10),
+    flex: 1,
+    paddingTop: moderateScale(10),
   },
   scrollContainer: {
     // flex:1
@@ -265,6 +265,19 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: moderateScale(8),
+    ...Platform.select({
+      ios: {
+        zIndex: 1
+      },
+    })
+  },
+  percentButtonContainerIos: {
+    marginTop: moderateScale(12),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: moderateScale(8),
+    zIndex: 1
+
   },
   stockHeader: {
     color: '#FFFFFF',
