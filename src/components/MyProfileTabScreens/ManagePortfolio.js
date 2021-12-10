@@ -12,7 +12,6 @@ import {
 import SearchInput from '../../icons/SearchInput';
 import TriangleIcon from '../../icons/TriangleIcon';
 import { connect } from 'react-redux';
-import ManagePortfolioBox from '../MyProfileTabComponents/ManagePortfolioBox';
 import { moderateScale } from '../../util/responsiveFont';
 import { PortfolioAccounts } from '../../actions/profile';
 import InstitutionHoldingsCard from './InstitutionHoldingsCard';
@@ -130,28 +129,9 @@ class ManagePortfolio extends Component {
                 </View>
               ) : null}
             </View>
-          </View>
-          {/* <FlatList
-            style={style.boxContainer}
-            data={filteredStocks}
-            renderItem={({item}) => (
-              <TouchableOpacity
-                key={item.id}
-                onPress={() =>
-                  this.props.navigation.navigate({
-                    name: 'ManagePortfolioCompany',
-                    params: {item},
-                  })
-                }>
-                <View key={item.id} style={style.portfolioBoxContainer}>
-                  <ManagePortfolioBox item={item} />
-                </View>
-              </TouchableOpacity>
-            )}
-          /> */}
-          <View>
-            <ScrollView style={style.scrollContainer}>
-              {this.props.portfolioAccounts.institutions.map((item, index) => (
+          </View>                
+            <ScrollView contentContainerStyle={{paddingBottom: 300}} style={style.scrollContainer}>
+              {this.props.portfolioAccounts.institutions.map((item, index) => (                
                 <InstitutionHoldingsCard
                   key={index}
                   itemId={item.itemId}
@@ -161,7 +141,6 @@ class ManagePortfolio extends Component {
                 />
               ))}
             </ScrollView>
-          </View>
         </View>
       </SafeAreaView>
     );
@@ -184,8 +163,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(ManagePortfolio);
 const style = StyleSheet.create({
   container: {
     backgroundColor: '#2a334a',
-    paddingBottom: 275,
-    paddingTop: moderateScale(10),
+    
   },
   emptyContainer: {
     backgroundColor: '#2a334a',
@@ -195,6 +173,8 @@ const style = StyleSheet.create({
   },
   scrollContainer: {
     // flex:1
+    
+    
   },
   searchInputContainer: {
     marginBottom: moderateScale(22),
@@ -254,6 +234,8 @@ const style = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: moderateScale(16),
     fontFamily: 'Montserrat-Regular',
+    paddingTop: moderateScale(10),
+
   },
   percent: {
     color: '#FFFFFF',
