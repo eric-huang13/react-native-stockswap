@@ -10,7 +10,7 @@ export const GOOGLE_WEB_CLIENT_ID =
     : '534509051413-6a8ceait2pji394mgui3svtrnp7bl4hp.apps.googleusercontent.com';
 
 export const API_SERVER =
-  'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com';
+  'http://ss-alb-dev-207883179.us-east-2.elb.amazonaws.com';
 
 export const STOCKS_SERVER =
   'http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com';

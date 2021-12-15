@@ -20,8 +20,9 @@ const MoreBox = ({style, options, onSelect, onClose}) => {
         </TouchableOpacity>
         <View style={styles.options}>
           {options
-            ? options?.map((option) => (
+            ? options?.map((option, index) => (
                 <TouchableOpacity
+                  key={index}
                   style={styles.option}
                   onPress={() => _onSelect(option.value)}>
                   <Text style={styles.optionText}>{option.label}</Text>
