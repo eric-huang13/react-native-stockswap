@@ -779,13 +779,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-<<<<<<< HEAD
-				CURRENT_PROJECT_VERSION = 5;
-				DEVELOPMENT_TEAM = "";
-=======
 				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = AG543APX4K;
->>>>>>> master
 				INFOPLIST_FILE = app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 0.4;
