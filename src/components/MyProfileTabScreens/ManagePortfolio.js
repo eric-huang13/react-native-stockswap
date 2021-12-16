@@ -17,9 +17,18 @@ import { PortfolioAccounts } from '../../actions/profile';
 import InstitutionHoldingsCard from './InstitutionHoldingsCard';
 
 class ManagePortfolio extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: '',
+      shouldShow: false,
+      dropDown: 'Select sorting',
+      portfolioTotal: null,
+    };
+  }
   componentDidMount() {
     this.props.PortfolioAccounts();
-    if (this.props.portfolioAccounts.length > 1) {
+    if (this.props.portfolioAccounts.accounts) {
       let sum = this.props.portfolioAccounts.holdings.reduce(function (
         total,
         currentValue,
@@ -30,15 +39,7 @@ class ManagePortfolio extends Component {
       this.setState({ portfolioTotal: sum.toFixed(2) });
     }
   }
-  constructor(props) {
-    super(props);
-    this.state = {
-      input: '',
-      shouldShow: false,
-      dropDown: 'Select sorting',
-      portfolioTotal: null,
-    };
-  }
+  
   handleChange = (text) => {
     this.setState({ input: text });
   };
