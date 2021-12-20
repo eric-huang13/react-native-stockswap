@@ -18,11 +18,30 @@ import {
   GETMYFOLLOWING_SUCCESS,
   GETMYFOLLOWING_ERROR,
   GETMYFOLLOWING_START,
+  PEOPLESEARCH_SUCCESS,
+  PEOPLESEARCH_ERROR,
+  PEOPLESEARCH_START,
 } from 'constants';
 import axios from 'axios';
 import deviceStorage from '../util/DeviceStorage';
 import apiInstance from '../util/axiosConfig';
-import {navigate} from '../../RootNavigation';
+import { navigate } from '../../RootNavigation';
+
+
+export const PeopleSearch = (input) => {
+  return (dispatch) => {
+    dispatch({ type: PEOPLESEARCH_START });
+    axios
+      .post(AUTH_PEOPLESEARCH, input)
+      .then((response) => {
+        dispatch({ type: PEOPLESEARCH_SUCCESS, payload: response.data });
+      })
+      .catch((error) => {
+        // console.log(error, 'ERROR in PeopleSearch');
+        dispatch({ type: PEOPLESEARCH_ERROR, payload: error.response });
+      });
+  };
+};
 
 //Working POST with token sent on headers
 
@@ -45,7 +64,7 @@ import {navigate} from '../../RootNavigation';
 // };
 export const fetchFake = (page, offset) => {
   return (dispatch) => {
-    dispatch({type: USERS_FETCHING});
+    dispatch({ type: USERS_FETCHING });
     axios
       .get(
         `https://api.openbrewerydb.org/breweries?page=${page}&per_page=${offset}&by_state=ohio`,
@@ -53,17 +72,17 @@ export const fetchFake = (page, offset) => {
       // .then(response => console.log (response.data, "From USERS API"))
       .then((response) =>
         response.data.length > 0
-          ? dispatch({type: USERS_SUCCESS, payload: response.data})
-          : dispatch({type: USERS_STOP, payload: false}),
+          ? dispatch({ type: USERS_SUCCESS, payload: response.data })
+          : dispatch({ type: USERS_STOP, payload: false }),
       )
 
-      .catch((error) => dispatch({type: USERS_ERROR, payload: error.response}));
+      .catch((error) => dispatch({ type: USERS_ERROR, payload: error.response }));
   };
 };
 
 export const FollowUser = (id) => {
   return (dispatch) => {
-    dispatch({type: FOLLOWUSER_START});
+    dispatch({ type: FOLLOWUSER_START });
 
     apiInstance
       .post(
@@ -78,14 +97,14 @@ export const FollowUser = (id) => {
       })
       .catch((error) => {
         console.log('ERROR Follow User', error);
-        dispatch({type: FOLLOWUSER_ERROR, payload: error.response});
+        dispatch({ type: FOLLOWUSER_ERROR, payload: error.response });
       });
   };
 };
 
 export const UnFollowUser = (id) => {
   return (dispatch) => {
-    dispatch({type: UNFOLLOWUSER_START});
+    dispatch({ type: UNFOLLOWUSER_START });
 
     apiInstance
       .post(
@@ -100,43 +119,43 @@ export const UnFollowUser = (id) => {
       })
       .catch((error) => {
         console.log('ERROR UnFollow User', error);
-        dispatch({type: UNFOLLOWUSER_ERROR, payload: error.response});
+        dispatch({ type: UNFOLLOWUSER_ERROR, payload: error.response });
       });
   };
 };
 
 export const getMyFollowers = () => {
   return (dispatch) => {
-    dispatch({type: GETMYFOLLOWERS_START});
+    dispatch({ type: GETMYFOLLOWERS_START });
     apiInstance
       .get(
         'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/interactions/followers',
       )
       // .then(response => console.log (response.data, "From Get Followers"))
       .then((response) =>
-        dispatch({type: GETMYFOLLOWERS_SUCCESS, payload: response.data.data}),
+        dispatch({ type: GETMYFOLLOWERS_SUCCESS, payload: response.data.data }),
       )
       .catch(
         (error) => console.log(error, 'error getting followers'),
-        dispatch({type: GETMYFOLLOWERS_ERROR, payload: error.response}),
+        dispatch({ type: GETMYFOLLOWERS_ERROR, payload: error.response }),
       );
   };
 };
 
 export const getMyFollowing = () => {
   return (dispatch) => {
-    dispatch({type: GETMYFOLLOWING_START});
+    dispatch({ type: GETMYFOLLOWING_START });
     apiInstance
       .get(
         'http://ec2-18-218-127-202.us-east-2.compute.amazonaws.com/interactions/following',
       )
       // .then(response => console.log (response.data, "From Get Following"))
       .then((response) =>
-        dispatch({type: GETMYFOLLOWING_SUCCESS, payload: response.data.data}),
+        dispatch({ type: GETMYFOLLOWING_SUCCESS, payload: response.data.data }),
       )
       .catch(
         (error) => console.log(error, 'error getting following'),
-        dispatch({type: GETMYFOLLOWING_ERROR, payload: error.response}),
+        dispatch({ type: GETMYFOLLOWING_ERROR, payload: error.response }),
       );
   };
 };

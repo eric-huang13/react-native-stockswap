@@ -8,7 +8,10 @@ import {
   GETMYFOLLOWING_ERROR,
   GETMYFOLLOWING_START,
   GETMYFOLLOWING_SUCCESS,
-  GETMYFOLLOWERS_ERROR
+  GETMYFOLLOWERS_ERROR,
+  PEOPLESEARCH_START,
+  PEOPLESEARCH_SUCCESS,
+  PEOPLESEARCH_ERROR
   
 } from '../constants';
 
@@ -89,6 +92,8 @@ offset:10,
 loadMore:true,
 myFollowers: [],
 myfollowing: [],
+peopleSearchLoading:false,
+peopleSearchResults:[],
 };
 
 const peopleReducer = (state = defaultState, action) => {
@@ -147,6 +152,25 @@ switch (action.type) {
       return {
         ...state,      
         myFollowing:action.payload
+      };
+      case PEOPLESEARCH_START:
+      return {
+        ...state,
+        peopleSearchLoading: true,
+        error: '',
+      };
+    case PEOPLESEARCH_SUCCESS:
+      return {
+        ...state,
+        peopleSearchLoading: false,
+        error: '',
+        peopleSearchResults: action.payload,
+      };
+    case PEOPLESEARCH_ERROR:
+      return {
+        ...state,
+        peopleSearchLoading: false,
+        error: action.payload,
       };
   default:
     return state;

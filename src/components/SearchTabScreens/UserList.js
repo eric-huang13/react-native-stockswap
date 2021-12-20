@@ -15,6 +15,8 @@ import UserBox from '../SearchTabComponents/UserBox';
 import SearchInput from '../../icons/SearchInput';
 import UserListImage from '../../icons/UserListImage';
 import {moderateScale} from '../../util/responsiveFont';
+import { PeopleSearch } from '../../actions/people';
+import {debounce} from 'lodash';
 
 export class UserList extends Component {
   constructor(props) {
@@ -23,6 +25,18 @@ export class UserList extends Component {
       input: '',
     };
   }
+
+  // componentDidMount() {
+  //   this.handleChange = debounce(this.handleChange, 1000);
+  // }
+
+  // handleChange = (text) => {
+  //   console.log(text);
+  //   this.setState({
+  //     input: text,
+  //   });
+  //   this.state.input !== '' ? this.props.peopleSearch(text) : null;
+  // };
 
   handleChange = (text) => {
     this.setState({input: text});
