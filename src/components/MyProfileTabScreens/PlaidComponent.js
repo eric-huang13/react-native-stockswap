@@ -12,7 +12,7 @@ const PlaidComponent = (props) => {
   useEffect(() => {
     props.PlaidToken();
   }, []);
-  console.log(props, 'LINKTOKEN');
+  // console.log(props, 'LINKTOKEN');
  
   usePlaidEmitter((OPEN) => {
     console.log(OPEN, 'here open');

@@ -42,7 +42,14 @@ import {
   NEWPLAIDACCOUNT_SUCCESS,
   NEWPLAIDACCOUNT_INSTITUTION,
   PLAIDACCOUNTSTATUS_SUCCESS,
-} from 'constants';
+  GETSETTINGS_START,
+  GETSETTINGS_SUCCESS,
+  GETSETTINGS_ERROR,
+  POSTSETTINGS_START,
+  POSTSETTINGS_SUCCESS,
+  POSTSETTINGS_ERROR
+
+} from '../constants';
 
 const defaultState = {
   isLoggedIn: false,
@@ -78,11 +85,50 @@ const defaultState = {
   loading: false,
   plaidLoading: false,
   error: '',
+  settings: [],
 };
 
 const userReducer = (state = defaultState, action) => {
   // console.log('ACTION:', action.type);
   switch (action.type) {
+    case GETSETTINGS_START:
+      return {
+        ...state,
+        loading: true,
+        error: '',
+      };
+    case GETSETTINGS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        settings: action.payload,
+      };
+    case GETSETTINGS_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case POSTSETTINGS_START:
+      return {
+        ...state,
+        loading: true,
+        error: '',
+      };
+    case POSTSETTINGS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        settings: action.payload,
+      };
+    case POSTSETTINGS_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     case FETCHINSTITUTION_START:
       return {
         ...state,
