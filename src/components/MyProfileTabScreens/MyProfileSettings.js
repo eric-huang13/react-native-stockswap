@@ -17,6 +17,8 @@ import {moderateScale} from '../../util/responsiveFont';
 import LinearGradient from 'react-native-linear-gradient';
 import {CommonActions} from '@react-navigation/native';
 import PlaidComponent from './PlaidComponent';
+import { Linking } from 'react-native';
+
 
 class MyProfileSettings extends Component {
   constructor(props) {
@@ -37,7 +39,10 @@ class MyProfileSettings extends Component {
     this.setState({dropDown: pick, shouldShow: false});
     this.props.PostSettings({visibility: pick})
   }
+openSetttings(){
+  Linking.openSettings();
 
+}
   componentDidMount() {
     const {users, userAccount, GetSettings, profileSettings} = this.props;
     GetSettings()
@@ -150,6 +155,10 @@ class MyProfileSettings extends Component {
               </View>
             </View>
             <View style={style.notificationsContainer}>
+            <TouchableOpacity
+                        onPress={() => Linking.openSettings()}>
+                        <Text style={style.dropDownText}>Open Settings</Text>
+                      </TouchableOpacity>
               <Text style={style.middleDetailsText}>
                 Turn off notifications
               </Text>

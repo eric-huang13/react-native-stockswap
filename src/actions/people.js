@@ -26,13 +26,15 @@ import axios from 'axios';
 import deviceStorage from '../util/DeviceStorage';
 import apiInstance from '../util/axiosConfig';
 import { navigate } from '../../RootNavigation';
+import { API_SERVER } from '../constants';
 
 
 export const PeopleSearch = (input) => {
   return (dispatch) => {
     dispatch({ type: PEOPLESEARCH_START });
-    axios
-      .post(AUTH_PEOPLESEARCH, input)
+    apiInstance
+      .get(API_SERVER + `/profile/search?match=${input}`)
+
       .then((response) => {
         dispatch({ type: PEOPLESEARCH_SUCCESS, payload: response.data });
       })

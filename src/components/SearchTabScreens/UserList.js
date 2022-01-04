@@ -26,21 +26,21 @@ export class UserList extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.handleChange = debounce(this.handleChange, 1000);
-  // }
-
-  // handleChange = (text) => {
-  //   console.log(text);
-  //   this.setState({
-  //     input: text,
-  //   });
-  //   this.state.input !== '' ? this.props.peopleSearch(text) : null;
-  // };
+  componentDidMount() {
+    this.handleChange = debounce(this.handleChange, 1000);
+  }
 
   handleChange = (text) => {
-    this.setState({input: text});
+    console.log(text);
+    this.setState({
+      input: text,
+    });
+    this.state.input !== '' ? this.props.PeopleSearch(text) : null;
   };
+
+  // handleChange = (text) => {
+  //   this.setState({input: text});
+  // };
 
   accountId = this.props.userAccount.id;
 
@@ -61,7 +61,6 @@ export class UserList extends Component {
   render() {
     const {input} = this.state;
     const {users, userAccount} = this.props;
-
     const accountId = userAccount.id;
 
     const filteredUsers = users.filter((item) =>
@@ -87,7 +86,7 @@ export class UserList extends Component {
             onChangeText={(text) => this.handleChange(text)}
           />
         </View>
-        {this.state.input === '' ? (
+        {this.state.input.length == 0 ? (
           <ScrollView>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View style={style.backgroundImageContainer}>
@@ -102,7 +101,7 @@ export class UserList extends Component {
           <ScrollView contentContainerStyle={{paddingBottom: 180}}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View>
-                {filteredUsers.map((item) => {
+                {this.props.peopleSearchResults.map((item) => {
                   return (
                     <TouchableOpacity
                       key={item.id}
@@ -124,10 +123,19 @@ const mapStateToProps = (state) => {
   return {
     users: state.people.users,
     userAccount: state.user.userFakeData,
+    peopleSearchResults: state.people.peopleSearchResults
   };
 };
 
-export default connect(mapStateToProps)(UserList);
+const mapDispatchToProps = (dispatch) => {
+  return {
+
+    PeopleSearch: (input) => dispatch(PeopleSearch(input)),
+   
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserList);
 
 const style = StyleSheet.create({
   searchInputContainer: {

@@ -18,6 +18,11 @@ export default class UserBox extends Component {
         <View style={style.detailsContainer}>
           <Text style={style.name}>{item.name}</Text>
 
+
+          <Text style={style.posts}>
+            Username: <Text style={style.detailsBold}>{item.username}</Text>
+          </Text>
+
           <Text style={style.posts}>
             Posts: <Text style={style.detailsBold}>{item.posts}</Text>
           </Text>
