@@ -32,7 +32,7 @@ export class CompanyPortfolioBox extends Component {
         });
       })
       .catch((error) => {
-        console.log(error, 'latestError'), this.setState({latestError: true});
+         this.setState({latestError: true});
       });
   }
 

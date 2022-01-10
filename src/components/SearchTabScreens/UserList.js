@@ -62,7 +62,6 @@ export class UserList extends Component {
     const {input} = this.state;
     const {users, userAccount} = this.props;
     const accountId = userAccount.id;
-
     const filteredUsers = users.filter((item) =>
       item.name.toLowerCase().includes(input.toLowerCase()),
     );
@@ -106,7 +105,7 @@ export class UserList extends Component {
                     <TouchableOpacity
                       key={item.id}
                       onPress={() => this.navigationByCondition(item)}>
-                      <UserBox item={item} />
+                      <UserBox item={item} reduxToken={this.props.reduxToken} />
                     </TouchableOpacity>
                   );
                 })}
@@ -123,7 +122,9 @@ const mapStateToProps = (state) => {
   return {
     users: state.people.users,
     userAccount: state.user.userFakeData,
-    peopleSearchResults: state.people.peopleSearchResults
+    peopleSearchResults: state.people.peopleSearchResults,
+    reduxToken: state.user.token,
+
   };
 };
 
