@@ -20,16 +20,21 @@ class PrivateTradeCard extends Component {
       <View style={style.PrivateTradeCard} key={item.id}>
         <View>
           <Text style={style.accountName}>
-            {item.title.length < 20
-              ? `${item.title}`
-              : `${item.title.substring(0, 19)}...`}
+            {item.name.length < 20
+              ? `${item.name}`
+              : `${item.name.substring(0, 19)}...`}
           </Text>
           {/* <Text style={style.accountName}>{item.title}</Text> */}
           <Text style={style.username}>Price: ${item.price}</Text>
           <Text style={style.username}>
             Total percent change: {item.portfolioPercentage}%
           </Text>
-          <Text style={style.username}>Date bought: {item.tradeDate}</Text>
+          { item.type == 'sell' ?
+                    <Text style={style.username}>Date sold: {item.date}</Text>
+                    :
+
+          <Text style={style.username}>Date bought: {item.date}</Text>
+            }
         </View>
         <View style={style.notificationsContainer}>
           <TouchableOpacity

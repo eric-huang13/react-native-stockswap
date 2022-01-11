@@ -10,22 +10,27 @@ import {
 import {connect} from 'react-redux';
 import PrivateTradeCard from './PrivateTradeCard';
 import {moderateScale} from '../../util/responsiveFont';
+import { getTransactions } from '../../actions/portfolio';
 
 class PrivateTrades extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stocks: [],
+      tradeTransactions: [],
     };
   }
   componentDidMount() {
+    this.props.getTransactions();
+
     this.setState({
-      stocks: this.props.gainers,
+      tradeTransactions: this.props.transactions.transactions,
     });
   }
 
-  render() {
 
+  render() {
+console.log(this.props.transactions, 'TRANSACTIONS')
+console.log(this.state.tradeTransactions, 'TRADE')
     if (!this.props.gainers) {
       return null;
     }
@@ -33,7 +38,7 @@ class PrivateTrades extends Component {
       <SafeAreaView style={style.container}>
         <ScrollView>
           <View>
-            {this.state.stocks.map((item) => (
+            {this.state.tradeTransactions.map((item) => (
               <PrivateTradeCard key={item.id} item={item} navigation={this.props.navigation} />
             ))}
           </View>
@@ -47,11 +52,14 @@ const mapStateToProps = (state) => {
   return {
     marketGainers: state.company.marketGainers,
     gainers: state.company.gainers,
+    transactions: state.portfolio.transactions
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    getTransactions: () => dispatch(getTransactions()),
+
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(PrivateTrades);

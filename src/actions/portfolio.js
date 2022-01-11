@@ -26,9 +26,36 @@ import {
   STOCKRANGEWEEKPORTFOLIO,
   STOCKRANGEDAYPORTFOLIO,
   RESET_STOCK_DATA,
+  GET_TRANSACTIONS_START,
+  GET_TRANSACTIONS_SUCCESS,
+  GET_TRANSACTIONS_ERROR,
 } from 'constants';
 import axios from 'axios';
 import { STOCKS_SERVER } from '../constants';
+import { PORTFOLIO_TRANSACTIONS } from './api';
+import apiInstance from '../util/axiosConfig';
+
+export const getTransactions = () => {
+  return (dispatch) => {
+    dispatch({type: GET_TRANSACTIONS_START});
+    apiInstance
+      .get(
+       PORTFOLIO_TRANSACTIONS,
+      )
+      // .then(response => console.log (response.data, "GET TRANSACTIONS"))
+      .then((response) => {
+        dispatch({
+          type: GET_TRANSACTIONS_SUCCESS,
+          payload: response.data
+        });
+      })
+
+      .catch((error) =>
+        dispatch({type: GET_TRANSACTIONS_ERROR, payload: []}),
+      );
+  };
+};
+
 export const stockLatestPortfolio = (ticker) => {
   return (dispatch) => {
     dispatch({type: STOCKLATESTPORTFOLIO_START});
