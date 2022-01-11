@@ -21,24 +21,20 @@ class PrivateTrades extends Component {
   }
   componentDidMount() {
     this.props.getTransactions();
-
-    this.setState({
-      tradeTransactions: this.props.transactions.transactions,
-    });
   }
 
 
   render() {
 console.log(this.props.transactions, 'TRANSACTIONS')
 console.log(this.state.tradeTransactions, 'TRADE')
-    if (!this.props.gainers) {
-      return null;
+    if (!this.props.transactions.transactions) {
+      return <View style={style.container}></View>
     }
     return (
       <SafeAreaView style={style.container}>
         <ScrollView>
           <View>
-            {this.state.tradeTransactions.map((item) => (
+            {this.props.transactions.transactions.map((item) => (
               <PrivateTradeCard key={item.id} item={item} navigation={this.props.navigation} />
             ))}
           </View>
@@ -90,5 +86,12 @@ const style = StyleSheet.create({
     fontFamily: 'Montserrat-SemiBold',
     marginTop: 14,
     marginBottom: 10,
+  },
+  loadingText: {
+    color: '#B8A0FF',
+    fontSize: moderateScale(13),
+    fontFamily: 'Montserrat-SemiBold',
+    alignSelf: 'center',
+    marginTop: moderateScale(10),
   },
 });

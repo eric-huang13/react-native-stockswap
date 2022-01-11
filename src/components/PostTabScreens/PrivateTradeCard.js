@@ -11,8 +11,35 @@ import {connect} from 'react-redux';
 import {moderateScale} from '../../util/responsiveFont';
 
 class PrivateTradeCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      stockName: '',
+      stockSymbol: '',
+    };
+  }
+  componentDidMount () {
+   const filteredTransactions = this.props.transactionsData.securities.filter(
+    (security) =>
+      security.security_id == this.props.item.security_id 
+  );
+  
+
+ filteredTransactions.map((item) =>
+    this.setState({stockSymbol: item.ticker_symbol, stockName: item.name}),
+  );
+   }
   render() {
     const {item} = this.props;
+//     const filteredTransactions = this.props.transactionsData.securities.filter(
+//       (security) =>
+//         security.security_id == this.props.item.security_id 
+//     );
+// console.log(filteredTransactions,"SEC")
+// console.log(this.props.item.security_id , 'ID')
+//     const tickerSym = filteredTransactions.map((item) =>
+//       this.setState({stockSymbol: item.ticker_symbol}),
+//     );
     if (!this.props) {
       return null;
     }
@@ -20,9 +47,9 @@ class PrivateTradeCard extends Component {
       <View style={style.PrivateTradeCard} key={item.id}>
         <View>
           <Text style={style.accountName}>
-            {item.name.length < 20
-              ? `${item.name}`
-              : `${item.name.substring(0, 19)}...`}
+            {this.state.stockName.length < 20
+              ? `${this.state.stockName}`
+              : `${this.state.stockName.substring(0, 19)}...`}
           </Text>
           {/* <Text style={style.accountName}>{item.title}</Text> */}
           <Text style={style.username}>Price: ${item.price}</Text>
@@ -41,7 +68,7 @@ class PrivateTradeCard extends Component {
             onPress={() =>
               this.props.navigation.navigate({
                 name: 'CreatePublicTrade',
-                params: {post: item},
+                params: {post: item, name:this.state.stockName, symbol:this.state.stockSymbol},
               })
             }>
             <Text style={style.publishButton}>Post</Text>
@@ -53,7 +80,11 @@ class PrivateTradeCard extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    transactionsData: state.portfolio.transactions
+
+
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
