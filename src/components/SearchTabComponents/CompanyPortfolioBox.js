@@ -11,73 +11,39 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import {connect} from 'react-redux';
 import {moderateScale, scale} from '../../util/responsiveFont';
+import axios from 'axios';
 
-export class CompanyBox extends Component {
+export class CompanyPortfolioBox extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      latest: [],
+      latestError: false,
+    };
+  }
+  componentDidMount() {
+    axios
+      .get(
+        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${this.props.symbol}/quote/latest`,
+      )
+      .then((response) => {
+        this.setState({
+          latest: response.data.result.quote,
+        });
+      })
+      .catch((error) => {
+         this.setState({latestError: true});
+      });
+  }
+
   render() {
     const {item, category} = this.props;
     const {width, height} = Dimensions.get('window');
     const symbol = this.props.symbol;
     const stockObject = this.props.tickersAll[symbol];
-    const styledText =
-      category === 'gainers' ? (
-        <LinearGradient
-          start={{x: 0.1, y: 0.1}}
-          end={{x: 1, y: 1}}
-          colors={['#2C3957', '#2C572E']}
-          style={style.linearGradient}>
-          <SafeAreaView style={style.listContainer}>
-            <View style={style.topDetails}>
-              <Text style={{...style.symbol, color: '#1AB968'}}>
-                {item.ticker}
-              </Text>
-              {stockObject ? (
-                <Text style={style.title}>
-                  {stockObject.name.length < 15
-                    ? `${stockObject.name}`
-                    : `${stockObject.name.substring(0, 14)}...`}
-                </Text>
-              ) : null}
-            </View>
-            <View style={style.bottomDetails}>
-              <Text style={style.price}>
-                ${item.quote.volumeWeightedAveragePrice}
-              </Text>
-              <Text style={{...style.percentage, color: '#1AB968'}}>
-                +{item.change}%
-              </Text>
-            </View>
-          </SafeAreaView>
-        </LinearGradient>
-      ) : category === 'losers' ? (
-        <LinearGradient
-          start={{x: 0.1, y: 0.1}}
-          end={{x: 1, y: 1}}
-          colors={['#2C3957', '#572C3D']}
-          style={style.linearGradient}>
-          <SafeAreaView style={style.listContainer}>
-            <View style={style.topDetails}>
-              <Text style={{...style.symbol, color: '#D13C3D'}}>
-                {item.ticker}
-              </Text>
-              {stockObject ? (
-                <Text style={style.title}>
-                  {stockObject.name.length < 15
-                    ? `${stockObject.name}`
-                    : `${stockObject.name.substring(0, 14)}...`}
-                </Text>
-              ) : null}
-            </View> 
-            <View style={style.bottomDetails}>
-              <Text style={style.price}>
-                ${item.quote.volumeWeightedAveragePrice}
-              </Text>
-              <Text style={{...style.percentage, color: '#D13C3D'}}>
-                {item.change}%
-              </Text>
-            </View>
-          </SafeAreaView>
-        </LinearGradient>
-      ) : (
+
+    return (
+      <SafeAreaView>
         <LinearGradient
           start={{x: 0.1, y: 0.1}}
           end={{x: 1, y: 1}}
@@ -99,14 +65,13 @@ export class CompanyBox extends Component {
             <View style={style.bottomDetails}>
               <Text style={style.price}>${item.closePrice}</Text>
               <Text style={{...style.percentage, color: '#B8A0FF'}}>
-                {item.change}%
+                {this.state.latest.close}%
               </Text>
             </View>
           </SafeAreaView>
         </LinearGradient>
-      );
-
-    return <SafeAreaView>{styledText}</SafeAreaView>;
+      </SafeAreaView>
+    );
   }
 }
 
@@ -119,7 +84,7 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompanyBox);
+export default connect(mapStateToProps, mapDispatchToProps)(CompanyPortfolioBox);
 
 const style = StyleSheet.create({
   linearGradient: {

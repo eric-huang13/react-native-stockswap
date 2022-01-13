@@ -3,6 +3,15 @@ import {
   USERS_SUCCESS,
   USERS_ERROR,
   USERS_STOP,
+  GETMYFOLLOWERS_START,
+  GETMYFOLLOWERS_SUCCESS,
+  GETMYFOLLOWING_ERROR,
+  GETMYFOLLOWING_START,
+  GETMYFOLLOWING_SUCCESS,
+  GETMYFOLLOWERS_ERROR,
+  PEOPLESEARCH_START,
+  PEOPLESEARCH_SUCCESS,
+  PEOPLESEARCH_ERROR
   
 } from '../constants';
 
@@ -81,6 +90,10 @@ loading:false,
 page:1,
 offset:10,
 loadMore:true,
+myFollowers: [],
+myfollowing: [],
+peopleSearchLoading:false,
+peopleSearchResults:[],
 };
 
 const peopleReducer = (state = defaultState, action) => {
@@ -112,6 +125,53 @@ switch (action.type) {
       error: '',
       loadMore:action.payload
     };
+    case GETMYFOLLOWERS_START:
+    return {
+      ...state
+    };
+    case GETMYFOLLOWERS_SUCCESS:
+    return {
+      ...state,     
+      myFollowers:action.payload
+    };
+    case GETMYFOLLOWERS_ERROR:
+    return {
+      ...state,     
+      myFollowers:action.payload
+    };
+    case GETMYFOLLOWING_START:
+      return {
+        ...state,
+      };
+      case GETMYFOLLOWING_SUCCESS:
+      return {
+        ...state,      
+        myFollowing:action.payload
+      };
+      case GETMYFOLLOWING_ERROR:
+      return {
+        ...state,      
+        myFollowing:action.payload
+      };
+      case PEOPLESEARCH_START:
+      return {
+        ...state,
+        peopleSearchLoading: true,
+        error: '',
+      };
+    case PEOPLESEARCH_SUCCESS:
+      return {
+        ...state,
+        peopleSearchLoading: false,
+        error: '',
+        peopleSearchResults: action.payload,
+      };
+    case PEOPLESEARCH_ERROR:
+      return {
+        ...state,
+        peopleSearchLoading: false,
+        error: action.payload,
+      };
   default:
     return state;
 }

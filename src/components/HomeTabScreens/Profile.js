@@ -12,6 +12,7 @@ import ProfileGraph from '../HomeTabComponents/ProfileGraph';
 import UserPosts from '../UserPost/UserPosts';
 import {connect} from 'react-redux';
 import {moderateScale} from '../../util/responsiveFont';
+import {FollowUser, UnFollowUser} from '../../actions/people';
 
 class Profile extends Component {
   constructor(props) {
@@ -152,9 +153,25 @@ class Profile extends Component {
                       <Text style={style.username}>@{user.username}</Text>
                       <Text style={style.hashtag}>{user.hashtag}</Text>
                     </View>
+                    {/* Add conditional follow/unfollow text based on following or not */}
                     <View style={style.followButtonView}>
-                      <Text style={style.followButton}>+Follow</Text>
+                      <TouchableOpacity
+                        onPress={
+                          () => console.log('press')
+                          //this.propsFollowUser(user.userId);
+                        }>
+                        <Text style={style.followButton}>+Follow</Text>
+                      </TouchableOpacity>
                     </View>
+                    {/* Unfollow */}
+                    {/* <View style={style.followButtonView}><TouchableOpacity
+                      onPress={() =>
+                        console.log('press')
+                        //this.props.UnFollowUser(user.userId);
+                      }>
+                      <Text style={style.followButton}>Unfollow</Text>
+                      </TouchableOpacity>
+                    </View> */}
                   </View>
                   <View style={style.bioContainer}>
                     <Text style={style.bio}>{user.bio}</Text>
@@ -243,8 +260,13 @@ const mapStateToProps = (state) => {
     userAccount: state.user.userFakeData,
   };
 };
-
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    FollowUser: (id) => dispatch(FollowUser(id)),
+    UnFollowUser: (id) => dispatch(UnFollowUser(id)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
 
 const style = StyleSheet.create({
   container: {

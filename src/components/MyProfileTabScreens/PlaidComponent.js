@@ -12,7 +12,7 @@ const PlaidComponent = (props) => {
   useEffect(() => {
     props.PlaidToken();
   }, []);
-  console.log(props, 'LINKTOKEN');
+  // console.log(props, 'LINKTOKEN');
  
   usePlaidEmitter((OPEN) => {
     console.log(OPEN, 'here open');
@@ -37,7 +37,7 @@ const PlaidComponent = (props) => {
             console.log(exit, 'Exit');
             props.PlaidBank(exit)
           }}>
-            {props.user.isLoggedIn ?
+            {props.screen !== 'connect' ?
                       <Text style={style.detailsButton}>Add Account</Text>
                       :
                       <Text style={style.button}>Add Account</Text>
@@ -88,15 +88,15 @@ const style = StyleSheet.create({
     textAlign: 'center',
     paddingVertical: moderateScale(12),
     paddingHorizontal: moderateScale(20),
-    width: moderateScale(150),
+    width: moderateScale(160),
     borderRadius: moderateScale(6),
-    fontSize: moderateScale(14),
+    fontSize: moderateScale(16),
     fontFamily: 'Montserrat-SemiBold',
     marginTop:10
   },
   detailsButton: {
     color: '#B8A0FF',
-    fontSize: moderateScale(14),
+    fontSize: moderateScale(15),
     fontFamily: 'Montserrat-SemiBold',
     alignSelf: 'flex-end',
     marginRight: 6,

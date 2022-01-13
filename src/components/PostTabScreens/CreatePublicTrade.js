@@ -39,7 +39,7 @@ export default class CreatePublicTrade extends Component {
     this.setState({enabled: value});
   };
   render() {
-    const {post} = this.props.route.params;
+    const {post, name, symbol} = this.props.route.params;
     return (
       <SafeAreaView style={style.container}>
         <ScrollView style={style.scrollContainer}>
@@ -49,14 +49,14 @@ export default class CreatePublicTrade extends Component {
             <Formik
               initialValues={{
                 enabled: false,
-                title: this.props.route.params.post.title,
-                tradeDate: this.props.route.params.post.tradeDate,
+                title: this.props.route.params.stockName,
+                tradeDate: this.props.route.params.post.date,
                 portfolioPercentage: this.props.route.params.post
                   .portfolioPercentage,
                 gain: this.props.route.params.post.gain,
-                symbol: this.props.route.params.post.symbol,
+                symbol: this.props.route.params.symbol,
                 body: '',
-                action: this.props.route.params.post.action,
+                action: this.props.route.params.post.type,
               }}
               onSubmit={(values) => {
                 console.log(values, 'values');
@@ -85,19 +85,19 @@ export default class CreatePublicTrade extends Component {
                         {post.percentage > 0 ? (
                           <View style={style.actionIconContainer}>
                             <Text style={style.vitalDetails}>
-                              {post.action}
+                              {post.type}
                             </Text>
                             <BullIcon style={style.icon} />
                           </View>
                         ) : (
                           <View style={style.actionIconContainer}>
                             <Text style={style.vitalDetails}>
-                              {post.action}
+                              {post.type}
                             </Text>
                             <BearIcon style={style.icon} />
                           </View>
                         )}
-                        <Text style={style.symbol}>{post.symbol}</Text>
+                        <Text style={style.symbol}>{symbol}</Text>
                       </View>
                       <View style={style.tradeDetailsRight}>
                         <View style={style.detailsColumns}>
@@ -116,7 +116,7 @@ export default class CreatePublicTrade extends Component {
                       <Text style={style.stockName}>
                         {post.title}{' '}
                         <Text style={style.tradeMade}>
-                          (Trade made: {post.tradeDate})
+                          (Trade made: {post.date})
                         </Text>
                       </Text>
                     </View>

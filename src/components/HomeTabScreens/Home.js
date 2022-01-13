@@ -15,6 +15,7 @@ import ReportModal from '../HomeTabComponents/ReportModal';
 import ShareToModal from '../HomeTabComponents/ShareToModal';
 import {Logout} from 'actions/user';
 import MoreBox from '../HomeTabComponents/MoreBox';
+import {PortfolioAccounts} from '../../actions/profile';
 import {
   EDIT_POST,
   REMOVE_POST,
@@ -36,6 +37,7 @@ const HomeScreen = ({
   comments,
   reply,
   userAccount,
+  PortfolioAccounts
 }) => {
   const [reportModalState, setReportModalState] = useState(false);
   const [shareModalState, setShareModalState] = useState(false);
@@ -45,6 +47,7 @@ const HomeScreen = ({
 
   useEffect(() => {
     fetchTickers && fetchTickers();
+    PortfolioAccounts();
   }, []);
 
   const reportModal = () => {
@@ -151,6 +154,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchTickers: () => dispatch(fetchTickers()),
     GetProfileImage: (token, id) => dispatch(GetProfileImage(token, id)),
     RefreshToken: (token) => dispatch(RefreshToken(token)),
+    PortfolioAccounts: () => dispatch(PortfolioAccounts()),
   };
 };
 

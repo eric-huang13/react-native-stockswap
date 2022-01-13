@@ -26,18 +26,43 @@ import {
   STOCKRANGEWEEKPORTFOLIO,
   STOCKRANGEDAYPORTFOLIO,
   RESET_STOCK_DATA,
+  GET_TRANSACTIONS_START,
+  GET_TRANSACTIONS_SUCCESS,
+  GET_TRANSACTIONS_ERROR,
 } from 'constants';
 import axios from 'axios';
-import {STOCKRANGEWEEK} from '../constants';
+import { STOCKS_SERVER } from '../constants';
+import { PORTFOLIO_TRANSACTIONS } from './api';
+import apiInstance from '../util/axiosConfig';
+
+export const getTransactions = () => {
+  return (dispatch) => {
+    dispatch({type: GET_TRANSACTIONS_START});
+    apiInstance
+      .get(
+       PORTFOLIO_TRANSACTIONS,
+      )
+      // .then(response => console.log (response.data, "GET TRANSACTIONS"))
+      .then((response) => {
+        dispatch({
+          type: GET_TRANSACTIONS_SUCCESS,
+          payload: response.data
+        });
+      })
+
+      .catch((error) =>
+        dispatch({type: GET_TRANSACTIONS_ERROR, payload: []}),
+      );
+  };
+};
 
 export const stockLatestPortfolio = (ticker) => {
   return (dispatch) => {
     dispatch({type: STOCKLATESTPORTFOLIO_START});
     axios
       .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/latest`,
+       STOCKS_SERVER + `/stocks/${ticker}/quote/latest`,
       )
-
       // .then(response => console.log (response.data.result.quote, "SEARCH STOCK DATA"))
       .then((response) => {
         dispatch({
@@ -47,7 +72,7 @@ export const stockLatestPortfolio = (ticker) => {
       })
 
       .catch((error) =>
-        dispatch({type: STOCKLATESTPORTFOLIO_ERROR, payload: error.response}),
+        dispatch({type: STOCKLATESTPORTFOLIO_ERROR, payload: []}),
       );
   };
 };
@@ -57,7 +82,7 @@ export const fetchStockDetailsPortfolio = (ticker) => {
     dispatch({type: FETCHSTOCKDETAILSPORTFOLIO_START});
     axios
       .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/tickers/${ticker}`,
+       STOCKS_SERVER + `/tickers/${ticker}`,
       )
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
@@ -90,7 +115,7 @@ export const fetchStockDayPortfolio = (ticker) => {
     dispatch({type: FETCHSTOCKDAYPORTFOLIO_START});
     axios
       .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=day`,
+       STOCKS_SERVER + `/stocks/${ticker}/quote/historic?interval=day`,
       )
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
@@ -131,7 +156,7 @@ export const fetchStockWeekPortfolio = (ticker) => {
     dispatch({type: FETCHSTOCKWEEKPORTFOLIO_START});
     axios
       .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=week`,
+       STOCKS_SERVER + `/stocks/${ticker}/quote/historic?interval=week`,
       )
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
@@ -178,7 +203,7 @@ export const fetchStockMonthPortfolio = (ticker) => {
     dispatch({type: FETCHSTOCKMONTHPORTFOLIO_START});
     axios
       .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=month`,
+       STOCKS_SERVER + `/stocks/${ticker}/quote/historic?interval=month`,
       )
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
@@ -224,7 +249,7 @@ export const fetchStockThreeMonthPortfolio = (ticker) => {
     dispatch({type: FETCHSTOCKTHREEMONTHPORTFOLIO_START});
     axios
       .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=three_month`,
+       STOCKS_SERVER + `/stocks/${ticker}/quote/historic?interval=three_month`,
       )
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
@@ -272,7 +297,7 @@ export const fetchStockYearPortfolio = (ticker) => {
     dispatch({type: FETCHSTOCKYEARPORTFOLIO_START});
     axios
       .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=year`,
+       STOCKS_SERVER + `/stocks/${ticker}/quote/historic?interval=year`,
       )
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))

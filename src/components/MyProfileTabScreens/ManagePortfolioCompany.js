@@ -189,6 +189,7 @@ export class ManagePortfolioCompany extends Component {
                 graphData={this.props.stockGraphDataPortfolio}
                 symbol={route.params.item.tickerSymbol}
                 range={this.props.stockRangePortfolio}
+                percent={this.props.route.params.percentChange}
               />
               <View style={style.graphNumbers}>
                 <Text style={style.graphNumberText}>

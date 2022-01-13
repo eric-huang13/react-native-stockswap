@@ -8,34 +8,34 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {connect} from 'react-redux';
-import {fetchMarketGainers} from '../../actions/marketMovers';
 import PrivateTradeCard from './PrivateTradeCard';
 import {moderateScale} from '../../util/responsiveFont';
+import { getTransactions } from '../../actions/portfolio';
 
 class PrivateTrades extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stocks: [],
+      tradeTransactions: [],
     };
   }
   componentDidMount() {
-    this.setState({
-      stocks: this.props.gainers,
-    });
+    this.props.getTransactions();
   }
 
-  render() {
 
-    if (!this.props.gainers) {
-      return null;
+  render() {
+console.log(this.props.transactions, 'TRANSACTIONS')
+console.log(this.state.tradeTransactions, 'TRADE')
+    if (!this.props.transactions.transactions) {
+      return <View style={style.container}></View>
     }
     return (
       <SafeAreaView style={style.container}>
         <ScrollView>
           <View>
-            {this.state.stocks.map((item) => (
-              <PrivateTradeCard key={item.id} item={item} navigation={this.props.navigation} />
+            {this.props.transactions.transactions.map((item, index) => (
+              <PrivateTradeCard key={index} item={item} navigation={this.props.navigation} />
             ))}
           </View>
         </ScrollView>
@@ -48,12 +48,14 @@ const mapStateToProps = (state) => {
   return {
     marketGainers: state.company.marketGainers,
     gainers: state.company.gainers,
+    transactions: state.portfolio.transactions
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchGainers: () => dispatch(fetchMarketGainers()),
+    getTransactions: () => dispatch(getTransactions()),
+
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(PrivateTrades);
@@ -84,5 +86,12 @@ const style = StyleSheet.create({
     fontFamily: 'Montserrat-SemiBold',
     marginTop: 14,
     marginBottom: 10,
+  },
+  loadingText: {
+    color: '#B8A0FF',
+    fontSize: moderateScale(13),
+    fontFamily: 'Montserrat-SemiBold',
+    alignSelf: 'center',
+    marginTop: moderateScale(10),
   },
 });

@@ -1,7 +1,19 @@
 import {
-  MARKETGAINERS_FETCHING,
-  MARKETGAINERS_SUCCESS,
-  MARKETGAINERS_FAILURE,
+  USERPOST_START,
+  USERPOST_SUCCESS,
+  USERPOST_ERROR,
+  EDITPOST_START,
+  EDITPOST_SUCCESS,
+  EDITPOST_ERROR,
+  GETCOMMENTS_START,
+  GETCOMMENTS_SUCCESS,
+  GETCOMMENTS_ERROR,
+  GETLIKES_START,
+  GETLIKES_SUCCESS,
+  GETLIKES_ERROR,
+  GETPOSTS_START,
+  GETPOSTS_SUCCESS,
+  GETPOSTS_ERROR
 } from '../constants';
 
 const defaultState = {
@@ -287,30 +299,109 @@ const defaultState = {
       username: 'bob123',
     },
   ],
+  // posts:[],
+  // userPost:[],
 };
 
 const postsReducer = (state = defaultState, action) => {
   switch (action.type) {
     //Ready for hook up
-    // case MARKETGAINERS_FETCHING:
-    //   return {
-    //     ...state,
-    //     loading: true,
-    //     error: "",
-    //   };
-    // case MARKETGAINERS_SUCCESS:
-    //   return {
-    //     ...state,
-    //     loading: false,
-    //     error: "",
-    //     marketGainers: action.payload,
-    //   };
-    // case MARKETGAINERS_FAILURE:
-    //   return {
-    //     ...state,
-    //     loading: false,
-    //     error: action.payload,
-    //   };
+
+    case GETPOSTS_START:
+      return {
+        ...state,
+        loading: true,
+        error: "",
+      };
+    case GETPOSTS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: "",
+        posts: action.payload,
+      };
+    case GETPOSTS_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+      case EDITPOST_START:
+      return {
+        ...state,
+        loading: true,
+        error: "",
+      };
+    case EDITPOST_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: "",
+        userPost: action.payload,
+      };
+    case EDITPOST_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+      case USERPOST_START:
+      return {
+        ...state,
+        loading: true,
+        error: "",
+      };
+    case USERPOST_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: "",
+        userPost: action.payload,
+      };
+    case USERPOST_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case GETCOMMENTS_START:
+      return {
+        ...state,
+        loading: true,
+        error: "",
+      };
+    case GETCOMMENTS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: "",
+        comments: action.payload,
+      };
+    case GETCOMMENTS_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+      case GETLIKES_START:
+      return {
+        ...state,
+        loading: true,
+        error: "",
+      };
+    case GETLIKES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: "",
+        likes: action.payload,
+      };
+    case GETLIKES_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }

@@ -25,11 +25,18 @@ class EnableAccounts extends Component {
     this.setState({
       newAccounts: this.props.newPlaidAccount,
     });
+ 
     this.setState({
       accountStatus: this.props.newPlaidAccount.map((account) => {
-        return {accountId: account.id, status: 'enabled'};
+        if(account.subtype == "money+market"){
+        return {accountId: account.id, status: 'enabled'}
+        }
+      else {
+       return{ accountId: account.id, status: 'disabled'}}
       }),
     });
+  
+ 
   }
   accountFlag = (id, enabled) => {
     this.setState({
@@ -45,7 +52,7 @@ class EnableAccounts extends Component {
   };
 
   render() {
-    console.log(this.state.accountStatus, 'Account Status');
+    const sorting = [...this.state.newAccounts].sort(function(x,y){ return x.subtype == 'money+market' ? -1 : y.subtype == 'money+market' ? 1 : 0; });
 
     if (!this.props.newPlaidAccount) {
       return null;
@@ -56,7 +63,7 @@ class EnableAccounts extends Component {
           <View style={{paddingHorizontal: moderateScale(12)}}>
             <Text style={style.header}> {this.props.newInstitution.name}</Text>
 
-            {this.state.newAccounts.map((item) => (
+            {sorting.map((item) => (
               <EnableAccountsCard
                 key={item.id}
                 item={item}

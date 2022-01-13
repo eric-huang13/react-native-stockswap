@@ -16,8 +16,15 @@ class EnableAccountsCard extends Component {
     super(props);
 
     this.state = {
-      enabled: true,
+      enabled: false,
     };
+  }
+  componentDidMount() {
+    if(this.props.item.subtype == 'money+market')
+    this.setState({
+      enabled: true
+    });
+    
   }
   toggleSwitch = (value) => {
     this.setState({enabled: value});

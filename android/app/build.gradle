@@ -192,6 +192,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
 
         implementation project(':react-native-plaid-link-sdk')
+        implementation "com.squareup.okhttp3:okhttp-urlconnection:4.2.1"
 
 
 

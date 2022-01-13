@@ -25,6 +25,9 @@ import {
   STOCKRANGETHREEMONTHPORTFOLIO,
   STOCKRANGEWEEKPORTFOLIO,
   STOCKRANGEYEARPORTFOLIO,
+  GET_TRANSACTIONS_START,
+  GET_TRANSACTIONS_SUCCESS,
+  GET_TRANSACTIONS_ERROR,
 } from '../constants';
 
 const defaultState = {
@@ -40,10 +43,29 @@ const defaultState = {
   stockLatestPortfolioData: [],
   stockRangePortfolio: [],
   stockGraphDataPortfolio: [],
+  transactions: [],
 };
 
 const portfolioReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case GET_TRANSACTIONS_START:
+      return {
+        ...state,
+        error: '',
+      };
+    case GET_TRANSACTIONS_SUCCESS:
+      return {
+        ...state,
+        error: '',
+        transactions: action.payload,
+      };
+    case GET_TRANSACTIONS_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+        transactions: action.payload,
+
+      };
     case STOCKLATESTPORTFOLIO_START:
       return {
         ...state,
@@ -59,6 +81,8 @@ const portfolioReducer = (state = defaultState, action) => {
       return {
         ...state,
         error: action.payload,
+        stockLatestPortfolioData: action.payload,
+
       };
 
     case FETCHSTOCKDAYPORTFOLIO_START:

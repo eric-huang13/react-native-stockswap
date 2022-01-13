@@ -54,11 +54,10 @@ const ConnectAccount = (props) => {
                 <View style={style.bulb}>
                   <HouseIcon />
                 </View>
-                <Text style={style.header}>Secure</Text>
+                <Text style={style.header}>Connect effortlessly</Text>
               </View>
               <Text style={style.detailsText}>
-                Bank level security with full encryption for your financial
-                data.
+                Plaid lets you securely connect your financial data to StockSwap in seconds
               </Text>
             </View>
             <View>
@@ -66,11 +65,10 @@ const ConnectAccount = (props) => {
                 <View style={style.bulb}>
                   <LockIcon />
                 </View>
-                <Text style={style.header}>Private</Text>
+                <Text style={style.header}>Share your data securely</Text>
               </View>
               <Text style={style.detailsText}>
-                Choose between making your portfolio private or public, with no
-                dollar amounts ever shown.
+                Plaid works to transfer your data with bank level security and full encryption to ensure your financial data is secure
               </Text>
             </View>
 
@@ -80,22 +78,19 @@ const ConnectAccount = (props) => {
                   <BulbIcon />
                 </View>
 
-                <Text style={style.header}>Insights</Text>
+                <Text style={style.header}>You're in control</Text>
               </View>
               <Text style={style.detailsText}>
-                Learn insights about your portfolio like trading accuracy and
-                profit breakdowns along with qualifying for the interactive
-                leaderboards.
+                Choose between making your trades private or public, but either way, no dollar amounts are ever seen. Success is measured by percent change in StockSwap
               </Text>
             </View>
             <View style={style.buttonContainer}>
-              <PlaidComponent />
+              <PlaidComponent screen={'connect'}/>
 
-              <View style={style.buttonContainer}>
                 <TouchableOpacity onPress={() => handleAddLater()}>
-                  <Text style={style.button}>Add later</Text>
+                  <Text style={style.detailsButton}>Add Later</Text>
                 </TouchableOpacity>
-              </View>
+             
             </View>
           </View>
         </ScrollView>
@@ -163,14 +158,14 @@ const style = StyleSheet.create({
 
   header: {
     // textAlign: 'center',
-    fontSize: moderateScale(16),
+    fontSize: moderateScale(18),
     color: '#FFFFFF',
     // marginBottom: moderateScale(20),
     fontFamily: 'Montserrat-Bold',
   },
   detailsText: {
     // textAlign: 'center',
-    fontSize: moderateScale(14),
+    fontSize: moderateScale(16),
     color: '#FFFFFF',
     marginBottom: moderateScale(34),
     fontFamily: 'Montserrat-Regular',
@@ -196,7 +191,7 @@ const style = StyleSheet.create({
     marginTop: moderateScale(1),
     fontSize: moderateScale(16),
     backgroundColor: '#536183',
-    opacity: 0.7,
+   //opacity: 0.7,
     fontFamily: 'Montserrat-Italic',
     color: '#9ea6b5',
   },
@@ -208,7 +203,7 @@ const style = StyleSheet.create({
     fontSize: moderateScale(16),
     textAlignVertical: 'top',
     backgroundColor: '#536183',
-    opacity: 0.7,
+   //opacity: 0.7,
     fontFamily: 'Montserrat-Italic',
     color: '#9ea6b5',
   },
@@ -275,9 +270,9 @@ const style = StyleSheet.create({
     fontFamily: 'Montserrat-Regular',
   },
   buttonContainer: {
-    marginTop: moderateScale(20),
+    marginTop: moderateScale(40),
     marginBottom: moderateScale(10),
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
@@ -318,5 +313,12 @@ const style = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     alignSelf: 'center',
+  },
+  detailsButton: {
+    color: '#B8A0FF',
+    fontSize: moderateScale(15),
+    fontFamily: 'Montserrat-SemiBold',
+    alignSelf: 'flex-end',
+    marginTop: 18,
   },
 });

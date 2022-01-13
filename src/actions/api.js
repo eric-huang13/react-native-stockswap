@@ -23,5 +23,7 @@ export const PORTFOLIO_INSTITUTIONS = API_SERVER + '/portfolio/institutions';
 export const PORTFOLIO_ACCOUNT = API_SERVER + '/portfolio/account';
 export const PORTFOLIO_LINK = API_SERVER + '/portfolio/link';
 export const PORTFOLIO_INITIATE = API_SERVER + '/portfolio/initiate';
+export const PORTFOLIO_TRANSACTIONS = API_SERVER + '/portfolio/transactions';
+
 
 // stocks

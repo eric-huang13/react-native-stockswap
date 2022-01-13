@@ -31,6 +31,12 @@ import {
   PLAIDACCOUNTSTATUS_START,
   PLAIDACCOUNTSTATUS_SUCCESS,
   PLAIDACCOUNTSTATUS_ERROR,
+  GETSETTINGS_START,
+  GETSETTINGS_SUCCESS,
+  GETSETTINGS_ERROR,
+  POSTSETTINGS_START,
+  POSTSETTINGS_SUCCESS,
+  POSTSETTINGS_ERROR,
 } from 'constants';
 import axios from 'axios';
 import deviceStorage from '../util/DeviceStorage';
@@ -45,6 +51,44 @@ import {
   PORTFOLIO_ACCOUNT,
   PROFILE,
 } from './api';
+import { API_SERVER } from '../constants';
+
+export const GetSettings = () => {
+  return (dispatch) => {
+    dispatch({type: GETSETTINGS_START});
+    apiInstance
+      .get(API_SERVER + `/settings`)
+      .then((response) => {
+       dispatch({
+          type: GETSETTINGS_SUCCESS,
+          payload: response.data,
+        });
+      })
+      .catch((error) => {
+        dispatch({type: GETSETTINGS_ERROR, payload: error.response});
+        console.log(error.response, 'Error getting settings');
+      });
+  };
+};
+
+export const PostSettings = (input) => {
+  console.log(input,"INPUT")
+  return (dispatch) => {
+    dispatch({type: POSTSETTINGS_START});
+    apiInstance
+      .post(API_SERVER + `/settings`, input)
+      .then((response) => {
+      dispatch({
+          type: POSTSETTINGS_SUCCESS,
+          payload: response.data,
+        });
+      })
+      .catch((error) => {
+        dispatch({type: POSTSETTINGS_ERROR, payload: error.response});
+        console.log(error.response, 'Error posting settings');
+      });
+  };
+};
 
 export const PortfolioAccounts = () => {
   return (dispatch) => {

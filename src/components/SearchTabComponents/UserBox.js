@@ -13,10 +13,20 @@ export default class UserBox extends Component {
             ? {...style.container, backgroundColor: '#2a334a'}
             : {...style.container}
         }>
-        <Image style={style.image} source={{uri: item.img}} />
+        {/* <Image style={style.image} source={{uri: item.img}} /> */}
+          {/* ///WORKING Add response url */}
+                    <Image
+                      style={style.image}
+                      source={{uri:`https://d13h17hkw4i0vn.cloudfront.net/${item.userId}/profile.jpg`, headers:{Authorization: `Bearer ${this.props.reduxToken}`}}}
+                    />
 
         <View style={style.detailsContainer}>
           <Text style={style.name}>{item.name}</Text>
+
+
+          <Text style={style.posts}>
+            Username: <Text style={style.detailsBold}>{item.username}</Text>
+          </Text>
 
           <Text style={style.posts}>
             Posts: <Text style={style.detailsBold}>{item.posts}</Text>

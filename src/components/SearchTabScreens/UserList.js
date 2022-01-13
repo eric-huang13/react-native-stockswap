@@ -15,6 +15,8 @@ import UserBox from '../SearchTabComponents/UserBox';
 import SearchInput from '../../icons/SearchInput';
 import UserListImage from '../../icons/UserListImage';
 import {moderateScale} from '../../util/responsiveFont';
+import { PeopleSearch } from '../../actions/people';
+import {debounce} from 'lodash';
 
 export class UserList extends Component {
   constructor(props) {
@@ -24,9 +26,21 @@ export class UserList extends Component {
     };
   }
 
+  componentDidMount() {
+    this.handleChange = debounce(this.handleChange, 1000);
+  }
+
   handleChange = (text) => {
-    this.setState({input: text});
+    console.log(text);
+    this.setState({
+      input: text,
+    });
+    this.state.input !== '' ? this.props.PeopleSearch(text) : null;
   };
+
+  // handleChange = (text) => {
+  //   this.setState({input: text});
+  // };
 
   accountId = this.props.userAccount.id;
 
@@ -47,9 +61,7 @@ export class UserList extends Component {
   render() {
     const {input} = this.state;
     const {users, userAccount} = this.props;
-
     const accountId = userAccount.id;
-
     const filteredUsers = users.filter((item) =>
       item.name.toLowerCase().includes(input.toLowerCase()),
     );
@@ -73,7 +85,7 @@ export class UserList extends Component {
             onChangeText={(text) => this.handleChange(text)}
           />
         </View>
-        {this.state.input === '' ? (
+        {this.state.input.length == 0 ? (
           <ScrollView>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View style={style.backgroundImageContainer}>
@@ -88,12 +100,12 @@ export class UserList extends Component {
           <ScrollView contentContainerStyle={{paddingBottom: 180}}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View>
-                {filteredUsers.map((item) => {
+                {this.props.peopleSearchResults.map((item, index) => {
                   return (
                     <TouchableOpacity
-                      key={item.id}
+                      key={item.userId}
                       onPress={() => this.navigationByCondition(item)}>
-                      <UserBox item={item} />
+                      <UserBox item={item} reduxToken={this.props.reduxToken} />
                     </TouchableOpacity>
                   );
                 })}
@@ -110,10 +122,21 @@ const mapStateToProps = (state) => {
   return {
     users: state.people.users,
     userAccount: state.user.userFakeData,
+    peopleSearchResults: state.people.peopleSearchResults,
+    reduxToken: state.user.token,
+
   };
 };
 
-export default connect(mapStateToProps)(UserList);
+const mapDispatchToProps = (dispatch) => {
+  return {
+
+    PeopleSearch: (input) => dispatch(PeopleSearch(input)),
+   
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserList);
 
 const style = StyleSheet.create({
   searchInputContainer: {

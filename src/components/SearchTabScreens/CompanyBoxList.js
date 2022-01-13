@@ -13,21 +13,43 @@ import SearchInput from '../../icons/SearchInput';
 import {connect} from 'react-redux';
 import CompanyBox from '../SearchTabComponents/CompanyBox';
 import {fetchMarketGainers} from '../../actions/marketMovers';
-import {fetchMarketLosers, searchStock, resetStockData} from '../../actions/marketMovers';
+import {
+  fetchMarketLosers,
+  searchStock,
+  resetStockData,
+} from '../../actions/marketMovers';
+import {PortfolioAccounts} from '../../actions/profile';
 import StockSearchBox from '../SearchTabComponents/StockSearchBox';
+import CompanyPortfolioBox from '../SearchTabComponents/CompanyPortfolioBox';
 import {debounce} from 'lodash';
 
 export class CompanyBoxList extends Component {
-  componentDidMount() {
-    this.props.fetchGainers();
-    this.props.fetchLosers();
-    this.handleChange = debounce(this.handleChange, 1000);
-  }
   constructor(props) {
     super(props);
     this.state = {
       input: '',
+      filteredSecurities: [],
     };
+  }
+
+  componentDidMount() {
+    this.props.fetchGainers();
+    this.props.fetchLosers();
+    this.props.PortfolioAccounts();
+
+    if (this.props.portfolioAccounts.securities) {
+      const filteredSecurities = this.props.portfolioAccounts.securities.filter(
+        (security) =>
+          security.tickerSymbol !== null &&
+          security.type !== 'cash' &&
+          security.type !== 'derivative',
+      );
+      this.setState({
+        filteredSecurities: filteredSecurities,
+      });
+    }
+
+    this.handleChange = debounce(this.handleChange, 1000);
   }
 
   handleChange = (text) => {
@@ -47,6 +69,8 @@ export class CompanyBoxList extends Component {
       marketLosers,
       marketGainersTest,
     } = this.props;
+console.log(this.state.filteredSecurities,"FILTERSEC")
+  
 
     return (
       <SafeAreaView style={style.mainContainer}>
@@ -104,14 +128,18 @@ export class CompanyBoxList extends Component {
                       return (
                         <TouchableOpacity
                           key={item.ticker}
-                          onPress={() =>
-                            {this.props.navigation.navigate({
+                          onPress={() => {
+                            this.props.navigation.navigate({
                               name: 'CompanyInformation',
                               params: {item, stockCategory: 'gainers', index},
                             }),
-                            this.props.resetStockData()}
-                          }>
-                          <CompanyBox item={item} category={'gainers'} />
+                              this.props.resetStockData();
+                          }}>
+                          <CompanyBox
+                            item={item}
+                            symbol={item.ticker}
+                            category={'gainers'}
+                          />
                         </TouchableOpacity>
                       );
                     })}
@@ -154,14 +182,18 @@ export class CompanyBoxList extends Component {
                       return (
                         <TouchableOpacity
                           key={item.ticker}
-                          onPress={() =>{
+                          onPress={() => {
                             this.props.navigation.navigate({
                               name: 'CompanyInformation',
                               params: {item, stockCategory: 'losers'},
                             }),
-                            this.props.resetStockData()}
-                          }>
-                          <CompanyBox item={item} category={'losers'} />
+                              this.props.resetStockData();
+                          }}>
+                          <CompanyBox
+                            item={item}
+                            symbol={item.ticker}
+                            category={'losers'}
+                          />
                         </TouchableOpacity>
                       );
                     })}
@@ -173,49 +205,54 @@ export class CompanyBoxList extends Component {
                 <View style={style.headerContainer}>
                   <TouchableOpacity
                     onPress={() =>
-                      this.props.navigation.navigate('CompanyCategory', {
-                        name: 'Highest by Volume',
+                      this.props.navigation.navigate('CompanyCategoryPortfolio', {
+                        name: 'Your Stocks',
                         params: {
-                          category: highestByVolume,
+                          category: this.state.filteredSecurities,
                         },
                       })
                     }>
-                    <Text style={style.header}>Daily Highest by Volume</Text>
+                    <Text style={style.header}>Your Stocks</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() =>
-                      this.props.navigation.navigate('CompanyCategory', {
-                        name: 'Highest by Volume',
+                      this.props.navigation.navigate('CompanyCategoryPortfolio', {
+                        name: 'Your Stocks',
                         params: {
-                          category: highestByVolume,
+                          category: this.state.filteredSecurities,
                         },
                       })
                     }>
                     <Text style={style.seeAllHeader}>See all</Text>
                   </TouchableOpacity>
                 </View>
-                <View style={style.boxContainer}>
-                  <ScrollView
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}
-                    justifyContent="space-between">
-                    {highestByVolume.map((item) => {
-                      return (
-                        <TouchableOpacity
-                          key={item.id}
-                          onPress={() =>{
-                            this.props.navigation.navigate({
-                              name: 'CompanyInformation',
-                              params: {item, stockCategory: 'hbv'},
-                            }),
-                            this.props.resetStockData()}
-                          }>
-                          <CompanyBox item={item} category={'hbv'} />
-                        </TouchableOpacity>
-                      );
-                    })}
-                  </ScrollView>
-                </View>
+                {this.state.filteredSecurities.length > 1 ? (
+                  <View style={style.boxContainer}>
+                    <ScrollView
+                      horizontal={true}
+                      showsHorizontalScrollIndicator={false}
+                      justifyContent="space-between">
+                      {this.state.filteredSecurities.map((item, index) => {
+                        return (
+                          <TouchableOpacity
+                            key={index}
+                            onPress={() => {
+                              this.props.navigation.navigate({
+                                name: 'ManagePortfolioCompany',
+                                params: {item, stockCategory: 'hbv'},
+                              }),
+                                this.props.resetStockData();
+                            }}>
+                            <CompanyPortfolioBox
+                              item={item}
+                              symbol={item.tickerSymbol}
+                            />
+                          </TouchableOpacity>
+                        );
+                      })}
+                    </ScrollView>
+                  </View>
+                ) : null}
               </View>
             </View>
           ) : (
@@ -225,13 +262,13 @@ export class CompanyBoxList extends Component {
                   return (
                     <TouchableOpacity
                       key={item.ticker}
-                      onPress={() =>{
+                      onPress={() => {
                         this.props.navigation.navigate({
                           name: 'StockSearchInformation',
                           params: {item, stockCategory: 'gainers'},
                         }),
-                        this.props.resetStockData()}
-                      }>
+                          this.props.resetStockData();
+                      }}>
                       <StockSearchBox item={item} />
                     </TouchableOpacity>
                   );
@@ -254,6 +291,7 @@ const mapStateToProps = (state) => {
     marketLosers: state.company.marketLosers,
     marketGainersTest: state.company.marketGainersTest,
     searchStockResults: state.company.searchStockResults,
+    portfolioAccounts: state.user.portfolioAccounts,
   };
 };
 
@@ -264,7 +302,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchLosers: () => dispatch(fetchMarketLosers()),
     searchStock: (input) => dispatch(searchStock(input)),
     resetStockData: () => dispatch(resetStockData()),
-
+    PortfolioAccounts: () => dispatch(PortfolioAccounts()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(CompanyBoxList);
