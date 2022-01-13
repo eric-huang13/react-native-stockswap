@@ -100,10 +100,10 @@ export class UserList extends Component {
           <ScrollView contentContainerStyle={{paddingBottom: 180}}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View>
-                {this.props.peopleSearchResults.map((item) => {
+                {this.props.peopleSearchResults.map((item, index) => {
                   return (
                     <TouchableOpacity
-                      key={item.id}
+                      key={item.userId}
                       onPress={() => this.navigationByCondition(item)}>
                       <UserBox item={item} reduxToken={this.props.reduxToken} />
                     </TouchableOpacity>

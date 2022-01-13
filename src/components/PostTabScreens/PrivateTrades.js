@@ -34,8 +34,8 @@ console.log(this.state.tradeTransactions, 'TRADE')
       <SafeAreaView style={style.container}>
         <ScrollView>
           <View>
-            {this.props.transactions.transactions.map((item) => (
-              <PrivateTradeCard key={item.id} item={item} navigation={this.props.navigation} />
+            {this.props.transactions.transactions.map((item, index) => (
+              <PrivateTradeCard key={index} item={item} navigation={this.props.navigation} />
             ))}
           </View>
         </ScrollView>

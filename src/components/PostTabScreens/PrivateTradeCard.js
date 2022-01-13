@@ -51,8 +51,7 @@ class PrivateTradeCard extends Component {
               ? `${this.state.stockName}`
               : `${this.state.stockName.substring(0, 19)}...`}
           </Text>
-          {/* <Text style={style.accountName}>{item.title}</Text> */}
-          <Text style={style.username}>Price: ${item.price}</Text>
+          <Text style={style.username}>Price: ${item.price.toFixed(2)}</Text>
           <Text style={style.username}>
             Total percent change: {item.portfolioPercentage}%
           </Text>
