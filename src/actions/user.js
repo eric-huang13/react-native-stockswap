@@ -21,7 +21,7 @@ import {
   REFRESH_TOKEN,
   ADD_LATER,
 } from 'constants';
-import axios from 'axios';
+import HttpClient from '../httpclient';
 import deviceStorage from '../util/DeviceStorage';
 // import {deviceStorage} from '../Navigation';
 
@@ -63,8 +63,7 @@ export const AddLater = () => {
 export const Register = (input) => {
   return (dispatch) => {
     dispatch({type: SIGNUP_START});
-    axios
-      .post(AUTH_SIGNUP, input)
+    HttpClient.post(AUTH_SIGNUP, input, {}, {authRequired: false})
       .then((response) => {
         // console.log(response, 'RESPONSE in Signup');
         const decoded = jwt_decode(response.data.accessToken);
@@ -105,8 +104,7 @@ export const RegisterGoogleSignup = (input) => {
   });
   return (dispatch) => {
     dispatch({type: SIGNUP_START});
-    axios
-      .post(AUTH_OAUTH_SIGNUP, input)
+    HttpClient.post(AUTH_OAUTH_SIGNUP, input, {}, {authRequired: false})
 
       .then((response) => {
         //here route to profile info
@@ -147,8 +145,7 @@ export const RegisterGoogleSignIn = (input) => {
   return (dispatch) => {
     // console.log('RegisterGoogleSignIn called');
     dispatch({type: GOOGLE_LOGIN_START});
-    axios
-      .post(AUTH_OAUTH_LOGIN, input)
+    HttpClient.post(AUTH_OAUTH_LOGIN, input, {}, {authRequired: false})
 
       .then((response) => {
         const decoded = jwt_decode(response.data.accessToken);
@@ -187,8 +184,7 @@ export const Login = (input) => {
       type: 'info',
       text2: 'Sending credentials...',
     });
-    axios
-      .post(AUTH_LOGIN, input)
+    HttpClient.post(AUTH_LOGIN, input, {}, {authRequired: false})
       .then((response) => {
         // console.log('FIRST', response.data.refreshToken);
         // console.log('INPUT', input.email);
@@ -361,11 +357,10 @@ export const Logout = () => {
   return async (dispatch) => {
     const refreshToken = await AsyncStorage.getItem('refreshToken');
     const email = await AsyncStorage.getItem('email');
-    return axios
-      .post(AUTH_LOGOUT, {
-        refreshToken: refreshToken,
-        email: email,
-      })
+    return HttpClient.post(AUTH_LOGOUT, {
+      refreshToken: refreshToken,
+      email: email,
+    })
       .then((res) => {
         clearAppData();
         Toast.show({
@@ -398,8 +393,7 @@ export const Logout = () => {
 export const ForgotPasswordEmail = (input) => {
   return (dispatch) => {
     dispatch({type: FORGOTPASSWORD_START});
-    axios
-      .post(AUTH_FORGOT_PASSWORD, input)
+    HttpClient.post(AUTH_FORGOT_PASSWORD, input, {}, {authRequired: false})
       .then((response) => {
         dispatch({type: FORGOTPASSWORD_SUCCESS, payload: response});
         navigate({
@@ -431,8 +425,7 @@ export const ResetPassword = (input) => {
       type: 'info',
       text2: 'Sending credentials...',
     });
-    axios
-      .post(AUTH_PASSWORD_RESET, input)
+    HttpClient.post(AUTH_PASSWORD_RESET, input, {}, {authRequired: false})
       .then((response) => {
         dispatch({type: RESETPASSWORD_SUCCESS, payload: response.data});
         navigate('Login');

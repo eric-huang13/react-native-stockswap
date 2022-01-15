@@ -38,9 +38,9 @@ import {
   POSTSETTINGS_SUCCESS,
   POSTSETTINGS_ERROR,
 } from 'constants';
-import axios from 'axios';
+import HttpClient from '../httpclient';
 import deviceStorage from '../util/DeviceStorage';
-import apiInstance from '../util/axiosConfig';
+//import apiInstance from '../util/axiosConfig';
 import {navigate} from '../../RootNavigation';
 import Toast from 'react-native-toast-message';
 import {
@@ -51,15 +51,14 @@ import {
   PORTFOLIO_ACCOUNT,
   PROFILE,
 } from './api';
-import { API_SERVER } from '../constants';
+import {API_SERVER} from '../constants';
 
 export const GetSettings = () => {
   return (dispatch) => {
     dispatch({type: GETSETTINGS_START});
-    apiInstance
-      .get(API_SERVER + `/settings`)
+    HttpClient.get(API_SERVER + `/settings`)
       .then((response) => {
-       dispatch({
+        dispatch({
           type: GETSETTINGS_SUCCESS,
           payload: response.data,
         });
@@ -72,13 +71,12 @@ export const GetSettings = () => {
 };
 
 export const PostSettings = (input) => {
-  console.log(input,"INPUT")
+  console.log(input, 'INPUT');
   return (dispatch) => {
     dispatch({type: POSTSETTINGS_START});
-    apiInstance
-      .post(API_SERVER + `/settings`, input)
+    HttpClient.post(API_SERVER + `/settings`, input)
       .then((response) => {
-      dispatch({
+        dispatch({
           type: POSTSETTINGS_SUCCESS,
           payload: response.data,
         });
@@ -93,7 +91,7 @@ export const PostSettings = (input) => {
 export const PortfolioAccounts = () => {
   return (dispatch) => {
     dispatch({type: FETCHPORTFOLIOACCOUNTS_START});
-    apiInstance
+    HttpClient
       //add endpoint
       .get(PORTFOLIO)
       .then((response) => {
@@ -114,7 +112,7 @@ export const PortfolioAccounts = () => {
 export const PortfolioInstitution = () => {
   return (dispatch) => {
     dispatch({type: FETCHINSTITUTION_START});
-    apiInstance
+    HttpClient
       //add endpoint
       .get(PORTFOLIO_INSTITUTIONS)
       .then((response) => {
@@ -146,8 +144,7 @@ export const PlaidAccountStatus = (input) => {
   console.log(input, 'INPUT IN ACCOUNT REDUX');
   return (dispatch) => {
     // dispatch({type: PLAIDACCOUNTSTATUS_SUCCESS});
-    apiInstance
-      .post(PORTFOLIO_ACCOUNT, input)
+    HttpClient.post(PORTFOLIO_ACCOUNT, input)
       .then((response) => {
         console.log(response, 'Success in PLAIDACCOUNTSTATUS');
         dispatch({type: PLAIDACCOUNTSTATUS_SUCCESS, payload: response.data});
@@ -162,7 +159,7 @@ export const PlaidAccountStatus = (input) => {
 export const PlaidBank = (input) => {
   return (dispatch) => {
     // dispatch({type: PLAIDBANK_START});
-    apiInstance
+    HttpClient
       //add endpoint
       .post(PORTFOLIO_LINK, input)
       .then((response) => {
@@ -179,8 +176,7 @@ export const PlaidBank = (input) => {
 export const PlaidToken = () => {
   return (dispatch) => {
     dispatch({type: PLAIDTOKEN_START});
-    apiInstance
-      .post(PORTFOLIO_INITIATE)
+    HttpClient.post(PORTFOLIO_INITIATE)
       .then((response) => {
         // console.log(response, 'Success in Plaidtoken');
         dispatch({type: PLAIDTOKEN_SUCCESS, payload: response.data});
@@ -195,8 +191,7 @@ export const PlaidToken = () => {
 export const CreateProfile = (input) => {
   return (dispatch) => {
     dispatch({type: CREATEPROFILE_START});
-    apiInstance
-      .put(PROFILE, input)
+    HttpClient.put(PROFILE, input)
       .then((response) => {
         // console.log(response, 'profile created');
         dispatch({type: CREATEPROFILE_SUCCESS, payload: response.data});
@@ -220,8 +215,7 @@ export const CreateProfile = (input) => {
 export const GetProfile = () => {
   return (dispatch) => {
     dispatch({type: GETPROFILE_START});
-    apiInstance
-      .get(PROFILE)
+    HttpClient.get(PROFILE)
       .then((response) => {
         dispatch({type: GETPROFILE_SUCCESS, payload: response.data});
       })
@@ -243,14 +237,13 @@ export const GetProfileImage = (token, id) => {
     //     `https://d13h17hkw4i0vn.cloudfront.net/${id}/profile.jpg`
 
     //   )
-    axios
-      .get(`https://d13h17hkw4i0vn.cloudfront.net/${id}/profile.jpg`, {
-        headers: {
-          // 'content-type': 'multipart/form-data',
-          // 'content-type': 'image/jpg',
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    HttpClient.get(
+      `https://d13h17hkw4i0vn.cloudfront.net/${id}/profile.jpg`,
+      {},
+      {
+        isMediaRequest: true,
+      },
+    )
       .then((response) => {
         // console.log(response.request.responseURL, 'IMAGE get response');
         // const data = `data:${response.headers['content-type']};base64,${Buffer.from(response.data).toString('base64')}`;
@@ -276,14 +269,16 @@ export const CreateProfileImage = (id, token, input) => {
     // console.log('ID:', id);
     // console.log('Token:', token);
     // console.log('IMAGE INPUT:' + input);
-    axios
-      .put(`https://d13h17hkw4i0vn.cloudfront.net/${id}/profile.jpg`, input, {
+    HttpClient.put(
+      `https://d13h17hkw4i0vn.cloudfront.net/${id}/profile.jpg`,
+      input,
+      {
         headers: {
-          // 'content-type': 'multipart/form-data',
           'content-type': 'image/jpg',
-          Authorization: `Bearer ${token}`,
         },
-      })
+      },
+      {isMediaRequest: true},
+    )
 
       .then((response) => {
         console.log('image upload success');
@@ -307,8 +302,7 @@ export const CreateProfileImage = (id, token, input) => {
 export const EditUserProfile = (input) => {
   return (dispatch) => {
     dispatch({type: EDITPROFILE_START});
-    apiInstance
-      .post(PROFILE, input)
+    HttpClient.post(PROFILE, input)
       .then((response) => {
         // console.log(response, 'Edit profile response');
         dispatch({type: EDITPROFILE_SUCCESS, payload: response.data});
