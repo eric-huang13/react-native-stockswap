@@ -12,13 +12,12 @@ import {
 import TriangleIcon from '../../icons/TriangleIcon';
 import {connect} from 'react-redux';
 import {Logout} from '../../actions/user';
-import { GetSettings, PostSettings } from '../../actions/profile';
+import {GetSettings, PostSettings} from '../../actions/profile';
 import {moderateScale} from '../../util/responsiveFont';
 import LinearGradient from 'react-native-linear-gradient';
 import {CommonActions} from '@react-navigation/native';
 import PlaidComponent from './PlaidComponent';
-import { Linking } from 'react-native';
-
+import {Linking} from 'react-native';
 
 class MyProfileSettings extends Component {
   constructor(props) {
@@ -37,18 +36,17 @@ class MyProfileSettings extends Component {
   };
   dropDownSelect(pick) {
     this.setState({dropDown: pick, shouldShow: false});
-    this.props.PostSettings({visibility: pick})
+    this.props.PostSettings({visibility: pick});
   }
-openSetttings(){
-  Linking.openSettings();
-
-}
+  openSetttings() {
+    Linking.openSettings();
+  }
   componentDidMount() {
     const {users, userAccount, GetSettings, profileSettings} = this.props;
-    GetSettings()
+    GetSettings();
     this.setState({
       currentEmail: userAccount.email,
-      dropDown: profileSettings.visibility
+      dropDown: profileSettings?.visibility || false,
     });
   }
   render() {
@@ -117,7 +115,9 @@ openSetttings(){
 
           <View style={style.middleContainer}>
             <View style={style.accountPrivacyContainer}>
-              <Text style={style.detailsText}>Account privacy: {this.props.profileSettings.visibility}</Text>
+              <Text style={style.detailsText}>
+                Account privacy: {this.props?.profileSettings?.visibility}
+              </Text>
 
               <View style={style.dotsDropdownContainer}>
                 <TouchableOpacity
@@ -128,11 +128,9 @@ openSetttings(){
                   }>
                   <View style={style.visibleButtonContainer}>
                     <Text style={style.middleDetailsText}>
-                      {this.state.dropDown == 'public'?
-                      'Visible to all'
-                      :
-                      'Private'
-                    }
+                      {this.state.dropDown == 'public'
+                        ? 'Visible to all'
+                        : 'Private'}
                     </Text>
                     <TriangleIcon style={style.icon} />
                   </View>
@@ -155,10 +153,9 @@ openSetttings(){
               </View>
             </View>
             <View style={style.notificationsContainer}>
-            <TouchableOpacity
-                        onPress={() => Linking.openSettings()}>
-                        <Text style={style.dropDownText}>Open Settings</Text>
-                      </TouchableOpacity>
+              <TouchableOpacity onPress={() => Linking.openSettings()}>
+                <Text style={style.dropDownText}>Open Settings</Text>
+              </TouchableOpacity>
               <Text style={style.middleDetailsText}>
                 Turn off notifications
               </Text>
@@ -212,7 +209,7 @@ openSetttings(){
             <View style={style.bottomInnerContiner}>
               <Text style={style.bottomText}>Link Bank Account</Text>
 
-              <PlaidComponent screen={'settings'}/>
+              <PlaidComponent screen={'settings'} />
             </View>
           </View>
           <View style={style.logoutButtonContainer}>
@@ -241,7 +238,6 @@ const mapDispatchToProps = (dispatch) => {
     LogoutUser: (userCredentials) => dispatch(Logout(userCredentials)),
     GetSettings: () => dispatch(GetSettings()),
     PostSettings: (input) => dispatch(PostSettings(input)),
-
   };
 };
 

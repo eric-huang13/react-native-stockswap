@@ -1,13 +1,11 @@
 import {NEWS_FETCHING, NEWS_SUCCESS, NEWS_ERROR, NEWS_STOP} from 'constants';
-import axios from 'axios';
-import apiInstance from '../util/axiosConfig';
+import HttpClient from '../httpclient';
 import {NEWS} from './api';
 
 export const fetchNews = (page, offset) => {
   return (dispatch) => {
     dispatch({type: NEWS_FETCHING});
-    apiInstance
-      .get(NEWS)
+    HttpClient.get(NEWS)
       // .then(response => console.log (response.data, "From NEWS API"))
       .then(
         (response) =>

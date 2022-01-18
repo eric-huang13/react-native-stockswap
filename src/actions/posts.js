@@ -14,20 +14,16 @@ import {
   GETPOSTS_START,
   GETPOSTS_SUCCESS,
   GETPOSTS_ERROR,
-  
 } from 'constants';
-import axios from 'axios';
-import deviceStorage from '../util/DeviceStorage';
-import apiInstance from '../util/axiosConfig';
+import HttpClient from '../httpclient';
 import {navigate} from '../../RootNavigation';
-import { API_SERVER } from '../constants';
+import {API_SERVER} from '../constants';
 
 //Get Posts
 export const fetchPosts = () => {
   return (dispatch) => {
     dispatch({type: GETPOSTS_START});
-    apiInstance
-      .get(API_SERVER + `/stocks/daily/gainers`)
+    HttpClient.get(API_SERVER + `/stocks/daily/gainers`)
       // .then(response => console.log (response.data.result.statType, "From MARKETGAINERS API"))
       .then((response) =>
         dispatch({
@@ -45,8 +41,7 @@ export const fetchPosts = () => {
 export const fetchLikes = () => {
   return (dispatch) => {
     dispatch({type: GETLIKES_START});
-    apiInstance
-      .get(API_SERVER + `/stocks/daily/gainers`)
+    HttpClient.get(API_SERVER + `/stocks/daily/gainers`)
       // .then(response => console.log (response.data.result.statType, "From MARKETGAINERS API"))
       .then((response) =>
         dispatch({
@@ -64,8 +59,7 @@ export const fetchLikes = () => {
 export const fetchComments = () => {
   return (dispatch) => {
     dispatch({type: GETCOMMENTS_START});
-    apiInstance
-      .get(API_SERVER + `/stocks/daily/gainers`)
+    HttpClient.get(API_SERVER + `/stocks/daily/gainers`)
       // .then(response => console.log (response.data.result.statType, "From MARKETGAINERS API"))
       .then((response) =>
         dispatch({
@@ -84,8 +78,7 @@ export const fetchComments = () => {
 export const UserPost = (input) => {
   return (dispatch) => {
     dispatch({type: USERPOST_START});
-    apiInstance
-      .post(API_SERVER + `/stocks/daily/gainers`, input)
+    HttpClient.post(API_SERVER + `/stocks/daily/gainers`, input)
       .then((response) => {
         console.log(response, 'TAKEDOWN response');
         // window.location.reload();
@@ -102,8 +95,7 @@ export const UserPost = (input) => {
 export const EditPost = (input, id) => {
   return (dispatch) => {
     dispatch({type: EDITPOST_START});
-    apiInstance
-      .put(API_SERVER + `/stocks/daily/gainers${id}`, input)
+    HttpClient.put(API_SERVER + `/stocks/daily/gainers${id}`, input)
       .then((response) => {
         console.log(response, 'TAKEDOWN edit response');
         // window.location.reload();
