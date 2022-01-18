@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {getAuthLogger} from '../util';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import {
@@ -11,23 +12,25 @@ import {AUTH_REFRESH} from '../actions/api';
 
 let authRequestPromise = null;
 
+const log = getAuthLogger();
+
 const HttpClient = {
   get: async (url, config, settings) => {
-    console.log('get url:', url);
+    log('get url:', url);
     const headers = await getHeaders(config?.headers, settings);
-    console.log('Headers:', headers);
+    log('Headers:', headers);
     return await axios.get(url, {...(config || {}), headers});
   },
   post: async (url, data, config, settings) => {
-    console.log('post url:', url);
+    log('post url:', url);
     const headers = await getHeaders(config?.headers, settings);
-    console.log('Headers:', headers);
+    log('Headers:', headers);
     return await axios.post(url, data, {...(config || {}), headers});
   },
   put: async (url, data, config, settings) => {
-    console.log('put url:', url);
+    log('put url:', url);
     const headers = await getHeaders(config?.headers, settings);
-    console.log('Headers:', headers);
+    log('Headers:', headers);
     return await axios.put(url, data, {...(config || {}), headers});
   },
   del: async () => {
@@ -54,7 +57,7 @@ const getHeaders = async (headers = {}, settings) => {
       } else if (accessToken) {
         // get new auth token
         const newAccessToken = await getAuthTokenPromise();
-        console.log('New access Token::', newAccessToken);
+        log('New access Token::', newAccessToken);
         _headers = {
           Authorization: isMediaRequest
             ? 'Bearer ' + newAccessToken
@@ -64,7 +67,7 @@ const getHeaders = async (headers = {}, settings) => {
     }
     // refreshToken = await AsyncStorage.getItem('refreshToken');
   } catch (err) {
-    console.log('ERROR:', err);
+    log('ERROR:', err);
     // ignore
     accessToken = '';
   }
@@ -80,7 +83,7 @@ const getAuthTokenPromise = async () => {
     const refreshToken = await AsyncStorage.getItem(STORAGE_REFRESH_TOKEN);
     authRequestPromise = getAuthResponse({email, refreshToken});
   } else {
-    console.log('promise exists');
+    log('promise exists');
   }
   return authRequestPromise;
 };
@@ -92,11 +95,11 @@ const isValidToken = (accessToken) => {
   var nowInSeconds = Math.round(new Date().getTime() / 1000);
   const expiry = decoded.exp;
   const diffInSeconds = expiry - nowInSeconds;
-  console.log('expiry::', expiry);
-  console.log('SECONDS::', nowInSeconds);
-  console.log('DIFFINSECONDS::', diffInSeconds);
+  // console.log('expiry::', expiry);
+  // console.log('SECONDS::', nowInSeconds);
+  // console.log('DIFFINSECONDS::', diffInSeconds);
   if (expiry < nowInSeconds || diffInSeconds <= 60 * 60) {
-    console.log('expired');
+    log('token expired');
     return false;
   }
   return true;
@@ -104,9 +107,9 @@ const isValidToken = (accessToken) => {
 
 const getAuthResponse = async (request) => {
   try {
-    console.log('Auth refresh request:', request);
+    log('Auth refresh request:', request);
     const response = await axios.post(AUTH_REFRESH, request);
-    console.log('response::', response);
+    log('response::', response);
     const accessToken = response?.data?.accessToken;
     const refreshToken = response?.data?.refreshToken;
     if (accessToken && refreshToken) {
