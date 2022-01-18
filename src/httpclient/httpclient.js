@@ -1,21 +1,31 @@
-import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
+import {
+  STORAGE_ACCESS_TOKEN,
+  STORAGE_EMAIL,
+  STORAGE_REFRESH_TOKEN,
+} from '../constants';
+
+import {AUTH_REFRESH} from '../actions/api';
+
+let authRequestPromise = null;
 
 const HttpClient = {
   get: async (url, config, settings) => {
-    // console.log('get url:', url);
+    console.log('get url:', url);
     const headers = await getHeaders(config?.headers, settings);
     console.log('Headers:', headers);
     return await axios.get(url, {...(config || {}), headers});
   },
   post: async (url, data, config, settings) => {
-    // console.log('post url:', url);
+    console.log('post url:', url);
     const headers = await getHeaders(config?.headers, settings);
     console.log('Headers:', headers);
     return await axios.post(url, data, {...(config || {}), headers});
   },
   put: async (url, data, config, settings) => {
-    // console.log('put url:', url);
+    console.log('put url:', url);
     const headers = await getHeaders(config?.headers, settings);
     console.log('Headers:', headers);
     return await axios.put(url, data, {...(config || {}), headers});
@@ -34,18 +44,27 @@ const getHeaders = async (headers = {}, settings) => {
       authRequired: true,
     };
     if (authRequired) {
-      accessToken = await AsyncStorage.getItem('token');
-      if (accessToken) {
+      accessToken = await AsyncStorage.getItem(STORAGE_ACCESS_TOKEN);
+      if (accessToken && isValidToken(accessToken)) {
         _headers = {
           Authorization: isMediaRequest
             ? 'Bearer ' + accessToken
             : 'JWT ' + accessToken,
         };
+      } else if (accessToken) {
+        // get new auth token
+        const newAccessToken = await getAuthTokenPromise();
+        console.log('New access Token::', newAccessToken);
+        _headers = {
+          Authorization: isMediaRequest
+            ? 'Bearer ' + newAccessToken
+            : 'JWT ' + newAccessToken,
+        };
       }
     }
     // refreshToken = await AsyncStorage.getItem('refreshToken');
   } catch (err) {
-    // console.log('ERROR:', err);
+    console.log('ERROR:', err);
     // ignore
     accessToken = '';
   }
@@ -55,4 +74,50 @@ const getHeaders = async (headers = {}, settings) => {
   };
 };
 
+const getAuthTokenPromise = async () => {
+  if (authRequestPromise == null) {
+    const email = await AsyncStorage.getItem(STORAGE_EMAIL);
+    const refreshToken = await AsyncStorage.getItem(STORAGE_REFRESH_TOKEN);
+    authRequestPromise = getAuthResponse({email, refreshToken});
+  } else {
+    console.log('promise exists');
+  }
+  return authRequestPromise;
+};
+
+const isValidToken = (accessToken) => {
+  // return false;
+  const decoded = jwt_decode(accessToken);
+  //console.log('Decode::', decoded);
+  var nowInSeconds = Math.round(new Date().getTime() / 1000);
+  const expiry = decoded.exp;
+  const diffInSeconds = expiry - nowInSeconds;
+  console.log('expiry::', expiry);
+  console.log('SECONDS::', nowInSeconds);
+  console.log('DIFFINSECONDS::', diffInSeconds);
+  if (expiry < nowInSeconds || diffInSeconds <= 60 * 60) {
+    console.log('expired');
+    return false;
+  }
+  return true;
+};
+
+const getAuthResponse = async (request) => {
+  try {
+    console.log('Auth refresh request:', request);
+    const response = await axios.post(AUTH_REFRESH, request);
+    console.log('response::', response);
+    const accessToken = response?.data?.accessToken;
+    const refreshToken = response?.data?.refreshToken;
+    if (accessToken && refreshToken) {
+      AsyncStorage.setItem(STORAGE_ACCESS_TOKEN, accessToken);
+      AsyncStorage.setItem(STORAGE_REFRESH_TOKEN, refreshToken);
+    }
+    return accessToken;
+  } finally {
+    authRequestPromise = null;
+  }
+};
+
+Object.freeze(HttpClient);
 export default HttpClient;

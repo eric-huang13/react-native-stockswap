@@ -30,39 +30,30 @@ import {
   GET_TRANSACTIONS_SUCCESS,
   GET_TRANSACTIONS_ERROR,
 } from 'constants';
-import axios from 'axios';
-import { STOCKS_SERVER } from '../constants';
-import { PORTFOLIO_TRANSACTIONS } from './api';
-import apiInstance from '../util/axiosConfig';
+import {STOCKS_SERVER} from '../constants';
+import {PORTFOLIO_TRANSACTIONS} from './api';
+import HttpClient from '../httpclient';
 
 export const getTransactions = () => {
   return (dispatch) => {
     dispatch({type: GET_TRANSACTIONS_START});
-    apiInstance
-      .get(
-       PORTFOLIO_TRANSACTIONS,
-      )
+    HttpClient.get(PORTFOLIO_TRANSACTIONS)
       // .then(response => console.log (response.data, "GET TRANSACTIONS"))
       .then((response) => {
         dispatch({
           type: GET_TRANSACTIONS_SUCCESS,
-          payload: response.data
+          payload: response.data,
         });
       })
 
-      .catch((error) =>
-        dispatch({type: GET_TRANSACTIONS_ERROR, payload: []}),
-      );
+      .catch((error) => dispatch({type: GET_TRANSACTIONS_ERROR, payload: []}));
   };
 };
 
 export const stockLatestPortfolio = (ticker) => {
   return (dispatch) => {
     dispatch({type: STOCKLATESTPORTFOLIO_START});
-    axios
-      .get(
-       STOCKS_SERVER + `/stocks/${ticker}/quote/latest`,
-      )
+    HttpClient.get(STOCKS_SERVER + `/stocks/${ticker}/quote/latest`)
       // .then(response => console.log (response.data.result.quote, "SEARCH STOCK DATA"))
       .then((response) => {
         dispatch({
@@ -80,10 +71,7 @@ export const stockLatestPortfolio = (ticker) => {
 export const fetchStockDetailsPortfolio = (ticker) => {
   return (dispatch) => {
     dispatch({type: FETCHSTOCKDETAILSPORTFOLIO_START});
-    axios
-      .get(
-       STOCKS_SERVER + `/tickers/${ticker}`,
-      )
+    HttpClient.get(STOCKS_SERVER + `/tickers/${ticker}`)
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
       .then((response) => {
@@ -113,10 +101,9 @@ export const resetStockData = () => {
 export const fetchStockDayPortfolio = (ticker) => {
   return (dispatch) => {
     dispatch({type: FETCHSTOCKDAYPORTFOLIO_START});
-    axios
-      .get(
-       STOCKS_SERVER + `/stocks/${ticker}/quote/historic?interval=day`,
-      )
+    HttpClient.get(
+      STOCKS_SERVER + `/stocks/${ticker}/quote/historic?interval=day`,
+    )
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
       .then((response) => {
@@ -154,10 +141,9 @@ export const fetchStockDayPortfolio = (ticker) => {
 export const fetchStockWeekPortfolio = (ticker) => {
   return (dispatch) => {
     dispatch({type: FETCHSTOCKWEEKPORTFOLIO_START});
-    axios
-      .get(
-       STOCKS_SERVER + `/stocks/${ticker}/quote/historic?interval=week`,
-      )
+    HttpClient.get(
+      STOCKS_SERVER + `/stocks/${ticker}/quote/historic?interval=week`,
+    )
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
       .then((response) => {
@@ -201,10 +187,9 @@ export const fetchStockWeekPortfolio = (ticker) => {
 export const fetchStockMonthPortfolio = (ticker) => {
   return (dispatch) => {
     dispatch({type: FETCHSTOCKMONTHPORTFOLIO_START});
-    axios
-      .get(
-       STOCKS_SERVER + `/stocks/${ticker}/quote/historic?interval=month`,
-      )
+    HttpClient.get(
+      STOCKS_SERVER + `/stocks/${ticker}/quote/historic?interval=month`,
+    )
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
       .then((response) => {
@@ -247,10 +232,9 @@ export const fetchStockMonthPortfolio = (ticker) => {
 export const fetchStockThreeMonthPortfolio = (ticker) => {
   return (dispatch) => {
     dispatch({type: FETCHSTOCKTHREEMONTHPORTFOLIO_START});
-    axios
-      .get(
-       STOCKS_SERVER + `/stocks/${ticker}/quote/historic?interval=three_month`,
-      )
+    HttpClient.get(
+      STOCKS_SERVER + `/stocks/${ticker}/quote/historic?interval=three_month`,
+    )
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
       .then((response) => {
@@ -295,10 +279,9 @@ export const fetchStockThreeMonthPortfolio = (ticker) => {
 export const fetchStockYearPortfolio = (ticker) => {
   return (dispatch) => {
     dispatch({type: FETCHSTOCKYEARPORTFOLIO_START});
-    axios
-      .get(
-       STOCKS_SERVER + `/stocks/${ticker}/quote/historic?interval=year`,
-      )
+    HttpClient.get(
+      STOCKS_SERVER + `/stocks/${ticker}/quote/historic?interval=year`,
+    )
 
       // .then(response => console.log (response.data.result, "Month Stock DATA"))
       .then((response) => {
