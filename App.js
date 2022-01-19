@@ -1,6 +1,6 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import Navigation from 'Navigation';
+import Navigation from './src/navigation';
 import reduxStore from 'store/index';
 import {PersistGate} from 'redux-persist/integration/react';
 

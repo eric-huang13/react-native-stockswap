@@ -24,7 +24,7 @@ import {
 } from 'constants';
 import HttpClient from '../httpclient';
 import deviceStorage from '../util/DeviceStorage';
-import {navigate} from '../../RootNavigation';
+import {navigate} from '../navigation/RootNavigation';
 import {API_SERVER} from '../constants';
 export const PeopleSearch = (input) => {
   return (dispatch) => {

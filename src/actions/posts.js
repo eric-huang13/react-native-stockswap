@@ -16,7 +16,7 @@ import {
   GETPOSTS_ERROR,
 } from 'constants';
 import HttpClient from '../httpclient';
-import {navigate} from '../../RootNavigation';
+import {navigate} from '../navigation/RootNavigation';
 import {API_SERVER} from '../constants';
 
 //Get Posts
