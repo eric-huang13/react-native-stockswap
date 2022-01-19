@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {StyleSheet, Dimensions, SafeAreaView, View, Text} from 'react-native';
 import {SlideAreaChart} from '@connectedcars/react-native-slide-charts';
 import {LinearGradient, Stop} from 'react-native-svg';
-import axios from 'axios';
 import {moderateScale} from '../../util/responsiveFont';
 
 export default class PortfolioGraph extends Component {
@@ -20,7 +19,6 @@ export default class PortfolioGraph extends Component {
 
   componentDidMount() {}
   render() {
-
     if (this.props.loading) {
       return (
         <View style={styles.container}>

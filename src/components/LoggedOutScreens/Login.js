@@ -49,16 +49,6 @@ export class LoginScreen extends Component {
     super(props);
   }
 
-  // testAPI = () => {
-  //   axios
-  //     .get('/')
-  //     .then((response) => response.data)
-  //     .then((data) => {
-  //       console.log(data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
   render() {
     const {LoginUser, RegisterUserGoogle} = this.props;
 

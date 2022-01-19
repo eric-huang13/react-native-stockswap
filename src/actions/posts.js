@@ -108,20 +108,3 @@ export const EditPost = (input, id) => {
       });
   };
 };
-
-// export const UserPost = (input) => {
-//   return (dispatch) => {
-//     dispatch({type: USERPOST_START});
-//     axios
-//     .post('https://jiujitsux.herokuapp.com/api/users/register', input)
-
-//     .then(response =>{ dispatch({ type: USERPOST_SUCCESS, payload: response.data })
-//     // navigate('Login')
-// })
-
-// .catch(error => {dispatch({ type: USERPOST_ERROR, payload: error.response })
-// alert("Error creating profile" )
-
-// })
-//   };
-// };

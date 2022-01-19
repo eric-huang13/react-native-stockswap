@@ -33,8 +33,8 @@ PODS:
   - GTMAppAuth (1.2.2):
     - AppAuth/Core (~> 1.4)
     - GTMSessionFetcher/Core (~> 1.5)
-  - GTMSessionFetcher/Core (1.6.1)
-  - Plaid (2.1.3)
+  - GTMSessionFetcher/Core (1.7.0)
+  - Plaid (2.2.1)
   - RCTRequired (0.63.3)
   - RCTTypeSafety (0.63.3):
     - FBLazyVector (= 0.63.3)
@@ -201,10 +201,10 @@ PODS:
     - React-cxxreact (= 0.63.3)
     - React-jsi (= 0.63.3)
   - React-jsinspector (0.63.3)
-  - react-native-plaid-link-sdk (7.0.7):
-    - Plaid (~> 2.1.3)
+  - react-native-plaid-link-sdk (7.1.0):
+    - Plaid (~> 2.2.0)
     - React-Core
-  - react-native-safe-area-context (3.1.8):
+  - react-native-safe-area-context (3.3.0):
     - React-Core
   - React-RCTActionSheet (0.63.3):
     - React-Core/RCTActionSheetHeaders (= 0.63.3)
@@ -266,15 +266,15 @@ PODS:
     - React-Core (= 0.63.3)
     - React-cxxreact (= 0.63.3)
     - React-jsi (= 0.63.3)
-  - RNBootSplash (3.2.1):
+  - RNBootSplash (3.2.4):
     - React-Core
-  - RNCAsyncStorage (1.13.2):
-    - React
-  - RNCCheckbox (0.5.7):
+  - RNCAsyncStorage (1.15.6):
     - React-Core
-  - RNCMaskedView (0.1.10):
+  - RNCCheckbox (0.5.8):
+    - React-Core
+  - RNCMaskedView (0.1.11):
     - React
-  - RNGestureHandler (1.10.2):
+  - RNGestureHandler (1.10.3):
     - React-Core
   - RNGoogleSignin (5.0.0):
     - GoogleSignIn (~> 5.0.0)
@@ -288,11 +288,11 @@ PODS:
     - React-Core
     - React-RCTImage
     - TOCropViewController
-  - RNReanimated (1.13.1):
-    - React
-  - RNScreens (2.12.0):
+  - RNReanimated (1.13.3):
     - React-Core
-  - RNSVG (12.1.0):
+  - RNScreens (2.18.1):
+    - React-Core
+  - RNSVG (12.1.1):
     - React
   - TOCropViewController (2.6.0)
   - Yoga (1.14.0)
@@ -441,8 +441,8 @@ SPEC CHECKSUMS:
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
-  GTMSessionFetcher: 36689134877faeb055b27dfa4ccc9ceaa42e029e
-  Plaid: f55c6acdc249245c6778a4045757eb4e839cca61
+  GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
+  Plaid: 810fde6733365dd0fb81bdc98e97852628b6a06b
   RCTRequired: 48884c74035a0b5b76dbb7a998bd93bcfc5f2047
   RCTTypeSafety: edf4b618033c2f1c5b7bc3d90d8e085ed95ba2ab
   React: f36e90f3ceb976546e97df3403e37d226f79d0e3
@@ -453,8 +453,8 @@ SPEC CHECKSUMS:
   React-jsi: df07aa95b39c5be3e41199921509bfa929ed2b9d
   React-jsiexecutor: b56c03e61c0dd5f5801255f2160a815f4a53d451
   React-jsinspector: 8e68ffbfe23880d3ee9bafa8be2777f60b25cbe2
-  react-native-plaid-link-sdk: b2aa9109ba80872525bebf152a8efe70709966d6
-  react-native-safe-area-context: 79fea126c6830c85f65947c223a5e3058a666937
+  react-native-plaid-link-sdk: dcc247a441571b6e0b9029ab00a30f82e4cfa906
+  react-native-safe-area-context: 8465df05de8106c584b117f0e027e17174d6e02e
   React-RCTActionSheet: 53ea72699698b0b47a6421cb1c8b4ab215a774aa
   React-RCTAnimation: 1befece0b5183c22ae01b966f5583f42e69a83c2
   React-RCTBlob: 0b284339cbe4b15705a05e2313a51c6d8b51fa40
@@ -465,19 +465,19 @@ SPEC CHECKSUMS:
   React-RCTText: 65a6de06a7389098ce24340d1d3556015c38f746
   React-RCTVibration: 8e9fb25724a0805107fc1acc9075e26f814df454
   ReactCommon: 4167844018c9ed375cc01a843e9ee564399e53c3
-  RNBootSplash: a7750857d7c7c51fb37ba453cd506b5950e62f74
-  RNCAsyncStorage: 05bae7ecfab1cbd5441993f1ca098f7c3b3f8d0e
-  RNCCheckbox: d1749e6a92178ce5dbc31e63becd1f34f0c76bbd
-  RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
-  RNGestureHandler: e66feb0fda7da74ea6a3094656b3c1efe05f5c07
+  RNBootSplash: bee2c296661f4b482e88e152a9cd80ed89cd9a85
+  RNCAsyncStorage: bb9649cb43f0040f82948084a0044e45292c5be3
+  RNCCheckbox: 7d36e3a79b7301e8b126c5136cc449af65d9cdab
+  RNCMaskedView: f127cd9652acfa31b91dcff613e07ba18b774db6
+  RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNGoogleSignin: ad866d4c4af2651e36801dd3b7771d7715353499
   RNImageCropPicker: 73891a709e6fd8a47d32104d942757971f220aee
-  RNReanimated: dd8c286ab5dd4ba36d3a7fef8bff7e08711b5476
-  RNScreens: 4b488fdf9537bbce829e2910c8cce1d17f6d9be8
-  RNSVG: ce9d996113475209013317e48b05c21ee988d42e
+  RNReanimated: 514a11da3a2bcc6c3dfd9de32b38e2b9bf101926
+  RNScreens: f7ad633b2e0190b77b6a7aab7f914fad6f198d8d
+  RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
   TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
   Yoga: 7d13633d129fd179e01b8953d38d47be90db185a
 
 PODFILE CHECKSUM: 3041e67940388d8b2fe064c38105b2a7efa18811
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.10.2
