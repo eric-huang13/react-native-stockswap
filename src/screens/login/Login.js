@@ -21,7 +21,7 @@ import FacebookIcon from '../../icons/FacebookIcon';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import {RegisterGoogleSignIn} from '../../actions/user';
-import GoogleOauth from '../LoggedOutComponents/GoogleOauth';
+import GoogleOauth from '../../components/LoggedOutComponents/GoogleOauth';
 import {moderateScale} from '../../util/responsiveFont';
 import Logo from '../../components/Logo';
 
@@ -44,131 +44,117 @@ const reviewSchema = yup.object({
     ),
 });
 
-export class LoginScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {LoginUser, RegisterUserGoogle} = this.props;
-
-    return (
-      <LinearGradient
-        start={{x: 0.1, y: 1}}
-        end={{x: 0.1, y: 0.1}}
-        colors={['#1D2842', '#3d4b6e']}
+const LoginScreen = ({LoginUser, RegisterUserGoogle, navigation}) => {
+  return (
+    <LinearGradient
+      start={{x: 0.1, y: 1}}
+      end={{x: 0.1, y: 0.1}}
+      colors={['#1D2842', '#3d4b6e']}
+      style={{flex: 1}}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : null}
         style={{flex: 1}}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : null}
-          style={{flex: 1}}>
-          <SafeAreaView style={style.mainContainer}>
-            <ScrollView>
-              <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <Formik
-                  initialValues={{
-                    email: '',
-                    password: '',
-                  }}
-                  validationSchema={reviewSchema}
-                  onSubmit={(values, actions) => {
-                    console.log(values, 'Values');
+        <SafeAreaView style={style.mainContainer}>
+          <ScrollView>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+              <Formik
+                initialValues={{
+                  email: '',
+                  password: '',
+                }}
+                validationSchema={reviewSchema}
+                onSubmit={(values, actions) => {
+                  console.log(values, 'Values');
+                  LoginUser(values);
+                }}>
+                {(props) => (
+                  <View style={style.inner}>
+                    <Logo />
+                    {/* <Text>Is User Logged in: {'' + isLoggedIn} </Text> */}
+                    <View style={style.container}>
+                      <Text style={style.welcomeHeader}>Welcome</Text>
+                      <Text style={style.loginHeader}>Login</Text>
+                      <View>
+                        <Text style={style.inputHeader}>Email</Text>
 
-                    LoginUser(values);
-                  }}>
-                  {(props) => (
-                    <View style={style.inner}>
-                      <Logo />
-                      {/* <Text>Is User Logged in: {'' + isLoggedIn} </Text> */}
-                      <View style={style.container}>
-                        <Text style={style.welcomeHeader}>Welcome</Text>
-                        <Text style={style.loginHeader}>Login</Text>
-                        <View>
-                          <Text style={style.inputHeader}>Email</Text>
-
-                          <TextInput
-                            style={
-                              props.touched.email && props.errors.email
-                                ? {
-                                    ...style.inputStyle,
-                                    backgroundColor: '#F66E6E',
-                                  }
-                                : {...style.inputStyle}
-                            }
-                            placeholder="Enter your email"
-                            placeholderTextColor="#9ea6b5"
-                            onChangeText={props.handleChange('email')}
-                            onBlur={props.handleBlur('email')}
-                            value={props.values.email}
-                            keyboardType="email-address"
-                            autoCapitalize="none"
-                          />
-                          <Text style={style.errorText}>
-                            {props.touched.email && props.errors.email}
-                          </Text>
-                        </View>
-                        <View>
-                          <Text style={style.inputHeader}>Password</Text>
-                          <TextInput
-                            style={
-                              props.touched.password && props.errors.password
-                                ? {
-                                    ...style.inputStyle,
-                                    backgroundColor: '#F66E6E',
-                                  }
-                                : {...style.inputStyle}
-                            }
-                            placeholder="Password"
-                            onChangeText={props.handleChange('password')}
-                            onBlur={props.handleBlur('password')}
-                            value={props.values.password}
-                            placeholder="Enter your password"
-                            placeholderTextColor="#9ea6b5"
-                            secureTextEntry
-                            returnKeyType="next"
-                          />
-                        </View>
+                        <TextInput
+                          style={
+                            props.touched.email && props.errors.email
+                              ? {
+                                  ...style.inputStyle,
+                                  backgroundColor: '#F66E6E',
+                                }
+                              : {...style.inputStyle}
+                          }
+                          placeholder="Enter your email"
+                          placeholderTextColor="#9ea6b5"
+                          onChangeText={props.handleChange('email')}
+                          onBlur={props.handleBlur('email')}
+                          value={props.values.email}
+                          keyboardType="email-address"
+                          autoCapitalize="none"
+                        />
                         <Text style={style.errorText}>
-                          {props.touched.password && props.errors.password}
+                          {props.touched.email && props.errors.email}
                         </Text>
-                        <View />
+                      </View>
+                      <View>
+                        <Text style={style.inputHeader}>Password</Text>
+                        <TextInput
+                          style={
+                            props.touched.password && props.errors.password
+                              ? {
+                                  ...style.inputStyle,
+                                  backgroundColor: '#F66E6E',
+                                }
+                              : {...style.inputStyle}
+                          }
+                          placeholder="Password"
+                          onChangeText={props.handleChange('password')}
+                          onBlur={props.handleBlur('password')}
+                          value={props.values.password}
+                          placeholder="Enter your password"
+                          placeholderTextColor="#9ea6b5"
+                          secureTextEntry
+                          returnKeyType="next"
+                        />
+                      </View>
+                      <Text style={style.errorText}>
+                        {props.touched.password && props.errors.password}
+                      </Text>
+                      <View />
 
-                        <View style={style.termsContainer}>
-                          <View style={style.leftTerms}>
-                            <Text style={style.newText}>New to StockSwap?</Text>
-                            <TouchableOpacity
-                              onPress={() =>
-                                this.props.navigation.navigate('SignUp')
-                              }>
-                              <Text style={style.termsText}>Sign Up</Text>
-                            </TouchableOpacity>
-                          </View>
+                      <View style={style.termsContainer}>
+                        <View style={style.leftTerms}>
+                          <Text style={style.newText}>New to StockSwap?</Text>
                           <TouchableOpacity
-                            onPress={() =>
-                              this.props.navigation.navigate('ForgotPassword')
-                            }>
-                            <Text style={style.termsText}>
-                              Forgot password?
-                            </Text>
+                            onPress={() => navigation.navigate('SignUp')}>
+                            <Text style={style.termsText}>Sign Up</Text>
                           </TouchableOpacity>
                         </View>
-                        <View>
-                          <TouchableOpacity onPress={props.handleSubmit}>
-                            <Text style={style.button}>Login</Text>
-                          </TouchableOpacity>
-                        </View>
+                        <TouchableOpacity
+                          onPress={() => navigation.navigate('ForgotPassword')}>
+                          <Text style={style.termsText}>Forgot password?</Text>
+                        </TouchableOpacity>
+                      </View>
+                      <View>
+                        <TouchableOpacity onPress={props.handleSubmit}>
+                          <Text style={style.button}>Login</Text>
+                        </TouchableOpacity>
                       </View>
                     </View>
-                  )}
-                </Formik>
-              </TouchableWithoutFeedback>
-              <View style={style.bottomButtonsContainer}>
-                <Text style={style.orText}>--OR--</Text>
-                <View style={style.alternateSignUpContainer}>
-                  <GoogleOauth
-                    login={'login'}
-                    RegisterUserGoogle={RegisterUserGoogle}
-                  />
-                  {/*<View style={style.alternateSignupInner}>
+                  </View>
+                )}
+              </Formik>
+            </TouchableWithoutFeedback>
+            <View style={style.bottomButtonsContainer}>
+              <Text style={style.orText}>--OR--</Text>
+              <View style={style.alternateSignUpContainer}>
+                <GoogleOauth
+                  login={'login'}
+                  RegisterUserGoogle={RegisterUserGoogle}
+                />
+                {/*<View style={style.alternateSignupInner}>
                     <View style={style.signupIcon}>
                       <FacebookIcon />
                     </View>
@@ -184,15 +170,14 @@ export class LoginScreen extends Component {
                       LOGIN WITH APPLE
                     </Text>
                           </View> */}
-                </View>
               </View>
-            </ScrollView>
-          </SafeAreaView>
-        </KeyboardAvoidingView>
-      </LinearGradient>
-    );
-  }
-}
+            </View>
+          </ScrollView>
+        </SafeAreaView>
+      </KeyboardAvoidingView>
+    </LinearGradient>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
