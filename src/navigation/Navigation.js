@@ -7,38 +7,38 @@ import {connect} from 'react-redux';
 // Navigation
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {navigationRef} from '../RootNavigation';
+import {navigationRef} from './RootNavigation';
 import {createStackNavigator} from '@react-navigation/stack';
 // Components
 
 //icons
-import SearchIconInactive from './icons/SearchIconInactive';
-import SearchIconActive from './icons/SearchIconActive';
-import HomeTabInactive from './icons/HomeTabInactive';
-import HomeTabActive from './icons/HomeTabActive';
-import LeaderboardInactive from './icons/LeaderboardInactive';
-import LeaderboardActive from './icons/LeaderboardActive';
-import ProfileInactive from './icons/ProfileInactive';
-import ProfileActive from './icons/ProfileActive';
-import CreatePostInactive from './icons/CreatePostInactive';
-import CreatePostActive from './icons/CreatePostActive';
+import SearchIconInactive from '../icons/SearchIconInactive';
+import SearchIconActive from '../icons/SearchIconActive';
+import HomeTabInactive from '../icons/HomeTabInactive';
+import HomeTabActive from '../icons/HomeTabActive';
+import LeaderboardInactive from '../icons/LeaderboardInactive';
+import LeaderboardActive from '../icons/LeaderboardActive';
+import ProfileInactive from '../icons/ProfileInactive';
+import ProfileActive from '../icons/ProfileActive';
+import CreatePostInactive from '../icons/CreatePostInactive';
+import CreatePostActive from '../icons/CreatePostActive';
 
 //Stack Navigators
-import LoggedOutStackNavigator from './NavigationStacks/LoggedOutStackNavigator';
-import PostStackNavigator from './NavigationStacks/PostStackNavigator';
-import TopUsersStackNavigator from './NavigationStacks/TopUsersStackNavigator';
-import MyProfileStackNavigator from './NavigationStacks/MyProfileStackNavigator';
-import HomeStackNavigator from './NavigationStacks/HomeStackNavigator';
-import SearchStackNavigator from './NavigationStacks/SearchStackNavigator';
+import LoggedOutStackNavigator from './LoggedOutStackNavigator';
+import PostStackNavigator from './PostStackNavigator';
+import TopUsersStackNavigator from './TopUsersStackNavigator';
+import MyProfileStackNavigator from './MyProfileStackNavigator';
+import HomeStackNavigator from './HomeStackNavigator';
+import SearchStackNavigator from './SearchStackNavigator';
 
-import ProfileInfoForm from './components/LoggedOutScreens/ProfileInfoForm';
-import ConnectAccount from './components/LoggedOutScreens/ConnectAccount';
-import PlaidComponent from './components/MyProfileTabScreens/PlaidComponent';
-import EnableAccounts from './components/MyProfileTabScreens/EnableAccounts';
-import LoggingOutScreen from './components/LoggedOutScreens/LoggingOutScreen';
+import ProfileInfoForm from '../components/LoggedOutScreens/ProfileInfoForm';
+import ConnectAccount from '../components/LoggedOutScreens/ConnectAccount';
+import PlaidComponent from '../components/MyProfileTabScreens/PlaidComponent';
+import EnableAccounts from '../components/MyProfileTabScreens/EnableAccounts';
+import LoggingOutScreen from '../components/LoggedOutScreens/LoggingOutScreen';
 
 //toast
-import MyToast from './components/toast';
+import MyToast from '../components/toast';
 
 //splashscreen
 import RNBootSplash from 'react-native-bootsplash';
@@ -65,7 +65,7 @@ const FirstTimeStackNavigator = () => {
         component={PlaidComponent}
         options={{headerShown: false, animationEnabled: false}}
       />
-       <FirstTimeStack.Screen
+      <FirstTimeStack.Screen
         name="LoggingOut"
         component={LoggingOutScreen}
         options={{headerShown: false, animationEnabled: false}}

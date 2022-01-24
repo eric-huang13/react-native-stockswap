@@ -26,7 +26,7 @@ import deviceStorage from '../util/DeviceStorage';
 // import {deviceStorage} from '../Navigation';
 
 import clearAppData from '../util/ClearStorage';
-import {navigate} from '../../RootNavigation';
+import {navigate} from '../navigation/RootNavigation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import jwt_decode from 'jwt-decode';
 import {Platform} from 'react-native';

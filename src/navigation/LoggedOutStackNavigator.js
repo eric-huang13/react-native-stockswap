@@ -4,8 +4,8 @@ import React, {PureComponent} from 'react';
 //Navigation
 import {createStackNavigator} from '@react-navigation/stack';
 
-//Components
-import LoginScreen from '../components/LoggedOutScreens/Login';
+//Screens
+import LoginScreen from '../screens/login';
 import SignUp from '../components/LoggedOutScreens/SignUp';
 import TermsAndConditions from '../components/LoggedOutScreens/TermsAndConditions';
 import SplashScreen from '../components/LoggedOutScreens/SplashScreen';

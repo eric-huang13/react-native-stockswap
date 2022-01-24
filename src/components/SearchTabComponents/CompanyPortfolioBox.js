@@ -11,7 +11,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import {connect} from 'react-redux';
 import {moderateScale, scale} from '../../util/responsiveFont';
-import axios from 'axios';
+import HttpClient from '../../httpclient';
 
 export class CompanyPortfolioBox extends Component {
   constructor(props) {
@@ -22,17 +22,16 @@ export class CompanyPortfolioBox extends Component {
     };
   }
   componentDidMount() {
-    axios
-      .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${this.props.symbol}/quote/latest`,
-      )
+    HttpClient.get(
+      `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${this.props.symbol}/quote/latest`,
+    )
       .then((response) => {
         this.setState({
           latest: response.data.result.quote,
         });
       })
       .catch((error) => {
-         this.setState({latestError: true});
+        this.setState({latestError: true});
       });
   }
 
@@ -84,7 +83,10 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompanyPortfolioBox);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CompanyPortfolioBox);
 
 const style = StyleSheet.create({
   linearGradient: {

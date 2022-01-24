@@ -40,8 +40,7 @@ import {
 } from 'constants';
 import HttpClient from '../httpclient';
 import deviceStorage from '../util/DeviceStorage';
-//import apiInstance from '../util/axiosConfig';
-import {navigate} from '../../RootNavigation';
+import {navigate} from '../navigation/RootNavigation';
 import Toast from 'react-native-toast-message';
 import {
   PORTFOLIO,

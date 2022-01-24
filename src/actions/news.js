@@ -20,21 +20,3 @@ export const fetchNews = (page, offset) => {
       );
   };
 };
-
-// export const fetchNews = (page, offset) => {
-//   return (dispatch) => {
-//     dispatch({type: NEWS_FETCHING});
-//     axios
-//       .get(`https://api.openbrewerydb.org/breweries?page=${page}&per_page=${offset}&by_state=ohio`)
-//       // .then(response => console.log (response.data, "From NEWS API"))
-//       .then((response) =>
-//       response.data.length > 0 ?
-//         dispatch({type: NEWS_SUCCESS, payload: response.data}) :
-//         dispatch({type: NEWS_STOP, payload: false})
-//       )
-
-//       .catch((error) =>
-//         dispatch({type: NEWS_ERROR, payload: error.response}),
-//       );
-//   };
-// };
