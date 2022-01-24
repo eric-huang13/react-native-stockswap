@@ -11,7 +11,7 @@ import BearIcon from '../../icons/BearIcon';
 import BullIcon from '../../icons/BullIcon';
 import {moderateScale} from '../../util/responsiveFont';
 import {connect} from 'react-redux';
-import axios from 'axios';
+import HttpClient from '../../httpclient';
 
 class ManagePortfolioBox extends Component {
   constructor(props) {
@@ -52,10 +52,9 @@ class ManagePortfolioBox extends Component {
     );
     this.setState({securityDetails: filteredSecurities});
     const ticker = filteredSecurities.map((item) => item.tickerSymbol);
-    axios
-      .get(
-        `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=day`,
-      )
+    HttpClient.get(
+      `http://ec2-3-14-152-2.us-east-2.compute.amazonaws.com/stocks/${ticker}/quote/historic?interval=day`,
+    )
       .then((response) => {
         this.setState({
           graphData: response.data.result.quotes,
